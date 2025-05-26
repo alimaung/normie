@@ -1,0 +1,85 @@
+{% load i18n %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Normie - Standards & Material Management{% endblock %}</title>
+    {% load static %}
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'normieapp/img/app-logo.png' %}" type="image/png">
+    <link rel="shortcut icon" href="{% static 'normieapp/img/app-logo.png' %}" type="image/png">
+    <link rel="apple-touch-icon" href="{% static 'normieapp/img/app-logo.png' %}">
+    <meta name="msapplication-TileImage" content="{% static 'normieapp/img/app-logo.png' %}">
+    <meta name="msapplication-TileColor" content="#1a73e8">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Load our main CSS file -->
+    <link rel="stylesheet" href="{% static 'normieapp/css/styles.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <!-- Left side - Brand with Logo as a single clickable element -->
+        <a href="{% url 'home' %}" class="navbar-brand">
+            <img id="logo" src="{% static 'normieapp/img/logo-light.png' %}" alt="Normie Logo">
+            <span>normie</span>
+        </a>
+        
+        <!-- Middle - Navigation Links -->
+        <div class="navbar-links">
+            <a href="{% url 'standards' %}" {% if request.resolver_match.url_name == 'standards' %}class="active"{% endif %}>{% trans "Standards" %}</a>
+            <a href="{% url 'requests' %}" {% if request.resolver_match.url_name == 'requests' %}class="active"{% endif %}>{% trans "Requests" %}</a>
+            <a href="{% url 'materials' %}" {% if request.resolver_match.url_name == 'materials' %}class="active"{% endif %}>{% trans "Materials" %}</a>
+            <a href="{% url 'releases' %}" {% if request.resolver_match.url_name == 'releases' %}class="active"{% endif %}>{% trans "Releases" %}</a>
+            <a href="{% url 'approvals' %}" {% if request.resolver_match.url_name == 'approvals' %}class="active"{% endif %}>{% trans "Approvals" %}</a>
+            <a href="{% url 'inventory' %}" {% if request.resolver_match.url_name == 'inventory' %}class="active"{% endif %}>{% trans "Inventory" %}</a>
+            <a href="{% url 'reports' %}" {% if request.resolver_match.url_name == 'reports' %}class="active"{% endif %}>{% trans "Reports" %}</a>
+            <a href="{% url 'audit' %}" {% if request.resolver_match.url_name == 'audit' %}class="active"{% endif %}>{% trans "Audit" %}</a>
+        </div>
+        
+        <!-- Right side - Icons -->
+        <div class="navbar-icons">
+            <!-- Language Toggle -->
+            <a id="lang-toggle"
+                href="#"
+                title="{% trans 'Toggle language' %}">
+                <img
+                src="https://flagcdn.com/20x15/{% if LANGUAGE_CODE == 'en' %}us{% elif LANGUAGE_CODE == 'de' %}de{% else %}{{ LANGUAGE_CODE }}{% endif %}.png"
+                srcset="https://flagcdn.com/40x30/{% if LANGUAGE_CODE == 'en' %}us{% elif LANGUAGE_CODE == 'de' %}de{% else %}{{ LANGUAGE_CODE }}{% endif %}.png 2x, https://flagcdn.com/60x45/{% if LANGUAGE_CODE == 'en' %}us{% elif LANGUAGE_CODE == 'de' %}de{% else %}{{ LANGUAGE_CODE }}{% endif %}.png 3x"
+                width="20"
+                height="15"
+                alt="{{ LANGUAGE_CODE|upper }}">
+            </a>
+            <!-- Dark Mode Toggle -->
+            <button id="dark-mode-toggle" title="Toggle Dark Mode">
+                <i id="dark-mode-icon" class="fas fa-moon"></i>
+            </button>
+            <!-- Notifications -->
+            <a href="#" title="{% trans 'Notifications' %}">
+                <i class="fas fa-bell"></i>
+            </a>
+            <!-- Settings -->
+            <a href="#" title="{% trans 'Settings' %}">
+                <i class="fas fa-cog"></i>
+            </a>
+            <!-- Profile Menu -->
+            <a href="#" title="{% trans 'Profile' %}">
+                <i class="fas fa-user"></i>
+            </a>
+        </div>
+    </nav>
+
+    <!-- Content area -->
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+    
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <!-- Main JavaScript file -->
+    <script src="{% static 'normieapp/js/main.js' %}"></script>
+    {% block extra_js %}{% endblock %}
+</body>
+</html> 

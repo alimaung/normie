@@ -1,0 +1,219 @@
+{% extends 'normieapp/base.html' %}
+{% load i18n %}
+
+{% block title %}{% trans "Home" %} - Normie{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="welcome-section">
+        <h1>{% trans "Welcome to Normie" %}</h1>
+        <p>{% trans "Your comprehensive platform for standards management and material request/release workflows." %}</p>
+        
+        <div class="feature-grid">
+            <div class="feature-card">
+                <i class="fas fa-clipboard-list"></i>
+                <h3>{% trans "Standards Management" %}</h3>
+                <p>{% trans "Create, maintain, and track organizational standards and norms with version control." %}</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-paper-plane"></i>
+                <h3>{% trans "Request Processing" %}</h3>
+                <p>{% trans "Submit and manage material requests with automated approval workflows." %}</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-boxes"></i>
+                <h3>{% trans "Material Tracking" %}</h3>
+                <p>{% trans "Monitor consumable materials, inventory levels, and usage patterns." %}</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-rocket"></i>
+                <h3>{% trans "Release Management" %}</h3>
+                <p>{% trans "Coordinate material releases with proper documentation and compliance." %}</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-check-circle"></i>
+                <h3>{% trans "Approval Workflows" %}</h3>
+                <p>{% trans "Streamlined approval processes with role-based access and notifications." %}</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-warehouse"></i>
+                <h3>{% trans "Inventory Control" %}</h3>
+                <p>{% trans "Real-time inventory tracking with automated reorder points and alerts." %}</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-chart-bar"></i>
+                <h3>{% trans "Analytics & Reports" %}</h3>
+                <p>{% trans "Comprehensive reporting and analytics for compliance and optimization." %}</p>
+            </div>
+            
+            <div class="feature-card">
+                <i class="fas fa-shield-alt"></i>
+                <h3>{% trans "Audit Trail" %}</h3>
+                <p>{% trans "Complete audit trails for compliance and regulatory requirements." %}</p>
+            </div>
+        </div>
+        
+        <div class="stats-section">
+            <div class="stat-item">
+                <div class="stat-number">0</div>
+                <div class="stat-label">{% trans "Active Standards" %}</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">0</div>
+                <div class="stat-label">{% trans "Pending Requests" %}</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">0</div>
+                <div class="stat-label">{% trans "Materials Tracked" %}</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">0</div>
+                <div class="stat-label">{% trans "Completed Releases" %}</div>
+            </div>
+        </div>
+        
+        <div class="cta-section">
+            <button class="btn btn-primary">{% trans "Create Request" %}</button>
+            <button class="btn btn-secondary">{% trans "View Dashboard" %}</button>
+        </div>
+    </div>
+</div>
+
+<style>
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.welcome-section {
+    text-align: center;
+    padding: 3rem 0;
+}
+
+.welcome-section h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    color: var(--primary-color, #1a73e8);
+}
+
+.welcome-section > p {
+    font-size: 1.2rem;
+    margin-bottom: 3rem;
+    color: var(--text-secondary, #666);
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-bottom: 3rem;
+}
+
+.feature-card {
+    background: var(--card-bg, #fff);
+    padding: 2rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+    text-align: center;
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+}
+
+.feature-card i {
+    font-size: 3rem;
+    color: var(--primary-color, #1a73e8);
+    margin-bottom: 1rem;
+}
+
+.feature-card h3 {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+    color: var(--text-primary, #333);
+}
+
+.feature-card p {
+    color: var(--text-secondary, #666);
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.stats-section {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 2rem;
+    margin: 3rem 0;
+    padding: 2rem;
+    background: var(--card-bg, #f8f9fa);
+    border-radius: 12px;
+}
+
+.stat-item {
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 3rem;
+    font-weight: bold;
+    color: var(--primary-color, #1a73e8);
+    margin-bottom: 0.5rem;
+}
+
+.stat-label {
+    font-size: 1rem;
+    color: var(--text-secondary, #666);
+    font-weight: 500;
+}
+
+.cta-section {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    display: inline-block;
+}
+
+.btn-primary {
+    background: var(--primary-color, #1a73e8);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover, #1557b0);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary-color, #1a73e8);
+    border: 2px solid var(--primary-color, #1a73e8);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-color, #1a73e8);
+    color: white;
+}
+</style>
+{% endblock %} 
