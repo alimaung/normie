@@ -1,0 +1,282 @@
+{% extends 'normieapp/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ page_title }} - Normie{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/materials.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <div>
+            <h1><i class="fas fa-boxes"></i> {{ page_title }}</h1>
+            <p>{% trans "Browse and manage your material inventory catalog with supplier and cost tracking." %}</p>
+        </div>
+        <div class="page-actions">
+            <button class="btn btn-primary">
+                <i class="fas fa-plus"></i> {% trans "Add Material" %}
+            </button>
+            <button class="btn btn-secondary">
+                <i class="fas fa-upload"></i> {% trans "Import" %}
+            </button>
+            <button class="btn btn-secondary">
+                <i class="fas fa-barcode"></i> {% trans "Scan QR" %}
+            </button>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-cubes"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">{{ materials|length }}</div>
+                <div class="stat-label">{% trans "Total Materials" %}</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">1</div>
+                <div class="stat-label">{% trans "Low Stock" %}</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-tags"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">3</div>
+                <div class="stat-label">{% trans "Categories" %}</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">$45.7K</div>
+                <div class="stat-label">{% trans "Total Value" %}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Material Categories Overview -->
+    <div class="categories-overview">
+        <h3><i class="fas fa-layer-group"></i> {% trans "Material Categories" %}</h3>
+        <div class="categories-grid">
+            <div class="category-card">
+                <div class="category-icon construction">
+                    <i class="fas fa-hard-hat"></i>
+                </div>
+                <div class="category-info">
+                    <strong>{% trans "Construction" %}</strong>
+                    <small>2 {% trans "items" %}</small>
+                    <div class="category-value">$32.5K</div>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-icon safety">
+                    <i class="fas fa-shield-alt"></i>
+                </div>
+                <div class="category-info">
+                    <strong>{% trans "Safety" %}</strong>
+                    <small>1 {% trans "item" %}</small>
+                    <div class="category-value">$1.2K</div>
+                </div>
+            </div>
+            <div class="category-card">
+                <div class="category-icon tools">
+                    <i class="fas fa-tools"></i>
+                </div>
+                <div class="category-info">
+                    <strong>{% trans "Tools" %}</strong>
+                    <small>1 {% trans "item" %}</small>
+                    <div class="category-value">$12.0K</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="data-table-container">
+        <div class="table-header">
+            <h3>{% trans "Materials Catalog" %}</h3>
+            <div class="table-filters">
+                <input type="text" placeholder="{% trans 'Search materials...' %}" class="search-input">
+                <select class="filter-select">
+                    <option value="">{% trans "All Categories" %}</option>
+                    <option value="construction">{% trans "Construction" %}</option>
+                    <option value="safety">{% trans "Safety" %}</option>
+                    <option value="tools">{% trans "Tools" %}</option>
+                </select>
+                <select class="filter-select">
+                    <option value="">{% trans "All Status" %}</option>
+                    <option value="in-stock">{% trans "In Stock" %}</option>
+                    <option value="low-stock">{% trans "Low Stock" %}</option>
+                    <option value="out-of-stock">{% trans "Out of Stock" %}</option>
+                </select>
+            </div>
+        </div>
+        
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>{% trans "Material" %}</th>
+                    <th>{% trans "Category" %}</th>
+                    <th>{% trans "Supplier" %}</th>
+                    <th>{% trans "Stock" %}</th>
+                    <th>{% trans "Unit Cost" %}</th>
+                    <th>{% trans "Total Value" %}</th>
+                    <th>{% trans "Status" %}</th>
+                    <th>{% trans "Actions" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for material in materials %}
+                <tr>
+                    <td>
+                        <div class="material-details">
+                            <div class="material-main">
+                                <strong>{{ material.name }}</strong>
+                                <small>{{ material.id }}</small>
+                            </div>
+                            <div class="material-specs">
+                                <span class="spec-tag">{% if "Steel" in material.name %}Grade A{% elif "Safety" in material.name %}CE Certified{% else %}Professional{% endif %}</span>
+                                <span class="spec-tag">{{ material.unit }}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="category-badge category-{{ material.category|lower }}">
+                            <i class="fas fa-{% if material.category == 'Construction' %}hard-hat{% elif material.category == 'Safety' %}shield-alt{% else %}tools{% endif %}"></i>
+                            {{ material.category }}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="supplier-info">
+                            <strong>{% if "Steel" in material.name %}SteelCorp Ltd{% elif "Safety" in material.name %}SafetyFirst Inc{% else %}ToolMaster Co{% endif %}</strong>
+                            <small>{% trans "Verified Supplier" %}</small>
+                            <div class="supplier-rating">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="far fa-star"></i>
+                                <small>4.2</small>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="stock-info">
+                            <div class="stock-numbers">
+                                <strong>{{ material.stock }}</strong>
+                                <small>/ {{ material.min_stock }} min</small>
+                            </div>
+                            <div class="stock-bar">
+                                <div class="stock-fill" style="width: {% widthratio material.stock material.min_stock 100 %}%"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="cost-info">
+                            <strong>${%if "Steel" in material.name %}125.00{% elif "Safety" in material.name %}15.50{% elif "Welding" in material.name %}8.75{% else %}45.00{% endif %}</strong>
+                            <small>per {{ material.unit }}</small>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="value-info">
+                            <strong>${%if "Steel" in material.name %}18,750{% elif "Safety" in material.name %}1,163{% elif "Welding" in material.name %}219{% else %}9,000{% endif %}</strong>
+                            <small class="value-change positive">+2.5%</small>
+                        </div>
+                    </td>
+                    <td>
+                        {% if material.stock <= material.min_stock %}
+                            <span class="status-badge status-danger">
+                                <i class="fas fa-exclamation-triangle"></i>
+                                {% trans "Low Stock" %}
+                            </span>
+                        {% elif material.stock <= material.min_stock|add:10 %}
+                            <span class="status-badge status-warning">
+                                <i class="fas fa-exclamation-circle"></i>
+                                {% trans "Warning" %}
+                            </span>
+                        {% else %}
+                            <span class="status-badge status-success">
+                                <i class="fas fa-check-circle"></i>
+                                {% trans "In Stock" %}
+                            </span>
+                        {% endif %}
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-icon" title="{% trans 'View Details' %}">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn-icon" title="{% trans 'Edit' %}">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-icon" title="{% trans 'Request' %}">
+                                <i class="fas fa-shopping-cart"></i>
+                            </button>
+                            <button class="btn-icon" title="{% trans 'QR Code' %}">
+                                <i class="fas fa-qrcode"></i>
+                            </button>
+                            {% if material.stock <= material.min_stock %}
+                            <button class="btn-icon btn-reorder" title="{% trans 'Reorder' %}">
+                                <i class="fas fa-redo"></i>
+                            </button>
+                            {% endif %}
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Reorder Alerts -->
+    <div class="reorder-alerts">
+        <h3><i class="fas fa-bell"></i> {% trans "Reorder Alerts" %}</h3>
+        <div class="alerts-list">
+            <div class="alert-item urgent">
+                <div class="alert-icon">
+                    <i class="fas fa-exclamation-triangle"></i>
+                </div>
+                <div class="alert-content">
+                    <strong>{% trans "Welding Rods" %}</strong>
+                    <p>{% trans "Stock level below minimum threshold" %} (25/30)</p>
+                    <small>{% trans "Last ordered 2 weeks ago" %}</small>
+                </div>
+                <div class="alert-actions">
+                    <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-shopping-cart"></i>
+                        {% trans "Reorder" %}
+                    </button>
+                </div>
+            </div>
+            <div class="alert-item warning">
+                <div class="alert-icon">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="alert-content">
+                    <strong>{% trans "Safety Helmets" %}</strong>
+                    <p>{% trans "Approaching reorder point" %} (75/20)</p>
+                    <small>{% trans "Estimated 2 weeks until reorder needed" %}</small>
+                </div>
+                <div class="alert-actions">
+                    <button class="btn btn-secondary btn-sm">
+                        <i class="fas fa-eye"></i>
+                        {% trans "Monitor" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

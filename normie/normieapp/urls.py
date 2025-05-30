@@ -15,4 +15,9 @@ urlpatterns = [
     path('inventory/', views.inventory, name='inventory'),
     path('reports/', views.reports, name='reports'),
     path('audit/', views.audit, name='audit'),
+    path('settings/', views.settings, name='settings'),
+    path('login/', views.login_view, name='login'),
+    path('logout/', views.logout_view, name='logout'),
+    path('profile/', views.profile, name='profile'),
+    path('notifications/', views.notifications, name='notifications'),
 ] 

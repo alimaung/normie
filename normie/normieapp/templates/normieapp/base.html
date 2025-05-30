@@ -13,7 +13,7 @@
     <meta name="msapplication-TileImage" content="{% static 'normieapp/img/app-logo.png' %}">
     <meta name="msapplication-TileColor" content="#1a73e8">
     <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="{% static "normieapp/css/vendor/fontawesome.min.css" %}">
     <!-- Load our main CSS file -->
     <link rel="stylesheet" href="{% static 'normieapp/css/styles.css' %}">
     {% block extra_css %}{% endblock %}
@@ -46,8 +46,8 @@
                 href="#"
                 title="{% trans 'Toggle language' %}">
                 <img
-                src="https://flagcdn.com/20x15/{% if LANGUAGE_CODE == 'en' %}us{% elif LANGUAGE_CODE == 'de' %}de{% else %}{{ LANGUAGE_CODE }}{% endif %}.png"
-                srcset="https://flagcdn.com/40x30/{% if LANGUAGE_CODE == 'en' %}us{% elif LANGUAGE_CODE == 'de' %}de{% else %}{{ LANGUAGE_CODE }}{% endif %}.png 2x, https://flagcdn.com/60x45/{% if LANGUAGE_CODE == 'en' %}us{% elif LANGUAGE_CODE == 'de' %}de{% else %}{{ LANGUAGE_CODE }}{% endif %}.png 3x"
+                src="{% static "normieapp/img/flags/" %}{% if LANGUAGE_CODE == "en" %}us{% elif LANGUAGE_CODE == "de" %}de{% else %}{{ LANGUAGE_CODE }}{% endif %}-20x15.png"
+                srcset="{% static "normieapp/img/flags/" %}{% if LANGUAGE_CODE == "en" %}us{% elif LANGUAGE_CODE == "de" %}de{% else %}{{ LANGUAGE_CODE }}{% endif %}-40x30.png 2x, {% static "normieapp/img/flags/" %}{% if LANGUAGE_CODE == "en" %}us{% elif LANGUAGE_CODE == "de" %}de{% else %}{{ LANGUAGE_CODE }}{% endif %}-60x45.png 3x"
                 width="20"
                 height="15"
                 alt="{{ LANGUAGE_CODE|upper }}">
@@ -57,15 +57,15 @@
                 <i id="dark-mode-icon" class="fas fa-moon"></i>
             </button>
             <!-- Notifications -->
-            <a href="#" title="{% trans 'Notifications' %}">
+            <a href="{% url 'notifications' %}" title="{% trans 'Notifications' %}">
                 <i class="fas fa-bell"></i>
             </a>
             <!-- Settings -->
-            <a href="#" title="{% trans 'Settings' %}">
+            <a href="{% url 'settings' %}" title="{% trans 'Settings' %}">
                 <i class="fas fa-cog"></i>
             </a>
             <!-- Profile Menu -->
-            <a href="#" title="{% trans 'Profile' %}">
+            <a href="{% url 'profile' %}" title="{% trans 'Profile' %}">
                 <i class="fas fa-user"></i>
             </a>
         </div>
@@ -73,11 +73,26 @@
 
     <!-- Content area -->
     <div class="content">
+        <!-- Messages -->
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message message-{{ message.tags }}">
+                        <i class="fas fa-{% if message.tags == 'error' %}exclamation-triangle{% elif message.tags == 'warning' %}exclamation-circle{% elif message.tags == 'success' %}check-circle{% else %}info-circle{% endif %}"></i>
+                        {{ message }}
+                        <button class="message-close" onclick="this.parentElement.remove()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
         {% block content %}{% endblock %}
     </div>
     
     <!-- jQuery -->
-    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="{% static "normieapp/js/vendor/jquery-3.6.4.min.js" %}"></script>
     <!-- Main JavaScript file -->
     <script src="{% static 'normieapp/js/main.js' %}"></script>
     {% block extra_js %}{% endblock %}

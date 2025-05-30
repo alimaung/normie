@@ -1,0 +1,424 @@
+{% extends 'normieapp/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ page_title }} - Normie{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/reports.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'normieapp/js/reports.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <div>
+            <h1><i class="fas fa-chart-bar"></i> {{ page_title }}</h1>
+            <p>{% trans "Generate comprehensive reports and analytics for compliance, optimization, and decision-making." %}</p>
+        </div>
+        <div class="page-actions">
+            <button class="btn btn-primary">
+                <i class="fas fa-plus"></i> {% trans "New Report" %}
+            </button>
+            <button class="btn btn-secondary">
+                <i class="fas fa-calendar-alt"></i> {% trans "Schedule Report" %}
+            </button>
+            <button class="btn btn-secondary">
+                <i class="fas fa-cog"></i> {% trans "Report Settings" %}
+            </button>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon generated">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">42</div>
+                <div class="stat-label">{% trans "Reports Generated" %}</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon scheduled">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">8</div>
+                <div class="stat-label">{% trans "Scheduled Reports" %}</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon shared">
+                <i class="fas fa-share-alt"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">156</div>
+                <div class="stat-label">{% trans "Reports Shared" %}</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-download"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">324</div>
+                <div class="stat-label">{% trans "Downloads" %}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reports Dashboard -->
+    <div class="reports-dashboard">
+        <div class="quick-reports">
+            <h3><i class="fas fa-bolt"></i> {% trans "Quick Reports" %}</h3>
+            <div class="report-categories">
+                <div class="report-category active">
+                    <i class="fas fa-warehouse"></i>
+                    <h4>{% trans "Inventory" %}</h4>
+                    <p>{% trans "Stock levels & usage" %}</p>
+                </div>
+                <div class="report-category">
+                    <i class="fas fa-clipboard-check"></i>
+                    <h4>{% trans "Compliance" %}</h4>
+                    <p>{% trans "Standards adherence" %}</p>
+                </div>
+                <div class="report-category">
+                    <i class="fas fa-chart-line"></i>
+                    <h4>{% trans "Usage" %}</h4>
+                    <p>{% trans "Material consumption" %}</p>
+                </div>
+                <div class="report-category">
+                    <i class="fas fa-dollar-sign"></i>
+                    <h4>{% trans "Financial" %}</h4>
+                    <p>{% trans "Cost analysis" %}</p>
+                </div>
+                <div class="report-category">
+                    <i class="fas fa-users"></i>
+                    <h4>{% trans "Activity" %}</h4>
+                    <p>{% trans "User actions" %}</p>
+                </div>
+                <div class="report-category">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h4>{% trans "Alerts" %}</h4>
+                    <p>{% trans "System notifications" %}</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-generator">
+            <h3><i class="fas fa-magic"></i> {% trans "Report Generator" %}</h3>
+            <form class="generator-form">
+                <div class="form-group">
+                    <label for="report-type">{% trans "Report Type" %}</label>
+                    <select id="report-type">
+                        <option value="inventory">{% trans "Inventory Report" %}</option>
+                        <option value="compliance">{% trans "Compliance Report" %}</option>
+                        <option value="usage">{% trans "Usage Analysis" %}</option>
+                        <option value="financial">{% trans "Financial Summary" %}</option>
+                        <option value="activity">{% trans "Activity Log" %}</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label for="date-range">{% trans "Date Range" %}</label>
+                    <div class="date-range">
+                        <input type="date" id="start-date" value="2024-03-01">
+                        <input type="date" id="end-date" value="2024-03-15">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="format">{% trans "Format" %}</label>
+                    <select id="format">
+                        <option value="pdf">PDF</option>
+                        <option value="excel">Excel</option>
+                        <option value="csv">CSV</option>
+                    </select>
+                </div>
+                
+                <button type="submit" class="btn btn-primary">
+                    <i class="fas fa-play"></i> {% trans "Generate Report" %}
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Recent Reports -->
+    <div class="reports-grid">
+        <div class="report-card">
+            <div class="report-header">
+                <div>
+                    <div class="report-title">{% trans "Monthly Inventory Summary" %}</div>
+                    <div class="report-type">{% trans "Inventory Report" %}</div>
+                </div>
+                <span class="status-badge status-ready">
+                    <i class="fas fa-check-circle"></i>
+                    {% trans "Ready" %}
+                </span>
+            </div>
+            <div class="report-content">
+                <div class="report-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">{% trans "Generated" %}</div>
+                        <div class="meta-value">2024-03-15</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">{% trans "Period" %}</div>
+                        <div class="meta-value">Mar 2024</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">{% trans "Size" %}</div>
+                        <div class="meta-value">2.4 MB</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">{% trans "Format" %}</div>
+                        <div class="meta-value">PDF</div>
+                    </div>
+                </div>
+                
+                <div class="report-preview">
+                    <div class="preview-title">{% trans "Report Summary" %}</div>
+                    <div class="preview-stats">
+                        <span>{% trans "245 Items Tracked" %}</span>
+                        <span>{% trans "12 Low Stock Alerts" %}</span>
+                        <span>{% trans "98% Accuracy" %}</span>
+                    </div>
+                </div>
+
+                <div class="report-actions">
+                    <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-download"></i> {% trans "Download" %}
+                    </button>
+                    <button class="btn btn-secondary btn-sm">
+                        <i class="fas fa-share"></i> {% trans "Share" %}
+                    </button>
+                    <button class="btn btn-secondary btn-sm">
+                        <i class="fas fa-eye"></i> {% trans "Preview" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <div class="report-header">
+                <div>
+                    <div class="report-title">{% trans "Compliance Audit Report" %}</div>
+                    <div class="report-type">{% trans "Compliance Report" %}</div>
+                </div>
+                <span class="status-badge status-generating">
+                    <i class="fas fa-spinner"></i>
+                    {% trans "Generating" %}
+                </span>
+            </div>
+            <div class="report-content">
+                <div class="report-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">{% trans "Started" %}</div>
+                        <div class="meta-value">2024-03-15</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">{% trans "Progress" %}</div>
+                        <div class="meta-value">75%</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">{% trans "ETA" %}</div>
+                        <div class="meta-value">5 min</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">{% trans "Format" %}</div>
+                        <div class="meta-value">Excel</div>
+                    </div>
+                </div>
+                
+                <div class="report-preview">
+                    <div class="preview-title">{% trans "Processing Standards" %}</div>
+                    <div class="preview-stats">
+                        <span>{% trans "ISO 9001:2015" %}</span>
+                        <span>{% trans "ISO 14001:2015" %}</span>
+                        <span>{% trans "OHSAS 18001" %}</span>
+                    </div>
+                </div>
+
+                <div class="report-actions">
+                    <button class="btn btn-secondary btn-sm" disabled>
+                        <i class="fas fa-clock"></i> {% trans "Processing" %}
+                    </button>
+                    <button class="btn btn-secondary btn-sm">
+                        <i class="fas fa-times"></i> {% trans "Cancel" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <div class="report-header">
+                <div>
+                    <div class="report-title">{% trans "Weekly Usage Analysis" %}</div>
+                    <div class="report-type">{% trans "Usage Report" %}</div>
+                </div>
+                <span class="status-badge status-scheduled">
+                    <i class="fas fa-calendar"></i>
+                    {% trans "Scheduled" %}
+                </span>
+            </div>
+            <div class="report-content">
+                <div class="report-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">{% trans "Next Run" %}</div>
+                        <div class="meta-value">2024-03-22</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">{% trans "Frequency" %}</div>
+                        <div class="meta-value">Weekly</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">{% trans "Recipients" %}</div>
+                        <div class="meta-value">5 users</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">{% trans "Format" %}</div>
+                        <div class="meta-value">PDF</div>
+                    </div>
+                </div>
+                
+                <div class="report-preview">
+                    <div class="preview-title">{% trans "Automated Report" %}</div>
+                    <div class="preview-stats">
+                        <span>{% trans "Material Consumption" %}</span>
+                        <span>{% trans "Cost Trends" %}</span>
+                        <span>{% trans "Efficiency Metrics" %}</span>
+                    </div>
+                </div>
+
+                <div class="report-actions">
+                    <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-play"></i> {% trans "Run Now" %}
+                    </button>
+                    <button class="btn btn-secondary btn-sm">
+                        <i class="fas fa-edit"></i> {% trans "Edit" %}
+                    </button>
+                    <button class="btn btn-secondary btn-sm">
+                        <i class="fas fa-pause"></i> {% trans "Pause" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="report-card">
+            <div class="report-header">
+                <div>
+                    <div class="report-title">{% trans "Financial Cost Analysis" %}</div>
+                    <div class="report-type">{% trans "Financial Report" %}</div>
+                </div>
+                <span class="status-badge status-ready">
+                    <i class="fas fa-check-circle"></i>
+                    {% trans "Ready" %}
+                </span>
+            </div>
+            <div class="report-content">
+                <div class="report-meta">
+                    <div class="meta-item">
+                        <div class="meta-label">{% trans "Generated" %}</div>
+                        <div class="meta-value">2024-03-14</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">{% trans "Period" %}</div>
+                        <div class="meta-value">Q1 2024</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">{% trans "Size" %}</div>
+                        <div class="meta-value">1.8 MB</div>
+                    </div>
+                    <div class="meta-item">
+                        <div class="meta-label">{% trans "Format" %}</div>
+                        <div class="meta-value">Excel</div>
+                    </div>
+                </div>
+                
+                <div class="report-preview">
+                    <div class="preview-title">{% trans "Cost Breakdown" %}</div>
+                    <div class="preview-stats">
+                        <span>{% trans "$125,450 Total Spend" %}</span>
+                        <span>{% trans "15% Cost Reduction" %}</span>
+                        <span>{% trans "ROI: 23%" %}</span>
+                    </div>
+                </div>
+
+                <div class="report-actions">
+                    <button class="btn btn-primary btn-sm">
+                        <i class="fas fa-download"></i> {% trans "Download" %}
+                    </button>
+                    <button class="btn btn-secondary btn-sm">
+                        <i class="fas fa-chart-pie"></i> {% trans "Dashboard" %}
+                    </button>
+                    <button class="btn btn-secondary btn-sm">
+                        <i class="fas fa-envelope"></i> {% trans "Email" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Analytics Section -->
+    <div class="analytics-section">
+        <h3><i class="fas fa-chart-line"></i> {% trans "Report Analytics" %}</h3>
+        <div class="analytics-grid">
+            <div class="analytics-card">
+                <h4><i class="fas fa-chart-bar"></i> {% trans "Report Generation Trends" %}</h4>
+                <div class="chart-placeholder">
+                    {% trans "Bar Chart: Reports Generated Over Time" %}
+                </div>
+                <div class="chart-summary">
+                    <span>{% trans "Last 30 days" %}</span>
+                    <span class="trend-indicator trend-up">
+                        <i class="fas fa-arrow-up"></i> +12%
+                    </span>
+                </div>
+            </div>
+            
+            <div class="analytics-card">
+                <h4><i class="fas fa-chart-pie"></i> {% trans "Report Types Distribution" %}</h4>
+                <div class="chart-placeholder">
+                    {% trans "Pie Chart: Report Categories Breakdown" %}
+                </div>
+                <div class="chart-summary">
+                    <span>{% trans "Most popular: Inventory" %}</span>
+                    <span class="trend-indicator">
+                        <i class="fas fa-warehouse"></i> 35%
+                    </span>
+                </div>
+            </div>
+            
+            <div class="analytics-card">
+                <h4><i class="fas fa-download"></i> {% trans "Download Activity" %}</h4>
+                <div class="chart-placeholder">
+                    {% trans "Line Chart: Download Frequency" %}
+                </div>
+                <div class="chart-summary">
+                    <span>{% trans "Peak: Monday 9 AM" %}</span>
+                    <span class="trend-indicator trend-up">
+                        <i class="fas fa-arrow-up"></i> +8%
+                    </span>
+                </div>
+            </div>
+            
+            <div class="analytics-card">
+                <h4><i class="fas fa-users"></i> {% trans "User Engagement" %}</h4>
+                <div class="chart-placeholder">
+                    {% trans "Area Chart: Active Report Users" %}
+                </div>
+                <div class="chart-summary">
+                    <span>{% trans "Active users: 24" %}</span>
+                    <span class="trend-indicator trend-down">
+                        <i class="fas fa-arrow-down"></i> -3%
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

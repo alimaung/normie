@@ -1,0 +1,295 @@
+{% extends 'normieapp/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ page_title }} - Normie{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/inventory.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <div>
+            <h1><i class="fas fa-warehouse"></i> {{ page_title }}</h1>
+            <p>{% trans "Monitor inventory levels, track movements, and forecast demand." %}</p>
+        </div>
+        <div class="page-actions">
+            <button class="btn btn-primary">
+                <i class="fas fa-plus"></i> {% trans "Add Stock" %}
+            </button>
+            <button class="btn btn-secondary">
+                <i class="fas fa-chart-line"></i> {% trans "Forecast" %}
+            </button>
+            <button class="btn btn-secondary">
+                <i class="fas fa-download"></i> {% trans "Export Report" %}
+            </button>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-boxes"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">{{ inventory_stats.total_items }}</div>
+                <div class="stat-label">{% trans "Total Items" %}</div>
+                <div class="stat-trend positive">+5.2%</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon alert">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">{{ inventory_stats.low_stock_items }}</div>
+                <div class="stat-label">{% trans "Low Stock" %}</div>
+                <div class="stat-trend negative">+1</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">${{ inventory_stats.total_value|floatformat:0 }}</div>
+                <div class="stat-label">{% trans "Total Value" %}</div>
+                <div class="stat-trend positive">+12.8%</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-sync-alt"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">8.5</div>
+                <div class="stat-label">{% trans "Turnover Rate" %}</div>
+                <div class="stat-trend positive">+0.3</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inventory Analytics -->
+    <div class="analytics-grid">
+        <div class="analytics-card">
+            <h3><i class="fas fa-chart-area"></i> {% trans "Stock Levels Trend" %}</h3>
+            <div class="chart-placeholder">
+                <div class="chart-line">
+                    <div class="chart-point" style="left: 10%; bottom: 30%"></div>
+                    <div class="chart-point" style="left: 25%; bottom: 45%"></div>
+                    <div class="chart-point" style="left: 40%; bottom: 35%"></div>
+                    <div class="chart-point" style="left: 55%; bottom: 60%"></div>
+                    <div class="chart-point" style="left: 70%; bottom: 55%"></div>
+                    <div class="chart-point" style="left: 85%; bottom: 70%"></div>
+                </div>
+                <div class="chart-labels">
+                    <span>Jan</span>
+                    <span>Feb</span>
+                    <span>Mar</span>
+                    <span>Apr</span>
+                    <span>May</span>
+                    <span>Jun</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="analytics-card">
+            <h3><i class="fas fa-pie-chart"></i> {% trans "Category Distribution" %}</h3>
+            <div class="pie-chart">
+                <div class="pie-segment construction" style="--percentage: 60"></div>
+                <div class="pie-segment safety" style="--percentage: 25"></div>
+                <div class="pie-segment tools" style="--percentage: 15"></div>
+            </div>
+            <div class="pie-legend">
+                <div class="legend-item">
+                    <span class="legend-color construction"></span>
+                    <span>{% trans "Construction" %} (60%)</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color safety"></span>
+                    <span>{% trans "Safety" %} (25%)</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color tools"></span>
+                    <span>{% trans "Tools" %} (15%)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Inventory Movements -->
+    <div class="movements-section">
+        <h3><i class="fas fa-exchange-alt"></i> {% trans "Recent Inventory Movements" %}</h3>
+        <div class="movements-list">
+            <div class="movement-item in">
+                <div class="movement-icon">
+                    <i class="fas fa-arrow-down"></i>
+                </div>
+                <div class="movement-content">
+                    <strong>{% trans "Stock In" %}</strong>
+                    <p>50 units of Steel Pipes received from SteelCorp Ltd</p>
+                    <small>2 hours ago</small>
+                </div>
+                <div class="movement-quantity positive">+50</div>
+            </div>
+            <div class="movement-item out">
+                <div class="movement-icon">
+                    <i class="fas fa-arrow-up"></i>
+                </div>
+                <div class="movement-content">
+                    <strong>{% trans "Stock Out" %}</strong>
+                    <p>30 units of Steel Pipes released to Project Alpha</p>
+                    <small>4 hours ago</small>
+                </div>
+                <div class="movement-quantity negative">-30</div>
+            </div>
+            <div class="movement-item adjustment">
+                <div class="movement-icon">
+                    <i class="fas fa-edit"></i>
+                </div>
+                <div class="movement-content">
+                    <strong>{% trans "Adjustment" %}</strong>
+                    <p>Inventory count adjustment for Welding Rods</p>
+                    <small>1 day ago</small>
+                </div>
+                <div class="movement-quantity neutral">-5</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="data-table-container">
+        <div class="table-header">
+            <h3>{% trans "Low Stock Items" %}</h3>
+            <div class="table-filters">
+                <select class="filter-select">
+                    <option value="">{% trans "All Categories" %}</option>
+                    <option value="construction">{% trans "Construction" %}</option>
+                    <option value="safety">{% trans "Safety" %}</option>
+                    <option value="tools">{% trans "Tools" %}</option>
+                </select>
+                <select class="filter-select">
+                    <option value="">{% trans "All Urgency" %}</option>
+                    <option value="critical">{% trans "Critical" %}</option>
+                    <option value="low">{% trans "Low Stock" %}</option>
+                    <option value="warning">{% trans "Warning" %}</option>
+                </select>
+            </div>
+        </div>
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>{% trans "Material" %}</th>
+                    <th>{% trans "Current Stock" %}</th>
+                    <th>{% trans "Min Stock" %}</th>
+                    <th>{% trans "Reorder Point" %}</th>
+                    <th>{% trans "Days Until Empty" %}</th>
+                    <th>{% trans "Status" %}</th>
+                    <th>{% trans "Actions" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in low_stock_items %}
+                <tr>
+                    <td>
+                        <div class="item-info">
+                            <strong>{{ item.name }}</strong>
+                            <small>SKU: WR-001</small>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="stock-display">
+                            <strong>{{ item.current_stock }}</strong>
+                            <div class="stock-bar">
+                                <div class="stock-fill critical" style="width: 45%"></div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>{{ item.min_stock }}</td>
+                    <td>
+                        <span class="reorder-point">35</span>
+                    </td>
+                    <td>
+                        <div class="forecast">
+                            <strong class="critical">12</strong>
+                            <small>{% trans "days" %}</small>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="status-badge status-danger">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            {{ item.status }}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn btn-primary btn-sm">
+                                <i class="fas fa-shopping-cart"></i> {% trans "Reorder" %}
+                            </button>
+                            <button class="btn btn-secondary btn-sm">
+                                <i class="fas fa-chart-line"></i> {% trans "Forecast" %}
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Demand Forecast -->
+    <div class="forecast-section">
+        <h3><i class="fas fa-crystal-ball"></i> {% trans "Demand Forecast" %}</h3>
+        <div class="forecast-grid">
+            <div class="forecast-card">
+                <div class="forecast-header">
+                    <strong>{% trans "Steel Pipes" %}</strong>
+                    <span class="forecast-period">{% trans "Next 30 days" %}</span>
+                </div>
+                <div class="forecast-chart">
+                    <div class="forecast-bar" style="height: 60%">
+                        <span class="forecast-value">120</span>
+                    </div>
+                    <div class="forecast-bar" style="height: 80%">
+                        <span class="forecast-value">160</span>
+                    </div>
+                    <div class="forecast-bar" style="height: 45%">
+                        <span class="forecast-value">90</span>
+                    </div>
+                    <div class="forecast-bar" style="height: 70%">
+                        <span class="forecast-value">140</span>
+                    </div>
+                </div>
+                <div class="forecast-summary">
+                    <span>{% trans "Avg:" %} 127.5 {% trans "units/week" %}</span>
+                </div>
+            </div>
+            
+            <div class="forecast-card">
+                <div class="forecast-header">
+                    <strong>{% trans "Safety Helmets" %}</strong>
+                    <span class="forecast-period">{% trans "Next 30 days" %}</span>
+                </div>
+                <div class="forecast-chart">
+                    <div class="forecast-bar" style="height: 30%">
+                        <span class="forecast-value">15</span>
+                    </div>
+                    <div class="forecast-bar" style="height: 40%">
+                        <span class="forecast-value">20</span>
+                    </div>
+                    <div class="forecast-bar" style="height: 25%">
+                        <span class="forecast-value">12</span>
+                    </div>
+                    <div class="forecast-bar" style="height: 35%">
+                        <span class="forecast-value">18</span>
+                    </div>
+                </div>
+                <div class="forecast-summary">
+                    <span>{% trans "Avg:" %} 16.3 {% trans "units/week" %}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

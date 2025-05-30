@@ -1,0 +1,253 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% trans "Login" %} - Normie</title>
+    <!-- Favicon -->
+    <link rel="icon" href="{% static 'normieapp/img/app-logo.png' %}" type="image/png">
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="{% static "normieapp/css/vendor/fontawesome.min.css" %}">
+    <!-- Load our main CSS file -->
+    <link rel="stylesheet" href="{% static 'normieapp/css/styles.css' %}">
+</head>
+<body class="login-page">
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <img src="{% static 'normieapp/img/logo-light.png' %}" alt="Normie Logo" class="login-logo">
+                <h1>normie</h1>
+                <p>{% trans "Standards & Material Management" %}</p>
+            </div>
+
+            <!-- Messages -->
+            {% if messages %}
+                <div class="messages">
+                    {% for message in messages %}
+                        <div class="message message-{{ message.tags }}">
+                            <i class="fas fa-{% if message.tags == 'error' %}exclamation-triangle{% elif message.tags == 'warning' %}exclamation-circle{% elif message.tags == 'success' %}check-circle{% else %}info-circle{% endif %}"></i>
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+
+            <form method="post" class="login-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="username">
+                        <i class="fas fa-user"></i>
+                        {% trans "Username" %}
+                    </label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">
+                        <i class="fas fa-lock"></i>
+                        {% trans "Password" %}
+                    </label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary btn-full">
+                        <i class="fas fa-sign-in-alt"></i>
+                        {% trans "Sign In" %}
+                    </button>
+                </div>
+            </form>
+
+            <div class="login-footer">
+                <p>{% trans "Demo Credentials:" %}</p>
+                <small>
+                    {% trans "Username: admin | Password: admin" %}<br>
+                    {% trans "Username: user | Password: user" %}
+                </small>
+            </div>
+        </div>
+    </div>
+
+    <style>
+    .login-page {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 2rem;
+    }
+
+    .login-container {
+        width: 100%;
+        max-width: 400px;
+    }
+
+    .login-card {
+        background: white;
+        border-radius: 12px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+    }
+
+    .login-header {
+        text-align: center;
+        padding: 2rem 2rem 1rem;
+        background: var(--primary-color, #1a73e8);
+        color: white;
+    }
+
+    .login-logo {
+        width: 60px;
+        height: 60px;
+        margin-bottom: 1rem;
+    }
+
+    .login-header h1 {
+        margin: 0 0 0.5rem;
+        font-size: 2rem;
+        font-weight: 300;
+    }
+
+    .login-header p {
+        margin: 0;
+        opacity: 0.9;
+        font-size: 0.9rem;
+    }
+
+    .login-form {
+        padding: 2rem;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: var(--text-primary, #333);
+        font-weight: 500;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+
+    .form-group label i {
+        color: var(--primary-color, #1a73e8);
+        width: 16px;
+    }
+
+    .form-group input {
+        width: 100%;
+        padding: 0.75rem;
+        border: 2px solid var(--border-color, #e0e0e0);
+        border-radius: 6px;
+        font-size: 1rem;
+        transition: border-color 0.2s ease;
+        box-sizing: border-box;
+    }
+
+    .form-group input:focus {
+        outline: none;
+        border-color: var(--primary-color, #1a73e8);
+    }
+
+    .form-actions {
+        margin-top: 2rem;
+    }
+
+    .btn {
+        padding: 0.75rem 1.5rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-size: 1rem;
+        font-weight: 500;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        transition: all 0.2s ease;
+        text-decoration: none;
+    }
+
+    .btn-primary {
+        background: var(--primary-color, #1a73e8);
+        color: white;
+    }
+
+    .btn-primary:hover {
+        background: var(--primary-hover, #1557b0);
+        transform: translateY(-1px);
+    }
+
+    .btn-full {
+        width: 100%;
+    }
+
+    .login-footer {
+        padding: 1rem 2rem 2rem;
+        text-align: center;
+        background: var(--card-bg, #f8f9fa);
+        border-top: 1px solid var(--border-color, #e0e0e0);
+    }
+
+    .login-footer p {
+        margin: 0 0 0.5rem;
+        font-weight: 500;
+        color: var(--text-primary, #333);
+    }
+
+    .login-footer small {
+        color: var(--text-secondary, #666);
+        line-height: 1.4;
+    }
+
+    .messages {
+        margin: 1rem 2rem 0;
+    }
+
+    .message {
+        padding: 0.75rem;
+        border-radius: 6px;
+        margin-bottom: 0.5rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        font-size: 0.9rem;
+    }
+
+    .message-error {
+        background: #ffebee;
+        color: #c62828;
+        border: 1px solid #ffcdd2;
+    }
+
+    .message-success {
+        background: #e8f5e8;
+        color: #2e7d32;
+        border: 1px solid #c8e6c9;
+    }
+
+    .message-info {
+        background: #e3f2fd;
+        color: #1976d2;
+        border: 1px solid #bbdefb;
+    }
+
+    .message-warning {
+        background: #fff3e0;
+        color: #f57c00;
+        border: 1px solid #ffcc02;
+    }
+    </style>
+
+    <!-- jQuery -->
+    <script src="{% static "normieapp/js/vendor/jquery-3.6.4.min.js" %}"></script>
+    <!-- Main JavaScript file -->
+    <script src="{% static 'normieapp/js/main.js' %}"></script>
+</body>
+</html> 

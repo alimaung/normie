@@ -1,0 +1,233 @@
+{% extends 'normieapp/base.html' %}
+{% load i18n %}
+
+{% block title %}{{ page_title }} - Normie{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <div>
+            <h1><i class="fas fa-user"></i> {{ page_title }}</h1>
+            <p>{% trans "Manage your account information and preferences." %}</p>
+        </div>
+        <div class="page-actions">
+            <a href="{% url 'logout' %}" class="btn btn-secondary">
+                <i class="fas fa-sign-out-alt"></i> {% trans "Logout" %}
+            </a>
+        </div>
+    </div>
+
+    <div class="profile-grid">
+        <div class="profile-card">
+            <div class="profile-avatar">
+                <i class="fas fa-user-circle"></i>
+            </div>
+            <div class="profile-info">
+                <h2>{{ user_info.first_name }} {{ user_info.last_name }}</h2>
+                <p>@{{ user_info.username }}</p>
+                <p>{{ user_info.email }}</p>
+            </div>
+        </div>
+
+        <div class="info-card">
+            <div class="card-header">
+                <h3><i class="fas fa-info-circle"></i> {% trans "Account Information" %}</h3>
+            </div>
+            <div class="card-content">
+                <div class="info-item">
+                    <label>{% trans "Username" %}</label>
+                    <span>{{ user_info.username }}</span>
+                </div>
+                <div class="info-item">
+                    <label>{% trans "Email" %}</label>
+                    <span>{{ user_info.email }}</span>
+                </div>
+                <div class="info-item">
+                    <label>{% trans "First Name" %}</label>
+                    <span>{{ user_info.first_name|default:"Not set" }}</span>
+                </div>
+                <div class="info-item">
+                    <label>{% trans "Last Name" %}</label>
+                    <span>{{ user_info.last_name|default:"Not set" }}</span>
+                </div>
+                <div class="info-item">
+                    <label>{% trans "Member Since" %}</label>
+                    <span>{{ user_info.date_joined|date:"F d, Y" }}</span>
+                </div>
+                <div class="info-item">
+                    <label>{% trans "Last Login" %}</label>
+                    <span>{{ user_info.last_login|date:"F d, Y H:i" }}</span>
+                </div>
+            </div>
+            <div class="card-actions">
+                <button class="btn btn-primary">
+                    <i class="fas fa-edit"></i> {% trans "Edit Profile" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.page-header h1 {
+    font-size: 2rem;
+    margin: 0;
+    color: var(--text-primary, #333);
+}
+
+.page-header h1 i {
+    color: var(--primary-color, #1a73e8);
+    margin-right: 0.5rem;
+}
+
+.page-header p {
+    margin: 0.5rem 0 0 0;
+    color: var(--text-secondary, #666);
+}
+
+.profile-grid {
+    display: grid;
+    gap: 2rem;
+}
+
+.profile-card {
+    background: var(--card-bg, #fff);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+    text-align: center;
+}
+
+.profile-avatar {
+    margin-bottom: 1rem;
+}
+
+.profile-avatar i {
+    font-size: 5rem;
+    color: var(--primary-color, #1a73e8);
+}
+
+.profile-info h2 {
+    margin: 0 0 0.5rem;
+    color: var(--text-primary, #333);
+}
+
+.profile-info p {
+    margin: 0.25rem 0;
+    color: var(--text-secondary, #666);
+}
+
+.info-card {
+    background: var(--card-bg, #fff);
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+}
+
+.card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid var(--border-color, #e0e0e0);
+    background: var(--card-header-bg, #f8f9fa);
+}
+
+.card-header h3 {
+    margin: 0;
+    color: var(--text-primary, #333);
+    font-size: 1.1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.card-header h3 i {
+    color: var(--primary-color, #1a73e8);
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.info-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid var(--border-light, #f0f0f0);
+}
+
+.info-item:last-child {
+    border-bottom: none;
+}
+
+.info-item label {
+    font-weight: 500;
+    color: var(--text-primary, #333);
+}
+
+.info-item span {
+    color: var(--text-secondary, #666);
+}
+
+.card-actions {
+    padding: 1rem 1.5rem;
+    background: var(--card-header-bg, #f8f9fa);
+    border-top: 1px solid var(--border-color, #e0e0e0);
+}
+
+.btn {
+    padding: 0.5rem 1rem;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.btn-primary {
+    background: var(--primary-color, #1a73e8);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover, #1557b0);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--primary-color, #1a73e8);
+    border: 1px solid var(--primary-color, #1a73e8);
+}
+
+.btn-secondary:hover {
+    background: var(--primary-color, #1a73e8);
+    color: white;
+}
+
+@media (min-width: 768px) {
+    .profile-grid {
+        grid-template-columns: 1fr 2fr;
+        align-items: start;
+    }
+}
+</style>
+{% endblock %} 

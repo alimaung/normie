@@ -1,0 +1,291 @@
+{% extends 'normieapp/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ page_title }} - Normie{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/requests.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'normieapp/js/requests.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <div>
+            <h1><i class="fas fa-paper-plane"></i> {{ page_title }}</h1>
+            <p>{% trans "Submit and manage material requests with automated approval workflows." %}</p>
+        </div>
+        <div class="page-actions">
+            <button class="btn btn-primary">
+                <i class="fas fa-plus"></i> {% trans "New Request" %}
+            </button>
+            <button class="btn btn-secondary">
+                <i class="fas fa-filter"></i> {% trans "Filter" %}
+            </button>
+            <button class="btn btn-secondary">
+                <i class="fas fa-check-double"></i> {% trans "Bulk Actions" %}
+            </button>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">1</div>
+                <div class="stat-label">{% trans "Pending" %}</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-check"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">1</div>
+                <div class="stat-label">{% trans "Approved" %}</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-cog"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">1</div>
+                <div class="stat-label">{% trans "In Progress" %}</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-exclamation-circle"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">2</div>
+                <div class="stat-label">{% trans "Urgent" %}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Request Workflow Overview -->
+    <div class="workflow-overview">
+        <h3><i class="fas fa-route"></i> {% trans "Request Workflow" %}</h3>
+        <div class="workflow-steps">
+            <div class="workflow-step active">
+                <div class="step-icon">
+                    <i class="fas fa-edit"></i>
+                </div>
+                <div class="step-content">
+                    <strong>{% trans "Submit" %}</strong>
+                    <small>{% trans "Create request" %}</small>
+                </div>
+            </div>
+            <div class="workflow-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+            <div class="workflow-step">
+                <div class="step-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <div class="step-content">
+                    <strong>{% trans "Review" %}</strong>
+                    <small>{% trans "Manager approval" %}</small>
+                </div>
+            </div>
+            <div class="workflow-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+            <div class="workflow-step">
+                <div class="step-icon">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <div class="step-content">
+                    <strong>{% trans "Approve" %}</strong>
+                    <small>{% trans "Final approval" %}</small>
+                </div>
+            </div>
+            <div class="workflow-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+            <div class="workflow-step">
+                <div class="step-icon">
+                    <i class="fas fa-truck"></i>
+                </div>
+                <div class="step-content">
+                    <strong>{% trans "Fulfill" %}</strong>
+                    <small>{% trans "Process & deliver" %}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="data-table-container">
+        <div class="table-header">
+            <h3>{% trans "Recent Requests" %}</h3>
+            <div class="table-filters">
+                <input type="text" placeholder="{% trans 'Search requests...' %}" class="search-input">
+                <select class="filter-select">
+                    <option value="">{% trans "All Status" %}</option>
+                    <option value="pending">{% trans "Pending" %}</option>
+                    <option value="approved">{% trans "Approved" %}</option>
+                    <option value="progress">{% trans "In Progress" %}</option>
+                    <option value="completed">{% trans "Completed" %}</option>
+                </select>
+                <select class="filter-select">
+                    <option value="">{% trans "All Priority" %}</option>
+                    <option value="urgent">{% trans "Urgent" %}</option>
+                    <option value="high">{% trans "High" %}</option>
+                    <option value="normal">{% trans "Normal" %}</option>
+                    <option value="low">{% trans "Low" %}</option>
+                </select>
+            </div>
+        </div>
+        
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>
+                        <input type="checkbox" id="select-all">
+                    </th>
+                    <th>{% trans "Request ID" %}</th>
+                    <th>{% trans "Material" %}</th>
+                    <th>{% trans "Priority" %}</th>
+                    <th>{% trans "Quantity" %}</th>
+                    <th>{% trans "Status" %}</th>
+                    <th>{% trans "Progress" %}</th>
+                    <th>{% trans "Requested By" %}</th>
+                    <th>{% trans "Due Date" %}</th>
+                    <th>{% trans "Actions" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for request in requests %}
+                <tr>
+                    <td>
+                        <input type="checkbox" class="row-select">
+                    </td>
+                    <td>
+                        <strong>{{ request.id }}</strong>
+                    </td>
+                    <td>
+                        <div class="material-info">
+                            <strong>{{ request.material }}</strong>
+                            <small>Category: Construction</small>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="priority-badge priority-{% if forloop.first %}urgent{% elif forloop.counter == 2 %}high{% else %}normal{% endif %}">
+                            <i class="fas fa-{% if forloop.first %}exclamation-triangle{% elif forloop.counter == 2 %}arrow-up{% else %}minus{% endif %}"></i>
+                            {% if forloop.first %}{% trans "Urgent" %}{% elif forloop.counter == 2 %}{% trans "High" %}{% else %}{% trans "Normal" %}{% endif %}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="quantity-info">
+                            <strong>{{ request.quantity }}</strong>
+                            <small>units</small>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="status-badge status-{% if request.status == 'Approved' %}success{% elif request.status == 'Pending' %}warning{% else %}info{% endif %}">
+                            {{ request.status }}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="progress-indicator">
+                            <div class="progress-bar">
+                                {% if request.status == 'Pending' %}
+                                    <div class="progress-fill" style="width: 25%"></div>
+                                {% elif request.status == 'Approved' %}
+                                    <div class="progress-fill" style="width: 75%"></div>
+                                {% else %}
+                                    <div class="progress-fill" style="width: 50%"></div>
+                                {% endif %}
+                            </div>
+                            <small>
+                                {% if request.status == 'Pending' %}25{% elif request.status == 'Approved' %}75{% else %}50{% endif %}% {% trans "complete" %}
+                            </small>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="user-info">
+                            <i class="fas fa-user-circle"></i>
+                            {{ request.requested_by }}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="due-date {% if forloop.first %}overdue{% endif %}">
+                            <i class="fas fa-calendar"></i>
+                            {% if forloop.first %}2024-03-10{% else %}2024-03-20{% endif %}
+                            {% if forloop.first %}<small class="overdue-text">{% trans "Overdue" %}</small>{% endif %}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-icon" title="{% trans 'View Details' %}">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn-icon" title="{% trans 'Edit' %}">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            {% if request.status == 'Pending' %}
+                            <button class="btn-icon btn-approve" title="{% trans 'Approve' %}">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="btn-icon btn-reject" title="{% trans 'Reject' %}">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            {% endif %}
+                            <button class="btn-icon" title="{% trans 'Comments' %}">
+                                <i class="fas fa-comment"></i>
+                                <span class="comment-count">3</span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Request Timeline -->
+    <div class="request-timeline">
+        <h3><i class="fas fa-history"></i> {% trans "Recent Request Activity" %}</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-marker approved">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="timeline-content">
+                    <strong>REQ-002 {% trans "approved" %}</strong>
+                    <p>{% trans "Safety Helmets request approved by Jane Smith" %}</p>
+                    <small>15 minutes ago</small>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker submitted">
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <div class="timeline-content">
+                    <strong>REQ-003 {% trans "submitted" %}</strong>
+                    <p>{% trans "New request for Welding Rods submitted by Mike Johnson" %}</p>
+                    <small>2 hours ago</small>
+                </div>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-marker in-progress">
+                    <i class="fas fa-cog"></i>
+                </div>
+                <div class="timeline-content">
+                    <strong>REQ-001 {% trans "in progress" %}</strong>
+                    <p>{% trans "Steel Pipes request moved to processing" %}</p>
+                    <small>1 day ago</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

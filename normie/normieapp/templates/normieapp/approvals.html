@@ -1,0 +1,316 @@
+{% extends 'normieapp/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ page_title }} - Normie{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/approvals.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'normieapp/js/approvals.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <div>
+            <h1><i class="fas fa-check-circle"></i> {{ page_title }}</h1>
+            <p>{% trans "Manage approval workflows for requests, standards, and releases with comprehensive tracking." %}</p>
+        </div>
+        <div class="page-actions">
+            <button class="btn btn-secondary">
+                <i class="fas fa-filter"></i> {% trans "Filter" %}
+            </button>
+            <button class="btn btn-secondary">
+                <i class="fas fa-download"></i> {% trans "Export Report" %}
+            </button>
+            <button class="btn btn-secondary">
+                <i class="fas fa-cog"></i> {% trans "Workflow Settings" %}
+            </button>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon pending">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">8</div>
+                <div class="stat-label">{% trans "Pending Approvals" %}</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon approved">
+                <i class="fas fa-check"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">24</div>
+                <div class="stat-label">{% trans "Approved Today" %}</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon rejected">
+                <i class="fas fa-times"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">3</div>
+                <div class="stat-label">{% trans "Rejected" %}</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-chart-line"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">2.3h</div>
+                <div class="stat-label">{% trans "Avg Response Time" %}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Approval Workflow Overview -->
+    <div class="approval-workflow">
+        <h3><i class="fas fa-route"></i> {% trans "Approval Workflow" %}</h3>
+        <div class="workflow-steps">
+            <div class="workflow-step completed">
+                <div class="step-icon">
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <div class="step-content">
+                    <strong>{% trans "Submitted" %}</strong>
+                    <small>{% trans "Request created" %}</small>
+                </div>
+            </div>
+            <div class="workflow-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+            <div class="workflow-step active">
+                <div class="step-icon">
+                    <i class="fas fa-user-check"></i>
+                </div>
+                <div class="step-content">
+                    <strong>{% trans "Review" %}</strong>
+                    <small>{% trans "Manager review" %}</small>
+                </div>
+            </div>
+            <div class="workflow-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+            <div class="workflow-step">
+                <div class="step-icon">
+                    <i class="fas fa-clipboard-check"></i>
+                </div>
+                <div class="step-content">
+                    <strong>{% trans "Approve" %}</strong>
+                    <small>{% trans "Final approval" %}</small>
+                </div>
+            </div>
+            <div class="workflow-arrow">
+                <i class="fas fa-arrow-right"></i>
+            </div>
+            <div class="workflow-step">
+                <div class="step-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <div class="step-content">
+                    <strong>{% trans "Execute" %}</strong>
+                    <small>{% trans "Process & fulfill" %}</small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Approval Queue -->
+    <div class="approval-queue">
+        <div class="queue-header">
+            <h3>{% trans "Pending Approvals" %}</h3>
+            <div class="queue-filters">
+                <select class="filter-select">
+                    <option value="">{% trans "All Types" %}</option>
+                    <option value="request">{% trans "Material Requests" %}</option>
+                    <option value="standard">{% trans "Standards" %}</option>
+                    <option value="release">{% trans "Releases" %}</option>
+                </select>
+                <select class="filter-select">
+                    <option value="">{% trans "All Priority" %}</option>
+                    <option value="urgent">{% trans "Urgent" %}</option>
+                    <option value="high">{% trans "High" %}</option>
+                    <option value="normal">{% trans "Normal" %}</option>
+                </select>
+                <select class="filter-select">
+                    <option value="">{% trans "All Assignees" %}</option>
+                    <option value="me">{% trans "Assigned to Me" %}</option>
+                    <option value="team">{% trans "My Team" %}</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="approval-item">
+            <div class="approval-icon request">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="approval-content">
+                <div class="approval-title">{% trans "Material Request" %} - REQ-2024-001</div>
+                <div class="approval-description">{% trans "Request for 50 units of Steel Pipes for Project Alpha construction phase" %}</div>
+                <div class="approval-meta">
+                    <span><i class="fas fa-user"></i> John Doe</span>
+                    <span><i class="fas fa-calendar"></i> 2024-03-15</span>
+                    <span><i class="fas fa-dollar-sign"></i> $6,250</span>
+                    <span class="priority-badge priority-urgent">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        {% trans "Urgent" %}
+                    </span>
+                </div>
+            </div>
+            <div class="approval-actions">
+                <button class="btn btn-approve">
+                    <i class="fas fa-check"></i> {% trans "Approve" %}
+                </button>
+                <button class="btn btn-reject">
+                    <i class="fas fa-times"></i> {% trans "Reject" %}
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-eye"></i> {% trans "Details" %}
+                </button>
+            </div>
+        </div>
+
+        <div class="approval-item">
+            <div class="approval-icon standard">
+                <i class="fas fa-clipboard-list"></i>
+            </div>
+            <div class="approval-content">
+                <div class="approval-title">{% trans "Standard Update" %} - ISO 9001:2015 v2.1</div>
+                <div class="approval-description">{% trans "Updated quality management standard with new compliance requirements and procedures" %}</div>
+                <div class="approval-meta">
+                    <span><i class="fas fa-user"></i> Quality Team</span>
+                    <span><i class="fas fa-calendar"></i> 2024-03-14</span>
+                    <span><i class="fas fa-tag"></i> Quality</span>
+                    <span class="priority-badge priority-high">
+                        <i class="fas fa-arrow-up"></i>
+                        {% trans "High" %}
+                    </span>
+                </div>
+            </div>
+            <div class="approval-actions">
+                <button class="btn btn-review">
+                    <i class="fas fa-search"></i> {% trans "Review" %}
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-history"></i> {% trans "Changes" %}
+                </button>
+            </div>
+        </div>
+
+        <div class="approval-item">
+            <div class="approval-icon release">
+                <i class="fas fa-truck"></i>
+            </div>
+            <div class="approval-content">
+                <div class="approval-title">{% trans "Material Release" %} - REL-2024-003</div>
+                <div class="approval-description">{% trans "Release of safety equipment for Site B maintenance operations" %}</div>
+                <div class="approval-meta">
+                    <span><i class="fas fa-user"></i> Site Manager</span>
+                    <span><i class="fas fa-calendar"></i> 2024-03-13</span>
+                    <span><i class="fas fa-map-marker-alt"></i> Site B</span>
+                    <span class="priority-badge priority-normal">
+                        <i class="fas fa-minus"></i>
+                        {% trans "Normal" %}
+                    </span>
+                </div>
+            </div>
+            <div class="approval-actions">
+                <button class="btn btn-approve">
+                    <i class="fas fa-check"></i> {% trans "Approve" %}
+                </button>
+                <button class="btn btn-reject">
+                    <i class="fas fa-times"></i> {% trans "Reject" %}
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-list"></i> {% trans "Items" %}
+                </button>
+            </div>
+        </div>
+
+        <div class="approval-item">
+            <div class="approval-icon request">
+                <i class="fas fa-shopping-cart"></i>
+            </div>
+            <div class="approval-content">
+                <div class="approval-title">{% trans "Material Request" %} - REQ-2024-002</div>
+                <div class="approval-description">{% trans "Emergency request for welding rods due to equipment failure" %}</div>
+                <div class="approval-meta">
+                    <span><i class="fas fa-user"></i> Mike Johnson</span>
+                    <span><i class="fas fa-calendar"></i> 2024-03-12</span>
+                    <span><i class="fas fa-dollar-sign"></i> $875</span>
+                    <span class="priority-badge priority-urgent">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        {% trans "Urgent" %}
+                    </span>
+                </div>
+            </div>
+            <div class="approval-actions">
+                <button class="btn btn-approve">
+                    <i class="fas fa-check"></i> {% trans "Approve" %}
+                </button>
+                <button class="btn btn-reject">
+                    <i class="fas fa-times"></i> {% trans "Reject" %}
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-comment"></i> {% trans "Comment" %}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Approval History -->
+    <div class="approval-history">
+        <h3><i class="fas fa-history"></i> {% trans "Recent Approval Activity" %}</h3>
+        <div class="history-timeline">
+            <div class="history-item">
+                <div class="history-marker approved">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="history-content">
+                    <strong>REQ-2024-005 {% trans "approved" %}</strong>
+                    <p>{% trans "Safety Helmets request approved by Jane Smith with budget allocation" %}</p>
+                    <small>15 minutes ago</small>
+                </div>
+            </div>
+            <div class="history-item">
+                <div class="history-marker rejected">
+                    <i class="fas fa-times"></i>
+                </div>
+                <div class="history-content">
+                    <strong>REQ-2024-004 {% trans "rejected" %}</strong>
+                    <p>{% trans "Excessive quantity request rejected - requires justification and resubmission" %}</p>
+                    <small>1 hour ago</small>
+                </div>
+            </div>
+            <div class="history-item">
+                <div class="history-marker approved">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="history-content">
+                    <strong>STD-ISO-14001 {% trans "approved" %}</strong>
+                    <p>{% trans "Environmental management standard update approved by compliance team" %}</p>
+                    <small>3 hours ago</small>
+                </div>
+            </div>
+            <div class="history-item">
+                <div class="history-marker pending">
+                    <i class="fas fa-clock"></i>
+                </div>
+                <div class="history-content">
+                    <strong>REL-2024-002 {% trans "under review" %}</strong>
+                    <p>{% trans "Material release for Project Beta moved to secondary approval stage" %}</p>
+                    <small>5 hours ago</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

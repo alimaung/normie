@@ -1,0 +1,468 @@
+{% extends 'normieapp/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ page_title }} - Normie{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/settings.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <div>
+            <h1><i class="fas fa-cog"></i> {{ page_title }}</h1>
+            <p>{% trans "Configure your application preferences, security settings, and system options." %}</p>
+        </div>
+        <div class="page-actions">
+            <button class="btn btn-primary">
+                <i class="fas fa-save"></i> {% trans "Save All Changes" %}
+            </button>
+            <button class="btn btn-secondary">
+                <i class="fas fa-undo"></i> {% trans "Reset to Defaults" %}
+            </button>
+        </div>
+    </div>
+
+    <div class="settings-grid">
+        <!-- User Preferences -->
+        <div class="settings-card">
+            <div class="card-header">
+                <h3><i class="fas fa-user-cog"></i> {% trans "User Preferences" %}</h3>
+            </div>
+            <div class="card-content">
+                <div class="setting-item">
+                    <label for="language">{% trans "Language" %}</label>
+                    <select id="language" name="language">
+                        <option value="en" {% if user_settings.language == 'en' %}selected{% endif %}>English</option>
+                        <option value="de" {% if user_settings.language == 'de' %}selected{% endif %}>Deutsch</option>
+                        <option value="fr" {% if user_settings.language == 'fr' %}selected{% endif %}>Français</option>
+                        <option value="es" {% if user_settings.language == 'es' %}selected{% endif %}>Español</option>
+                        <option value="it" {% if user_settings.language == 'it' %}selected{% endif %}>Italiano</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <label for="timezone">{% trans "Timezone" %}</label>
+                    <select id="timezone" name="timezone">
+                        <option value="UTC" {% if user_settings.timezone == 'UTC' %}selected{% endif %}>UTC</option>
+                        <option value="Europe/Berlin">Europe/Berlin (CET)</option>
+                        <option value="Europe/London">Europe/London (GMT)</option>
+                        <option value="America/New_York">America/New_York (EST)</option>
+                        <option value="America/Los_Angeles">America/Los_Angeles (PST)</option>
+                        <option value="Asia/Tokyo">Asia/Tokyo (JST)</option>
+                        <option value="Asia/Shanghai">Asia/Shanghai (CST)</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <label for="date-format">{% trans "Date Format" %}</label>
+                    <select id="date-format" name="date_format">
+                        <option value="DD/MM/YYYY">DD/MM/YYYY</option>
+                        <option value="MM/DD/YYYY">MM/DD/YYYY</option>
+                        <option value="YYYY-MM-DD" selected>YYYY-MM-DD</option>
+                        <option value="DD.MM.YYYY">DD.MM.YYYY</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <label class="toggle-label">
+                        <input type="checkbox" {% if user_settings.dark_mode %}checked{% endif %}>
+                        <span class="toggle-slider"></span>
+                        {% trans "Dark Mode" %}
+                    </label>
+                    <small>{% trans "Switch to dark theme for better visibility in low light" %}</small>
+                </div>
+
+                <div class="setting-item">
+                    <label class="toggle-label">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                        {% trans "Compact View" %}
+                    </label>
+                    <small>{% trans "Show more information in less space" %}</small>
+                </div>
+            </div>
+        </div>
+
+        <!-- Notifications -->
+        <div class="settings-card">
+            <div class="card-header">
+                <h3><i class="fas fa-bell"></i> {% trans "Notifications" %}</h3>
+            </div>
+            <div class="card-content">
+                <div class="setting-item">
+                    <label class="toggle-label">
+                        <input type="checkbox" {% if user_settings.notifications_email %}checked{% endif %}>
+                        <span class="toggle-slider"></span>
+                        {% trans "Email Notifications" %}
+                    </label>
+                    <small>{% trans "Receive notifications via email" %}</small>
+                </div>
+
+                <div class="setting-item">
+                    <label class="toggle-label">
+                        <input type="checkbox" {% if user_settings.notifications_browser %}checked{% endif %}>
+                        <span class="toggle-slider"></span>
+                        {% trans "Browser Notifications" %}
+                    </label>
+                    <small>{% trans "Show desktop notifications" %}</small>
+                </div>
+
+                <div class="setting-item">
+                    <label class="toggle-label">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                        {% trans "Low Stock Alerts" %}
+                    </label>
+                    <small>{% trans "Alert when inventory is low" %}</small>
+                </div>
+
+                <div class="setting-item">
+                    <label class="toggle-label">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                        {% trans "Approval Reminders" %}
+                    </label>
+                    <small>{% trans "Remind about pending approvals" %}</small>
+                </div>
+
+                <div class="setting-item">
+                    <label class="toggle-label">
+                        <input type="checkbox">
+                        <span class="toggle-slider"></span>
+                        {% trans "Weekly Reports" %}
+                    </label>
+                    <small>{% trans "Receive weekly summary reports" %}</small>
+                </div>
+
+                <div class="setting-item">
+                    <label for="notification-frequency">{% trans "Notification Frequency" %}</label>
+                    <select id="notification-frequency">
+                        <option value="immediate" selected>{% trans "Immediate" %}</option>
+                        <option value="hourly">{% trans "Hourly Digest" %}</option>
+                        <option value="daily">{% trans "Daily Digest" %}</option>
+                        <option value="weekly">{% trans "Weekly Digest" %}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Security -->
+        <div class="settings-card">
+            <div class="card-header">
+                <h3><i class="fas fa-shield-alt"></i> {% trans "Security" %}</h3>
+            </div>
+            <div class="card-content">
+                <div class="setting-item">
+                    <button class="btn btn-secondary btn-full">
+                        <i class="fas fa-key"></i>
+                        {% trans "Change Password" %}
+                    </button>
+                </div>
+
+                <div class="setting-item">
+                    <button class="btn btn-secondary btn-full">
+                        <i class="fas fa-mobile-alt"></i>
+                        {% trans "Two-Factor Authentication" %}
+                    </button>
+                    <small class="security-status enabled">{% trans "Currently enabled" %}</small>
+                </div>
+
+                <div class="setting-item">
+                    <label class="toggle-label">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                        {% trans "Session Timeout" %}
+                    </label>
+                    <small>{% trans "Auto-logout after 30 minutes of inactivity" %}</small>
+                </div>
+
+                <div class="setting-item">
+                    <label for="session-timeout">{% trans "Session Timeout Duration" %}</label>
+                    <select id="session-timeout">
+                        <option value="15">15 {% trans "minutes" %}</option>
+                        <option value="30" selected>30 {% trans "minutes" %}</option>
+                        <option value="60">1 {% trans "hour" %}</option>
+                        <option value="120">2 {% trans "hours" %}</option>
+                        <option value="480">8 {% trans "hours" %}</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <label class="toggle-label">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                        {% trans "Login Alerts" %}
+                    </label>
+                    <small>{% trans "Notify when account is accessed from new device" %}</small>
+                </div>
+
+                <div class="setting-item">
+                    <button class="btn btn-secondary btn-full">
+                        <i class="fas fa-history"></i>
+                        {% trans "View Login History" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- API & Integrations -->
+        <div class="settings-card">
+            <div class="card-header">
+                <h3><i class="fas fa-plug"></i> {% trans "API & Integrations" %}</h3>
+            </div>
+            <div class="card-content">
+                <div class="setting-item">
+                    <label for="api-key">{% trans "API Key" %}</label>
+                    <div class="api-key-container">
+                        <input type="password" id="api-key" value="sk-1234567890abcdef" readonly>
+                        <button class="btn-icon" title="{% trans 'Show/Hide' %}">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                        <button class="btn-icon" title="{% trans 'Copy' %}">
+                            <i class="fas fa-copy"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <button class="btn btn-secondary btn-full">
+                        <i class="fas fa-sync"></i>
+                        {% trans "Regenerate API Key" %}
+                    </button>
+                </div>
+
+                <div class="setting-item">
+                    <label class="toggle-label">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                        {% trans "API Access Enabled" %}
+                    </label>
+                    <small>{% trans "Allow external applications to access your data" %}</small>
+                </div>
+
+                <div class="setting-item">
+                    <label for="webhook-url">{% trans "Webhook URL" %}</label>
+                    <input type="url" id="webhook-url" placeholder="https://your-app.com/webhook">
+                </div>
+
+                <div class="setting-item">
+                    <button class="btn btn-secondary btn-full">
+                        <i class="fas fa-book"></i>
+                        {% trans "API Documentation" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Data & Privacy -->
+        <div class="settings-card">
+            <div class="card-header">
+                <h3><i class="fas fa-database"></i> {% trans "Data & Privacy" %}</h3>
+            </div>
+            <div class="card-content">
+                <div class="setting-item">
+                    <button class="btn btn-secondary btn-full">
+                        <i class="fas fa-download"></i>
+                        {% trans "Export My Data" %}
+                    </button>
+                    <small>{% trans "Download all your data in JSON format" %}</small>
+                </div>
+
+                <div class="setting-item">
+                    <button class="btn btn-secondary btn-full">
+                        <i class="fas fa-trash"></i>
+                        {% trans "Clear Activity Log" %}
+                    </button>
+                    <small>{% trans "Remove all activity history (cannot be undone)" %}</small>
+                </div>
+
+                <div class="setting-item">
+                    <label class="toggle-label">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                        {% trans "Analytics" %}
+                    </label>
+                    <small>{% trans "Help improve the app by sharing usage data" %}</small>
+                </div>
+
+                <div class="setting-item">
+                    <label class="toggle-label">
+                        <input type="checkbox">
+                        <span class="toggle-slider"></span>
+                        {% trans "Data Retention" %}
+                    </label>
+                    <small>{% trans "Automatically delete old data after 2 years" %}</small>
+                </div>
+
+                <div class="setting-item">
+                    <label for="data-retention-period">{% trans "Data Retention Period" %}</label>
+                    <select id="data-retention-period">
+                        <option value="1">1 {% trans "year" %}</option>
+                        <option value="2" selected>2 {% trans "years" %}</option>
+                        <option value="5">5 {% trans "years" %}</option>
+                        <option value="10">10 {% trans "years" %}</option>
+                        <option value="forever">{% trans "Forever" %}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- System -->
+        <div class="settings-card">
+            <div class="card-header">
+                <h3><i class="fas fa-server"></i> {% trans "System" %}</h3>
+            </div>
+            <div class="card-content">
+                <div class="setting-item">
+                    <label>{% trans "Application Version" %}</label>
+                    <span class="setting-value">v1.2.3 <span class="version-status">{% trans "Latest" %}</span></span>
+                </div>
+
+                <div class="setting-item">
+                    <label>{% trans "Database Size" %}</label>
+                    <span class="setting-value">245.7 MB</span>
+                </div>
+
+                <div class="setting-item">
+                    <label>{% trans "Last Backup" %}</label>
+                    <span class="setting-value">2024-03-15 02:00 UTC <span class="backup-status success">{% trans "Success" %}</span></span>
+                </div>
+
+                <div class="setting-item">
+                    <button class="btn btn-secondary btn-full">
+                        <i class="fas fa-sync"></i>
+                        {% trans "Check for Updates" %}
+                    </button>
+                </div>
+
+                <div class="setting-item">
+                    <button class="btn btn-secondary btn-full">
+                        <i class="fas fa-database"></i>
+                        {% trans "Create Backup" %}
+                    </button>
+                </div>
+
+                <div class="setting-item">
+                    <label class="toggle-label">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                        {% trans "Automatic Backups" %}
+                    </label>
+                    <small>{% trans "Create daily backups automatically" %}</small>
+                </div>
+
+                <div class="setting-item">
+                    <label for="backup-frequency">{% trans "Backup Frequency" %}</label>
+                    <select id="backup-frequency">
+                        <option value="daily" selected>{% trans "Daily" %}</option>
+                        <option value="weekly">{% trans "Weekly" %}</option>
+                        <option value="monthly">{% trans "Monthly" %}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <!-- Advanced -->
+        <div class="settings-card">
+            <div class="card-header">
+                <h3><i class="fas fa-cogs"></i> {% trans "Advanced" %}</h3>
+            </div>
+            <div class="card-content">
+                <div class="setting-item">
+                    <label class="toggle-label">
+                        <input type="checkbox">
+                        <span class="toggle-slider"></span>
+                        {% trans "Debug Mode" %}
+                    </label>
+                    <small>{% trans "Enable detailed logging for troubleshooting" %}</small>
+                </div>
+
+                <div class="setting-item">
+                    <label class="toggle-label">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                        {% trans "Performance Monitoring" %}
+                    </label>
+                    <small>{% trans "Monitor application performance metrics" %}</small>
+                </div>
+
+                <div class="setting-item">
+                    <label for="cache-duration">{% trans "Cache Duration" %}</label>
+                    <select id="cache-duration">
+                        <option value="5">5 {% trans "minutes" %}</option>
+                        <option value="15" selected>15 {% trans "minutes" %}</option>
+                        <option value="30">30 {% trans "minutes" %}</option>
+                        <option value="60">1 {% trans "hour" %}</option>
+                    </select>
+                </div>
+
+                <div class="setting-item">
+                    <button class="btn btn-secondary btn-full">
+                        <i class="fas fa-broom"></i>
+                        {% trans "Clear Cache" %}
+                    </button>
+                </div>
+
+                <div class="setting-item">
+                    <button class="btn btn-secondary btn-full">
+                        <i class="fas fa-download"></i>
+                        {% trans "Download Logs" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- About -->
+        <div class="settings-card">
+            <div class="card-header">
+                <h3><i class="fas fa-info-circle"></i> {% trans "About" %}</h3>
+            </div>
+            <div class="card-content">
+                <div class="setting-item">
+                    <div class="about-logo">
+                        <img src="{% static 'normieapp/img/logo-light.png' %}" alt="Normie Logo" width="48">
+                        <div>
+                            <strong>Normie</strong>
+                            <small>{% trans "Standards & Material Management" %}</small>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="setting-item">
+                    <p>{% trans "Normie is a comprehensive standards and material management system designed for modern organizations to streamline their operations and ensure compliance." %}</p>
+                </div>
+
+                <div class="setting-item">
+                    <button class="btn btn-secondary btn-full">
+                        <i class="fas fa-book"></i>
+                        {% trans "Documentation" %}
+                    </button>
+                </div>
+
+                <div class="setting-item">
+                    <button class="btn btn-secondary btn-full">
+                        <i class="fas fa-life-ring"></i>
+                        {% trans "Support" %}
+                    </button>
+                </div>
+
+                <div class="setting-item">
+                    <button class="btn btn-secondary btn-full">
+                        <i class="fas fa-bug"></i>
+                        {% trans "Report Issue" %}
+                    </button>
+                </div>
+
+                <div class="setting-item">
+                    <div class="copyright">
+                        <small>&copy; 2024 Normie. {% trans "All rights reserved." %}</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

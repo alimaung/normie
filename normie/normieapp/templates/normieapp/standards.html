@@ -1,0 +1,234 @@
+{% extends 'normieapp/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ page_title }} - Normie{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/standards.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1><i class="fas fa-clipboard-list"></i> {{ page_title }}</h1>
+        <p>{% trans "Manage organizational standards and norms with version control." %}</p>
+        <div class="page-actions">
+            <button class="btn btn-primary">
+                <i class="fas fa-plus"></i> {% trans "New Standard" %}
+            </button>
+            <button class="btn btn-secondary">
+                <i class="fas fa-download"></i> {% trans "Export" %}
+            </button>
+            <button class="btn btn-secondary">
+                <i class="fas fa-upload"></i> {% trans "Import" %}
+            </button>
+        </div>
+    </div>
+
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-file-alt"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">{{ standards|length }}</div>
+                <div class="stat-label">{% trans "Total Standards" %}</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">1</div>
+                <div class="stat-label">{% trans "Active" %}</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">1</div>
+                <div class="stat-label">{% trans "Under Review" %}</div>
+            </div>
+        </div>
+        <div class="stat-card">
+            <div class="stat-icon">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-number">2</div>
+                <div class="stat-label">{% trans "Expiring Soon" %}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions Panel -->
+    <div class="quick-actions-panel">
+        <h3><i class="fas fa-bolt"></i> {% trans "Quick Actions" %}</h3>
+        <div class="quick-actions-grid">
+            <button class="quick-action-btn">
+                <i class="fas fa-search"></i>
+                <span>{% trans "Find Standard" %}</span>
+            </button>
+            <button class="quick-action-btn">
+                <i class="fas fa-copy"></i>
+                <span>{% trans "Clone Standard" %}</span>
+            </button>
+            <button class="quick-action-btn">
+                <i class="fas fa-history"></i>
+                <span>{% trans "Version History" %}</span>
+            </button>
+            <button class="quick-action-btn">
+                <i class="fas fa-chart-line"></i>
+                <span>{% trans "Compliance Report" %}</span>
+            </button>
+        </div>
+    </div>
+
+    <div class="data-table-container">
+        <div class="table-header">
+            <h3>{% trans "Standards List" %}</h3>
+            <div class="table-filters">
+                <input type="text" placeholder="{% trans 'Search standards...' %}" class="search-input">
+                <select class="filter-select">
+                    <option value="">{% trans "All Status" %}</option>
+                    <option value="active">{% trans "Active" %}</option>
+                    <option value="review">{% trans "Under Review" %}</option>
+                    <option value="draft">{% trans "Draft" %}</option>
+                    <option value="expired">{% trans "Expired" %}</option>
+                </select>
+                <select class="filter-select">
+                    <option value="">{% trans "All Categories" %}</option>
+                    <option value="iso">{% trans "ISO Standards" %}</option>
+                    <option value="safety">{% trans "Safety Standards" %}</option>
+                    <option value="quality">{% trans "Quality Standards" %}</option>
+                </select>
+            </div>
+        </div>
+        
+        <table class="data-table">
+            <thead>
+                <tr>
+                    <th>{% trans "Standard Name" %}</th>
+                    <th>{% trans "Category" %}</th>
+                    <th>{% trans "Status" %}</th>
+                    <th>{% trans "Version" %}</th>
+                    <th>{% trans "Compliance" %}</th>
+                    <th>{% trans "Next Review" %}</th>
+                    <th>{% trans "Actions" %}</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for standard in standards %}
+                <tr>
+                    <td>
+                        <div class="item-info">
+                            <strong>{{ standard.name }}</strong>
+                            <small>ID: {{ standard.id }}</small>
+                            <div class="item-tags">
+                                <span class="tag">{% trans "Critical" %}</span>
+                                <span class="tag">{% trans "Certified" %}</span>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <span class="category-badge">
+                            <i class="fas fa-tag"></i>
+                            {% if "ISO" in standard.name %}ISO{% else %}Quality{% endif %}
+                        </span>
+                    </td>
+                    <td>
+                        <span class="status-badge status-{% if standard.status == 'Active' %}success{% elif standard.status == 'Under Review' %}warning{% else %}info{% endif %}">
+                            {{ standard.status }}
+                        </span>
+                    </td>
+                    <td>
+                        <div class="version-info">
+                            <strong>{{ standard.version }}</strong>
+                            <small>{% trans "3 versions" %}</small>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="compliance-indicator">
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 85%"></div>
+                            </div>
+                            <small>85% {% trans "compliant" %}</small>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="review-date">
+                            <i class="fas fa-calendar"></i>
+                            2024-06-15
+                        </div>
+                    </td>
+                    <td>
+                        <div class="action-buttons">
+                            <button class="btn-icon" title="{% trans 'View Details' %}">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="btn-icon" title="{% trans 'Edit' %}">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                            <button class="btn-icon" title="{% trans 'Download PDF' %}">
+                                <i class="fas fa-file-pdf"></i>
+                            </button>
+                            <button class="btn-icon" title="{% trans 'Version History' %}">
+                                <i class="fas fa-history"></i>
+                            </button>
+                            <div class="dropdown">
+                                <button class="btn-icon dropdown-toggle" title="{% trans 'More Actions' %}">
+                                    <i class="fas fa-ellipsis-v"></i>
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a href="#"><i class="fas fa-copy"></i> {% trans "Duplicate" %}</a>
+                                    <a href="#"><i class="fas fa-share"></i> {% trans "Share" %}</a>
+                                    <a href="#"><i class="fas fa-archive"></i> {% trans "Archive" %}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Recent Activity -->
+    <div class="recent-activity">
+        <h3><i class="fas fa-clock"></i> {% trans "Recent Activity" %}</h3>
+        <div class="activity-list">
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-edit"></i>
+                </div>
+                <div class="activity-content">
+                    <strong>ISO 9001:2015</strong> {% trans "was updated to version 2.1" %}
+                    <small>2 hours ago by John Doe</small>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-check"></i>
+                </div>
+                <div class="activity-content">
+                    <strong>OHSAS 18001</strong> {% trans "review completed" %}
+                    <small>1 day ago by Quality Team</small>
+                </div>
+            </div>
+            <div class="activity-item">
+                <div class="activity-icon">
+                    <i class="fas fa-plus"></i>
+                </div>
+                <div class="activity-content">
+                    <strong>ISO 27001:2022</strong> {% trans "new standard added" %}
+                    <small>3 days ago by Admin</small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 
