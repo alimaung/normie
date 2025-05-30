@@ -1,0 +1,14 @@
+# exclude excel files and folders
+*.xlsx
+*.xlsm
+*.xlsb
+
+# exclude document files and folders
+*.pdf
+*.docx
+*.msg
+
+# exclude pycache folder
+__pycache__/
+
+

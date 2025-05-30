@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Script Controller</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f0f0f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            text-align: center;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 300px;
+        }
+        h1 {
+            color: #333;
+            margin-bottom: 20px;
+        }
+        button {
+            padding: 15px 30px;
+            font-size: 16px;
+            margin: 15px;
+            border-radius: 5px;
+            border: none;
+            color: white;
+            background-color: #888;
+            transition: background-color 0.3s, transform 0.2s;
+            cursor: pointer;
+        }
+        button:hover {
+            transform: scale(1.05);
+        }
+        button.running {
+            background-color: #4CAF50;
+        }
+        button.stopped {
+            background-color: #F44336;
+        }
+        .status {
+            margin-top: 20px;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Script Controller</h1>
+        <button id="cpuMonitorBtn" onclick="toggleScript('cpu_monitor.py', this)" class="stopped">Start CPU Monitor</button>
+        <button id="randomGenBtn" onclick="toggleScript('random_number.py', this)" class="stopped">Start Random Generator</button>
+        <div id="statusMessage" class="status"></div>
+    </div>
+
+    <script>
+        function toggleScript(script, button) {
+            fetch('/toggle', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ script: script })
+            })
+            .then(response => response.json())
+            .then(data => {
+                updateButtonState(script, button, data.status);
+            });
+        }
+
+        function updateButtonState(script, button, status) {
+            if (status === 'running') {
+                button.classList.remove('stopped');
+                button.classList.add('running');
+                button.innerText = 'Stop ' + script.split('.')[0].replace('_', ' ').toUpperCase();
+            } else {
+                button.classList.remove('running');
+                button.classList.add('stopped');
+                button.innerText = 'Start ' + script.split('.')[0].replace('_', ' ').toUpperCase();
+            }
+            updateStatusMessage();
+        }
+
+        function updateStatusMessage() {
+            fetch('/status')
+                .then(response => response.json())
+                .then(data => {
+                    let statusMessage = 'Current status:\n';
+                    for (const script in data) {
+                        statusMessage += `${script}: ${data[script]}\n`;
+                    }
+                    document.getElementById('statusMessage').innerText = statusMessage;
+                });
+        }
+
+        // Initial status check
+        updateStatusMessage();
+    </script>
+</body>
+</html>
