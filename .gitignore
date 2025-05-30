@@ -4,7 +4,6 @@
 *.xlsb
 
 # exclude document files and folders
-*.pdf
 *.docx
 *.msg
 

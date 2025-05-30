@@ -36,7 +36,7 @@ document.addEventListener('DOMContentLoaded', function() {
         // Store preference
         localStorage.setItem('dark-mode', isDark ? 'enabled' : 'disabled');
     }
-
+    
     // Initialize dark mode based on user preference or system preference
     function initializeTheme() {
         const savedTheme = localStorage.getItem('dark-mode');

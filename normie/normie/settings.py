@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-7)tc)oq^kg7tvf&$9+70xo=htl8#vuy#g9&_0)ui&7q6ue!_lz
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '*',
     'localhost',
     '127.0.0.1',
     '192.168.1.96',
@@ -37,6 +38,7 @@ CSRF_TRUSTED_ORIGINS = [
     'http://127.0.0.1',
     'http://192.168.1.96',
     'http://192.168.1.111',
+    'http://127.0.0.1:8000',
 ]
 
 # Application definition
@@ -54,14 +56,21 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.locale.LocaleMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+]
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ORIGIN_WHITELIST  = [
+    'http://127.0.0.1',
 ]
 
 ROOT_URLCONF = 'normie.urls'
