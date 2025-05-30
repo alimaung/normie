@@ -8,7 +8,10 @@
 *.docx
 *.msg
 
-# exclude pycache folder
+# Ignore all __pycache__ directories
 __pycache__/
-
-
+*.pyc
+*.pyo
+*.pyd
+# .env
+.env
