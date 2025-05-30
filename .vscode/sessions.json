@@ -22,16 +22,15 @@
                     "icon": "python",
                     "color": "terminal.ansiGreen",
                     "commands": [
-                        "py .\\micro\\manage.py runserver 0.0.0.0:8000"
+                        ".\\.launch\\run_normie.bat"
                     ]
                 },
                 {
                     "name": "caddy",
-                    "autoExecuteCommands": true,
+                    "autoExecuteCommands": false,
                     "icon": "arrow-swap",
                     "color": "terminal.ansiGreen",
                     "commands": [
-                        "cd .\\.launch ; .\\caddy.exe run --config caddyfile"
                     ]
                 }
             ],
@@ -42,7 +41,6 @@
                     "icon": "lightbulb",
                     "color": "terminal.ansiBrightYellow",
                     "commands": [
-                        "cd .\\sma\\processor"
                     ]
                 },
                 {
@@ -51,7 +49,6 @@
                     "icon": "gear",
                     "color": "terminal.ansiBrightYellow",
                     "commands": [
-                        "cd .\\sma\\trinamic"
                     ]
                 }
             ],
