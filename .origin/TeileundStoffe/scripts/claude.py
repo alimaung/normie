@@ -112,6 +112,6 @@ def extract_form_fields(pdf_path, output_path):
         return None
 
 # Usage
-pdf_path = './docs/077-2025_01043569.pdf'
-output_path = 'form_fields2.json'
+pdf_path = r'077-2025_01043569.pdf'
+output_path = 'form_fields.json'
 form_fields = extract_form_fields(pdf_path, output_path)

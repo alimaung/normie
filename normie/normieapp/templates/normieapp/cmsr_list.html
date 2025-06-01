@@ -1,0 +1,203 @@
+{% extends 'normieapp/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ page_title }} - Normie{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/cmsr.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <div>
+            <h1><i class="fas fa-list"></i> {{ page_title }}</h1>
+            <p>{% trans "Manage and track all Consumable Material Supply Requests (CMSR)" %}</p>
+        </div>
+        <div class="page-actions">
+            <a href="{% url 'cmsr_request' %}" class="btn btn-primary">
+                <i class="fas fa-plus"></i> {% trans "New CMSR Request" %}
+            </a>
+        </div>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div class="filters-section">
+        <form method="get" class="filters-form">
+            <div class="filter-row">
+                <div class="filter-group">
+                    <label for="search">{% trans "Search" %}</label>
+                    <input type="text" id="search" name="search" class="form-control" 
+                           placeholder="{% trans 'Application number, product name, manufacturer...' %}"
+                           value="{{ current_filters.search }}">
+                </div>
+                
+                <div class="filter-group">
+                    <label for="status">{% trans "Status" %}</label>
+                    <select id="status" name="status" class="form-control">
+                        <option value="">{% trans "All Statuses" %}</option>
+                        {% for value, label in status_choices %}
+                            <option value="{{ value }}" {% if current_filters.status == value %}selected{% endif %}>
+                                {{ label }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="filter-group">
+                    <label class="checkbox-label">
+                        <input type="checkbox" name="my_requests" value="1" 
+                               {% if current_filters.my_requests %}checked{% endif %}>
+                        {% trans "My Requests Only" %}
+                    </label>
+                </div>
+                
+                <div class="filter-actions">
+                    <button type="submit" class="btn btn-secondary">
+                        <i class="fas fa-search"></i> {% trans "Filter" %}
+                    </button>
+                    <a href="{% url 'cmsr_list' %}" class="btn btn-outline">
+                        <i class="fas fa-times"></i> {% trans "Clear" %}
+                    </a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <!-- Results Section -->
+    <div class="results-section">
+        <div class="results-header">
+            <div class="results-count">
+                {% blocktrans count counter=page_obj.paginator.count %}
+                    {{ counter }} request found
+                {% plural %}
+                    {{ counter }} requests found
+                {% endblocktrans %}
+            </div>
+        </div>
+
+        {% if page_obj %}
+            <div class="cmsr-table-container">
+                <table class="cmsr-table">
+                    <thead>
+                        <tr>
+                            <th>{% trans "Application #" %}</th>
+                            <th>{% trans "Product Name" %}</th>
+                            <th>{% trans "Applicant" %}</th>
+                            <th>{% trans "Department" %}</th>
+                            <th>{% trans "Status" %}</th>
+                            <th>{% trans "Date" %}</th>
+                            <th>{% trans "Actions" %}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cmsr in page_obj %}
+                            <tr class="cmsr-row" data-status="{{ cmsr.status }}">
+                                <td class="application-number">
+                                    <a href="{% url 'cmsr_detail' pk=cmsr.pk %}" class="cmsr-link">
+                                        {{ cmsr.application_number }}
+                                    </a>
+                                </td>
+                                <td class="product-name">
+                                    <div class="product-info">
+                                        <div class="name">{{ cmsr.product_name|truncatechars:50 }}</div>
+                                        {% if cmsr.manufacturer %}
+                                            <div class="manufacturer">{{ cmsr.manufacturer }}</div>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                                <td class="applicant">{{ cmsr.applicant_name }}</td>
+                                <td class="department">{{ cmsr.applicant_department }}</td>
+                                <td class="status">
+                                    <span class="status-badge status-{{ cmsr.status }}">
+                                        {{ cmsr.get_status_display }}
+                                    </span>
+                                </td>
+                                <td class="date">{{ cmsr.application_date|date:"M d, Y" }}</td>
+                                <td class="actions">
+                                    <div class="action-buttons">
+                                        <a href="{% url 'cmsr_detail' pk=cmsr.pk %}" class="btn btn-sm btn-outline" title="{% trans 'View Details' %}">
+                                            <i class="fas fa-eye"></i>
+                                        </a>
+                                        {% if cmsr.applicant == request.user or perms.normieapp.change_cmsrrequest %}
+                                            <a href="{% url 'cmsr_edit' pk=cmsr.pk %}" class="btn btn-sm btn-secondary" title="{% trans 'Edit' %}">
+                                                <i class="fas fa-edit"></i>
+                                            </a>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Pagination -->
+            {% if page_obj.has_other_pages %}
+                <div class="pagination-container">
+                    <nav class="pagination">
+                        {% if page_obj.has_previous %}
+                            <a href="?{% if current_filters.search %}search={{ current_filters.search }}&{% endif %}{% if current_filters.status %}status={{ current_filters.status }}&{% endif %}{% if current_filters.my_requests %}my_requests=1&{% endif %}page=1" class="page-link">
+                                <i class="fas fa-angle-double-left"></i>
+                            </a>
+                            <a href="?{% if current_filters.search %}search={{ current_filters.search }}&{% endif %}{% if current_filters.status %}status={{ current_filters.status }}&{% endif %}{% if current_filters.my_requests %}my_requests=1&{% endif %}page={{ page_obj.previous_page_number }}" class="page-link">
+                                <i class="fas fa-angle-left"></i>
+                            </a>
+                        {% endif %}
+
+                        <span class="page-info">
+                            {% trans "Page" %} {{ page_obj.number }} {% trans "of" %} {{ page_obj.paginator.num_pages }}
+                        </span>
+
+                        {% if page_obj.has_next %}
+                            <a href="?{% if current_filters.search %}search={{ current_filters.search }}&{% endif %}{% if current_filters.status %}status={{ current_filters.status }}&{% endif %}{% if current_filters.my_requests %}my_requests=1&{% endif %}page={{ page_obj.next_page_number }}" class="page-link">
+                                <i class="fas fa-angle-right"></i>
+                            </a>
+                            <a href="?{% if current_filters.search %}search={{ current_filters.search }}&{% endif %}{% if current_filters.status %}status={{ current_filters.status }}&{% endif %}{% if current_filters.my_requests %}my_requests=1&{% endif %}page={{ page_obj.paginator.num_pages }}" class="page-link">
+                                <i class="fas fa-angle-double-right"></i>
+                            </a>
+                        {% endif %}
+                    </nav>
+                </div>
+            {% endif %}
+        {% else %}
+            <div class="empty-state">
+                <div class="empty-icon">
+                    <i class="fas fa-inbox"></i>
+                </div>
+                <h3>{% trans "No CMSR requests found" %}</h3>
+                <p>{% trans "No requests match your current filters. Try adjusting your search criteria or create a new request." %}</p>
+                <a href="{% url 'cmsr_request' %}" class="btn btn-primary">
+                    <i class="fas fa-plus"></i> {% trans "Create First CMSR Request" %}
+                </a>
+            </div>
+        {% endif %}
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // Auto-submit form on filter changes
+    $('#status').on('change', function() {
+        $(this).closest('form').submit();
+    });
+    
+    $('input[name="my_requests"]').on('change', function() {
+        $(this).closest('form').submit();
+    });
+    
+    // Search with debounce
+    let searchTimeout;
+    $('#search').on('input', function() {
+        clearTimeout(searchTimeout);
+        const form = $(this).closest('form');
+        searchTimeout = setTimeout(function() {
+            form.submit();
+        }, 500);
+    });
+});
+</script>
+{% endblock %} 

@@ -1,0 +1,2410 @@
+{
+  "fuzzy_search_summary": {
+    "scan_timestamp": "2025-05-31T23:28:42.084224",
+    "verification_report": "link_verification_report.json",
+    "directory_index": "directory_index.json",
+    "total_broken_links": 21,
+    "links_with_potential_matches": 21,
+    "total_potential_matches": 74,
+    "match_rate_percentage": 100.0
+  },
+  "confidence_breakdown": {
+    "high_confidence_matches": 21,
+    "medium_confidence_matches": 0,
+    "low_confidence_matches": 0
+  },
+  "matches_by_file_type": {
+    ".msg": 16,
+    ".pdf": 5
+  },
+  "high_confidence_matches": [
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\WG%20%20Entfall%20von%20Stoffen%20aus%20Gefahrstoffdatenbank%20%20Galvanik%20Kostenstelle%20335120%20.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 29,
+          "antrag_nummer": "025/1993",
+          "teile_nummer": "01016053",
+          "benennung": "NICKELSULFAMATKONZENTRAT",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\WG  Entfall von Stoffen aus Gefahrstoffdatenbank  Galvanik Kostenstelle 335120 .msg",
+            "filename": "WG  Entfall von Stoffen aus Gefahrstoffdatenbank  Galvanik Kostenstelle 335120 .msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\WG%20%20Entfall%20von%20Stoffen%20aus%20Gefahrstoffdatenbank%20%20Galvanik%20Kostenstelle%20335120%20.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 30,
+          "antrag_nummer": "026/1993",
+          "teile_nummer": "01003740",
+          "benennung": "BORSAEURE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\WG  Entfall von Stoffen aus Gefahrstoffdatenbank  Galvanik Kostenstelle 335120 .msg",
+            "filename": "WG  Entfall von Stoffen aus Gefahrstoffdatenbank  Galvanik Kostenstelle 335120 .msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\WG%20%20Entfall%20von%20Stoffen%20aus%20Gefahrstoffdatenbank%20%20Galvanik%20Kostenstelle%20335120%20.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 31,
+          "antrag_nummer": "027/1993",
+          "teile_nummer": "01016070",
+          "benennung": "SULFAMINSAEURE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\WG  Entfall von Stoffen aus Gefahrstoffdatenbank  Galvanik Kostenstelle 335120 .msg",
+            "filename": "WG  Entfall von Stoffen aus Gefahrstoffdatenbank  Galvanik Kostenstelle 335120 .msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\WG%20%20Entfall%20von%20Stoffen%20aus%20Gefahrstoffdatenbank%20%20Galvanik%20Kostenstelle%20335120%20.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 37,
+          "antrag_nummer": "022/1993",
+          "teile_nummer": "01016056",
+          "benennung": "NICKEL II CARBONAT",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\WG  Entfall von Stoffen aus Gefahrstoffdatenbank  Galvanik Kostenstelle 335120 .msg",
+            "filename": "WG  Entfall von Stoffen aus Gefahrstoffdatenbank  Galvanik Kostenstelle 335120 .msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\10002304_Datenblatt.pdf",
+        "normalized_path": "teileundstoffe\\10002304_datenblatt.pdf",
+        "exists": false,
+        "row_info": {
+          "row_index": 276,
+          "antrag_nummer": "068/1997",
+          "teile_nummer": "10002304",
+          "benennung": "SCHMIERFETT",
+          "column": "Datenblatt",
+          "display_text": "pdf"
+        }
+      },
+      "expected_filename": "10002304_datenblatt.pdf",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\2001\\10001683_Datenblatt.pdf",
+            "filename": "10001683_Datenblatt.pdf",
+            "directory": "TeileundStoffe\\Antrag\\2001",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.8695652173913043,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\076_077-2024_Datenblatt_451210000.pdf",
+            "filename": "076_077-2024_Datenblatt_451210000.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\040-2007_01040512_Datenblatt.PDF",
+            "filename": "040-2007_01040512_Datenblatt.PDF",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.6909090909090909,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\005-2021_01043696_Datenblatt.pdf",
+            "filename": "005-2021_01043696_Datenblatt.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.6545454545454545,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\007-2018_01041792_Datenblatt.pdf",
+            "filename": "007-2018_01041792_Datenblatt.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.6545454545454545,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\AS55202.pdf",
+        "normalized_path": "teileundstoffe\\as55202.pdf",
+        "exists": false,
+        "row_info": {
+          "row_index": 302,
+          "antrag_nummer": "011/1998",
+          "teile_nummer": "AS55202-5",
+          "benennung": "NUT, SELF LOCKING, SHANK",
+          "column": "Antrag",
+          "display_text": "pdf"
+        }
+      },
+      "expected_filename": "as55202.pdf",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\01041841_AS22.pdf",
+            "filename": "01041841_AS22.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.5714285714285714,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\01040975_AMS5796.pdf",
+            "filename": "01040975_AMS5796.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.45161290322580644,
+          "core_similarity": 0.8,
+          "best_similarity": 0.8
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\01003864_ASG 7.pdf",
+            "filename": "01003864_ASG 7.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.41379310344827586,
+          "core_similarity": 0.8,
+          "best_similarity": 0.8
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\01040975_AMS 5796.pdf",
+            "filename": "01040975_AMS 5796.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.4375,
+          "core_similarity": 0.8,
+          "best_similarity": 0.8
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\01040971_AMS5794.pdf",
+            "filename": "01040971_AMS5794.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.45161290322580644,
+          "core_similarity": 0.8,
+          "best_similarity": 0.8
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\01040786_026-1998.pdf",
+        "normalized_path": "teileundstoffe\\01040786_026-1998.pdf",
+        "exists": false,
+        "row_info": {
+          "row_index": 317,
+          "antrag_nummer": "026/1998",
+          "teile_nummer": "01040786",
+          "benennung": "SICHERUNGSMITTEL",
+          "column": "Datenblatt",
+          "display_text": "pdf"
+        }
+      },
+      "expected_filename": "01040786_026-1998.pdf",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\001-1993_01016057.PDF",
+            "filename": "001-1993_01016057.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.47619047619047616,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\002-1993_01016062.PDF",
+            "filename": "002-1993_01016062.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.5238095238095238,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\004-1993_01016051.PDF",
+            "filename": "004-1993_01016051.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.5238095238095238,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\005-1993_01016073.PDF",
+            "filename": "005-1993_01016073.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.47619047619047616,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\006-1993_01016054.PDF",
+            "filename": "006-1993_01016054.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.5238095238095238,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\10002868_073-1998.pdf",
+        "normalized_path": "teileundstoffe\\10002868_073-1998.pdf",
+        "exists": false,
+        "row_info": {
+          "row_index": 364,
+          "antrag_nummer": "073/1998",
+          "teile_nummer": "10002868",
+          "benennung": "GETRIEBEOEL",
+          "column": "Datenblatt",
+          "display_text": "pdf"
+        }
+      },
+      "expected_filename": "10002868_073-1998.pdf",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\001-1993_01016057.PDF",
+            "filename": "001-1993_01016057.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.47619047619047616,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\002-1993_01016062.PDF",
+            "filename": "002-1993_01016062.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.5238095238095238,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\004-1993_01016051.PDF",
+            "filename": "004-1993_01016051.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.47619047619047616,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\005-1993_01016073.PDF",
+            "filename": "005-1993_01016073.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.47619047619047616,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\006-1993_01016054.PDF",
+            "filename": "006-1993_01016054.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.5238095238095238,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\abgelehnt\\Gear%20Marking%20Compound.msg",
+        "normalized_path": "teileundstoffe\\antrag\\abgelehnt\\gear marking compound.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 542,
+          "antrag_nummer": "055/2000",
+          "teile_nummer": "10003450",
+          "benennung": "MARKIERFARBE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "gear marking compound.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\abgelehnt\\Gear Marking Compound.msg",
+            "filename": "Gear Marking Compound.msg",
+            "directory": "TeileundStoffe\\Historie\\abgelehnt",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\10003450  Gear Marking Compound No 89.msg",
+            "filename": "10003450  Gear Marking Compound No 89.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.7575757575757576,
+          "core_similarity": 0.9333333333333333,
+          "best_similarity": 0.9333333333333333
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\10004515_ENGINEERS MARKING BLUE.msg",
+            "filename": "10004515_ENGINEERS MARKING BLUE.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.5666666666666667,
+          "core_similarity": 0.6046511627906976,
+          "best_similarity": 0.6046511627906976
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\10003289_GUF.PDF",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\10003289_guf.pdf",
+        "exists": false,
+        "row_info": {
+          "row_index": 549,
+          "antrag_nummer": "062/2000",
+          "teile_nummer": "10003289",
+          "benennung": "KUEHLSCHMIERMITTEL",
+          "column": "SDB MSDS",
+          "display_text": "pdf"
+        }
+      },
+      "expected_filename": "10003289_guf.pdf",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\10003289_GUF.PDF",
+            "filename": "10003289_GUF.PDF",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\10003806.pdf",
+            "filename": "10003806.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.7142857142857143,
+          "core_similarity": 0.0,
+          "best_similarity": 0.7142857142857143
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\10002429.pdf",
+            "filename": "10002429.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.7142857142857143,
+          "core_similarity": 0.0,
+          "best_similarity": 0.7142857142857143
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\10002800.pdf",
+            "filename": "10002800.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.7142857142857143,
+          "core_similarity": 0.0,
+          "best_similarity": 0.7142857142857143
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\10003844.pdf",
+            "filename": "10003844.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.7142857142857143,
+          "core_similarity": 0.0,
+          "best_similarity": 0.7142857142857143
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Ethanol%20(TKZ%2010001996)%20+%20REACH.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\ethanol (tkz 10001996) + reach.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 553,
+          "antrag_nummer": "066/2000",
+          "teile_nummer": "01009446",
+          "benennung": "REINIGUNGSMITTEL",
+          "column": "Sonstiges",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "ethanol (tkz 10001996) + reach.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\Ethanol (TKZ 10001996) + REACH.msg",
+            "filename": "Ethanol (TKZ 10001996) + REACH.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\WG  Ethanol (TKZ 10001996) + REACH.msg",
+            "filename": "WG  Ethanol (TKZ 10001996) + REACH.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.9444444444444444,
+          "core_similarity": 0.9523809523809523,
+          "best_similarity": 0.9523809523809523
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Ethanol%20(TKZ%2010001996)%20+%20REACH.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\ethanol (tkz 10001996) + reach.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 555,
+          "antrag_nummer": "068/2000",
+          "teile_nummer": "01009446",
+          "benennung": "REINIGUNGSMITTEL",
+          "column": "Sonstiges",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "ethanol (tkz 10001996) + reach.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\Ethanol (TKZ 10001996) + REACH.msg",
+            "filename": "Ethanol (TKZ 10001996) + REACH.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\WG  Ethanol (TKZ 10001996) + REACH.msg",
+            "filename": "WG  Ethanol (TKZ 10001996) + REACH.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.9444444444444444,
+          "core_similarity": 0.9523809523809523,
+          "best_similarity": 0.9523809523809523
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\abgelehnt\\080%202000_10003534_abgelehnt.msg",
+        "normalized_path": "teileundstoffe\\antrag\\abgelehnt\\080 2000_10003534_abgelehnt.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 567,
+          "antrag_nummer": "080/2000",
+          "teile_nummer": "10003534",
+          "benennung": "NEUTRALISIERER",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "080 2000_10003534_abgelehnt.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\abgelehnt\\080 2000_10003534_abgelehnt.msg",
+            "filename": "080 2000_10003534_abgelehnt.msg",
+            "directory": "TeileundStoffe\\Historie\\abgelehnt",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\10003730%20%20DICHTUNGSMASSE%20FIBERFRAX%20QF180.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\10003730  dichtungsmasse fiberfrax qf180.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 592,
+          "antrag_nummer": "103/2000",
+          "teile_nummer": "10003730",
+          "benennung": "DICHTUNGSMASSE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "10003730  dichtungsmasse fiberfrax qf180.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\10003730  DICHTUNGSMASSE FIBERFRAX QF180.msg",
+            "filename": "10003730  DICHTUNGSMASSE FIBERFRAX QF180.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\01008940  DICHTUNGSMASSE LOCTITE 5922.msg",
+            "filename": "01008940  DICHTUNGSMASSE LOCTITE 5922.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6588235294117647,
+          "core_similarity": 0.6938775510204082,
+          "best_similarity": 0.6938775510204082
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\01040078  DICHTUNGSMASSE LOCTITE 572.msg",
+            "filename": "01040078  DICHTUNGSMASSE LOCTITE 572.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6904761904761905,
+          "core_similarity": 0.6938775510204082,
+          "best_similarity": 0.6938775510204082
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\01040347  DICHTUNGSMASSE PR1766 B.msg",
+            "filename": "01040347  DICHTUNGSMASSE PR1766 B.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.64,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\01002279  DICHTUNGSMASSE HYLOMAR M.msg",
+            "filename": "01002279  DICHTUNGSMASSE HYLOMAR M.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6585365853658537,
+          "core_similarity": 0.6666666666666666,
+          "best_similarity": 0.6666666666666666
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Loetfolie.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\loetfolie.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 602,
+          "antrag_nummer": "011/2001",
+          "teile_nummer": "10003566",
+          "benennung": "LOETFOLIE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "loetfolie.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\Loetfolie.msg",
+            "filename": "Loetfolie.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "filename": "10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.4727272727272727,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "filename": "02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.5,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Loetfolie.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\loetfolie.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 603,
+          "antrag_nummer": "012/2001",
+          "teile_nummer": "10003567",
+          "benennung": "LOETFOLIE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "loetfolie.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\Loetfolie.msg",
+            "filename": "Loetfolie.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "filename": "10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.4727272727272727,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "filename": "02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.5,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Loetfolie.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\loetfolie.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 604,
+          "antrag_nummer": "013/2001",
+          "teile_nummer": "10003568",
+          "benennung": "LOETFOLIE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "loetfolie.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\Loetfolie.msg",
+            "filename": "Loetfolie.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "filename": "10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.4727272727272727,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "filename": "02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.5,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Loetfolie.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\loetfolie.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 605,
+          "antrag_nummer": "014/2001",
+          "teile_nummer": "10003569",
+          "benennung": "LOETFOLIE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "loetfolie.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\Loetfolie.msg",
+            "filename": "Loetfolie.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "filename": "10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.4727272727272727,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "filename": "02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.5,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Loetfolie.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\loetfolie.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 606,
+          "antrag_nummer": "015/2001",
+          "teile_nummer": "10003570",
+          "benennung": "LOETFOLIE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "loetfolie.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\Loetfolie.msg",
+            "filename": "Loetfolie.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "filename": "10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.4727272727272727,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "filename": "02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.5,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Loetfolie.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\loetfolie.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 607,
+          "antrag_nummer": "016/2001",
+          "teile_nummer": "10003571",
+          "benennung": "LOETFOLIE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "loetfolie.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\Loetfolie.msg",
+            "filename": "Loetfolie.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "filename": "10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.4727272727272727,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "filename": "02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.5,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        }
+      ]
+    }
+  ],
+  "medium_confidence_matches": [],
+  "all_fuzzy_matches": [
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\WG%20%20Entfall%20von%20Stoffen%20aus%20Gefahrstoffdatenbank%20%20Galvanik%20Kostenstelle%20335120%20.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 29,
+          "antrag_nummer": "025/1993",
+          "teile_nummer": "01016053",
+          "benennung": "NICKELSULFAMATKONZENTRAT",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\WG  Entfall von Stoffen aus Gefahrstoffdatenbank  Galvanik Kostenstelle 335120 .msg",
+            "filename": "WG  Entfall von Stoffen aus Gefahrstoffdatenbank  Galvanik Kostenstelle 335120 .msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\WG%20%20Entfall%20von%20Stoffen%20aus%20Gefahrstoffdatenbank%20%20Galvanik%20Kostenstelle%20335120%20.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 30,
+          "antrag_nummer": "026/1993",
+          "teile_nummer": "01003740",
+          "benennung": "BORSAEURE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\WG  Entfall von Stoffen aus Gefahrstoffdatenbank  Galvanik Kostenstelle 335120 .msg",
+            "filename": "WG  Entfall von Stoffen aus Gefahrstoffdatenbank  Galvanik Kostenstelle 335120 .msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\WG%20%20Entfall%20von%20Stoffen%20aus%20Gefahrstoffdatenbank%20%20Galvanik%20Kostenstelle%20335120%20.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 31,
+          "antrag_nummer": "027/1993",
+          "teile_nummer": "01016070",
+          "benennung": "SULFAMINSAEURE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\WG  Entfall von Stoffen aus Gefahrstoffdatenbank  Galvanik Kostenstelle 335120 .msg",
+            "filename": "WG  Entfall von Stoffen aus Gefahrstoffdatenbank  Galvanik Kostenstelle 335120 .msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\WG%20%20Entfall%20von%20Stoffen%20aus%20Gefahrstoffdatenbank%20%20Galvanik%20Kostenstelle%20335120%20.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 37,
+          "antrag_nummer": "022/1993",
+          "teile_nummer": "01016056",
+          "benennung": "NICKEL II CARBONAT",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\WG  Entfall von Stoffen aus Gefahrstoffdatenbank  Galvanik Kostenstelle 335120 .msg",
+            "filename": "WG  Entfall von Stoffen aus Gefahrstoffdatenbank  Galvanik Kostenstelle 335120 .msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\10002304_Datenblatt.pdf",
+        "normalized_path": "teileundstoffe\\10002304_datenblatt.pdf",
+        "exists": false,
+        "row_info": {
+          "row_index": 276,
+          "antrag_nummer": "068/1997",
+          "teile_nummer": "10002304",
+          "benennung": "SCHMIERFETT",
+          "column": "Datenblatt",
+          "display_text": "pdf"
+        }
+      },
+      "expected_filename": "10002304_datenblatt.pdf",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\2001\\10001683_Datenblatt.pdf",
+            "filename": "10001683_Datenblatt.pdf",
+            "directory": "TeileundStoffe\\Antrag\\2001",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.8695652173913043,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\076_077-2024_Datenblatt_451210000.pdf",
+            "filename": "076_077-2024_Datenblatt_451210000.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\040-2007_01040512_Datenblatt.PDF",
+            "filename": "040-2007_01040512_Datenblatt.PDF",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.6909090909090909,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\005-2021_01043696_Datenblatt.pdf",
+            "filename": "005-2021_01043696_Datenblatt.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.6545454545454545,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\007-2018_01041792_Datenblatt.pdf",
+            "filename": "007-2018_01041792_Datenblatt.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.6545454545454545,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\AS55202.pdf",
+        "normalized_path": "teileundstoffe\\as55202.pdf",
+        "exists": false,
+        "row_info": {
+          "row_index": 302,
+          "antrag_nummer": "011/1998",
+          "teile_nummer": "AS55202-5",
+          "benennung": "NUT, SELF LOCKING, SHANK",
+          "column": "Antrag",
+          "display_text": "pdf"
+        }
+      },
+      "expected_filename": "as55202.pdf",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\01041841_AS22.pdf",
+            "filename": "01041841_AS22.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.5714285714285714,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\01040975_AMS5796.pdf",
+            "filename": "01040975_AMS5796.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.45161290322580644,
+          "core_similarity": 0.8,
+          "best_similarity": 0.8
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\01003864_ASG 7.pdf",
+            "filename": "01003864_ASG 7.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.41379310344827586,
+          "core_similarity": 0.8,
+          "best_similarity": 0.8
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\01040975_AMS 5796.pdf",
+            "filename": "01040975_AMS 5796.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.4375,
+          "core_similarity": 0.8,
+          "best_similarity": 0.8
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\01040971_AMS5794.pdf",
+            "filename": "01040971_AMS5794.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.45161290322580644,
+          "core_similarity": 0.8,
+          "best_similarity": 0.8
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\01040786_026-1998.pdf",
+        "normalized_path": "teileundstoffe\\01040786_026-1998.pdf",
+        "exists": false,
+        "row_info": {
+          "row_index": 317,
+          "antrag_nummer": "026/1998",
+          "teile_nummer": "01040786",
+          "benennung": "SICHERUNGSMITTEL",
+          "column": "Datenblatt",
+          "display_text": "pdf"
+        }
+      },
+      "expected_filename": "01040786_026-1998.pdf",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\001-1993_01016057.PDF",
+            "filename": "001-1993_01016057.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.47619047619047616,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\002-1993_01016062.PDF",
+            "filename": "002-1993_01016062.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.5238095238095238,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\004-1993_01016051.PDF",
+            "filename": "004-1993_01016051.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.5238095238095238,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\005-1993_01016073.PDF",
+            "filename": "005-1993_01016073.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.47619047619047616,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\006-1993_01016054.PDF",
+            "filename": "006-1993_01016054.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.5238095238095238,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\10002868_073-1998.pdf",
+        "normalized_path": "teileundstoffe\\10002868_073-1998.pdf",
+        "exists": false,
+        "row_info": {
+          "row_index": 364,
+          "antrag_nummer": "073/1998",
+          "teile_nummer": "10002868",
+          "benennung": "GETRIEBEOEL",
+          "column": "Datenblatt",
+          "display_text": "pdf"
+        }
+      },
+      "expected_filename": "10002868_073-1998.pdf",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\001-1993_01016057.PDF",
+            "filename": "001-1993_01016057.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.47619047619047616,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\002-1993_01016062.PDF",
+            "filename": "002-1993_01016062.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.5238095238095238,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\004-1993_01016051.PDF",
+            "filename": "004-1993_01016051.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.47619047619047616,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\005-1993_01016073.PDF",
+            "filename": "005-1993_01016073.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.47619047619047616,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Antrag\\1993\\006-1993_01016054.PDF",
+            "filename": "006-1993_01016054.PDF",
+            "directory": "TeileundStoffe\\Antrag\\1993",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.5238095238095238,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\abgelehnt\\Gear%20Marking%20Compound.msg",
+        "normalized_path": "teileundstoffe\\antrag\\abgelehnt\\gear marking compound.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 542,
+          "antrag_nummer": "055/2000",
+          "teile_nummer": "10003450",
+          "benennung": "MARKIERFARBE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "gear marking compound.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\abgelehnt\\Gear Marking Compound.msg",
+            "filename": "Gear Marking Compound.msg",
+            "directory": "TeileundStoffe\\Historie\\abgelehnt",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\10003450  Gear Marking Compound No 89.msg",
+            "filename": "10003450  Gear Marking Compound No 89.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.7575757575757576,
+          "core_similarity": 0.9333333333333333,
+          "best_similarity": 0.9333333333333333
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\10004515_ENGINEERS MARKING BLUE.msg",
+            "filename": "10004515_ENGINEERS MARKING BLUE.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.5666666666666667,
+          "core_similarity": 0.6046511627906976,
+          "best_similarity": 0.6046511627906976
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\10003289_GUF.PDF",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\10003289_guf.pdf",
+        "exists": false,
+        "row_info": {
+          "row_index": 549,
+          "antrag_nummer": "062/2000",
+          "teile_nummer": "10003289",
+          "benennung": "KUEHLSCHMIERMITTEL",
+          "column": "SDB MSDS",
+          "display_text": "pdf"
+        }
+      },
+      "expected_filename": "10003289_guf.pdf",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\10003289_GUF.PDF",
+            "filename": "10003289_GUF.PDF",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\10003806.pdf",
+            "filename": "10003806.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.7142857142857143,
+          "core_similarity": 0.0,
+          "best_similarity": 0.7142857142857143
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\10002429.pdf",
+            "filename": "10002429.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.7142857142857143,
+          "core_similarity": 0.0,
+          "best_similarity": 0.7142857142857143
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\10002800.pdf",
+            "filename": "10002800.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.7142857142857143,
+          "core_similarity": 0.0,
+          "best_similarity": 0.7142857142857143
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Datenblatt\\10003844.pdf",
+            "filename": "10003844.pdf",
+            "directory": "TeileundStoffe\\Datenblatt",
+            "extension": ".pdf"
+          },
+          "filename_similarity": 0.7142857142857143,
+          "core_similarity": 0.0,
+          "best_similarity": 0.7142857142857143
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Ethanol%20(TKZ%2010001996)%20+%20REACH.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\ethanol (tkz 10001996) + reach.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 553,
+          "antrag_nummer": "066/2000",
+          "teile_nummer": "01009446",
+          "benennung": "REINIGUNGSMITTEL",
+          "column": "Sonstiges",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "ethanol (tkz 10001996) + reach.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\Ethanol (TKZ 10001996) + REACH.msg",
+            "filename": "Ethanol (TKZ 10001996) + REACH.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\WG  Ethanol (TKZ 10001996) + REACH.msg",
+            "filename": "WG  Ethanol (TKZ 10001996) + REACH.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.9444444444444444,
+          "core_similarity": 0.9523809523809523,
+          "best_similarity": 0.9523809523809523
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Ethanol%20(TKZ%2010001996)%20+%20REACH.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\ethanol (tkz 10001996) + reach.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 555,
+          "antrag_nummer": "068/2000",
+          "teile_nummer": "01009446",
+          "benennung": "REINIGUNGSMITTEL",
+          "column": "Sonstiges",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "ethanol (tkz 10001996) + reach.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\Ethanol (TKZ 10001996) + REACH.msg",
+            "filename": "Ethanol (TKZ 10001996) + REACH.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\WG  Ethanol (TKZ 10001996) + REACH.msg",
+            "filename": "WG  Ethanol (TKZ 10001996) + REACH.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.9444444444444444,
+          "core_similarity": 0.9523809523809523,
+          "best_similarity": 0.9523809523809523
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\abgelehnt\\080%202000_10003534_abgelehnt.msg",
+        "normalized_path": "teileundstoffe\\antrag\\abgelehnt\\080 2000_10003534_abgelehnt.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 567,
+          "antrag_nummer": "080/2000",
+          "teile_nummer": "10003534",
+          "benennung": "NEUTRALISIERER",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "080 2000_10003534_abgelehnt.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\abgelehnt\\080 2000_10003534_abgelehnt.msg",
+            "filename": "080 2000_10003534_abgelehnt.msg",
+            "directory": "TeileundStoffe\\Historie\\abgelehnt",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\10003730%20%20DICHTUNGSMASSE%20FIBERFRAX%20QF180.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\10003730  dichtungsmasse fiberfrax qf180.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 592,
+          "antrag_nummer": "103/2000",
+          "teile_nummer": "10003730",
+          "benennung": "DICHTUNGSMASSE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "10003730  dichtungsmasse fiberfrax qf180.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\10003730  DICHTUNGSMASSE FIBERFRAX QF180.msg",
+            "filename": "10003730  DICHTUNGSMASSE FIBERFRAX QF180.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\01008940  DICHTUNGSMASSE LOCTITE 5922.msg",
+            "filename": "01008940  DICHTUNGSMASSE LOCTITE 5922.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6588235294117647,
+          "core_similarity": 0.6938775510204082,
+          "best_similarity": 0.6938775510204082
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\01040078  DICHTUNGSMASSE LOCTITE 572.msg",
+            "filename": "01040078  DICHTUNGSMASSE LOCTITE 572.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6904761904761905,
+          "core_similarity": 0.6938775510204082,
+          "best_similarity": 0.6938775510204082
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\01040347  DICHTUNGSMASSE PR1766 B.msg",
+            "filename": "01040347  DICHTUNGSMASSE PR1766 B.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.64,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\01002279  DICHTUNGSMASSE HYLOMAR M.msg",
+            "filename": "01002279  DICHTUNGSMASSE HYLOMAR M.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6585365853658537,
+          "core_similarity": 0.6666666666666666,
+          "best_similarity": 0.6666666666666666
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Loetfolie.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\loetfolie.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 602,
+          "antrag_nummer": "011/2001",
+          "teile_nummer": "10003566",
+          "benennung": "LOETFOLIE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "loetfolie.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\Loetfolie.msg",
+            "filename": "Loetfolie.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "filename": "10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.4727272727272727,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "filename": "02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.5,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Loetfolie.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\loetfolie.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 603,
+          "antrag_nummer": "012/2001",
+          "teile_nummer": "10003567",
+          "benennung": "LOETFOLIE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "loetfolie.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\Loetfolie.msg",
+            "filename": "Loetfolie.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "filename": "10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.4727272727272727,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "filename": "02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.5,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Loetfolie.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\loetfolie.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 604,
+          "antrag_nummer": "013/2001",
+          "teile_nummer": "10003568",
+          "benennung": "LOETFOLIE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "loetfolie.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\Loetfolie.msg",
+            "filename": "Loetfolie.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "filename": "10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.4727272727272727,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "filename": "02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.5,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Loetfolie.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\loetfolie.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 605,
+          "antrag_nummer": "014/2001",
+          "teile_nummer": "10003569",
+          "benennung": "LOETFOLIE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "loetfolie.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\Loetfolie.msg",
+            "filename": "Loetfolie.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "filename": "10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.4727272727272727,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "filename": "02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.5,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Loetfolie.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\loetfolie.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 606,
+          "antrag_nummer": "015/2001",
+          "teile_nummer": "10003570",
+          "benennung": "LOETFOLIE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "loetfolie.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\Loetfolie.msg",
+            "filename": "Loetfolie.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "filename": "10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.4727272727272727,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "filename": "02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.5,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Loetfolie.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\loetfolie.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 607,
+          "antrag_nummer": "016/2001",
+          "teile_nummer": "10003571",
+          "benennung": "LOETFOLIE",
+          "column": "Schriftverkehr",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "loetfolie.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\Loetfolie.msg",
+            "filename": "Loetfolie.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\Roentgenfilme.msg",
+            "filename": "Roentgenfilme.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.6666666666666666,
+          "core_similarity": 0.5454545454545454,
+          "best_similarity": 0.6666666666666666
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "filename": "10003566-71  Loetfolie Vitta Braz 1779.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.4727272727272727,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Verteilung\\02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "filename": "02899628  LOETFOLIE VITTA-BRAZ 1777.msg",
+            "directory": "TeileundStoffe\\Historie\\Verteilung",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.5,
+          "core_similarity": 0.6206896551724138,
+          "best_similarity": 0.6206896551724138
+        }
+      ]
+    },
+    {
+      "broken_link": {
+        "status": "broken",
+        "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Ethanol%20(TKZ%2010001996)%20+%20REACH.msg",
+        "normalized_path": "teileundstoffe\\antrag\\aenderungen\\ethanol (tkz 10001996) + reach.msg",
+        "exists": false,
+        "row_info": {
+          "row_index": 617,
+          "antrag_nummer": "026/2001",
+          "teile_nummer": "01009446",
+          "benennung": "REINIGUNGSMITTEL",
+          "column": "Sonstiges",
+          "display_text": "msg"
+        }
+      },
+      "expected_filename": "ethanol (tkz 10001996) + reach.msg",
+      "matches": [
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Historie\\Aenderungen\\Ethanol (TKZ 10001996) + REACH.msg",
+            "filename": "Ethanol (TKZ 10001996) + REACH.msg",
+            "directory": "TeileundStoffe\\Historie\\Aenderungen",
+            "extension": ".msg"
+          },
+          "filename_similarity": 1.0,
+          "core_similarity": 1.0,
+          "best_similarity": 1.0
+        },
+        {
+          "file_info": {
+            "full_path": "TeileundStoffe\\Schriftverkehr\\WG  Ethanol (TKZ 10001996) + REACH.msg",
+            "filename": "WG  Ethanol (TKZ 10001996) + REACH.msg",
+            "directory": "TeileundStoffe\\Schriftverkehr",
+            "extension": ".msg"
+          },
+          "filename_similarity": 0.9444444444444444,
+          "core_similarity": 0.9523809523809523,
+          "best_similarity": 0.9523809523809523
+        }
+      ]
+    }
+  ]
+}

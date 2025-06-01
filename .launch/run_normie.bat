@@ -1,1 +1,0 @@
-"C:\ESEApps\Miniconda3\py312_24.3.0-0-Windows-x86_64\python.exe" ..\normie\normie\manage.py runserver 0.0.0.0:8000

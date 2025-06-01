@@ -1,0 +1,1604 @@
+{
+  "verification_summary": {
+    "scan_timestamp": "2025-05-31T23:08:03.374552",
+    "excel_file": "../excelmigration/Verzeichnis.json",
+    "directory_index": "directory_index.json",
+    "total_links_checked": 16846,
+    "valid_links": 15375,
+    "broken_links": 765,
+    "invalid_format_links": 706,
+    "validity_percentage": 91.27,
+    "broken_percentage": 4.54,
+    "invalid_percentage": 4.19
+  },
+  "broken_links_by_column": {
+    "Schriftverkehr": 43,
+    "SDB MSDS": 258,
+    "Änd. Historie": 448,
+    "Datenblatt": 11,
+    "Antrag": 682,
+    "Sonstiges": 17,
+    "Gefährdungsprüfungeurteilung": 2,
+    "Produkt-zulassung": 6,
+    "Gefährdungsprüfung": 4
+  },
+  "broken_links_by_year": {
+    "1993": 10,
+    "1994": 9,
+    "1995": 6,
+    "1996": 9,
+    "1997": 7,
+    "1998": 16,
+    "1999": 7,
+    "2000": 26,
+    "2001": 232,
+    "2002": 151,
+    "2003": 86,
+    "2004": 71,
+    "2005": 111,
+    "2006": 108,
+    "2007": 72,
+    "2008": 71,
+    "Unknown": 2,
+    "2009": 51,
+    "2010": 9,
+    "2011": 10,
+    "2012": 15,
+    "2013": 25,
+    "2014": 15,
+    "2015": 15,
+    "2016": 67,
+    "2017": 105,
+    "2018": 50,
+    "2019": 47,
+    "2020": 31,
+    "2021": 29,
+    "2022": 5,
+    "2024": 2,
+    "2025": 1
+  },
+  "broken_link_details": [
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\WG%20%20Entfall%20von%20Stoffen%20aus%20Gefahrstoffdatenbank%20%20Galvanik%20Kostenstelle%20335120%20.msg",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 29,
+        "antrag_nummer": "025/1993",
+        "teile_nummer": "01016053",
+        "benennung": "NICKELSULFAMATKONZENTRAT",
+        "column": "Schriftverkehr",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\WG%20%20Entfall%20von%20Stoffen%20aus%20Gefahrstoffdatenbank%20%20Galvanik%20Kostenstelle%20335120%20.msg",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 30,
+        "antrag_nummer": "026/1993",
+        "teile_nummer": "01003740",
+        "benennung": "BORSAEURE",
+        "column": "Schriftverkehr",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\WG%20%20Entfall%20von%20Stoffen%20aus%20Gefahrstoffdatenbank%20%20Galvanik%20Kostenstelle%20335120%20.msg",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 31,
+        "antrag_nummer": "027/1993",
+        "teile_nummer": "01016070",
+        "benennung": "SULFAMINSAEURE",
+        "column": "Schriftverkehr",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1492.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 32,
+        "antrag_nummer": "028/1993",
+        "teile_nummer": "01016045",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1460.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 33,
+        "antrag_nummer": "029/1993",
+        "teile_nummer": "01016046",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\WG%20%20Entfall%20von%20Stoffen%20aus%20Gefahrstoffdatenbank%20%20Galvanik%20Kostenstelle%20335120%20.msg",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 37,
+        "antrag_nummer": "022/1993",
+        "teile_nummer": "01016056",
+        "benennung": "NICKEL II CARBONAT",
+        "column": "Schriftverkehr",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1599.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 38,
+        "antrag_nummer": "023/1993",
+        "teile_nummer": "01016055",
+        "benennung": "PERCHLORAETHYLEN",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1459.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 39,
+        "antrag_nummer": "030/1993",
+        "teile_nummer": "01016047",
+        "benennung": "AMMONIUMBIFLUORID",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1990.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 43,
+        "antrag_nummer": "034/1993",
+        "teile_nummer": "01016061",
+        "benennung": "KLEBER",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1522.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 47,
+        "antrag_nummer": "046/1993",
+        "teile_nummer": "01016094",
+        "benennung": "NATRIUMGLUCONAT",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1960.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 52,
+        "antrag_nummer": "005/1994",
+        "teile_nummer": "01026474",
+        "benennung": "ANTI-HAFTSTOFF",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1454.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 57,
+        "antrag_nummer": "006/1994",
+        "teile_nummer": "01026476",
+        "benennung": "BINDEMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1383.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 59,
+        "antrag_nummer": "012/1994",
+        "teile_nummer": "01026472",
+        "benennung": "SCHMIEROEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1458.pdf",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 60,
+        "antrag_nummer": "013/1994",
+        "teile_nummer": "01026473",
+        "benennung": "HYDRAULIKOEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1457.pdf",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 64,
+        "antrag_nummer": "020/1994",
+        "teile_nummer": "01026480",
+        "benennung": "SCHMIEROEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1456.pdf",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 72,
+        "antrag_nummer": "025/1994",
+        "teile_nummer": "01016197",
+        "benennung": "DECKLACK",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1706.pdf",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 74,
+        "antrag_nummer": "028/1994",
+        "teile_nummer": "01016199",
+        "benennung": "KLEBER",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1619.pdf",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 75,
+        "antrag_nummer": "029/1994",
+        "teile_nummer": "01016201",
+        "benennung": "GRUNDANSTRICH",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1331.pdf",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 78,
+        "antrag_nummer": "032/1994",
+        "teile_nummer": "01016205",
+        "benennung": "REINIGER",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1767.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 83,
+        "antrag_nummer": "001/1995",
+        "teile_nummer": "01016211",
+        "benennung": "DECKLACK",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1766.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 84,
+        "antrag_nummer": "002/1995",
+        "teile_nummer": "01016212",
+        "benennung": "GRUNDFARBE",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/2129.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 85,
+        "antrag_nummer": "003/1995",
+        "teile_nummer": "01016213",
+        "benennung": "DECKLACK",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/2127.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 86,
+        "antrag_nummer": "004/1995",
+        "teile_nummer": "01016214",
+        "benennung": "HAERTER",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/2127.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 87,
+        "antrag_nummer": "005/1995",
+        "teile_nummer": "01016215",
+        "benennung": "VERDUENNUNG",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1615.pdf",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 89,
+        "antrag_nummer": "011/1995",
+        "teile_nummer": "10001509",
+        "benennung": "OXALSAEURE",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "file:///\\\\Dehesdna-a007a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Schriftverkehr\\10001715_WG%20Analysenbericht%20zur%20Probeauftrags-%20Nr.%20186590-604%20%20Rolls-Royce%20%20GARIA%20203%20M-32%20%20Garia%20601%20M-12%20%20Evcogrind%20TGR.msg",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 108,
+        "antrag_nummer": "010/1996",
+        "teile_nummer": "10001715",
+        "benennung": "KUEHLSCHMIERMITTEL",
+        "column": "Änd. Historie",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "file:///\\\\Dehesdna-a007a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Schriftverkehr\\10001714_WG%20Analysenbericht%20zur%20Probeauftrags-%20Nr.%20186590-604%20%20Rolls-Royce%20%20GARIA%20203%20M-32%20%20Garia%20601%20M-12%20%20Evcogrind%20TGR.msg",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 109,
+        "antrag_nummer": "011/1996",
+        "teile_nummer": "10001714",
+        "benennung": "KUEHLSCHMIERMITTEL",
+        "column": "Änd. Historie",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "file:///\\\\Dehesdna-a007a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Historie\\Aenderungen\\10001707_EA11S.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 116,
+        "antrag_nummer": "018/1996",
+        "teile_nummer": "10001707",
+        "benennung": "KUEHLSCHMIERMITTEL",
+        "column": "Änd. Historie",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "file:///\\\\Dehesdna-a007a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\10001706_FU50W.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 117,
+        "antrag_nummer": "019/1996",
+        "teile_nummer": "10001706",
+        "benennung": "KUEHLSCHMIERMITTEL",
+        "column": "Änd. Historie",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1425.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 123,
+        "antrag_nummer": "025/1996",
+        "teile_nummer": "10001703",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "file:///\\\\Dehesdna-a007a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Historie\\Aenderungen\\10001678_ZC948.pdf",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 125,
+        "antrag_nummer": "034/1996",
+        "teile_nummer": "10001678",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "Änd. Historie",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1430.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 139,
+        "antrag_nummer": "041/1996",
+        "teile_nummer": "10001725",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1649.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 144,
+        "antrag_nummer": "046/1996",
+        "teile_nummer": "10001728",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1648.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 146,
+        "antrag_nummer": "048/1996",
+        "teile_nummer": "10001727",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1684.pdf",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 170,
+        "antrag_nummer": 1997,
+        "teile_nummer": "10001835",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1697.pdf",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 175,
+        "antrag_nummer": 1997,
+        "teile_nummer": "10002005",
+        "benennung": "KLEBER",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1598.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 204,
+        "antrag_nummer": "007/1997",
+        "teile_nummer": "10001996",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1732.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 256,
+        "antrag_nummer": "050/1997",
+        "teile_nummer": "10002137",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1598.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 269,
+        "antrag_nummer": "060/1997",
+        "teile_nummer": "10001996",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1742.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 270,
+        "antrag_nummer": "061/1997",
+        "teile_nummer": "10002224",
+        "benennung": "SICHERUNGSLACK",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\10002304_Datenblatt.pdf",
+      "normalized_path": "teileundstoffe\\10002304_datenblatt.pdf",
+      "exists": false,
+      "row_info": {
+        "row_index": 276,
+        "antrag_nummer": "068/1997",
+        "teile_nummer": "10002304",
+        "benennung": "SCHMIERFETT",
+        "column": "Datenblatt",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\AS55202.pdf",
+      "normalized_path": "teileundstoffe\\as55202.pdf",
+      "exists": false,
+      "row_info": {
+        "row_index": 302,
+        "antrag_nummer": "011/1998",
+        "teile_nummer": "AS55202-5",
+        "benennung": "NUT, SELF LOCKING, SHANK",
+        "column": "Antrag",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1776.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 313,
+        "antrag_nummer": "022/1998",
+        "teile_nummer": "10002356",
+        "benennung": "KLEBER",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\01040786_026-1998.pdf",
+      "normalized_path": "teileundstoffe\\01040786_026-1998.pdf",
+      "exists": false,
+      "row_info": {
+        "row_index": 317,
+        "antrag_nummer": "026/1998",
+        "teile_nummer": "01040786",
+        "benennung": "SICHERUNGSMITTEL",
+        "column": "Datenblatt",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1765.pdf",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 317,
+        "antrag_nummer": "026/1998",
+        "teile_nummer": "01040786",
+        "benennung": "SICHERUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1766.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 318,
+        "antrag_nummer": "027/1998",
+        "teile_nummer": "01016212",
+        "benennung": "GRUNDFARBE",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1767.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 319,
+        "antrag_nummer": "028/1998",
+        "teile_nummer": "01016211",
+        "benennung": "DECKLACK",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1774.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 332,
+        "antrag_nummer": "039/1998",
+        "teile_nummer": "10002372",
+        "benennung": "DECKLACK",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1784.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 336,
+        "antrag_nummer": "045/1998",
+        "teile_nummer": "10002387\n01041492",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1792.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 349,
+        "antrag_nummer": "054/1998",
+        "teile_nummer": "10002433",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "file:///\\\\Dehesdna-a007a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\10002434_ZI923.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 350,
+        "antrag_nummer": "055/1998",
+        "teile_nummer": "10002434",
+        "benennung": "KONSERVIERUNGSMITTEL",
+        "column": "Änd. Historie",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "file:///\\\\Dehesdna-a007a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\10002435_FU60.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 351,
+        "antrag_nummer": "056/1998",
+        "teile_nummer": "10002435",
+        "benennung": "KUEHLSCHMIERMITTEL",
+        "column": "Änd. Historie",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1800.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 354,
+        "antrag_nummer": "059/1998",
+        "teile_nummer": "10002714",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\10002868_073-1998.pdf",
+      "normalized_path": "teileundstoffe\\10002868_073-1998.pdf",
+      "exists": false,
+      "row_info": {
+        "row_index": 364,
+        "antrag_nummer": "073/1998",
+        "teile_nummer": "10002868",
+        "benennung": "GETRIEBEOEL",
+        "column": "Datenblatt",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "file:///\\\\Dehesdna-a007a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\10002435_FU60.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 384,
+        "antrag_nummer": "090/1998",
+        "teile_nummer": "10002435",
+        "benennung": "KUEHLSCHMIERMITTEL",
+        "column": "Änd. Historie",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1820.pdf",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 385,
+        "antrag_nummer": "088/1998",
+        "teile_nummer": "10002910",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1424.pdf",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 389,
+        "antrag_nummer": "093/1998",
+        "teile_nummer": "10002918",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1828.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 404,
+        "antrag_nummer": "015/1999",
+        "teile_nummer": "10002954",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1829.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 408,
+        "antrag_nummer": "019/1999",
+        "teile_nummer": "10002958",
+        "benennung": "SCHMIERFETT",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1832.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 411,
+        "antrag_nummer": "022/1999",
+        "teile_nummer": "01008862",
+        "benennung": "DECKLACK",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1845.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 424,
+        "antrag_nummer": "035/1999",
+        "teile_nummer": "10003011",
+        "benennung": "DECKLACK",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1855.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 444,
+        "antrag_nummer": "055/1999",
+        "teile_nummer": "10001703",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1874.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 452,
+        "antrag_nummer": "062/1999",
+        "teile_nummer": "10003100",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1875.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 453,
+        "antrag_nummer": "063/1999",
+        "teile_nummer": "10003101",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1889.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 491,
+        "antrag_nummer": "006/2000",
+        "teile_nummer": "10003215",
+        "benennung": "DICHTUNGSMASSE",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1896.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 501,
+        "antrag_nummer": "016/2000",
+        "teile_nummer": "10003753",
+        "benennung": "DECKLACK",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1897.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 502,
+        "antrag_nummer": "017/2000",
+        "teile_nummer": "10003754",
+        "benennung": "KLEBER",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1898.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 503,
+        "antrag_nummer": "018/2000",
+        "teile_nummer": "10003242",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1900.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 505,
+        "antrag_nummer": "020/2000",
+        "teile_nummer": "10003241",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1900.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 506,
+        "antrag_nummer": "020/2000",
+        "teile_nummer": "10003254",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "file:///\\\\Dehesdna-a007a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\10002434_ZI923.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 519,
+        "antrag_nummer": "033/2000",
+        "teile_nummer": "10002434",
+        "benennung": "KONSERVIERUNGSMITTEL",
+        "column": "Änd. Historie",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1920.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 535,
+        "antrag_nummer": "049/2000",
+        "teile_nummer": "10003399",
+        "benennung": "DICHTUNGSMASSE",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1923.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 538,
+        "antrag_nummer": "051/2000",
+        "teile_nummer": "10003440",
+        "benennung": "ABDRUCKMASSE",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1417.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 539,
+        "antrag_nummer": "052/2000",
+        "teile_nummer": "01009188",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1694.pdf",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 540,
+        "antrag_nummer": "053/2000",
+        "teile_nummer": "10001873",
+        "benennung": "FETT",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\abgelehnt\\Gear%20Marking%20Compound.msg",
+      "normalized_path": "teileundstoffe\\antrag\\abgelehnt\\gear marking compound.msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 542,
+        "antrag_nummer": "055/2000",
+        "teile_nummer": "10003450",
+        "benennung": "MARKIERFARBE",
+        "column": "Schriftverkehr",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\10003289_GUF.PDF",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\10003289_guf.pdf",
+      "exists": false,
+      "row_info": {
+        "row_index": 549,
+        "antrag_nummer": "062/2000",
+        "teile_nummer": "10003289",
+        "benennung": "KUEHLSCHMIERMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "file:///\\\\Dehesdna-a007a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Sicherheitsdatenblatt\\10003289_SIDA_r_rhenus_Polinor_GUF.pdf",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 549,
+        "antrag_nummer": "062/2000",
+        "teile_nummer": "10003289",
+        "benennung": "KUEHLSCHMIERMITTEL",
+        "column": "Änd. Historie",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1598.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 553,
+        "antrag_nummer": "066/2000",
+        "teile_nummer": "01009446",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Ethanol%20(TKZ%2010001996)%20+%20REACH.msg",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\ethanol (tkz 10001996) + reach.msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 553,
+        "antrag_nummer": "066/2000",
+        "teile_nummer": "01009446",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "Sonstiges",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1598.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 555,
+        "antrag_nummer": "068/2000",
+        "teile_nummer": "01009446",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Ethanol%20(TKZ%2010001996)%20+%20REACH.msg",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\ethanol (tkz 10001996) + reach.msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 555,
+        "antrag_nummer": "068/2000",
+        "teile_nummer": "01009446",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "Sonstiges",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1598.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 560,
+        "antrag_nummer": "073/2000",
+        "teile_nummer": "10001996",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\abgelehnt\\080%202000_10003534_abgelehnt.msg",
+      "normalized_path": "teileundstoffe\\antrag\\abgelehnt\\080 2000_10003534_abgelehnt.msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 567,
+        "antrag_nummer": "080/2000",
+        "teile_nummer": "10003534",
+        "benennung": "NEUTRALISIERER",
+        "column": "Schriftverkehr",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "file:///\\\\Dehesdna-a007a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Historie\\Aenderungen\\10001707_EA11S.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 578,
+        "antrag_nummer": "091/2000",
+        "teile_nummer": "10001707",
+        "benennung": "KUEHLSCHMIERMITTEL",
+        "column": "Änd. Historie",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1820.pdf",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 579,
+        "antrag_nummer": "092/2000",
+        "teile_nummer": "10002910",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "file:///\\\\Dehesdna-a007a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\10001706_FU50W.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 580,
+        "antrag_nummer": "093/2000",
+        "teile_nummer": "10001706",
+        "benennung": "KUEHLSCHMIERMITTEL",
+        "column": "Änd. Historie",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1960.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 585,
+        "antrag_nummer": "096/2000",
+        "teile_nummer": "01026474",
+        "benennung": "ANTI-HAFTSTOFF",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/2035.pdf",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 591,
+        "antrag_nummer": "102/2000",
+        "teile_nummer": "10003776",
+        "benennung": "ISOLIERMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\10003730%20%20DICHTUNGSMASSE%20FIBERFRAX%20QF180.msg",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\10003730  dichtungsmasse fiberfrax qf180.msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 592,
+        "antrag_nummer": "103/2000",
+        "teile_nummer": "10003730",
+        "benennung": "DICHTUNGSMASSE",
+        "column": "Schriftverkehr",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Loetfolie.msg",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\loetfolie.msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 602,
+        "antrag_nummer": "011/2001",
+        "teile_nummer": "10003566",
+        "benennung": "LOETFOLIE",
+        "column": "Schriftverkehr",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Loetfolie.msg",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\loetfolie.msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 603,
+        "antrag_nummer": "012/2001",
+        "teile_nummer": "10003567",
+        "benennung": "LOETFOLIE",
+        "column": "Schriftverkehr",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Loetfolie.msg",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\loetfolie.msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 604,
+        "antrag_nummer": "013/2001",
+        "teile_nummer": "10003568",
+        "benennung": "LOETFOLIE",
+        "column": "Schriftverkehr",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Loetfolie.msg",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\loetfolie.msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 605,
+        "antrag_nummer": "014/2001",
+        "teile_nummer": "10003569",
+        "benennung": "LOETFOLIE",
+        "column": "Schriftverkehr",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Loetfolie.msg",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\loetfolie.msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 606,
+        "antrag_nummer": "015/2001",
+        "teile_nummer": "10003570",
+        "benennung": "LOETFOLIE",
+        "column": "Schriftverkehr",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Loetfolie.msg",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\loetfolie.msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 607,
+        "antrag_nummer": "016/2001",
+        "teile_nummer": "10003571",
+        "benennung": "LOETFOLIE",
+        "column": "Schriftverkehr",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1820.pdf",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 611,
+        "antrag_nummer": "020/2001",
+        "teile_nummer": "10002910",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "file:///\\\\Dehesdna-a007a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\10002435_FU60.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 612,
+        "antrag_nummer": "021/2001",
+        "teile_nummer": "10002435",
+        "benennung": "KUEHLSCHMIERMITTEL",
+        "column": "Änd. Historie",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1598.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 617,
+        "antrag_nummer": "026/2001",
+        "teile_nummer": "01009446",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\Ethanol%20(TKZ%2010001996)%20+%20REACH.msg",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\ethanol (tkz 10001996) + reach.msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 617,
+        "antrag_nummer": "026/2001",
+        "teile_nummer": "01009446",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "Sonstiges",
+        "display_text": "msg"
+      }
+    }
+  ],
+  "sample_broken_links": [
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\WG%20%20Entfall%20von%20Stoffen%20aus%20Gefahrstoffdatenbank%20%20Galvanik%20Kostenstelle%20335120%20.msg",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 29,
+        "antrag_nummer": "025/1993",
+        "teile_nummer": "01016053",
+        "benennung": "NICKELSULFAMATKONZENTRAT",
+        "column": "Schriftverkehr",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\WG%20%20Entfall%20von%20Stoffen%20aus%20Gefahrstoffdatenbank%20%20Galvanik%20Kostenstelle%20335120%20.msg",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 30,
+        "antrag_nummer": "026/1993",
+        "teile_nummer": "01003740",
+        "benennung": "BORSAEURE",
+        "column": "Schriftverkehr",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\WG%20%20Entfall%20von%20Stoffen%20aus%20Gefahrstoffdatenbank%20%20Galvanik%20Kostenstelle%20335120%20.msg",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 31,
+        "antrag_nummer": "027/1993",
+        "teile_nummer": "01016070",
+        "benennung": "SULFAMINSAEURE",
+        "column": "Schriftverkehr",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1492.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 32,
+        "antrag_nummer": "028/1993",
+        "teile_nummer": "01016045",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1460.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 33,
+        "antrag_nummer": "029/1993",
+        "teile_nummer": "01016046",
+        "benennung": "REINIGUNGSMITTEL",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "broken",
+      "url": "file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\Aenderungen\\WG%20%20Entfall%20von%20Stoffen%20aus%20Gefahrstoffdatenbank%20%20Galvanik%20Kostenstelle%20335120%20.msg",
+      "normalized_path": "teileundstoffe\\antrag\\aenderungen\\wg  entfall von stoffen aus gefahrstoffdatenbank  galvanik kostenstelle 335120 .msg",
+      "exists": false,
+      "row_info": {
+        "row_index": 37,
+        "antrag_nummer": "022/1993",
+        "teile_nummer": "01016056",
+        "benennung": "NICKEL II CARBONAT",
+        "column": "Schriftverkehr",
+        "display_text": "msg"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1599.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 38,
+        "antrag_nummer": "023/1993",
+        "teile_nummer": "01016055",
+        "benennung": "PERCHLORAETHYLEN",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1459.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 39,
+        "antrag_nummer": "030/1993",
+        "teile_nummer": "01016047",
+        "benennung": "AMMONIUMBIFLUORID",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1990.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 43,
+        "antrag_nummer": "034/1993",
+        "teile_nummer": "01016061",
+        "benennung": "KLEBER",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    },
+    {
+      "status": "invalid_format",
+      "url": "../../../../a-j/Gefahrstoff/Programm/SDB/1522.PDF",
+      "normalized_path": null,
+      "exists": false,
+      "row_info": {
+        "row_index": 47,
+        "antrag_nummer": "046/1993",
+        "teile_nummer": "01016094",
+        "benennung": "NATRIUMGLUCONAT",
+        "column": "SDB MSDS",
+        "display_text": "pdf"
+      }
+    }
+  ]
+}

@@ -1,0 +1,445 @@
+{% extends 'normieapp/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ page_title }} - Normie{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/chemical_approval.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'normieapp/js/chemical_approval.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <div>
+            <h1><i class="fas fa-flask"></i> {{ page_title }}</h1>
+            <p>{% trans "Submit chemical substance and parts approval requests for industrial use." %}</p>
+        </div>
+        <div class="page-actions">
+            <button type="button" class="btn btn-secondary" id="save-draft">
+                <i class="fas fa-save"></i> {% trans "Save Draft" %}
+            </button>
+            <button type="button" class="btn btn-secondary" id="preview-form">
+                <i class="fas fa-eye"></i> {% trans "Preview" %}
+            </button>
+        </div>
+    </div>
+
+    <form id="chemical-approval-form" method="post" class="approval-form">
+        {% csrf_token %}
+        
+        <!-- Progress Indicator -->
+        <div class="form-progress">
+            <div class="progress-steps">
+                <div class="progress-step active" data-section="applicant">
+                    <div class="step-number">1</div>
+                    <div class="step-label">{% trans "Applicant" %}</div>
+                </div>
+                <div class="progress-step" data-section="product">
+                    <div class="step-number">2</div>
+                    <div class="step-label">{% trans "Product" %}</div>
+                </div>
+                <div class="progress-step" data-section="usage">
+                    <div class="step-number">3</div>
+                    <div class="step-label">{% trans "Usage" %}</div>
+                </div>
+                <div class="progress-step" data-section="documentation">
+                    <div class="step-number">4</div>
+                    <div class="step-label">{% trans "Documentation" %}</div>
+                </div>
+                <div class="progress-step" data-section="review">
+                    <div class="step-number">5</div>
+                    <div class="step-label">{% trans "Review" %}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Applicant Information -->
+        <div class="form-section active" id="section-applicant">
+            <div class="section-header">
+                <h2><i class="fas fa-user"></i> {% trans "Applicant Information" %}</h2>
+                <p>{% trans "Basic information about the person submitting this request." %}</p>
+            </div>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="application_number">{% trans "Application Number" %}</label>
+                    <input type="text" id="application_number" name="application_number" class="form-control" placeholder="{% trans 'Auto-generated if left empty' %}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="applicant_name">{% trans "Applicant Name" %} *</label>
+                    <input type="text" id="applicant_name" name="applicant_name" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="application_date">{% trans "Application Date" %}</label>
+                    <input type="date" id="application_date" name="application_date" class="form-control" value="{% now 'Y-m-d' %}">
+                </div>
+                
+                <div class="form-group">
+                    <label for="applicant_department">{% trans "Department" %} *</label>
+                    <input type="text" id="applicant_department" name="applicant_department" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="applicant_phone">{% trans "Phone Number" %}</label>
+                    <input type="tel" id="applicant_phone" name="applicant_phone" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Product Information -->
+        <div class="form-section" id="section-product">
+            <div class="section-header">
+                <h2><i class="fas fa-box"></i> {% trans "Product Information" %}</h2>
+                <p>{% trans "Details about the chemical substance or part being requested." %}</p>
+            </div>
+            
+            <div class="form-grid">
+                <div class="form-group full-width">
+                    <label for="product_name">{% trans "Product Name/Designation" %} *</label>
+                    <input type="text" id="product_name" name="product_name" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="foreign_part_number">{% trans "Foreign Part Number" %}</label>
+                    <input type="text" id="foreign_part_number" name="foreign_part_number" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="reach_code">{% trans "REACh Code" %}</label>
+                    <input type="text" id="reach_code" name="reach_code" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="supplier">{% trans "Supplier" %} *</label>
+                    <input type="text" id="supplier" name="supplier" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="manufacturer">{% trans "Manufacturer" %}</label>
+                    <input type="text" id="manufacturer" name="manufacturer" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label>{% trans "Need Classification" %} *</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="need_classification" value="new" required>
+                            <span class="radio-custom"></span>
+                            {% trans "New Need" %}
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="need_classification" value="change" required>
+                            <span class="radio-custom"></span>
+                            {% trans "Need Change" %}
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>{% trans "Product Classification" %} *</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="product_classification" value="substance" required>
+                            <span class="radio-custom"></span>
+                            {% trans "Substance" %}
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="product_classification" value="part" required>
+                            <span class="radio-custom"></span>
+                            {% trans "Part" %}
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Usage Information -->
+        <div class="form-section" id="section-usage">
+            <div class="section-header">
+                <h2><i class="fas fa-cogs"></i> {% trans "Usage Information" %}</h2>
+                <p>{% trans "Information about how and where the product will be used." %}</p>
+            </div>
+            
+            <div class="form-grid">
+                <div class="form-group full-width">
+                    <label for="usage_purpose">{% trans "Usage Purpose, Requirements, Process Description, Application Form" %} *</label>
+                    <textarea id="usage_purpose" name="usage_purpose" class="form-control" rows="4" required></textarea>
+                </div>
+                
+                <div class="form-group">
+                    <label for="engine_program">{% trans "Engine Program" %}</label>
+                    <input type="text" id="engine_program" name="engine_program" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="location">{% trans "Location/Site" %} *</label>
+                    <input type="text" id="location" name="location" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label>{% trans "Product Relevance" %} *</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="product_relevance" value="yes" required>
+                            <span class="radio-custom"></span>
+                            {% trans "Yes" %}
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="product_relevance" value="no" required>
+                            <span class="radio-custom"></span>
+                            {% trans "No" %}
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>{% trans "Usage Duration" %} *</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="usage_duration" value="short_term" required>
+                            <span class="radio-custom"></span>
+                            {% trans "Short-term" %}
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="usage_duration" value="long_term" required>
+                            <span class="radio-custom"></span>
+                            {% trans "Long-term" %}
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>{% trans "Inventory Stock?" %}</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="inventory_stock" value="yes">
+                            <span class="radio-custom"></span>
+                            {% trans "Yes" %}
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="inventory_stock" value="no">
+                            <span class="radio-custom"></span>
+                            {% trans "No" %}
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label>{% trans "Order via SAP?" %}</label>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="sap_order" value="yes">
+                            <span class="radio-custom"></span>
+                            {% trans "Yes" %}
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="sap_order" value="no">
+                            <span class="radio-custom"></span>
+                            {% trans "No" %}
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="sap_unit">{% trans "SAP Base Unit" %}</label>
+                    <input type="text" id="sap_unit" name="sap_unit" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="monthly_demand">{% trans "Monthly Demand" %}</label>
+                    <input type="text" id="monthly_demand" name="monthly_demand" class="form-control">
+                </div>
+                
+                <div class="form-group">
+                    <label for="quantity_per_application">{% trans "Quantity per Application" %}</label>
+                    <input type="text" id="quantity_per_application" name="quantity_per_application" class="form-control">
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="desired_date">{% trans "Desired Date for Product Use" %}</label>
+                    <input type="date" id="desired_date" name="desired_date" class="form-control">
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Documentation -->
+        <div class="form-section" id="section-documentation">
+            <div class="section-header">
+                <h2><i class="fas fa-file-alt"></i> {% trans "Documentation" %}</h2>
+                <p>{% trans "Required documentation and certifications." %}</p>
+            </div>
+            
+            <div class="form-grid">
+                <div class="form-group full-width">
+                    <label>{% trans "Available Documentation" %}</label>
+                    <div class="checkbox-grid">
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="documentation" value="eu_safety_datasheet">
+                            <span class="checkbox-custom"></span>
+                            {% trans "EU Safety Data Sheet" %}
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="documentation" value="technical_datasheet">
+                            <span class="checkbox-custom"></span>
+                            {% trans "Technical Data Sheet" %}
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="documentation" value="risk_assessment">
+                            <span class="checkbox-custom"></span>
+                            {% trans "Risk Assessment" %}
+                        </label>
+                        <label class="checkbox-option">
+                            <input type="checkbox" name="documentation" value="product_approval">
+                            <span class="checkbox-custom"></span>
+                            {% trans "Product Approval" %}
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="product_approval_spec">{% trans "Product Approval Specification" %}</label>
+                    <input type="text" id="product_approval_spec" name="product_approval_spec" class="form-control">
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="explanations">{% trans "Explanations" %}</label>
+                    <textarea id="explanations" name="explanations" class="form-control" rows="4"></textarea>
+                </div>
+                
+                <div class="form-group full-width">
+                    <label for="previous_applications">{% trans "Reference to Previous Applications" %}</label>
+                    <textarea id="previous_applications" name="previous_applications" class="form-control" rows="3"></textarea>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Review Sections -->
+        <div class="form-section" id="section-review">
+            <div class="section-header">
+                <h2><i class="fas fa-clipboard-check"></i> {% trans "Review Sections" %}</h2>
+                <p>{% trans "These sections will be completed by the respective departments during the approval process." %}</p>
+            </div>
+            
+            <!-- ChemScan Review -->
+            <div class="review-subsection">
+                <h3><i class="fas fa-microscope"></i> {% trans "ChemScan Review" %}</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="chemscan_reviewer">{% trans "ChemScan Reviewer" %}</label>
+                        <input type="text" id="chemscan_reviewer" name="chemscan_reviewer" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="chemscan_date">{% trans "ChemScan Date" %}</label>
+                        <input type="date" id="chemscan_date" name="chemscan_date" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>{% trans "ChemScan Completed" %}</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="chemscan_completed" value="yes" disabled>
+                                <span class="radio-custom"></span>
+                                {% trans "Yes" %}
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="chemscan_completed" value="no" disabled>
+                                <span class="radio-custom"></span>
+                                {% trans "No" %}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Environmental Review -->
+            <div class="review-subsection">
+                <h3><i class="fas fa-leaf"></i> {% trans "Environmental Review" %}</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="env_reviewer">{% trans "Environmental Reviewer" %}</label>
+                        <input type="text" id="env_reviewer" name="env_reviewer" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="env_date">{% trans "Review Date" %}</label>
+                        <input type="date" id="env_date" name="env_date" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>{% trans "Environmental Approval Result" %}</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="env_result" value="approved" disabled>
+                                <span class="radio-custom"></span>
+                                {% trans "Approved" %}
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="env_result" value="not_approved" disabled>
+                                <span class="radio-custom"></span>
+                                {% trans "Not Approved" %}
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="env_result" value="approved_with_restrictions" disabled>
+                                <span class="radio-custom"></span>
+                                {% trans "Approved with Restrictions" %}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Health & Safety Review -->
+            <div class="review-subsection">
+                <h3><i class="fas fa-shield-alt"></i> {% trans "Health & Safety Review" %}</h3>
+                <div class="form-grid">
+                    <div class="form-group">
+                        <label for="safety_reviewer">{% trans "Safety Reviewer" %}</label>
+                        <input type="text" id="safety_reviewer" name="safety_reviewer" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label for="safety_date">{% trans "Review Date" %}</label>
+                        <input type="date" id="safety_date" name="safety_date" class="form-control" readonly>
+                    </div>
+                    <div class="form-group">
+                        <label>{% trans "Safety Approval Result" %}</label>
+                        <div class="radio-group">
+                            <label class="radio-option">
+                                <input type="radio" name="safety_result" value="approved" disabled>
+                                <span class="radio-custom"></span>
+                                {% trans "Approved" %}
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="safety_result" value="not_approved" disabled>
+                                <span class="radio-custom"></span>
+                                {% trans "Not Approved" %}
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="safety_result" value="approved_with_restrictions" disabled>
+                                <span class="radio-custom"></span>
+                                {% trans "Approved with Restrictions" %}
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Actions -->
+        <div class="form-actions">
+            <button type="button" class="btn btn-secondary" id="prev-section">
+                <i class="fas fa-arrow-left"></i> {% trans "Previous" %}
+            </button>
+            <button type="button" class="btn btn-primary" id="next-section">
+                {% trans "Next" %} <i class="fas fa-arrow-right"></i>
+            </button>
+            <button type="submit" class="btn btn-success" id="submit-form" style="display: none;">
+                <i class="fas fa-check"></i> {% trans "Submit Application" %}
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %} 

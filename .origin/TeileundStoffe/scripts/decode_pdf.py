@@ -1,3 +1,4 @@
+
 import json
 from datetime import datetime
 import pytz
@@ -68,8 +69,12 @@ pdf_dict = {
         "name": "Triebwerksprogramm",
         "type": "text",
     },
-    "12": {
+    "12a": {
         "name": "Einsatzort / Standort",
+        "type": "text",
+    },
+    "12b": {
+        "name": "Bereich Teamleiter*innen",
         "type": "text",
     },
     "13": {
@@ -113,6 +118,10 @@ pdf_dict = {
         "type": "text",
     },
     "17b": {
+        "name": "Häufigkeit der Anwendung",
+        "type": "text",
+    },
+    "17c": {
         "name": "Menge pro Anwendung",
         "type": "text",
     },

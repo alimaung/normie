@@ -1,0 +1,382 @@
+{% extends 'normieapp/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ page_title }} - Normie{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/cmsr.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'normieapp/js/cmsr_request.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <div>
+            <h1><i class="fas fa-flask"></i> {{ page_title }}</h1>
+            <p>{{ help_text.introduction }}</p>
+            <div class="help-info">
+                <div class="info-item">
+                    <i class="fas fa-info-circle"></i>
+                    <span>{{ help_text.process_info }}</span>
+                </div>
+                <div class="info-item">
+                    <i class="fas fa-search"></i>
+                    <span>{{ help_text.search_info }}</span>
+                </div>
+            </div>
+        </div>
+        <div class="page-actions">
+            <button type="button" class="btn btn-secondary" id="save-draft">
+                <i class="fas fa-save"></i> {% trans "Save Draft" %}
+            </button>
+            <button type="button" class="btn btn-outline" id="preview-form">
+                <i class="fas fa-eye"></i> {% trans "Preview" %}
+            </button>
+        </div>
+    </div>
+
+    <form id="cmsr-form" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Progress Indicator -->
+        <div class="progress-container">
+            <div class="progress-steps">
+                <div class="progress-step active" data-section="applicant">
+                    <div class="step-number">1</div>
+                    <div class="step-label">{% trans "Applicant" %}</div>
+                </div>
+                <div class="progress-step" data-section="product">
+                    <div class="step-number">2</div>
+                    <div class="step-label">{% trans "Product" %}</div>
+                </div>
+                <div class="progress-step" data-section="usage">
+                    <div class="step-number">3</div>
+                    <div class="step-label">{% trans "Usage" %}</div>
+                </div>
+                <div class="progress-step" data-section="documentation">
+                    <div class="step-number">4</div>
+                    <div class="step-label">{% trans "Documentation" %}</div>
+                </div>
+                <div class="progress-step" data-section="review">
+                    <div class="step-number">5</div>
+                    <div class="step-label">{% trans "Review" %}</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 1: Applicant Information -->
+        <div class="form-section active" id="section-applicant">
+            <div class="section-header">
+                <h2><i class="fas fa-user"></i> {% trans "Applicant Information" %}</h2>
+                <p>{% trans "Basic information about the person submitting this request." %}</p>
+            </div>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    {{ form.application_number.label_tag }}
+                    {{ form.application_number }}
+                    {% if form.application_number.help_text %}
+                        <small class="help-text">{{ form.application_number.help_text }}</small>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.applicant_department.label_tag }}
+                    {{ form.applicant_department }}
+                    {% if form.applicant_department.errors %}
+                        <div class="field-errors">{{ form.applicant_department.errors }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.applicant_phone.label_tag }}
+                    {{ form.applicant_phone }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Product Information -->
+        <div class="form-section" id="section-product">
+            <div class="section-header">
+                <h2><i class="fas fa-box"></i> {% trans "Product Information" %}</h2>
+                <p>{% trans "Details about the chemical substance or part being requested." %}</p>
+            </div>
+            
+            <div class="form-grid">
+                <div class="form-group full-width">
+                    {{ form.product_name.label_tag }}
+                    {{ form.product_name }}
+                    {% if form.product_name.help_text %}
+                        <small class="help-text">{{ form.product_name.help_text }}</small>
+                    {% endif %}
+                    {% if form.product_name.errors %}
+                        <div class="field-errors">{{ form.product_name.errors }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.foreign_part_number.label_tag }}
+                    {{ form.foreign_part_number }}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.reach_code.label_tag }}
+                    {{ form.reach_code }}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.supplier.label_tag }}
+                    {{ form.supplier }}
+                    {% if form.supplier.help_text %}
+                        <small class="help-text">{{ form.supplier.help_text }}</small>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.manufacturer.label_tag }}
+                    {{ form.manufacturer }}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.need_classification.label_tag }}
+                    {{ form.need_classification }}
+                    {% if form.need_classification.errors %}
+                        <div class="field-errors">{{ form.need_classification.errors }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.product_classification.label_tag }}
+                    {{ form.product_classification }}
+                    {% if form.product_classification.errors %}
+                        <div class="field-errors">{{ form.product_classification.errors }}</div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 3: Usage Information -->
+        <div class="form-section" id="section-usage">
+            <div class="section-header">
+                <h2><i class="fas fa-cogs"></i> {% trans "Usage Information" %}</h2>
+                <p>{% trans "Information about how and where the product will be used." %}</p>
+            </div>
+            
+            <div class="form-grid">
+                <div class="form-group full-width">
+                    {{ form.usage_purpose.label_tag }}
+                    {{ form.usage_purpose }}
+                    {% if form.usage_purpose.help_text %}
+                        <small class="help-text">{{ form.usage_purpose.help_text }}</small>
+                    {% endif %}
+                    {% if form.usage_purpose.errors %}
+                        <div class="field-errors">{{ form.usage_purpose.errors }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.engine_program.label_tag }}
+                    {{ form.engine_program }}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.location_site.label_tag }}
+                    {{ form.location_site }}
+                    {% if form.location_site.errors %}
+                        <div class="field-errors">{{ form.location_site.errors }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.area_team_leader.label_tag }}
+                    {{ form.area_team_leader }}
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        {{ form.product_relevant }}
+                        {{ form.product_relevant.label }}
+                    </label>
+                    {% if form.product_relevant.help_text %}
+                        <small class="help-text">{{ form.product_relevant.help_text }}</small>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.usage_duration.label_tag }}
+                    {{ form.usage_duration }}
+                    {% if form.usage_duration.errors %}
+                        <div class="field-errors">{{ form.usage_duration.errors }}</div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        {{ form.inventory_stock }}
+                        {{ form.inventory_stock.label }}
+                    </label>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        {{ form.sap_order }}
+                        {{ form.sap_order.label }}
+                    </label>
+                </div>
+                
+                <div class="form-group">
+                    {{ form.base_unit_sap.label_tag }}
+                    {{ form.base_unit_sap }}
+                    {% if form.base_unit_sap.help_text %}
+                        <small class="help-text">{{ form.base_unit_sap.help_text }}</small>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.monthly_demand.label_tag }}
+                    {{ form.monthly_demand }}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.usage_frequency.label_tag }}
+                    {{ form.usage_frequency }}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.quantity_per_application.label_tag }}
+                    {{ form.quantity_per_application }}
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 4: Documentation -->
+        <div class="form-section" id="section-documentation">
+            <div class="section-header">
+                <h2><i class="fas fa-file-alt"></i> {% trans "Documentation" %}</h2>
+                <p>{% trans "Required documents and specifications for the approval process." %}</p>
+            </div>
+            
+            <div class="form-grid">
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        {{ form.has_safety_datasheet }}
+                        {{ form.has_safety_datasheet.label }}
+                    </label>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        {{ form.has_technical_datasheet }}
+                        {{ form.has_technical_datasheet.label }}
+                    </label>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        {{ form.has_risk_assessment }}
+                        {{ form.has_risk_assessment.label }}
+                    </label>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <label class="checkbox-label">
+                        {{ form.has_product_approval }}
+                        {{ form.has_product_approval.label }}
+                    </label>
+                </div>
+                
+                <div class="form-group full-width">
+                    {{ form.product_approval_specification.label_tag }}
+                    {{ form.product_approval_specification }}
+                </div>
+                
+                <div class="form-group full-width">
+                    {{ form.additional_explanations.label_tag }}
+                    {{ form.additional_explanations }}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.reference_past_applications.label_tag }}
+                    {{ form.reference_past_applications }}
+                </div>
+                
+                <div class="form-group">
+                    {{ form.desired_implementation_date.label_tag }}
+                    {{ form.desired_implementation_date }}
+                </div>
+            </div>
+
+            <!-- Document Upload Section -->
+            <div class="document-upload-section">
+                <h3>{% trans "Document Upload" %}</h3>
+                <div class="upload-area">
+                    <div class="upload-form">
+                        {{ document_form.document_type.label_tag }}
+                        {{ document_form.document_type }}
+                        
+                        {{ document_form.file.label_tag }}
+                        {{ document_form.file }}
+                        
+                        {{ document_form.description.label_tag }}
+                        {{ document_form.description }}
+                        
+                        <button type="button" class="btn btn-secondary" id="add-document">
+                            <i class="fas fa-upload"></i> {% trans "Add Document" %}
+                        </button>
+                    </div>
+                </div>
+                <div id="uploaded-documents" class="uploaded-documents">
+                    <!-- Documents will be added here via JavaScript -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 5: Review -->
+        <div class="form-section" id="section-review">
+            <div class="section-header">
+                <h2><i class="fas fa-check-circle"></i> {% trans "Review & Submit" %}</h2>
+                <p>{% trans "Review your information before submitting the CMSR request." %}</p>
+            </div>
+            
+            <div class="review-summary">
+                <div class="summary-section">
+                    <h4>{% trans "Application Summary" %}</h4>
+                    <div id="review-content">
+                        <!-- Summary will be populated via JavaScript -->
+                    </div>
+                </div>
+                
+                <div class="submission-section">
+                    <div class="submission-notice">
+                        <i class="fas fa-info-circle"></i>
+                        <p>{% trans "By submitting this request, you confirm that all information provided is accurate and complete. The request will be processed according to RRTI00032 guidelines." %}</p>
+                    </div>
+                    
+                    <div class="form-actions">
+                        <button type="button" class="btn btn-outline" id="prev-section">
+                            <i class="fas fa-arrow-left"></i> {% trans "Previous" %}
+                        </button>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i> {% trans "Submit CMSR Request" %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Buttons -->
+        <div class="form-navigation">
+            <button type="button" class="btn btn-outline" id="prev-section" style="display: none;">
+                <i class="fas fa-arrow-left"></i> {% trans "Previous" %}
+            </button>
+            <button type="button" class="btn btn-primary" id="next-section">
+                {% trans "Next" %} <i class="fas fa-arrow-right"></i>
+            </button>
+        </div>
+    </form>
+</div>
+{% endblock %} 
