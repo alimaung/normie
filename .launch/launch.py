@@ -48,7 +48,7 @@ def check_server_ready(url, max_attempts=30, delay=1):
     print(f"✗ Server did not become ready after {max_attempts} attempts")
     return False
 
-def start_django_server(project_root, host="127.0.0.1", port="8000"):
+def start_django_server(project_root, host="0.0.0.0", port="1918"):
     """
     Start the Django development server.
     
@@ -226,9 +226,9 @@ def main():
     
     try:
         # Configuration
-        HOST = "127.0.0.1"
-        PORT = "8000"
-        URL = f"http://{HOST}:{PORT}"
+        HOST = "0.0.0.0"
+        PORT = "1918"
+        URL = f"https://127.0.0.1:{PORT}"
         
         # Get project root
         project_root = get_project_root()

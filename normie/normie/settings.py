@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-7)tc)oq^kg7tvf&$9+70xo=htl8#vuy#g9&_0)ui&7q6ue!_lz
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '*',
+    'normie.irm',
     'localhost',
     '127.0.0.1',
     '192.168.1.96',
@@ -35,6 +35,7 @@ ALLOWED_HOSTS = [
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost',
+    'http://normie.irm',
     'http://127.0.0.1',
     'http://192.168.1.96',
     'http://192.168.1.111',
@@ -71,6 +72,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ORIGIN_WHITELIST  = [
     'http://127.0.0.1',
+    'http://normie.irm',
 ]
 
 ROOT_URLCONF = 'normie.urls'
