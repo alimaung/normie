@@ -1,14 +1,8 @@
-# exclude excel files and folders
-*.xlsx
-*.xlsm
-*.xlsb
-
-# exclude document files and folders
-*.docx
-*.msg
 
 # Ignore all __pycache__ directories
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
+
+.env
