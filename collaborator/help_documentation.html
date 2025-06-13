@@ -1,0 +1,977 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collaborative Excel System - Complete Documentation</title>
+    <style>
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            padding: 0; 
+            background: #f5f5f5; 
+            line-height: 1.6;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c5aa0, #4a90e2);
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+        .header p {
+            margin: 10px 0 0 0;
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+        .main-nav {
+            background: white;
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .nav-item {
+            padding: 10px 20px;
+            background: #f8f9fa;
+            border: 2px solid #dee2e6;
+            border-radius: 25px;
+            text-decoration: none;
+            color: #2c5aa0;
+            font-weight: 500;
+            transition: all 0.3s ease;
+        }
+        .nav-item:hover {
+            background: #2c5aa0;
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(44, 90, 160, 0.3);
+        }
+        .nav-item.active {
+            background: #2c5aa0;
+            color: white;
+        }
+        .container { 
+            max-width: 1200px; 
+            margin: 0 auto; 
+            padding: 30px 20px;
+        }
+        .page {
+            display: none;
+            background: white;
+            padding: 40px;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+        .page.active {
+            display: block;
+        }
+        .page h1 { 
+            color: #2c5aa0; 
+            border-bottom: 3px solid #2c5aa0; 
+            padding-bottom: 15px; 
+            margin-top: 0;
+            font-size: 2.2em;
+        }
+        .page h2 { 
+            color: #4a90e2; 
+            margin-top: 40px; 
+            font-size: 1.6em;
+        }
+        .page h3 { 
+            color: #666; 
+            margin-top: 25px;
+        }
+        .section { 
+            margin: 25px 0; 
+            padding: 20px; 
+            background: #f9f9f9; 
+            border-left: 5px solid #4a90e2; 
+            border-radius: 0 8px 8px 0;
+        }
+        .warning { 
+            background: #fff3cd; 
+            border-left-color: #ffc107; 
+        }
+        .success { 
+            background: #d4edda; 
+            border-left-color: #28a745; 
+        }
+        .info { 
+            background: #d1ecf1; 
+            border-left-color: #17a2b8; 
+        }
+        .danger {
+            background: #f8d7da;
+            border-left-color: #dc3545;
+        }
+        ul, ol { 
+            padding-left: 25px; 
+        }
+        li { 
+            margin: 8px 0; 
+        }
+        code { 
+            background: #e9ecef; 
+            padding: 3px 6px; 
+            border-radius: 4px; 
+            font-family: 'Courier New', monospace; 
+            font-weight: bold; 
+            color: #e83e8c;
+        }
+        .step { 
+            background: white; 
+            margin: 15px 0; 
+            padding: 20px; 
+            border-radius: 8px; 
+            border: 1px solid #dee2e6; 
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .step h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+        }
+        .quick-nav { 
+            position: fixed; 
+            top: 120px; 
+            right: 20px; 
+            background: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15); 
+            max-width: 220px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        .quick-nav h4 {
+            margin-top: 0;
+            color: #2c5aa0;
+            border-bottom: 2px solid #e9ecef;
+            padding-bottom: 8px;
+        }
+        .quick-nav a { 
+            display: block; 
+            margin: 8px 0; 
+            color: #2c5aa0; 
+            text-decoration: none; 
+            padding: 5px 0;
+            font-size: 0.9em;
+        }
+        .quick-nav a:hover { 
+            text-decoration: underline; 
+            color: #1a4480;
+        }
+        .visual-example {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            font-family: monospace;
+            overflow-x: auto;
+        }
+        .workflow-diagram {
+            background: #e9ecef;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+            text-align: center;
+            font-family: monospace;
+            font-size: 0.9em;
+        }
+        .button-guide {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+        }
+        .button-guide h3 {
+            margin-top: 0;
+            color: #2c5aa0;
+        }
+        .column-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        .column-table th, .column-table td {
+            border: 1px solid #dee2e6;
+            padding: 12px;
+            text-align: left;
+        }
+        .column-table th {
+            background: linear-gradient(135deg, #f8f9fa, #e9ecef);
+            font-weight: bold;
+            color: #2c5aa0;
+        }
+        .column-table tr:nth-child(even) {
+            background-color: #f8f9fa;
+        }
+        .highlight { 
+            background: #ffeb3b; 
+            padding: 2px 4px; 
+            border-radius: 3px; 
+        }
+        .file-list {
+            background: #e9ecef;
+            padding: 20px;
+            margin: 15px 0;
+            border-radius: 6px;
+            font-family: monospace;
+        }
+        .system-diagram {
+            background: #f8f9fa;
+            border: 1px solid #dee2e6;
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 8px;
+            text-align: center;
+            font-family: monospace;
+        }
+        .footer {
+            background: #2c5aa0;
+            color: white;
+            text-align: center;
+            padding: 30px 0;
+            margin-top: 50px;
+        }
+        @media (max-width: 768px) {
+            .quick-nav {
+                display: none;
+            }
+            .nav-container {
+                flex-direction: column;
+                align-items: center;
+            }
+            .container {
+                padding: 20px 15px;
+            }
+            .page {
+                padding: 25px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>🤝 Collaborative Excel System</h1>
+        <p>Complete Documentation & User Guide</p>
+    </div>
+
+    <nav class="main-nav">
+        <div class="nav-container">
+            <a href="#general" class="nav-item" onclick="showPage('general')">🏠 Overview</a>
+            <a href="#control" class="nav-item" onclick="showPage('control')">🎛️ Control Panel</a>
+            <a href="#staging" class="nav-item" onclick="showPage('staging')">📋 Staging Area</a>
+            <a href="#conflicts" class="nav-item" onclick="showPage('conflicts')">⚔️ Conflicts Resolution</a>
+        </div>
+    </nav>
+
+    <div class="container">
+        <!-- GENERAL/OVERVIEW PAGE -->
+        <div id="general" class="page active">
+            <h1 id="general-overview">🏠 System Overview</h1>
+            
+            <div class="section info">
+                <h3>🎯 System Purpose</h3>
+                <p><strong>This system enables multiple users to safely edit the same Excel workbook simultaneously without conflicts or data loss.</strong></p>
+                <p>By using separate user files and a controlled merge process, teams can collaborate efficiently on large datasets while maintaining data integrity and audit trails.</p>
+            </div>
+
+            <div class="section success">
+                <h3>✅ Key Benefits</h3>
+                <ul>
+                    <li><strong>Concurrent Editing:</strong> Multiple users can work simultaneously</li>
+                    <li><strong>Conflict Resolution:</strong> Automatic detection and manual resolution of overlapping edits</li>
+                    <li><strong>Data Integrity:</strong> No data loss or corruption from simultaneous access</li>
+                    <li><strong>Audit Trail:</strong> Complete tracking of who changed what and when</li>
+                    <li><strong>Controlled Merging:</strong> Supervised integration of all changes</li>
+                    <li><strong>Rollback Capability:</strong> Ability to undo problematic changes</li>
+                </ul>
+            </div>
+
+            <h2 id="general-concept">How the System Works</h2>
+
+            <div class="system-diagram">
+                <strong>Collaborative Editing Architecture</strong><br><br>
+                ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐<br>
+                │   Main Workbook │    │  User Workbook  │    │  User Workbook  │<br>
+                │  (Verzeichnis   │    │    (Ali.xlsm)   │    │  (Andre.xlsm)   │<br>
+                │    .xlsb)       │    │                 │    │                 │<br>
+                └─────────────────┘    └─────────────────┘    └─────────────────┘<br>
+                          ↑                       ↓                       ↓<br>
+                          │              ┌─────────────────┐              │<br>
+                          │              │  Staging Area   │              │<br>
+                          │              │   (Collect &    │              │<br>
+                          │              │    Review)      │              │<br>
+                          │              └─────────────────┘              │<br>
+                          │                       ↓                       │<br>
+                          │              ┌─────────────────┐              │<br>
+                          └──────────────│ Conflicts Area  │──────────────┘<br>
+                                         │  (Resolve &     │<br>
+                                         │    Merge)       │<br>
+                                         └─────────────────┘
+            </div>
+
+            <div class="step">
+                <h3>The Collaborative Process</h3>
+                <ol>
+                    <li><strong>Distribution:</strong> Users copy rows from main workbook to their personal .xlsm files</li>
+                    <li><strong>Independent Editing:</strong> Users edit their copies without interfering with others</li>
+                    <li><strong>Ready Marking:</strong> Users mark completed edits with column AB = 1</li>
+                    <li><strong>Collection:</strong> System gathers all ready changes into staging area</li>
+                    <li><strong>Conflict Detection:</strong> Automatic identification of overlapping edits</li>
+                    <li><strong>Manual Resolution:</strong> Human review and decision-making for conflicts</li>
+                    <li><strong>Controlled Merge:</strong> Approved changes are integrated into main workbook</li>
+                    <li><strong>Synchronization:</strong> User workbooks are updated to reflect merged state</li>
+                </ol>
+            </div>
+
+            <h2 id="general-components">System Components</h2>
+
+            <div class="section">
+                <h3>📊 Key Worksheets</h3>
+                <ul>
+                    <li><strong>Control:</strong> Main dashboard for managing the collaborative process</li>
+                    <li><strong>Staging:</strong> Collection area showing all user changes with metadata</li>
+                    <li><strong>Conflicts:</strong> Resolution interface for handling overlapping edits</li>
+                    <li><strong>Teile und Stoffe:</strong> The main data sheet containing the master dataset</li>
+                </ul>
+            </div>
+
+            <div class="section">
+                <h3>📁 File Structure</h3>
+                <div class="file-list">
+                    <strong>Main Files:</strong><br>
+                    📄 Verzeichnis.xlsb (Main workbook - contains macros and master data)<br><br>
+                    
+                    <strong>User Workbooks:</strong><br>
+                    📄 Verzeichnis_Ali.xlsm (Ali's personal editing file)<br>
+                    📄 Verzeichnis_Andre.xlsm (Andre's personal editing file)<br>
+                    📄 Verzeichnis_Jean-Michel.xlsm (Jean-Michel's personal editing file)<br><br>
+                    
+                    <strong>System Files:</strong><br>
+                    📁 collaborator/ (Contains macro files)<br>
+                    📄 help_documentation.html (This comprehensive help file)
+                </div>
+            </div>
+
+            <h2 id="general-workflow">Daily Workflow</h2>
+
+            <div class="step">
+                <h3>🌅 Morning Setup</h3>
+                <p><strong>Start of collaborative session:</strong></p>
+                <ul>
+                    <li>First user opens main workbook (Verzeichnis.xlsb)</li>
+                    <li>Other users work with their personal .xlsm files</li>
+                    <li>Users copy relevant rows from main sheet to their files</li>
+                    <li>Collaborative editing begins independently</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h3>📝 During the Day</h3>
+                <p><strong>Ongoing collaborative work:</strong></p>
+                <ul>
+                    <li>Users edit their personal copies independently</li>
+                    <li>No interference or locking between users</li>
+                    <li>Users mark completed work with AB = 1 when ready</li>
+                    <li>Periodic collection and review of ready changes</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h3>🔄 Merge Process</h3>
+                <p><strong>Integration of changes:</strong></p>
+                <ul>
+                    <li>Administrator runs "Fetch User Edits" from Control panel</li>
+                    <li>System collects all ready changes into Staging area</li>
+                    <li>Conflicts are automatically detected and flagged</li>
+                    <li>Manual resolution of any conflicts in Conflicts sheet</li>
+                    <li>"Merge Changes" applies approved edits to main workbook</li>
+                </ul>
+            </div>
+
+            <h2 id="general-getting-started">🚀 Getting Started</h2>
+
+            <div class="section success">
+                <h3>For New Users</h3>
+                <ol>
+                    <li><strong>Receive your personal workbook</strong> (e.g., Verzeichnis_YourName.xlsm)</li>
+                    <li><strong>Copy rows you need to edit</strong> from the main "Teile und Stoffe" sheet</li>
+                    <li><strong>Make your changes</strong> in your personal file</li>
+                    <li><strong>Mark rows as ready</strong> by setting column AB = 1</li>
+                    <li><strong>Coordinate with administrator</strong> for merge timing</li>
+                </ol>
+            </div>
+
+            <div class="section info">
+                <h3>For Administrators</h3>
+                <ol>
+                    <li><strong>Open the main workbook</strong> (Verzeichnis.xlsb)</li>
+                    <li><strong>Navigate to Control sheet</strong> for main dashboard</li>
+                    <li><strong>Use "Fetch User Edits"</strong> to collect ready changes</li>
+                    <li><strong>Review Staging area</strong> for overview of all changes</li>
+                    <li><strong>Resolve conflicts</strong> in Conflicts sheet if needed</li>
+                    <li><strong>Run "Merge Changes"</strong> to apply approved edits</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- CONTROL PANEL PAGE -->
+        <div id="control" class="page">
+            <h1 id="control-overview">🎛️ Control Panel Guide</h1>
+            
+            <div class="section info">
+                <h3>🎯 Command Center</h3>
+                <p><strong>The Control Panel is your main dashboard for managing the entire collaborative editing process.</strong></p>
+                <p>From here, you orchestrate the collection, review, conflict resolution, and merging of all user changes into the main workbook.</p>
+            </div>
+
+            <div class="section success">
+                <h3>✅ What You Can Do</h3>
+                <ul>
+                    <li><strong>Collect Changes:</strong> Gather all ready edits from user workbooks</li>
+                    <li><strong>Monitor Status:</strong> See counts of changes and conflicts</li>
+                    <li><strong>Manage Workflow:</strong> Control the entire merge process</li>
+                    <li><strong>Resolve Issues:</strong> Clear areas and restart processes</li>
+                    <li><strong>Track Progress:</strong> View merge status and history</li>
+                </ul>
+            </div>
+
+            <h2 id="control-workflow">Complete Daily Workflow</h2>
+
+            <div class="workflow-diagram">
+                <strong>Daily Collaborative Editing Workflow</strong><br><br>
+                ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐<br>
+                │  1. Fetch User  │ → │  2. Review      │ → │  3. Resolve     │<br>
+                │     Edits       │    │     Staging     │    │   Conflicts     │<br>
+                └─────────────────┘    └─────────────────┘    └─────────────────┘<br>
+                                                                        ↓<br>
+                ┌─────────────────┐    ┌─────────────────┐    ┌─────────────────┐<br>
+                │  6. Clean Up    │ ← │  5. Update      │ ← │  4. Merge       │<br>
+                │     Areas       │    │   User Files    │    │   Changes       │<br>
+                └─────────────────┘    └─────────────────┘    └─────────────────┘
+            </div>
+
+            <div class="step">
+                <h3>Step 1: Start of Day - Fetch User Edits</h3>
+                <p><strong>Click "Fetch User Edits" to begin the process:</strong></p>
+                <ul>
+                    <li>System scans all user .xlsm files in the directory</li>
+                    <li>Collects rows marked with AB = 1 (ready for review)</li>
+                    <li>Copies data to Staging sheet with metadata</li>
+                    <li>Automatically detects conflicts between users</li>
+                    <li>Highlights changed cells for easy identification</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h3>Step 2: Review - Check Staging Sheet</h3>
+                <p><strong>Navigate to Staging sheet to review collected changes:</strong></p>
+                <ul>
+                    <li>Verify all expected changes are present</li>
+                    <li>Check for data quality issues</li>
+                    <li>Note any conflicts (rows with A=0)</li>
+                    <li>Understand the scope of changes</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h3>Step 3: Resolve - Handle Conflicts</h3>
+                <p><strong>If conflicts exist, go to Conflicts sheet:</strong></p>
+                <ul>
+                    <li>Review each conflict group carefully</li>
+                    <li>Select preferred version for each conflict</li>
+                    <li>Use business judgment to make decisions</li>
+                    <li>Ensure all conflicts are resolved</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h3>Step 4: Merge - Apply Changes</h3>
+                <p><strong>Return to Control panel and click "Merge Changes":</strong></p>
+                <ul>
+                    <li>System applies approved changes to main sheet</li>
+                    <li>Updates user workbooks to reflect merge</li>
+                    <li>Clears ready flags (AB=1) in user files</li>
+                    <li>Provides merge status report</li>
+                </ul>
+            </div>
+
+            <h2 id="control-functions">Available Functions</h2>
+
+            <div class="button-guide">
+                <h3>🔄 Fetch User Edits</h3>
+                <p><strong>Primary function to collect all ready changes</strong></p>
+                <ul>
+                    <li>Scans: Verzeichnis_Ali.xlsm, Verzeichnis_Andre.xlsm, Verzeichnis_Jean-Michel.xlsm</li>
+                    <li>Finds: All rows where column AB = 1</li>
+                    <li>Creates: Staging area with metadata and conflict detection</li>
+                    <li>Highlights: Changed cells in red for easy identification</li>
+                </ul>
+            </div>
+
+            <div class="button-guide">
+                <h3>⚔️ Build Conflicts List</h3>
+                <p><strong>Organizes conflicts for manual resolution</strong></p>
+                <ul>
+                    <li>Groups: Conflicts by Antrag-nummer</li>
+                    <li>Displays: ORIGINAL data first, then user modifications</li>
+                    <li>Provides: Selection interface for conflict resolution</li>
+                    <li>Maintains: Visual formatting and change highlighting</li>
+                </ul>
+            </div>
+
+            <div class="button-guide">
+                <h3>🔀 Merge Changes</h3>
+                <p><strong>Applies approved changes to main workbook</strong></p>
+                <ul>
+                    <li>Processes: All resolved conflicts and unique changes</li>
+                    <li>Updates: Main "Teile und Stoffe" sheet</li>
+                    <li>Modifies: User workbooks to clear processed flags</li>
+                    <li>Reports: Success/failure status for each change</li>
+                </ul>
+            </div>
+
+            <div class="button-guide">
+                <h3>🧹 Clear Functions</h3>
+                <p><strong>Reset areas for fresh start</strong></p>
+                <ul>
+                    <li><strong>Clear Staging:</strong> Removes all data from staging sheet</li>
+                    <li><strong>Clear Conflicts:</strong> Resets conflicts area</li>
+                    <li>Preserves: Headers and formatting</li>
+                    <li>Confirms: Action before proceeding</li>
+                </ul>
+            </div>
+
+            <h2 id="control-safety">🛡️ Safety Features & Protection</h2>
+
+            <div class="section success">
+                <h3>Built-in Safeguards</h3>
+                <ul>
+                    <li><strong>Undo Support:</strong> All operations can be undone with Ctrl+Z</li>
+                    <li><strong>Confirmation Dialogs:</strong> Clear functions ask for confirmation</li>
+                    <li><strong>Data Preservation:</strong> Original data is preserved until merge</li>
+                    <li><strong>Error Handling:</strong> Graceful handling of file access issues</li>
+                    <li><strong>Status Reporting:</strong> Clear feedback on operation success/failure</li>
+                    <li><strong>Backup Creation:</strong> System maintains data integrity</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- STAGING AREA PAGE -->
+        <div id="staging" class="page">
+            <h1 id="staging-overview">📋 Staging Area Overview</h1>
+            
+            <div class="section info">
+                <h3>🎯 Purpose of the Staging Area</h3>
+                <p><strong>The staging area is your central hub for reviewing all user changes before they're merged into the main workbook.</strong></p>
+                <p>It collects all user edits marked as 'ready' (AB=1) from user workbooks and prepares them for review, conflict detection, and eventual merging.</p>
+            </div>
+
+            <div class="section success">
+                <h3>✅ What Happens Here</h3>
+                <ul>
+                    <li><strong>Collection:</strong> All ready user changes are gathered in one place</li>
+                    <li><strong>Analysis:</strong> Changes are compared against the main sheet</li>
+                    <li><strong>Conflict Detection:</strong> Overlapping edits are automatically identified</li>
+                    <li><strong>Change Highlighting:</strong> Modified cells are visually marked</li>
+                    <li><strong>Metadata Tracking:</strong> User names, timestamps, and unique IDs are recorded</li>
+                </ul>
+            </div>
+
+            <h2 id="staging-structure">Data Structure & Layout</h2>
+
+            <div class="visual-example">
+                <strong>Staging Sheet Layout:</strong><br>
+                ┌─────┬─────────┬──────────┬─────────────┬──────────────────────────┐<br>
+                │  A  │    B    │    C     │      D      │     E → AB (Data)        │<br>
+                ├─────┼─────────┼──────────┼─────────────┼──────────────────────────┤<br>
+                │ 0/1 │ UniqueID│ Username │ Timestamp   │ Actual user data...      │<br>
+                │  1  │ ID_001  │   Ali    │ 2024-01-15  │ [User's edited data]     │<br>
+                │  0  │ ID_002  │  Andre   │ 2024-01-15  │ [Conflicting data]       │<br>
+                │  0  │ ID_003  │ Jean-M   │ 2024-01-15  │ [Another conflict]       │<br>
+                └─────┴─────────┴──────────┴─────────────┴──────────────────────────┘
+            </div>
+
+            <h2 id="staging-columns">Column-by-Column Guide</h2>
+
+            <table class="column-table">
+                <thead>
+                    <tr>
+                        <th>Column</th>
+                        <th>Name</th>
+                        <th>Purpose</th>
+                        <th>Values</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>A</strong></td>
+                        <td>Conflict Flag</td>
+                        <td>Indicates if this edit conflicts with others</td>
+                        <td><code>1</code> = Unique (no conflict)<br><code>0</code> = Has conflicts</td>
+                    </tr>
+                    <tr>
+                        <td><strong>B</strong></td>
+                        <td>Unique ID</td>
+                        <td>System-generated identifier for this edit</td>
+                        <td>Format: ID_### (e.g., ID_001)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>C</strong></td>
+                        <td>User Name</td>
+                        <td>Who made this change</td>
+                        <td>Ali, Andre, Jean-Michel</td>
+                    </tr>
+                    <tr>
+                        <td><strong>D</strong></td>
+                        <td>Timestamp</td>
+                        <td>When the change was made</td>
+                        <td>Date/time format</td>
+                    </tr>
+                    <tr>
+                        <td><strong>E → AB</strong></td>
+                        <td>Data Columns</td>
+                        <td>The actual data from user workbooks</td>
+                        <td>All original data columns from main sheet</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h2 id="staging-conflicts">Understanding Conflicts</h2>
+
+            <div class="section warning">
+                <h3>⚠️ Conflict Detection Logic</h3>
+                <p><strong>Conflicts occur when multiple users edit the same Antrag-nummer (Column E in the data).</strong></p>
+                <p>The system automatically detects these by comparing the Antrag-nummer values across all staged changes.</p>
+            </div>
+
+            <div class="section">
+                <h3>How to Identify Conflicts</h3>
+                <ul>
+                    <li><strong>Column A = 0:</strong> This row has conflicts with other users' edits</li>
+                    <li><strong>Same Antrag-nummer:</strong> Multiple rows with the same identifier in column E</li>
+                    <li><strong>Different users:</strong> Column C shows different user names for the same record</li>
+                    <li><strong>Red highlighting:</strong> Shows which specific cells were changed</li>
+                </ul>
+            </div>
+
+            <h2 id="staging-workflow">Staging Workflow</h2>
+
+            <div class="step">
+                <h3>Step 1: Data Collection</h3>
+                <p><strong>Triggered by "Fetch User Edits" from Control panel:</strong></p>
+                <ul>
+                    <li>System scans all user .xlsm files</li>
+                    <li>Finds rows where column AB = 1 (marked as ready)</li>
+                    <li>Copies these rows to the staging area</li>
+                    <li>Adds metadata (ID, user, timestamp)</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h3>Step 2: Change Analysis</h3>
+                <p><strong>System automatically:</strong></p>
+                <ul>
+                    <li>Compares each staged row with the main sheet</li>
+                    <li>Highlights changed cells in red</li>
+                    <li>Detects conflicts by matching Antrag-nummers</li>
+                    <li>Sets conflict flags in column A</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h3>Step 3: Review Process</h3>
+                <p><strong>Your review tasks:</strong></p>
+                <ul>
+                    <li>Scan through all staged changes</li>
+                    <li>Verify that changes look reasonable</li>
+                    <li>Identify any obvious data quality issues</li>
+                    <li>Note which records have conflicts (A=0)</li>
+                </ul>
+            </div>
+
+            <h2 id="staging-next-steps">🔄 Next Steps</h2>
+
+            <div class="section info">
+                <h3>After reviewing the staging area:</h3>
+                <ol>
+                    <li><strong>No conflicts (all A=1):</strong> Return to Control panel and merge changes</li>
+                    <li><strong>Conflicts present (some A=0):</strong> Go to Conflicts sheet to resolve</li>
+                    <li><strong>Data quality issues:</strong> Contact users to clarify or correct</li>
+                    <li><strong>Ready to merge:</strong> Use Control panel "Merge Changes" function</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- CONFLICTS RESOLUTION PAGE -->
+        <div id="conflicts" class="page">
+            <h1 id="conflicts-overview">⚔️ Conflicts Resolution System</h1>
+            
+            <div class="section warning">
+                <h3>⚠️ Critical Information</h3>
+                <p><strong>Conflicts occur when multiple users edit the same record (same Antrag-nummer).</strong> You must resolve these manually to ensure data integrity and prevent data loss.</p>
+                <p>The system cannot automatically decide which version is correct - this requires human judgment based on business rules and data quality.</p>
+            </div>
+
+            <h2 id="conflicts-interface">Understanding the Conflicts Interface</h2>
+            
+            <div class="section">
+                <h3>What You See on the Conflicts Sheet</h3>
+                <ul>
+                    <li><strong>ORIGINAL rows:</strong> Show the current data from the main "Teile und Stoffe" sheet</li>
+                    <li><strong>User modification rows:</strong> Show proposed changes with user name and timestamp</li>
+                    <li><strong>Red highlighting:</strong> Indicates which specific cells were actually changed</li>
+                    <li><strong>Thick borders:</strong> Group related conflicts together visually</li>
+                    <li><strong>Color coding:</strong> Green = selected, Light red = rejected, Original colors = unchanged</li>
+                </ul>
+            </div>
+
+            <div class="visual-example">
+                <strong>Example Layout:</strong><br>
+                ┌─────────────────────────────────────────────────────────┐<br>
+                │ ORIGINAL    │ Select │ Data columns...                │<br>
+                │ User1-ID123 │   1    │ <span class="highlight">Modified data</span> + unchanged data    │<br>
+                │ User2-ID124 │   0    │ <span class="highlight">Different changes</span> + unchanged   │<br>
+                └─────────────────────────────────────────────────────────┘
+            </div>
+
+            <h2 id="conflicts-process">Step-by-Step Resolution Process</h2>
+
+            <div class="step">
+                <h3>Step 1: Analyze the Conflict</h3>
+                <p><strong>Compare the ORIGINAL data with each user's proposed changes:</strong></p>
+                <ul>
+                    <li>Look at the red highlighted cells - these show exactly what was modified</li>
+                    <li>Check the user names and timestamps to understand who made what changes when</li>
+                    <li>Consider the business context - which changes make more sense?</li>
+                    <li>Look for complementary changes that don't actually conflict</li>
+                </ul>
+            </div>
+
+            <div class="step">
+                <h3>Step 2: Make Your Selection</h3>
+                <p><strong>In the 'Select' column (D), choose which version to keep:</strong></p>
+                <ul>
+                    <li><code>1</code> = <strong>ACCEPT</strong> this user's changes (will be merged)</li>
+                    <li><code>0</code> = <strong>REJECT</strong> this user's changes (will be ignored)</li>
+                    <li><em>Empty/Blank</em> = No decision made yet (prevents merging)</li>
+                </ul>
+                <p><strong>Important:</strong> Only ONE version per conflict group can be selected as "1"</p>
+            </div>
+
+            <div class="step">
+                <h3>Step 3: Verify Your Decision</h3>
+                <p>After making selections:</p>
+                <ul>
+                    <li>Review the visual feedback (green = selected, light red = rejected)</li>
+                    <li>Double-check that your selection makes business sense</li>
+                    <li>Ensure all conflicts in the group have been decided</li>
+                    <li>You can change your mind - just select a different option</li>
+                </ul>
+            </div>
+
+            <h2 id="conflicts-visual">Visual Feedback System</h2>
+
+            <div class="section success">
+                <h3>🎨 Color Coding Guide</h3>
+                <ul>
+                    <li><strong>Green background:</strong> Selected for merge (value = 1)</li>
+                    <li><strong>Light red background:</strong> Rejected (value = 0)</li>
+                    <li><strong>Red highlighted cells:</strong> Changed data (shows what was modified)</li>
+                    <li><strong>Original background colors:</strong> Unchanged data (preserved from original formatting)</li>
+                    <li><strong>Thick borders:</strong> Group boundaries around related conflicts</li>
+                </ul>
+            </div>
+
+            <h2 id="conflicts-tips">💡 Pro Tips & Best Practices</h2>
+
+            <div class="section info">
+                <h3>Efficient Conflict Resolution</h3>
+                <ul>
+                    <li><strong>Binary Selection:</strong> Only ONE version per conflict can be selected</li>
+                    <li><strong>Automatic Rejection:</strong> Selecting one automatically rejects others in the same group</li>
+                    <li><strong>Change Your Mind:</strong> You can always select a different option</li>
+                    <li><strong>Clear Selection:</strong> Delete the value in column D to reset</li>
+                    <li><strong>Use Ctrl+Z:</strong> Undo accidental selections</li>
+                    <li><strong>Focus on Changes:</strong> Pay attention to red highlighted cells</li>
+                    <li><strong>Consider Timestamps:</strong> More recent changes might be more relevant</li>
+                    <li><strong>Business Logic:</strong> Apply your domain knowledge to make decisions</li>
+                </ul>
+            </div>
+
+            <div class="section warning">
+                <h3>⚠️ Common Mistakes to Avoid</h3>
+                <ul>
+                    <li><strong>Don't leave conflicts unresolved</strong> - empty selections prevent merging</li>
+                    <li><strong>Don't select multiple versions</strong> - only one can be "1" per group</li>
+                    <li><strong>Don't ignore timestamps</strong> - they provide important context</li>
+                    <li><strong>Don't rush decisions</strong> - take time to understand the changes</li>
+                    <li><strong>Don't forget to save</strong> - your selections need to be preserved</li>
+                </ul>
+            </div>
+
+            <h2 id="conflicts-after">✅ After Resolution</h2>
+
+            <div class="section success">
+                <p>Once you've resolved all conflicts:</p>
+                <ol>
+                    <li>Return to the <strong>Control sheet</strong></li>
+                    <li>Click <strong>"Merge Changes"</strong> to apply your decisions</li>
+                    <li>The selected changes will be applied to the main sheet</li>
+                    <li>User workbooks will be updated to reflect the merge</li>
+                    <li>The staging and conflicts areas will be cleared</li>
+                </ol>
+            </div>
+        </div>
+    </div>
+
+    <div class="quick-nav">
+        <h4>Quick Navigation</h4>
+        <div id="nav-links">
+            <!-- Dynamic navigation will be inserted here -->
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>&copy; 2024 Collaborative Excel System | Complete Documentation</p>
+    </div>
+
+    <script>
+        // Page navigation functionality
+        function showPage(pageId) {
+            // Hide all pages
+            const pages = document.querySelectorAll('.page');
+            pages.forEach(page => page.classList.remove('active'));
+            
+            // Remove active class from nav items
+            const navItems = document.querySelectorAll('.nav-item');
+            navItems.forEach(item => item.classList.remove('active'));
+            
+            // Show selected page
+            document.getElementById(pageId).classList.add('active');
+            
+            // Add active class to corresponding nav item
+            const activeNav = document.querySelector(`[onclick="showPage('${pageId}')"]`);
+            if (activeNav) activeNav.classList.add('active');
+            
+            // Update quick navigation
+            updateQuickNav(pageId);
+            
+            // Update URL hash
+            window.location.hash = pageId;
+        }
+
+        function updateQuickNav(pageId) {
+            const navContainer = document.getElementById('nav-links');
+            let navHTML = '';
+            
+            const page = document.getElementById(pageId);
+            const headings = page.querySelectorAll('h2[id], h3[id]');
+            
+            headings.forEach(heading => {
+                const level = heading.tagName === 'H2' ? '' : '&nbsp;&nbsp;';
+                navHTML += `${level}<a href="#${heading.id}" onclick="scrollToElement('${heading.id}')">${heading.textContent}</a>`;
+            });
+            
+            navContainer.innerHTML = navHTML;
+        }
+
+        function scrollToElement(elementId) {
+            const element = document.getElementById(elementId);
+            if (element) {
+                element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }
+        }
+
+        // Initialize page based on URL hash
+        function initializePage() {
+            const hash = window.location.hash.substring(1);
+            const validPages = ['general', 'control', 'staging', 'conflicts'];
+            
+            // Enhanced debugging
+            console.log('Full URL:', window.location.href);
+            console.log('Hash with #:', window.location.hash);
+            console.log('Hash without #:', hash);
+            console.log('Valid pages:', validPages);
+            console.log('Hash is valid:', validPages.includes(hash));
+            
+            if (validPages.includes(hash)) {
+                console.log('Showing page:', hash);
+                showPage(hash);
+            } else {
+                console.log('Defaulting to general page');
+                showPage('general');
+            }
+        }
+
+        // Initialize with delay to ensure hash is available
+        function delayedInitialize() {
+            setTimeout(function() {
+                console.log('Delayed initialize triggered');
+                initializePage();
+            }, 1000); // Small delay for file:// URLs
+        }
+
+        // Get page parameter from URL
+        function getPageFromUrl() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const page = urlParams.get('page');
+            console.log('URL parameters:', window.location.search);
+            console.log('Page parameter:', page);
+            return page;
+        }
+        
+        let initializationComplete = false;
+        
+        // Initialize page based on URL parameter
+        function robustInitialize() {
+            if (initializationComplete) {
+                console.log('Initialization already completed, skipping');
+                return;
+            }
+            
+            console.log('Full URL:', window.location.href);
+            
+            const page = getPageFromUrl();
+            const validPages = ['general', 'control', 'staging', 'conflicts'];
+            
+            if (validPages.includes(page)) {
+                console.log('Found valid page parameter:', page);
+                showPage(page);
+                initializationComplete = true;
+            } else {
+                console.log('No valid page parameter found, defaulting to general');
+                showPage('general');
+                initializationComplete = true;
+            }
+        }
+
+        // Handle browser back/forward buttons
+        window.addEventListener('hashchange', initializePage);
+        
+        // Initialize on page load - only use one event to avoid double initialization
+        window.addEventListener('load', robustInitialize);
+    </script>
+</body>
+</html>
+</rewritten_file>

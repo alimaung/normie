@@ -4,6 +4,9 @@
  */
 
 $(document).ready(function() {
+    // Check authentication status
+    checkAuthentication();
+
     let currentSection = 0;
     const sections = ['applicant', 'product', 'usage', 'documentation', 'review'];
     const totalSections = sections.length;
@@ -29,6 +32,20 @@ $(document).ready(function() {
 
     // Document upload
     $('#add-document').on('click', addDocument);
+
+    function checkAuthentication() {
+        // Check if there's an authentication error message
+        const authError = $('.alert-danger').filter(function() {
+            return $(this).text().includes('login') || $(this).text().includes('authentication');
+        });
+
+        if (authError.length > 0) {
+            // Redirect to admin login
+            window.location.href = '/admin/login/?next=' + encodeURIComponent(window.location.href);
+            return false;
+        }
+        return true;
+    }
 
     function initializeForm() {
         // Show only the first section

@@ -220,7 +220,7 @@ def notifications(request):
     return render(request, 'normieapp/notifications.html', context)
 
 
-@login_required
+@login_required(login_url='/admin/login/')
 def cmsr_request(request):
     """
     CMSR (Consumable Material Supply Request) form view.

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Help Redirect</title>
+</head>
+<body>
+    <script>
+        // Get the page parameter from URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const page = urlParams.get('page') || 'general';
+        
+        console.log('Redirect page received page parameter:', page);
+        
+        // Redirect to main help file with hash
+        const helpFile = 'help_documentation.html#' + page;
+        console.log('Redirecting to:', helpFile);
+        
+        window.location.href = helpFile;
+    </script>
+    <p>Redirecting to help documentation...</p>
+</body>
+</html> 

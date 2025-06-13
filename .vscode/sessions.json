@@ -31,7 +31,7 @@
           "icon": "arrow-swap",
           "color": "terminal.ansiGreen",
           "commands": [
-            "cd .\\.launch\\caddy ; .\\caddy.exe run --config caddyfile --admin localhost:2020"
+            "cd .\\.launch\\caddy ; .\\caddy.exe run --config caddyfile"
           ]
         }
       ],
