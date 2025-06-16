@@ -1,0 +1,39 @@
+
+S. Bashinskiy (SAP Änderung -> Aktivierung Prüfeinstellung)
+msg
+Umweltschutz (K. Bartz)
+Herr Luu in DW zwecks Beschaffung SDBs
+HS&E OU (per Email)
+Herr Luu in DW zwecks Beschaffung SDBs
+CBS
+Quy Luu (Anfrage Produktdatenblatt)
+Freigabe zur Erstbestellung
+H&B Stoffe RR DW (SAP Anpasssung vom Einkaufsbestelltext)
+Antragsteller (Antrag liegt bei CBS)
+Quy Luu
+Dengler (Lieferant)
+H&B Stoffe RR DW
+(Bearbeitung MHD Relevanz in fehlerhaftem SAP Datensatz)
+Quy Luu (Beschaffung TDB)
+Anfrage an Antragsteller
+CBS
+ChemScan
+H&B Stoffe RR DW (SAP Aktualisierung-> Reiter Qualitätsmanagement)
+Labor OU
+Labor DW
+Quy Luu
+Klärung Bashinskiy
+Antragsteller, bzw. Herr Yalcin (Antrag liegt bei CBS)
+H&B Stoffe RR DW (SAP Anpassung -> Einkaufsbestelltext)
+Herr Luu in DW zwecks SAP Aktualisierung
+Labor OU (per Email)
+Antragsteller (Klärung mit Hersteller zur Konformität mit CSS13 noch offen)
+H&B Stoffe RR DW
+HSE DW (per Email & Ordner)
+Labor
+(beim Team von Fr. Kaprolat am 05.08.2019)
+Antragsteller
+T. Gilles
+(s. Sonstiges)
+Freigabe Erstbestellung
+Abgelehnt

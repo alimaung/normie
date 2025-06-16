@@ -7,10 +7,10 @@
     <title>{% block title %}Normie - Standards & Material Management{% endblock %}</title>
     {% load static %}
     <!-- Favicon -->
-    <link rel="icon" href="{% static 'normieapp/img/app-logo.png' %}" type="image/png">
-    <link rel="shortcut icon" href="{% static 'normieapp/img/app-logo.png' %}" type="image/png">
-    <link rel="apple-touch-icon" href="{% static 'normieapp/img/app-logo.png' %}">
-    <meta name="msapplication-TileImage" content="{% static 'normieapp/img/app-logo.png' %}">
+    <link rel="icon" href="{% static 'normieapp/img/logo-light.png' %}" type="image/png">
+    <link rel="shortcut icon" href="{% static 'normieapp/img/logo-light.png' %}" type="image/png">
+    <link rel="apple-touch-icon" href="{% static 'normieapp/img/logo-light.png' %}">
+    <meta name="msapplication-TileImage" content="{% static 'normieapp/img/logo-light.png' %}">
     <meta name="msapplication-TileColor" content="#1a73e8">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="{% static "normieapp/css/vendor/fontawesome.min.css" %}">
@@ -29,15 +29,25 @@
         
         <!-- Middle - Navigation Links -->
         <div class="navbar-links">
-            <a href="{% url 'standards' %}" {% if request.resolver_match.url_name == 'standards' %}class="active"{% endif %}>{% trans "Standards" %}</a>
-            <a href="{% url 'requests' %}" {% if request.resolver_match.url_name == 'requests' %}class="active"{% endif %}>{% trans "Requests" %}</a>
-            <a href="{% url 'materials' %}" {% if request.resolver_match.url_name == 'materials' %}class="active"{% endif %}>{% trans "Materials" %}</a>
-            <a href="{% url 'releases' %}" {% if request.resolver_match.url_name == 'releases' %}class="active"{% endif %}>{% trans "Releases" %}</a>
-            <a href="{% url 'approvals' %}" {% if request.resolver_match.url_name == 'approvals' %}class="active"{% endif %}>{% trans "Approvals" %}</a>
-            <a href="{% url 'cmsr_list' %}" {% if request.resolver_match.url_name|slice:":4" == 'cmsr' %}class="active"{% endif %}>{% trans "CMSR" %}</a>
-            <a href="{% url 'inventory' %}" {% if request.resolver_match.url_name == 'inventory' %}class="active"{% endif %}>{% trans "Inventory" %}</a>
-            <a href="{% url 'reports' %}" {% if request.resolver_match.url_name == 'reports' %}class="active"{% endif %}>{% trans "Reports" %}</a>
-            <a href="{% url 'audit' %}" {% if request.resolver_match.url_name == 'audit' %}class="active"{% endif %}>{% trans "Audit" %}</a>
+            <a href="{% url 'incoming' %}" {% if request.resolver_match.url_name == 'incoming' %}class="active"{% endif %}>{% trans "Incoming" %}</a>
+            <a href="{% url 'directory' %}" {% if request.resolver_match.url_name == 'directory' %}class="active"{% endif %}>{% trans "Directory" %}</a>
+            <a href="{% url 'chemscan' %}" {% if request.resolver_match.url_name == 'chemscan' %}class="active"{% endif %}>{% trans "ChemScan" %}</a>
+            <div class="navbar-dropdown">
+                <a href="#" class="dropdown-toggle {% if request.resolver_match.url_name in 'standards,requests,materials,releases,approvals,cmsr_list,inventory,reports,audit' %}active{% endif %}">
+                    {% trans "Prototype" %} <i class="fas fa-chevron-down"></i>
+                </a>
+                <div class="dropdown-menu">
+                    <a href="{% url 'standards' %}" {% if request.resolver_match.url_name == 'standards' %}class="active"{% endif %}>{% trans "Standards" %}</a>
+                    <a href="{% url 'requests' %}" {% if request.resolver_match.url_name == 'requests' %}class="active"{% endif %}>{% trans "Requests" %}</a>
+                    <a href="{% url 'materials' %}" {% if request.resolver_match.url_name == 'materials' %}class="active"{% endif %}>{% trans "Materials" %}</a>
+                    <a href="{% url 'releases' %}" {% if request.resolver_match.url_name == 'releases' %}class="active"{% endif %}>{% trans "Releases" %}</a>
+                    <a href="{% url 'approvals' %}" {% if request.resolver_match.url_name == 'approvals' %}class="active"{% endif %}>{% trans "Approvals" %}</a>
+                    <a href="{% url 'cmsr_list' %}" {% if request.resolver_match.url_name|slice:":4" == 'cmsr' %}class="active"{% endif %}>{% trans "CMSR" %}</a>
+                    <a href="{% url 'inventory' %}" {% if request.resolver_match.url_name == 'inventory' %}class="active"{% endif %}>{% trans "Inventory" %}</a>
+                    <a href="{% url 'reports' %}" {% if request.resolver_match.url_name == 'reports' %}class="active"{% endif %}>{% trans "Reports" %}</a>
+                    <a href="{% url 'audit' %}" {% if request.resolver_match.url_name == 'audit' %}class="active"{% endif %}>{% trans "Audit" %}</a>
+                </div>
+            </div>
         </div>
         
         <!-- Right side - Icons -->

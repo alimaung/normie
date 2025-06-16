@@ -185,8 +185,40 @@ document.addEventListener('DOMContentLoaded', function() {
         return '';
     }
     
-    // Add smooth page transitions
-    document.querySelectorAll('.navbar-links a').forEach(link => {
+    // Handle dropdown menu functionality
+    const dropdownToggle = document.querySelector('.dropdown-toggle');
+    const dropdownMenu = document.querySelector('.dropdown-menu');
+    
+    if (dropdownToggle && dropdownMenu) {
+        // Prevent dropdown toggle from navigating
+        dropdownToggle.addEventListener('click', function(e) {
+            e.preventDefault();
+        });
+        
+        // Handle dropdown menu item clicks
+        dropdownMenu.querySelectorAll('a').forEach(link => {
+            link.addEventListener('click', function(e) {
+                // Don't interfere with ctrl/cmd clicks or right clicks
+                if (e.ctrlKey || e.metaKey || e.button !== 0) return;
+                
+                const href = this.getAttribute('href');
+                if (href && href !== '#' && !href.startsWith('javascript:')) {
+                    e.preventDefault();
+                    
+                    // Fade out current content
+                    document.querySelector('.content').style.opacity = '0';
+                    
+                    // Navigate after fade animation
+                    setTimeout(() => {
+                        window.location.href = href;
+                    }, 300);
+                }
+            });
+        });
+    }
+
+    // Add smooth page transitions for regular navbar links
+    document.querySelectorAll('.navbar-links > a').forEach(link => {
         link.addEventListener('click', function(e) {
             // Don't interfere with ctrl/cmd clicks or right clicks
             if (e.ctrlKey || e.metaKey || e.button !== 0) return;

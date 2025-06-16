@@ -12,6 +12,38 @@ def home(request):
     """
     return render(request, 'normieapp/home.html')
 
+def incoming(request):
+    """
+    Incoming page view.
+    """
+    return render(request, 'normieapp/incoming.html')
+
+def directory(request):
+    """
+    Directory page view.
+    """
+    return render(request, 'normieapp/directory.html')
+
+def chemscan(request):
+    """
+    ChemScan analysis and management view.
+    """
+    context = {
+        'page_title': _('ChemScan Analysis'),
+        'analysis_stats': {
+            'total_scans': 1247,
+            'pending_review': 23,
+            'approved_substances': 892,
+            'flagged_substances': 15
+        },
+        'recent_scans': [
+            {'id': 'CS-001', 'substance': 'Acetone', 'status': 'Approved', 'risk_level': 'Low', 'date': '2024-03-15'},
+            {'id': 'CS-002', 'substance': 'Methylene Chloride', 'status': 'Flagged', 'risk_level': 'High', 'date': '2024-03-14'},
+            {'id': 'CS-003', 'substance': 'Isopropanol', 'status': 'Pending', 'risk_level': 'Medium', 'date': '2024-03-13'},
+            {'id': 'CS-004', 'substance': 'Toluene', 'status': 'Under Review', 'risk_level': 'Medium', 'date': '2024-03-12'},
+        ]
+    }
+    return render(request, 'normieapp/chemscan.html', context)
 
 def standards(request):
     """
@@ -25,7 +57,7 @@ def standards(request):
             {'id': 3, 'name': 'OHSAS 18001', 'status': 'Draft', 'version': '1.0', 'last_updated': '2024-03-10'},
         ]
     }
-    return render(request, 'normieapp/standards.html', context)
+    return render(request, 'normieapp/prototyping/standards.html', context)
 
 
 def requests(request):
@@ -40,7 +72,7 @@ def requests(request):
             {'id': 'REQ-003', 'material': 'Welding Rods', 'quantity': 100, 'status': 'In Progress', 'requested_by': 'Mike Johnson', 'date': '2024-03-13'},
         ]
     }
-    return render(request, 'normieapp/requests.html', context)
+    return render(request, 'normieapp/prototyping/requests.html', context)
 
 
 def materials(request):
@@ -56,7 +88,7 @@ def materials(request):
             {'id': 'MAT-004', 'name': 'Concrete Mix', 'category': 'Construction', 'unit': 'bags', 'stock': 200, 'min_stock': 100},
         ]
     }
-    return render(request, 'normieapp/materials.html', context)
+    return render(request, 'normieapp/prototyping/materials.html', context)
 
 
 def releases(request):
@@ -71,7 +103,7 @@ def releases(request):
             {'id': 'REL-003', 'material': 'Welding Rods', 'quantity': 50, 'status': 'In Transit', 'released_to': 'Project Gamma', 'date': '2024-03-14'},
         ]
     }
-    return render(request, 'normieapp/releases.html', context)
+    return render(request, 'normieapp/prototyping/releases.html', context)
 
 
 def approvals(request):
@@ -86,7 +118,7 @@ def approvals(request):
             {'id': 'APP-003', 'type': 'Release Authorization', 'item': 'REL-002', 'status': 'Approved', 'submitted_by': 'Jane Smith', 'date': '2024-03-13'},
         ]
     }
-    return render(request, 'normieapp/approvals.html', context)
+    return render(request, 'normieapp/prototyping/approvals.html', context)
 
 
 def inventory(request):
@@ -105,7 +137,7 @@ def inventory(request):
             {'name': 'Welding Rods', 'current_stock': 25, 'min_stock': 30, 'status': 'Low Stock'},
         ]
     }
-    return render(request, 'normieapp/inventory.html', context)
+    return render(request, 'normieapp/prototyping/inventory.html', context)
 
 
 def reports(request):
@@ -121,7 +153,7 @@ def reports(request):
             {'name': 'Approval Metrics', 'type': 'Performance Report', 'last_generated': '2024-03-10', 'status': 'Generating'},
         ]
     }
-    return render(request, 'normieapp/reports.html', context)
+    return render(request, 'normieapp/prototyping/reports.html', context)
 
 
 def audit(request):
@@ -137,7 +169,7 @@ def audit(request):
             {'timestamp': '2024-03-15 11:15:33', 'user': 'mike.johnson', 'action': 'Inventory update', 'details': 'Added 50 Safety Helmets'},
         ]
     }
-    return render(request, 'normieapp/audit.html', context)
+    return render(request, 'normieapp/prototyping/audit.html', context)
 
 
 def settings(request):
@@ -262,7 +294,7 @@ def cmsr_request(request):
             'search_info': _('Before submitting, search OMat Catalogue, MLC 104, and RRD Consumables Catalogue for existing approved materials.')
         }
     }
-    return render(request, 'normieapp/cmsr_request.html', context)
+    return render(request, 'normieapp/prototyping/cmsr_request.html', context)
 
 
 @login_required
@@ -311,7 +343,7 @@ def cmsr_detail(request, pk):
         'status_choices': CMSRRequest.STATUS_CHOICES,
         'next_possible_statuses': get_next_possible_statuses(cmsr.status, request.user)
     }
-    return render(request, 'normieapp/cmsr_detail.html', context)
+    return render(request, 'normieapp/prototyping/cmsr_detail.html', context)
 
 
 @login_required
@@ -360,7 +392,7 @@ def cmsr_list(request):
             'search': search_query
         }
     }
-    return render(request, 'normieapp/cmsr_list.html', context)
+    return render(request, 'normieapp/prototyping/cmsr_list.html', context)
 
 
 def get_next_possible_statuses(current_status, user):
@@ -414,7 +446,7 @@ def cmsr_edit(request, pk):
         'form': form,
         'cmsr': cmsr
     }
-    return render(request, 'normieapp/cmsr_edit.html', context)
+    return render(request, 'normieapp/prototyping/cmsr_edit.html', context)
 
 
 @login_required
@@ -450,7 +482,7 @@ def cmsr_chemscan(request, pk):
         'cmsr': cmsr,
         'chemscan': chemscan
     }
-    return render(request, 'normieapp/cmsr_chemscan.html', context)
+    return render(request, 'normieapp/prototyping/cmsr_chemscan.html', context)
 
 
 @login_required
@@ -488,7 +520,7 @@ def cmsr_environmental(request, pk):
         'cmsr': cmsr,
         'environmental': environmental
     }
-    return render(request, 'normieapp/cmsr_environmental.html', context)
+    return render(request, 'normieapp/prototyping/cmsr_environmental.html', context)
 
 
 @login_required
@@ -524,7 +556,7 @@ def cmsr_manufacturing(request, pk):
         'cmsr': cmsr,
         'manufacturing': manufacturing
     }
-    return render(request, 'normieapp/cmsr_manufacturing.html', context)
+    return render(request, 'normieapp/prototyping/cmsr_manufacturing.html', context)
 
 
 @login_required
@@ -560,7 +592,7 @@ def cmsr_standards(request, pk):
         'cmsr': cmsr,
         'standards': standards
     }
-    return render(request, 'normieapp/cmsr_standards.html', context)
+    return render(request, 'normieapp/prototyping/cmsr_standards.html', context)
 
 
 @login_required
@@ -600,4 +632,4 @@ def cmsr_documents(request, pk):
         'documents': cmsr.documents.all(),
         'can_edit': can_edit
     }
-    return render(request, 'normieapp/cmsr_documents.html', context) 
+    return render(request, 'normieapp/prototyping/cmsr_documents.html', context) 

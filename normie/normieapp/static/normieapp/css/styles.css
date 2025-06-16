@@ -183,6 +183,108 @@ body {
     color: var(--color-primary);
 }
 
+/* Navbar Dropdown */
+.navbar-dropdown {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-toggle {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+}
+
+.dropdown-toggle i {
+    font-size: 0.8rem;
+    transition: transform var(--transition-speed) ease;
+}
+
+.navbar-dropdown:hover .dropdown-toggle i {
+    transform: rotate(180deg);
+}
+
+.dropdown-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background-color: var(--color-background);
+    border: 1px solid var(--color-border);
+    border-radius: 8px;
+    box-shadow: 0 4px 12px var(--color-shadow);
+    min-width: 200px;
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all var(--transition-speed) ease;
+    z-index: 1000;
+}
+
+.navbar-dropdown:hover .dropdown-menu {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 12px 16px;
+    color: var(--color-text);
+    text-decoration: none;
+    font-weight: var(--font-weight-regular);
+    height: auto;
+    border-bottom: 1px solid var(--color-border);
+    transition: background-color var(--transition-speed) ease;
+}
+
+.dropdown-menu a:last-child {
+    border-bottom: none;
+    border-radius: 0 0 8px 8px;
+}
+
+.dropdown-menu a:first-child {
+    border-radius: 8px 8px 0 0;
+}
+
+.dropdown-menu a:hover {
+    background-color: var(--color-surface);
+    color: var(--color-primary);
+}
+
+.dropdown-menu a.active {
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.dropdown-menu a::after {
+    display: none;
+}
+
+/* Dark mode dropdown */
+.dark-mode .dropdown-menu {
+    background-color: var(--color-dark-surface);
+    border-color: var(--color-dark-border);
+    box-shadow: 0 4px 12px var(--color-dark-shadow);
+}
+
+.dark-mode .dropdown-menu a {
+    color: var(--color-dark-text);
+    border-color: var(--color-dark-border);
+}
+
+.dark-mode .dropdown-menu a:hover {
+    background-color: var(--color-dark-background);
+    color: var(--color-primary);
+}
+
+.dark-mode .dropdown-menu a.active {
+    background-color: var(--color-primary);
+    color: white;
+}
+
 /* Navbar Icons */
 .navbar-icons {
     display: flex;
