@@ -1,198 +1,323 @@
-{% extends 'normieapp/base.html' %}
-{% load i18n %}
+{% extends "normieapp/base.html" %}
 {% load static %}
 
-{% block title %}{{ page_title }} - Normie{% endblock %}
+{% block title %}
+    ChemScan Database
+{% endblock %}
 
 {% block extra_css %}
-<link rel="stylesheet" href="{% static 'normieapp/css/chemscan.css' %}">
+    <link rel="stylesheet" href="{% static 'normieapp/css/chemscan.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'normieapp/js/chemscan.js' %}"></script>
 {% endblock %}
 
 {% block content %}
 <div class="chemscan-container">
     <!-- Header Section -->
     <div class="chemscan-header">
-        <div class="header-content">
-            <div class="header-left">
-                <h1><i class="fas fa-flask"></i> {% trans "ChemScan Analysis" %}</h1>
-                <p class="header-subtitle">{% trans "Chemical substance analysis and safety assessment" %}</p>
+        <div class="header-left">
+            <h1>ChemScan Hazardous Substance Database</h1>
+            <p class="header-summary">Complete database of hazardous substances and chemical materials</p>
+        </div>
+        <div class="header-stats">
+            <div class="stat-card">
+                <span class="stat-value">1,243</span>
+                <span class="stat-label">Total Substances</span>
             </div>
-            <div class="header-actions">
-                <button class="btn btn-primary">
-                    <i class="fas fa-plus"></i> {% trans "New Analysis" %}
-                </button>
-                <button class="btn btn-secondary">
-                    <i class="fas fa-upload"></i> {% trans "Import Data" %}
-                </button>
+            <div class="stat-card">
+                <span class="stat-value">1,156</span>
+                <span class="stat-label">Active</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value">87</span>
+                <span class="stat-label">Inactive</span>
             </div>
         </div>
     </div>
 
-    <!-- Statistics Cards -->
-    <div class="stats-grid">
-        <div class="stat-card">
-            <div class="stat-icon total">
-                <i class="fas fa-vial"></i>
-            </div>
-            <div class="stat-content">
-                <div class="stat-value">{{ analysis_stats.total_scans|floatformat:0 }}</div>
-                <div class="stat-label">{% trans "Total Scans" %}</div>
-            </div>
+    <!-- Active Filters -->
+    <div class="active-filters-container" id="active-filters">
+        <div class="active-filters-title">
+            <i class="fas fa-tags"></i> Active Filters
         </div>
-        
-        <div class="stat-card">
-            <div class="stat-icon pending">
-                <i class="fas fa-clock"></i>
-            </div>
-            <div class="stat-content">
-                <div class="stat-value">{{ analysis_stats.pending_review }}</div>
-                <div class="stat-label">{% trans "Pending Review" %}</div>
-            </div>
-        </div>
-        
-        <div class="stat-card">
-            <div class="stat-icon approved">
-                <i class="fas fa-check-circle"></i>
-            </div>
-            <div class="stat-content">
-                <div class="stat-value">{{ analysis_stats.approved_substances }}</div>
-                <div class="stat-label">{% trans "Approved Substances" %}</div>
-            </div>
-        </div>
-        
-        <div class="stat-card">
-            <div class="stat-icon flagged">
-                <i class="fas fa-exclamation-triangle"></i>
-            </div>
-            <div class="stat-content">
-                <div class="stat-value">{{ analysis_stats.flagged_substances }}</div>
-                <div class="stat-label">{% trans "Flagged Substances" %}</div>
-            </div>
-        </div>
+        <ul class="active-filters-list"></ul>
+        <button class="clear-filters-btn">
+            <i class="fas fa-times-circle"></i> Clear All Filters
+        </button>
     </div>
 
-    <!-- Search and Filter Section -->
-    <div class="search-filter-section">
-        <div class="search-box">
-            <i class="fas fa-search"></i>
-            <input type="text" placeholder="{% trans 'Search substances, CAS numbers, or analysis IDs...' %}" id="chemscan-search">
-        </div>
-        <div class="filter-controls">
-            <select class="filter-select">
-                <option value="">{% trans "All Statuses" %}</option>
-                <option value="approved">{% trans "Approved" %}</option>
-                <option value="pending">{% trans "Pending" %}</option>
-                <option value="flagged">{% trans "Flagged" %}</option>
-                <option value="under-review">{% trans "Under Review" %}</option>
-            </select>
-            <select class="filter-select">
-                <option value="">{% trans "All Risk Levels" %}</option>
-                <option value="low">{% trans "Low Risk" %}</option>
-                <option value="medium">{% trans "Medium Risk" %}</option>
-                <option value="high">{% trans "High Risk" %}</option>
-            </select>
-            <button class="btn btn-outline">
-                <i class="fas fa-filter"></i> {% trans "Advanced Filters" %}
+    <!-- Filter Section -->
+    <div class="filter-section-container" id="filter-section" style="display: none;">
+        <div class="filter-section-header">
+            <h3><i class="fas fa-filter"></i> Filter Options</h3>
+            <button class="close-filter-section-btn" id="close-filter-section">
+                <i class="fas fa-times"></i>
             </button>
         </div>
-    </div>
+        
+        <div class="filter-section-content">
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-tab="basic">Basic Filters</button>
+                <button class="filter-tab" data-tab="advanced">Advanced Filters</button>
+                <button class="filter-tab" data-tab="hazard">Hazard Classification</button>
+            </div>
 
-    <!-- Recent Scans Table -->
-    <div class="table-section">
-        <div class="section-header">
-            <h2>{% trans "Recent Chemical Analyses" %}</h2>
-            <div class="view-options">
-                <button class="view-btn active" data-view="table">
-                    <i class="fas fa-table"></i>
-                </button>
-                <button class="view-btn" data-view="grid">
-                    <i class="fas fa-th-large"></i>
-                </button>
+            <div class="filter-tab-content active" data-tab="basic">
+                <div class="filter-row">
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-toggle-on"></i> Status</h4>
+                        <div class="filter-options radio-toggle">
+                            <label class="filter-option"><input type="radio" name="status" value="all" checked> All</label>
+                            <label class="filter-option active"><input type="radio" name="status" value="active"> Active</label>
+                            <label class="filter-option inactive"><input type="radio" name="status" value="inactive"> Inactive</label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-tint"></i> Water Hazard Class</h4>
+                        <div class="filter-options checkbox-toggle">
+                            <label class="filter-option"><input type="checkbox" name="water-hazard" value="all" checked> All</label>
+                            <label class="filter-option wgk-1"><input type="checkbox" name="water-hazard" value="WGK 1"> WGK 1</label>
+                            <label class="filter-option wgk-2"><input type="checkbox" name="water-hazard" value="WGK 2"> WGK 2</label>
+                            <label class="filter-option wgk-3"><input type="checkbox" name="water-hazard" value="WGK 3"> WGK 3</label>
+                            <label class="filter-option wgk-na"><input type="checkbox" name="water-hazard" value="N/A"> N/A</label>
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-building"></i> Business Unit</h4>
+                        <div class="filter-options checkbox-toggle">
+                            <label class="filter-option"><input type="checkbox" name="business-unit" value="all" checked> All</label>
+                            <label class="filter-option"><input type="checkbox" name="business-unit" value="lackieren"> Lackieren</label>
+                            <label class="filter-option"><input type="checkbox" name="business-unit" value="small-parts"> Small Parts</label>
+                            <label class="filter-option"><input type="checkbox" name="business-unit" value="arbeitsplatz"> Arbeitsplatz</label>
+                            <label class="filter-option"><input type="checkbox" name="business-unit" value="rework"> Rework</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-tab-content" data-tab="advanced">
+                <div class="filter-row">
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-hashtag"></i> Internal Name</h4>
+                        <div class="filter-input-group">
+                            <select class="filter-condition">
+                                <option value="contains">Contains</option>
+                                <option value="not_contains">Does not contain</option>
+                                <option value="starts_with">Starts with</option>
+                                <option value="ends_with">Ends with</option>
+                                <option value="equals">Equals</option>
+                            </select>
+                            <input type="text" class="filter-text-input" placeholder="Enter internal name...">
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-tag"></i> Trade Name</h4>
+                        <div class="filter-input-group">
+                            <select class="filter-condition">
+                                <option value="contains">Contains</option>
+                                <option value="not_contains">Does not contain</option>
+                                <option value="starts_with">Starts with</option>
+                                <option value="ends_with">Ends with</option>
+                                <option value="equals">Equals</option>
+                            </select>
+                            <input type="text" class="filter-text-input" placeholder="Enter trade name...">
+                        </div>
+                    </div>
+
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-industry"></i> Manufacturer</h4>
+                        <div class="filter-input-group">
+                            <select class="filter-condition">
+                                <option value="contains">Contains</option>
+                                <option value="not_contains">Does not contain</option>
+                                <option value="starts_with">Starts with</option>
+                                <option value="equals">Equals</option>
+                            </select>
+                            <input type="text" class="filter-text-input" placeholder="Enter manufacturer...">
+                        </div>
+                    </div>
+
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-user"></i> Responsible Person</h4>
+                        <div class="filter-input-group">
+                            <select class="filter-condition">
+                                <option value="contains">Contains</option>
+                                <option value="not_contains">Does not contain</option>
+                                <option value="starts_with">Starts with</option>
+                                <option value="equals">Equals</option>
+                            </select>
+                            <input type="text" class="filter-text-input" placeholder="Enter responsible person...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-tab-content" data-tab="hazard">
+                <div class="filter-row">
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-exclamation-triangle"></i> GHS Symbols</h4>
+                        <div class="filter-options checkbox-toggle">
+                            <label class="filter-option"><input type="checkbox" name="ghs-symbol" value="GHS01"> GHS01 (Explosive)</label>
+                            <label class="filter-option"><input type="checkbox" name="ghs-symbol" value="GHS02"> GHS02 (Flammable)</label>
+                            <label class="filter-option"><input type="checkbox" name="ghs-symbol" value="GHS03"> GHS03 (Oxidizing)</label>
+                            <label class="filter-option"><input type="checkbox" name="ghs-symbol" value="GHS04"> GHS04 (Gas under pressure)</label>
+                            <label class="filter-option"><input type="checkbox" name="ghs-symbol" value="GHS05"> GHS05 (Corrosive)</label>
+                            <label class="filter-option"><input type="checkbox" name="ghs-symbol" value="GHS06"> GHS06 (Toxic)</label>
+                            <label class="filter-option"><input type="checkbox" name="ghs-symbol" value="GHS07"> GHS07 (Harmful)</label>
+                            <label class="filter-option"><input type="checkbox" name="ghs-symbol" value="GHS08"> GHS08 (Health hazard)</label>
+                            <label class="filter-option"><input type="checkbox" name="ghs-symbol" value="GHS09"> GHS09 (Environmental hazard)</label>
+                        </div>
+                    </div>
+
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-flask"></i> Substance (CAS)</h4>
+                        <div class="filter-input-group">
+                            <select class="filter-condition">
+                                <option value="contains">Contains</option>
+                                <option value="not_contains">Does not contain</option>
+                                <option value="starts_with">Starts with</option>
+                                <option value="equals">Equals</option>
+                            </select>
+                            <input type="text" class="filter-text-input" placeholder="Enter CAS number or substance name...">
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         
-        <div class="table-container">
-            <table class="chemscan-table">
-                <thead>
-                    <tr>
-                        <th>{% trans "Analysis ID" %}</th>
-                        <th>{% trans "Substance Name" %}</th>
-                        <th>{% trans "CAS Number" %}</th>
-                        <th>{% trans "Status" %}</th>
-                        <th>{% trans "Risk Level" %}</th>
-                        <th>{% trans "Analysis Date" %}</th>
-                        <th>{% trans "Actions" %}</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for scan in recent_scans %}
-                    <tr class="scan-row status-{{ scan.status|lower|cut:' ' }}">
-                        <td class="analysis-id">{{ scan.id }}</td>
-                        <td class="substance-name">
-                            <div class="substance-info">
-                                <span class="name">{{ scan.substance }}</span>
-                                <span class="formula">C₃H₆O</span>
-                            </div>
-                        </td>
-                        <td class="cas-number">67-64-1</td>
-                        <td class="status">
-                            <span class="status-badge status-{{ scan.status|lower|cut:' ' }}">
-                                {{ scan.status }}
-                            </span>
-                        </td>
-                        <td class="risk-level">
-                            <span class="risk-badge risk-{{ scan.risk_level|lower }}">
-                                {{ scan.risk_level }}
-                            </span>
-                        </td>
-                        <td class="analysis-date">{{ scan.date }}</td>
-                        <td class="actions">
-                            <button class="action-btn" title="{% trans 'View Details' %}">
-                                <i class="fas fa-eye"></i>
-                            </button>
-                            <button class="action-btn" title="{% trans 'Download Report' %}">
-                                <i class="fas fa-download"></i>
-                            </button>
-                            <button class="action-btn" title="{% trans 'Edit Analysis' %}">
-                                <i class="fas fa-edit"></i>
-                            </button>
-                        </td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
+        <div class="filter-section-footer">
+            <div class="filter-count">
+                <span id="filter-count-badge">0</span> filters selected
+            </div>
+            <div class="filter-actions">
+                <button class="filter-reset-btn">Reset All</button>
+                <button class="filter-apply-btn">Apply Filters</button>
+            </div>
         </div>
     </div>
 
-    <!-- Quick Actions Panel -->
-    <div class="quick-actions">
-        <h3>{% trans "Quick Actions" %}</h3>
-        <div class="action-grid">
-            <div class="action-card">
-                <i class="fas fa-microscope"></i>
-                <h4>{% trans "Start New Analysis" %}</h4>
-                <p>{% trans "Begin chemical substance analysis" %}</p>
+    <!-- Search, Filter and Pagination Section -->
+    <div class="search-filter-container">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <div class="search-input-container">
+                <div class="search-badges" id="search-badges">
+                    <!-- Search badges will be populated by JavaScript -->
+                </div>
+                <input type="text" placeholder="Search substances, manufacturers, CAS numbers..." id="chemscan-search">
             </div>
-            <div class="action-card">
-                <i class="fas fa-file-export"></i>
-                <h4>{% trans "Export Reports" %}</h4>
-                <p>{% trans "Generate analysis reports" %}</p>
+        </div>
+        <div class="controls-right">
+            <div class="pagination-container inline-pagination">
+                <div class="pagination-info">
+                    Showing <span class="current-range">1-25</span> of <span class="total-items">1,243</span> items
+                </div>
+                <div class="pagination-controls">
+                    <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                    <button class="pagination-btn page-number active">1</button>
+                    <button class="pagination-btn page-number">2</button>
+                    <button class="pagination-btn page-number">3</button>
+                    <span class="pagination-ellipsis">...</span>
+                    <button class="pagination-btn page-number">50</button>
+                    <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="items-per-page">
+                    <label for="items-per-page-select">Items per page:</label>
+                    <select id="items-per-page-select">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="25" selected>25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
             </div>
-            <div class="action-card">
-                <i class="fas fa-database"></i>
-                <h4>{% trans "Substance Database" %}</h4>
-                <p>{% trans "Browse chemical database" %}</p>
+            <div class="filter-controls">
+                <button class="filter-btn" id="toggle-filter-panel">
+                    <i class="fas fa-filter"></i>Filter Data
+                </button>
+                <div class="view-options">
+                    <button class="view-btn active"><i class="fas fa-table"></i></button>
+                    <button class="view-btn"><i class="fas fa-th-large"></i></button>
+                </div>
             </div>
-            <div class="action-card">
-                <i class="fas fa-chart-line"></i>
-                <h4>{% trans "Analytics Dashboard" %}</h4>
-                <p>{% trans "View analysis trends" %}</p>
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading-indicator" class="loading-container">
+        <div class="loading-spinner"></div>
+        <p>Loading ChemScan data...</p>
+    </div>
+
+    <!-- Table Container -->
+    <div class="table-container" id="table-container" style="display: none;">
+        <table class="chemscan-table">
+            <thead>
+                <tr>
+                    <th class="text-center">Status</th>
+                    <th class="sortable text-center">Water Hazard Class <i class="fas fa-sort"></i></th>
+                    <th class="sortable">Internal Name <i class="fas fa-sort"></i></th>
+                    <th class="sortable">Trade Name <i class="fas fa-sort"></i></th>
+                    <th class="sortable">Alternative Name <i class="fas fa-sort"></i></th>
+                    <th class="sortable">Manufacturer / Supplier <i class="fas fa-sort"></i></th>
+                    <th class="text-center">GHS Symbols</th>
+                    <th class="text-center">H-Statements</th>
+                    <th>Substance [CAS]</th>
+                    <th>Business Unit</th>
+                    <th class="sortable">Responsible Person <i class="fas fa-sort"></i></th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be populated by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Grid Container -->
+    <div class="grid-container" id="grid-container" style="display: none;">
+        <!-- Grid cards will be populated by JavaScript -->
+    </div>
+
+    <!-- Bottom Pagination -->
+    <div class="unified-controls bottom-controls">
+        <div class="search-section">
+            <!-- Empty space for alignment -->
+        </div>
+        <div class="pagination-section">
+            <div class="pagination-info">
+                Showing <span class="current-range">1-25</span> of <span class="total-items">1,243</span> items
             </div>
+            <div class="pagination-controls">
+                <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                <button class="pagination-btn page-number active">1</button>
+                <button class="pagination-btn page-number">2</button>
+                <button class="pagination-btn page-number">3</button>
+                <span class="pagination-ellipsis">...</span>
+                <button class="pagination-btn page-number">50</button>
+                <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="items-per-page">
+                <label for="items-per-page-select-bottom">Items per page:</label>
+                <select id="items-per-page-select-bottom">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="25" selected>25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+        </div>
+        <div class="filter-controls">
+            <!-- Empty space for alignment -->
         </div>
     </div>
 </div>
-{% endblock %}
 
-{% block extra_js %}
-<script src="{% static 'normieapp/js/chemscan.js' %}"></script>
-{% endblock %} 
+{% endblock %}

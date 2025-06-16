@@ -1,0 +1,198 @@
+{% extends 'normieapp/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ page_title }} - Normie{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/chemscan.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="chemscan-container">
+    <!-- Header Section -->
+    <div class="chemscan-header">
+        <div class="header-content">
+            <div class="header-left">
+                <h1><i class="fas fa-flask"></i> {% trans "ChemScan Analysis" %}</h1>
+                <p class="header-subtitle">{% trans "Chemical substance analysis and safety assessment" %}</p>
+            </div>
+            <div class="header-actions">
+                <button class="btn btn-primary">
+                    <i class="fas fa-plus"></i> {% trans "New Analysis" %}
+                </button>
+                <button class="btn btn-secondary">
+                    <i class="fas fa-upload"></i> {% trans "Import Data" %}
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Statistics Cards -->
+    <div class="stats-grid">
+        <div class="stat-card">
+            <div class="stat-icon total">
+                <i class="fas fa-vial"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-value">{{ analysis_stats.total_scans|floatformat:0 }}</div>
+                <div class="stat-label">{% trans "Total Scans" %}</div>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon pending">
+                <i class="fas fa-clock"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-value">{{ analysis_stats.pending_review }}</div>
+                <div class="stat-label">{% trans "Pending Review" %}</div>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon approved">
+                <i class="fas fa-check-circle"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-value">{{ analysis_stats.approved_substances }}</div>
+                <div class="stat-label">{% trans "Approved Substances" %}</div>
+            </div>
+        </div>
+        
+        <div class="stat-card">
+            <div class="stat-icon flagged">
+                <i class="fas fa-exclamation-triangle"></i>
+            </div>
+            <div class="stat-content">
+                <div class="stat-value">{{ analysis_stats.flagged_substances }}</div>
+                <div class="stat-label">{% trans "Flagged Substances" %}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search and Filter Section -->
+    <div class="search-filter-section">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="{% trans 'Search substances, CAS numbers, or analysis IDs...' %}" id="chemscan-search">
+        </div>
+        <div class="filter-controls">
+            <select class="filter-select">
+                <option value="">{% trans "All Statuses" %}</option>
+                <option value="approved">{% trans "Approved" %}</option>
+                <option value="pending">{% trans "Pending" %}</option>
+                <option value="flagged">{% trans "Flagged" %}</option>
+                <option value="under-review">{% trans "Under Review" %}</option>
+            </select>
+            <select class="filter-select">
+                <option value="">{% trans "All Risk Levels" %}</option>
+                <option value="low">{% trans "Low Risk" %}</option>
+                <option value="medium">{% trans "Medium Risk" %}</option>
+                <option value="high">{% trans "High Risk" %}</option>
+            </select>
+            <button class="btn btn-outline">
+                <i class="fas fa-filter"></i> {% trans "Advanced Filters" %}
+            </button>
+        </div>
+    </div>
+
+    <!-- Recent Scans Table -->
+    <div class="table-section">
+        <div class="section-header">
+            <h2>{% trans "Recent Chemical Analyses" %}</h2>
+            <div class="view-options">
+                <button class="view-btn active" data-view="table">
+                    <i class="fas fa-table"></i>
+                </button>
+                <button class="view-btn" data-view="grid">
+                    <i class="fas fa-th-large"></i>
+                </button>
+            </div>
+        </div>
+        
+        <div class="table-container">
+            <table class="chemscan-table">
+                <thead>
+                    <tr>
+                        <th>{% trans "Analysis ID" %}</th>
+                        <th>{% trans "Substance Name" %}</th>
+                        <th>{% trans "CAS Number" %}</th>
+                        <th>{% trans "Status" %}</th>
+                        <th>{% trans "Risk Level" %}</th>
+                        <th>{% trans "Analysis Date" %}</th>
+                        <th>{% trans "Actions" %}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for scan in recent_scans %}
+                    <tr class="scan-row status-{{ scan.status|lower|cut:' ' }}">
+                        <td class="analysis-id">{{ scan.id }}</td>
+                        <td class="substance-name">
+                            <div class="substance-info">
+                                <span class="name">{{ scan.substance }}</span>
+                                <span class="formula">C₃H₆O</span>
+                            </div>
+                        </td>
+                        <td class="cas-number">67-64-1</td>
+                        <td class="status">
+                            <span class="status-badge status-{{ scan.status|lower|cut:' ' }}">
+                                {{ scan.status }}
+                            </span>
+                        </td>
+                        <td class="risk-level">
+                            <span class="risk-badge risk-{{ scan.risk_level|lower }}">
+                                {{ scan.risk_level }}
+                            </span>
+                        </td>
+                        <td class="analysis-date">{{ scan.date }}</td>
+                        <td class="actions">
+                            <button class="action-btn" title="{% trans 'View Details' %}">
+                                <i class="fas fa-eye"></i>
+                            </button>
+                            <button class="action-btn" title="{% trans 'Download Report' %}">
+                                <i class="fas fa-download"></i>
+                            </button>
+                            <button class="action-btn" title="{% trans 'Edit Analysis' %}">
+                                <i class="fas fa-edit"></i>
+                            </button>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Quick Actions Panel -->
+    <div class="quick-actions">
+        <h3>{% trans "Quick Actions" %}</h3>
+        <div class="action-grid">
+            <div class="action-card">
+                <i class="fas fa-microscope"></i>
+                <h4>{% trans "Start New Analysis" %}</h4>
+                <p>{% trans "Begin chemical substance analysis" %}</p>
+            </div>
+            <div class="action-card">
+                <i class="fas fa-file-export"></i>
+                <h4>{% trans "Export Reports" %}</h4>
+                <p>{% trans "Generate analysis reports" %}</p>
+            </div>
+            <div class="action-card">
+                <i class="fas fa-database"></i>
+                <h4>{% trans "Substance Database" %}</h4>
+                <p>{% trans "Browse chemical database" %}</p>
+            </div>
+            <div class="action-card">
+                <i class="fas fa-chart-line"></i>
+                <h4>{% trans "Analytics Dashboard" %}</h4>
+                <p>{% trans "View analysis trends" %}</p>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'normieapp/js/chemscan.js' %}"></script>
+{% endblock %} 
