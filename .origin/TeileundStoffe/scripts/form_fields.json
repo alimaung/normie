@@ -3,39 +3,33 @@
         "/T": "1",
         "/FT": "/Tx",
         "/TU": "1. Antragsnummer - eine fortlaufende Nummer zur Identifizierung des Antrags. XXX/YYYY (YYYY ist das Antragsjahr).",
-        "/Ff": 4096,
-        "/V": "077/2025"
+        "/Ff": 4096
     },
     "2a": {
         "/T": "2a",
         "/FT": "/Tx",
-        "/TU": "2. Antragsteller Name",
-        "/V": "Clara Röpenack"
+        "/TU": "2. Antragsteller Name"
     },
     "2b": {
         "/T": "2b",
         "/FT": "/Tx",
-        "/TU": "2. Antragserstellungsdatum",
-        "/V": "02.05.2025"
+        "/TU": "2. Antragserstellungsdatum"
     },
     "2c": {
         "/T": "2c",
         "/FT": "/Tx",
-        "/TU": "2. Antragsteller Abteilung",
-        "/V": "AT&C-ME"
+        "/TU": "2. Antragsteller Abteilung"
     },
     "2d": {
         "/T": "2d",
         "/FT": "/Tx",
-        "/TU": "2. Telefonnummer des Antragstellers",
-        "/V": "+49 (0) 162 3907468"
+        "/TU": "2. Telefonnummer des Antragstellers"
     },
     "3": {
         "/T": "3",
         "/FT": "/Tx",
         "/TU": "3. Benennung - Eindeutige Benennung für den Stoff. Es ist die Bezeichnung aus dem SDB zu übernehmen.",
-        "/Ff": 4096,
-        "/V": "Aerowave 2002 Primer beige und Curing Solution 6005, KIT"
+        "/Ff": 4096
     },
     "4": {
         "/T": "4",
@@ -47,7 +41,6 @@
         "/FT": "/Btn",
         "/TU": "5. Kennzeichnung des Bedarfs",
         "/Ff": 32768,
-        "/V": "/0",
         "/Opt": [
             "Yes",
             "Yes",
@@ -60,7 +53,6 @@
         "/FT": "/Btn",
         "/TU": "6. Kennzeichnung des Produkts",
         "/Ff": 32768,
-        "/V": "/1",
         "/Opt": [
             "Yes",
             "Yes",
@@ -85,43 +77,37 @@
         "/T": "9",
         "/FT": "/Tx",
         "/TU": "9. Hersteller",
-        "/Ff": 4096,
-        "/V": "Akzo Nobel Aerospace Coatings"
+        "/Ff": 4096
     },
     "10": {
         "/T": "10",
         "/FT": "/Tx",
         "/TU": "10. Verwendungszweck, Anforderungsgrund, Prozessbeschreibung, Anwendungsform. Bitte geben Sie so viele Informationen wie möglich an.",
-        "/Ff": 4096,
-        "/V": "Grundierung von Bauteilen im Podding"
+        "/Ff": 4096
     },
     "11": {
         "/T": "11",
         "/FT": "/Tx",
         "/TU": "11. Triebwerksprogramm",
-        "/Ff": 4096,
-        "/V": "all"
+        "/Ff": 4096
     },
     "12a": {
         "/T": "12a",
         "/FT": "/Tx",
         "/TU": "12. Einsatzort / Standort - Abteilung, Bereich (Gebäude/Etage/Raum) und Arbeitsplatz (DW oder OU)",
-        "/Ff": 4096,
-        "/V": "RRD DW"
+        "/Ff": 4096
     },
     "12b": {
         "/T": "12b",
         "/FT": "/Tx",
         "/TU": "12. Bereich Teamleiter*innen (Name/EMail)",
-        "/Ff": 4096,
-        "/V": "AT&C - MRO / Tobias Ladkau"
+        "/Ff": 4096
     },
     "13": {
         "/T": "13",
         "/FT": "/Btn",
         "/TU": "13. Erzeugnis relevant. (besteht Kontakt mit Luftfahrtteilen?)",
         "/Ff": 32768,
-        "/V": "/0",
         "/Opt": [
             "Yes",
             "Yes"
@@ -132,7 +118,6 @@
         "/FT": "/Btn",
         "/TU": "14. Nutzung",
         "/Ff": 32768,
-        "/V": "/1",
         "/Opt": [
             "Yes",
             "Yes"
@@ -143,7 +128,6 @@
         "/FT": "/Btn",
         "/TU": "15a. Lagerhaltig?",
         "/Ff": 32768,
-        "/V": "/0",
         "/Opt": [
             "Yes",
             "Yes"
@@ -154,7 +138,6 @@
         "/FT": "/Btn",
         "/TU": "15b. Bestellung über SAP?",
         "/Ff": 32768,
-        "/V": "/0",
         "/Opt": [
             "Yes",
             "Yes"
@@ -164,81 +147,69 @@
         "/T": "16",
         "/FT": "/Tx",
         "/TU": "16. Basismengeneinheit SAP (z.B. Gramm, Liter, Stück usw.) ",
-        "/Ff": 4096,
-        "/V": "4 ltr KIT"
+        "/Ff": 4096
     },
     "17a": {
         "/T": "17a",
         "/FT": "/Tx",
         "/TU": "17. monatlicher Bedarf (als Vielfaches der Basismengeneinheit)",
-        "/Ff": 4096,
-        "/V": "0,5 ltr"
+        "/Ff": 4096
     },
     "17b": {
         "/T": "17b",
         "/FT": "/Tx",
         "/TU": "17. Häufigkeit der Anwendung (täglich, 1x wöchentlich...)",
-        "/Ff": 4096,
-        "/V": "5 times per month"
+        "/Ff": 4096
     },
     "17c": {
         "/T": "17c",
         "/FT": "/Tx",
         "/TU": "17. Menge pro Anwendung",
-        "/Ff": 4096,
-        "/V": "0,1 ltr"
+        "/Ff": 4096
     },
     "18a": {
         "/T": "18a",
         "/FT": "/Btn",
-        "/TU": "18. EUßSicherheitsdatenblatt (eSDB)",
-        "/V": "/Yes"
+        "/TU": "18. EUßSicherheitsdatenblatt (eSDB)"
     },
     "18b": {
         "/T": "18b",
         "/FT": "/Btn",
-        "/TU": "18. Technisches Datenblatt, Produktbeschreibung",
-        "/V": "/Yes"
+        "/TU": "18. Technisches Datenblatt, Produktbeschreibung"
     },
     "18c": {
         "/T": "18c",
         "/FT": "/Btn",
-        "/TU": "18. Gefährdungsbeurteilung",
-        "/V": "/Yes"
+        "/TU": "18. Gefährdungsbeurteilung"
     },
     "18d": {
         "/T": "18d",
         "/FT": "/Btn",
-        "/TU": "18. Produktzulassung nach:",
-        "/V": "/Yes"
+        "/TU": "18. Produktzulassung nach:"
     },
     "18e": {
         "/T": "18e",
         "/FT": "/Tx",
         "/TU": "18. Produktzulassung nach Spezifikation - eine Spezifikation oder sonstige Kundenforderung, die dieses Stoffe bzw. seine Anwendung kontrolliert",
-        "/Ff": 4096,
-        "/V": "Bombardier BAMS 565-014, Class A Grade B; Bombardier P. Spec 919/Noc/DAR"
+        "/Ff": 4096
     },
     "19": {
         "/T": "19",
         "/FT": "/Tx",
         "/TU": "19. Erläuterungen - zusätzliche Informationen (MSRR, CSS, OMat usw.), die zur Bewertung des Teiles / Stoffes notwendig oder hilfreich sind.",
-        "/Ff": 4096,
-        "/V": "Änderung von NPT auf KIT (siehe Antrag 005/2020)"
+        "/Ff": 4096
     },
     "20": {
         "/T": "20",
         "/FT": "/Tx",
         "/TU": "20. Ggf. Verweis auf vergangene Anträge",
-        "/Ff": 4096,
-        "/V": "005/2020, 234/2022, 148/2011"
+        "/Ff": 4096
     },
     "21": {
         "/T": "21",
         "/FT": "/Tx",
         "/TU": "21. Wunschtermin für Produkteinsatz",
-        "/Ff": 4096,
-        "/V": "sofort"
+        "/Ff": 4096
     },
     "22a": {
         "/T": "22a",
@@ -251,15 +222,13 @@
         "/T": "22a1",
         "/FT": "/Tx",
         "/TU": "22a. ChemScan Datum",
-        "/Ff": 4096,
-        "/V": "09.05.2025"
+        "/Ff": 4096
     },
     "22a2": {
         "/T": "22a2",
         "/FT": "/Btn",
         "/TU": "22a. ChemScan durchgeführt",
         "/Ff": 32768,
-        "/V": "/0",
         "/Opt": [
             "Yes",
             "Yes"
@@ -276,15 +245,13 @@
         "/T": "22b1",
         "/FT": "/Tx",
         "/TU": "22b. ChemScan Datum",
-        "/Ff": 4096,
-        "/V": "09.05.2025"
+        "/Ff": 4096
     },
     "22b2": {
         "/T": "22b2",
         "/FT": "/Btn",
         "/TU": "22b. ChemScan durchgeführt",
         "/Ff": 32768,
-        "/V": "/1",
         "/Opt": [
             "Yes",
             "Yes"
@@ -310,8 +277,7 @@
     "23a4": {
         "/T": "23a4",
         "/FT": "/Btn",
-        "/TU": "23a. ArbMedVV",
-        "/V": "/Yes"
+        "/TU": "23a. ArbMedVV"
     },
     "23a5": {
         "/T": "23a5",
@@ -326,8 +292,7 @@
     "23a7": {
         "/T": "23a7",
         "/FT": "/Btn",
-        "/TU": "23a. AGW (TRGS 900)",
-        "/V": "/Yes"
+        "/TU": "23a. AGW (TRGS 900)"
     },
     "23a8": {
         "/T": "23a8",
@@ -362,8 +327,7 @@
     "23a14": {
         "/T": "23a14",
         "/FT": "/Btn",
-        "/TU": "23a. Physikalische Gefahr",
-        "/V": "/Yes"
+        "/TU": "23a. Physikalische Gefahr"
     },
     "23b1": {
         "/T": "23b1",
@@ -385,8 +349,7 @@
     "23b4": {
         "/T": "23b4",
         "/FT": "/Btn",
-        "/TU": "23b. ArbMedVV",
-        "/V": "/Yes"
+        "/TU": "23b. ArbMedVV"
     },
     "23b5": {
         "/T": "23b5",
@@ -401,8 +364,7 @@
     "23b7": {
         "/T": "23b7",
         "/FT": "/Btn",
-        "/TU": "23b. AGW (TRGS 900)",
-        "/V": "/Yes"
+        "/TU": "23b. AGW (TRGS 900)"
     },
     "23b8": {
         "/T": "23b8",
@@ -443,22 +405,19 @@
         "/T": "24a1",
         "/FT": "/Tx",
         "/TU": "24a. AwSV - WGK = ",
-        "/Ff": 4096,
-        "/V": "2"
+        "/Ff": 4096
     },
     "24a2": {
         "/T": "24a2",
         "/FT": "/Tx",
         "/TU": "24a. ADR - UN-Nr. = ",
-        "/Ff": 4096,
-        "/V": "1263"
+        "/Ff": 4096
     },
     "24a3": {
         "/T": "24a3",
         "/FT": "/Tx",
         "/TU": "24a. TRGS 510 - Lagerkl. = ",
-        "/Ff": 4096,
-        "/V": "3"
+        "/Ff": 4096
     },
     "24a4": {
         "/T": "24a4",
@@ -468,20 +427,17 @@
     "24a5": {
         "/T": "24a5",
         "/FT": "/Btn",
-        "/TU": "24a. AWSV - WGK =",
-        "/V": "/Yes"
+        "/TU": "24a. AWSV - WGK ="
     },
     "24a6": {
         "/T": "24a6",
         "/FT": "/Btn",
-        "/TU": "24a. ADR - UN Nr. =",
-        "/V": "/Yes"
+        "/TU": "24a. ADR - UN Nr. ="
     },
     "24a7": {
         "/T": "24a7",
         "/FT": "/Btn",
-        "/TU": "24a. TRGS 510- Lagerkl. =",
-        "/V": "/Yes"
+        "/TU": "24a. TRGS 510- Lagerkl. ="
     },
     "24a8": {
         "/T": "24a8",
@@ -496,8 +452,7 @@
     "24a10": {
         "/T": "24a10",
         "/FT": "/Btn",
-        "/TU": "24a. 12.BImSchV (H1, H2, P8)",
-        "/V": "/Yes"
+        "/TU": "24a. 12.BImSchV (H1, H2, P8)"
     },
     "24a11": {
         "/T": "24a11",
@@ -508,8 +463,7 @@
         "/T": "24b1",
         "/FT": "/Tx",
         "/TU": "24b. AwSV - WGK = ",
-        "/Ff": 4096,
-        "/V": "2"
+        "/Ff": 4096
     },
     "24b2": {
         "/T": "24b2",
@@ -521,8 +475,7 @@
         "/T": "24b3",
         "/FT": "/Tx",
         "/TU": "24b. TRGS 510 - Lagerkl. = ",
-        "/Ff": 4096,
-        "/V": "10"
+        "/Ff": 4096
     },
     "24b4": {
         "/T": "24b4",
@@ -532,8 +485,7 @@
     "24b5": {
         "/T": "24b5",
         "/FT": "/Btn",
-        "/TU": "24b. AWSV - WGK =",
-        "/V": "/Yes"
+        "/TU": "24b. AWSV - WGK ="
     },
     "24b6": {
         "/T": "24b6",
@@ -543,8 +495,7 @@
     "24b7": {
         "/T": "24b7",
         "/FT": "/Btn",
-        "/TU": "24b. TRGS 510- Lagerkl. =",
-        "/V": "/Yes"
+        "/TU": "24b. TRGS 510- Lagerkl. ="
     },
     "24b8": {
         "/T": "24b8",
@@ -895,8 +846,7 @@
         "/T": "51",
         "/FT": "/Tx",
         "/TU": "51. Teilenummer",
-        "/Ff": 4096,
-        "/V": "01043569"
+        "/Ff": 4096
     },
     "52": {
         "/T": "52",

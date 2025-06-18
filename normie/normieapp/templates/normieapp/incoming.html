@@ -1,5 +1,144 @@
 {% extends "normieapp/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/directory.css' %}">
+<link rel="stylesheet" href="{% static 'normieapp/css/pdf_form.css' %}">
+{% endblock %}
 
 {% block content %}
-<h1>Incoming</h1>
+<div class="directory-container">
+    <!-- Header Section styled like directory.html -->
+    <div class="directory-header">
+        <div class="header-left">
+            <h1>{% trans "PDF Form Viewer & Editor" %}</h1>
+            <p class="header-summary">{% trans "Upload, view and edit PDF forms in a user-friendly web interface" %}</p>
+        </div>
+        <div class="header-stats">
+            <div class="stat-card">
+                <span class="stat-value">{% trans "Upload" %}</span>
+                <span class="stat-label">{% trans "PDF Form" %}</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value">{% trans "Edit" %}</span>
+                <span class="stat-label">{% trans "Form Fields" %}</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value">{% trans "Download" %}</span>
+                <span class="stat-label">{% trans "Filled PDF" %}</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="upload-container">
+        <h2>{% trans "Upload PDF Form" %}</h2>
+        <p>{% trans "Upload a PDF form to view and edit its fields. The form will be displayed as a web interface for easy editing." %}</p>
+        
+        <form action="{% url 'pdf_upload' %}" method="post" enctype="multipart/form-data" id="upload-form">
+            {% csrf_token %}
+            
+            <div class="upload-area" id="drop-area">
+                <i class="fas fa-file-pdf upload-icon"></i>
+                <div class="upload-text">{% trans "Drag & Drop PDF file here" %}</div>
+                <div class="upload-hint">{% trans "or click to browse files" %}</div>
+                <input type="file" name="pdf_file" id="pdf-file" class="hidden-input" accept=".pdf">
+            </div>
+            
+            <div class="file-info" id="file-info">
+                <span class="file-name" id="file-name"></span>
+                <button type="button" class="btn btn-sm btn-danger" id="remove-file">{% trans "Remove" %}</button>
+            </div>
+            
+            <div class="text-center">
+                <button type="submit" class="btn-upload" id="submit-btn" disabled>
+                    {% trans "Upload & Process PDF" %}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const dropArea = document.getElementById('drop-area');
+        const fileInput = document.getElementById('pdf-file');
+        const fileInfo = document.getElementById('file-info');
+        const fileName = document.getElementById('file-name');
+        const removeFile = document.getElementById('remove-file');
+        const submitBtn = document.getElementById('submit-btn');
+        
+        // Click to select file
+        dropArea.addEventListener('click', function() {
+            fileInput.click();
+        });
+        
+        // File selected via input
+        fileInput.addEventListener('change', function() {
+            handleFiles(this.files);
+        });
+        
+        // Drag and drop events
+        ['dragenter', 'dragover', 'dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, preventDefaults, false);
+        });
+        
+        function preventDefaults(e) {
+            e.preventDefault();
+            e.stopPropagation();
+        }
+        
+        ['dragenter', 'dragover'].forEach(eventName => {
+            dropArea.addEventListener(eventName, highlight, false);
+        });
+        
+        ['dragleave', 'drop'].forEach(eventName => {
+            dropArea.addEventListener(eventName, unhighlight, false);
+        });
+        
+        function highlight() {
+            dropArea.classList.add('border-primary');
+        }
+        
+        function unhighlight() {
+            dropArea.classList.remove('border-primary');
+        }
+        
+        // Handle dropped files
+        dropArea.addEventListener('drop', function(e) {
+            const dt = e.dataTransfer;
+            const files = dt.files;
+            handleFiles(files);
+        });
+        
+        // Process the selected files
+        function handleFiles(files) {
+            if (files.length > 0) {
+                const file = files[0];
+                
+                if (file.type === 'application/pdf') {
+                    fileName.textContent = file.name;
+                    fileInfo.style.display = 'block';
+                    submitBtn.disabled = false;
+                } else {
+                    alert('Please select a PDF file.');
+                    resetFileInput();
+                }
+            }
+        }
+        
+        // Remove selected file
+        removeFile.addEventListener('click', function() {
+            resetFileInput();
+        });
+        
+        function resetFileInput() {
+            fileInput.value = '';
+            fileInfo.style.display = 'none';
+            submitBtn.disabled = true;
+        }
+    });
+</script>
 {% endblock %}

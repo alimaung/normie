@@ -1,9 +1,16 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.utils.translation import gettext as _
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
+from django.conf import settings
+import os
+import json
+import uuid
+from .services import pdf_service
+from pathlib import Path
 
 
 def home(request):
@@ -632,4 +639,181 @@ def cmsr_documents(request, pk):
         'documents': cmsr.documents.all(),
         'can_edit': can_edit
     }
-    return render(request, 'normieapp/prototyping/cmsr_documents.html', context) 
+    return render(request, 'normieapp/prototyping/cmsr_documents.html', context)
+
+def pdf_upload(request):
+    """
+    Handle PDF form upload.
+    """
+    if request.method == 'POST' and request.FILES.get('pdf_file'):
+        pdf_file = request.FILES['pdf_file']
+        
+        # Generate a unique ID for this form session
+        form_id = str(uuid.uuid4())
+        
+        # Create temp directory if it doesn't exist
+        # Use a direct path instead of settings.BASE_DIR
+        base_dir = Path(__file__).resolve().parent.parent
+        temp_dir = os.path.join(base_dir, 'normieapp', 'static', 'normieapp', 'temp_forms')
+        os.makedirs(temp_dir, exist_ok=True)
+        
+        # Save the uploaded file temporarily
+        file_path = os.path.join(temp_dir, f"{form_id}.pdf")
+        with open(file_path, 'wb+') as destination:
+            for chunk in pdf_file.chunks():
+                destination.write(chunk)
+        
+        # Extract form fields
+        try:
+            fields = pdf_service.extract_pdf_fields(file_path)
+            
+            # Store fields in session for later use
+            # Convert to JSON and back to ensure serialization works
+            serializable_fields = json.loads(json.dumps(fields))
+            
+            request.session[f'pdf_form_{form_id}'] = {
+                'fields': serializable_fields,
+                'file_path': file_path
+            }
+            
+            return redirect('pdf_edit', form_id=form_id)
+        except Exception as e:
+            messages.error(request, f"Error processing PDF: {str(e)}")
+            return redirect('incoming')
+    
+    return redirect('incoming')
+
+def pdf_edit(request, form_id):
+    """
+    Display PDF form editor.
+    """
+    # Get form data from session
+    form_data = request.session.get(f'pdf_form_{form_id}')
+    
+    if not form_data:
+        messages.error(request, _("Form session expired or invalid."))
+        return redirect('incoming')
+    
+    fields = form_data.get('fields', [])
+    
+    return render(request, 'normieapp/pdf_edit.html', {
+        'form_id': form_id,
+        'fields': fields
+    })
+
+@csrf_exempt  # Add CSRF exemption for AJAX calls
+def pdf_save(request, form_id):
+    """
+    Save edited PDF form fields.
+    """
+    if request.method == 'POST':
+        try:
+            # Get form data from request
+            form_data = json.loads(request.body)
+            
+            # Get original form data from session
+            session_data = request.session.get(f'pdf_form_{form_id}')
+            
+            if not session_data:
+                return JsonResponse({'success': False, 'message': _("Form session expired or invalid.")})
+            
+            # Update fields with new values
+            fields = session_data.get('fields', [])
+            for field in fields:
+                if field['id'] in form_data:
+                    field['value'] = form_data[field['id']]
+            
+            # Re-serialize to ensure JSON compatibility
+            serializable_fields = json.loads(json.dumps(fields))
+            
+            # Save updated fields back to session
+            session_data['fields'] = serializable_fields
+            request.session[f'pdf_form_{form_id}'] = session_data
+            request.session.modified = True  # Explicitly mark session as modified
+            
+            return JsonResponse({'success': True})
+        except Exception as e:
+            print(f"Error saving form: {str(e)}")
+            return JsonResponse({'success': False, 'message': str(e)})
+    
+    return JsonResponse({'success': False, 'message': _("Invalid request method.")})
+
+def pdf_download(request, form_id):
+    """
+    Generate and download filled PDF.
+    """
+    # Get form data from session
+    form_data = request.session.get(f'pdf_form_{form_id}')
+    
+    if not form_data:
+        messages.error(request, _("Form session expired or invalid."))
+        return redirect('incoming')
+    
+    try:
+        # Get fields and ensure they have the correct structure
+        fields = form_data.get('fields', [])
+        
+        # Ensure each field has the required keys
+        for field in fields:
+            if 'id' not in field:
+                field['id'] = ''
+            if 'value' not in field:
+                field['value'] = ''
+            if 'type' not in field:
+                field['type'] = '/Tx'  # Default to text field
+        
+        file_path = form_data.get('file_path')
+        
+        # Get template path - use the uploaded file path as template
+        # This ensures we're using the correct form template
+        template_path = file_path
+        
+        # If template path doesn't exist, use default template
+        if not os.path.exists(template_path):
+            base_dir = Path(__file__).resolve().parent
+            template_path = os.path.join(base_dir, 'static', 'normieapp', 'pdf', 'T00221.pdf')
+        
+        # Generate filled PDF
+        output_path = pdf_service.generate_filled_pdf(template_path, fields)
+        
+        # Read the generated PDF
+        with open(output_path, 'rb') as f:
+            pdf_content = f.read()
+        
+        # Create response
+        response = HttpResponse(pdf_content, content_type='application/pdf')
+        response['Content-Disposition'] = f'attachment; filename="filled_form_{form_id}.pdf"'
+        
+        # Clean up temporary file
+        os.remove(output_path)
+        
+        return response
+    except Exception as e:
+        messages.error(request, f"Error generating PDF: {str(e)}")
+        print(f"Error details: {e}")
+        print(f"Form data: {form_data}")
+        return redirect('pdf_edit', form_id=form_id)
+
+def pdf_debug(request, form_id):
+    """
+    Debug view to inspect form data in the session.
+    """
+    form_data = request.session.get(f'pdf_form_{form_id}')
+    
+    if not form_data:
+        return JsonResponse({'error': 'Form session not found'})
+    
+    # Get fields and ensure they have the correct structure
+    fields = form_data.get('fields', [])
+    file_path = form_data.get('file_path', '')
+    
+    # Return debug information
+    debug_info = {
+        'form_id': form_id,
+        'file_path': file_path,
+        'fields_count': len(fields),
+        'fields_type': str(type(fields)),
+        'fields': fields
+    }
+    
+    return JsonResponse(debug_info, json_dumps_params={'indent': 2}) 

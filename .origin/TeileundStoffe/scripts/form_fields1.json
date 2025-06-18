@@ -1,0 +1,943 @@
+{
+    "1": {
+        "/T": "1",
+        "/FT": "/Tx",
+        "/TU": "1. Antragsnummer - eine fortlaufende Nummer zur Identifizierung des Antrags. XXX/YYYY (YYYY ist das Antragsjahr).",
+        "/Ff": 4096,
+        "/V": "030/2025"
+    },
+    "2a": {
+        "/T": "2a",
+        "/FT": "/Tx",
+        "/TU": "2. Antragsteller Name",
+        "/V": "Ali Maung"
+    },
+    "2b": {
+        "/T": "2b",
+        "/FT": "/Tx",
+        "/TU": "2. Antragserstellungsdatum",
+        "/V": "21.02.2025"
+    },
+    "2c": {
+        "/T": "2c",
+        "/FT": "/Tx",
+        "/TU": "2. Antragsteller Abteilung",
+        "/V": "IRM(GP)"
+    },
+    "2d": {
+        "/T": "2d",
+        "/FT": "/Tx",
+        "/TU": "2. Telefonnummer des Antragstellers"
+    },
+    "3": {
+        "/T": "3",
+        "/FT": "/Tx",
+        "/TU": "3. Benennung - Eindeutige Benennung für den Stoff. Es ist die Bezeichnung aus dem SDB zu übernehmen.",
+        "/Ff": 4096,
+        "/V": "Piccolo-Öko-Entwickler Typ 25"
+    },
+    "4": {
+        "/T": "4",
+        "/FT": "/Tx",
+        "/TU": "4. Fremdteilenummer - die Teilenummer des Lieferanten/Herstellers."
+    },
+    "5": {
+        "/T": "5",
+        "/FT": "/Btn",
+        "/TU": "5. Kennzeichnung des Bedarfs",
+        "/Ff": 32768,
+        "/V": "/0",
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "6": {
+        "/T": "6",
+        "/FT": "/Btn",
+        "/TU": "6. Kennzeichnung des Produkts",
+        "/Ff": 32768,
+        "/V": "/0",
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "7": {
+        "/T": "7",
+        "/FT": "/Tx",
+        "/TU": "7. REACh-Code",
+        "/Ff": 4096
+    },
+    "8": {
+        "/T": "8",
+        "/FT": "/Tx",
+        "/TU": "8. Lieferant (wird vom Einkauf festgelegt)",
+        "/Ff": 4096,
+        "/V": "(wird vom Einkauf festgelegt)"
+    },
+    "9": {
+        "/T": "9",
+        "/FT": "/Tx",
+        "/TU": "9. Hersteller",
+        "/Ff": 4096,
+        "/V": "Staude Verwaltungs- & Betriebs GmbH"
+    },
+    "10": {
+        "/T": "10",
+        "/FT": "/Tx",
+        "/TU": "10. Verwendungszweck, Anforderungsgrund, Prozessbeschreibung, Anwendungsform. Bitte geben Sie so viele Informationen wie möglich an.",
+        "/Ff": 4096,
+        "/V": "Zur Entwicklung von Mikrofilm, Flasche wird in eine Entwicklermaschine geladen und innerhalb dieser gepumpt, auf 34-28°C erhitzt und zirkuliert, Kontakt und Reaktion mit der Filmemulsion und anschließende Trocknung mit Heißluft."
+    },
+    "11": {
+        "/T": "11",
+        "/FT": "/Tx",
+        "/TU": "11. Triebwerksprogramm",
+        "/Ff": 4096
+    },
+    "12a": {
+        "/T": "12a",
+        "/FT": "/Tx",
+        "/TU": "12. Einsatzort / Standort - Abteilung, Bereich (Gebäude/Etage/Raum) und Arbeitsplatz (DW oder OU)",
+        "/Ff": 4096,
+        "/V": "9043-0-200 / OU"
+    },
+    "12b": {
+        "/T": "12b",
+        "/FT": "/Tx",
+        "/TU": "12. Bereich Teamleiter*innen",
+        "/Ff": 4096,
+        "/V": "Laura Perez"
+    },
+    "13": {
+        "/T": "13",
+        "/FT": "/Btn",
+        "/TU": "13. Erzeugnis relevant. (besteht Kontakt mit Luftfahrtteilen?)",
+        "/Ff": 32768,
+        "/V": "/1",
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "14": {
+        "/T": "14",
+        "/FT": "/Btn",
+        "/TU": "14. Nutzung",
+        "/Ff": 32768,
+        "/V": "/1",
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "15a": {
+        "/T": "15a",
+        "/FT": "/Btn",
+        "/TU": "15a. Lagerhaltig?",
+        "/Ff": 32768,
+        "/V": "/0",
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "15b": {
+        "/T": "15b",
+        "/FT": "/Btn",
+        "/TU": "15b. Bestellung über SAP?",
+        "/Ff": 32768,
+        "/V": "/1",
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "16": {
+        "/T": "16",
+        "/FT": "/Tx",
+        "/TU": "16. Basismengeneinheit SAP - die in Stücklisten geführt werden (Kleber, Lacke usw.).",
+        "/Ff": 4096,
+        "/V": "1 Liter"
+    },
+    "17a": {
+        "/T": "17a",
+        "/FT": "/Tx",
+        "/TU": "17. monatlicher Bedarf (als Vielfaches der Basismengeneinheit)",
+        "/Ff": 4096,
+        "/V": "3 Liter"
+    },
+    "17b": {
+        "/T": "17b",
+        "/FT": "/Tx",
+        "/TU": "17. Häufigkeit der Anwendung",
+        "/Ff": 4096,
+        "/V": "3x pro Monat"
+    },
+    "17c": {
+        "/T": "17c",
+        "/FT": "/Tx",
+        "/TU": "17. Menge pro Anwendung",
+        "/Ff": 4096,
+        "/V": "1 Liter"
+    },
+    "18a": {
+        "/T": "18a",
+        "/FT": "/Btn",
+        "/TU": "18. EUßSicherheitsdatenblatt (eSDB)",
+        "/V": "/Yes"
+    },
+    "18b": {
+        "/T": "18b",
+        "/FT": "/Btn",
+        "/TU": "18. Technisches Datenblatt, Produktbeschreibung"
+    },
+    "18c": {
+        "/T": "18c",
+        "/FT": "/Btn",
+        "/TU": "18. Gefährdungsbeurteilung"
+    },
+    "18d": {
+        "/T": "18d",
+        "/FT": "/Btn",
+        "/TU": "18. Produktzulassung nach:"
+    },
+    "18e": {
+        "/T": "18e",
+        "/FT": "/Tx",
+        "/TU": "18. Produktzulassung nach Spezifikation - eine Spezifikation oder sonstige Kundenforderung, die dieses Stoffe bzw. seine Anwendung kontrolliert",
+        "/Ff": 4096
+    },
+    "19": {
+        "/T": "19",
+        "/FT": "/Tx",
+        "/TU": "19. Erläuterungen - zusätzliche Informationen (MSRR, CSS, OMat usw.), die zur Bewertung des Teiles / Stoffes notwendig oder hilfreich sind.",
+        "/Ff": 4096
+    },
+    "20": {
+        "/T": "20",
+        "/FT": "/Tx",
+        "/TU": "20. Ggf. Verweis auf vergangene Anträge",
+        "/Ff": 4096
+    },
+    "21": {
+        "/T": "21",
+        "/FT": "/Tx",
+        "/TU": "21. Wunschtermin für Produkteinsatz",
+        "/Ff": 4096
+    },
+    "22a": {
+        "/T": "22a",
+        "/FT": "/Tx",
+        "/TU": "22a. ChemScan durch",
+        "/Ff": 4096,
+        "/V": "UUB"
+    },
+    "22a1": {
+        "/T": "22a1",
+        "/FT": "/Tx",
+        "/TU": "22a. ChemScan Datum",
+        "/Ff": 4096,
+        "/V": "18.03.2025"
+    },
+    "22a2": {
+        "/T": "22a2",
+        "/FT": "/Btn",
+        "/TU": "22a. ChemScan durchgeführt",
+        "/Ff": 32768,
+        "/V": "/0",
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "22b": {
+        "/T": "22b",
+        "/FT": "/Tx",
+        "/TU": "22b. ChemScan durch",
+        "/Ff": 4096,
+        "/V": "UUB"
+    },
+    "22b1": {
+        "/T": "22b1",
+        "/FT": "/Tx",
+        "/TU": "22b. ChemScan Datum",
+        "/Ff": 4096
+    },
+    "22b2": {
+        "/T": "22b2",
+        "/FT": "/Btn",
+        "/TU": "22b. ChemScan durchgeführt",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "23a1": {
+        "/T": "23a1",
+        "/FT": "/Tx",
+        "/TU": "23a. ChemVV:",
+        "/Ff": 4096
+    },
+    "23a2": {
+        "/T": "23a2",
+        "/FT": "/Tx",
+        "/TU": "23a. Sonstige: ",
+        "/Ff": 4096
+    },
+    "23a3": {
+        "/T": "23a3",
+        "/FT": "/Btn",
+        "/TU": "23a. KMR (TRGS 905)"
+    },
+    "23a4": {
+        "/T": "23a4",
+        "/FT": "/Btn",
+        "/TU": "23a. ArbMedVV"
+    },
+    "23a5": {
+        "/T": "23a5",
+        "/FT": "/Btn",
+        "/TU": "23a. SVHC / REACh XIV"
+    },
+    "23a6": {
+        "/T": "23a6",
+        "/FT": "/Btn",
+        "/TU": "23a. ChemVV:"
+    },
+    "23a7": {
+        "/T": "23a7",
+        "/FT": "/Btn",
+        "/TU": "23a. AGW (TRGS 900)"
+    },
+    "23a8": {
+        "/T": "23a8",
+        "/FT": "/Btn",
+        "/TU": "23a. ODIN"
+    },
+    "23a9": {
+        "/T": "23a9",
+        "/FT": "/Btn",
+        "/TU": "23a. REACh XVII"
+    },
+    "23a10": {
+        "/T": "23a10",
+        "/FT": "/Btn",
+        "/TU": "23a. Sonstige:"
+    },
+    "23a11": {
+        "/T": "23a11",
+        "/FT": "/Btn",
+        "/TU": "23a. BGW (TRGS 903)"
+    },
+    "23a12": {
+        "/T": "23a12",
+        "/FT": "/Btn",
+        "/TU": "23a. ERB (Bek 910)"
+    },
+    "23a13": {
+        "/T": "23a13",
+        "/FT": "/Btn",
+        "/TU": "23a. Ex-Schutz"
+    },
+    "23a14": {
+        "/T": "23a14",
+        "/FT": "/Btn",
+        "/TU": "23a. Physikalische Gefahr"
+    },
+    "23b1": {
+        "/T": "23b1",
+        "/FT": "/Tx",
+        "/TU": "23b. ChemVV:",
+        "/Ff": 4096
+    },
+    "23b2": {
+        "/T": "23b2",
+        "/FT": "/Tx",
+        "/TU": "23b. Sonstige: ",
+        "/Ff": 4096
+    },
+    "23b3": {
+        "/T": "23b3",
+        "/FT": "/Btn",
+        "/TU": "23b. KMR (TRGS 905)"
+    },
+    "23b4": {
+        "/T": "23b4",
+        "/FT": "/Btn",
+        "/TU": "23b. ArbMedVV"
+    },
+    "23b5": {
+        "/T": "23b5",
+        "/FT": "/Btn",
+        "/TU": "23b. SVHC"
+    },
+    "23b6": {
+        "/T": "23b6",
+        "/FT": "/Btn",
+        "/TU": "23b. ChemVV:"
+    },
+    "23b7": {
+        "/T": "23b7",
+        "/FT": "/Btn",
+        "/TU": "23b. AGW (TRGS 900)"
+    },
+    "23b8": {
+        "/T": "23b8",
+        "/FT": "/Btn",
+        "/TU": "23b. ODIN"
+    },
+    "23b9": {
+        "/T": "23b9",
+        "/FT": "/Btn",
+        "/TU": "23b. REACh XIV"
+    },
+    "23b10": {
+        "/T": "23b10",
+        "/FT": "/Btn",
+        "/TU": "23b. Sonstige:"
+    },
+    "23b11": {
+        "/T": "23b11",
+        "/FT": "/Btn",
+        "/TU": "23b. BGW (TRGS 903)"
+    },
+    "23b12": {
+        "/T": "23b12",
+        "/FT": "/Btn",
+        "/TU": "23b. ERB (Bek 910)"
+    },
+    "23b13": {
+        "/T": "23b13",
+        "/FT": "/Btn",
+        "/TU": "23b. REACh XVII"
+    },
+    "23b14": {
+        "/T": "23b14",
+        "/FT": "/Btn",
+        "/TU": "23b. Physikalische Gefahr"
+    },
+    "24a1": {
+        "/T": "24a1",
+        "/FT": "/Tx",
+        "/TU": "24a. AwSV - WGK = ",
+        "/Ff": 4096
+    },
+    "24a2": {
+        "/T": "24a2",
+        "/FT": "/Tx",
+        "/TU": "24a. ADR - UN-Nr. = ",
+        "/Ff": 4096
+    },
+    "24a3": {
+        "/T": "24a3",
+        "/FT": "/Tx",
+        "/TU": "24a. TRGS 510 - Lagerkl. = ",
+        "/Ff": 4096,
+        "/V": "12"
+    },
+    "24a4": {
+        "/T": "24a4",
+        "/FT": "/Btn",
+        "/TU": "24a. SVHC PBT"
+    },
+    "24a5": {
+        "/T": "24a5",
+        "/FT": "/Btn",
+        "/TU": "24a. AWSV - WGK ="
+    },
+    "24a6": {
+        "/T": "24a6",
+        "/FT": "/Btn",
+        "/TU": "24a. ADR - UN Nr. ="
+    },
+    "24a7": {
+        "/T": "24a7",
+        "/FT": "/Btn",
+        "/TU": "24a. TRGS 510- Lagerkl. =",
+        "/V": "/Yes"
+    },
+    "24a8": {
+        "/T": "24a8",
+        "/FT": "/Btn",
+        "/TU": "24a. SVHC vPvB"
+    },
+    "24a9": {
+        "/T": "24a9",
+        "/FT": "/Btn",
+        "/TU": "24a. 2.BImSchV (KMR Kat1)"
+    },
+    "24a10": {
+        "/T": "24a10",
+        "/FT": "/Btn",
+        "/TU": "24a. 12.BImSchV (H1, H2, P8)"
+    },
+    "24a11": {
+        "/T": "24a11",
+        "/FT": "/Btn",
+        "/TU": "24a. 31.BImSchV (VOC)"
+    },
+    "24b1": {
+        "/T": "24b1",
+        "/FT": "/Tx",
+        "/TU": "24b. AwSV - WGK = ",
+        "/Ff": 4096
+    },
+    "24b2": {
+        "/T": "24b2",
+        "/FT": "/Tx",
+        "/TU": "24b. ADR - UN-Nr. = ",
+        "/Ff": 4096
+    },
+    "24b3": {
+        "/T": "24b3",
+        "/FT": "/Tx",
+        "/TU": "24b. TRGS 510 - Lagerkl. = ",
+        "/Ff": 4096
+    },
+    "24b4": {
+        "/T": "24b4",
+        "/FT": "/Btn",
+        "/TU": "24b. SVHC PBT"
+    },
+    "24b5": {
+        "/T": "24b5",
+        "/FT": "/Btn",
+        "/TU": "24b. AWSV - WGK ="
+    },
+    "24b6": {
+        "/T": "24b6",
+        "/FT": "/Btn",
+        "/TU": "24b. ADR - UN Nr. ="
+    },
+    "24b7": {
+        "/T": "24b7",
+        "/FT": "/Btn",
+        "/TU": "24b. TRGS 510- Lagerkl. ="
+    },
+    "24b8": {
+        "/T": "24b8",
+        "/FT": "/Btn",
+        "/TU": "24b. SVHC vPvB"
+    },
+    "24b9": {
+        "/T": "24b9",
+        "/FT": "/Btn",
+        "/TU": "24b. 2.BImSchV (KMR Kat1)"
+    },
+    "24b10": {
+        "/T": "24b10",
+        "/FT": "/Btn",
+        "/TU": "24a. 12.BImSchV (H1, H 2, P8)"
+    },
+    "24b11": {
+        "/T": "24b11",
+        "/FT": "/Btn",
+        "/TU": "24b. 31.BImSchV (VOC)"
+    },
+    "25a": {
+        "/T": "25a",
+        "/FT": "/Tx",
+        "/TU": "25. Umweltschutz Name",
+        "/Ff": 4096,
+        "/V": "Dr. Karsten Bartz"
+    },
+    "25b": {
+        "/T": "25b",
+        "/FT": "/Sig",
+        "/TU": "25. Umweltschutz Unterschrift",
+        "/V": {
+            "ByteRange": [
+                0,
+                90769,
+                103675,
+                593048
+            ],
+            "ContactInfo": "",
+            "Contents": "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",
+            "Filter": "/Adobe.PPKLite",
+            "Location": "",
+            "M": "D:20250327114155+01'00'",
+            "Name": "Bartz, Karsten",
+            "Reason": "",
+            "SubFilter": "/adbe.pkcs7.sha1"
+        }
+    },
+    "25c": {
+        "/T": "25c",
+        "/FT": "/Tx",
+        "/TU": "25. Datum der Umweltschutz Prüfung ",
+        "/Ff": 4096,
+        "/V": "27.03.2025"
+    },
+    "26": {
+        "/T": "26",
+        "/FT": "/Btn",
+        "/TU": "26. Ergebnis der Prüfung für Umweltschutz",
+        "/Ff": 32768,
+        "/V": "/2",
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "27": {
+        "/T": "27",
+        "/FT": "/Btn",
+        "/TU": "27. BImSch-Genehmigung erfoderlich?",
+        "/Ff": 32768,
+        "/V": "/1",
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "28": {
+        "/T": "28",
+        "/FT": "/Btn",
+        "/TU": "28. AwSV Anlage erforderlich?",
+        "/Ff": 32768,
+        "/V": "/1",
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "29": {
+        "/T": "29",
+        "/FT": "/Btn",
+        "/TU": "29. Beteiligung Umweltschutz bei Gefährdungsbeur-teilung erforderlich?",
+        "/Ff": 32768,
+        "/V": "/1",
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "30": {
+        "/T": "30",
+        "/FT": "/Btn",
+        "/TU": "30. Zusammenlagerung zu beachten?",
+        "/Ff": 32768,
+        "/V": "/0",
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "31": {
+        "/T": "31",
+        "/FT": "/Tx",
+        "/TU": "31. Erläuterungen - Erläuterungen zur Freigabe und Hinweise für den Wareneingang.",
+        "/Ff": 4096,
+        "/V": "Freisetzung in die Umwelt vermeiden. Keine Einstufung WGK nach AwSV - bei Lagerung größerer Mengen Einstufung durch den Betreiber notwendig (oder mod. SDB). Zusammenlagerung beachten - insb. nicht gemeinsam mit starken Säuren lagern. Entsorgung des benutzten Produktes als gefährlicher Abfall (AVV 09 01 01*) über die Entsorgungslogistik."
+    },
+    "32a": {
+        "/T": "32a",
+        "/FT": "/Tx",
+        "/TU": "32. Arbeits- & Gesundheitschutz Name",
+        "/Ff": 4096,
+        "/V": "Anouar Marzouki"
+    },
+    "32b": {
+        "/T": "32b",
+        "/FT": "/Sig",
+        "/TU": "32. Arbeits- & Gesundheitschutz Unterschrift",
+        "/V": {
+            "ByteRange": [
+                0,
+                700462,
+                714914,
+                4584
+            ],
+            "Contents": "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+Au6NXj8E8RDLpWxCum7xsBJ4mNnmH71240guAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+            "Filter": "/Adobe.PPKLite",
+            "M": "D:20250328093832+01'00'",
+            "Name": "Anouar Marzouki",
+            "SubFilter": "/adbe.pkcs7.detached"
+        }
+    },
+    "32c": {
+        "/T": "32c",
+        "/FT": "/Tx",
+        "/TU": "32. Datum der Arbeits- & Gesundheitschutz Prüfung ",
+        "/Ff": 4096,
+        "/V": "28.03.2025"
+    },
+    "33": {
+        "/T": "33",
+        "/FT": "/Btn",
+        "/TU": "33. Ergebnis der Prüfung für Arbeits- & Gesundheitsschutz ",
+        "/Ff": 32768,
+        "/V": "/0",
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "34": {
+        "/T": "34",
+        "/FT": "/Btn",
+        "/TU": "34. Produkt ist HS&E-relevant?",
+        "/Ff": 32768,
+        "/V": "/0",
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "35": {
+        "/T": "35",
+        "/FT": "/Btn",
+        "/TU": "35. Information an Lager erforderlich?",
+        "/Ff": 32768,
+        "/V": "/0",
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "36": {
+        "/T": "36",
+        "/FT": "/Btn",
+        "/TU": "36. Gefahrstoffspezifische Gefährdungsbeurteilung erforderlich?",
+        "/Ff": 32768,
+        "/V": "/1",
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "37": {
+        "/T": "37",
+        "/FT": "/Btn",
+        "/TU": "37. Betriebsanweisung erforderlich?",
+        "/Ff": 32768,
+        "/V": "/0",
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "38": {
+        "/T": "38",
+        "/FT": "/Tx",
+        "/TU": "38. Erläuterungen - Erläuterungen zur Freigabe und Hinweise für den Wareneingang.",
+        "/Ff": 4096,
+        "/V": "GBU und BAGS anpassen"
+    },
+    "39": {
+        "/T": "39",
+        "/FT": "/Btn",
+        "/TU": "39. Produkt und Lieferantenzulassung",
+        "/Ff": 32768,
+        "/V": "/2",
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "39a": {
+        "/T": "39a",
+        "/FT": "/Tx",
+        "/TU": "39. nicht möglich / Ablehnung Grund:",
+        "/Ff": 4096
+    },
+    "40a": {
+        "/T": "40a",
+        "/FT": "/Tx",
+        "/TU": "40. Fertigungslabor Name",
+        "/Ff": 4096
+    },
+    "40b": {
+        "/T": "40b",
+        "/FT": "/Sig",
+        "/TU": "40. Fertigungslabor Unterschrift"
+    },
+    "40c": {
+        "/T": "40c",
+        "/FT": "/Tx",
+        "/TU": "40. Datum der Fertigungslabor Prüfung ",
+        "/Ff": 4096
+    },
+    "41": {
+        "/T": "41",
+        "/FT": "/Btn",
+        "/TU": "41. Haltbarkeit bei Bestellung",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "41a": {
+        "/T": "41a",
+        "/FT": "/Tx",
+        "/TU": "41. Tagen",
+        "/Ff": 4096
+    },
+    "42": {
+        "/T": "42",
+        "/FT": "/Btn",
+        "/TU": "42. Zertifikat (nach DIN EN 10204)",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "42a": {
+        "/T": "42a",
+        "/FT": "/Tx",
+        "/TU": "42. Andere Zertifikat",
+        "/Ff": 4096
+    },
+    "43": {
+        "/T": "43",
+        "/FT": "/Btn",
+        "/TU": "43. MLC104-Eintrag erforderlich?",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "44": {
+        "/T": "44",
+        "/FT": "/Btn",
+        "/TU": "44. OMat-Eintrag erforderlich?",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "44a": {
+        "/T": "44a",
+        "/FT": "/Tx",
+        "/TU": "44. OMat Nr.",
+        "/Ff": 4096
+    },
+    "45": {
+        "/T": "45",
+        "/FT": "/Tx",
+        "/TU": "45. Produktzulassung nach:",
+        "/Ff": 4096
+    },
+    "46": {
+        "/T": "46",
+        "/FT": "/Tx",
+        "/TU": "46. Lieferantenanforderung / Produktzulassungsforderungen für den Einkaufsbestelltext in SAP",
+        "/Ff": 4096
+    },
+    "47a": {
+        "/T": "47a",
+        "/FT": "/Tx",
+        "/TU": "47. Fertigungslabor Name",
+        "/Ff": 4096
+    },
+    "47b": {
+        "/T": "47b",
+        "/FT": "/Sig",
+        "/TU": "47. Fertigungslabor Unterschrift"
+    },
+    "47c": {
+        "/T": "47c",
+        "/FT": "/Tx",
+        "/TU": "47. Datum der Fertigungslabor Prüfung",
+        "/Ff": 4096
+    },
+    "48": {
+        "/T": "48",
+        "/FT": "/Btn",
+        "/TU": "48. Zertifikat (nach DIN EN 10204)",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "48a": {
+        "/T": "48a",
+        "/FT": "/Tx",
+        "/TU": "48. Andere Zertifikat",
+        "/Ff": 4096
+    },
+    "49": {
+        "/T": "49",
+        "/FT": "/Tx",
+        "/TU": "49. Lieferantenanforderung / Produktzulassungsforderungen für den Einkaufsbestelltext in SAP",
+        "/Ff": 4096
+    },
+    "50a": {
+        "/T": "50a",
+        "/FT": "/Tx",
+        "/TU": "50. Normenstelle Name",
+        "/Ff": 4096,
+        "/V": "Maung, Ali"
+    },
+    "50b": {
+        "/T": "50b",
+        "/FT": "/Sig",
+        "/TU": "50. Normenstelle Unterschrift",
+        "/V": {
+            "ByteRange": [
+                0,
+                723237,
+                737655,
+                4840
+            ],
+            "Contents": "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ZvuKRT3lUacfEroAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=",
+            "Filter": "/Adobe.PPKLite",
+            "M": "D:20250331103455+02'00'",
+            "Name": "Maung, Ali",
+            "SubFilter": "/adbe.pkcs7.detached"
+        }
+    },
+    "50c": {
+        "/T": "50c",
+        "/FT": "/Tx",
+        "/TU": "50. Normenstelle Datum",
+        "/Ff": 4096,
+        "/V": "31.03.2025"
+    },
+    "51": {
+        "/T": "51",
+        "/FT": "/Tx",
+        "/TU": "51. Teilenummer",
+        "/Ff": 4096,
+        "/V": "01044259"
+    },
+    "52": {
+        "/T": "52",
+        "/FT": "/Tx",
+        "/TU": "52. Erläuterungen bzw. Änderungen",
+        "/Ff": 4096
+    }
+}

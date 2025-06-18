@@ -1,0 +1,230 @@
+/* Import base directory styles */
+@import url('directory.css');
+
+/* ChemScan specific styling overrides */
+
+/* Header styling */
+.directory-header h1 {
+    color: #2e7d32; /* Green color for ChemScan */
+}
+
+/* Status badges */
+.status-badge.active {
+    background-color: #4caf50;
+    color: white;
+}
+
+.status-badge.inactive {
+    background-color: #9e9e9e;
+    color: white;
+}
+
+/* Water hazard class badges */
+.wgk-badge {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    text-align: center;
+}
+
+.wgk-badge.wgk1 {
+    background-color: #c8e6c9;
+    color: #2e7d32;
+    border: 1px solid #a5d6a7;
+}
+
+.wgk-badge.wgk2 {
+    background-color: #fff9c4;
+    color: #f57f17;
+    border: 1px solid #fff59d;
+}
+
+.wgk-badge.wgk3 {
+    background-color: #ffcdd2;
+    color: #c62828;
+    border: 1px solid #ef9a9a;
+}
+
+/* GHS symbol icons */
+.ghs-symbol {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    margin-right: 4px;
+    font-size: 10px;
+    font-weight: bold;
+    color: white;
+}
+
+.ghs-symbol.ghs01 { background-color: #e53935; } /* Explosive */
+.ghs-symbol.ghs02 { background-color: #f57c00; } /* Flammable */
+.ghs-symbol.ghs03 { background-color: #ffeb3b; color: #333; } /* Oxidizing */
+.ghs-symbol.ghs04 { background-color: #29b6f6; } /* Compressed Gas */
+.ghs-symbol.ghs05 { background-color: #7e57c2; } /* Corrosive */
+.ghs-symbol.ghs06 { background-color: #d32f2f; } /* Toxic */
+.ghs-symbol.ghs07 { background-color: #ff9800; } /* Harmful */
+.ghs-symbol.ghs08 { background-color: #f44336; } /* Health Hazard */
+.ghs-symbol.ghs09 { background-color: #4caf50; } /* Environmental */
+
+/* H-statement styling */
+.h-statement {
+    display: inline-block;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 11px;
+    margin: 2px;
+    background-color: #f5f5f5;
+    border: 1px solid #e0e0e0;
+}
+
+/* Card styling for grid view */
+.directory-card .card-hazard-symbols {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+.directory-card .card-h-statements {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+    margin-bottom: 12px;
+}
+
+.directory-card .card-substances {
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 12px;
+    max-height: 60px;
+    overflow-y: auto;
+    padding-right: 5px;
+}
+
+/* Filter options for water hazard classes */
+.filter-option.wgk1 {
+    color: #2e7d32;
+}
+
+.filter-option.wgk2 {
+    color: #f57f17;
+}
+
+.filter-option.wgk3 {
+    color: #c62828;
+}
+
+/* Row color coding based on water hazard class */
+.directory-table tbody tr.wgk1 {
+    background-color: #f1f8e9;
+    border-left: 4px solid #7cb342;
+}
+
+.directory-table tbody tr.wgk1:nth-child(even) {
+    background-color: #e8f5e9;
+}
+
+.directory-table tbody tr.wgk2 {
+    background-color: #fffde7;
+    border-left: 4px solid #fbc02d;
+}
+
+.directory-table tbody tr.wgk2:nth-child(even) {
+    background-color: #fff9c4;
+}
+
+.directory-table tbody tr.wgk3 {
+    background-color: #ffebee;
+    border-left: 4px solid #e53935;
+}
+
+.directory-table tbody tr.wgk3:nth-child(even) {
+    background-color: #ffcdd2;
+}
+
+/* Card styling for grid view based on water hazard class */
+.directory-card.wgk1 {
+    border-left: 4px solid #7cb342;
+}
+
+.directory-card.wgk2 {
+    border-left: 4px solid #fbc02d;
+}
+
+.directory-card.wgk3 {
+    border-left: 4px solid #e53935;
+}
+
+/* Stat card styling */
+.stat-card .stat-value {
+    color: #2e7d32; /* Green color for ChemScan */
+}
+
+/* Substance list styling */
+.substance-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+}
+
+.substance-list li {
+    margin-bottom: 4px;
+    padding-left: 10px;
+    position: relative;
+}
+
+.substance-list li:before {
+    content: "•";
+    position: absolute;
+    left: 0;
+    color: #2e7d32;
+}
+
+.cas-number {
+    color: #666;
+    font-size: 11px;
+}
+
+/* Business unit styling */
+.business-unit-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    font-size: 12px;
+}
+
+.business-unit-list li {
+    margin-bottom: 2px;
+}
+
+.business-unit-list a {
+    color: #1976d2;
+    text-decoration: none;
+}
+
+.business-unit-list a:hover {
+    text-decoration: underline;
+}
+
+/* Make table scrollable for many columns */
+.table-container {
+    overflow-x: auto;
+}
+
+.directory-table {
+    min-width: 1500px;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+    .directory-table {
+        min-width: 1200px;
+    }
+}
