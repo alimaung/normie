@@ -259,6 +259,55 @@
 .long-text {
     min-height: 80px;
 }
+
+/* Combined checkbox + text field styling */
+.combined-field {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+.combined-field .checkbox-container {
+    margin: 0;
+}
+
+.combined-field input[type="text"] {
+    flex: 1;
+    min-width: 150px;
+}
+
+/* Radio button styling */
+.radio-group {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+}
+
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.radio-option input[type="radio"] {
+    width: 16px;
+    height: 16px;
+}
+
+.radio-option label {
+    font-size: 10px;
+    margin: 0;
+    cursor: pointer;
+}
+
+/* Checkbox grid for ChemScan results */
+.chemscan-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    gap: 12px;
+    margin-top: 8px;
+}
 </style>
 {% endblock %}
 
@@ -338,33 +387,159 @@
             ChemScan (Part A) - Ergebnis der Prüfung für Arbeitsschutz / Gesundheitsschutz
         </div>
         <table class="form-table">
+            <!-- ChemScan Basic Info -->
             {% for field in fields %}
-                {% if field.id|slice:":3" == "22a" or field.id|slice:":4" == "22a1" or field.id|slice:":4" == "22a2" or field.id|slice:":4" == "23a1" or field.id|slice:":4" == "23a2" or field.id|slice:":4" == "23a3" or field.id|slice:":4" == "23a4" or field.id|slice:":4" == "23a5" or field.id|slice:":4" == "23a6" or field.id|slice:":4" == "23a7" or field.id|slice:":4" == "23a8" or field.id|slice:":4" == "23a9" or field.id|slice:":5" == "23a10" or field.id|slice:":5" == "23a11" or field.id|slice:":5" == "23a12" or field.id|slice:":5" == "23a13" or field.id|slice:":5" == "23a14" or field.id|slice:":4" == "24a1" or field.id|slice:":4" == "24a2" or field.id|slice:":4" == "24a3" or field.id|slice:":4" == "24a4" or field.id|slice:":4" == "24a5" or field.id|slice:":4" == "24a6" or field.id|slice:":4" == "24a7" or field.id|slice:":4" == "24a8" or field.id|slice:":4" == "24a9" or field.id|slice:":5" == "24a10" or field.id|slice:":5" == "24a11" %}
+                {% if field.id == "22a" or field.id == "22a1" %}
                     <tr class="form-row">
                         <td class="field-label">
                             <div class="field-id">{{ field.id }}</div>
                             <div class="field-description">{{ field.name }}</div>
                         </td>
                         <td class="field-input">
-                            {% if field.type == "/Tx" %}
-                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
-                            {% elif field.type == "/Btn" %}
-                                <div class="checkbox-container">
-                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
-                                    <label>{% trans "Selected" %}</label>
-                                </div>
-                            {% elif field.type == "/Sig" %}
-                                <div class="signature-indicator">
-                                    <i class="fas fa-signature"></i>
-                                    {% trans "Digital Signature Present" %}
-                                </div>
-                            {% else %}
-                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
-                            {% endif %}
+                            <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
                         </td>
                     </tr>
                 {% endif %}
             {% endfor %}
+            
+            <!-- ChemScan Durchgeführt (Radio Button) -->
+            {% for field in fields %}
+                {% if field.id == "22a2" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="{{ field.id }}" value="/0" id="{{ field.id }}_ja" {% if field.value == "/0" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label for="{{ field.id }}_ja">Ja</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="{{ field.id }}" value="/1" id="{{ field.id }}_nein" {% if field.value == "/1" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label for="{{ field.id }}_nein">Nein</label>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            
+            <!-- Combined ChemVV Field (Text + Checkbox) -->
+            <tr class="form-row">
+                <td class="field-label">
+                    <div class="field-id">23a1/23a6</div>
+                    <div class="field-description">ChemVV</div>
+                </td>
+                <td class="field-input">
+                    <div class="combined-field">
+                        {% for field in fields %}
+                            {% if field.id == "23a6" %}
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label>Relevant</label>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% for field in fields %}
+                            {% if field.id == "23a1" %}
+                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" placeholder="ChemVV Details" data-field-id="{{ field.id }}">
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </td>
+            </tr>
+            
+            <!-- Combined Sonstige Field (Text + Checkbox) -->
+            <tr class="form-row">
+                <td class="field-label">
+                    <div class="field-id">23a2/23a10</div>
+                    <div class="field-description">Sonstige</div>
+                </td>
+                <td class="field-input">
+                    <div class="combined-field">
+                        {% for field in fields %}
+                            {% if field.id == "23a10" %}
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label>Relevant</label>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% for field in fields %}
+                            {% if field.id == "23a2" %}
+                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" placeholder="Sonstige Details" data-field-id="{{ field.id }}">
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </td>
+            </tr>
+            
+            <!-- Checkbox Grid for Other 23a Fields -->
+            <tr class="form-row">
+                <td class="field-label">
+                    <div class="field-id">23a</div>
+                    <div class="field-description">Ergebnis der Prüfung für Arbeitsschutz / Gesundheitsschutz - Relevant nach:</div>
+                </td>
+                <td class="field-input">
+                    <div class="chemscan-grid">
+                        {% for field in fields %}
+                            {% if field.id == "23a3" or field.id == "23a4" or field.id == "23a5" or field.id == "23a7" or field.id == "23a8" or field.id == "23a9" or field.id == "23a11" or field.id == "23a12" or field.id == "23a13" or field.id == "23a14" %}
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label>{{ field.name|slice:"4:" }}</label>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </td>
+            </tr>
+            
+            <!-- Combined 24a Fields (Text + Checkbox pairs) -->
+            {% for field in fields %}
+                {% if field.id == "24a1" or field.id == "24a2" or field.id == "24a3" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}/{{ field.id|slice:"0:3" }}{% if field.id == "24a1" %}5{% elif field.id == "24a2" %}6{% elif field.id == "24a3" %}7{% endif %}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            <div class="combined-field">
+                                {% for checkbox_field in fields %}
+                                    {% if checkbox_field.id == field.id|slice:"0:3"|add:"5" and field.id == "24a1" or checkbox_field.id == field.id|slice:"0:3"|add:"6" and field.id == "24a2" or checkbox_field.id == field.id|slice:"0:3"|add:"7" and field.id == "24a3" %}
+                                        <div class="checkbox-container">
+                                            <input type="checkbox" class="field-value" name="{{ checkbox_field.id }}" {% if checkbox_field.value == "/0" or checkbox_field.value == "/Yes" %}checked{% endif %} data-field-id="{{ checkbox_field.id }}">
+                                            <label>Relevant</label>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
+                            </div>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            
+            <!-- Other 24a Checkboxes -->
+            <tr class="form-row">
+                <td class="field-label">
+                    <div class="field-id">24a</div>
+                    <div class="field-description">Ergebnis der Prüfung für Umweltschutz - Relevant nach:</div>
+                </td>
+                <td class="field-input">
+                    <div class="chemscan-grid">
+                        {% for field in fields %}
+                            {% if field.id == "24a4" or field.id == "24a8" or field.id == "24a9" or field.id == "24a10" or field.id == "24a11" %}
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label>{{ field.name|slice:"4:" }}</label>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </td>
+            </tr>
         </table>
         
         <!-- ChemScan Part B Section -->
@@ -373,33 +548,159 @@
             ChemScan (Part B) - Falls erforderlich
         </div>
         <table class="form-table">
+            <!-- ChemScan Basic Info -->
             {% for field in fields %}
-                {% if field.id|slice:":3" == "22b" or field.id|slice:":4" == "22b1" or field.id|slice:":4" == "22b2" or field.id|slice:":4" == "23b1" or field.id|slice:":4" == "23b2" or field.id|slice:":4" == "23b3" or field.id|slice:":4" == "23b4" or field.id|slice:":4" == "23b5" or field.id|slice:":4" == "23b6" or field.id|slice:":4" == "23b7" or field.id|slice:":4" == "23b8" or field.id|slice:":4" == "23b9" or field.id|slice:":5" == "23b10" or field.id|slice:":5" == "23b11" or field.id|slice:":5" == "23b12" or field.id|slice:":5" == "23b13" or field.id|slice:":5" == "23b14" or field.id|slice:":4" == "24b1" or field.id|slice:":4" == "24b2" or field.id|slice:":4" == "24b3" or field.id|slice:":4" == "24b4" or field.id|slice:":4" == "24b5" or field.id|slice:":4" == "24b6" or field.id|slice:":4" == "24b7" or field.id|slice:":4" == "24b8" or field.id|slice:":4" == "24b9" or field.id|slice:":5" == "24b10" or field.id|slice:":5" == "24b11" %}
+                {% if field.id == "22b" or field.id == "22b1" %}
                     <tr class="form-row">
                         <td class="field-label">
                             <div class="field-id">{{ field.id }}</div>
                             <div class="field-description">{{ field.name }}</div>
                         </td>
                         <td class="field-input">
-                            {% if field.type == "/Tx" %}
-                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
-                            {% elif field.type == "/Btn" %}
-                                <div class="checkbox-container">
-                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
-                                    <label>{% trans "Selected" %}</label>
-                                </div>
-                            {% elif field.type == "/Sig" %}
-                                <div class="signature-indicator">
-                                    <i class="fas fa-signature"></i>
-                                    {% trans "Digital Signature Present" %}
-                                </div>
-                            {% else %}
-                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
-                            {% endif %}
+                            <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
                         </td>
                     </tr>
                 {% endif %}
             {% endfor %}
+            
+            <!-- ChemScan Durchgeführt (Radio Button) -->
+            {% for field in fields %}
+                {% if field.id == "22b2" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="{{ field.id }}" value="/0" id="{{ field.id }}_ja" {% if field.value == "/0" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label for="{{ field.id }}_ja">Ja</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="{{ field.id }}" value="/1" id="{{ field.id }}_nein" {% if field.value == "/1" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label for="{{ field.id }}_nein">Nein</label>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            
+            <!-- Combined ChemVV Field (Text + Checkbox) -->
+            <tr class="form-row">
+                <td class="field-label">
+                    <div class="field-id">23b1/23b6</div>
+                    <div class="field-description">ChemVV</div>
+                </td>
+                <td class="field-input">
+                    <div class="combined-field">
+                        {% for field in fields %}
+                            {% if field.id == "23b6" %}
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label>Relevant</label>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% for field in fields %}
+                            {% if field.id == "23b1" %}
+                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" placeholder="ChemVV Details" data-field-id="{{ field.id }}">
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </td>
+            </tr>
+            
+            <!-- Combined Sonstige Field (Text + Checkbox) -->
+            <tr class="form-row">
+                <td class="field-label">
+                    <div class="field-id">23b2/23b10</div>
+                    <div class="field-description">Sonstige</div>
+                </td>
+                <td class="field-input">
+                    <div class="combined-field">
+                        {% for field in fields %}
+                            {% if field.id == "23b10" %}
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label>Relevant</label>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% for field in fields %}
+                            {% if field.id == "23b2" %}
+                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" placeholder="Sonstige Details" data-field-id="{{ field.id }}">
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </td>
+            </tr>
+            
+            <!-- Checkbox Grid for Other 23b Fields -->
+            <tr class="form-row">
+                <td class="field-label">
+                    <div class="field-id">23b</div>
+                    <div class="field-description">Ergebnis der Prüfung für Arbeitsschutz / Gesundheitsschutz - Relevant nach:</div>
+                </td>
+                <td class="field-input">
+                    <div class="chemscan-grid">
+                        {% for field in fields %}
+                            {% if field.id == "23b3" or field.id == "23b4" or field.id == "23b5" or field.id == "23b7" or field.id == "23b8" or field.id == "23b9" or field.id == "23b11" or field.id == "23b12" or field.id == "23b13" or field.id == "23b14" %}
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label>{{ field.name|slice:"4:" }}</label>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </td>
+            </tr>
+            
+            <!-- Combined 24b Fields (Text + Checkbox pairs) -->
+            {% for field in fields %}
+                {% if field.id == "24b1" or field.id == "24b2" or field.id == "24b3" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}/{{ field.id|slice:"0:3" }}{% if field.id == "24b1" %}5{% elif field.id == "24b2" %}6{% elif field.id == "24b3" %}7{% endif %}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            <div class="combined-field">
+                                {% for checkbox_field in fields %}
+                                    {% if checkbox_field.id == field.id|slice:"0:3"|add:"5" and field.id == "24b1" or checkbox_field.id == field.id|slice:"0:3"|add:"6" and field.id == "24b2" or checkbox_field.id == field.id|slice:"0:3"|add:"7" and field.id == "24b3" %}
+                                        <div class="checkbox-container">
+                                            <input type="checkbox" class="field-value" name="{{ checkbox_field.id }}" {% if checkbox_field.value == "/0" or checkbox_field.value == "/Yes" %}checked{% endif %} data-field-id="{{ checkbox_field.id }}">
+                                            <label>Relevant</label>
+                                        </div>
+                                    {% endif %}
+                                {% endfor %}
+                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
+                            </div>
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            
+            <!-- Other 24b Checkboxes -->
+            <tr class="form-row">
+                <td class="field-label">
+                    <div class="field-id">24b</div>
+                    <div class="field-description">Ergebnis der Prüfung für Umweltschutz - Relevant nach:</div>
+                </td>
+                <td class="field-input">
+                    <div class="chemscan-grid">
+                        {% for field in fields %}
+                            {% if field.id == "24b4" or field.id == "24b8" or field.id == "24b9" or field.id == "24b10" or field.id == "24b11" %}
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label>{{ field.name|slice:"4:" }}</label>
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </div>
+                </td>
+            </tr>
         </table>
         
         <!-- Umweltschutz Section -->
@@ -409,7 +710,7 @@
         </div>
         <table class="form-table">
             {% for field in fields %}
-                {% if field.id|slice:":3" == "25a" or field.id|slice:":3" == "25b" or field.id|slice:":3" == "25c" or field.id == "26" or field.id == "27" or field.id == "28" or field.id == "29" or field.id == "30" or field.id == "31" %}
+                {% if field.id == "25a" or field.id == "25b" or field.id == "25c" %}
                     <tr class="form-row">
                         <td class="field-label">
                             <div class="field-id">{{ field.id }}</div>
@@ -417,24 +718,70 @@
                         </td>
                         <td class="field-input">
                             {% if field.type == "/Tx" %}
-                                {% if field.id == "31" %}
-                                    <textarea class="field-value long-text" name="{{ field.id }}" data-field-id="{{ field.id }}">{{ field.value }}</textarea>
-                                {% else %}
-                                    <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
-                                {% endif %}
-                            {% elif field.type == "/Btn" %}
-                                <div class="checkbox-container">
-                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
-                                    <label>{% trans "Selected" %}</label>
-                                </div>
+                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
                             {% elif field.type == "/Sig" %}
                                 <div class="signature-indicator">
                                     <i class="fas fa-signature"></i>
                                     {% trans "Digital Signature Present" %}
                                 </div>
-                            {% else %}
-                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
                             {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            
+            <!-- Radio button fields -->
+            {% for field in fields %}
+                {% if field.id == "26" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="{{ field.id }}" value="/0" id="{{ field.id }}_freigabe" {% if field.value == "/0" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label for="{{ field.id }}_freigabe">Freigabe</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="{{ field.id }}" value="/1" id="{{ field.id }}_einschraenkung" {% if field.value == "/1" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label for="{{ field.id }}_einschraenkung">Freigabe mit Einschränkung</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="{{ field.id }}" value="/2" id="{{ field.id }}_ablehnung" {% if field.value == "/2" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label for="{{ field.id }}_ablehnung">Ablehnung</label>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% elif field.id == "27" or field.id == "28" or field.id == "29" or field.id == "30" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="{{ field.id }}" value="/0" id="{{ field.id }}_ja" {% if field.value == "/0" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label for="{{ field.id }}_ja">Ja</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="{{ field.id }}" value="/1" id="{{ field.id }}_nein" {% if field.value == "/1" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label for="{{ field.id }}_nein">Nein</label>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% elif field.id == "31" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            <textarea class="field-value long-text" name="{{ field.id }}" data-field-id="{{ field.id }}">{{ field.value }}</textarea>
                         </td>
                     </tr>
                 {% endif %}
@@ -448,7 +795,7 @@
         </div>
         <table class="form-table">
             {% for field in fields %}
-                {% if field.id|slice:":3" == "32a" or field.id|slice:":3" == "32b" or field.id|slice:":3" == "32c" or field.id == "33" or field.id == "34" or field.id == "35" or field.id == "36" or field.id == "37" or field.id == "38" %}
+                {% if field.id == "32a" or field.id == "32b" or field.id == "32c" %}
                     <tr class="form-row">
                         <td class="field-label">
                             <div class="field-id">{{ field.id }}</div>
@@ -456,24 +803,78 @@
                         </td>
                         <td class="field-input">
                             {% if field.type == "/Tx" %}
-                                {% if field.id == "38" %}
-                                    <textarea class="field-value long-text" name="{{ field.id }}" data-field-id="{{ field.id }}">{{ field.value }}</textarea>
-                                {% else %}
-                                    <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
-                                {% endif %}
-                            {% elif field.type == "/Btn" %}
-                                <div class="checkbox-container">
-                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
-                                    <label>{% trans "Selected" %}</label>
-                                </div>
+                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
                             {% elif field.type == "/Sig" %}
                                 <div class="signature-indicator">
                                     <i class="fas fa-signature"></i>
                                     {% trans "Digital Signature Present" %}
                                 </div>
-                            {% else %}
-                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
                             {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+            
+            <!-- Radio button fields -->
+            {% for field in fields %}
+                {% if field.id == "33" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="{{ field.id }}" value="/0" id="{{ field.id }}_freigabe" {% if field.value == "/0" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label for="{{ field.id }}_freigabe">Freigabe</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="{{ field.id }}" value="/1" id="{{ field.id }}_einschraenkung" {% if field.value == "/1" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label for="{{ field.id }}_einschraenkung">Freigabe mit Einschränkung</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="{{ field.id }}" value="/2" id="{{ field.id }}_ablehnung" {% if field.value == "/2" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label for="{{ field.id }}_ablehnung">Ablehnung</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="{{ field.id }}" value="/3" id="{{ field.id }}_nicht_relevant" {% if field.value == "/3" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label for="{{ field.id }}_nicht_relevant">Nicht relevant</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="{{ field.id }}" value="/4" id="{{ field.id }}_pruefung_notwendig" {% if field.value == "/4" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label for="{{ field.id }}_pruefung_notwendig">Weitere Prüfung notwendig</label>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% elif field.id == "34" or field.id == "35" or field.id == "36" or field.id == "37" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="{{ field.id }}" value="/0" id="{{ field.id }}_ja" {% if field.value == "/0" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label for="{{ field.id }}_ja">Ja</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="{{ field.id }}" value="/1" id="{{ field.id }}_nein" {% if field.value == "/1" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label for="{{ field.id }}_nein">Nein</label>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                {% elif field.id == "38" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            <textarea class="field-value long-text" name="{{ field.id }}" data-field-id="{{ field.id }}">{{ field.value }}</textarea>
                         </td>
                     </tr>
                 {% endif %}
@@ -573,6 +974,7 @@
             const formData = {};
             const textInputs = form.querySelectorAll('input[type="text"], textarea');
             const checkboxInputs = form.querySelectorAll('input[type="checkbox"]');
+            const radioInputs = form.querySelectorAll('input[type="radio"]:checked');
             
             textInputs.forEach(input => {
                 const fieldId = input.dataset.fieldId;
@@ -582,6 +984,11 @@
             checkboxInputs.forEach(checkbox => {
                 const fieldId = checkbox.dataset.fieldId;
                 formData[fieldId] = checkbox.checked ? '/0' : '/1';
+            });
+            
+            radioInputs.forEach(radio => {
+                const fieldId = radio.dataset.fieldId;
+                formData[fieldId] = radio.value;
             });
             
             // Send the data to the server

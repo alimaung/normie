@@ -120,6 +120,194 @@ class OutlookAddressBookExtractor:
         
         return contacts
     
+    def extract_gal_contacts(self, address_list) -> List[Dict[str, Any]]:
+        """
+        Extract contacts from Global Address List with enhanced error handling.
+        
+        Args:
+            address_list: Outlook AddressList object (GAL)
+            
+        Returns:
+            List of contact dictionaries from GAL
+        """
+        gal_contacts = []
+        
+        try:
+            entries = address_list.AddressEntries
+            total_entries = entries.Count
+            print(f"📊 Found {total_entries} entries in GAL")
+            
+            if total_entries == 0:
+                return gal_contacts
+            
+            # Process entries with progress indication
+            processed = 0
+            for entry in entries:
+                try:
+                    # Show progress for large GALs
+                    processed += 1
+                    if processed % 100 == 0 or processed == total_entries:
+                        print(f"  Progress: {processed}/{total_entries} entries processed...")
+                    
+                    # Extract basic info from GAL entry
+                    gal_contact = {
+                        'source': 'Global Address List',
+                        'entry_type': getattr(entry, 'Type', 'Unknown')
+                    }
+                    
+                    # Basic fields
+                    if hasattr(entry, 'Name') and entry.Name:
+                        gal_contact['full_name'] = str(entry.Name).strip()
+                    
+                    if hasattr(entry, 'Address') and entry.Address:
+                        address = str(entry.Address).strip()
+                        # Check if it's an email address or Exchange address
+                        if '@' in address:
+                            gal_contact['email_primary'] = address
+                        else:
+                            gal_contact['exchange_address'] = address
+                    
+                    # Try to get additional details from the entry
+                    try:
+                        # Some GAL entries support GetExchangeUser() for more details
+                        if hasattr(entry, 'GetExchangeUser'):
+                            exchange_user = entry.GetExchangeUser()
+                            if exchange_user:
+                                # Extract Exchange-specific information
+                                exchange_fields = {
+                                    'FirstName': 'first_name',
+                                    'LastName': 'last_name',
+                                    'CompanyName': 'company',
+                                    'Department': 'department',
+                                    'JobTitle': 'job_title',
+                                    'BusinessTelephoneNumber': 'phone_business',
+                                    'MobileTelephoneNumber': 'phone_mobile',
+                                    'OfficeLocation': 'office_location',
+                                    'PrimarySmtpAddress': 'email_primary'
+                                }
+                                
+                                for ex_field, json_field in exchange_fields.items():
+                                    try:
+                                        value = getattr(exchange_user, ex_field, None)
+                                        if value and str(value).strip():
+                                            gal_contact[json_field] = str(value).strip()
+                                    except:
+                                        continue
+                        
+                        # Alternative method: try Details() for additional info
+                        elif hasattr(entry, 'Details'):
+                            try:
+                                details = entry.Details()
+                                if details:
+                                    detail_fields = ['CompanyName', 'Department', 'JobTitle', 'OfficeLocation']
+                                    for field in detail_fields:
+                                        if hasattr(details, field):
+                                            value = getattr(details, field, None)
+                                            if value and str(value).strip():
+                                                gal_contact[field.lower().replace('name', '')] = str(value).strip()
+                            except:
+                                pass
+                    
+                    except Exception as detail_error:
+                        # Continue without detailed info if extraction fails
+                        pass
+                    
+                    # Only add contact if we have at least a name or email
+                    if gal_contact.get('full_name') or gal_contact.get('email_primary') or gal_contact.get('exchange_address'):
+                        gal_contacts.append(gal_contact)
+                        
+                except Exception as entry_error:
+                    # Skip problematic entries but continue processing
+                    continue
+            
+            print(f"✅ Successfully processed {len(gal_contacts)} valid contacts from GAL")
+            
+        except Exception as e:
+            print(f"❌ Error processing GAL entries: {e}")
+        
+        return gal_contacts
+    
+    def search_gal(self, search_term: str) -> List[Dict[str, Any]]:
+        """
+        Search for specific contacts in the Global Address List.
+        
+        Args:
+            search_term: Name or email to search for
+            
+        Returns:
+            List of matching contacts from GAL
+        """
+        if not self.connect_to_outlook():
+            return []
+        
+        matching_contacts = []
+        
+        try:
+            print(f"🔍 Searching GAL for: '{search_term}'")
+            address_lists = self.namespace.AddressLists
+            
+            for address_list in address_lists:
+                list_name = address_list.Name.lower()
+                if any(keyword in list_name for keyword in ['global address list', 'gal', 'global', 'directory']):
+                    print(f"📖 Searching in: {address_list.Name}")
+                    
+                    try:
+                        # Use Outlook's built-in search if available
+                        entries = address_list.AddressEntries
+                        
+                        for entry in entries:
+                            try:
+                                name = getattr(entry, 'Name', '').lower()
+                                address = getattr(entry, 'Address', '').lower()
+                                
+                                # Check if search term matches name or address
+                                if (search_term.lower() in name or 
+                                    search_term.lower() in address):
+                                    
+                                    # Extract detailed info for matching entry
+                                    contact_info = {
+                                        'full_name': getattr(entry, 'Name', ''),
+                                        'source': 'Global Address List - Search Result'
+                                    }
+                                    
+                                    if hasattr(entry, 'Address'):
+                                        address = str(entry.Address).strip()
+                                        if '@' in address:
+                                            contact_info['email_primary'] = address
+                                        else:
+                                            contact_info['exchange_address'] = address
+                                    
+                                    # Try to get additional details
+                                    try:
+                                        if hasattr(entry, 'GetExchangeUser'):
+                                            exchange_user = entry.GetExchangeUser()
+                                            if exchange_user:
+                                                for field, key in [('CompanyName', 'company'), 
+                                                                 ('Department', 'department'),
+                                                                 ('JobTitle', 'job_title'),
+                                                                 ('PrimarySmtpAddress', 'email_primary')]:
+                                                    value = getattr(exchange_user, field, None)
+                                                    if value:
+                                                        contact_info[key] = str(value).strip()
+                                    except:
+                                        pass
+                                    
+                                    matching_contacts.append(contact_info)
+                                    
+                            except Exception as e:
+                                continue
+                    
+                    except Exception as e:
+                        print(f"Error searching in {address_list.Name}: {e}")
+                        continue
+            
+            print(f"✅ Found {len(matching_contacts)} matching contacts")
+            
+        except Exception as e:
+            print(f"❌ Error searching GAL: {e}")
+        
+        return matching_contacts
+    
     def extract_address_book(self) -> Dict[str, Any]:
         """
         Extract all contacts from Outlook address book.
@@ -157,55 +345,41 @@ class OutlookAddressBookExtractor:
             except Exception as e:
                 print(f"Warning: Could not process subfolders: {e}")
             
-            # Try to get Global Address List (GAL) contacts if available
+            # Enhanced Global Address List (GAL) extraction
             try:
+                print("\n🌐 Searching for Global Address List...")
                 address_lists = self.namespace.AddressLists
+                print(f"Found {address_lists.Count} address lists")
+                
+                # List all available address lists for debugging
+                print("Available address lists:")
+                for i, addr_list in enumerate(address_lists):
+                    print(f"  {i+1}. {addr_list.Name} (Type: {getattr(addr_list, 'AddressListType', 'Unknown')})")
+                
+                gal_processed = False
                 for address_list in address_lists:
-                    if "Global Address List" in address_list.Name or "GAL" in address_list.Name:
-                        print(f"Processing Global Address List: {address_list.Name}")
-                        gal_contacts = []
+                    # More comprehensive GAL detection
+                    list_name = address_list.Name.lower()
+                    if any(keyword in list_name for keyword in ['global address list', 'gal', 'global', 'directory']):
+                        print(f"\n📖 Processing Global Address List: {address_list.Name}")
+                        gal_contacts = self.extract_gal_contacts(address_list)
                         
-                        try:
-                            entries = address_list.AddressEntries
-                            print(f"Found {entries.Count} entries in GAL")
-                            
-                            for entry in entries:
-                                try:
-                                    # Extract basic info from GAL entry
-                                    gal_contact = {
-                                        'full_name': entry.Name if hasattr(entry, 'Name') else '',
-                                        'email_primary': entry.Address if hasattr(entry, 'Address') else '',
-                                        'source': 'Global Address List'
-                                    }
-                                    
-                                    # Try to get additional details if available
-                                    try:
-                                        details = entry.Details()
-                                        if hasattr(details, 'CompanyName'):
-                                            gal_contact['company'] = details.CompanyName
-                                        if hasattr(details, 'Department'):
-                                            gal_contact['department'] = details.Department
-                                    except:
-                                        pass
-                                    
-                                    if gal_contact['full_name'] or gal_contact['email_primary']:
-                                        gal_contacts.append(gal_contact)
-                                        
-                                except Exception as e:
-                                    continue
-                                    
-                        except Exception as e:
-                            print(f"Warning: Could not fully process GAL: {e}")
-                        
-                        all_contacts.extend(gal_contacts)
-                        folders_processed.append({
-                            'name': f"GAL - {address_list.Name}",
-                            'count': len(gal_contacts)
-                        })
-                        break
+                        if gal_contacts:
+                            all_contacts.extend(gal_contacts)
+                            folders_processed.append({
+                                'name': f"GAL - {address_list.Name}",
+                                'count': len(gal_contacts)
+                            })
+                            gal_processed = True
+                            print(f"✅ Successfully extracted {len(gal_contacts)} contacts from GAL")
+                        else:
+                            print(f"⚠️ No contacts found in GAL: {address_list.Name}")
+                
+                if not gal_processed:
+                    print("⚠️ No Global Address List found or accessible")
                         
             except Exception as e:
-                print(f"Warning: Could not access Global Address List: {e}")
+                print(f"❌ Error accessing Global Address List: {e}")
         
         except Exception as e:
             print(f"Error extracting address book: {e}")
@@ -262,27 +436,118 @@ def main():
     """
     Main function to extract and save Outlook address book.
     """
-    print("Starting Outlook Address Book extraction...")
+    print("🚀 Outlook Address Book Extractor")
+    print("=" * 50)
     
     # Create extractor instance
     extractor = OutlookAddressBookExtractor()
+    
+    # Check if user wants to search GAL specifically
+    import sys
+    if len(sys.argv) > 1:
+        if sys.argv[1].lower() == 'search' and len(sys.argv) > 2:
+            # GAL search mode
+            search_term = ' '.join(sys.argv[2:])
+            print(f"🔍 GAL Search Mode: Looking for '{search_term}'")
+            
+            results = extractor.search_gal(search_term)
+            
+            if results:
+                print(f"\n📋 Search Results ({len(results)} found):")
+                for i, contact in enumerate(results, 1):
+                    name = contact.get('full_name', 'No name')
+                    email = contact.get('email_primary', contact.get('exchange_address', 'No email'))
+                    company = contact.get('company', 'No company')
+                    department = contact.get('department', '')
+                    dept_info = f" - {department}" if department else ""
+                    print(f"  {i}. {name} ({email}) - {company}{dept_info}")
+                
+                # Save search results
+                search_data = {
+                    'search_info': {
+                        'search_term': search_term,
+                        'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                        'results_count': len(results)
+                    },
+                    'contacts': results
+                }
+                
+                filename = f"gal_search_{search_term.replace(' ', '_')}_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+                saved_file = extractor.save_to_json(search_data, filename)
+                
+                if saved_file:
+                    print(f"\n✅ Search results saved to: {saved_file}")
+            else:
+                print(f"\n❌ No contacts found matching '{search_term}'")
+            
+            return
+        
+        elif sys.argv[1].lower() == 'gal-only':
+            # GAL-only extraction mode
+            print("🌐 GAL-Only Extraction Mode")
+            
+            if not extractor.connect_to_outlook():
+                print("❌ Failed to connect to Outlook")
+                return
+            
+            try:
+                address_lists = extractor.namespace.AddressLists
+                gal_contacts = []
+                
+                for address_list in address_lists:
+                    list_name = address_list.Name.lower()
+                    if any(keyword in list_name for keyword in ['global address list', 'gal', 'global', 'directory']):
+                        print(f"📖 Extracting from GAL: {address_list.Name}")
+                        contacts = extractor.extract_gal_contacts(address_list)
+                        gal_contacts.extend(contacts)
+                
+                if gal_contacts:
+                    gal_data = {
+                        'extraction_info': {
+                            'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                            'total_contacts': len(gal_contacts),
+                            'source': 'Global Address List Only'
+                        },
+                        'contacts': gal_contacts
+                    }
+                    
+                    filename = f"gal_only_{datetime.now().strftime('%Y%m%d_%H%M%S')}.json"
+                    saved_file = extractor.save_to_json(gal_data, filename)
+                    
+                    print(f"\n✅ GAL extraction complete!")
+                    print(f"📊 Total GAL contacts: {len(gal_contacts)}")
+                    print(f"📁 File location: {saved_file}")
+                else:
+                    print("❌ No GAL contacts found")
+                
+            except Exception as e:
+                print(f"❌ Error in GAL-only mode: {e}")
+            
+            return
+    
+    # Default: Full address book extraction
+    print("📚 Full Address Book Extraction Mode")
+    print("This will extract from:")
+    print("  • Personal Contacts folders")
+    print("  • Contact subfolders")
+    print("  • Global Address List (if available)")
     
     # Extract address book
     address_book_data = extractor.extract_address_book()
     
     if not address_book_data:
-        print("Failed to extract address book data")
+        print("❌ Failed to extract address book data")
         return
     
     # Print summary
     extraction_info = address_book_data.get('extraction_info', {})
-    print(f"\nExtraction Summary:")
+    print(f"\n📊 Extraction Summary:")
     print(f"Total contacts found: {extraction_info.get('total_contacts', 0)}")
     print(f"Extraction time: {extraction_info.get('timestamp', 'Unknown')}")
     
     folders_info = extraction_info.get('folders_processed', [])
     if folders_info:
-        print("\nFolders processed:")
+        print("\n📁 Folders processed:")
         for folder in folders_info:
             print(f"  - {folder['name']}: {folder['count']} contacts")
     
@@ -301,9 +566,22 @@ def main():
                 name = contact.get('full_name', 'No name')
                 email = contact.get('email_primary', 'No email')
                 company = contact.get('company', 'No company')
-                print(f"  {i}. {name} ({email}) - {company}")
+                source = contact.get('source', 'Personal Contacts')
+                print(f"  {i}. {name} ({email}) - {company} [{source}]")
+        
+        # Show GAL statistics if available
+        gal_contacts = [c for c in contacts if c.get('source') == 'Global Address List']
+        if gal_contacts:
+            print(f"\n🌐 GAL Statistics:")
+            print(f"  - GAL contacts found: {len(gal_contacts)}")
+            print(f"  - Personal contacts: {len(contacts) - len(gal_contacts)}")
     else:
         print("❌ Failed to save address book")
+    
+    print(f"\n💡 Usage Tips:")
+    print(f"  • For GAL search: python {sys.argv[0]} search <name_or_email>")
+    print(f"  • For GAL only: python {sys.argv[0]} gal-only")
+    print(f"  • For full extraction: python {sys.argv[0]} (default)")
 
 
 if __name__ == "__main__":
