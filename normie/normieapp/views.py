@@ -695,16 +695,26 @@ def pdf_edit(request, form_id):
         return redirect('incoming')
     
     fields = form_data.get('fields', [])
+    file_path = form_data.get('file_path')
+    
+    # Get signature details if available
+    signature_details = {}
+    if file_path:
+        try:
+            signature_details = pdf_service.get_signature_details(file_path)
+        except Exception as e:
+            print(f"Could not extract signature details: {e}")
     
     return render(request, 'normieapp/pdf_edit.html', {
         'form_id': form_id,
-        'fields': fields
+        'fields': fields,
+        'signature_details': signature_details
     })
 
 @csrf_exempt  # Add CSRF exemption for AJAX calls
 def pdf_save(request, form_id):
     """
-    Save edited PDF form fields.
+    Save edited PDF form fields back to the original PDF file.
     """
     if request.method == 'POST':
         try:
@@ -723,6 +733,20 @@ def pdf_save(request, form_id):
                 if field['id'] in form_data:
                     field['value'] = form_data[field['id']]
             
+            # Get the original file path
+            file_path = session_data.get('file_path')
+            if not file_path or not os.path.exists(file_path):
+                return JsonResponse({'success': False, 'message': _("Original PDF file not found.")})
+            
+            # Save changes back to the original PDF file
+            try:
+                pdf_service.save_pdf_changes(file_path, fields)
+            except ImportError as import_error:
+                return JsonResponse({'success': False, 'message': _("PyMuPDF is required for reliable PDF editing. Please install it with: pip install PyMuPDF")})
+            except Exception as save_error:
+                print(f"Error saving PDF: {save_error}")
+                return JsonResponse({'success': False, 'message': _("Failed to save changes to PDF. The form fields may be corrupted or the file may be read-only.")})
+            
             # Re-serialize to ensure JSON compatibility
             serializable_fields = json.loads(json.dumps(fields))
             
@@ -731,7 +755,7 @@ def pdf_save(request, form_id):
             request.session[f'pdf_form_{form_id}'] = session_data
             request.session.modified = True  # Explicitly mark session as modified
             
-            return JsonResponse({'success': True})
+            return JsonResponse({'success': True, 'message': _("Changes saved to the original document.")})
         except Exception as e:
             print(f"Error saving form: {str(e)}")
             return JsonResponse({'success': False, 'message': str(e)})
@@ -740,7 +764,7 @@ def pdf_save(request, form_id):
 
 def pdf_download(request, form_id):
     """
-    Generate and download filled PDF.
+    Download the updated PDF file (with saved changes).
     """
     # Get form data from session
     form_data = request.session.get(f'pdf_form_{form_id}')
@@ -750,46 +774,32 @@ def pdf_download(request, form_id):
         return redirect('incoming')
     
     try:
-        # Get fields and ensure they have the correct structure
-        fields = form_data.get('fields', [])
-        
-        # Ensure each field has the required keys
-        for field in fields:
-            if 'id' not in field:
-                field['id'] = ''
-            if 'value' not in field:
-                field['value'] = ''
-            if 'type' not in field:
-                field['type'] = '/Tx'  # Default to text field
-        
         file_path = form_data.get('file_path')
         
-        # Get template path - use the uploaded file path as template
-        # This ensures we're using the correct form template
-        template_path = file_path
+        # Check if the original file exists
+        if not file_path or not os.path.exists(file_path):
+            messages.error(request, _("Original PDF file not found."))
+            return redirect('pdf_edit', form_id=form_id)
         
-        # If template path doesn't exist, use default template
-        if not os.path.exists(template_path):
-            base_dir = Path(__file__).resolve().parent
-            template_path = os.path.join(base_dir, 'static', 'normieapp', 'pdf', 'T00221.pdf')
-        
-        # Generate filled PDF
-        output_path = pdf_service.generate_filled_pdf(template_path, fields)
-        
-        # Read the generated PDF
-        with open(output_path, 'rb') as f:
+        # Read the updated PDF file (which contains the saved changes)
+        with open(file_path, 'rb') as f:
             pdf_content = f.read()
+        
+        # Extract original filename for a better download name
+        original_filename = os.path.basename(file_path)
+        if original_filename.endswith('.pdf'):
+            base_name = original_filename[:-4]  # Remove .pdf extension
+            download_filename = f"{base_name}_updated.pdf"
+        else:
+            download_filename = f"updated_form_{form_id}.pdf"
         
         # Create response
         response = HttpResponse(pdf_content, content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename="filled_form_{form_id}.pdf"'
-        
-        # Clean up temporary file
-        os.remove(output_path)
+        response['Content-Disposition'] = f'attachment; filename="{download_filename}"'
         
         return response
     except Exception as e:
-        messages.error(request, f"Error generating PDF: {str(e)}")
+        messages.error(request, f"Error downloading PDF: {str(e)}")
         print(f"Error details: {e}")
         print(f"Form data: {form_data}")
         return redirect('pdf_edit', form_id=form_id)

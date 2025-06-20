@@ -1,8 +1,48 @@
-
 import json
+import re
 from datetime import datetime
 import pytz
 
+# Function to extract document version from text fields
+def extract_document_version():
+    """Extract document version from the JSON output if available"""
+    try:
+        # Try to read from a comprehensive extraction file first
+        try:
+            with open('output.json', 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                if 'text_fields' in data:
+                    for field in data['text_fields']:
+                        if field.get('page') == 1 and 'Seite' in field.get('text', ''):
+                            version_match = re.search(r'(T\d+\s*:\s*\d{4}-\d{2}-\d{2})', field['text'])
+                            if version_match:
+                                return version_match.group(1).strip()
+        except FileNotFoundError:
+            pass
+        
+        # Fallback: look in form_fields.json for any text field that might contain version
+        with open('form_fields.json', 'r', encoding='utf-8') as f:
+            form_fields = json.load(f)
+            
+        for field_data in form_fields.values():
+            if "/FT" in field_data and field_data["/FT"] == "/Tx" and "/V" in field_data:
+                text = field_data["/V"]
+                version_match = re.search(r'(T\d+\s*:\s*\d{4}-\d{2}-\d{2})', str(text))
+                if version_match:
+                    return version_match.group(1).strip()
+                    
+    except Exception as e:
+        print(f"Could not extract document version: {e}")
+    
+    return None
+
+# Extract and display document version
+document_version = extract_document_version()
+if document_version:
+    print(f"\033[32mDocument Version: {document_version}\033[0m")
+    print("=" * 50)
+else:
+    print("\033[31mDocument Version: Not found\033[0m")
 
 pdf_dict = {
     "1": {

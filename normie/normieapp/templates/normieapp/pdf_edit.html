@@ -4,155 +4,560 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'normieapp/css/directory.css' %}">
-<link rel="stylesheet" href="{% static 'normieapp/css/pdf_form.css' %}">
+<style>
+/* PDF Form Styling */
+.pdf-form-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background: white;
+    border: 2px solid #000;
+    font-family: Arial, sans-serif;
+    font-size: 11px;
+}
+
+.form-header-section {
+    background: #f8f9fa;
+    border-bottom: 2px solid #000;
+    padding: 15px;
+    text-align: center;
+}
+
+.form-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0 0 5px 0;
+}
+
+.form-subtitle {
+    font-size: 12px;
+    color: #666;
+    margin: 0;
+}
+
+.section-header {
+    background: #e9ecef;
+    border-bottom: 1px solid #000;
+    padding: 8px 12px;
+    font-weight: bold;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-header i {
+    color: #495057;
+}
+
+.form-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 0;
+}
+
+.form-row {
+    border-bottom: 1px solid #dee2e6;
+}
+
+.form-row:last-child {
+    border-bottom: none;
+}
+
+.field-label {
+    width: 25%;
+    padding: 8px 12px;
+    border-right: 1px solid #dee2e6;
+    background: #f8f9fa;
+    font-weight: 500;
+    vertical-align: top;
+    font-size: 10px;
+}
+
+.field-id {
+    font-weight: bold;
+    color: #007bff;
+    margin-bottom: 2px;
+}
+
+.field-description {
+    color: #6c757d;
+    font-size: 9px;
+    line-height: 1.2;
+}
+
+.field-input {
+    width: 75%;
+    padding: 8px 12px;
+    vertical-align: top;
+}
+
+.field-input input[type="text"],
+.field-input textarea {
+    width: 100%;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    padding: 4px 8px;
+    font-size: 11px;
+    font-family: Arial, sans-serif;
+}
+
+.field-input textarea {
+    min-height: 60px;
+    resize: vertical;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.checkbox-container input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+}
+
+.checkbox-container label {
+    font-size: 10px;
+    margin: 0;
+}
+
+.signature-indicator {
+    background: #e3f2fd;
+    border: 1px solid #2196f3;
+    border-radius: 3px;
+    padding: 10px 12px;
+    font-size: 11px;
+    color: #1976d2;
+    display: block;
+    width: 100%;
+}
+
+.signature-indicator.signed {
+    background: #e8f5e8;
+    border: 1px solid #4caf50;
+    color: #2e7d32;
+}
+
+.signature-indicator.unsigned {
+    background: #fff3e0;
+    border: 1px solid #ff9800;
+    color: #f57c00;
+}
+
+.signature-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: bold;
+    margin-bottom: 6px;
+}
+
+.signature-details {
+    font-size: 10px;
+    line-height: 1.4;
+    margin-top: 4px;
+}
+
+.signature-detail-row {
+    display: flex;
+    margin-bottom: 2px;
+}
+
+.signature-detail-label {
+    font-weight: bold;
+    min-width: 80px;
+    margin-right: 6px;
+}
+
+.signature-detail-value {
+    color: #666;
+}
+
+.form-actions {
+    position: sticky;
+    top: 0;
+    background: white;
+    border-bottom: 2px solid #000;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 100;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.form-actions .left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.form-actions .right {
+    display: flex;
+    gap: 10px;
+}
+
+.btn {
+    padding: 8px 16px;
+    border: none;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.btn-cancel {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-save {
+    background: #28a745;
+    color: white;
+}
+
+.btn-download {
+    background: #007bff;
+    color: white;
+}
+
+.btn:hover {
+    opacity: 0.9;
+}
+
+.alert {
+    margin: 10px 0;
+    padding: 10px;
+    border-radius: 4px;
+    font-size: 12px;
+}
+
+.alert-success {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
+}
+
+.alert-danger {
+    background: #f8d7da;
+    border: 1px solid #f5c6cb;
+    color: #721c24;
+}
+
+/* Multi-column layout for checkbox groups */
+.checkbox-group {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 8px;
+    margin-top: 4px;
+}
+
+.long-text {
+    min-height: 80px;
+}
+</style>
 {% endblock %}
 
 {% block content %}
-<div class="directory-container">
-    <!-- Header Section styled like directory.html -->
-    <div class="directory-header">
-        <div class="header-left">
-            <h1>{% trans "Edit PDF Form" %}</h1>
-            <p class="header-summary">{% trans "Edit form fields and generate a filled PDF document" %}</p>
+<div class="pdf-form-container">
+    <!-- Form Actions Bar -->
+    <div class="form-actions">
+        <div class="left">
+            <h2 style="margin: 0; font-size: 14px;">{% trans "Antrag für Teile und Stoffe" %}</h2>
+            <span style="color: #666; font-size: 11px;">{{ fields|length }} {% trans "fields" %}</span>
         </div>
-        <div class="header-stats">
-            <div class="stat-card">
-                <span class="stat-value">{{ fields|length }}</span>
-                <span class="stat-label">{% trans "Form Fields" %}</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-value">
-                    <i class="fas fa-edit"></i>
-                </span>
-                <span class="stat-label">{% trans "Editing Mode" %}</span>
-            </div>
-            <div class="stat-card">
-                <span class="stat-value">
-                    <i class="fas fa-file-pdf"></i>
-                </span>
-                <span class="stat-label">{% trans "PDF Form" %}</span>
-            </div>
+        <div class="right">
+            <div id="alert-container"></div>
+            <a href="{% url 'incoming' %}" class="btn btn-cancel">
+                <i class="fas fa-times"></i> {% trans "Cancel" %}
+            </a>
+            <button id="save-form" class="btn btn-save">
+                <i class="fas fa-save"></i> {% trans "Save to Document" %}
+            </button>
+            <a href="{% url 'pdf_download' form_id=form_id %}" class="btn btn-download">
+                <i class="fas fa-download"></i> {% trans "Download Updated PDF" %}
+            </a>
         </div>
     </div>
 
-    <div class="form-container">
-        <div class="form-header">
-            <div id="alert-container"></div>
-            <div class="form-actions">
-                <a href="{% url 'incoming' %}" class="btn-cancel">{% trans "Cancel" %}</a>
-                <button id="save-form" class="btn-save">{% trans "Save Changes" %}</button>
-                <a href="{% url 'pdf_download' form_id=form_id %}" class="btn-download">{% trans "Download PDF" %}</a>
-            </div>
-        </div>
-        
-        <form id="pdf-edit-form">
-            {% csrf_token %}
-            
-            <div class="field-section">
-                <div class="section-title">{% trans "Application Information" %}</div>
-                {% for field in fields %}
-                    {% if field.id|slice:":1" == "1" or field.id|slice:":1" == "2" or field.id|slice:":1" == "3" %}
-                        <div class="field-group">
-                            <div class="field-id">{{ field.id }}</div>
-                            <div class="field-name">{{ field.name }}</div>
-                            {% if field.type == "/Tx" %}
-                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
-                            {% elif field.type == "/Btn" %}
-                                <div class="checkbox-field">
-                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
-                                    <label>{% trans "Selected" %}</label>
-                                </div>
-                            {% elif field.type == "/Sig" %}
-                                <div class="signature-field">
-                                    <span>{{ field.value }}</span>
-                                </div>
-                            {% else %}
-                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
-                            {% endif %}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-            
-            <div class="field-section">
-                <div class="section-title">{% trans "Product Details" %}</div>
-                {% for field in fields %}
-                    {% if field.id|slice:":1" == "4" or field.id|slice:":1" == "5" or field.id|slice:":1" == "6" or field.id|slice:":1" == "7" or field.id|slice:":1" == "8" or field.id|slice:":1" == "9" %}
-                        <div class="field-group">
-                            <div class="field-id">{{ field.id }}</div>
-                            <div class="field-name">{{ field.name }}</div>
-                            {% if field.type == "/Tx" %}
-                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
-                            {% elif field.type == "/Btn" %}
-                                <div class="checkbox-field">
-                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
-                                    <label>{% trans "Selected" %}</label>
-                                </div>
-                            {% elif field.type == "/Sig" %}
-                                <div class="signature-field">
-                                    <span>{{ field.value }}</span>
-                                </div>
-                            {% else %}
-                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
-                            {% endif %}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-            
-            <div class="field-section">
-                <div class="section-title">{% trans "Usage Information" %}</div>
-                {% for field in fields %}
-                    {% if field.id|slice:":2" == "10" or field.id|slice:":2" == "11" or field.id|slice:":2" == "12" or field.id|slice:":2" == "13" or field.id|slice:":2" == "14" or field.id|slice:":2" == "15" or field.id|slice:":2" == "16" or field.id|slice:":2" == "17" %}
-                        <div class="field-group">
-                            <div class="field-id">{{ field.id }}</div>
-                            <div class="field-name">{{ field.name }}</div>
-                            {% if field.type == "/Tx" %}
-                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
-                            {% elif field.type == "/Btn" %}
-                                <div class="checkbox-field">
-                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
-                                    <label>{% trans "Selected" %}</label>
-                                </div>
-                            {% elif field.type == "/Sig" %}
-                                <div class="signature-field">
-                                    <span>{{ field.value }}</span>
-                                </div>
-                            {% else %}
-                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
-                            {% endif %}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-            
-            <div class="field-section">
-                <div class="section-title">{% trans "Other Fields" %}</div>
-                {% for field in fields %}
-                    {% if field.id|slice:":1" != "1" and field.id|slice:":1" != "2" and field.id|slice:":1" != "3" and field.id|slice:":1" != "4" and field.id|slice:":1" != "5" and field.id|slice:":1" != "6" and field.id|slice:":1" != "7" and field.id|slice:":1" != "8" and field.id|slice:":1" != "9" and field.id|slice:":2" != "10" and field.id|slice:":2" != "11" and field.id|slice:":2" != "12" and field.id|slice:":2" != "13" and field.id|slice:":2" != "14" and field.id|slice:":2" != "15" and field.id|slice:":2" != "16" and field.id|slice:":2" != "17" %}
-                        <div class="field-group">
-                            <div class="field-id">{{ field.id }}</div>
-                            <div class="field-name">{{ field.name }}</div>
-                            {% if field.type == "/Tx" %}
-                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
-                            {% elif field.type == "/Btn" %}
-                                <div class="checkbox-field">
-                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
-                                    <label>{% trans "Selected" %}</label>
-                                </div>
-                            {% elif field.type == "/Sig" %}
-                                <div class="signature-field">
-                                    <span>{{ field.value }}</span>
-                                </div>
-                            {% else %}
-                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
-                            {% endif %}
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
-        </form>
+    <!-- Form Header -->
+    <div class="form-header-section">
+        <div class="form-title">Rolls-Royce Deutschland Ltd & Co KG</div>
+        <div class="form-subtitle">Antrag für Teile und Stoffe - Consumable Material Supply Request</div>
     </div>
+    
+    <form id="pdf-edit-form">
+        {% csrf_token %}
+        
+        <!-- Antragsteller Section -->
+        <div class="section-header">
+            <i class="fas fa-user"></i>
+            Antragsteller (Applicant Information)
+        </div>
+        <table class="form-table">
+            {% for field in fields %}
+                {% if field.id == "1" or field.id|slice:":2" == "2a" or field.id|slice:":2" == "2b" or field.id|slice:":2" == "2c" or field.id|slice:":2" == "2d" or field.id == "3" or field.id == "4" or field.id == "5" or field.id == "6" or field.id == "7" or field.id == "8" or field.id == "9" or field.id == "10" or field.id == "11" or field.id|slice:":3" == "12a" or field.id|slice:":3" == "12b" or field.id == "13" or field.id == "14" or field.id|slice:":3" == "15a" or field.id|slice:":3" == "15b" or field.id == "16" or field.id|slice:":3" == "17a" or field.id|slice:":3" == "17b" or field.id|slice:":3" == "17c" or field.id|slice:":3" == "18a" or field.id|slice:":3" == "18b" or field.id|slice:":3" == "18c" or field.id|slice:":3" == "18d" or field.id|slice:":3" == "18e" or field.id == "19" or field.id == "20" or field.id == "21" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            {% if field.type == "/Tx" %}
+                                {% if field.id == "10" or field.id == "19" or field.id == "31" %}
+                                    <textarea class="field-value long-text" name="{{ field.id }}" data-field-id="{{ field.id }}">{{ field.value }}</textarea>
+                                {% else %}
+                                    <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
+                                {% endif %}
+                            {% elif field.type == "/Btn" %}
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label>{% trans "Selected" %}</label>
+                                </div>
+                            {% elif field.type == "/Sig" %}
+                                <div class="signature-indicator">
+                                    <i class="fas fa-signature"></i>
+                                    {% trans "Digital Signature Present" %}
+                                </div>
+                            {% else %}
+                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+        
+        <!-- ChemScan Part A Section -->
+        <div class="section-header">
+            <i class="fas fa-flask"></i>
+            ChemScan (Part A) - Ergebnis der Prüfung für Arbeitsschutz / Gesundheitsschutz
+        </div>
+        <table class="form-table">
+            {% for field in fields %}
+                {% if field.id|slice:":3" == "22a" or field.id|slice:":4" == "22a1" or field.id|slice:":4" == "22a2" or field.id|slice:":4" == "23a1" or field.id|slice:":4" == "23a2" or field.id|slice:":4" == "23a3" or field.id|slice:":4" == "23a4" or field.id|slice:":4" == "23a5" or field.id|slice:":4" == "23a6" or field.id|slice:":4" == "23a7" or field.id|slice:":4" == "23a8" or field.id|slice:":4" == "23a9" or field.id|slice:":5" == "23a10" or field.id|slice:":5" == "23a11" or field.id|slice:":5" == "23a12" or field.id|slice:":5" == "23a13" or field.id|slice:":5" == "23a14" or field.id|slice:":4" == "24a1" or field.id|slice:":4" == "24a2" or field.id|slice:":4" == "24a3" or field.id|slice:":4" == "24a4" or field.id|slice:":4" == "24a5" or field.id|slice:":4" == "24a6" or field.id|slice:":4" == "24a7" or field.id|slice:":4" == "24a8" or field.id|slice:":4" == "24a9" or field.id|slice:":5" == "24a10" or field.id|slice:":5" == "24a11" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            {% if field.type == "/Tx" %}
+                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
+                            {% elif field.type == "/Btn" %}
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label>{% trans "Selected" %}</label>
+                                </div>
+                            {% elif field.type == "/Sig" %}
+                                <div class="signature-indicator">
+                                    <i class="fas fa-signature"></i>
+                                    {% trans "Digital Signature Present" %}
+                                </div>
+                            {% else %}
+                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+        
+        <!-- ChemScan Part B Section -->
+        <div class="section-header">
+            <i class="fas fa-flask"></i>
+            ChemScan (Part B) - Falls erforderlich
+        </div>
+        <table class="form-table">
+            {% for field in fields %}
+                {% if field.id|slice:":3" == "22b" or field.id|slice:":4" == "22b1" or field.id|slice:":4" == "22b2" or field.id|slice:":4" == "23b1" or field.id|slice:":4" == "23b2" or field.id|slice:":4" == "23b3" or field.id|slice:":4" == "23b4" or field.id|slice:":4" == "23b5" or field.id|slice:":4" == "23b6" or field.id|slice:":4" == "23b7" or field.id|slice:":4" == "23b8" or field.id|slice:":4" == "23b9" or field.id|slice:":5" == "23b10" or field.id|slice:":5" == "23b11" or field.id|slice:":5" == "23b12" or field.id|slice:":5" == "23b13" or field.id|slice:":5" == "23b14" or field.id|slice:":4" == "24b1" or field.id|slice:":4" == "24b2" or field.id|slice:":4" == "24b3" or field.id|slice:":4" == "24b4" or field.id|slice:":4" == "24b5" or field.id|slice:":4" == "24b6" or field.id|slice:":4" == "24b7" or field.id|slice:":4" == "24b8" or field.id|slice:":4" == "24b9" or field.id|slice:":5" == "24b10" or field.id|slice:":5" == "24b11" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            {% if field.type == "/Tx" %}
+                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
+                            {% elif field.type == "/Btn" %}
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label>{% trans "Selected" %}</label>
+                                </div>
+                            {% elif field.type == "/Sig" %}
+                                <div class="signature-indicator">
+                                    <i class="fas fa-signature"></i>
+                                    {% trans "Digital Signature Present" %}
+                                </div>
+                            {% else %}
+                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+        
+        <!-- Umweltschutz Section -->
+        <div class="section-header">
+            <i class="fas fa-leaf"></i>
+            Umweltschutz (Environmental Protection)
+        </div>
+        <table class="form-table">
+            {% for field in fields %}
+                {% if field.id|slice:":3" == "25a" or field.id|slice:":3" == "25b" or field.id|slice:":3" == "25c" or field.id == "26" or field.id == "27" or field.id == "28" or field.id == "29" or field.id == "30" or field.id == "31" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            {% if field.type == "/Tx" %}
+                                {% if field.id == "31" %}
+                                    <textarea class="field-value long-text" name="{{ field.id }}" data-field-id="{{ field.id }}">{{ field.value }}</textarea>
+                                {% else %}
+                                    <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
+                                {% endif %}
+                            {% elif field.type == "/Btn" %}
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label>{% trans "Selected" %}</label>
+                                </div>
+                            {% elif field.type == "/Sig" %}
+                                <div class="signature-indicator">
+                                    <i class="fas fa-signature"></i>
+                                    {% trans "Digital Signature Present" %}
+                                </div>
+                            {% else %}
+                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+        
+        <!-- Arbeits- & Gesundheitsschutz Section -->
+        <div class="section-header">
+            <i class="fas fa-hard-hat"></i>
+            Arbeits- & Gesundheitsschutz (Occupational Health & Safety)
+        </div>
+        <table class="form-table">
+            {% for field in fields %}
+                {% if field.id|slice:":3" == "32a" or field.id|slice:":3" == "32b" or field.id|slice:":3" == "32c" or field.id == "33" or field.id == "34" or field.id == "35" or field.id == "36" or field.id == "37" or field.id == "38" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            {% if field.type == "/Tx" %}
+                                {% if field.id == "38" %}
+                                    <textarea class="field-value long-text" name="{{ field.id }}" data-field-id="{{ field.id }}">{{ field.value }}</textarea>
+                                {% else %}
+                                    <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
+                                {% endif %}
+                            {% elif field.type == "/Btn" %}
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label>{% trans "Selected" %}</label>
+                                </div>
+                            {% elif field.type == "/Sig" %}
+                                <div class="signature-indicator">
+                                    <i class="fas fa-signature"></i>
+                                    {% trans "Digital Signature Present" %}
+                                </div>
+                            {% else %}
+                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+        
+        <!-- Fertigungslabor Section -->
+        <div class="section-header">
+            <i class="fas fa-industry"></i>
+            Fertigungslabor (Manufacturing Laboratory)
+        </div>
+        <table class="form-table">
+            {% for field in fields %}
+                {% if field.id == "39" or field.id|slice:":3" == "39a" or field.id|slice:":3" == "40a" or field.id|slice:":3" == "40b" or field.id|slice:":3" == "40c" or field.id == "41" or field.id|slice:":3" == "41a" or field.id == "42" or field.id|slice:":3" == "42a" or field.id == "43" or field.id == "44" or field.id|slice:":3" == "44a" or field.id == "45" or field.id == "46" or field.id|slice:":3" == "47a" or field.id|slice:":3" == "47b" or field.id|slice:":3" == "47c" or field.id == "48" or field.id|slice:":3" == "48a" or field.id == "49" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            {% if field.type == "/Tx" %}
+                                {% if field.id == "46" or field.id == "49" %}
+                                    <textarea class="field-value long-text" name="{{ field.id }}" data-field-id="{{ field.id }}">{{ field.value }}</textarea>
+                                {% else %}
+                                    <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
+                                {% endif %}
+                            {% elif field.type == "/Btn" %}
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label>{% trans "Selected" %}</label>
+                                </div>
+                            {% elif field.type == "/Sig" %}
+                                <div class="signature-indicator">
+                                    <i class="fas fa-signature"></i>
+                                    {% trans "Digital Signature Present" %}
+                                </div>
+                            {% else %}
+                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+        
+        <!-- Normstelle Section -->
+        <div class="section-header">
+            <i class="fas fa-stamp"></i>
+            Normstelle (Standards Department)
+        </div>
+        <table class="form-table">
+            {% for field in fields %}
+                {% if field.id|slice:":3" == "50a" or field.id|slice:":3" == "50b" or field.id|slice:":3" == "50c" or field.id == "51" or field.id == "52" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            {% if field.type == "/Tx" %}
+                                {% if field.id == "52" %}
+                                    <textarea class="field-value long-text" name="{{ field.id }}" data-field-id="{{ field.id }}">{{ field.value }}</textarea>
+                                {% else %}
+                                    <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
+                                {% endif %}
+                            {% elif field.type == "/Btn" %}
+                                <div class="checkbox-container">
+                                    <input type="checkbox" class="field-value" name="{{ field.id }}" {% if field.value == "/0" or field.value == "/Yes" %}checked{% endif %} data-field-id="{{ field.id }}">
+                                    <label>{% trans "Selected" %}</label>
+                                </div>
+                            {% elif field.type == "/Sig" %}
+                                <div class="signature-indicator">
+                                    <i class="fas fa-signature"></i>
+                                    {% trans "Digital Signature Present" %}
+                                </div>
+                            {% else %}
+                                <input type="text" class="field-value" name="{{ field.id }}" value="{{ field.value }}" data-field-id="{{ field.id }}">
+                            {% endif %}
+                        </td>
+                    </tr>
+                {% endif %}
+            {% endfor %}
+        </table>
+    </form>
 </div>
 {% endblock %}
 
@@ -166,7 +571,7 @@
         saveButton.addEventListener('click', function() {
             // Collect all field values
             const formData = {};
-            const textInputs = form.querySelectorAll('input[type="text"]');
+            const textInputs = form.querySelectorAll('input[type="text"], textarea');
             const checkboxInputs = form.querySelectorAll('input[type="checkbox"]');
             
             textInputs.forEach(input => {
@@ -176,7 +581,7 @@
             
             checkboxInputs.forEach(checkbox => {
                 const fieldId = checkbox.dataset.fieldId;
-                formData[fieldId] = checkbox.checked ? '/0' : '/1';  // Simplified - adjust based on your actual button values
+                formData[fieldId] = checkbox.checked ? '/0' : '/1';
             });
             
             // Send the data to the server
@@ -191,7 +596,7 @@
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    showAlert('success', '{% trans "Form saved successfully!" %}');
+                    showAlert('success', data.message || '{% trans "Form saved successfully!" %}');
                 } else {
                     showAlert('danger', data.message || '{% trans "An error occurred while saving the form." %}');
                 }

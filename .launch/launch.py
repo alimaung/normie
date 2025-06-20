@@ -38,7 +38,9 @@ def check_server_ready(url, max_attempts=30, delay=1):
             if response.status_code == 200:
                 print(f"✓ Server is ready! (attempt {attempt + 1})")
                 return True
-        except requests.exceptions.RequestException:
+        except requests.exceptions.RequestException as e:
+            if attempt == 0:
+                print(f"  Connection error: {e}")
             pass
         
         if attempt < max_attempts - 1:
@@ -48,7 +50,7 @@ def check_server_ready(url, max_attempts=30, delay=1):
     print(f"✗ Server did not become ready after {max_attempts} attempts")
     return False
 
-def start_django_server(project_root, host="0.0.0.0", port="1918"):
+def start_django_server(project_root, host="0.0.0.0", port="8001"):
     """
     Start the Django development server.
     
@@ -113,7 +115,7 @@ def open_browser_fullscreen(url, delay=2):
             # Try Chrome with fullscreen flag
             for chrome_path in chrome_paths:
                 if os.path.exists(chrome_path):
-                    subprocess.Popen([chrome_path, "--start-fullscreen", url])
+                    subprocess.Popen([chrome_path, "--kiosk", url])
                     print("✓ Chrome opened in fullscreen mode")
                     return
             
@@ -227,8 +229,8 @@ def main():
     try:
         # Configuration
         HOST = "0.0.0.0"
-        PORT = "1918"
-        URL = f"https://127.0.0.1:{PORT}"
+        PORT = "8001"
+        URL = f"http://127.0.0.1:{PORT}"
         
         # Get project root
         project_root = get_project_root()
