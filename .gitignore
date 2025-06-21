@@ -8,3 +8,4 @@ __pycache__/
 *.env
 
 temp_forms/
+contacts.json
