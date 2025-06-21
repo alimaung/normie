@@ -49,14 +49,11 @@ class OutlookAddressBookExtractor:
         """
         contact_info = {}
         
-        # Basic contact fields
+        # Basic contact fields - removing problematic email fields for now
         fields_mapping = {
             'FullName': 'full_name',
             'FirstName': 'first_name',
             'LastName': 'last_name',
-            'Email1Address': 'email_primary',
-            'Email2Address': 'email_secondary',
-            'Email3Address': 'email_tertiary',
             'CompanyName': 'company',
             'JobTitle': 'job_title',
             'BusinessTelephoneNumber': 'phone_business',
@@ -70,15 +67,21 @@ class OutlookAddressBookExtractor:
             'Body': 'notes'
         }
         
-        # Alternative field names to try for email addresses
-        email_alternatives = [
-            (['Email1Address', 'EmailAddress', 'PrimarySmtpAddress'], 'email_primary'),
-            (['Email2Address', 'Email2DisplayName'], 'email_secondary'),
-            (['Email3Address', 'Email3DisplayName'], 'email_tertiary')
-        ]
+        # Email extraction with special handling
+        def safe_get_email(contact_obj, property_name):
+            """Safely extract email property with proper error handling."""
+            try:
+                if hasattr(contact_obj, property_name):
+                    value = getattr(contact_obj, property_name, None)
+                    if value is not None and str(value).strip():
+                        return str(value).strip()
+            except Exception:
+                # Some properties may exist but throw errors when accessed
+                pass
+            return None
         
         # Fields that are commonly missing and shouldn't generate warnings
-        common_missing_fields = {'Body', 'Email2Address', 'Email3Address', 'Categories', 'WebPage'}
+        common_missing_fields = {'Body', 'Categories', 'WebPage', 'BusinessFaxNumber'}
         
         for outlook_field, json_field in fields_mapping.items():
             try:
@@ -97,18 +100,20 @@ class OutlookAddressBookExtractor:
                     print(f"Warning: Could not extract {outlook_field}: {e}")
                 continue
         
-        # Try alternative email field names if the standard ones didn't work
-        for field_alternatives, json_field in email_alternatives:
-            if json_field not in contact_info:  # Only try if we haven't found this email yet
-                for field_name in field_alternatives:
-                    try:
-                        if hasattr(contact, field_name):
-                            value = getattr(contact, field_name, None)
-                            if value is not None and str(value).strip():
-                                contact_info[json_field] = str(value).strip()
-                                break  # Found a value, stop trying alternatives
-                    except Exception:
-                        continue
+        # Handle email addresses with special care
+        # Try multiple approaches for each email field
+        email_extractions = [
+            ('email_primary', ['Email1Address', 'PrimarySmtpAddress', 'EmailAddress']),
+            ('email_secondary', ['Email2Address']),
+            ('email_tertiary', ['Email3Address'])
+        ]
+        
+        for json_field, property_names in email_extractions:
+            for prop_name in property_names:
+                email_value = safe_get_email(contact, prop_name)
+                if email_value:
+                    contact_info[json_field] = email_value
+                    break  # Found an email, stop trying other properties for this field
         
         # Add creation and modification dates if available
         try:
@@ -522,6 +527,7 @@ class OutlookAddressBookExtractor:
                 'Email1Address', 'Email2Address', 'Email3Address',
                 'EmailAddress', 'PrimarySmtpAddress',
                 'Email1DisplayName', 'Email2DisplayName', 'Email3DisplayName',
+                'Email1AddressType', 'Email2AddressType', 'Email3AddressType',
                 'FirstName', 'LastName', 'CompanyName', 'JobTitle'
             ]
             
@@ -529,15 +535,22 @@ class OutlookAddressBookExtractor:
             for prop in common_props:
                 try:
                     if hasattr(contact, prop):
-                        value = getattr(contact, prop, None)
-                        if value:
-                            print(f"     {prop}: {str(value)[:50]}...")
-                        else:
-                            print(f"     {prop}: <empty>")
+                        try:
+                            value = getattr(contact, prop, None)
+                            if value:
+                                # Truncate long values for display
+                                value_str = str(value)[:50]
+                                if len(str(value)) > 50:
+                                    value_str += "..."
+                                print(f"     {prop}: '{value_str}'")
+                            else:
+                                print(f"     {prop}: <empty>")
+                        except Exception as access_error:
+                            print(f"     {prop}: <access error: {access_error}>")
                     else:
                         print(f"     {prop}: <not available>")
                 except Exception as e:
-                    print(f"     {prop}: <error: {e}>")
+                    print(f"     {prop}: <check error: {e}>")
             
         except Exception as e:
             print(f"   Diagnostic error: {e}")
@@ -709,7 +722,7 @@ def main():
     
     # Print summary
     extraction_info = address_book_data.get('extraction_info', {})
-    print(f"\n�� Extraction Summary:")
+    print(f"\n📋 Extraction Summary:")
     print(f"Total contacts found: {extraction_info.get('total_contacts', 0)}")
     print(f"Extraction time: {extraction_info.get('timestamp', 'Unknown')}")
     
