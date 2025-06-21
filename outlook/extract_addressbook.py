@@ -23,12 +23,18 @@ class OutlookAddressBookExtractor:
             bool: True if connection successful, False otherwise
         """
         try:
+            print("🔗 Attempting to connect to Outlook...")
             self.outlook = win32com.client.Dispatch("Outlook.Application")
             self.namespace = self.outlook.GetNamespace("MAPI")
-            print("Successfully connected to Outlook")
+            print("✅ Successfully connected to Outlook")
             return True
         except Exception as e:
-            print(f"Error connecting to Outlook: {e}")
+            print(f"❌ Error connecting to Outlook: {e}")
+            print("💡 Troubleshooting tips:")
+            print("   • Make sure Microsoft Outlook is installed")
+            print("   • Try starting Outlook manually first")
+            print("   • Check if Outlook is running in safe mode")
+            print("   • Ensure you have proper permissions to access Outlook")
             return False
     
     def extract_contact_info(self, contact) -> Dict[str, Any]:
@@ -64,26 +70,57 @@ class OutlookAddressBookExtractor:
             'Body': 'notes'
         }
         
+        # Alternative field names to try for email addresses
+        email_alternatives = [
+            (['Email1Address', 'EmailAddress', 'PrimarySmtpAddress'], 'email_primary'),
+            (['Email2Address', 'Email2DisplayName'], 'email_secondary'),
+            (['Email3Address', 'Email3DisplayName'], 'email_tertiary')
+        ]
+        
+        # Fields that are commonly missing and shouldn't generate warnings
+        common_missing_fields = {'Body', 'Email2Address', 'Email3Address', 'Categories', 'WebPage'}
+        
         for outlook_field, json_field in fields_mapping.items():
             try:
-                value = getattr(contact, outlook_field, None)
-                if value:
-                    contact_info[json_field] = str(value).strip()
+                # Check if the field exists first
+                if hasattr(contact, outlook_field):
+                    value = getattr(contact, outlook_field, None)
+                    if value is not None and str(value).strip():
+                        contact_info[json_field] = str(value).strip()
+                else:
+                    # Only warn for important fields that are unexpectedly missing
+                    if outlook_field not in common_missing_fields:
+                        print(f"Debug: Contact missing field {outlook_field}")
             except Exception as e:
-                print(f"Warning: Could not extract {outlook_field}: {e}")
+                # Only show warnings for unexpected errors, not for commonly missing fields
+                if outlook_field not in common_missing_fields:
+                    print(f"Warning: Could not extract {outlook_field}: {e}")
                 continue
+        
+        # Try alternative email field names if the standard ones didn't work
+        for field_alternatives, json_field in email_alternatives:
+            if json_field not in contact_info:  # Only try if we haven't found this email yet
+                for field_name in field_alternatives:
+                    try:
+                        if hasattr(contact, field_name):
+                            value = getattr(contact, field_name, None)
+                            if value is not None and str(value).strip():
+                                contact_info[json_field] = str(value).strip()
+                                break  # Found a value, stop trying alternatives
+                    except Exception:
+                        continue
         
         # Add creation and modification dates if available
         try:
-            if hasattr(contact, 'CreationTime'):
+            if hasattr(contact, 'CreationTime') and contact.CreationTime:
                 contact_info['created_date'] = contact.CreationTime.strftime('%Y-%m-%d %H:%M:%S')
-        except:
+        except Exception:
             pass
             
         try:
-            if hasattr(contact, 'LastModificationTime'):
+            if hasattr(contact, 'LastModificationTime') and contact.LastModificationTime:
                 contact_info['modified_date'] = contact.LastModificationTime.strftime('%Y-%m-%d %H:%M:%S')
-        except:
+        except Exception:
             pass
         
         return contact_info
@@ -102,21 +139,52 @@ class OutlookAddressBookExtractor:
         
         try:
             items = folder.Items
-            print(f"Processing {items.Count} items in folder: {folder.Name}")
+            total_items = items.Count
+            print(f"Processing {total_items} items in folder: {folder.Name}")
             
-            for item in items:
+            if total_items == 0:
+                print(f"  No items found in folder: {folder.Name}")
+                return contacts
+            
+            processed_contacts = 0
+            skipped_items = 0
+            diagnostic_count = 0
+            
+            for i, item in enumerate(items, 1):
                 try:
-                    # Check if item is a contact (olContactItem = 2)
-                    if item.Class == 40:  # olContact
+                    # Show progress for large folders
+                    if total_items > 50 and (i % 25 == 0 or i == total_items):
+                        print(f"  Progress: {i}/{total_items} items processed...")
+                    
+                    # Check if item is a contact (olContactItem = 40)
+                    if hasattr(item, 'Class') and item.Class == 40:  # olContact
+                        # Run diagnostics on first few contacts if we're having issues
+                        if diagnostic_count < 2 and processed_contacts == 0:
+                            self.diagnose_contact_properties(item)
+                            diagnostic_count += 1
+                        
                         contact_info = self.extract_contact_info(item)
-                        if contact_info:  # Only add if we got some info
+                        if contact_info and self.is_valid_contact(contact_info):
                             contacts.append(contact_info)
+                            processed_contacts += 1
+                        else:
+                            if contact_info:
+                                print(f"  Debug: Contact {i} lacks key information (name/email/company)")
+                            else:
+                                print(f"  Warning: Contact {i} had no extractable information")
+                    else:
+                        # Item is not a contact (could be distribution list, etc.)
+                        skipped_items += 1
+                        
                 except Exception as e:
-                    print(f"Warning: Could not process contact: {e}")
+                    print(f"  Warning: Could not process item {i}: {e}")
+                    skipped_items += 1
                     continue
+            
+            print(f"  ✅ Folder '{folder.Name}': {processed_contacts} contacts extracted, {skipped_items} items skipped")
                     
         except Exception as e:
-            print(f"Error processing folder {folder.Name}: {e}")
+            print(f"❌ Error processing folder {folder.Name}: {e}")
         
         return contacts
     
@@ -430,6 +498,68 @@ class OutlookAddressBookExtractor:
         except Exception as e:
             print(f"Error saving to JSON: {e}")
             return ""
+    
+    def diagnose_contact_properties(self, contact, max_contacts: int = 3) -> None:
+        """
+        Diagnostic method to list available properties on a contact object.
+        This helps identify the correct property names for field extraction.
+        
+        Args:
+            contact: Outlook contact object
+            max_contacts: Maximum number of contacts to diagnose
+        """
+        try:
+            print(f"\n🔍 Diagnostic info for contact:")
+            print(f"   Contact Class: {getattr(contact, 'Class', 'Unknown')}")
+            print(f"   Contact Type: {type(contact)}")
+            
+            # Try to get basic info
+            name = getattr(contact, 'FullName', 'No FullName')
+            print(f"   FullName: {name}")
+            
+            # List some common properties and their values
+            common_props = [
+                'Email1Address', 'Email2Address', 'Email3Address',
+                'EmailAddress', 'PrimarySmtpAddress',
+                'Email1DisplayName', 'Email2DisplayName', 'Email3DisplayName',
+                'FirstName', 'LastName', 'CompanyName', 'JobTitle'
+            ]
+            
+            print("   Available properties:")
+            for prop in common_props:
+                try:
+                    if hasattr(contact, prop):
+                        value = getattr(contact, prop, None)
+                        if value:
+                            print(f"     {prop}: {str(value)[:50]}...")
+                        else:
+                            print(f"     {prop}: <empty>")
+                    else:
+                        print(f"     {prop}: <not available>")
+                except Exception as e:
+                    print(f"     {prop}: <error: {e}>")
+            
+        except Exception as e:
+            print(f"   Diagnostic error: {e}")
+    
+    def is_valid_contact(self, contact_info: Dict[str, Any]) -> bool:
+        """
+        Check if a contact has enough information to be considered valid.
+        
+        Args:
+            contact_info: Dictionary containing contact information
+            
+        Returns:
+            bool: True if contact has meaningful information, False otherwise
+        """
+        # A contact is considered valid if it has at least one of these key fields
+        key_fields = ['full_name', 'first_name', 'last_name', 'email_primary', 'company']
+        
+        for field in key_fields:
+            if contact_info.get(field) and contact_info[field].strip():
+                return True
+        
+        return False
 
 
 def main():
@@ -445,7 +575,45 @@ def main():
     # Check if user wants to search GAL specifically
     import sys
     if len(sys.argv) > 1:
-        if sys.argv[1].lower() == 'search' and len(sys.argv) > 2:
+        if sys.argv[1].lower() == 'diagnostic':
+            # Diagnostic mode - show detailed property info
+            print("🔍 Diagnostic Mode: Analyzing contact properties")
+            print("=" * 50)
+            
+            extractor = OutlookAddressBookExtractor()
+            if not extractor.connect_to_outlook():
+                print("❌ Failed to connect to Outlook")
+                return
+            
+            try:
+                # Get the default Contacts folder
+                contacts_folder = extractor.namespace.GetDefaultFolder(10)  # olFolderContacts
+                items = contacts_folder.Items
+                
+                print(f"📁 Analyzing contacts in folder: {contacts_folder.Name}")
+                print(f"📊 Total items in folder: {items.Count}")
+                
+                contact_count = 0
+                for i, item in enumerate(items):
+                    if hasattr(item, 'Class') and item.Class == 40:  # olContact
+                        contact_count += 1
+                        if contact_count <= 3:  # Analyze first 3 contacts
+                            print(f"\n--- Contact #{contact_count} ---")
+                            extractor.diagnose_contact_properties(item)
+                        else:
+                            break
+                
+                if contact_count == 0:
+                    print("❌ No contacts found in the default contacts folder")
+                else:
+                    print(f"\n✅ Diagnostic complete. Analyzed {min(contact_count, 3)} contacts.")
+                    
+            except Exception as e:
+                print(f"❌ Error in diagnostic mode: {e}")
+            
+            return
+            
+        elif sys.argv[1].lower() == 'search' and len(sys.argv) > 2:
             # GAL search mode
             search_term = ' '.join(sys.argv[2:])
             print(f"🔍 GAL Search Mode: Looking for '{search_term}'")
@@ -541,7 +709,7 @@ def main():
     
     # Print summary
     extraction_info = address_book_data.get('extraction_info', {})
-    print(f"\n📊 Extraction Summary:")
+    print(f"\n�� Extraction Summary:")
     print(f"Total contacts found: {extraction_info.get('total_contacts', 0)}")
     print(f"Extraction time: {extraction_info.get('timestamp', 'Unknown')}")
     
@@ -579,6 +747,7 @@ def main():
         print("❌ Failed to save address book")
     
     print(f"\n💡 Usage Tips:")
+    print(f"  • For diagnostic mode: python {sys.argv[0]} diagnostic")
     print(f"  • For GAL search: python {sys.argv[0]} search <name_or_email>")
     print(f"  • For GAL only: python {sys.argv[0]} gal-only")
     print(f"  • For full extraction: python {sys.argv[0]} (default)")
