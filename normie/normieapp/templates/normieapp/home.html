@@ -8,89 +8,318 @@
 <link rel="stylesheet" href="{% static 'normieapp/css/home.css' %}">
 {% endblock %}
 
-{% block extra_js %}
-<script src="{% static 'normieapp/js/home.js' %}"></script>
-{% endblock %}
-
 {% block content %}
-<div class="container">
-    <div class="welcome-section">
-        <h1>{% trans "Welcome to Normie" %}</h1>
-        <p>{% trans "Your comprehensive platform for standards management and material request/release workflows." %}</p>
-        
-        <div class="feature-grid">
-            <div class="feature-card">
-                <i class="fas fa-clipboard-list"></i>
-                <h3>{% trans "Standards Management" %}</h3>
-                <p>{% trans "Create, maintain, and track organizational standards and norms with version control." %}</p>
-            </div>
-            
-            <div class="feature-card">
-                <i class="fas fa-paper-plane"></i>
-                <h3>{% trans "Request Processing" %}</h3>
-                <p>{% trans "Submit and manage material requests with automated approval workflows." %}</p>
-            </div>
-            
-            <div class="feature-card">
-                <i class="fas fa-boxes"></i>
-                <h3>{% trans "Material Tracking" %}</h3>
-                <p>{% trans "Monitor consumable materials, inventory levels, and usage patterns." %}</p>
-            </div>
-            
-            <div class="feature-card">
-                <i class="fas fa-rocket"></i>
-                <h3>{% trans "Release Management" %}</h3>
-                <p>{% trans "Coordinate material releases with proper documentation and compliance." %}</p>
-            </div>
-            
-            <div class="feature-card">
-                <i class="fas fa-check-circle"></i>
-                <h3>{% trans "Approval Workflows" %}</h3>
-                <p>{% trans "Streamlined approval processes with role-based access and notifications." %}</p>
-            </div>
-            
-            <div class="feature-card">
-                <i class="fas fa-warehouse"></i>
-                <h3>{% trans "Inventory Control" %}</h3>
-                <p>{% trans "Real-time inventory tracking with automated reorder points and alerts." %}</p>
-            </div>
-            
-            <div class="feature-card">
-                <i class="fas fa-chart-bar"></i>
-                <h3>{% trans "Analytics & Reports" %}</h3>
-                <p>{% trans "Comprehensive reporting and analytics for compliance and optimization." %}</p>
-            </div>
-            
-            <div class="feature-card">
-                <i class="fas fa-shield-alt"></i>
-                <h3>{% trans "Audit Trail" %}</h3>
-                <p>{% trans "Complete audit trails for compliance and regulatory requirements." %}</p>
-            </div>
+<!-- Hero Section -->
+<section class="hero-section">
+    <div class="hero-bg-elements">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+    <div class="hero-content">
+        <h1 class="hero-title">{% trans "Simplicity meets power" %}</h1>
+        <p class="hero-subtitle">{% trans "Streamline your standards management and material workflows with an intuitive, powerful platform designed for the modern enterprise." %}</p>
+        <div class="hero-cta">
+            {% if user.is_authenticated %}
+                {% if user.profile.can_create_requests %}
+                    <a href="{% url 'cmsr_request' %}" class="btn-hero primary">{% trans "Create Request" %}</a>
+                {% endif %}
+                <a href="{% url 'cmsr_list' %}" class="btn-hero secondary">{% trans "View Dashboard" %}</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn-hero primary">{% trans "Get Started" %}</a>
+                <a href="#features" class="btn-hero secondary">{% trans "Learn More" %}</a>
+            {% endif %}
         </div>
-        
-        <div class="stats-section">
-            <div class="stat-item">
-                <div class="stat-number">0</div>
+    </div>
+    <div class="hero-scroll-indicator">
+        <a href="#stats">
+            <span class="scroll-arrow"></span>
+        </a>
+    </div>
+</section>
+
+<!-- Permission Notice Section (for authenticated users) -->
+{% if user.is_authenticated %}
+    {% if user.profile.role == 'read_only' %}
+        <section class="permission-notice-section">
+            <div class="permission-notice">
+                <div class="notice-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="notice-content">
+                    <h3>{% trans "Welcome! You have read-only access" %}</h3>
+                    <p>{% trans "Your account has been created with read-only permissions for security. You can view your profile and browse this homepage. To access additional features like creating requests or viewing management tools, please contact your administrator to upgrade your permissions." %}</p>
+                    <div class="notice-actions">
+                        <a href="{% url 'user_profile' %}" class="btn-notice">{% trans "View My Profile" %}</a>
+                        <a href="{% url 'contact' %}" class="btn-notice secondary">{% trans "Contact Admin" %}</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% elif user.profile.role == 'applicant' %}
+        <section class="permission-notice-section">
+            <div class="permission-notice success">
+                <div class="notice-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <div class="notice-content">
+                    <h3>{% trans "Welcome! You can create and manage requests" %}</h3>
+                    <p>{% trans "Your account has applicant permissions. You can create new material requests, track your submissions, and manage your profile. For additional administrative features, contact your administrator." %}</p>
+                    <div class="notice-actions">
+                        <a href="{% url 'cmsr_request' %}" class="btn-notice">{% trans "Create Request" %}</a>
+                        <a href="{% url 'cmsr_list' %}" class="btn-notice secondary">{% trans "My Requests" %}</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    {% endif %}
+{% endif %}
+
+<!-- Stats Section -->
+<section class="stats-section" id="stats">
+    <div class="stats-container">
+        <h2 class="section-title text-center">{% trans "Trusted by industry leaders" %}</h2>
+        <div class="stats-grid">
+            <div class="stat-card scroll-animate">
+                <div class="stat-number" data-count="247">0</div>
                 <div class="stat-label">{% trans "Active Standards" %}</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">0</div>
-                <div class="stat-label">{% trans "Pending Requests" %}</div>
+            <div class="stat-card scroll-animate">
+                <div class="stat-number" data-count="89">0</div>
+                <div class="stat-label">{% trans "Daily Requests" %}</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">0</div>
+            <div class="stat-card scroll-animate">
+                <div class="stat-number" data-count="1,234">0</div>
                 <div class="stat-label">{% trans "Materials Tracked" %}</div>
             </div>
-            <div class="stat-item">
-                <div class="stat-number">0</div>
+            <div class="stat-card scroll-animate">
+                <div class="stat-number" data-count="892">0</div>
                 <div class="stat-label">{% trans "Completed Releases" %}</div>
             </div>
         </div>
-        
-        <div class="cta-section">
-            <button class="btn btn-primary">{% trans "Create Request" %}</button>
-            <button class="btn btn-secondary">{% trans "View Dashboard" %}</button>
+    </div>
+</section>
+
+<!-- Product Showcase -->
+<section class="product-showcase">
+    <div class="product-container">
+        <div class="product-content">
+            <h2>{% trans "Designed for the way you work" %}</h2>
+            <p>{% trans "Normie adapts to your workflow, not the other way around. Seamlessly integrate standards management, approval processes, and material tracking into your existing systems." %}</p>
+            <ul class="product-features-list">
+                <li><span class="check-icon"></span>{% trans "Intuitive interface requiring minimal training" %}</li>
+                <li><span class="check-icon"></span>{% trans "Customizable workflows that adapt to your processes" %}</li>
+                <li><span class="check-icon"></span>{% trans "Enterprise-grade security and compliance" %}</li>
+                <li><span class="check-icon"></span>{% trans "Seamless integration with existing systems" %}</li>
+            </ul>
+        </div>
+        <div class="product-image">
+            <div class="device-mockup">
+                <div class="device-screen"></div>
+            </div>
         </div>
     </div>
-</div>
+</section>
+
+<!-- Features Section -->
+<section class="features-section" id="features">
+    <div class="features-container">
+        <div class="section-header scroll-animate">
+            <h2 class="section-title">{% trans "Powerful capabilities" %}</h2>
+            <p class="section-subtitle">{% trans "Everything you need to manage standards, materials, and workflows in one comprehensive platform." %}</p>
+        </div>
+        
+        <div class="features-grid">
+            <div class="feature-card scroll-animate">
+                <div class="feature-icon">
+                    <i class="fas fa-clipboard-list"></i>
+                </div>
+                <h3 class="feature-title">{% trans "Standards Management" %}</h3>
+                <p class="feature-description">{% trans "Create, maintain, and track organizational standards with advanced version control and collaboration tools." %}</p>
+            </div>
+            
+            <div class="feature-card scroll-animate">
+                <div class="feature-icon">
+                    <i class="fas fa-paper-plane"></i>
+                </div>
+                <h3 class="feature-title">{% trans "Smart Workflows" %}</h3>
+                <p class="feature-description">{% trans "Automated approval workflows with intelligent routing and real-time status tracking." %}</p>
+            </div>
+            
+            <div class="feature-card scroll-animate">
+                <div class="feature-icon">
+                    <i class="fas fa-boxes"></i>
+                </div>
+                <h3 class="feature-title">{% trans "Material Tracking" %}</h3>
+                <p class="feature-description">{% trans "Monitor consumable materials with AI-powered inventory optimization and predictive analytics." %}</p>
+            </div>
+            
+            <div class="feature-card scroll-animate">
+                <div class="feature-icon">
+                    <i class="fas fa-rocket"></i>
+                </div>
+                <h3 class="feature-title">{% trans "Release Management" %}</h3>
+                <p class="feature-description">{% trans "Streamlined release coordination with automated documentation and compliance checking." %}</p>
+            </div>
+            
+            <div class="feature-card scroll-animate">
+                <div class="feature-icon">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="feature-title">{% trans "Approval System" %}</h3>
+                <p class="feature-description">{% trans "Role-based approval processes with customizable workflows and automated notifications." %}</p>
+            </div>
+            
+            <div class="feature-card scroll-animate">
+                <div class="feature-icon">
+                    <i class="fas fa-warehouse"></i>
+                </div>
+                <h3 class="feature-title">{% trans "Inventory Control" %}</h3>
+                <p class="feature-description">{% trans "Real-time inventory tracking with smart reorder points and automated supplier integration." %}</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Testimonial Section -->
+<section class="testimonial-section">
+    <div class="testimonial-container">
+        <div class="testimonial-quote">"</div>
+        <blockquote class="testimonial-text">
+            {% trans "Normie has transformed how we manage our standards and material requests. What used to take days now happens in minutes, with complete visibility throughout the process." %}
+        </blockquote>
+        <div class="testimonial-author">
+            <div class="author-image"></div>
+            <div class="author-info">
+                <div class="author-name">Maria Schmidt</div>
+                <div class="author-title">{% trans "Director of Operations, Acme Industries" %}</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="cta-section">
+    <div class="cta-container">
+        <h2 class="cta-title">{% trans "Ready to transform your workflow?" %}</h2>
+        <p class="cta-subtitle">{% trans "Join leading organizations already using Normie to streamline their operations." %}</p>
+        <div class="cta-buttons">
+            {% if user.is_authenticated %}
+                {% if user.profile.can_create_requests %}
+                    <a href="{% url 'cmsr_request' %}" class="btn-hero primary">{% trans "Create Your First Request" %}</a>
+                {% endif %}
+                <a href="{% url 'user_profile' %}" class="btn-hero secondary">{% trans "View Your Profile" %}</a>
+            {% else %}
+                <a href="{% url 'login' %}" class="btn-hero primary">{% trans "Get Started Today" %}</a>
+                <a href="#contact" class="btn-hero secondary">{% trans "Schedule a Demo" %}</a>
+            {% endif %}
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Animated counters
+    function animateCounters() {
+        const counters = document.querySelectorAll('.stat-number');
+        
+        counters.forEach(counter => {
+            const target = parseInt(counter.getAttribute('data-count').replace(',', ''));
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // 60 FPS
+            let current = 0;
+            
+            const updateCounter = () => {
+                if (current < target) {
+                    current += increment;
+                    if (current > target) current = target;
+                    
+                    // Format number with commas if needed
+                    const formatted = Math.floor(current).toLocaleString();
+                    counter.textContent = formatted;
+                    
+                    requestAnimationFrame(updateCounter);
+                }
+            };
+            
+            updateCounter();
+        });
+    }
+    
+    // Scroll animations
+    function handleScrollAnimations() {
+        const elements = document.querySelectorAll('.scroll-animate');
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate');
+                    
+                    // Start counter animation when stats section is visible
+                    if (entry.target.classList.contains('stat-card')) {
+                        setTimeout(animateCounters, 200);
+                    }
+                }
+            });
+        }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        });
+        
+        elements.forEach(element => {
+            observer.observe(element);
+        });
+    }
+    
+    // Smooth scrolling for anchor links
+    function handleSmoothScrolling() {
+        const links = document.querySelectorAll('a[href^="#"]');
+        
+        links.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    }
+    
+    // Parallax effect for hero section
+    function handleParallax() {
+        const hero = document.querySelector('.hero-section');
+        
+        window.addEventListener('scroll', () => {
+            const scrolled = window.pageYOffset;
+            const rate = scrolled * -0.3;
+            
+            if (hero) {
+                hero.style.transform = `translateY(${rate}px)`;
+            }
+        });
+    }
+    
+    // Initialize all functions
+    handleScrollAnimations();
+    handleSmoothScrolling();
+    handleParallax();
+    
+    // Add loading animation
+    document.body.classList.add('loading');
+    setTimeout(() => {
+        document.body.classList.remove('loading');
+        document.body.classList.add('loaded');
+    }, 300);
+});
+</script>
 {% endblock %} 

@@ -4,6 +4,97 @@ from django.utils.translation import gettext_lazy as _
 from django.core.validators import RegexValidator
 import uuid
 
+class UserProfile(models.Model):
+    """Extended user profile with role-based permissions"""
+    
+    ROLE_CHOICES = [
+        ('admin', _('Administrator')),
+        ('manager', _('Manager')),
+        ('chemscan_specialist', _('ChemScan Specialist')),
+        ('environmental_reviewer', _('Environmental Reviewer')),
+        ('manufacturing_reviewer', _('Manufacturing Reviewer')),
+        ('standards_officer', _('Standards Officer')),
+        ('read_only', _('Read Only')),
+        ('applicant', _('Applicant')),
+    ]
+    
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    role = models.CharField(max_length=30, choices=ROLE_CHOICES, default='applicant')
+    department = models.CharField(max_length=100, blank=True)
+    phone = models.CharField(max_length=20, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    # Permission flags
+    can_create_requests = models.BooleanField(default=True)
+    can_edit_requests = models.BooleanField(default=True)
+    can_delete_requests = models.BooleanField(default=False)
+    can_approve_requests = models.BooleanField(default=False)
+    can_perform_chemscan = models.BooleanField(default=False)
+    can_environmental_review = models.BooleanField(default=False)
+    can_manufacturing_review = models.BooleanField(default=False)
+    can_standards_review = models.BooleanField(default=False)
+    can_view_all_requests = models.BooleanField(default=False)
+    can_manage_users = models.BooleanField(default=False)
+    can_view_reports = models.BooleanField(default=False)
+    can_view_audit_logs = models.BooleanField(default=False)
+    
+    class Meta:
+        verbose_name = _('User Profile')
+        verbose_name_plural = _('User Profiles')
+    
+    def __str__(self):
+        return f"{self.user.username} - {self.get_role_display()}"
+    
+    def save(self, *args, **kwargs):
+        # Set permissions based on role
+        if self.role == 'admin':
+            self.can_create_requests = True
+            self.can_edit_requests = True
+            self.can_delete_requests = True
+            self.can_approve_requests = True
+            self.can_perform_chemscan = True
+            self.can_environmental_review = True
+            self.can_manufacturing_review = True
+            self.can_standards_review = True
+            self.can_view_all_requests = True
+            self.can_manage_users = True
+            self.can_view_reports = True
+            self.can_view_audit_logs = True
+        elif self.role == 'manager':
+            self.can_create_requests = True
+            self.can_edit_requests = True
+            self.can_delete_requests = False
+            self.can_approve_requests = True
+            self.can_view_all_requests = True
+            self.can_view_reports = True
+            self.can_view_audit_logs = True
+        elif self.role == 'chemscan_specialist':
+            self.can_perform_chemscan = True
+            self.can_view_all_requests = True
+        elif self.role == 'environmental_reviewer':
+            self.can_environmental_review = True
+            self.can_view_all_requests = True
+        elif self.role == 'manufacturing_reviewer':
+            self.can_manufacturing_review = True
+            self.can_view_all_requests = True
+        elif self.role == 'standards_officer':
+            self.can_standards_review = True
+            self.can_approve_requests = True
+            self.can_view_all_requests = True
+        elif self.role == 'read_only':
+            self.can_create_requests = False
+            self.can_edit_requests = False
+            self.can_delete_requests = False
+            self.can_view_all_requests = True
+        elif self.role == 'applicant':
+            self.can_create_requests = True
+            self.can_edit_requests = True
+            self.can_delete_requests = False
+            # Can only view own requests
+            
+        super().save(*args, **kwargs)
+
 class CMSRRequest(models.Model):
     """Main CMSR (Consumable Material Supply Request) model"""
     

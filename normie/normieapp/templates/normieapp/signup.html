@@ -1,0 +1,657 @@
+{% extends "normieapp/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ page_title }} - Normie{% endblock %}
+
+{% block content %}
+<div class="signup-container">
+    <div class="signup-card">
+        <div class="signup-header">
+            <h1>{% trans "Create Account" %}</h1>
+            <p>{% trans "Join Normie to access our standards management platform" %}</p>
+        </div>
+
+        <!-- Messages -->
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="message message-{{ message.tags }}">
+                        <i class="fas fa-{% if message.tags == 'error' %}exclamation-triangle{% elif message.tags == 'warning' %}exclamation-circle{% elif message.tags == 'success' %}check-circle{% else %}info-circle{% endif %}"></i>
+                        {{ message }}
+                        <button class="message-close" onclick="this.parentElement.remove()">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <form method="post" class="signup-form">
+            {% csrf_token %}
+            
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="{{ form.first_name.id_for_label }}">{% trans "First Name" %}</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        {{ form.first_name }}
+                    </div>
+                    {% if form.first_name.errors %}
+                        <div class="field-errors">
+                            {% for error in form.first_name.errors %}
+                                <span class="error">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.last_name.id_for_label }}">{% trans "Last Name" %}</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-user"></i>
+                        {{ form.last_name }}
+                    </div>
+                    {% if form.last_name.errors %}
+                        <div class="field-errors">
+                            {% for error in form.last_name.errors %}
+                                <span class="error">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.email.id_for_label }}">{% trans "Email Address" %}</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-envelope"></i>
+                    {{ form.email }}
+                    <div class="validation-indicator" id="email-indicator">
+                        <i class="fas fa-spinner fa-spin" style="display: none;"></i>
+                        <i class="fas fa-check" style="display: none; color: #10b981;"></i>
+                        <i class="fas fa-times" style="display: none; color: #ef4444;"></i>
+                    </div>
+                </div>
+                <div class="validation-feedback" id="email-feedback"></div>
+                {% if form.email.errors %}
+                    <div class="field-errors">
+                        {% for error in form.email.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.username.id_for_label }}">{% trans "Username" %}</label>
+                <div class="input-wrapper">
+                    <i class="fas fa-at"></i>
+                    {{ form.username }}
+                    <div class="validation-indicator" id="username-indicator">
+                        <i class="fas fa-spinner fa-spin" style="display: none;"></i>
+                        <i class="fas fa-check" style="display: none; color: #10b981;"></i>
+                        <i class="fas fa-times" style="display: none; color: #ef4444;"></i>
+                    </div>
+                </div>
+                <div class="validation-feedback" id="username-feedback"></div>
+                {% if form.username.errors %}
+                    <div class="field-errors">
+                        {% for error in form.username.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="{{ form.department.id_for_label }}">{% trans "Department" %}</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-building"></i>
+                        {{ form.department }}
+                    </div>
+                    {% if form.department.errors %}
+                        <div class="field-errors">
+                            {% for error in form.department.errors %}
+                                <span class="error">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+                
+                <div class="form-group">
+                    <label for="{{ form.phone.id_for_label }}">{% trans "Phone" %}</label>
+                    <div class="input-wrapper">
+                        <i class="fas fa-phone"></i>
+                        {{ form.phone }}
+                    </div>
+                    {% if form.phone.errors %}
+                        <div class="field-errors">
+                            {% for error in form.phone.errors %}
+                                <span class="error">{{ error }}</span>
+                            {% endfor %}
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password1.id_for_label }}">{% trans "Password" %}</label>
+                <div class="input-wrapper password-field">
+                    <i class="fas fa-lock"></i>
+                    {{ form.password1 }}
+                    <button type="button" class="password-toggle" onclick="togglePassword('{{ form.password1.id_for_label }}')">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                {% if form.password1.errors %}
+                    <div class="field-errors">
+                        {% for error in form.password1.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="form-group">
+                <label for="{{ form.password2.id_for_label }}">{% trans "Confirm Password" %}</label>
+                <div class="input-wrapper password-field">
+                    <i class="fas fa-lock"></i>
+                    {{ form.password2 }}
+                    <button type="button" class="password-toggle" onclick="togglePassword('{{ form.password2.id_for_label }}')">
+                        <i class="fas fa-eye"></i>
+                    </button>
+                </div>
+                {% if form.password2.errors %}
+                    <div class="field-errors">
+                        {% for error in form.password2.errors %}
+                            <span class="error">{{ error }}</span>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="permission-notice">
+                <div class="notice-icon">
+                    <i class="fas fa-info-circle"></i>
+                </div>
+                <div class="notice-content">
+                    <h4>{% trans "Account Permissions" %}</h4>
+                    <p>{% trans "New accounts are created with read-only access for security. You'll be able to view your profile and browse the homepage. Contact an administrator to request additional permissions." %}</p>
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-full">
+                <i class="fas fa-user-plus"></i>
+                {% trans "Create Account" %}
+            </button>
+        </form>
+
+        <div class="signup-footer">
+            <p>{% trans "Already have an account?" %} <a href="{% url 'login' %}">{% trans "Sign in" %}</a></p>
+            <p><a href="{% url 'home' %}">{% trans "Back to Home" %}</a></p>
+        </div>
+    </div>
+</div>
+
+<style>
+.signup-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+}
+
+.signup-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    width: 100%;
+    max-width: 600px;
+}
+
+.signup-header {
+    text-align: center;
+    padding: 2rem 2rem 1rem;
+    background: linear-gradient(135deg, var(--primary-color, #667eea) 0%, var(--primary-hover, #5a67d8) 100%);
+    color: white;
+}
+
+.signup-header h1 {
+    margin: 0 0 0.5rem;
+    font-size: 2rem;
+    font-weight: 600;
+}
+
+.signup-header p {
+    margin: 0;
+    opacity: 0.9;
+    font-size: 1rem;
+}
+
+.signup-form {
+    padding: 2rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 0.5rem;
+    color: #374151;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+.input-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.input-wrapper i {
+    position: absolute;
+    left: 1rem;
+    color: #9ca3af;
+    z-index: 1;
+}
+
+.input-wrapper input,
+.input-wrapper select {
+    width: 100%;
+    padding: 0.875rem 1rem 0.875rem 2.75rem;
+    border: 2px solid #e5e7eb;
+    border-radius: 12px;
+    font-size: 1rem;
+    transition: all 0.2s ease;
+    background: #f9fafb;
+}
+
+.input-wrapper input:focus,
+.input-wrapper select:focus {
+    outline: none;
+    border-color: var(--primary-color, #667eea);
+    background: white;
+    box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+}
+
+.password-toggle {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: #9ca3af;
+    cursor: pointer;
+    padding: 0.5rem;
+    z-index: 3;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.password-toggle:hover {
+    color: #6b7280;
+    background-color: #f3f4f6;
+}
+
+/* Real-time validation styles */
+.validation-indicator {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
+}
+
+/* For password fields with toggle button, move validation indicator further right */
+.input-wrapper:has(.password-toggle) .validation-indicator {
+    right: 3rem;
+}
+
+/* Alternative for browsers that don't support :has() */
+.password-field .validation-indicator {
+    right: 3rem;
+}
+
+.validation-feedback {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+    min-height: 1.2rem;
+}
+
+.validation-feedback.success {
+    color: #10b981;
+}
+
+.validation-feedback.error {
+    color: #ef4444;
+}
+
+.input-wrapper.validating {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.input-wrapper.valid {
+    border-color: #10b981;
+    box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.1);
+}
+
+.input-wrapper.invalid {
+    border-color: #ef4444;
+    box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.field-errors {
+    margin-top: 0.5rem;
+}
+
+.field-errors .error {
+    display: block;
+    color: #dc2626;
+    font-size: 0.8rem;
+    margin-bottom: 0.25rem;
+}
+
+.permission-notice {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background: #eff6ff;
+    border: 1px solid #bfdbfe;
+    border-radius: 12px;
+    margin-bottom: 2rem;
+}
+
+.notice-icon {
+    color: #2563eb;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+    margin-top: 0.25rem;
+}
+
+.notice-content h4 {
+    margin: 0 0 0.5rem;
+    color: #1e40af;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.notice-content p {
+    margin: 0;
+    color: #1e40af;
+    font-size: 0.8rem;
+    line-height: 1.4;
+}
+
+.btn {
+    padding: 0.875rem 1.5rem;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: all 0.2s ease;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+}
+
+.btn-primary {
+    background: var(--primary-color, #667eea);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover, #5a67d8);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+}
+
+.btn-full {
+    width: 100%;
+}
+
+.signup-footer {
+    text-align: center;
+    padding: 1rem 2rem 2rem;
+    background: #f8f9fa;
+    border-top: 1px solid #e5e7eb;
+}
+
+.signup-footer p {
+    margin: 0.5rem 0;
+    color: #6b7280;
+    font-size: 0.9rem;
+}
+
+.signup-footer a {
+    color: var(--primary-color, #667eea);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.signup-footer a:hover {
+    text-decoration: underline;
+}
+
+.messages {
+    margin: 1rem 2rem 0;
+}
+
+.message {
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 0.9rem;
+    position: relative;
+}
+
+.message-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 0.5rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    opacity: 0.7;
+    padding: 0.25rem;
+}
+
+.message-close:hover {
+    opacity: 1;
+}
+
+.message-error {
+    background: #fef2f2;
+    color: #dc2626;
+    border: 1px solid #fecaca;
+}
+
+.message-success {
+    background: #f0fdf4;
+    color: #16a34a;
+    border: 1px solid #bbf7d0;
+}
+
+.message-info {
+    background: #eff6ff;
+    color: #2563eb;
+    border: 1px solid #bfdbfe;
+}
+
+.message-warning {
+    background: #fffbeb;
+    color: #d97706;
+    border: 1px solid #fed7aa;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .signup-container {
+        padding: 1rem;
+    }
+    
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .signup-form {
+        padding: 1.5rem;
+    }
+    
+    .permission-notice {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+}
+</style>
+
+<script>
+// Password toggle function
+function togglePassword(inputId) {
+    const input = document.getElementById(inputId);
+    const button = input.parentElement.querySelector('.password-toggle i');
+    
+    if (input.type === 'password') {
+        input.type = 'text';
+        button.classList.remove('fa-eye');
+        button.classList.add('fa-eye-slash');
+    } else {
+        input.type = 'password';
+        button.classList.remove('fa-eye-slash');
+        button.classList.add('fa-eye');
+    }
+}
+
+// Real-time validation
+document.addEventListener('DOMContentLoaded', function() {
+    const usernameInput = document.getElementById('{{ form.username.id_for_label }}');
+    const emailInput = document.getElementById('{{ form.email.id_for_label }}');
+    
+    let usernameTimeout;
+    let emailTimeout;
+    
+    // Username validation
+    if (usernameInput) {
+        usernameInput.addEventListener('input', function() {
+            clearTimeout(usernameTimeout);
+            const username = this.value.trim();
+            const indicator = document.getElementById('username-indicator');
+            const feedback = document.getElementById('username-feedback');
+            const wrapper = this.parentElement;
+            
+            // Reset state
+            resetValidationState(wrapper, indicator, feedback);
+            
+            if (username.length === 0) {
+                return;
+            }
+            
+            // Show loading state
+            showLoadingState(wrapper, indicator);
+            
+            // Debounce the API call
+            usernameTimeout = setTimeout(() => {
+                fetch(`/ajax/check-username/?username=${encodeURIComponent(username)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.available) {
+                            showValidState(wrapper, indicator, feedback, data.message);
+                        } else {
+                            showInvalidState(wrapper, indicator, feedback, data.message);
+                        }
+                    })
+                    .catch(error => {
+                        showInvalidState(wrapper, indicator, feedback, 'Error checking username availability');
+                    });
+            }, 500);
+        });
+    }
+    
+    // Email validation
+    if (emailInput) {
+        emailInput.addEventListener('input', function() {
+            clearTimeout(emailTimeout);
+            const email = this.value.trim();
+            const indicator = document.getElementById('email-indicator');
+            const feedback = document.getElementById('email-feedback');
+            const wrapper = this.parentElement;
+            
+            // Reset state
+            resetValidationState(wrapper, indicator, feedback);
+            
+            if (email.length === 0) {
+                return;
+            }
+            
+            // Show loading state
+            showLoadingState(wrapper, indicator);
+            
+            // Debounce the API call
+            emailTimeout = setTimeout(() => {
+                fetch(`/ajax/check-email/?email=${encodeURIComponent(email)}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.available) {
+                            showValidState(wrapper, indicator, feedback, data.message);
+                        } else {
+                            showInvalidState(wrapper, indicator, feedback, data.message);
+                        }
+                    })
+                    .catch(error => {
+                        showInvalidState(wrapper, indicator, feedback, 'Error checking email availability');
+                    });
+            }, 500);
+        });
+    }
+    
+    function resetValidationState(wrapper, indicator, feedback) {
+        wrapper.classList.remove('validating', 'valid', 'invalid');
+        indicator.querySelectorAll('i').forEach(icon => icon.style.display = 'none');
+        feedback.textContent = '';
+        feedback.className = 'validation-feedback';
+    }
+    
+    function showLoadingState(wrapper, indicator) {
+        wrapper.classList.add('validating');
+        indicator.querySelector('.fa-spinner').style.display = 'inline-block';
+    }
+    
+    function showValidState(wrapper, indicator, feedback, message) {
+        wrapper.classList.remove('validating');
+        wrapper.classList.add('valid');
+        indicator.querySelector('.fa-spinner').style.display = 'none';
+        indicator.querySelector('.fa-check').style.display = 'inline-block';
+        feedback.textContent = message;
+        feedback.classList.add('success');
+    }
+    
+    function showInvalidState(wrapper, indicator, feedback, message) {
+        wrapper.classList.remove('validating');
+        wrapper.classList.add('invalid');
+        indicator.querySelector('.fa-spinner').style.display = 'none';
+        indicator.querySelector('.fa-times').style.display = 'inline-block';
+        feedback.textContent = message;
+        feedback.classList.add('error');
+    }
+});
+</script>
+{% endblock %} 

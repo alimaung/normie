@@ -83,6 +83,42 @@
                     </label>
                     <small>{% trans "Show more information in less space" %}</small>
                 </div>
+
+                <div class="setting-item">
+                    <label for="primary-color">{% trans "Primary Color Theme" %}</label>
+                    <div class="color-selector-container">
+                        <div class="color-options">
+                            <button class="color-option active" data-color="#667eea" data-name="Default Blue" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="color-option" data-color="#e74c3c" data-name="Red" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="color-option" data-color="#2ecc71" data-name="Green" style="background: linear-gradient(135deg, #2ecc71 0%, #27ae60 100%);">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="color-option" data-color="#f39c12" data-name="Orange" style="background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="color-option" data-color="#9b59b6" data-name="Purple" style="background: linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%);">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="color-option" data-color="#1abc9c" data-name="Teal" style="background: linear-gradient(135deg, #1abc9c 0%, #16a085 100%);">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="color-option" data-color="#34495e" data-name="Dark Gray" style="background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);">
+                                <i class="fas fa-check"></i>
+                            </button>
+                            <button class="color-option" data-color="#e91e63" data-name="Pink" style="background: linear-gradient(135deg, #e91e63 0%, #ad1457 100%);">
+                                <i class="fas fa-check"></i>
+                            </button>
+                        </div>
+                        <div class="selected-color-info">
+                            <span class="selected-color-name">Default Blue</span>
+                        </div>
+                    </div>
+                    <small>{% trans "Choose your preferred color theme for the interface" %}</small>
+                </div>
             </div>
         </div>
 
@@ -465,4 +501,98 @@
         </div>
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Color theme functionality
+    const colorOptions = document.querySelectorAll('.color-option');
+    const selectedColorName = document.querySelector('.selected-color-name');
+    
+    // Load saved color theme
+    const savedColor = localStorage.getItem('primaryColor') || '#667eea';
+    const savedColorName = localStorage.getItem('primaryColorName') || 'Default Blue';
+    
+    // Apply saved theme
+    applyColorTheme(savedColor);
+    updateActiveColorOption(savedColor);
+    selectedColorName.textContent = savedColorName;
+    
+    // Handle color option clicks
+    colorOptions.forEach(option => {
+        option.addEventListener('click', function() {
+            const color = this.dataset.color;
+            const name = this.dataset.name;
+            
+            // Remove active class from all options
+            colorOptions.forEach(opt => opt.classList.remove('active'));
+            
+            // Add active class to clicked option
+            this.classList.add('active');
+            
+            // Update selected color name
+            selectedColorName.textContent = name;
+            
+            // Apply theme
+            applyColorTheme(color);
+            
+            // Save to localStorage
+            localStorage.setItem('primaryColor', color);
+            localStorage.setItem('primaryColorName', name);
+        });
+    });
+    
+    function applyColorTheme(color) {
+        // Calculate darker shade for hover effects
+        const darkerColor = darkenColor(color, 20);
+        
+        // Apply CSS custom properties
+        document.documentElement.style.setProperty('--primary-color', color);
+        document.documentElement.style.setProperty('--primary-hover', darkerColor);
+        
+        // Update gradients
+        const gradientColors = getGradientColors(color);
+        document.documentElement.style.setProperty('--primary-gradient', 
+            `linear-gradient(135deg, ${color} 0%, ${gradientColors.end} 100%)`);
+    }
+    
+    function updateActiveColorOption(color) {
+        colorOptions.forEach(option => {
+            option.classList.remove('active');
+            if (option.dataset.color === color) {
+                option.classList.add('active');
+            }
+        });
+    }
+    
+    function darkenColor(color, percent) {
+        const num = parseInt(color.replace("#", ""), 16);
+        const amt = Math.round(2.55 * percent);
+        const R = (num >> 16) - amt;
+        const G = (num >> 8 & 0x00FF) - amt;
+        const B = (num & 0x0000FF) - amt;
+        return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+            (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+            (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+    }
+    
+    function getGradientColors(color) {
+        // Define gradient end colors for each primary color
+        const gradientMap = {
+            '#667eea': '#764ba2',
+            '#e74c3c': '#c0392b',
+            '#2ecc71': '#27ae60',
+            '#f39c12': '#e67e22',
+            '#9b59b6': '#8e44ad',
+            '#1abc9c': '#16a085',
+            '#34495e': '#2c3e50',
+            '#e91e63': '#ad1457'
+        };
+        
+        return {
+            start: color,
+            end: gradientMap[color] || darkenColor(color, 15)
+        };
+    }
+});
+</script>
 {% endblock %} 

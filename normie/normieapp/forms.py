@@ -1,9 +1,109 @@
 from django import forms
+from django.contrib.auth.models import User
+from django.contrib.auth.forms import UserCreationForm
 from django.utils.translation import gettext_lazy as _
 from .models import (
     CMSRRequest, ChemScanAssessment, EnvironmentalAssessment, 
-    ManufacturingLabApproval, StandardsOfficeApproval, CMSRDocument
+    ManufacturingLabApproval, StandardsOfficeApproval, CMSRDocument, UserProfile
 )
+
+
+class SignUpForm(UserCreationForm):
+    """Custom signup form with additional fields"""
+    
+    first_name = forms.CharField(
+        max_length=30,
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': _('First name')
+        })
+    )
+    
+    last_name = forms.CharField(
+        max_length=30,
+        required=True,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': _('Last name')
+        })
+    )
+    
+    email = forms.EmailField(
+        required=True,
+        widget=forms.EmailInput(attrs={
+            'class': 'form-control',
+            'placeholder': _('Email address')
+        })
+    )
+    
+    department = forms.CharField(
+        max_length=100,
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': _('Department (optional)')
+        })
+    )
+    
+    phone = forms.CharField(
+        max_length=20,
+        required=False,
+        widget=forms.TextInput(attrs={
+            'class': 'form-control',
+            'placeholder': _('Phone number (optional)')
+        })
+    )
+
+    class Meta:
+        model = User
+        fields = ('username', 'first_name', 'last_name', 'email', 'password1', 'password2')
+        
+        widgets = {
+            'username': forms.TextInput(attrs={
+                'class': 'form-control',
+                'placeholder': _('Choose a username')
+            }),
+        }
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        # Update password field widgets
+        self.fields['password1'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': _('Create a strong password')
+        })
+        self.fields['password2'].widget.attrs.update({
+            'class': 'form-control',
+            'placeholder': _('Confirm your password')
+        })
+
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        if User.objects.filter(email=email).exists():
+            raise forms.ValidationError(_('A user with this email already exists.'))
+        return email
+
+    def save(self, commit=True):
+        user = super().save(commit=False)
+        user.first_name = self.cleaned_data['first_name']
+        user.last_name = self.cleaned_data['last_name']
+        user.email = self.cleaned_data['email']
+        
+        if commit:
+            user.save()
+            # The signal will automatically create a UserProfile, so we get or create it
+            try:
+                profile = user.profile
+            except UserProfile.DoesNotExist:
+                profile = UserProfile.objects.create(user=user)
+            
+            # Update the profile with our form data
+            profile.role = 'read_only'
+            profile.department = self.cleaned_data.get('department', '')
+            profile.phone = self.cleaned_data.get('phone', '')
+            profile.save()
+        return user
 
 
 class CMSRRequestForm(forms.ModelForm):

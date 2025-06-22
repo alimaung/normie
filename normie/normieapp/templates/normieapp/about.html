@@ -1,0 +1,237 @@
+{% extends 'normieapp/base.html' %}
+{% load i18n %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block extra_css %}
+<style>
+    .about-hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 6rem 0;
+        text-align: center;
+    }
+    
+    .about-hero h1 {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+    }
+    
+    .about-hero p {
+        font-size: 1.3rem;
+        max-width: 600px;
+        margin: 0 auto;
+        opacity: 0.9;
+    }
+    
+    .stats-section {
+        padding: 5rem 0;
+        background: #f8f9fa;
+    }
+    
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 3rem;
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+    }
+    
+    .stat-item {
+        background: white;
+        padding: 2rem;
+        border-radius: 15px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #667eea;
+        margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+        color: #6c757d;
+        font-weight: 500;
+    }
+    
+    .team-section {
+        padding: 5rem 0;
+        background: white;
+    }
+    
+    .section-title {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 3rem;
+        color: #1d1d1f;
+    }
+    
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        max-width: 1000px;
+        margin: 0 auto;
+    }
+    
+    .team-card {
+        background: white;
+        padding: 2rem;
+        border-radius: 20px;
+        text-align: center;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+    
+    .team-card:hover {
+        transform: translateY(-5px);
+    }
+    
+    .team-avatar {
+        width: 100px;
+        height: 100px;
+        border-radius: 50%;
+        margin: 0 auto 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 2rem;
+        color: white;
+        font-weight: 600;
+    }
+    
+    .team-name {
+        font-size: 1.3rem;
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+        color: #1d1d1f;
+    }
+    
+    .team-role {
+        color: #667eea;
+        font-weight: 500;
+        margin-bottom: 1rem;
+    }
+    
+    .team-description {
+        color: #6c757d;
+        line-height: 1.6;
+    }
+    
+    .mission-section {
+        padding: 5rem 0;
+        background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+    }
+    
+    .mission-content {
+        max-width: 800px;
+        margin: 0 auto;
+        text-align: center;
+        padding: 0 2rem;
+    }
+    
+    .mission-title {
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        color: #1d1d1f;
+    }
+    
+    .mission-text {
+        font-size: 1.2rem;
+        line-height: 1.8;
+        color: #495057;
+        margin-bottom: 2rem;
+    }
+    
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="about-hero">
+    <div class="container">
+        <h1>{% trans "About Normie" %}</h1>
+        <p>{% trans "Leading the future of standards management and workflow automation with innovative technology and expert knowledge." %}</p>
+    </div>
+</section>
+
+<!-- Stats Section -->
+<section class="stats-section">
+    <div class="container">
+        <div class="stats-grid">
+            <div class="stat-item">
+                <div class="stat-number">{{ stats.years_experience }}+</div>
+                <div class="stat-label">{% trans "Years Experience" %}</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">{{ stats.clients_served }}+</div>
+                <div class="stat-label">{% trans "Clients Served" %}</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">{{ stats.standards_managed|floatformat:0 }}+</div>
+                <div class="stat-label">{% trans "Standards Managed" %}</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">{{ stats.countries }}+</div>
+                <div class="stat-label">{% trans "Countries" %}</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Mission Section -->
+<section class="mission-section">
+    <div class="container">
+        <div class="mission-content">
+            <h2 class="mission-title">{% trans "Our Mission" %}</h2>
+            <p class="mission-text">
+                {% trans "We believe that effective standards management is the foundation of organizational excellence. Our mission is to empower companies with intelligent tools that streamline workflows, ensure compliance, and drive innovation through better process management." %}
+            </p>
+            <p class="mission-text">
+                {% trans "Since our founding, we have been dedicated to creating solutions that not only meet today's challenges but anticipate tomorrow's opportunities in the rapidly evolving landscape of regulatory compliance and standards management." %}
+            </p>
+        </div>
+    </div>
+</section>
+
+<!-- Team Section -->
+<section class="team-section">
+    <div class="container">
+        <h2 class="section-title">{% trans "Meet Our Team" %}</h2>
+        <div class="team-grid">
+            {% for member in team_members %}
+                <div class="team-card">
+                    <div class="team-avatar" style="background: {{ member.image_color }};">
+                        {{ member.name|first }}{{ member.name|wordcount|add:"-1"|slice:"1:" }}
+                    </div>
+                    <h3 class="team-name">{{ member.name }}</h3>
+                    <p class="team-role">{{ member.role }}</p>
+                    <p class="team-description">{{ member.description }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="about-hero" style="padding: 4rem 0;">
+    <div class="container">
+        <h2 style="font-size: 2.5rem; margin-bottom: 1rem;">{% trans "Ready to Get Started?" %}</h2>
+        <p style="margin-bottom: 2rem;">{% trans "Join hundreds of organizations already using Normie to streamline their operations." %}</p>
+        <a href="{% url 'contact' %}" class="btn-hero primary" style="padding: 1rem 2rem; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; border: 1px solid rgba(255,255,255,0.3);">
+            {% trans "Contact Us Today" %}
+        </a>
+    </div>
+</section>
+{% endblock %} 

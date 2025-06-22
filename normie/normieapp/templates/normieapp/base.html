@@ -16,6 +16,349 @@
     <link rel="stylesheet" href="{% static "normieapp/css/vendor/fontawesome.min.css" %}">
     <!-- Load our main CSS file -->
     <link rel="stylesheet" href="{% static 'normieapp/css/styles.css' %}">
+    <style>
+        /* User Profile Container */
+        .user-profile-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        /* Override navbar-icons styles for user badge */
+        .navbar-icons .user-profile-container {
+            height: auto;
+            width: auto;
+        }
+        
+        /* User Badge */
+        .user-badge {
+            display: flex;
+            align-items: center;
+            padding: 0.3rem 0.7rem;
+            margin: 0.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            color: var(--navbar-text-color, white);
+            position: relative;
+            user-select: none;
+            -webkit-tap-highlight-color: transparent;
+            outline: none;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Light mode adjustments */
+        body:not(.dark-mode) .user-badge {
+            background: rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #333;
+        }
+        
+        body:not(.dark-mode) .user-badge:hover,
+        body:not(.dark-mode) .user-badge:focus {
+            background: rgba(0, 0, 0, 0.1);
+            border-color: rgba(0, 0, 0, 0.15);
+        }
+        
+        body:not(.dark-mode) .user-profile-container.active .user-badge {
+            background: rgba(0, 0, 0, 0.15);
+            border-color: rgba(0, 0, 0, 0.2);
+        }
+        
+        .user-badge:hover, .user-badge:focus {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+        
+        .user-profile-container.active .user-badge {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        }
+        
+        .user-avatar {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 0.9rem;
+            color: white;
+            margin-right: 0.75rem;
+            flex-shrink: 0;
+        }
+        
+        .user-info {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-right: 0.5rem;
+            min-width: 0;
+        }
+        
+        .user-display-name {
+            font-weight: 500;
+            font-size: 0.9rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 120px;
+        }
+        
+        .user-role {
+            font-size: 0.75rem;
+            opacity: 0.8;
+            font-weight: 400;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            max-width: 120px;
+        }
+        
+        .dropdown-arrow {
+            font-size: 0.7rem;
+            transition: transform 0.2s ease;
+            flex-shrink: 0;
+        }
+        
+        .user-profile-container.active .dropdown-arrow {
+            transform: rotate(180deg);
+        }
+        
+        /* Profile Dropdown Menu */
+        .profile-dropdown-menu {
+            position: absolute;
+            top: calc(100% + 0.75rem);
+            right: 0;
+            min-width: 290px;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.98);
+            transform-origin: top right;
+            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+            z-index: 1000;
+            pointer-events: none;
+        }
+        
+        .profile-dropdown-menu.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+            pointer-events: auto;
+        }
+                
+        /* Dropdown Header */
+        .dropdown-header {
+            padding: 1.25rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border-radius: 12px 12px 0 0;
+            display: flex;
+            align-items: center;
+        }
+        
+        .header-avatar {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+        
+        .header-info {
+            flex: 1;
+            min-width: 0;
+        }
+        
+        .header-info strong {
+            display: block;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 0.25rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        .role-badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 0.2rem 0.5rem;
+            border-radius: 12px;
+            font-size: 0.7rem;
+            font-weight: 500;
+            margin-bottom: 0.25rem;
+        }
+
+        .session-badge {
+            display: inline-block;
+            background: rgba(34, 197, 94, 0.2);
+            color: rgba(34, 197, 94, 1);
+            padding: 0.15rem 0.4rem;
+            border-radius: 8px;
+            font-size: 0.65rem;
+            font-weight: 500;
+            margin-top: 0.25rem;
+        }
+        
+        .user-email {
+            display: block;
+            opacity: 0.8;
+            font-size: 0.8rem;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        /* Dropdown Sections */
+        .dropdown-section {
+            padding: 0.5rem 0;
+        }
+        
+        /* Override navbar-icons a styles for dropdown items */
+        .profile-dropdown-menu .dropdown-item {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem 1.25rem;
+            color: #495057;
+            text-decoration: none;
+            transition: all 0.2s ease;
+            border: none;
+            background: none;
+            width: 100%;
+            height: auto;
+            border-radius: 0;
+            justify-content: flex-start;
+            font-size: inherit;
+        }
+        
+        .profile-dropdown-menu .dropdown-item:hover {
+            background: #f8f9fa;
+            color: #495057;
+            text-decoration: none;
+            transform: none;
+        }
+        
+        .profile-dropdown-menu .dropdown-item i {
+            width: 18px;
+            margin-right: 0.75rem;
+            text-align: center;
+            font-size: 0.9rem;
+        }
+        
+        .profile-dropdown-menu .dropdown-item span {
+            font-weight: 500;
+            display: inline;
+        }
+        
+        .profile-dropdown-menu .logout-item {
+            color: #dc3545;
+        }
+        
+        .profile-dropdown-menu .logout-item:hover {
+            background: #fff5f5;
+            color: #dc3545;
+        }
+        
+        .dropdown-divider {
+            height: 1px;
+            background: #e9ecef;
+            margin: 0;
+        }
+        
+        /* Login Button for Guests */
+        .navbar-icons .btn-login {
+            display: flex;
+            align-items: center;
+            padding: 0.5rem 1rem;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+            color: white !important;
+            text-decoration: none;
+            border-radius: 20px !important;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            height: auto !important;
+            width: auto !important;
+            border: none !important;
+        }
+        
+        .navbar-icons .btn-login:hover {
+            transform: translateY(-1px) !important;
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4) !important;
+            color: white !important;
+            text-decoration: none;
+            background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%) !important;
+        }
+        
+        .navbar-icons .btn-login i {
+            margin-right: 0.5rem;
+            color: white !important;
+        }
+        
+        .navbar-icons .btn-login span {
+            display: none;
+            color: white !important;
+        }
+        
+        @media (min-width: 768px) {
+            .navbar-icons .btn-login span {
+                display: inline;
+            }
+        }
+        
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .user-info {
+                display: none;
+            }
+            
+            .user-badge {
+                padding: 0.5rem;
+            }
+            
+            .profile-dropdown-menu {
+                min-width: 260px;
+                right: -20px;
+            }
+            
+            .dropdown-item {
+                padding: 1rem 1.25rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .profile-dropdown-menu {
+                min-width: 240px;
+                right: -40px;
+            }
+        }
+        
+        /* Prevent dropdown from closing on mobile */
+        @media (hover: none) and (pointer: coarse) {
+            .user-profile-container:active .profile-dropdown-menu {
+                opacity: 1;
+                visibility: visible;
+                transform: translateY(0);
+            }
+        }
+    </style>
     {% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -29,25 +372,52 @@
         
         <!-- Middle - Navigation Links -->
         <div class="navbar-links">
-            <a href="{% url 'incoming' %}" {% if request.resolver_match.url_name == 'incoming' %}class="active"{% endif %}>{% trans "Incoming" %}</a>
-            <a href="{% url 'directory' %}" {% if request.resolver_match.url_name == 'directory' %}class="active"{% endif %}>{% trans "Directory" %}</a>
-            <a href="{% url 'chemscan' %}" {% if request.resolver_match.url_name == 'chemscan' %}class="active"{% endif %}>{% trans "ChemScan" %}</a>
-            <div class="navbar-dropdown">
-                <a href="#" class="dropdown-toggle {% if request.resolver_match.url_name in 'standards,requests,materials,releases,approvals,cmsr_list,inventory,reports,audit' %}active{% endif %}">
-                    {% trans "Prototype" %} <i class="fas fa-chevron-down"></i>
-                </a>
-                <div class="dropdown-menu">
-                    <a href="{% url 'standards' %}" {% if request.resolver_match.url_name == 'standards' %}class="active"{% endif %}>{% trans "Standards" %}</a>
-                    <a href="{% url 'requests' %}" {% if request.resolver_match.url_name == 'requests' %}class="active"{% endif %}>{% trans "Requests" %}</a>
-                    <a href="{% url 'materials' %}" {% if request.resolver_match.url_name == 'materials' %}class="active"{% endif %}>{% trans "Materials" %}</a>
-                    <a href="{% url 'releases' %}" {% if request.resolver_match.url_name == 'releases' %}class="active"{% endif %}>{% trans "Releases" %}</a>
-                    <a href="{% url 'approvals' %}" {% if request.resolver_match.url_name == 'approvals' %}class="active"{% endif %}>{% trans "Approvals" %}</a>
-                    <a href="{% url 'cmsr_list' %}" {% if request.resolver_match.url_name|slice:":4" == 'cmsr' %}class="active"{% endif %}>{% trans "CMSR" %}</a>
-                    <a href="{% url 'inventory' %}" {% if request.resolver_match.url_name == 'inventory' %}class="active"{% endif %}>{% trans "Inventory" %}</a>
-                    <a href="{% url 'reports' %}" {% if request.resolver_match.url_name == 'reports' %}class="active"{% endif %}>{% trans "Reports" %}</a>
-                    <a href="{% url 'audit' %}" {% if request.resolver_match.url_name == 'audit' %}class="active"{% endif %}>{% trans "Audit" %}</a>
-                </div>
-            </div>
+            {% if user.is_authenticated %}
+                <!-- Authenticated User Navigation -->
+                {% if user.profile.role == 'admin' or user.profile.role == 'manager' %}
+                    <!-- Admin/Manager Full Navigation -->
+                    <a href="{% url 'incoming' %}" {% if request.resolver_match.url_name == 'incoming' %}class="active"{% endif %}>{% trans "Incoming" %}</a>
+                    <a href="{% url 'directory' %}" {% if request.resolver_match.url_name == 'directory' %}class="active"{% endif %}>{% trans "Directory" %}</a>
+                    <a href="{% url 'chemscan' %}" {% if request.resolver_match.url_name == 'chemscan' %}class="active"{% endif %}>{% trans "ChemScan" %}</a>
+                    <div class="navbar-dropdown">
+                        <a href="#" class="dropdown-toggle {% if request.resolver_match.url_name in 'standards,requests,materials,releases,approvals,cmsr_list,inventory,reports,audit' %}active{% endif %}">
+                            {% trans "Management" %} <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu">
+                            <a href="{% url 'standards' %}" {% if request.resolver_match.url_name == 'standards' %}class="active"{% endif %}>{% trans "Standards" %}</a>
+                            <a href="{% url 'requests' %}" {% if request.resolver_match.url_name == 'requests' %}class="active"{% endif %}>{% trans "Requests" %}</a>
+                            <a href="{% url 'materials' %}" {% if request.resolver_match.url_name == 'materials' %}class="active"{% endif %}>{% trans "Materials" %}</a>
+                            <a href="{% url 'releases' %}" {% if request.resolver_match.url_name == 'releases' %}class="active"{% endif %}>{% trans "Releases" %}</a>
+                            <a href="{% url 'approvals' %}" {% if request.resolver_match.url_name == 'approvals' %}class="active"{% endif %}>{% trans "Approvals" %}</a>
+                            <a href="{% url 'cmsr_list' %}" {% if request.resolver_match.url_name|slice:":4" == 'cmsr' %}class="active"{% endif %}>{% trans "CMSR" %}</a>
+                            <a href="{% url 'inventory' %}" {% if request.resolver_match.url_name == 'inventory' %}class="active"{% endif %}>{% trans "Inventory" %}</a>
+                            {% if user.profile.can_view_reports %}
+                                <a href="{% url 'reports' %}" {% if request.resolver_match.url_name == 'reports' %}class="active"{% endif %}>{% trans "Reports" %}</a>
+                            {% endif %}
+                            {% if user.profile.can_view_audit_logs %}
+                                <a href="{% url 'audit' %}" {% if request.resolver_match.url_name == 'audit' %}class="active"{% endif %}>{% trans "Audit" %}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% if user.profile.can_manage_users %}
+                        <a href="{% url 'user_management' %}" {% if request.resolver_match.url_name == 'user_management' %}class="active"{% endif %}>{% trans "Users" %}</a>
+                    {% endif %}
+                {% else %}
+                    <!-- Regular User Navigation -->
+                    {% if user.profile.can_create_requests or user.profile.can_view_all_requests %}
+                        <a href="{% url 'cmsr_list' %}" {% if request.resolver_match.url_name|slice:":4" == 'cmsr' %}class="active"{% endif %}>{% trans "My Requests" %}</a>
+                    {% endif %}
+                    {% if user.profile.can_perform_chemscan %}
+                        <a href="{% url 'chemscan' %}" {% if request.resolver_match.url_name == 'chemscan' %}class="active"{% endif %}>{% trans "ChemScan" %}</a>
+                    {% endif %}
+                    <a href="{% url 'user_profile' %}" {% if request.resolver_match.url_name == 'user_profile' %}class="active"{% endif %}>{% trans "My Profile" %}</a>
+                {% endif %}
+                         {% else %}
+                 <!-- Guest Navigation -->
+                 <a href="{% url 'features_detail' %}" {% if request.resolver_match.url_name == 'features_detail' %}class="active"{% endif %}>{% trans "Features" %}</a>
+                 <a href="{% url 'about' %}" {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}>{% trans "About" %}</a>
+                 <a href="{% url 'contact' %}" {% if request.resolver_match.url_name == 'contact' %}class="active"{% endif %}>{% trans "Contact" %}</a>
+             {% endif %}
         </div>
         
         <!-- Right side - Icons -->
@@ -67,18 +437,113 @@
             <button id="dark-mode-toggle" title="Toggle Dark Mode">
                 <i id="dark-mode-icon" class="fas fa-moon"></i>
             </button>
-            <!-- Notifications -->
-            <a href="{% url 'notifications' %}" title="{% trans 'Notifications' %}">
-                <i class="fas fa-bell"></i>
-            </a>
-            <!-- Settings -->
-            <a href="{% url 'settings' %}" title="{% trans 'Settings' %}">
-                <i class="fas fa-cog"></i>
-            </a>
-            <!-- Profile Menu -->
-            <a href="{% url 'profile' %}" title="{% trans 'Profile' %}">
-                <i class="fas fa-user"></i>
-            </a>
+            
+            {% if user.is_authenticated %}
+                <!-- Authenticated User Icons -->
+                <!-- Settings (Admin/Manager only) -->
+                {% if user.profile.role == 'admin' or user.profile.role == 'manager' %}
+                    <a href="{% url 'settings' %}" title="{% trans 'Settings' %}">
+                        <i class="fas fa-cog"></i>
+                    </a>
+                {% endif %}
+                
+                <!-- Profile Menu -->
+                <div class="user-profile-container">
+                    <div class="user-badge" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-label="{% trans 'User profile menu' %}">
+                        <div class="user-avatar">
+                            {{ user.username|first|upper }}
+                        </div>
+                        <div class="user-info">
+                            <span class="user-display-name">{{ user.get_full_name|default:user.username }}</span>
+                            {% if user.profile %}
+                                <span class="user-role">{{ user.profile.get_role_display }}</span>
+                            {% endif %}
+                        </div>
+                        <i class="fas fa-chevron-down dropdown-arrow" aria-hidden="true"></i>
+                    </div>
+                    
+                    <div class="profile-dropdown-menu">
+                        <div class="dropdown-header">
+                            <div class="header-avatar">
+                                {{ user.username|first|upper }}
+                            </div>
+                            <div class="header-info">
+                                <strong>{{ user.get_full_name|default:user.username }}</strong>
+                                {% if user.profile %}
+                                    <small class="role-badge">{{ user.profile.get_role_display }}</small>
+                                {% endif %}
+                                <small class="user-email">{{ user.email|default:"No email" }}</small>
+                                {% if request.session.get_expiry_age > 1209600 %}
+                                    <small class="session-badge">{% trans "Extended session active" %}</small>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                        <div class="dropdown-divider"></div>
+                        
+                        <div class="dropdown-section">
+                            <a href="{% url 'user_profile' %}" class="dropdown-item">
+                                <i class="fas fa-user"></i>
+                                <span>{% trans "My Profile" %}</span>
+                            </a>
+                            
+                            {% if user.profile.can_create_requests %}
+                                <a href="{% url 'cmsr_request' %}" class="dropdown-item">
+                                    <i class="fas fa-plus"></i>
+                                    <span>{% trans "New Request" %}</span>
+                                </a>
+                            {% endif %}
+                            
+                            {% if user.profile.can_view_all_requests or user.profile.can_create_requests %}
+                                <a href="{% url 'cmsr_list' %}" class="dropdown-item">
+                                    <i class="fas fa-list"></i>
+                                    <span>{% trans "My Requests" %}</span>
+                                </a>
+                            {% endif %}
+                        </div>
+                        
+                        {% if user.profile.can_manage_users or user.profile.can_view_reports or user.profile.can_view_audit_logs %}
+                            <div class="dropdown-divider"></div>
+                            <div class="dropdown-section">
+                                {% if user.profile.can_manage_users %}
+                                    <a href="{% url 'user_management' %}" class="dropdown-item">
+                                        <i class="fas fa-users"></i>
+                                        <span>{% trans "Manage Users" %}</span>
+                                    </a>
+                                {% endif %}
+                                
+                                {% if user.profile.can_view_reports %}
+                                    <a href="{% url 'reports' %}" class="dropdown-item">
+                                        <i class="fas fa-chart-bar"></i>
+                                        <span>{% trans "Reports" %}</span>
+                                    </a>
+                                {% endif %}
+                                
+                                {% if user.profile.can_view_audit_logs %}
+                                    <a href="{% url 'audit' %}" class="dropdown-item">
+                                        <i class="fas fa-shield-alt"></i>
+                                        <span>{% trans "Audit Logs" %}</span>
+                                    </a>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                        
+                        <div class="dropdown-divider"></div>
+                        <div class="dropdown-section">
+                            <a href="{% url 'logout' %}" class="dropdown-item logout-item">
+                                <i class="fas fa-sign-out-alt"></i>
+                                <span>{% trans "Logout" %}</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                <!-- Guest User Icons -->
+                <a href="{% url 'login' %}" class="btn-login" title="{% trans 'Login' %}">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <span>{% trans "Login" %}</span>
+                </a>
+            {% endif %}
         </div>
     </nav>
 
@@ -90,7 +555,7 @@
                 {% for message in messages %}
                     <div class="message message-{{ message.tags }}">
                         <i class="fas fa-{% if message.tags == 'error' %}exclamation-triangle{% elif message.tags == 'warning' %}exclamation-circle{% elif message.tags == 'success' %}check-circle{% else %}info-circle{% endif %}"></i>
-                        {{ message }}
+                        <div class="message-text">{{ message }}</div>
                         <button class="message-close" onclick="this.parentElement.remove()">
                             <i class="fas fa-times"></i>
                         </button>
@@ -106,6 +571,139 @@
     <script src="{% static "normieapp/js/vendor/jquery-3.6.4.min.js" %}"></script>
     <!-- Main JavaScript file -->
     <script src="{% static 'normieapp/js/main.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Load and apply saved color theme
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedColor = localStorage.getItem('primaryColor');
+            if (savedColor) {
+                applyColorTheme(savedColor);
+            }
+        });
+        
+        function applyColorTheme(color) {
+            // Calculate darker shade for hover effects
+            const darkerColor = darkenColor(color, 20);
+            
+            // Apply CSS custom properties
+            document.documentElement.style.setProperty('--primary-color', color);
+            document.documentElement.style.setProperty('--primary-hover', darkerColor);
+            
+            // Update gradients
+            const gradientColors = getGradientColors(color);
+            document.documentElement.style.setProperty('--primary-gradient', 
+                `linear-gradient(135deg, ${color} 0%, ${gradientColors.end} 100%)`);
+        }
+        
+        function darkenColor(color, percent) {
+            const num = parseInt(color.replace("#", ""), 16);
+            const amt = Math.round(2.55 * percent);
+            const R = (num >> 16) - amt;
+            const G = (num >> 8 & 0x00FF) - amt;
+            const B = (num & 0x0000FF) - amt;
+            return "#" + (0x1000000 + (R < 255 ? R < 1 ? 0 : R : 255) * 0x10000 +
+                (G < 255 ? G < 1 ? 0 : G : 255) * 0x100 +
+                (B < 255 ? B < 1 ? 0 : B : 255)).toString(16).slice(1);
+        }
+        
+        function getGradientColors(color) {
+            // Define gradient end colors for each primary color
+            const gradientMap = {
+                '#667eea': '#764ba2',
+                '#e74c3c': '#c0392b',
+                '#2ecc71': '#27ae60',
+                '#f39c12': '#e67e22',
+                '#9b59b6': '#8e44ad',
+                '#1abc9c': '#16a085',
+                '#34495e': '#2c3e50',
+                '#e91e63': '#ad1457'
+            };
+            
+            return {
+                start: color,
+                end: gradientMap[color] || darkenColor(color, 15)
+            };
+        }
+        
+        // Handle profile dropdown toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const profileContainer = document.querySelector('.user-profile-container');
+            const dropdownMenu = document.querySelector('.profile-dropdown-menu');
+            const userBadge = document.querySelector('.user-badge');
+            
+            if (profileContainer && dropdownMenu && userBadge) {
+                let isOpen = false;
+                
+                // Toggle dropdown on click
+                userBadge.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    
+                    isOpen = !isOpen;
+                    if (isOpen) {
+                        dropdownMenu.classList.add('show');
+                        profileContainer.classList.add('active');
+                        userBadge.setAttribute('aria-expanded', 'true');
+                    } else {
+                        dropdownMenu.classList.remove('show');
+                        profileContainer.classList.remove('active');
+                        userBadge.setAttribute('aria-expanded', 'false');
+                    }
+                });
+                
+                // Close dropdown when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!profileContainer.contains(e.target) && isOpen) {
+                        isOpen = false;
+                        dropdownMenu.classList.remove('show');
+                        profileContainer.classList.remove('active');
+                        userBadge.setAttribute('aria-expanded', 'false');
+                    }
+                });
+                
+                // Handle dropdown item clicks
+                const dropdownItems = dropdownMenu.querySelectorAll('.dropdown-item');
+                dropdownItems.forEach(item => {
+                    item.addEventListener('click', function(e) {
+                        // Don't close if it's a submenu toggle
+                        if (this.classList.contains('has-submenu')) {
+                            e.stopPropagation();
+                            return;
+                        }
+                        
+                        // Close dropdown after click with slight delay
+                        // to allow the link to be followed
+                        setTimeout(() => {
+                            isOpen = false;
+                            dropdownMenu.classList.remove('show');
+                            profileContainer.classList.remove('active');
+                            userBadge.setAttribute('aria-expanded', 'false');
+                        }, 100);
+                    });
+                });
+                
+                // Add keyboard accessibility
+                userBadge.addEventListener('keydown', function(e) {
+                    // Open on Enter or Space
+                    if (e.key === 'Enter' || e.key === ' ') {
+                        e.preventDefault();
+                        userBadge.click();
+                    }
+                });
+                
+                // Close on Escape key
+                document.addEventListener('keydown', function(e) {
+                    if (e.key === 'Escape' && isOpen) {
+                        isOpen = false;
+                        dropdownMenu.classList.remove('show');
+                        profileContainer.classList.remove('active');
+                        userBadge.setAttribute('aria-expanded', 'false');
+                        userBadge.focus(); // Return focus to the button
+                    }
+                });
+            }
+        });
+    </script>
     {% block extra_js %}{% endblock %}
 </body>
 </html> 

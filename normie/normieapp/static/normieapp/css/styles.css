@@ -43,6 +43,32 @@
 
     --color-success: #4CAF50;
     --color-success-text: #fff;
+    
+    /* Message colors */
+    --color-error: #f44336;
+    --color-error-bg: #ffebee;
+    --color-error-border: #ffcdd2;
+    --color-warning: #ff9800;
+    --color-warning-bg: #fff3e0;
+    --color-warning-border: #ffcc02;
+    --color-info: #2196f3;
+    --color-info-bg: #e3f2fd;
+    --color-info-border: #bbdefb;
+    --color-success-bg: #e8f5e8;
+    --color-success-border: #c8e6c9;
+    
+    /* Dark mode message colors */
+    --color-dark-error: #ef5350;
+    --color-dark-error-bg: rgba(244, 67, 54, 0.1);
+    --color-dark-error-border: rgba(244, 67, 54, 0.3);
+    --color-dark-warning: #ffa726;
+    --color-dark-warning-bg: rgba(255, 152, 0, 0.1);
+    --color-dark-warning-border: rgba(255, 152, 0, 0.3);
+    --color-dark-info: #42a5f5;
+    --color-dark-info-bg: rgba(33, 150, 243, 0.1);
+    --color-dark-info-border: rgba(33, 150, 243, 0.3);
+    --color-dark-success-bg: rgba(76, 175, 80, 0.1);
+    --color-dark-success-border: rgba(76, 175, 80, 0.3);
 }
 
 * {
@@ -485,4 +511,184 @@ h6 { font-size: 1rem; }
 
 .loading-state {
     animation: pulse 1.5s infinite ease-in-out;
+}
+
+/* Messages System */
+.messages {
+    position: fixed;
+    top: 80px; /* Below navbar */
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    max-width: 600px;
+    width: auto;
+    min-width: 400px;
+    pointer-events: none; /* Allow clicks through container */
+}
+
+.message {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 16px 24px;
+    margin-bottom: 8px;
+    border-radius: 12px;
+    font-weight: var(--font-weight-medium);
+    font-size: 0.95rem;
+    line-height: 1.4;
+    background: #ffffff;
+    color: #333333;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.06);
+    animation: fadeInDown 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    pointer-events: auto; /* Allow clicks on messages */
+    position: relative;
+    white-space: normal;
+    word-wrap: break-word;
+    min-height: 48px;
+    width: 100%;
+}
+
+/* Message types - all white background with colored icons */
+.message-error i {
+    color: #f44336;
+}
+
+.message-warning i {
+    color: #ff9800;
+}
+
+.message-success i {
+    color: #4caf50;
+}
+
+.message-info i {
+    color: #2196f3;
+}
+
+/* Dark mode messages */
+.dark-mode .message {
+    background: #ffffff;
+    color: #333333;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2), 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+.dark-mode .message-error i {
+    color: #f44336;
+}
+
+.dark-mode .message-warning i {
+    color: #ff9800;
+}
+
+.dark-mode .message-success i {
+    color: #4caf50;
+}
+
+.dark-mode .message-info i {
+    color: #2196f3;
+}
+
+/* Message icon */
+.message i {
+    flex-shrink: 0;
+    font-size: 1.1rem;
+}
+
+/* Message text */
+.message-text {
+    flex: 1;
+    min-width: 0;
+}
+
+/* Message close button */
+.message-close {
+    background: none;
+    border: none;
+    color: #666666;
+    opacity: 0.7;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+}
+
+.message-close:hover {
+    opacity: 1;
+    background-color: rgba(0, 0, 0, 0.08);
+    transform: scale(1.1);
+}
+
+.message-close i {
+    font-size: 0.75rem;
+}
+
+/* Message animations */
+@keyframes fadeInDown {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+@keyframes fadeOutUp {
+    from {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    to {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+}
+
+/* Auto-dismiss animation */
+.message.dismissing {
+    animation: fadeOutUp 0.2s ease-out forwards;
+}
+
+/* Progress bar for auto-dismiss */
+.message::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    height: 2px;
+    background: rgba(0, 0, 0, 0.1);
+    width: 0;
+    transition: width 15s linear;
+    border-radius: 0 0 12px 12px;
+}
+
+.message.auto-dismiss::after {
+    width: 100%;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+    .messages {
+        max-width: calc(100vw - 40px);
+        min-width: calc(100vw - 40px);
+    }
+    
+    .message {
+        padding: 14px 18px;
+        font-size: 0.9rem;
+        white-space: normal;
+        word-wrap: break-word;
+    }
+    
+    .message i {
+        font-size: 1rem;
+    }
 } 

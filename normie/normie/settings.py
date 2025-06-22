@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-7)tc)oq^kg7tvf&$9+70xo=htl8#vuy#g9&_0)ui&7q6ue!_lz
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'normie.irm',
+    'normie.de',
     'localhost',
     '127.0.0.1',
     '192.168.1.96',
@@ -35,11 +35,12 @@ ALLOWED_HOSTS = [
 
 CSRF_TRUSTED_ORIGINS = [
     'http://localhost',
-    'http://normie.irm',
+    'http://normie.de',
+    'https://normie.de',
     'http://127.0.0.1',
     'http://192.168.1.96',
     'http://192.168.1.111',
-    'http://127.0.0.1:8000',
+    'http://127.0.0.1:8001',
 ]
 
 # Application definition
@@ -72,7 +73,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 
 CORS_ORIGIN_WHITELIST  = [
     'http://127.0.0.1',
-    'http://normie.irm',
+    'https://normie.de',
 ]
 
 ROOT_URLCONF = 'normie.urls'
@@ -166,5 +167,19 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Authentication settings
-LOGIN_URL = '/admin/login/'
+AUTHENTICATION_BACKENDS = [
+    'normieapp.backends.EmailOrUsernameModelBackend',
+    'django.contrib.auth.backends.ModelBackend',
+]
+
+LOGIN_URL = '/login/'
 LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/login/'
+
+# Session settings
+SESSION_COOKIE_AGE = 1209600  # 2 weeks (default when "Remember me" is not checked)
+SESSION_EXPIRE_AT_BROWSER_CLOSE = False  # Don't expire when browser closes by default
+SESSION_SAVE_EVERY_REQUEST = True  # Refresh session on every request
+SESSION_COOKIE_SECURE = False  # Set to True in production with HTTPS
+SESSION_COOKIE_HTTPONLY = True  # Prevent JavaScript access to session cookies
+SESSION_COOKIE_SAMESITE = 'Lax'  # CSRF protection

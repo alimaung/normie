@@ -13,237 +13,855 @@
     <!-- Load our main CSS file -->
     <link rel="stylesheet" href="{% static 'normieapp/css/styles.css' %}">
 </head>
-<body class="login-page">
-    <div class="login-container">
-        <div class="login-card">
-            <div class="login-header">
-                <img src="{% static 'normieapp/img/logo-light.png' %}" alt="Normie Logo" class="login-logo">
-                <h1>normie</h1>
-                <p>{% trans "Standards & Material Management" %}</p>
+<body class="auth-page">
+    <div class="auth-container">
+        <!-- Left Panel - Branding -->
+        <div class="auth-brand-panel">
+            <div class="brand-content">
+                <div class="brand-logo">
+                    <img src="{% static 'normieapp/img/logo-light.png' %}" alt="Normie Logo">
+                    <h1>normie</h1>
+                </div>
+                <div class="brand-text">
+                    <h2>{% trans "Welcome back" %}</h2>
+                    <p>{% trans "Streamline your standards management and material workflows with our powerful platform." %}</p>
+                </div>
+                <div class="brand-features">
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>{% trans "Enterprise Security" %}</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-users"></i>
+                        <span>{% trans "Team Collaboration" %}</span>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-chart-line"></i>
+                        <span>{% trans "Advanced Analytics" %}</span>
+                    </div>
+                </div>
             </div>
+        </div>
 
-            <!-- Messages -->
-            {% if messages %}
-                <div class="messages">
-                    {% for message in messages %}
-                        <div class="message message-{{ message.tags }}">
-                            <i class="fas fa-{% if message.tags == 'error' %}exclamation-triangle{% elif message.tags == 'warning' %}exclamation-circle{% elif message.tags == 'success' %}check-circle{% else %}info-circle{% endif %}"></i>
-                            {{ message }}
+        <!-- Right Panel - Authentication Forms -->
+        <div class="auth-form-panel">
+            <div class="auth-form-container">
+                <!-- Back to Home Link -->
+                <div class="auth-header">
+                    <a href="{% url 'home' %}" class="back-home">
+                        <i class="fas fa-arrow-left"></i>
+                        {% trans "Back to Home" %}
+                    </a>
+                </div>
+
+                <!-- Messages -->
+                {% if messages %}
+                    <div class="messages">
+                        {% for message in messages %}
+                            <div class="message message-{{ message.tags }}">
+                                <i class="fas fa-{% if message.tags == 'error' %}exclamation-triangle{% elif message.tags == 'warning' %}exclamation-circle{% elif message.tags == 'success' %}check-circle{% else %}info-circle{% endif %}"></i>
+                                {{ message }}
+                                <button class="message-close" onclick="this.parentElement.remove()">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+
+                <!-- Help Notice for Restricted Access -->
+                {% if request.GET.next %}
+                    <div class="access-help-notice">
+                        <div class="help-icon">
+                            <i class="fas fa-shield-alt"></i>
                         </div>
-                    {% endfor %}
-                </div>
-            {% endif %}
+                        <div class="help-content">
+                            <h4>{% trans "Restricted Area" %}</h4>
+                            <p>{% trans "The page you're trying to access requires authentication. After logging in, you'll be redirected to your requested page if you have the necessary permissions." %}</p>
+                            <div class="help-actions">
+                                <span class="help-note">{% trans "New to Normie?" %}</span>
+                                <a href="#" onclick="showSignUp()">{% trans "Create a free read-only account" %}</a>
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
 
-            <form method="post" class="login-form">
-                {% csrf_token %}
-                <div class="form-group">
-                    <label for="username">
-                        <i class="fas fa-user"></i>
-                        {% trans "Username" %}
-                    </label>
-                    <input type="text" id="username" name="username" required>
-                </div>
+                <!-- Login Form -->
+                <div class="auth-form active" id="login-form">
+                    <div class="form-header">
+                        <h2>{% trans "Sign in to your account" %}</h2>
+                        <p>{% trans "Enter your credentials to access your workspace" %}</p>
+                    </div>
 
-                <div class="form-group">
-                    <label for="password">
-                        <i class="fas fa-lock"></i>
-                        {% trans "Password" %}
-                    </label>
-                    <input type="password" id="password" name="password" required>
-                </div>
-
-                <div class="form-actions">
-                    <button type="submit" class="btn btn-primary btn-full">
-                        <i class="fas fa-sign-in-alt"></i>
-                        {% trans "Sign In" %}
+                    <!-- Microsoft SSO Button -->
+                    <button type="button" class="btn btn-microsoft" onclick="mockMicrosoftSSO()">
+                        <svg width="20" height="20" viewBox="0 0 23 23">
+                            <path fill="#f35325" d="M1 1h10v10H1z"/>
+                            <path fill="#81bc06" d="M12 1h10v10H12z"/>
+                            <path fill="#05a6f0" d="M1 12h10v10H1z"/>
+                            <path fill="#ffba08" d="M12 12h10v10H12z"/>
+                        </svg>
+                        {% trans "Continue with Microsoft" %}
                     </button>
-                </div>
-            </form>
 
-            <div class="login-footer">
-                <p>{% trans "Demo Credentials:" %}</p>
-                <small>
-                    {% trans "Username: admin | Password: admin" %}<br>
-                    {% trans "Username: user | Password: user" %}
-                </small>
+                    <div class="divider">
+                        <span>{% trans "or" %}</span>
+                    </div>
+
+                    <form method="post" class="auth-form-content">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="username">{% trans "Username or Email" %}</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-user"></i>
+                                <input type="text" id="username" name="username" placeholder="{% trans 'Enter your username or email' %}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">{% trans "Password" %}</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-lock"></i>
+                                <input type="password" id="password" name="password" placeholder="{% trans 'Enter your password' %}" required>
+                                <button type="button" class="password-toggle" onclick="togglePassword('password')">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="form-options">
+                            <label class="checkbox-wrapper remember-me">
+                                <input type="checkbox" name="remember_me" id="remember_me">
+                                <span class="checkmark"></span>
+                                <span class="remember-text">
+                                    {% trans "Remember me" %}
+                                    <small class="remember-help">{% trans "Stay logged in for 30 days" %}</small>
+                                </span>
+                            </label>
+                            <a href="#" class="forgot-password" onclick="showForgotPassword()">{% trans "Forgot password?" %}</a>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">
+                            {% trans "Sign In" %}
+                        </button>
+                    </form>
+
+                    <div class="form-footer">
+                        <p>{% trans "Don't have an account?" %} <a href="#" onclick="showSignUp()">{% trans "Sign up" %}</a></p>
+                    </div>
+                </div>
+
+                <!-- Sign Up Form -->
+                <div class="auth-form" id="signup-form">
+                    <div class="form-header">
+                        <h2>{% trans "Create your account" %}</h2>
+                        <p>{% trans "Join thousands of organizations using Normie" %}</p>
+                    </div>
+
+                    <!-- Microsoft SSO Button -->
+                    <button type="button" class="btn btn-microsoft" onclick="mockMicrosoftSSO()">
+                        <svg width="20" height="20" viewBox="0 0 23 23">
+                            <path fill="#f35325" d="M1 1h10v10H1z"/>
+                            <path fill="#81bc06" d="M12 1h10v10H12z"/>
+                            <path fill="#05a6f0" d="M1 12h10v10H1z"/>
+                            <path fill="#ffba08" d="M12 12h10v10H12z"/>
+                        </svg>
+                        {% trans "Sign up with Microsoft" %}
+                    </button>
+
+                    <div class="divider">
+                        <span>{% trans "or" %}</span>
+                    </div>
+
+                    <div class="signup-redirect">
+                        <p>{% trans "Create your account on our dedicated signup page for the best experience." %}</p>
+                        <a href="{% url 'signup' %}" class="btn btn-primary btn-full">
+                            <i class="fas fa-user-plus"></i>
+                            {% trans "Go to Sign Up Page" %}
+                        </a>
+                    </div>
+
+                    <div class="form-footer">
+                        <p>{% trans "Already have an account?" %} <a href="#" onclick="showLogin()">{% trans "Sign in" %}</a></p>
+                    </div>
+                </div>
+
+                <!-- Forgot Password Form -->
+                <div class="auth-form" id="forgot-form">
+                    <div class="form-header">
+                        <h2>{% trans "Reset your password" %}</h2>
+                        <p>{% trans "Enter your email address and we'll send you a link to reset your password" %}</p>
+                    </div>
+
+                    <form class="auth-form-content" onsubmit="handleForgotPassword(event)">
+                        <div class="form-group">
+                            <label for="forgot_email">{% trans "Email Address" %}</label>
+                            <div class="input-wrapper">
+                                <i class="fas fa-envelope"></i>
+                                <input type="email" id="forgot_email" name="email" placeholder="{% trans 'Enter your email address' %}" required>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-full">
+                            {% trans "Send Reset Link" %}
+                        </button>
+                    </form>
+
+                    <div class="form-footer">
+                        <p><a href="#" onclick="showLogin()">{% trans "Back to sign in" %}</a></p>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 
     <style>
-    .login-page {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 2rem;
-    }
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-    .login-container {
-        width: 100%;
-        max-width: 400px;
-    }
+        .auth-page {
+            font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'SF Pro Text', 'Helvetica Neue', Arial, sans-serif;
+            background: #f8fafc;
+            min-height: 100vh;
+            display: flex;
+        }
 
-    .login-card {
-        background: white;
-        border-radius: 12px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        overflow: hidden;
-    }
+        .auth-container {
+            display: flex;
+            width: 100%;
+            min-height: 100vh;
+        }
 
-    .login-header {
-        text-align: center;
-        padding: 2rem 2rem 1rem;
-        background: var(--primary-color, #1a73e8);
-        color: white;
-    }
+        /* Brand Panel */
+        .auth-brand-panel {
+            flex: 1;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 3rem;
+            color: white;
+            position: relative;
+        }
 
-    .login-logo {
-        width: 60px;
-        height: 60px;
-        margin-bottom: 1rem;
-    }
+        .brand-content {
+            max-width: 500px;
+            text-align: center;
+        }
 
-    .login-header h1 {
-        margin: 0 0 0.5rem;
-        font-size: 2rem;
-        font-weight: 300;
-    }
+        .brand-logo {
+            margin-bottom: 3rem;
+        }
 
-    .login-header p {
-        margin: 0;
-        opacity: 0.9;
-        font-size: 0.9rem;
-    }
+        .brand-logo img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 1rem;
+        }
 
-    .login-form {
-        padding: 2rem;
-    }
+        .brand-logo h1 {
+            font-size: 3rem;
+            font-weight: 300;
+            margin-bottom: 0.5rem;
+        }
 
-    .form-group {
-        margin-bottom: 1.5rem;
-    }
+        .brand-text h2 {
+            font-size: 2.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
 
-    .form-group label {
-        display: block;
-        margin-bottom: 0.5rem;
-        color: var(--text-primary, #333);
-        font-weight: 500;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-    }
+        .brand-text p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            line-height: 1.6;
+            margin-bottom: 3rem;
+        }
 
-    .form-group label i {
-        color: var(--primary-color, #1a73e8);
-        width: 16px;
-    }
+        .brand-features {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+            justify-self: center;
+        }
 
-    .form-group input {
-        width: 100%;
-        padding: 0.75rem;
-        border: 2px solid var(--border-color, #e0e0e0);
-        border-radius: 6px;
-        font-size: 1rem;
-        transition: border-color 0.2s ease;
-        box-sizing: border-box;
-    }
+        .feature-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            font-size: 1.1rem;
+        }
 
-    .form-group input:focus {
-        outline: none;
-        border-color: var(--primary-color, #1a73e8);
-    }
+        .feature-item i {
+            width: 24px;
+            height: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
 
-    .form-actions {
-        margin-top: 2rem;
-    }
+        /* Form Panel */
+        .auth-form-panel {
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            background: white;
+        }
 
-    .btn {
-        padding: 0.75rem 1.5rem;
-        border: none;
-        border-radius: 6px;
-        cursor: pointer;
-        font-size: 1rem;
-        font-weight: 500;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 0.5rem;
-        transition: all 0.2s ease;
-        text-decoration: none;
-    }
+        .auth-form-container {
+            width: 100%;
+            max-width: 480px;
+        }
 
-    .btn-primary {
-        background: var(--primary-color, #1a73e8);
-        color: white;
-    }
+        .auth-header {
+            margin-bottom: 2rem;
+        }
 
-    .btn-primary:hover {
-        background: var(--primary-hover, #1557b0);
-        transform: translateY(-1px);
-    }
+        .back-home {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #6b7280;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.2s ease;
+        }
 
-    .btn-full {
-        width: 100%;
-    }
+        .back-home:hover {
+            color: #374151;
+        }
 
-    .login-footer {
-        padding: 1rem 2rem 2rem;
-        text-align: center;
-        background: var(--card-bg, #f8f9fa);
-        border-top: 1px solid var(--border-color, #e0e0e0);
-    }
+        /* Form Styles */
+        .auth-form {
+            display: none;
+        }
 
-    .login-footer p {
-        margin: 0 0 0.5rem;
-        font-weight: 500;
-        color: var(--text-primary, #333);
-    }
+        .auth-form.active {
+            display: block;
+        }
 
-    .login-footer small {
-        color: var(--text-secondary, #666);
-        line-height: 1.4;
-    }
+        .form-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
 
-    .messages {
-        margin: 1rem 2rem 0;
-    }
+        .form-header h2 {
+            font-size: 2rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin-bottom: 0.5rem;
+        }
 
-    .message {
-        padding: 0.75rem;
-        border-radius: 6px;
-        margin-bottom: 0.5rem;
-        display: flex;
-        align-items: center;
-        gap: 0.5rem;
-        font-size: 0.9rem;
-    }
+        .form-header p {
+            color: #6b7280;
+            font-size: 1rem;
+        }
 
-    .message-error {
-        background: #ffebee;
-        color: #c62828;
-        border: 1px solid #ffcdd2;
-    }
+        /* Microsoft SSO Button */
+        .btn-microsoft {
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.75rem;
+            padding: 0.875rem 1rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            background: white;
+            color: #374151;
+            font-size: 1rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            margin-bottom: 1.5rem;
+        }
 
-    .message-success {
-        background: #e8f5e8;
-        color: #2e7d32;
-        border: 1px solid #c8e6c9;
-    }
+        .btn-microsoft:hover {
+            border-color: #d1d5db;
+            background: #f9fafb;
+        }
 
-    .message-info {
-        background: #e3f2fd;
-        color: #1976d2;
-        border: 1px solid #bbdefb;
-    }
+        /* Divider */
+        .divider {
+            position: relative;
+            text-align: center;
+            margin: 1.5rem 0;
+        }
 
-    .message-warning {
-        background: #fff3e0;
-        color: #f57c00;
-        border: 1px solid #ffcc02;
-    }
+        .divider::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: #e5e7eb;
+        }
+
+        .divider span {
+            background: white;
+            padding: 0 1rem;
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        /* Form Elements */
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: #374151;
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .input-wrapper {
+            position: relative;
+            display: flex;
+            align-items: center;
+        }
+
+        .input-wrapper i {
+            position: absolute;
+            left: 1rem;
+            color: #9ca3af;
+            z-index: 1;
+        }
+
+        .input-wrapper input {
+            width: 100%;
+            padding: 0.875rem 1rem 0.875rem 2.75rem;
+            border: 2px solid #e5e7eb;
+            border-radius: 12px;
+            font-size: 1rem;
+            transition: all 0.2s ease;
+            background: #f9fafb;
+        }
+
+        .input-wrapper input:focus {
+            outline: none;
+            border-color: #667eea;
+            background: white;
+            box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+        }
+
+        .password-toggle {
+            position: absolute;
+            right: 1rem;
+            top: 50%;
+            transform: translateY(-50%);
+            background: none;
+            border: none;
+            color: #9ca3af;
+            cursor: pointer;
+            padding: 0.5rem;
+            z-index: 3;
+            border-radius: 4px;
+            transition: all 0.2s ease;
+        }
+
+        .password-toggle:hover {
+            color: #6b7280;
+            background-color: #f3f4f6;
+        }
+
+        /* Form Options */
+        .form-options {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+
+        .checkbox-wrapper {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            cursor: pointer;
+            font-size: 0.9rem;
+            color: #374151;
+        }
+
+        .checkbox-wrapper input[type="checkbox"] {
+            display: none;
+        }
+
+        .checkmark {
+            width: 18px;
+            height: 18px;
+            border: 2px solid #d1d5db;
+            border-radius: 4px;
+            position: relative;
+            transition: all 0.2s ease;
+        }
+
+        .checkbox-wrapper input[type="checkbox"]:checked + .checkmark {
+            background: #667eea;
+            border-color: #667eea;
+        }
+
+        .checkbox-wrapper input[type="checkbox"]:checked + .checkmark::after {
+            content: '';
+            position: absolute;
+            top: 2px;
+            left: 5px;
+            width: 4px;
+            height: 8px;
+            border: solid white;
+            border-width: 0 2px 2px 0;
+            transform: rotate(45deg);
+        }
+
+        /* Enhanced Remember Me styling */
+        .remember-me {
+            flex-direction: column;
+            align-items: flex-start !important;
+        }
+
+        .remember-text {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            margin-left: 0.5rem;
+        }
+
+        .remember-help {
+            display: block;
+            color: #9ca3af;
+            font-size: 0.75rem;
+            font-weight: 400;
+            margin-top: 0.25rem;
+            line-height: 1.2;
+        }
+
+        .checkbox-wrapper.remember-me {
+            display: flex;
+            flex-direction: row;
+            align-items: flex-start;
+        }
+
+        .forgot-password {
+            color: #667eea;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+        }
+
+        .forgot-password:hover {
+            text-decoration: underline;
+        }
+
+        /* Buttons */
+        .btn {
+            padding: 0.875rem 1.5rem;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+        }
+
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #5a67d8;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn-full {
+            width: 100%;
+        }
+
+        .signup-redirect {
+            text-align: center;
+            padding: 2rem 1rem;
+        }
+
+        .signup-redirect p {
+            margin-bottom: 1.5rem;
+            color: #6b7280;
+            font-size: 1rem;
+        }
+
+        /* Form Footer */
+        .form-footer {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid #e5e7eb;
+        }
+
+        .form-footer p {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+
+        .form-footer a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+                 .form-footer a:hover {
+             text-decoration: underline;
+         }
+
+         /* Messages */
+        .messages {
+            margin-bottom: 1.5rem;
+        }
+
+        .message {
+            padding: 1rem;
+            border-radius: 12px;
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            font-size: 0.9rem;
+            position: relative;
+        }
+
+        .message-close {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: none;
+            border: none;
+            cursor: pointer;
+            opacity: 0.7;
+            padding: 0.25rem;
+        }
+
+        .message-close:hover {
+            opacity: 1;
+        }
+
+        .message-error {
+            background: #fef2f2;
+            color: #dc2626;
+            border: 1px solid #fecaca;
+        }
+
+        .message-success {
+            background: #f0fdf4;
+            color: #16a34a;
+            border: 1px solid #bbf7d0;
+        }
+
+        .message-info {
+            background: #eff6ff;
+            color: #2563eb;
+            border: 1px solid #bfdbfe;
+        }
+
+        .message-warning {
+            background: #fffbeb;
+            color: #d97706;
+            border: 1px solid #fed7aa;
+        }
+
+        /* Access Help Notice */
+        .access-help-notice {
+            margin-bottom: 1.5rem;
+            padding: 1.25rem;
+            background: linear-gradient(135deg, #fff7ed 0%, #fed7aa 100%);
+            border: 1px solid #f59e0b;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+
+        .help-icon {
+            flex-shrink: 0;
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+        }
+
+        .help-content {
+            flex: 1;
+            min-width: 0;
+        }
+
+        .help-content h4 {
+            margin: 0 0 0.5rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #92400e;
+        }
+
+        .help-content p {
+            margin: 0 0 1rem;
+            color: #92400e;
+            font-size: 0.9rem;
+            line-height: 1.5;
+        }
+
+        .help-actions {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .help-note {
+            font-size: 0.85rem;
+            color: #92400e;
+            font-weight: 500;
+        }
+
+        .help-actions a {
+            color: #d97706;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.85rem;
+        }
+
+        .help-actions a:hover {
+            text-decoration: underline;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .auth-container {
+                flex-direction: column;
+            }
+
+            .auth-brand-panel {
+                flex: none;
+                padding: 2rem 1rem;
+                min-height: 40vh;
+            }
+
+            .brand-text h2 {
+                font-size: 2rem;
+            }
+
+            .brand-features {
+                flex-direction: row;
+                justify-content: center;
+                gap: 1rem;
+            }
+
+            .feature-item {
+                flex-direction: column;
+                text-align: center;
+                font-size: 0.9rem;
+            }
+
+            .auth-form-panel {
+                padding: 1rem;
+            }
+
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+
+            .form-options {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 1rem;
+            }
+        }
     </style>
+
+    <!-- JavaScript -->
+    <script>
+        // Form switching functions
+        function showLogin() {
+            hideAllForms();
+            document.getElementById('login-form').classList.add('active');
+        }
+
+        function showSignUp() {
+            hideAllForms();
+            document.getElementById('signup-form').classList.add('active');
+        }
+
+        function showForgotPassword() {
+            hideAllForms();
+            document.getElementById('forgot-form').classList.add('active');
+        }
+
+        function hideAllForms() {
+            document.querySelectorAll('.auth-form').forEach(form => {
+                form.classList.remove('active');
+            });
+        }
+
+        // Password toggle function
+        function togglePassword(inputId) {
+            const input = document.getElementById(inputId);
+            const button = input.parentElement.querySelector('.password-toggle i');
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                button.classList.remove('fa-eye');
+                button.classList.add('fa-eye-slash');
+            } else {
+                input.type = 'password';
+                button.classList.remove('fa-eye-slash');
+                button.classList.add('fa-eye');
+            }
+        }
+
+                 // Mock Microsoft SSO
+        function mockMicrosoftSSO() {
+            alert('{% trans "Microsoft SSO integration would be implemented here. This is a demo." %}');
+        }
+
+
+
+        // Handle forgot password form submission
+        function handleForgotPassword(event) {
+            event.preventDefault();
+            const email = document.getElementById('forgot_email').value;
+            alert('{% trans "Password reset email would be sent to:" %} ' + email);
+            showLogin();
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            showLogin(); // Show login form by default
+        });
+    </script>
 
     <!-- jQuery -->
     <script src="{% static "normieapp/js/vendor/jquery-3.6.4.min.js" %}"></script>

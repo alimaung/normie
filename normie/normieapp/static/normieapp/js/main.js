@@ -76,6 +76,116 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
+    // Enhanced Message System
+    function initializeMessages() {
+        const messages = document.querySelectorAll('.message');
+        
+        messages.forEach((message, index) => {
+            // Add staggered animation delay
+            message.style.animationDelay = `${index * 0.1}s`;
+            
+            // Add auto-dismiss for non-error messages
+            if (!message.classList.contains('message-error')) {
+                message.classList.add('auto-dismiss');
+                
+                // Auto-dismiss after 15 seconds
+                setTimeout(() => {
+                    dismissMessage(message);
+                }, 15000);
+            }
+            
+            // Handle close button clicks
+            const closeButton = message.querySelector('.message-close');
+            if (closeButton) {
+                closeButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    dismissMessage(message);
+                });
+            }
+            
+            // Add click to dismiss (except for close button)
+            message.addEventListener('click', (e) => {
+                if (!e.target.closest('.message-close')) {
+                    dismissMessage(message);
+                }
+            });
+            
+            // No special styling needed - all messages are uniform
+        });
+    }
+    
+    function dismissMessage(message) {
+        message.classList.add('dismissing');
+        
+        setTimeout(() => {
+            if (message.parentElement) {
+                message.remove();
+                
+                // If no more messages, remove the container
+                const messagesContainer = document.querySelector('.messages');
+                if (messagesContainer && messagesContainer.children.length === 0) {
+                    messagesContainer.remove();
+                }
+            }
+        }, 300);
+    }
+    
+    // Function to create and show a new message
+    function showMessage(text, type = 'info', autoDismiss = true) {
+        let messagesContainer = document.querySelector('.messages');
+        
+        // Create messages container if it doesn't exist
+        if (!messagesContainer) {
+            messagesContainer = document.createElement('div');
+            messagesContainer.className = 'messages';
+            document.body.appendChild(messagesContainer);
+        }
+        
+        // Create message element
+        const message = document.createElement('div');
+        message.className = `message message-${type}`;
+        
+        // Determine icon based on type
+        let iconClass = 'fa-info-circle';
+        if (type === 'error') iconClass = 'fa-exclamation-triangle';
+        else if (type === 'warning') iconClass = 'fa-exclamation-circle';
+        else if (type === 'success') iconClass = 'fa-check-circle';
+        
+        message.innerHTML = `
+            <i class="fas ${iconClass}"></i>
+            ${text}
+            <button class="message-close" onclick="this.parentElement.remove()">
+                <i class="fas fa-times"></i>
+            </button>
+        `;
+        
+        // Add to container
+        messagesContainer.appendChild(message);
+        
+        // Handle close button
+        const closeButton = message.querySelector('.message-close');
+        closeButton.addEventListener('click', (e) => {
+            e.preventDefault();
+            dismissMessage(message);
+        });
+        
+        // Auto-dismiss if enabled
+        if (autoDismiss && type !== 'error') {
+            message.classList.add('auto-dismiss');
+            setTimeout(() => {
+                dismissMessage(message);
+            }, 15000);
+        }
+        
+        return message;
+    }
+    
+    // Initialize messages on page load
+    initializeMessages();
+    
+    // Make showMessage globally available
+    window.showMessage = showMessage;
+    
     // Function to show notification
     function showNotification(message, type = 'info') {
         // Create notification element if it doesn't exist

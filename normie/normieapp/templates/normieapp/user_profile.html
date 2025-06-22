@@ -1,0 +1,546 @@
+{% extends "normieapp/base.html" %}
+{% load i18n %}
+
+{% block title %}{{ page_title }}{% endblock %}
+
+{% block content %}
+<div class="profile-container">
+    <!-- Profile Header -->
+    <div class="profile-header">
+        <div class="profile-hero">
+            <div class="profile-avatar">
+                {{ user.username|first|upper }}
+            </div>
+            <div class="profile-info">
+                <h1>{{ user.get_full_name|default:user.username }}</h1>
+                <div class="role-badge role-{{ profile.role }}">
+                    <i class="fas fa-{% if profile.role == 'admin' %}crown{% elif profile.role == 'manager' %}user-tie{% elif profile.role == 'chemscan_specialist' %}flask{% elif profile.role == 'environmental_reviewer' %}leaf{% elif profile.role == 'manufacturing_reviewer' %}cogs{% elif profile.role == 'standards_officer' %}shield-alt{% elif profile.role == 'read_only' %}eye{% else %}user{% endif %}"></i>
+                    {{ profile.get_role_display }}
+                </div>
+                <p class="profile-username">@{{ user.username }}</p>
+            </div>
+        </div>
+        <div class="profile-actions">
+            <a href="{% url 'home' %}" class="btn btn-secondary">
+                <i class="fas fa-home"></i>
+                {% trans "Back to Home" %}
+            </a>
+            {% if profile.can_manage_users %}
+                <a href="{% url 'user_management' %}" class="btn btn-primary">
+                    <i class="fas fa-users"></i>
+                    {% trans "Manage Users" %}
+                </a>
+            {% endif %}
+        </div>
+    </div>
+
+    <!-- Profile Content -->
+    <div class="profile-content">
+        <!-- Basic Information Card -->
+        <div class="info-card">
+            <div class="card-header">
+                <h3>
+                    <i class="fas fa-user"></i>
+                    {% trans "Basic Information" %}
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="info-grid">
+                    <div class="info-item">
+                        <label>{% trans "Username" %}</label>
+                        <span>{{ user.username }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>{% trans "Email" %}</label>
+                        <span>{{ user.email|default:"-" }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>{% trans "Full Name" %}</label>
+                        <span>{{ user.get_full_name|default:"-" }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>{% trans "Department" %}</label>
+                        <span>{{ profile.department|default:"-" }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>{% trans "Phone" %}</label>
+                        <span>{{ profile.phone|default:"-" }}</span>
+                    </div>
+                    <div class="info-item">
+                        <label>{% trans "Member Since" %}</label>
+                        <span>{{ user.date_joined|date:"F Y" }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Role Description Card -->
+        <div class="info-card">
+            <div class="card-header">
+                <h3>
+                    <i class="fas fa-info-circle"></i>
+                    {% trans "Role Description" %}
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="role-description">
+                    {% if profile.role == 'admin' %}
+                        <p>{% trans "Administrators have full access to all system features and can manage users." %}</p>
+                    {% elif profile.role == 'manager' %}
+                        <p>{% trans "Managers can view all requests, approve submissions, and access reports." %}</p>
+                    {% elif profile.role == 'chemscan_specialist' %}
+                        <p>{% trans "ChemScan Specialists can perform chemical analysis and assessments on submitted requests." %}</p>
+                    {% elif profile.role == 'environmental_reviewer' %}
+                        <p>{% trans "Environmental Reviewers assess the environmental impact of materials and substances." %}</p>
+                    {% elif profile.role == 'manufacturing_reviewer' %}
+                        <p>{% trans "Manufacturing Reviewers evaluate requests from a production and quality perspective." %}</p>
+                    {% elif profile.role == 'standards_officer' %}
+                        <p>{% trans "Standards Officers provide final approval and ensure compliance with regulations." %}</p>
+                    {% elif profile.role == 'read_only' %}
+                        <p>{% trans "Read-only users can view information but cannot make changes to the system." %}</p>
+                    {% elif profile.role == 'applicant' %}
+                        <p>{% trans "Applicants can create and manage their own material supply requests." %}</p>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+
+        <!-- Permissions Card -->
+        <div class="info-card">
+            <div class="card-header">
+                <h3>
+                    <i class="fas fa-key"></i>
+                    {% trans "Permissions & Access" %}
+                </h3>
+            </div>
+            <div class="card-body">
+                <div class="permissions-grid">
+                    <div class="permission-category">
+                        <h4>{% trans "Request Management" %}</h4>
+                        <div class="permission-list">
+                            <div class="permission-item {% if profile.can_create_requests %}granted{% else %}denied{% endif %}">
+                                <i class="fas fa-{% if profile.can_create_requests %}check-circle{% else %}times-circle{% endif %}"></i>
+                                <span>{% trans "Create Requests" %}</span>
+                            </div>
+                            <div class="permission-item {% if profile.can_edit_requests %}granted{% else %}denied{% endif %}">
+                                <i class="fas fa-{% if profile.can_edit_requests %}check-circle{% else %}times-circle{% endif %}"></i>
+                                <span>{% trans "Edit Requests" %}</span>
+                            </div>
+                            <div class="permission-item {% if profile.can_delete_requests %}granted{% else %}denied{% endif %}">
+                                <i class="fas fa-{% if profile.can_delete_requests %}check-circle{% else %}times-circle{% endif %}"></i>
+                                <span>{% trans "Delete Requests" %}</span>
+                            </div>
+                            <div class="permission-item {% if profile.can_approve_requests %}granted{% else %}denied{% endif %}">
+                                <i class="fas fa-{% if profile.can_approve_requests %}check-circle{% else %}times-circle{% endif %}"></i>
+                                <span>{% trans "Approve Requests" %}</span>
+                            </div>
+                            <div class="permission-item {% if profile.can_view_all_requests %}granted{% else %}denied{% endif %}">
+                                <i class="fas fa-{% if profile.can_view_all_requests %}check-circle{% else %}times-circle{% endif %}"></i>
+                                <span>{% trans "View All Requests" %}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="permission-category">
+                        <h4>{% trans "Review & Analysis" %}</h4>
+                        <div class="permission-list">
+                            <div class="permission-item {% if profile.can_perform_chemscan %}granted{% else %}denied{% endif %}">
+                                <i class="fas fa-{% if profile.can_perform_chemscan %}check-circle{% else %}times-circle{% endif %}"></i>
+                                <span>{% trans "Perform ChemScan" %}</span>
+                            </div>
+                            <div class="permission-item {% if profile.can_environmental_review %}granted{% else %}denied{% endif %}">
+                                <i class="fas fa-{% if profile.can_environmental_review %}check-circle{% else %}times-circle{% endif %}"></i>
+                                <span>{% trans "Environmental Review" %}</span>
+                            </div>
+                            <div class="permission-item {% if profile.can_manufacturing_review %}granted{% else %}denied{% endif %}">
+                                <i class="fas fa-{% if profile.can_manufacturing_review %}check-circle{% else %}times-circle{% endif %}"></i>
+                                <span>{% trans "Manufacturing Review" %}</span>
+                            </div>
+                            <div class="permission-item {% if profile.can_standards_review %}granted{% else %}denied{% endif %}">
+                                <i class="fas fa-{% if profile.can_standards_review %}check-circle{% else %}times-circle{% endif %}"></i>
+                                <span>{% trans "Standards Review" %}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="permission-category">
+                        <h4>{% trans "Administration" %}</h4>
+                        <div class="permission-list">
+                            <div class="permission-item {% if profile.can_manage_users %}granted{% else %}denied{% endif %}">
+                                <i class="fas fa-{% if profile.can_manage_users %}check-circle{% else %}times-circle{% endif %}"></i>
+                                <span>{% trans "Manage Users" %}</span>
+                            </div>
+                            <div class="permission-item {% if profile.can_view_reports %}granted{% else %}denied{% endif %}">
+                                <i class="fas fa-{% if profile.can_view_reports %}check-circle{% else %}times-circle{% endif %}"></i>
+                                <span>{% trans "View Reports" %}</span>
+                            </div>
+                            <div class="permission-item {% if profile.can_view_audit_logs %}granted{% else %}denied{% endif %}">
+                                <i class="fas fa-{% if profile.can_view_audit_logs %}check-circle{% else %}times-circle{% endif %}"></i>
+                                <span>{% trans "View Audit Logs" %}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+/* Profile Container */
+.profile-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+/* Profile Header */
+.profile-header {
+    background: linear-gradient(135deg, var(--primary-color, #667eea) 0%, var(--primary-hover, #5a67d8) 100%);
+    border-radius: 20px;
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.profile-hero {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.profile-avatar {
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+    border: 4px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.profile-info h1 {
+    font-size: 2.5rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0;
+    color: white;
+}
+
+.role-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
+    backdrop-filter: blur(10px);
+}
+
+.role-badge.role-admin {
+    background: rgba(231, 76, 60, 0.2);
+    border: 1px solid rgba(231, 76, 60, 0.3);
+}
+
+.role-badge.role-manager {
+    background: rgba(230, 126, 34, 0.2);
+    border: 1px solid rgba(230, 126, 34, 0.3);
+}
+
+.role-badge.role-chemscan_specialist {
+    background: rgba(52, 152, 219, 0.2);
+    border: 1px solid rgba(52, 152, 219, 0.3);
+}
+
+.role-badge.role-environmental_reviewer {
+    background: rgba(46, 204, 113, 0.2);
+    border: 1px solid rgba(46, 204, 113, 0.3);
+}
+
+.role-badge.role-manufacturing_reviewer {
+    background: rgba(155, 89, 182, 0.2);
+    border: 1px solid rgba(155, 89, 182, 0.3);
+}
+
+.role-badge.role-standards_officer {
+    background: rgba(241, 196, 15, 0.2);
+    border: 1px solid rgba(241, 196, 15, 0.3);
+}
+
+.role-badge.role-read_only {
+    background: rgba(149, 165, 166, 0.2);
+    border: 1px solid rgba(149, 165, 166, 0.3);
+}
+
+.role-badge.role-applicant {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.profile-username {
+    font-size: 1.1rem;
+    opacity: 0.8;
+    margin: 0;
+}
+
+.profile-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+/* Profile Content */
+.profile-content {
+    display: grid;
+    gap: 2rem;
+}
+
+/* Info Cards */
+.info-card {
+    background: white;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.info-card .card-header {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.info-card .card-header h3 {
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: #2c3e50;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.info-card .card-header h3 i {
+    color: var(--primary-color, #667eea);
+    font-size: 1.1rem;
+}
+
+.info-card .card-body {
+    padding: 2rem;
+}
+
+/* Basic Information Grid */
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+}
+
+.info-item {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.info-item label {
+    font-weight: 600;
+    color: #6c757d;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.info-item span {
+    font-size: 1.1rem;
+    color: #2c3e50;
+    font-weight: 500;
+}
+
+/* Role Description */
+.role-description p {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: #495057;
+    margin: 0;
+    padding: 1rem;
+    background: #f8f9fa;
+    border-radius: 12px;
+    border-left: 4px solid var(--primary-color, #667eea);
+}
+
+/* Permissions Grid */
+.permissions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.permission-category h4 {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2c3e50;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 2px solid var(--primary-color, #667eea);
+}
+
+.permission-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
+.permission-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    border-radius: 10px;
+    transition: all 0.2s ease;
+    font-weight: 500;
+}
+
+.permission-item.granted {
+    background: rgba(46, 204, 113, 0.1);
+    color: #27ae60;
+    border: 1px solid rgba(46, 204, 113, 0.2);
+}
+
+.permission-item.denied {
+    background: rgba(231, 76, 60, 0.1);
+    color: #e74c3c;
+    border: 1px solid rgba(231, 76, 60, 0.2);
+}
+
+.permission-item i {
+    font-size: 1.1rem;
+}
+
+/* Buttons */
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 500;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--primary-color, #667eea);
+    color: white;
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover, #5a67d8);
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+.btn-secondary {
+    background: #6c757d;
+    color: white;
+}
+
+.btn-secondary:hover {
+    background: #5a6268;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.4);
+    color: white;
+    text-decoration: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .profile-container {
+        padding: 1rem;
+    }
+    
+    .profile-header {
+        padding: 2rem;
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .profile-hero {
+        flex-direction: column;
+        text-align: center;
+        gap: 1.5rem;
+    }
+    
+    .profile-info h1 {
+        font-size: 2rem;
+    }
+    
+    .profile-avatar {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+    
+    .info-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .permissions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .info-card .card-body {
+        padding: 1.5rem;
+    }
+    
+    .profile-actions {
+        justify-content: center;
+        width: 100%;
+    }
+    
+    .btn {
+        flex: 1;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .profile-header {
+        padding: 1.5rem;
+    }
+    
+    .profile-info h1 {
+        font-size: 1.75rem;
+    }
+    
+    .profile-avatar {
+        width: 70px;
+        height: 70px;
+        font-size: 1.75rem;
+    }
+    
+    .info-card .card-header {
+        padding: 1rem 1.5rem;
+    }
+    
+    .info-card .card-body {
+        padding: 1rem;
+    }
+}
+</style>
+{% endblock %} 

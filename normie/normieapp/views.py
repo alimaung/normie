@@ -5,12 +5,21 @@ from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
+from django.contrib.auth.models import User
 from django.conf import settings
 import os
 import json
 import uuid
 from .services import pdf_service
 from pathlib import Path
+from .decorators import (
+    role_required, permission_required, admin_required, manager_or_admin_required,
+    can_edit_requests, can_view_reports, can_view_audit_logs,
+    user_can_access_request, user_can_edit_request, read_only_or_above_required,
+    restrict_read_only_users
+)
+from .models import UserProfile
 
 
 def home(request):
@@ -19,21 +28,24 @@ def home(request):
     """
     return render(request, 'normieapp/home.html')
 
+@restrict_read_only_users
 def incoming(request):
     """
-    Incoming page view.
+    Incoming page view - requires applicant role or above.
     """
     return render(request, 'normieapp/incoming.html')
 
+@restrict_read_only_users
 def directory(request):
     """
-    Directory page view.
+    Directory page view - requires applicant role or above.
     """
     return render(request, 'normieapp/directory.html')
 
+@restrict_read_only_users
 def chemscan(request):
     """
-    ChemScan analysis and management view.
+    ChemScan analysis and management view - requires applicant role or above.
     """
     context = {
         'page_title': _('ChemScan Analysis'),
@@ -52,9 +64,10 @@ def chemscan(request):
     }
     return render(request, 'normieapp/chemscan.html', context)
 
+@restrict_read_only_users
 def standards(request):
     """
-    Standards management view.
+    Standards management view - requires applicant role or above.
     """
     context = {
         'page_title': _('Standards Management'),
@@ -67,9 +80,10 @@ def standards(request):
     return render(request, 'normieapp/prototyping/standards.html', context)
 
 
+@restrict_read_only_users
 def requests(request):
     """
-    Material requests view.
+    Material requests view - requires applicant role or above.
     """
     context = {
         'page_title': _('Material Requests'),
@@ -82,9 +96,10 @@ def requests(request):
     return render(request, 'normieapp/prototyping/requests.html', context)
 
 
+@restrict_read_only_users
 def materials(request):
     """
-    Materials catalog view.
+    Materials catalog view - requires applicant role or above.
     """
     context = {
         'page_title': _('Materials Catalog'),
@@ -98,9 +113,10 @@ def materials(request):
     return render(request, 'normieapp/prototyping/materials.html', context)
 
 
+@restrict_read_only_users
 def releases(request):
     """
-    Release management view.
+    Release management view - requires applicant role or above.
     """
     context = {
         'page_title': _('Release Management'),
@@ -113,9 +129,10 @@ def releases(request):
     return render(request, 'normieapp/prototyping/releases.html', context)
 
 
+@manager_or_admin_required
 def approvals(request):
     """
-    Approval workflows view.
+    Approval workflows view - restricted to managers and administrators.
     """
     context = {
         'page_title': _('Approval Workflows'),
@@ -128,9 +145,10 @@ def approvals(request):
     return render(request, 'normieapp/prototyping/approvals.html', context)
 
 
+@restrict_read_only_users
 def inventory(request):
     """
-    Inventory management view.
+    Inventory management view - requires applicant role or above.
     """
     context = {
         'page_title': _('Inventory Management'),
@@ -147,9 +165,10 @@ def inventory(request):
     return render(request, 'normieapp/prototyping/inventory.html', context)
 
 
+@can_view_reports
 def reports(request):
     """
-    Reports and analytics view.
+    Reports and analytics view - restricted to users with report viewing permissions.
     """
     context = {
         'page_title': _('Reports & Analytics'),
@@ -163,9 +182,10 @@ def reports(request):
     return render(request, 'normieapp/prototyping/reports.html', context)
 
 
+@can_view_audit_logs
 def audit(request):
     """
-    Audit trail view.
+    Audit trail view - restricted to users with audit log viewing permissions.
     """
     context = {
         'page_title': _('Audit Trail'),
@@ -179,9 +199,10 @@ def audit(request):
     return render(request, 'normieapp/prototyping/audit.html', context)
 
 
+@read_only_or_above_required
 def settings(request):
     """
-    Settings page view.
+    Settings page view - requires login with any role.
     """
     context = {
         'page_title': _('Settings'),
@@ -200,19 +221,61 @@ def login_view(request):
     """
     Login page view.
     """
+    # Check if user was redirected here due to login required
+    next_url = request.GET.get('next')
+    if next_url and not request.user.is_authenticated:
+        messages.info(request, _(
+            'Authentication Required: Please log in to access the requested page. '
+            'If you don\'t have an account, you can create one with read-only access.'
+        ))
+    
     if request.method == 'POST':
         username = request.POST.get('username')
         password = request.POST.get('password')
+        remember_me = request.POST.get('remember_me')
         
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            messages.success(request, _('Successfully logged in!'))
-            return redirect('home')
+            
+            # Handle "Remember me" functionality
+            if remember_me:
+                # Set session to expire in 30 days
+                request.session.set_expiry(30 * 24 * 60 * 60)  # 30 days in seconds
+            else:
+                # Set session to expire when browser closes
+                request.session.set_expiry(0)
+            
+            # Redirect to the originally requested page or home
+            redirect_url = request.GET.get('next', 'home')
+            return redirect(redirect_url)
         else:
             messages.error(request, _('Invalid username or password.'))
     
     return render(request, 'normieapp/login.html')
+
+
+def signup_view(request):
+    """
+    User registration view.
+    Creates new users with read-only permissions by default.
+    """
+    from .forms import SignUpForm
+    
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            messages.success(request, _('Account created successfully! You can now log in with read-only access.'))
+            return redirect('login')
+    else:
+        form = SignUpForm()
+    
+    context = {
+        'form': form,
+        'page_title': _('Create Account')
+    }
+    return render(request, 'normieapp/signup.html', context)
 
 
 def logout_view(request):
@@ -221,13 +284,13 @@ def logout_view(request):
     """
     logout(request)
     messages.success(request, _('Successfully logged out!'))
-    return redirect('login')
+    return redirect('home')
 
 
-@login_required
+@read_only_or_above_required
 def profile(request):
     """
-    User profile view.
+    User profile view - requires login with any role.
     """
     context = {
         'page_title': _('User Profile'),
@@ -243,10 +306,10 @@ def profile(request):
     return render(request, 'normieapp/profile.html', context)
 
 
-@login_required
+@read_only_or_above_required
 def notifications(request):
     """
-    Notifications view.
+    Notifications view - requires login with any role.
     """
     context = {
         'page_title': _('Notifications'),
@@ -259,10 +322,10 @@ def notifications(request):
     return render(request, 'normieapp/notifications.html', context)
 
 
-@login_required(login_url='/admin/login/')
+@restrict_read_only_users
 def cmsr_request(request):
     """
-    CMSR (Consumable Material Supply Request) form view.
+    CMSR (Consumable Material Supply Request) form view - requires applicant role or above.
     Handles the complete multi-step approval workflow.
     """
     from .models import CMSRRequest, CMSRDocument
@@ -304,10 +367,10 @@ def cmsr_request(request):
     return render(request, 'normieapp/prototyping/cmsr_request.html', context)
 
 
-@login_required
+@restrict_read_only_users
 def cmsr_detail(request, pk):
     """
-    CMSR request detail view with workflow management.
+    CMSR request detail view with workflow management - requires applicant role or above.
     """
     from .models import CMSRRequest, CMSRWorkflowLog
     
@@ -353,10 +416,10 @@ def cmsr_detail(request, pk):
     return render(request, 'normieapp/prototyping/cmsr_detail.html', context)
 
 
-@login_required
+@restrict_read_only_users
 def cmsr_list(request):
     """
-    List view for CMSR requests with filtering and search.
+    List view for CMSR requests with filtering and search - requires applicant role or above.
     """
     from .models import CMSRRequest
     from django.db.models import Q
@@ -424,10 +487,10 @@ def get_next_possible_statuses(current_status, user):
     return transitions.get(current_status, [])
 
 
-@login_required
+@restrict_read_only_users
 def cmsr_edit(request, pk):
     """
-    Edit CMSR request view.
+    Edit CMSR request view - requires applicant role or above.
     """
     from .models import CMSRRequest
     from .forms import CMSRRequestForm
@@ -456,25 +519,28 @@ def cmsr_edit(request, pk):
     return render(request, 'normieapp/prototyping/cmsr_edit.html', context)
 
 
-@login_required
+@role_required('admin', 'manager', 'chemscan_specialist')
 def cmsr_chemscan(request, pk):
     """
-    ChemScan assessment view for CMSR request.
+    ChemScan assessment view for CMSR request - restricted to ChemScan specialists, managers, and admins.
     """
     from .models import CMSRRequest, ChemScanAssessment
     from .forms import ChemScanAssessmentForm
     
     cmsr = get_object_or_404(CMSRRequest, pk=pk)
     
-    # Check permissions - only ChemScan group can access
-    if not request.user.groups.filter(name='ChemScan').exists() and not request.user.has_perm('normieapp.change_cmsrrequest'):
-        messages.error(request, _('You do not have permission to perform ChemScan assessments.'))
-        return redirect('cmsr_detail', pk=pk)
+    # Check if user can access this request
+    if not user_can_access_request(request.user, cmsr):
+        messages.error(request, _('You do not have permission to access this request.'))
+        return redirect('cmsr_list')
     
     # Get or create ChemScan assessment
     chemscan, created = ChemScanAssessment.objects.get_or_create(cmsr_request=cmsr)
     
-    if request.method == 'POST':
+    # Check if user can perform ChemScan
+    can_edit = request.user.profile.can_perform_chemscan
+    
+    if request.method == 'POST' and can_edit:
         form = ChemScanAssessmentForm(request.POST, instance=chemscan)
         if form.is_valid():
             form.save()
@@ -487,25 +553,26 @@ def cmsr_chemscan(request, pk):
         'page_title': f'ChemScan Assessment - CMSR {cmsr.application_number}',
         'form': form,
         'cmsr': cmsr,
-        'chemscan': chemscan
+        'chemscan': chemscan,
+        'can_edit': can_edit
     }
     return render(request, 'normieapp/prototyping/cmsr_chemscan.html', context)
 
 
-@login_required
+@role_required('admin', 'manager', 'environmental_reviewer')
 def cmsr_environmental(request, pk):
     """
-    Environmental assessment view for CMSR request.
+    Environmental assessment view for CMSR request - restricted to environmental reviewers, managers, and admins.
     """
     from .models import CMSRRequest, EnvironmentalAssessment
     from .forms import EnvironmentalAssessmentForm
     
     cmsr = get_object_or_404(CMSRRequest, pk=pk)
     
-    # Check permissions - only Environmental group can access
-    if not request.user.groups.filter(name='Environmental').exists() and not request.user.has_perm('normieapp.change_cmsrrequest'):
-        messages.error(request, _('You do not have permission to perform environmental assessments.'))
-        return redirect('cmsr_detail', pk=pk)
+    # Check if user can access this request
+    if not user_can_access_request(request.user, cmsr):
+        messages.error(request, _('You do not have permission to access this request.'))
+        return redirect('cmsr_list')
     
     # Get or create Environmental assessment
     environmental, created = EnvironmentalAssessment.objects.get_or_create(cmsr_request=cmsr)
@@ -530,20 +597,20 @@ def cmsr_environmental(request, pk):
     return render(request, 'normieapp/prototyping/cmsr_environmental.html', context)
 
 
-@login_required
+@role_required('admin', 'manager', 'manufacturing_reviewer')
 def cmsr_manufacturing(request, pk):
     """
-    Manufacturing lab approval view for CMSR request.
+    Manufacturing lab approval view for CMSR request - restricted to manufacturing reviewers, managers, and admins.
     """
     from .models import CMSRRequest, ManufacturingLabApproval
     from .forms import ManufacturingLabApprovalForm
     
     cmsr = get_object_or_404(CMSRRequest, pk=pk)
     
-    # Check permissions - only Manufacturing Lab group can access
-    if not request.user.groups.filter(name='Manufacturing Lab').exists() and not request.user.has_perm('normieapp.change_cmsrrequest'):
-        messages.error(request, _('You do not have permission to perform manufacturing lab approvals.'))
-        return redirect('cmsr_detail', pk=pk)
+    # Check if user can access this request
+    if not user_can_access_request(request.user, cmsr):
+        messages.error(request, _('You do not have permission to access this request.'))
+        return redirect('cmsr_list')
     
     # Get or create Manufacturing lab approval
     manufacturing, created = ManufacturingLabApproval.objects.get_or_create(cmsr_request=cmsr)
@@ -566,20 +633,20 @@ def cmsr_manufacturing(request, pk):
     return render(request, 'normieapp/prototyping/cmsr_manufacturing.html', context)
 
 
-@login_required
+@role_required('admin', 'manager', 'standards_officer')
 def cmsr_standards(request, pk):
     """
-    Standards office approval view for CMSR request.
+    Standards office approval view for CMSR request - restricted to standards officers, managers, and admins.
     """
     from .models import CMSRRequest, StandardsOfficeApproval
     from .forms import StandardsOfficeApprovalForm
     
     cmsr = get_object_or_404(CMSRRequest, pk=pk)
     
-    # Check permissions - only Standards Office group can access
-    if not request.user.groups.filter(name='Standards Office').exists() and not request.user.has_perm('normieapp.change_cmsrrequest'):
-        messages.error(request, _('You do not have permission to perform standards office approvals.'))
-        return redirect('cmsr_detail', pk=pk)
+    # Check if user can access this request
+    if not user_can_access_request(request.user, cmsr):
+        messages.error(request, _('You do not have permission to access this request.'))
+        return redirect('cmsr_list')
     
     # Get or create Standards office approval
     standards, created = StandardsOfficeApproval.objects.get_or_create(cmsr_request=cmsr)
@@ -602,10 +669,10 @@ def cmsr_standards(request, pk):
     return render(request, 'normieapp/prototyping/cmsr_standards.html', context)
 
 
-@login_required
+@restrict_read_only_users
 def cmsr_documents(request, pk):
     """
-    Document management view for CMSR request.
+    Document management view for CMSR request - requires applicant role or above.
     """
     from .models import CMSRRequest, CMSRDocument
     from .forms import CMSRDocumentForm
@@ -641,9 +708,10 @@ def cmsr_documents(request, pk):
     }
     return render(request, 'normieapp/prototyping/cmsr_documents.html', context)
 
+@restrict_read_only_users
 def pdf_upload(request):
     """
-    Handle PDF form upload.
+    Handle PDF form upload - requires applicant role or above.
     """
     if request.method == 'POST' and request.FILES.get('pdf_file'):
         pdf_file = request.FILES['pdf_file']
@@ -683,9 +751,10 @@ def pdf_upload(request):
     
     return redirect('incoming')
 
+@restrict_read_only_users
 def pdf_edit(request, form_id):
     """
-    Display PDF form editor.
+    Display PDF form editor - requires applicant role or above.
     """
     # Get form data from session
     form_data = request.session.get(f'pdf_form_{form_id}')
@@ -705,16 +774,17 @@ def pdf_edit(request, form_id):
         except Exception as e:
             print(f"Could not extract signature details: {e}")
     
-    return render(request, 'normieapp/pdf_edit.html', {
+    return render(request, 'normieapp/pdf_form.html', {
         'form_id': form_id,
         'fields': fields,
         'signature_details': signature_details
     })
 
 @csrf_exempt  # Add CSRF exemption for AJAX calls
+@restrict_read_only_users
 def pdf_save(request, form_id):
     """
-    Save edited PDF form fields back to the original PDF file.
+    Save edited PDF form fields back to the original PDF file - requires applicant role or above.
     """
     if request.method == 'POST':
         try:
@@ -762,9 +832,10 @@ def pdf_save(request, form_id):
     
     return JsonResponse({'success': False, 'message': _("Invalid request method.")})
 
+@restrict_read_only_users
 def pdf_download(request, form_id):
     """
-    Download the updated PDF file (with saved changes).
+    Download the updated PDF file (with saved changes) - requires applicant role or above.
     """
     # Get form data from session
     form_data = request.session.get(f'pdf_form_{form_id}')
@@ -804,9 +875,10 @@ def pdf_download(request, form_id):
         print(f"Form data: {form_data}")
         return redirect('pdf_edit', form_id=form_id)
 
+@admin_required
 def pdf_debug(request, form_id):
     """
-    Debug view to inspect form data in the session.
+    Debug view to inspect form data in the session - admin only.
     """
     form_data = request.session.get(f'pdf_form_{form_id}')
     
@@ -826,4 +898,288 @@ def pdf_debug(request, form_id):
         'fields': fields
     }
     
-    return JsonResponse(debug_info, json_dumps_params={'indent': 2}) 
+    return JsonResponse(debug_info, json_dumps_params={'indent': 2})
+
+@admin_required
+def user_management(request):
+    """
+    User management view - restricted to administrators only.
+    """
+    from django.contrib.auth.models import User
+    from django.core.paginator import Paginator
+    
+    users = User.objects.select_related('profile').all().order_by('username')
+    
+    # Handle role updates
+    if request.method == 'POST':
+        user_id = request.POST.get('user_id')
+        new_role = request.POST.get('role')
+        
+        if user_id and new_role:
+            try:
+                user = User.objects.get(id=user_id)
+                if hasattr(user, 'profile'):
+                    user.profile.role = new_role
+                    user.profile.save()
+                    messages.success(request, f'Role updated for {user.username}')
+                else:
+                    UserProfile.objects.create(user=user, role=new_role)
+                    messages.success(request, f'Profile created for {user.username}')
+            except User.DoesNotExist:
+                messages.error(request, 'User not found')
+    
+    # Pagination
+    paginator = Paginator(users, 20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    context = {
+        'page_title': _('User Management'),
+        'page_obj': page_obj,
+        'role_choices': UserProfile.ROLE_CHOICES,
+    }
+    
+    return render(request, 'normieapp/user_management.html', context)
+
+
+@read_only_or_above_required
+def user_profile_view(request):
+    """
+    User profile view - shows current user's profile and permissions, requires login with any role.
+    """
+    # Create profile if it doesn't exist
+    if not hasattr(request.user, 'profile'):
+        UserProfile.objects.create(user=request.user)
+    
+    # Get session information
+    session_expiry = request.session.get_expiry_age()
+    session_expires_at = request.session.get_expiry_date()
+    is_extended_session = session_expiry > 1209600  # More than 2 weeks
+    
+    context = {
+        'page_title': _('My Profile'),
+        'profile': request.user.profile,
+        'session_info': {
+            'expiry_seconds': session_expiry,
+            'expires_at': session_expires_at,
+            'is_extended': is_extended_session,
+            'expiry_days': round(session_expiry / 86400, 1) if session_expiry else 0,
+        }
+    }
+    
+    return render(request, 'normieapp/user_profile.html', context)
+
+def about(request):
+    """
+    About page - public access for guests.
+    """
+    context = {
+        'page_title': _('About Normie'),
+        'team_members': [
+            {
+                'name': 'Dr. Sarah Chen',
+                'role': 'Chief Technology Officer',
+                'description': 'Expert in standards management with 15+ years experience',
+                'image_color': '#667eea'
+            },
+            {
+                'name': 'Michael Rodriguez',
+                'role': 'Head of Product',
+                'description': 'Specializes in workflow optimization and user experience',
+                'image_color': '#764ba2'
+            },
+            {
+                'name': 'Anna Schmidt',
+                'role': 'Compliance Director',
+                'description': 'Regulatory compliance and quality assurance specialist',
+                'image_color': '#f093fb'
+            },
+        ],
+        'stats': {
+            'years_experience': 12,
+            'clients_served': 500,
+            'standards_managed': 10000,
+            'countries': 25
+        }
+    }
+    return render(request, 'normieapp/about.html', context)
+
+
+def contact(request):
+    """
+    Contact page - public access for guests.
+    """
+    if request.method == 'POST':
+        # Handle contact form submission
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        
+        # Here you would typically send an email or save to database
+        # For now, just show a success message
+        messages.success(request, _('Thank you for your message! We will get back to you soon.'))
+        return redirect('contact')
+    
+    context = {
+        'page_title': _('Contact Us'),
+        'office_locations': [
+            {
+                'city': 'Munich',
+                'country': 'Germany',
+                'address': 'Maximilianstraße 35, 80539 München',
+                'phone': '+49 89 123 456 789',
+                'email': 'munich@normie.de'
+            },
+            {
+                'city': 'Frankfurt',
+                'country': 'Germany', 
+                'address': 'Zeil 106, 60313 Frankfurt am Main',
+                'phone': '+49 69 987 654 321',
+                'email': 'frankfurt@normie.de'
+            }
+        ]
+    }
+    return render(request, 'normieapp/contact.html', context)
+
+
+def features_detail(request):
+    """
+    Detailed features page - public access for guests.
+    """
+    context = {
+        'page_title': _('Features & Capabilities'),
+        'feature_categories': [
+            {
+                'title': _('Standards Management'),
+                'description': _('Comprehensive tools for creating, maintaining, and tracking organizational standards.'),
+                'features': [
+                    _('Version control and history tracking'),
+                    _('Collaborative editing and review workflows'),
+                    _('Automated compliance checking'),
+                    _('Document templates and standardization'),
+                    _('Integration with regulatory databases')
+                ],
+                'color': '#667eea'
+            },
+            {
+                'title': _('Request Processing'),
+                'description': _('Streamlined material request workflows with intelligent automation.'),
+                'features': [
+                    _('Smart form validation and auto-completion'),
+                    _('Role-based approval routing'),
+                    _('Real-time status tracking'),
+                    _('Automated notifications and reminders'),
+                    _('Integration with procurement systems')
+                ],
+                'color': '#764ba2'
+            },
+            {
+                'title': _('Analytics & Reporting'),
+                'description': _('Advanced analytics and customizable reporting capabilities.'),
+                'features': [
+                    _('Real-time dashboards and KPIs'),
+                    _('Customizable report templates'),
+                    _('Predictive analytics and forecasting'),
+                    _('Compliance reporting automation'),
+                    _('Data export and API integration')
+                ],
+                'color': '#f093fb'
+            }
+        ]
+    }
+    return render(request, 'normieapp/features.html', context)
+
+
+# AJAX Validation Endpoints
+@require_http_methods(["GET"])
+def check_username_availability(request):
+    """
+    AJAX endpoint to check if username is available
+    """
+    username = request.GET.get('username', '').strip()
+    
+    if not username:
+        return JsonResponse({
+            'available': False,
+            'message': _('Username is required.'),
+            'type': 'error'
+        })
+    
+    # Check minimum length
+    if len(username) < 3:
+        return JsonResponse({
+            'available': False,
+            'message': _('Username must be at least 3 characters long.'),
+            'type': 'error'
+        })
+    
+    # Check maximum length
+    if len(username) > 150:
+        return JsonResponse({
+            'available': False,
+            'message': _('Username must be 150 characters or less.'),
+            'type': 'error'
+        })
+    
+    # Check if username exists
+    if User.objects.filter(username=username).exists():
+        return JsonResponse({
+            'available': False,
+            'message': _('This username is already taken.'),
+            'type': 'error'
+        })
+    
+    # Check for valid characters (alphanumeric, @, ., +, -, _)
+    import re
+    if not re.match(r'^[\w.@+-]+$', username):
+        return JsonResponse({
+            'available': False,
+            'message': _('Username can only contain letters, numbers, and @/./+/-/_ characters.'),
+            'type': 'error'
+        })
+    
+    return JsonResponse({
+        'available': True,
+        'message': _('Username is available!'),
+        'type': 'success'
+    })
+
+
+@require_http_methods(["GET"])
+def check_email_availability(request):
+    """
+    AJAX endpoint to check if email is available
+    """
+    email = request.GET.get('email', '').strip()
+    
+    if not email:
+        return JsonResponse({
+            'available': False,
+            'message': _('Email is required.'),
+            'type': 'error'
+        })
+    
+    # Basic email format validation
+    import re
+    email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    if not re.match(email_pattern, email):
+        return JsonResponse({
+            'available': False,
+            'message': _('Please enter a valid email address.'),
+            'type': 'error'
+        })
+    
+    # Check if email exists
+    if User.objects.filter(email=email).exists():
+        return JsonResponse({
+            'available': False,
+            'message': _('This email address is already registered.'),
+            'type': 'error'
+        })
+    
+    return JsonResponse({
+        'available': True,
+        'message': _('Email is available!'),
+        'type': 'success'
+    }) 
