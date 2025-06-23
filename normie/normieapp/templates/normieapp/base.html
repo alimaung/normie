@@ -14,351 +14,9 @@
     <meta name="msapplication-TileColor" content="#1a73e8">
     <!-- Font Awesome for icons -->
     <link rel="stylesheet" href="{% static "normieapp/css/vendor/fontawesome.min.css" %}">
-    <!-- Load our main CSS file -->
+    <!-- Load our main CSS files -->
     <link rel="stylesheet" href="{% static 'normieapp/css/styles.css' %}">
-    <style>
-        /* User Profile Container */
-        .user-profile-container {
-            position: relative;
-            display: inline-block;
-        }
-        
-        /* Override navbar-icons styles for user badge */
-        .navbar-icons .user-profile-container {
-            height: auto;
-            width: auto;
-        }
-        
-        /* User Badge */
-        .user-badge {
-            display: flex;
-            align-items: center;
-            padding: 0.3rem 0.7rem;
-            margin: 0.5rem;
-            background: rgba(255, 255, 255, 0.1);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 50px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            backdrop-filter: blur(10px);
-            color: var(--navbar-text-color, white);
-            position: relative;
-            user-select: none;
-            -webkit-tap-highlight-color: transparent;
-            outline: none;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-        }
-        
-        /* Light mode adjustments */
-        body:not(.dark-mode) .user-badge {
-            background: rgba(0, 0, 0, 0.05);
-            border: 1px solid rgba(0, 0, 0, 0.1);
-            color: #333;
-        }
-        
-        body:not(.dark-mode) .user-badge:hover,
-        body:not(.dark-mode) .user-badge:focus {
-            background: rgba(0, 0, 0, 0.1);
-            border-color: rgba(0, 0, 0, 0.15);
-        }
-        
-        body:not(.dark-mode) .user-profile-container.active .user-badge {
-            background: rgba(0, 0, 0, 0.15);
-            border-color: rgba(0, 0, 0, 0.2);
-        }
-        
-        .user-badge:hover, .user-badge:focus {
-            background: rgba(255, 255, 255, 0.15);
-            border-color: rgba(255, 255, 255, 0.3);
-            transform: translateY(-1px);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        }
-        
-        .user-profile-container.active .user-badge {
-            background: rgba(255, 255, 255, 0.2);
-            border-color: rgba(255, 255, 255, 0.4);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
-        }
-        
-        .user-avatar {
-            width: 32px;
-            height: 32px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 600;
-            font-size: 0.9rem;
-            color: white;
-            margin-right: 0.75rem;
-            flex-shrink: 0;
-        }
-        
-        .user-info {
-            display: flex;
-            flex-direction: column;
-            align-items: flex-start;
-            margin-right: 0.5rem;
-            min-width: 0;
-        }
-        
-        .user-display-name {
-            font-weight: 500;
-            font-size: 0.9rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 120px;
-        }
-        
-        .user-role {
-            font-size: 0.75rem;
-            opacity: 0.8;
-            font-weight: 400;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            max-width: 120px;
-        }
-        
-        .dropdown-arrow {
-            font-size: 0.7rem;
-            transition: transform 0.2s ease;
-            flex-shrink: 0;
-        }
-        
-        .user-profile-container.active .dropdown-arrow {
-            transform: rotate(180deg);
-        }
-        
-        /* Profile Dropdown Menu */
-        .profile-dropdown-menu {
-            position: absolute;
-            top: calc(100% + 0.75rem);
-            right: 0;
-            min-width: 290px;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(0, 0, 0, 0.05);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px) scale(0.98);
-            transform-origin: top right;
-            transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
-            z-index: 1000;
-            pointer-events: none;
-        }
-        
-        .profile-dropdown-menu.show {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0) scale(1);
-            pointer-events: auto;
-        }
-                
-        /* Dropdown Header */
-        .dropdown-header {
-            padding: 1.25rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border-radius: 12px 12px 0 0;
-            display: flex;
-            align-items: center;
-        }
-        
-        .header-avatar {
-            width: 48px;
-            height: 48px;
-            border-radius: 50%;
-            background: rgba(255, 255, 255, 0.2);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            font-size: 1.2rem;
-            margin-right: 1rem;
-            flex-shrink: 0;
-        }
-        
-        .header-info {
-            flex: 1;
-            min-width: 0;
-        }
-        
-        .header-info strong {
-            display: block;
-            font-size: 1rem;
-            font-weight: 600;
-            margin-bottom: 0.25rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        .role-badge {
-            display: inline-block;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 0.2rem 0.5rem;
-            border-radius: 12px;
-            font-size: 0.7rem;
-            font-weight: 500;
-            margin-bottom: 0.25rem;
-        }
-
-        .session-badge {
-            display: inline-block;
-            background: rgba(34, 197, 94, 0.2);
-            color: rgba(34, 197, 94, 1);
-            padding: 0.15rem 0.4rem;
-            border-radius: 8px;
-            font-size: 0.65rem;
-            font-weight: 500;
-            margin-top: 0.25rem;
-        }
-        
-        .user-email {
-            display: block;
-            opacity: 0.8;
-            font-size: 0.8rem;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
-        /* Dropdown Sections */
-        .dropdown-section {
-            padding: 0.5rem 0;
-        }
-        
-        /* Override navbar-icons a styles for dropdown items */
-        .profile-dropdown-menu .dropdown-item {
-            display: flex;
-            align-items: center;
-            padding: 0.75rem 1.25rem;
-            color: #495057;
-            text-decoration: none;
-            transition: all 0.2s ease;
-            border: none;
-            background: none;
-            width: 100%;
-            height: auto;
-            border-radius: 0;
-            justify-content: flex-start;
-            font-size: inherit;
-        }
-        
-        .profile-dropdown-menu .dropdown-item:hover {
-            background: #f8f9fa;
-            color: #495057;
-            text-decoration: none;
-            transform: none;
-        }
-        
-        .profile-dropdown-menu .dropdown-item i {
-            width: 18px;
-            margin-right: 0.75rem;
-            text-align: center;
-            font-size: 0.9rem;
-        }
-        
-        .profile-dropdown-menu .dropdown-item span {
-            font-weight: 500;
-            display: inline;
-        }
-        
-        .profile-dropdown-menu .logout-item {
-            color: #dc3545;
-        }
-        
-        .profile-dropdown-menu .logout-item:hover {
-            background: #fff5f5;
-            color: #dc3545;
-        }
-        
-        .dropdown-divider {
-            height: 1px;
-            background: #e9ecef;
-            margin: 0;
-        }
-        
-        /* Login Button for Guests */
-        .navbar-icons .btn-login {
-            display: flex;
-            align-items: center;
-            padding: 0.5rem 1rem;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
-            color: white !important;
-            text-decoration: none;
-            border-radius: 20px !important;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: all 0.3s ease;
-            height: auto !important;
-            width: auto !important;
-            border: none !important;
-        }
-        
-        .navbar-icons .btn-login:hover {
-            transform: translateY(-1px) !important;
-            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.4) !important;
-            color: white !important;
-            text-decoration: none;
-            background: linear-gradient(135deg, #5a67d8 0%, #6b46c1 100%) !important;
-        }
-        
-        .navbar-icons .btn-login i {
-            margin-right: 0.5rem;
-            color: white !important;
-        }
-        
-        .navbar-icons .btn-login span {
-            display: none;
-            color: white !important;
-        }
-        
-        @media (min-width: 768px) {
-            .navbar-icons .btn-login span {
-                display: inline;
-            }
-        }
-        
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .user-info {
-                display: none;
-            }
-            
-            .user-badge {
-                padding: 0.5rem;
-            }
-            
-            .profile-dropdown-menu {
-                min-width: 260px;
-                right: -20px;
-            }
-            
-            .dropdown-item {
-                padding: 1rem 1.25rem;
-            }
-        }
-        
-        @media (max-width: 480px) {
-            .profile-dropdown-menu {
-                min-width: 240px;
-                right: -40px;
-            }
-        }
-        
-        /* Prevent dropdown from closing on mobile */
-        @media (hover: none) and (pointer: coarse) {
-            .user-profile-container:active .profile-dropdown-menu {
-                opacity: 1;
-                visibility: visible;
-                transform: translateY(0);
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="{% static 'normieapp/css/base.css' %}">
     {% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -375,47 +33,555 @@
             {% if user.is_authenticated %}
                 <!-- Authenticated User Navigation -->
                 {% if user.profile.role == 'admin' or user.profile.role == 'manager' %}
-                    <!-- Admin/Manager Full Navigation -->
-                    <a href="{% url 'incoming' %}" {% if request.resolver_match.url_name == 'incoming' %}class="active"{% endif %}>{% trans "Incoming" %}</a>
-                    <a href="{% url 'directory' %}" {% if request.resolver_match.url_name == 'directory' %}class="active"{% endif %}>{% trans "Directory" %}</a>
-                    <a href="{% url 'chemscan' %}" {% if request.resolver_match.url_name == 'chemscan' %}class="active"{% endif %}>{% trans "ChemScan" %}</a>
+                    <!-- Admin/Manager Navigation -->
                     <div class="navbar-dropdown">
-                        <a href="#" class="dropdown-toggle {% if request.resolver_match.url_name in 'standards,requests,materials,releases,approvals,cmsr_list,inventory,reports,audit' %}active{% endif %}">
-                            {% trans "Management" %} <i class="fas fa-chevron-down"></i>
+                        <a href="#" class="dropdown-toggle">
+                            {% trans "Norms" %} <i class="fas fa-chevron-down"></i>
                         </a>
-                        <div class="dropdown-menu">
-                            <a href="{% url 'standards' %}" {% if request.resolver_match.url_name == 'standards' %}class="active"{% endif %}>{% trans "Standards" %}</a>
-                            <a href="{% url 'requests' %}" {% if request.resolver_match.url_name == 'requests' %}class="active"{% endif %}>{% trans "Requests" %}</a>
-                            <a href="{% url 'materials' %}" {% if request.resolver_match.url_name == 'materials' %}class="active"{% endif %}>{% trans "Materials" %}</a>
-                            <a href="{% url 'releases' %}" {% if request.resolver_match.url_name == 'releases' %}class="active"{% endif %}>{% trans "Releases" %}</a>
-                            <a href="{% url 'approvals' %}" {% if request.resolver_match.url_name == 'approvals' %}class="active"{% endif %}>{% trans "Approvals" %}</a>
-                            <a href="{% url 'cmsr_list' %}" {% if request.resolver_match.url_name|slice:":4" == 'cmsr' %}class="active"{% endif %}>{% trans "CMSR" %}</a>
-                            <a href="{% url 'inventory' %}" {% if request.resolver_match.url_name == 'inventory' %}class="active"{% endif %}>{% trans "Inventory" %}</a>
-                            {% if user.profile.can_view_reports %}
-                                <a href="{% url 'reports' %}" {% if request.resolver_match.url_name == 'reports' %}class="active"{% endif %}>{% trans "Reports" %}</a>
-                            {% endif %}
-                            {% if user.profile.can_view_audit_logs %}
-                                <a href="{% url 'audit' %}" {% if request.resolver_match.url_name == 'audit' %}class="active"{% endif %}>{% trans "Audit" %}</a>
-                            {% endif %}
+                        <div class="dropdown-menu card-dropdown products-style">
+                            <div class="dropdown-card">
+                                <div class="dropdown-products">
+                                    <div class="dropdown-section">
+                                        <div class="section-title">Standards Management</div>
+                                        <a href="{% url 'requests' %}" class="dropdown-item">
+                                            <i class="fas fa-edit"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">CR Request</div>
+                                                <div class="dropdown-item-description">Create change requests</div>
+                        </div>
+                                        </a>
+                                        <a href="{% url 'cmsr_list' %}" class="dropdown-item">
+                                            <i class="fas fa-list-alt"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">CR Status</div>
+                                                <div class="dropdown-item-description">Track request progress</div>
+                    </div>
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="dropdown-section">
+                                        <div class="section-title">External Systems</div>
+                                        <a href="https://nautos.de/" class="dropdown-item" target="_blank">
+                                            <i class="fas fa-ship"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Nautos</div>
+                                                <div class="dropdown-item-description">Standards platform</div>
+                                            </div>
+                                        </a>
+                                        <a href="{% url 'standards' %}" class="dropdown-item">
+                                            <i class="fas fa-file-alt"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Spec</div>
+                                                <div class="dropdown-item-description">Specification documents</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="dropdown-section">
+                                        <div class="section-title">More</div>
+                                        <a href="#" class="dropdown-item simple">
+                                            <i class="fas fa-chart-line"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Analytics</div>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="dropdown-item simple">
+                                            <i class="fas fa-history"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">History</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    {% if user.profile.can_manage_users %}
-                        <a href="{% url 'user_management' %}" {% if request.resolver_match.url_name == 'user_management' %}class="active"{% endif %}>{% trans "Users" %}</a>
-                    {% endif %}
+                    
+                    <div class="navbar-dropdown">
+                        <a href="#" class="dropdown-toggle">
+                            {% trans "CheMat" %} <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu card-dropdown products-style">
+                            <div class="dropdown-card">
+                                <div class="dropdown-products">
+                                    <div class="dropdown-section">
+                                        <div class="section-title">Request Management</div>
+                                        <a href="{% url 'incoming' %}" class="dropdown-item">
+                                            <i class="fas fa-inbox"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Requests</div>
+                                                <div class="dropdown-item-description">Incoming material requests</div>
+                                            </div>
+                                        </a>
+                                        <a href="{% url 'materials' %}" class="dropdown-item">
+                                            <i class="fas fa-clipboard-list"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Request Status</div>
+                                                <div class="dropdown-item-description">Track processing status</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="dropdown-section">
+                                        <div class="section-title">Data & Analysis</div>
+                                        <a href="{% url 'directory' %}" class="dropdown-item">
+                                            <i class="fas fa-folder"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Directory</div>
+                                                <div class="dropdown-item-description">Material database</div>
+                                            </div>
+                                        </a>
+                                        <a href="{% url 'chemscan' %}" class="dropdown-item">
+                                            <i class="fas fa-search"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">ChemScan</div>
+                                                <div class="dropdown-item-description">Chemical analysis tool</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="dropdown-section">
+                                        <div class="section-title">Tools</div>
+                                        <a href="#" class="dropdown-item">
+                                            <i class="fas fa-code"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">TKZ</div>
+                                                <div class="dropdown-item-description">Technical classification</div>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="dropdown-item simple">
+                                            <i class="fas fa-calculator"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Calculator</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="navbar-dropdown">
+                        <a href="#" class="dropdown-toggle">
+                            {% trans "Users" %} <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu card-dropdown solutions-style">
+                            <div class="dropdown-card">
+                                <div class="dropdown-solutions">
+                                    <div class="solutions-section">
+                                        <div class="solutions-title">User Management</div>
+                                        <a href="{% url 'user_management' %}" class="dropdown-item">
+                                            <i class="fas fa-users"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Manage Users</div>
+                                                <div class="dropdown-item-description">Add, edit, and remove users</div>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <i class="fas fa-user-tag"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Manage Roles</div>
+                                                <div class="dropdown-item-description">Configure user roles</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="solutions-section">
+                                        <div class="solutions-title">Security</div>
+                                        <a href="#" class="dropdown-item">
+                                            <i class="fas fa-shield-alt"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Permissions</div>
+                                                <div class="dropdown-item-description">Control access levels</div>
+                                            </div>
+                                        </a>
+                                        <a href="#" class="dropdown-item">
+                                            <i class="fas fa-key"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">API Keys</div>
+                                                <div class="dropdown-item-description">Manage API access</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
                 {% else %}
-                    <!-- Regular User Navigation -->
-                    {% if user.profile.can_create_requests or user.profile.can_view_all_requests %}
-                        <a href="{% url 'cmsr_list' %}" {% if request.resolver_match.url_name|slice:":4" == 'cmsr' %}class="active"{% endif %}>{% trans "My Requests" %}</a>
+                    <!-- Read-only User Navigation -->
+                    <div class="navbar-dropdown">
+                        <a href="#" class="dropdown-toggle">
+                            {% trans "Norms" %} <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu card-dropdown products-style">
+                            <div class="dropdown-card">
+                                <div class="dropdown-products">
+                                    <div class="dropdown-section">
+                                        <div class="section-title">Standards Management</div>
+                                        <a href="{% url 'requests' %}" class="dropdown-item">
+                                            <i class="fas fa-edit"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Change Request (CR)</div>
+                                                <div class="dropdown-item-description">Create change requests</div>
+                                            </div>
+                                        </a>
+                                        <a href="{% url 'cmsr_list' %}" class="dropdown-item">
+                                            <i class="fas fa-list-alt"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">CR Status</div>
+                                                <div class="dropdown-item-description">Track request progress</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="dropdown-section">
+                                        <div class="section-title">External Systems</div>
+                                        <a href="{% url 'standards' %}" class="dropdown-item">
+                                            <i class="fas fa-file-alt"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Spec</div>
+                                                <div class="dropdown-item-description">Specification documents</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="dropdown-section">
+                                        <div class="section-title">More</div>
+                                        <a href="#" class="dropdown-item simple">
+                                            <i class="fas fa-chart-line"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Analytics</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="navbar-dropdown">
+                        <a href="#" class="dropdown-toggle">
+                            {% trans "CheMat" %} <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu card-dropdown products-style">
+                            <div class="dropdown-card">
+                                <div class="dropdown-products">
+                                    <div class="dropdown-section">
+                                        <div class="section-title">Request Management</div>
+                                        <a href="{% url 'incoming' %}" class="dropdown-item">
+                                            <i class="fas fa-inbox"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Requests</div>
+                                                <div class="dropdown-item-description">Incoming material requests</div>
+                                            </div>
+                                        </a>
+                                        <a href="{% url 'materials' %}" class="dropdown-item">
+                                            <i class="fas fa-clipboard-list"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Request Status</div>
+                                                <div class="dropdown-item-description">Track processing status</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                    
+                                    <div class="dropdown-section">
+                                        <div class="section-title">Data & Analysis</div>
+                                    </div>
+                                    
+                                    <div class="dropdown-section">
+                                        <div class="section-title">Tools</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                     {% endif %}
-                    {% if user.profile.can_perform_chemscan %}
-                        <a href="{% url 'chemscan' %}" {% if request.resolver_match.url_name == 'chemscan' %}class="active"{% endif %}>{% trans "ChemScan" %}</a>
-                    {% endif %}
-                    <a href="{% url 'user_profile' %}" {% if request.resolver_match.url_name == 'user_profile' %}class="active"{% endif %}>{% trans "My Profile" %}</a>
-                {% endif %}
+                
+                <!-- Partners dropdown (common for all authenticated users) -->
+                <div class="navbar-dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        {% trans "Partners" %} <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu card-dropdown solutions-style">
+                        <div class="dropdown-card">
+                            <div class="dropdown-solutions">
+                                <div class="solutions-section">
+                                    <div class="solutions-title">Analysis Tools</div>
+                                    <a href="https://app.chemscan.de/" class="dropdown-item" target="_blank">
+                                        <i class="fas fa-flask"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">ChemScan</div>
+                                            <div class="dropdown-item-description">Chemical analysis platform</div>
+                                        </div>
+                                    </a>
+                                    <a href="https://nautos.de/" class="dropdown-item" target="_blank">
+                                        <i class="fas fa-ship"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Nautos</div>
+                                            <div class="dropdown-item-description">Maritime standards</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="solutions-section">
+                                    <div class="solutions-title">Collaboration</div>
+                                    <a href="https://rollsroyce.kanbanize.com/" class="dropdown-item" target="_blank">
+                                        <i class="fas fa-cogs"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Engine Room</div>
+                                            <div class="dropdown-item-description">Project management</div>
+                                        </div>
+                                    </a>
+                                    <a href="https://rollsroyce.sharepoint.com/" class="dropdown-item" target="_blank">
+                                        <i class="fas fa-map"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">BusinessMap</div>
+                                            <div class="dropdown-item-description">Process mapping</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Resources dropdown (common for all authenticated users) -->
+                <div class="navbar-dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        {% trans "Resources" %} <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu card-dropdown developers-style">
+                        <div class="dropdown-card">
+                            <div class="dropdown-developers">
+                                <div class="developers-section">
+                                    <div class="developers-title">Documentation</div>
+                                    <a href="/docs" class="dropdown-item simple">
+                                        <i class="fas fa-book"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">User Guide</div>
+                                        </div>
+                                    </a>
+                                    <a href="/docs/sop" class="dropdown-item simple">
+                                        <i class="fas fa-clipboard-check"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Standard Operating Procedures</div>
+                                        </div>
+                                    </a>
+                                    <a href="/docs/api" class="dropdown-item simple">
+                                        <i class="fas fa-code"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">API Reference</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="developers-section">
+                                    <div class="developers-title">Downloads</div>
+                                    <a href="/downloads" class="dropdown-item simple">
+                                        <i class="fas fa-download"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Software Downloads</div>
+                                        </div>
+                                    </a>
+                                    <a href="/downloads/templates" class="dropdown-item simple">
+                                        <i class="fas fa-file-excel"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Excel Templates</div>
+                                        </div>
+                                    </a>
+                                    <a href="/downloads/forms" class="dropdown-item simple">
+                                        <i class="fas fa-file-pdf"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">PDF Forms</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                          {% else %}
                  <!-- Guest Navigation -->
-                 <a href="{% url 'features_detail' %}" {% if request.resolver_match.url_name == 'features_detail' %}class="active"{% endif %}>{% trans "Features" %}</a>
-                 <a href="{% url 'about' %}" {% if request.resolver_match.url_name == 'about' %}class="active"{% endif %}>{% trans "About" %}</a>
+                <div class="navbar-dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        {% trans "Products" %} <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu card-dropdown solutions-style">
+                        <div class="dropdown-card">
+                            <div class="dropdown-solutions">
+                                <div class="solutions-section">
+                                    <div class="solutions-title">Our Products</div>
+                                    <a href="https://micro.film/" class="dropdown-item" target="_blank">
+                                        <i class="fas fa-film"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Micro</div>
+                                            <div class="dropdown-item-description">Film platform</div>
+                                        </div>
+                                    </a>
+                                    <a href="{% url 'home' %}" class="dropdown-item">
+                                        <i class="fas fa-home"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Normie</div>
+                                            <div class="dropdown-item-description">Standards management</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="solutions-section">
+                                    <div class="solutions-title">Tools</div>
+                                    <a href="https://findex.io/" class="dropdown-item" target="_blank">
+                                        <i class="fas fa-search"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Findex</div>
+                                            <div class="dropdown-item-description">Search platform</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navbar-dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        {% trans "Solutions" %} <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu card-dropdown solutions-style">
+                        <div class="dropdown-card">
+                            <div class="dropdown-solutions">
+                                <div class="solutions-section">
+                                    <div class="solutions-title">Standards</div>
+                                    <a href="{% url 'solutions_norm' %}" class="dropdown-item">
+                                        <i class="fas fa-balance-scale"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Norm</div>
+                                            <div class="dropdown-item-description">Standards management</div>
+                                        </div>
+                                    </a>
+                                    <a href="{% url 'solutions_spec' %}" class="dropdown-item">
+                                        <i class="fas fa-file-alt"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Spec</div>
+                                            <div class="dropdown-item-description">Specifications</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="solutions-section">
+                                    <div class="solutions-title">Materials & Tools</div>
+                                    <a href="{% url 'solutions_chemicals' %}" class="dropdown-item">
+                                        <i class="fas fa-flask"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Chemicals and Materials</div>
+                                            <div class="dropdown-item-description">Material management</div>
+                                        </div>
+                                    </a>
+                                    <a href="{% url 'solutions_directory' %}" class="dropdown-item">
+                                        <i class="fas fa-folder"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Directory</div>
+                                            <div class="dropdown-item-description">Resource directory</div>
+                                        </div>
+                                    </a>
+                                    <a href="{% url 'solutions_tkz' %}" class="dropdown-item">
+                                        <i class="fas fa-code"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">TKZ</div>
+                                            <div class="dropdown-item-description">Technical classification</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navbar-dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        {% trans "Partners" %} <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu card-dropdown solutions-style">
+                        <div class="dropdown-card">
+                            <div class="dropdown-solutions">
+                                <div class="solutions-section">
+                                    <div class="solutions-title">Analysis Tools</div>
+                                    <a href="https://app.chemscan.de/" class="dropdown-item" target="_blank">
+                                        <i class="fas fa-flask"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">ChemScan</div>
+                                            <div class="dropdown-item-description">Chemical analysis platform</div>
+                                        </div>
+                                    </a>
+                                    <a href="https://nautos.de/" class="dropdown-item" target="_blank">
+                                        <i class="fas fa-ship"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Nautos</div>
+                                            <div class="dropdown-item-description">Maritime standards</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="solutions-section">
+                                    <div class="solutions-title">Collaboration</div>
+                                    <a href="https://rollsroyce.kanbanize.com/" class="dropdown-item" target="_blank">
+                                        <i class="fas fa-cogs"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Engine Room</div>
+                                            <div class="dropdown-item-description">Project management</div>
+                                        </div>
+                                    </a>
+                                    <a href="https://rollsroyce.sharepoint.com/" class="dropdown-item" target="_blank">
+                                        <i class="fas fa-map"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">BusinessMap</div>
+                                            <div class="dropdown-item-description">Process mapping</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="navbar-dropdown">
+                    <a href="#" class="dropdown-toggle">
+                        {% trans "Resources" %} <i class="fas fa-chevron-down"></i>
+                    </a>
+                    <div class="dropdown-menu card-dropdown developers-style">
+                        <div class="dropdown-card">
+                            <div class="dropdown-developers">
+                                <div class="developers-section">
+                                    <div class="developers-title">Documentation</div>
+                                    <a href="/docs" class="dropdown-item simple">
+                                        <i class="fas fa-book"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">User Guide</div>
+                                        </div>
+                                    </a>
+                                    <a href="/docs/sop" class="dropdown-item simple">
+                                        <i class="fas fa-clipboard-check"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">SOPs</div>
+                                        </div>
+                                    </a>
+                                </div>
+                                
+                                <div class="developers-section">
+                                    <div class="developers-title">Downloads</div>
+                                    <a href="/downloads" class="dropdown-item simple">
+                                        <i class="fas fa-download"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Software Downloads</div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
                  <a href="{% url 'contact' %}" {% if request.resolver_match.url_name == 'contact' %}class="active"{% endif %}>{% trans "Contact" %}</a>
              {% endif %}
         </div>
@@ -624,6 +790,60 @@
                 end: gradientMap[color] || darkenColor(color, 15)
             };
         }
+        
+        // Handle navbar card dropdowns
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbarDropdowns = document.querySelectorAll('.navbar-dropdown');
+            
+            navbarDropdowns.forEach(dropdown => {
+                const toggle = dropdown.querySelector('.dropdown-toggle');
+                const menu = dropdown.querySelector('.card-dropdown');
+                
+                if (toggle && menu) {
+                    let isOpen = false;
+                    
+                    // Toggle dropdown on click (mobile)
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
+                        // Close other dropdowns
+                        navbarDropdowns.forEach(otherDropdown => {
+                            if (otherDropdown !== dropdown) {
+                                otherDropdown.classList.remove('active');
+                            }
+                        });
+                        
+                        isOpen = !isOpen;
+                        if (isOpen) {
+                            dropdown.classList.add('active');
+                        } else {
+                            dropdown.classList.remove('active');
+                        }
+                    });
+                    
+                    // Close dropdown when clicking outside
+                    document.addEventListener('click', function(e) {
+                        if (!dropdown.contains(e.target) && isOpen) {
+                            isOpen = false;
+                            dropdown.classList.remove('active');
+                        }
+                    });
+                    
+                    // Handle dropdown item clicks
+                    const dropdownItems = menu.querySelectorAll('.dropdown-item');
+                    dropdownItems.forEach(item => {
+                        item.addEventListener('click', function(e) {
+                            // Close dropdown after click
+                            setTimeout(() => {
+                                isOpen = false;
+                                dropdown.classList.remove('active');
+                            }, 100);
+                        });
+                    });
+                }
+            });
+        });
         
         // Handle profile dropdown toggle
         document.addEventListener('DOMContentLoaded', function() {

@@ -137,7 +137,7 @@
 
             <div class="form-group">
                 <label for="{{ form.password1.id_for_label }}">{% trans "Password" %}</label>
-                <div class="input-wrapper password-field">
+                <div class="input-wrapper">
                     <i class="fas fa-lock"></i>
                     {{ form.password1 }}
                     <button type="button" class="password-toggle" onclick="togglePassword('{{ form.password1.id_for_label }}')">
@@ -155,7 +155,7 @@
 
             <div class="form-group">
                 <label for="{{ form.password2.id_for_label }}">{% trans "Confirm Password" %}</label>
-                <div class="input-wrapper password-field">
+                <div class="input-wrapper">
                     <i class="fas fa-lock"></i>
                     {{ form.password2 }}
                     <button type="button" class="password-toggle" onclick="togglePassword('{{ form.password2.id_for_label }}')">
@@ -289,40 +289,25 @@
 .password-toggle {
     position: absolute;
     right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
     background: none;
     border: none;
     color: #9ca3af;
     cursor: pointer;
-    padding: 0.5rem;
-    z-index: 3;
-    border-radius: 4px;
-    transition: all 0.2s ease;
+    padding: 0.25rem;
+    z-index: 1;
 }
 
 .password-toggle:hover {
     color: #6b7280;
-    background-color: #f3f4f6;
 }
 
 /* Real-time validation styles */
 .validation-indicator {
     position: absolute;
-    right: 1rem;
+    right: 2.5rem;
     top: 50%;
     transform: translateY(-50%);
     z-index: 2;
-}
-
-/* For password fields with toggle button, move validation indicator further right */
-.input-wrapper:has(.password-toggle) .validation-indicator {
-    right: 3rem;
-}
-
-/* Alternative for browsers that don't support :has() */
-.password-field .validation-indicator {
-    right: 3rem;
 }
 
 .validation-feedback {

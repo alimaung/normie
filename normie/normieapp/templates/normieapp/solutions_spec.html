@@ -1,0 +1,55 @@
+{% extends "normieapp/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block title %}{% trans "Spec - Specifications Management" %} | Normie{% endblock %}
+
+{% block content %}
+<div class="hero-section" style="background: linear-gradient(135deg, #764ba2 0%, #667eea 100%); color: white; padding: 4rem 0; text-align: center;">
+    <div class="container">
+        <div class="hero-content">
+            <i class="fas fa-file-alt" style="font-size: 4rem; margin-bottom: 1rem; opacity: 0.9;"></i>
+            <h1 style="font-size: 3rem; font-weight: 700; margin-bottom: 1rem;">{% trans "Spec" %}</h1>
+            <p style="font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9;">{% trans "Advanced specifications management and documentation" %}</p>
+            <a href="{% url 'signup' %}" class="btn-hero primary" style="padding: 1rem 2rem; background: rgba(255,255,255,0.2); color: white; text-decoration: none; border-radius: 50px; font-weight: 600; border: 1px solid rgba(255,255,255,0.3);">
+                {% trans "Get Started" %}
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="container" style="padding: 4rem 0;">
+    <div class="features-grid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; margin-bottom: 4rem;">
+        <div class="feature-card" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+            <i class="fas fa-clipboard-list" style="font-size: 2.5rem; color: #764ba2; margin-bottom: 1rem;"></i>
+            <h3 style="margin-bottom: 1rem; color: #1f2937;">{% trans "Document Management" %}</h3>
+            <p style="color: #6b7280;">{% trans "Organize and manage specification documents with version control" %}</p>
+        </div>
+        
+        <div class="feature-card" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+            <i class="fas fa-search" style="font-size: 2.5rem; color: #764ba2; margin-bottom: 1rem;"></i>
+            <h3 style="margin-bottom: 1rem; color: #1f2937;">{% trans "Advanced Search" %}</h3>
+            <p style="color: #6b7280;">{% trans "Find specifications quickly with powerful search and filtering tools" %}</p>
+        </div>
+        
+        <div class="feature-card" style="background: white; padding: 2rem; border-radius: 12px; box-shadow: 0 4px 6px rgba(0,0,0,0.1); text-align: center;">
+            <i class="fas fa-code-branch" style="font-size: 2.5rem; color: #764ba2; margin-bottom: 1rem;"></i>
+            <h3 style="margin-bottom: 1rem; color: #1f2937;">{% trans "Version Control" %}</h3>
+            <p style="color: #6b7280;">{% trans "Track changes and maintain specification history with full audit trails" %}</p>
+        </div>
+    </div>
+    
+    <div class="demo-section" style="background: #f9fafb; padding: 3rem; border-radius: 12px; text-align: center;">
+        <h2 style="margin-bottom: 1rem; color: #1f2937;">{% trans "Streamline your specification workflow" %}</h2>
+        <p style="margin-bottom: 2rem; color: #6b7280;">{% trans "Manage complex specifications with ease using our comprehensive tools" %}</p>
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <a href="{% url 'signup' %}" class="btn-hero primary" style="padding: 0.75rem 1.5rem; background: #764ba2; color: white; text-decoration: none; border-radius: 8px; font-weight: 600;">
+                {% trans "Start Free Trial" %}
+            </a>
+            <a href="{% url 'contact' %}" class="btn-hero secondary" style="padding: 0.75rem 1.5rem; background: transparent; color: #764ba2; text-decoration: none; border-radius: 8px; font-weight: 600; border: 2px solid #764ba2;">
+                {% trans "Schedule Demo" %}
+            </a>
+        </div>
+    </div>
+</div>
+{% endblock %} 

@@ -29,7 +29,7 @@ body.loaded {
 /* Hero Section */
 .hero-section {
     min-height: 100vh;
-    background: linear-gradient(135deg, #5c6bc0 0%, #512da8 100%);
+    background: linear-gradient(180deg, #ffffff 0%, #120095 200%);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -358,7 +358,7 @@ body.loaded {
 }
 
 .section-title {
-    font-size: clamp(2.5rem, 5vw, 4rem);
+    /* font-size: clamp(2.5rem, 5vw, 4rem); */
     font-weight: 700;
     margin-bottom: 1.5rem;
     color: #1d1d1f;

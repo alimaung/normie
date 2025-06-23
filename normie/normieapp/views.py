@@ -1183,3 +1183,19 @@ def check_email_availability(request):
         'message': _('Email is available!'),
         'type': 'success'
     }) 
+    
+def solutions_norm(request):
+    return render(request, 'normieapp/solutions_norm.html')
+
+def solutions_chemicals(request):
+    return render(request, 'normieapp/solutions_chemicals.html')
+
+def solutions_spec(request):
+    return render(request, 'normieapp/solutions_spec.html')
+
+def solutions_directory(request):
+    return render(request, 'normieapp/solutions_directory.html')
+
+def solutions_tkz(request):
+    return render(request, 'normieapp/solutions_tkz.html')
+

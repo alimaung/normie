@@ -55,4 +55,11 @@ urlpatterns = [
     # AJAX validation endpoints
     path('ajax/check-username/', views.check_username_availability, name='check_username'),
     path('ajax/check-email/', views.check_email_availability, name='check_email'),
-] 
+    
+    # Mock template routes
+    path('solutions_norm/', views.solutions_norm, name='solutions_norm'),
+    path('solutions_chemicals/', views.solutions_chemicals, name='solutions_chemicals'),
+    path('solutions_spec/', views.solutions_spec, name='solutions_spec'),
+    path('solutions_directory/', views.solutions_directory, name='solutions_directory'),
+    path('solutions_tkz/', views.solutions_tkz, name='solutions_tkz'),
+    ] 
