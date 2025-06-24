@@ -62,4 +62,7 @@ urlpatterns = [
     path('solutions_spec/', views.solutions_spec, name='solutions_spec'),
     path('solutions_directory/', views.solutions_directory, name='solutions_directory'),
     path('solutions_tkz/', views.solutions_tkz, name='solutions_tkz'),
+    
+    # Under construction page
+    path('under-construction/', views.under_construction, name='under_construction'),
     ] 

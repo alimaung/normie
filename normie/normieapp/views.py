@@ -1199,3 +1199,9 @@ def solutions_directory(request):
 def solutions_tkz(request):
     return render(request, 'normieapp/solutions_tkz.html')
 
+def under_construction(request):
+    """
+    Under construction page view - public access.
+    """
+    return render(request, 'normieapp/prototyping/under_contruction.html')
+

@@ -43,14 +43,14 @@
                                 <div class="dropdown-products">
                                     <div class="dropdown-section">
                                         <div class="section-title">Standards Management</div>
-                                        <a href="{% url 'requests' %}" class="dropdown-item">
+                                        <a href="{% url 'under_construction' %}" class="dropdown-item">
                                             <i class="fas fa-edit"></i>
                                             <div class="dropdown-item-content">
                                                 <div class="dropdown-item-title">CR Request</div>
                                                 <div class="dropdown-item-description">Create change requests</div>
                         </div>
                                         </a>
-                                        <a href="{% url 'cmsr_list' %}" class="dropdown-item">
+                                        <a href="{% url 'under_construction' %}" class="dropdown-item">
                                             <i class="fas fa-list-alt"></i>
                                             <div class="dropdown-item-content">
                                                 <div class="dropdown-item-title">CR Status</div>
@@ -68,7 +68,7 @@
                                                 <div class="dropdown-item-description">Standards platform</div>
                                             </div>
                                         </a>
-                                        <a href="{% url 'standards' %}" class="dropdown-item">
+                                        <a href="{% url 'under_construction' %}" class="dropdown-item">
                                             <i class="fas fa-file-alt"></i>
                                             <div class="dropdown-item-content">
                                                 <div class="dropdown-item-title">Spec</div>
@@ -79,13 +79,13 @@
                                     
                                     <div class="dropdown-section">
                                         <div class="section-title">More</div>
-                                        <a href="#" class="dropdown-item simple">
+                                        <a href="{% url 'under_construction' %}" class="dropdown-item simple">
                                             <i class="fas fa-chart-line"></i>
                                             <div class="dropdown-item-content">
                                                 <div class="dropdown-item-title">Analytics</div>
                                             </div>
                                         </a>
-                                        <a href="#" class="dropdown-item simple">
+                                        <a href="{% url 'under_construction' %}" class="dropdown-item simple">
                                             <i class="fas fa-history"></i>
                                             <div class="dropdown-item-content">
                                                 <div class="dropdown-item-title">History</div>
@@ -104,58 +104,58 @@
                         <div class="dropdown-menu card-dropdown products-style">
                             <div class="dropdown-card">
                                 <div class="dropdown-products">
-                                    <div class="dropdown-section">
-                                        <div class="section-title">Request Management</div>
-                                        <a href="{% url 'incoming' %}" class="dropdown-item">
-                                            <i class="fas fa-inbox"></i>
-                                            <div class="dropdown-item-content">
-                                                <div class="dropdown-item-title">Requests</div>
-                                                <div class="dropdown-item-description">Incoming material requests</div>
-                                            </div>
-                                        </a>
-                                        <a href="{% url 'materials' %}" class="dropdown-item">
-                                            <i class="fas fa-clipboard-list"></i>
-                                            <div class="dropdown-item-content">
-                                                <div class="dropdown-item-title">Request Status</div>
-                                                <div class="dropdown-item-description">Track processing status</div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    
-                                    <div class="dropdown-section">
-                                        <div class="section-title">Data & Analysis</div>
-                                        <a href="{% url 'directory' %}" class="dropdown-item">
-                                            <i class="fas fa-folder"></i>
-                                            <div class="dropdown-item-content">
-                                                <div class="dropdown-item-title">Directory</div>
-                                                <div class="dropdown-item-description">Material database</div>
-                                            </div>
-                                        </a>
-                                        <a href="{% url 'chemscan' %}" class="dropdown-item">
-                                            <i class="fas fa-search"></i>
-                                            <div class="dropdown-item-content">
-                                                <div class="dropdown-item-title">ChemScan</div>
-                                                <div class="dropdown-item-description">Chemical analysis tool</div>
-                                            </div>
-                                        </a>
-                                    </div>
-                                    
-                                    <div class="dropdown-section">
-                                        <div class="section-title">Tools</div>
-                                        <a href="#" class="dropdown-item">
-                                            <i class="fas fa-code"></i>
-                                            <div class="dropdown-item-content">
-                                                <div class="dropdown-item-title">TKZ</div>
-                                                <div class="dropdown-item-description">Technical classification</div>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="dropdown-item simple">
-                                            <i class="fas fa-calculator"></i>
-                                            <div class="dropdown-item-content">
-                                                <div class="dropdown-item-title">Calculator</div>
-                                            </div>
-                                        </a>
-                                    </div>
+                                                        <div class="dropdown-section">
+                        <div class="section-title">Request Management</div>
+                        <a href="{% url 'incoming' %}" class="dropdown-item">
+                            <i class="fas fa-inbox"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Requests</div>
+                                <div class="dropdown-item-description">Incoming material requests</div>
+                            </div>
+                        </a>
+                        <a href="{% url 'under_construction' %}" class="dropdown-item">
+                            <i class="fas fa-clipboard-list"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Request Status</div>
+                                <div class="dropdown-item-description">Track processing status</div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="dropdown-section">
+                        <div class="section-title">Data & Analysis</div>
+                        <a href="{% url 'directory' %}" class="dropdown-item">
+                            <i class="fas fa-folder"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Directory</div>
+                                <div class="dropdown-item-description">Material database</div>
+                            </div>
+                        </a>
+                        <a href="{% url 'chemscan' %}" class="dropdown-item">
+                            <i class="fas fa-search"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">ChemScan</div>
+                                <div class="dropdown-item-description">Chemical analysis tool</div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="dropdown-section">
+                        <div class="section-title">Tools</div>
+                        <a href="{% url 'under_construction' %}" class="dropdown-item">
+                            <i class="fas fa-code"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">TKZ</div>
+                                <div class="dropdown-item-description">Technical classification</div>
+                            </div>
+                        </a>
+                        <a href="{% url 'under_construction' %}" class="dropdown-item simple">
+                            <i class="fas fa-calculator"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Calculator</div>
+                            </div>
+                        </a>
+                    </div>
                                 </div>
                             </div>
                         </div>
@@ -177,32 +177,32 @@
                                                 <div class="dropdown-item-description">Add, edit, and remove users</div>
                                             </div>
                                         </a>
-                                        <a href="#" class="dropdown-item">
-                                            <i class="fas fa-user-tag"></i>
-                                            <div class="dropdown-item-content">
-                                                <div class="dropdown-item-title">Manage Roles</div>
-                                                <div class="dropdown-item-description">Configure user roles</div>
-                                            </div>
-                                        </a>
+                                                                <a href="{% url 'under_construction' %}" class="dropdown-item">
+                            <i class="fas fa-user-tag"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Manage Roles</div>
+                                <div class="dropdown-item-description">Configure user roles</div>
+                            </div>
+                        </a>
                                     </div>
                                     
-                                    <div class="solutions-section">
-                                        <div class="solutions-title">Security</div>
-                                        <a href="#" class="dropdown-item">
-                                            <i class="fas fa-shield-alt"></i>
-                                            <div class="dropdown-item-content">
-                                                <div class="dropdown-item-title">Permissions</div>
-                                                <div class="dropdown-item-description">Control access levels</div>
-                                            </div>
-                                        </a>
-                                        <a href="#" class="dropdown-item">
-                                            <i class="fas fa-key"></i>
-                                            <div class="dropdown-item-content">
-                                                <div class="dropdown-item-title">API Keys</div>
-                                                <div class="dropdown-item-description">Manage API access</div>
-                                            </div>
-                                        </a>
-                                    </div>
+                                                        <div class="solutions-section">
+                        <div class="solutions-title">Security</div>
+                        <a href="{% url 'under_construction' %}" class="dropdown-item">
+                            <i class="fas fa-shield-alt"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Permissions</div>
+                                <div class="dropdown-item-description">Control access levels</div>
+                            </div>
+                        </a>
+                        <a href="{% url 'under_construction' %}" class="dropdown-item">
+                            <i class="fas fa-key"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">API Keys</div>
+                                <div class="dropdown-item-description">Manage API access</div>
+                            </div>
+                        </a>
+                    </div>
                                 </div>
                             </div>
                         </div>
@@ -219,41 +219,41 @@
                                 <div class="dropdown-products">
                                     <div class="dropdown-section">
                                         <div class="section-title">Standards Management</div>
-                                        <a href="{% url 'requests' %}" class="dropdown-item">
-                                            <i class="fas fa-edit"></i>
-                                            <div class="dropdown-item-content">
-                                                <div class="dropdown-item-title">Change Request (CR)</div>
-                                                <div class="dropdown-item-description">Create change requests</div>
-                                            </div>
-                                        </a>
-                                        <a href="{% url 'cmsr_list' %}" class="dropdown-item">
-                                            <i class="fas fa-list-alt"></i>
-                                            <div class="dropdown-item-content">
-                                                <div class="dropdown-item-title">CR Status</div>
-                                                <div class="dropdown-item-description">Track request progress</div>
-                                            </div>
-                                        </a>
+                                                                <a href="{% url 'under_construction' %}" class="dropdown-item">
+                            <i class="fas fa-edit"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Change Request (CR)</div>
+                                <div class="dropdown-item-description">Create change requests</div>
+                            </div>
+                        </a>
+                                                                <a href="{% url 'under_construction' %}" class="dropdown-item">
+                            <i class="fas fa-list-alt"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">CR Status</div>
+                                <div class="dropdown-item-description">Track request progress</div>
+                            </div>
+                        </a>
                                     </div>
                                     
                                     <div class="dropdown-section">
                                         <div class="section-title">External Systems</div>
-                                        <a href="{% url 'standards' %}" class="dropdown-item">
-                                            <i class="fas fa-file-alt"></i>
-                                            <div class="dropdown-item-content">
-                                                <div class="dropdown-item-title">Spec</div>
-                                                <div class="dropdown-item-description">Specification documents</div>
-                                            </div>
-                                        </a>
+                                                                <a href="{% url 'under_construction' %}" class="dropdown-item">
+                            <i class="fas fa-file-alt"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Spec</div>
+                                <div class="dropdown-item-description">Specification documents</div>
+                            </div>
+                        </a>
                                     </div>
                                     
                                     <div class="dropdown-section">
                                         <div class="section-title">More</div>
-                                        <a href="#" class="dropdown-item simple">
-                                            <i class="fas fa-chart-line"></i>
-                                            <div class="dropdown-item-content">
-                                                <div class="dropdown-item-title">Analytics</div>
-                                            </div>
-                                        </a>
+                                                                <a href="{% url 'under_construction' %}" class="dropdown-item simple">
+                            <i class="fas fa-chart-line"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Analytics</div>
+                            </div>
+                        </a>
                                     </div>
                                 </div>
                             </div>
@@ -276,13 +276,13 @@
                                                 <div class="dropdown-item-description">Incoming material requests</div>
                                             </div>
                                         </a>
-                                        <a href="{% url 'materials' %}" class="dropdown-item">
-                                            <i class="fas fa-clipboard-list"></i>
-                                            <div class="dropdown-item-content">
-                                                <div class="dropdown-item-title">Request Status</div>
-                                                <div class="dropdown-item-description">Track processing status</div>
-                                            </div>
-                                        </a>
+                                                                <a href="{% url 'under_construction' %}" class="dropdown-item">
+                            <i class="fas fa-clipboard-list"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Request Status</div>
+                                <div class="dropdown-item-description">Track processing status</div>
+                            </div>
+                        </a>
                                     </div>
                                     
                                     <div class="dropdown-section">
@@ -356,19 +356,19 @@
                             <div class="dropdown-developers">
                                 <div class="developers-section">
                                     <div class="developers-title">Documentation</div>
-                                    <a href="/docs" class="dropdown-item simple">
+                                    <a href="{% url 'under_construction' %}" class="dropdown-item simple">
                                         <i class="fas fa-book"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">User Guide</div>
                                         </div>
                                     </a>
-                                    <a href="/docs/sop" class="dropdown-item simple">
+                                    <a href="{% url 'under_construction' %}" class="dropdown-item simple">
                                         <i class="fas fa-clipboard-check"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">Standard Operating Procedures</div>
                                         </div>
                                     </a>
-                                    <a href="/docs/api" class="dropdown-item simple">
+                                    <a href="{% url 'under_construction' %}" class="dropdown-item simple">
                                         <i class="fas fa-code"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">API Reference</div>
@@ -378,19 +378,19 @@
                                 
                                 <div class="developers-section">
                                     <div class="developers-title">Downloads</div>
-                                    <a href="/downloads" class="dropdown-item simple">
+                                    <a href="{% url 'under_construction' %}" class="dropdown-item simple">
                                         <i class="fas fa-download"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">Software Downloads</div>
                                         </div>
                                     </a>
-                                    <a href="/downloads/templates" class="dropdown-item simple">
+                                    <a href="{% url 'under_construction' %}" class="dropdown-item simple">
                                         <i class="fas fa-file-excel"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">Excel Templates</div>
                                         </div>
                                     </a>
-                                    <a href="/downloads/forms" class="dropdown-item simple">
+                                    <a href="{% url 'under_construction' %}" class="dropdown-item simple">
                                         <i class="fas fa-file-pdf"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">PDF Forms</div>
@@ -453,14 +453,14 @@
                             <div class="dropdown-solutions">
                                 <div class="solutions-section">
                                     <div class="solutions-title">Standards</div>
-                                    <a href="{% url 'solutions_norm' %}" class="dropdown-item">
+                                    <a href="{% url 'under_construction' %}" class="dropdown-item">
                                         <i class="fas fa-balance-scale"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">Norm</div>
                                             <div class="dropdown-item-description">Standards management</div>
                                         </div>
                                     </a>
-                                    <a href="{% url 'solutions_spec' %}" class="dropdown-item">
+                                    <a href="{% url 'under_construction' %}" class="dropdown-item">
                                         <i class="fas fa-file-alt"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">Spec</div>
@@ -471,21 +471,21 @@
                                 
                                 <div class="solutions-section">
                                     <div class="solutions-title">Materials & Tools</div>
-                                    <a href="{% url 'solutions_chemicals' %}" class="dropdown-item">
+                                    <a href="{% url 'under_construction' %}" class="dropdown-item">
                                         <i class="fas fa-flask"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">Chemicals and Materials</div>
                                             <div class="dropdown-item-description">Material management</div>
                                         </div>
                                     </a>
-                                    <a href="{% url 'solutions_directory' %}" class="dropdown-item">
+                                    <a href="{% url 'under_construction' %}" class="dropdown-item">
                                         <i class="fas fa-folder"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">Directory</div>
                                             <div class="dropdown-item-description">Resource directory</div>
                                         </div>
                                     </a>
-                                    <a href="{% url 'solutions_tkz' %}" class="dropdown-item">
+                                    <a href="{% url 'under_construction' %}" class="dropdown-item">
                                         <i class="fas fa-code"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">TKZ</div>
@@ -554,13 +554,13 @@
                             <div class="dropdown-developers">
                                 <div class="developers-section">
                                     <div class="developers-title">Documentation</div>
-                                    <a href="/docs" class="dropdown-item simple">
+                                    <a href="{% url 'under_construction' %}" class="dropdown-item simple">
                                         <i class="fas fa-book"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">User Guide</div>
                                         </div>
                                     </a>
-                                    <a href="/docs/sop" class="dropdown-item simple">
+                                    <a href="{% url 'under_construction' %}" class="dropdown-item simple">
                                         <i class="fas fa-clipboard-check"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">SOPs</div>
@@ -570,7 +570,7 @@
                                 
                                 <div class="developers-section">
                                     <div class="developers-title">Downloads</div>
-                                    <a href="/downloads" class="dropdown-item simple">
+                                    <a href="{% url 'under_construction' %}" class="dropdown-item simple">
                                         <i class="fas fa-download"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">Software Downloads</div>
@@ -791,7 +791,7 @@
             };
         }
         
-        // Handle navbar card dropdowns
+        // Handle navbar card dropdowns with professional hover behavior
         document.addEventListener('DOMContentLoaded', function() {
             const navbarDropdowns = document.querySelectorAll('.navbar-dropdown');
             
@@ -801,32 +801,84 @@
                 
                 if (toggle && menu) {
                     let isOpen = false;
+                    let hoverTimeout = null;
+                    let leaveTimeout = null;
                     
-                    // Toggle dropdown on click (mobile)
-                    toggle.addEventListener('click', function(e) {
-                        e.preventDefault();
-                        e.stopPropagation();
+                    // Function to open dropdown
+                    function openDropdown() {
+                        if (hoverTimeout) clearTimeout(hoverTimeout);
+                        if (leaveTimeout) clearTimeout(leaveTimeout);
                         
-                        // Close other dropdowns
+                        // Close other dropdowns immediately
                         navbarDropdowns.forEach(otherDropdown => {
                             if (otherDropdown !== dropdown) {
                                 otherDropdown.classList.remove('active');
                             }
                         });
                         
-                        isOpen = !isOpen;
+                        isOpen = true;
+                        dropdown.classList.add('active');
+                    }
+                    
+                    // Function to close dropdown
+                    function closeDropdown() {
+                        if (hoverTimeout) clearTimeout(hoverTimeout);
+                        if (leaveTimeout) clearTimeout(leaveTimeout);
+                        
+                        isOpen = false;
+                        dropdown.classList.remove('active');
+                    }
+                    
+                    // Mouse enter on dropdown trigger
+                    toggle.addEventListener('mouseenter', function(e) {
+                        if (leaveTimeout) clearTimeout(leaveTimeout);
+                        
+                        // Quick response for opening (50ms delay)
+                        hoverTimeout = setTimeout(() => {
+                            openDropdown();
+                        }, 50);
+                    });
+                    
+                    // Mouse enter on dropdown menu itself
+                    menu.addEventListener('mouseenter', function(e) {
+                        if (leaveTimeout) clearTimeout(leaveTimeout);
+                        if (!isOpen) {
+                            openDropdown();
+                        }
+                    });
+                    
+                    // Mouse leave from dropdown container
+                    dropdown.addEventListener('mouseleave', function(e) {
+                        if (hoverTimeout) clearTimeout(hoverTimeout);
+                        
+                        // Check if we're moving to a related element
+                        const relatedTarget = e.relatedTarget;
+                        if (relatedTarget && dropdown.contains(relatedTarget)) {
+                            return; // Don't close if moving within dropdown
+                        }
+                        
+                        // Quick close (100ms delay)
+                        leaveTimeout = setTimeout(() => {
+                            closeDropdown();
+                        }, 100);
+                    });
+                    
+                    // Toggle dropdown on click (mobile and backup)
+                    toggle.addEventListener('click', function(e) {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        
                         if (isOpen) {
-                            dropdown.classList.add('active');
+                            closeDropdown();
                         } else {
-                            dropdown.classList.remove('active');
+                            openDropdown();
                         }
                     });
                     
                     // Close dropdown when clicking outside
                     document.addEventListener('click', function(e) {
                         if (!dropdown.contains(e.target) && isOpen) {
-                            isOpen = false;
-                            dropdown.classList.remove('active');
+                            closeDropdown();
                         }
                     });
                     
@@ -834,12 +886,18 @@
                     const dropdownItems = menu.querySelectorAll('.dropdown-item');
                     dropdownItems.forEach(item => {
                         item.addEventListener('click', function(e) {
-                            // Close dropdown after click
+                            // Close dropdown immediately after click
                             setTimeout(() => {
-                                isOpen = false;
-                                dropdown.classList.remove('active');
-                            }, 100);
+                                closeDropdown();
+                            }, 50);
                         });
+                    });
+                    
+                    // Close on Escape key
+                    document.addEventListener('keydown', function(e) {
+                        if (e.key === 'Escape' && isOpen) {
+                            closeDropdown();
+                        }
                     });
                 }
             });

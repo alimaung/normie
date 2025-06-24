@@ -1,0 +1,203 @@
+{% extends 'normieapp/base.html' %}
+{% load static %}
+
+{% block title %}Under Construction - Normie{% endblock %}
+
+{% block extra_css %}
+<style>
+    .construction-page {
+        min-height: calc(100vh - 80px);
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .construction-header {
+        position: absolute;
+        top: 5%;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        z-index: 2;
+        width: 100%;
+        padding: 0 2rem;
+    }
+
+    .construction-title {
+        font-size: 6rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+        text-transform: uppercase;
+        color: #333;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        opacity: 0;
+        animation: fadeInUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.1s forwards;
+    }
+
+    .construction-subtitle {
+        font-size: 2rem;
+        font-weight: 300;
+        margin-bottom: 1rem;
+        color: #666;
+        line-height: 1.6;
+        opacity: 0;
+        animation: fadeInUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.2s forwards;
+    }
+
+    .construction-message {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+        color: #777;
+        line-height: 1.8;
+        opacity: 0;
+        animation: fadeInUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.3s forwards;
+    }
+
+    .go-back-button {
+        display: inline-block;
+        background: #FFBA21;
+        color: white;
+        padding: 1rem 3rem;
+        font-size: 1.3rem;
+        font-weight: 600;
+        text-decoration: none;
+        border-radius: 50px;
+        box-shadow: 0 8px 25px rgba(234, 166, 102, 0.3);
+        transition: all 0.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        opacity: 0;
+        animation: fadeInUp 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.8s forwards;
+    }
+
+    .go-back-button:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 12px 35px rgba(234, 155, 102, 0.4);
+        color: white;
+        text-decoration: none;
+    }
+
+    .go-back-button:active {
+        transform: translateY(-1px);
+        transition: all 0.1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .construction-image-container {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 3%;
+    }
+
+    .construction-image {
+        width: 100%;
+        height: 100%;
+        max-width: none;
+        max-height: none;
+        object-fit: contain;
+        opacity: 0;
+        animation: fadeInScale 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s forwards;
+    }
+
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes fadeInScale {
+        from {
+            opacity: 0;
+            transform: scale(1.05) translateY(20px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    @media (max-width: 768px) {
+        .construction-title {
+            font-size: 3.5rem;
+        }
+        
+        .construction-subtitle {
+            font-size: 1.5rem;
+        }
+        
+        .construction-message {
+            font-size: 1.2rem;
+        }
+
+        .go-back-button {
+            font-size: 1.1rem;
+            padding: 0.8rem 2.5rem;
+        }
+        
+        .construction-header {
+            top: 10%;
+            padding: 0 1rem;
+        }
+        
+        .construction-image-container {
+            margin-top: 25%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .construction-title {
+            font-size: 2.5rem;
+        }
+        
+        .construction-subtitle {
+            font-size: 1.3rem;
+        }
+        
+        .construction-message {
+            font-size: 1.1rem;
+        }
+
+        .go-back-button {
+            font-size: 1rem;
+            padding: 0.7rem 2rem;
+        }
+        
+        .construction-header {
+            top: 8%;
+            padding: 0 1rem;
+        }
+        
+        .construction-image-container {
+            margin-top: 30%;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="construction-page">
+    <div class="construction-header">
+        <h1 class="construction-title">Under Construction</h1>
+        <p class="construction-subtitle">
+            We're working hard to bring you something amazing!
+        </p>
+        <p class="construction-message">
+            Our team is currently building an incredible experience for you.<br>
+            This feature will be available soon. Stay tuned for updates!
+        </p>
+        <a href="javascript:history.back()" class="go-back-button">
+            ← Go Back
+        </a>
+    </div>
+    
+    <div class="construction-image-container">
+        <img src="{% static 'normieapp/img/banner/construction.png' %}" alt="Under Construction" class="construction-image">
+    </div>
+</div>
+{% endblock %}
