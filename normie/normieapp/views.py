@@ -1107,18 +1107,27 @@ def check_username_availability(request):
         })
     
     # Check minimum length
-    if len(username) < 3:
+    if len(username) < 4:
         return JsonResponse({
             'available': False,
-            'message': _('Username must be at least 3 characters long.'),
+            'message': _('Username must be at least 4 characters long.'),
             'type': 'error'
         })
     
     # Check maximum length
-    if len(username) > 150:
+    if len(username) > 30:
         return JsonResponse({
             'available': False,
-            'message': _('Username must be 150 characters or less.'),
+            'message': _('Username must be 30 characters or less.'),
+            'type': 'error'
+        })
+    
+    # Check for valid characters (letters, numbers, periods, underscores, hyphens)
+    import re
+    if not re.match(r'^[a-zA-Z0-9._-]+$', username):
+        return JsonResponse({
+            'available': False,
+            'message': _('Username can only contain letters, numbers, periods (.), underscores (_), and hyphens (-).'),
             'type': 'error'
         })
     
@@ -1127,15 +1136,6 @@ def check_username_availability(request):
         return JsonResponse({
             'available': False,
             'message': _('This username is already taken.'),
-            'type': 'error'
-        })
-    
-    # Check for valid characters (alphanumeric, @, ., +, -, _)
-    import re
-    if not re.match(r'^[\w.@+-]+$', username):
-        return JsonResponse({
-            'available': False,
-            'message': _('Username can only contain letters, numbers, and @/./+/-/_ characters.'),
             'type': 'error'
         })
     
