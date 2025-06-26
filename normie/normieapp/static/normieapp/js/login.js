@@ -176,7 +176,7 @@ function setupLoginValidation() {
 function setupSignupValidation() {
     const fields = [
         'first_name', 'last_name', 'signup_email', 'signup_username', 
-        'signup_password', 'confirm_password', 'department', 'telephone'
+        'signup_password', 'confirm_password'
     ];
 
     fields.forEach(fieldId => {
@@ -498,14 +498,8 @@ function handleLogin(event) {
     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Signing In...';
     submitButton.disabled = true;
     
-    // Here you would normally submit the form to the backend
-    // For now, we'll just reset the button after a short delay
-    setTimeout(() => {
-        submitButton.innerHTML = originalText;
-        submitButton.disabled = false;
-        // The actual form submission should happen here
-        // event.target.submit(); // Uncomment when ready to submit to backend
-    }, 1000);
+    // Submit the form to Django backend
+    event.target.submit();
 }
 
 // Handle signup form submission
@@ -531,33 +525,8 @@ async function handleSignup(event) {
         // Update button text for form submission
         submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Creating Account...';
         
-        const form = event.target;
-        const formData = new FormData(form);
-        
-        // Simulate API call (replace with actual backend call)
-        setTimeout(() => {
-            // Reset button
-            submitButton.innerHTML = originalText;
-            submitButton.disabled = false;
-            
-            // Show inline success message
-            let successContainer = document.querySelector('.signup-success-message');
-            if (!successContainer) {
-                successContainer = document.createElement('div');
-                successContainer.className = 'signup-success-message message message-success';
-                successContainer.innerHTML = `
-                    <i class="fas fa-check-circle"></i>
-                    <span>Account created successfully! Please check your email for verification.</span>
-                `;
-                const signupForm = document.getElementById('signup-form');
-                signupForm.insertBefore(successContainer, signupForm.firstChild);
-                
-                // Auto-switch to login after showing success
-                setTimeout(() => {
-                    showLogin();
-                }, 3000);
-            }
-        }, 2000);
+        // Submit the form to Django backend
+        event.target.submit();
         
     } catch (error) {
         console.error('Error during signup validation:', error);
@@ -612,13 +581,49 @@ function showSignupErrors(errors) {
     errorContainer.scrollIntoView({ behavior: 'smooth', block: 'center' });
 }
 
-// Mock functions for terms and privacy
+// Modal functions
+function showModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+}
+
+function hideModal(modalId) {
+    const modal = document.getElementById(modalId);
+    if (modal) {
+        modal.classList.remove('active');
+        document.body.style.overflow = '';
+    }
+}
+
 function showTerms() {
-    alert('Terms of Service would be displayed in a modal or new page.');
+    showModal('terms-modal');
 }
 
 function showPrivacy() {
-    alert('Privacy Policy would be displayed in a modal or new page.');
+    showModal('privacy-modal');
+}
+
+// Close modal when clicking outside
+function setupModalEvents() {
+    document.querySelectorAll('.modal-overlay').forEach(overlay => {
+        overlay.addEventListener('click', function(e) {
+            if (e.target === overlay) {
+                hideModal(overlay.id);
+            }
+        });
+    });
+
+    // Close modal with Escape key
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') {
+            document.querySelectorAll('.modal-overlay.active').forEach(modal => {
+                hideModal(modal.id);
+            });
+        }
+    });
 }
 
 // Mock Microsoft SSO
@@ -641,6 +646,9 @@ document.addEventListener('DOMContentLoaded', function() {
     // Setup validation for both forms
     setupLoginValidation();
     setupSignupValidation();
+    
+    // Setup modal events
+    setupModalEvents();
     
     // Add form submit handlers
     const loginForm = document.querySelector('#login-form form');

@@ -12,25 +12,29 @@ document.addEventListener('DOMContentLoaded', function() {
     // Handle prefers-color-scheme media query
     const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)');
     
-    // Get the base static URL for the logo images
-    const logoLightPath = logo.getAttribute('src');
-    const logoDarkPath = logoLightPath.replace('logo-light.png', 'logo-dark.png');
+    // Get the base static URL for the logo images (only if logo exists)
+    const logoLightPath = logo ? logo.getAttribute('src') : null;
+    const logoDarkPath = logoLightPath ? logoLightPath.replace('logo-light.png', 'logo-dark.png') : null;
 
     // Function to set dark mode state
     function setDarkMode(isDark) {
         // Apply or remove dark mode class
         body.classList.toggle('dark-mode', isDark);
         
-        // Update logo source
-        logo.src = isDark ? logoDarkPath : logoLightPath;
+        // Update logo source (only if logo exists)
+        if (logo && logoLightPath && logoDarkPath) {
+            logo.src = isDark ? logoDarkPath : logoLightPath;
+        }
         
-        // Update icon class with transition
-        if (isDark) {
-            darkModeIcon.classList.add('fa-sun');
-            darkModeIcon.classList.remove('fa-moon');
-        } else {
-            darkModeIcon.classList.add('fa-moon');
-            darkModeIcon.classList.remove('fa-sun');
+        // Update icon class with transition (only if icon exists)
+        if (darkModeIcon) {
+            if (isDark) {
+                darkModeIcon.classList.add('fa-sun');
+                darkModeIcon.classList.remove('fa-moon');
+            } else {
+                darkModeIcon.classList.add('fa-moon');
+                darkModeIcon.classList.remove('fa-sun');
+            }
         }
         
         // Store preference
@@ -54,19 +58,25 @@ document.addEventListener('DOMContentLoaded', function() {
     // Initialize theme on load
     initializeTheme();
 
-    // Add click event for dark mode toggle with animation
-    toggleButton.addEventListener('click', () => {
-        const isDarkMode = body.classList.contains('dark-mode');
-        
-        // First animate the icon
-        darkModeIcon.style.transform = 'rotate(360deg)';
-        
-        // After a small delay, toggle the theme
-        setTimeout(() => {
-            setDarkMode(!isDarkMode);
-            darkModeIcon.style.transform = '';
-        }, 200);
-    });
+    // Add click event for dark mode toggle with animation (only if toggle button exists)
+    if (toggleButton) {
+        toggleButton.addEventListener('click', () => {
+            const isDarkMode = body.classList.contains('dark-mode');
+            
+            // First animate the icon (only if it exists)
+            if (darkModeIcon) {
+                darkModeIcon.style.transform = 'rotate(360deg)';
+            }
+            
+            // After a small delay, toggle the theme
+            setTimeout(() => {
+                setDarkMode(!isDarkMode);
+                if (darkModeIcon) {
+                    darkModeIcon.style.transform = '';
+                }
+            }, 200);
+        });
+    }
     
     // Listen for changes in system color scheme preference
     prefersDarkMode.addEventListener('change', (event) => {

@@ -37,23 +37,7 @@ class SignUpForm(UserCreationForm):
         })
     )
     
-    department = forms.CharField(
-        max_length=100,
-        required=False,
-        widget=forms.TextInput(attrs={
-            'class': 'form-control',
-            'placeholder': _('Department (optional)')
-        })
-    )
-    
-    phone = forms.CharField(
-        max_length=20,
-        required=False,
-        widget=forms.TextInput(attrs={
-            'class': 'form-control',
-            'placeholder': _('Phone number (optional)')
-        })
-    )
+    # Removed department and phone fields - no longer needed
 
     class Meta:
         model = User
@@ -100,8 +84,7 @@ class SignUpForm(UserCreationForm):
             
             # Update the profile with our form data
             profile.role = 'read_only'
-            profile.department = self.cleaned_data.get('department', '')
-            profile.phone = self.cleaned_data.get('phone', '')
+            # Department and phone are no longer collected during signup
             profile.save()
         return user
 

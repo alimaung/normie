@@ -230,27 +230,50 @@ def login_view(request):
         ))
     
     if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        remember_me = request.POST.get('remember_me')
+        # Check if this is a signup form submission
+        form_type = request.POST.get('form_type')
         
-        user = authenticate(request, username=username, password=password)
-        if user is not None:
-            login(request, user)
-            
-            # Handle "Remember me" functionality
-            if remember_me:
-                # Set session to expire in 30 days
-                request.session.set_expiry(30 * 24 * 60 * 60)  # 30 days in seconds
+        if form_type == 'signup':
+            # Handle signup
+            from .forms import SignUpForm
+            form = SignUpForm(request.POST)
+            if form.is_valid():
+                user = form.save()
+                messages.success(request, _('Account created successfully! You can now log in with read-only access.'))
+                return redirect('login')
             else:
-                # Set session to expire when browser closes
-                request.session.set_expiry(0)
-            
-            # Redirect to the originally requested page or home
-            redirect_url = request.GET.get('next', 'home')
-            return redirect(redirect_url)
+                # Add form errors to messages with better formatting
+                for field, errors in form.errors.items():
+                    field_name = field.replace('_', ' ').title()
+                    if field == 'password1':
+                        field_name = 'Password'
+                    elif field == 'password2':
+                        field_name = 'Confirm Password'
+                    for error in errors:
+                        messages.error(request, f'{field_name}: {error}')
         else:
-            messages.error(request, _('Invalid username or password.'))
+            # Handle login
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            remember_me = request.POST.get('remember_me')
+            
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                
+                # Handle "Remember me" functionality
+                if remember_me:
+                    # Set session to expire in 30 days
+                    request.session.set_expiry(30 * 24 * 60 * 60)  # 30 days in seconds
+                else:
+                    # Set session to expire when browser closes
+                    request.session.set_expiry(0)
+                
+                # Redirect to the originally requested page or home
+                redirect_url = request.GET.get('next', 'home')
+                return redirect(redirect_url)
+            else:
+                messages.error(request, _('Invalid username or password.'))
     
     return render(request, 'normieapp/login.html')
 

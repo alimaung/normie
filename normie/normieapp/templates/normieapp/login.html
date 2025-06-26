@@ -114,13 +114,13 @@
                         <span>{% trans "or" %}</span>
                     </div>
 
-                    <form method="post" class="auth-form-content">
+                    <form method="post" class="auth-form-content" novalidate>
                         {% csrf_token %}
                         <div class="form-group">
                             <label for="username">{% trans "Username or Email" %}</label>
                             <div class="input-wrapper" id="username_wrapper">
                                 <i class="fas fa-user"></i>
-                                <input type="text" id="username" name="username" placeholder="{% trans 'Enter your username or email' %}" required>
+                                <input type="text" id="username" name="username" placeholder="{% trans 'Enter your username or email' %}">
                             </div>
                             <div class="field-error hidden" id="username_error">
                                 <i class="fas fa-exclamation-circle"></i>
@@ -132,7 +132,7 @@
                             <label for="password">{% trans "Password" %}</label>
                             <div class="input-wrapper" id="password_wrapper">
                                 <i class="fas fa-lock"></i>
-                                <input type="password" id="password" name="password" placeholder="{% trans 'Enter your password' %}" required>
+                                <input type="password" id="password" name="password" placeholder="{% trans 'Enter your password' %}">
                                 <button type="button" class="password-toggle" onclick="togglePassword('password')">
                                     <i class="fas fa-eye"></i>
                                 </button>
@@ -187,7 +187,7 @@
                         <span>{% trans "or" %}</span>
                     </div>
 
-                    <form method="post" class="auth-form-content" id="signup-form-content" onsubmit="handleSignup(event)">
+                    <form method="post" class="auth-form-content" id="signup-form-content" onsubmit="handleSignup(event)" novalidate>
                         {% csrf_token %}
                         <input type="hidden" name="form_type" value="signup">
                         
@@ -196,7 +196,7 @@
                                 <label for="first_name">{% trans "First Name" %}</label>
                                 <div class="input-wrapper" id="first_name_wrapper">
                                     <i class="fas fa-user"></i>
-                                    <input type="text" id="first_name" name="first_name" placeholder="{% trans 'First name' %}" required>
+                                    <input type="text" id="first_name" name="first_name" placeholder="{% trans 'First name' %}">
                                 </div>
                                 <div class="field-error hidden" id="first_name_error">
                                     <i class="fas fa-exclamation-circle"></i>
@@ -207,7 +207,7 @@
                                 <label for="last_name">{% trans "Last Name" %}</label>
                                 <div class="input-wrapper" id="last_name_wrapper">
                                     <i class="fas fa-user"></i>
-                                    <input type="text" id="last_name" name="last_name" placeholder="{% trans 'Last name' %}" required>
+                                    <input type="text" id="last_name" name="last_name" placeholder="{% trans 'Last name' %}">
                                 </div>
                                 <div class="field-error hidden" id="last_name_error">
                                     <i class="fas fa-exclamation-circle"></i>
@@ -220,7 +220,7 @@
                             <label for="signup_email">{% trans "Email Address" %}</label>
                             <div class="input-wrapper" id="signup_email_wrapper">
                                 <i class="fas fa-envelope"></i>
-                                <input type="email" id="signup_email" name="email" placeholder="{% trans 'Enter your email address' %}" required>
+                                <input type="email" id="signup_email" name="email" placeholder="{% trans 'Enter your email address' %}">
                             </div>
                             <div class="field-error hidden" id="signup_email_error">
                                 <i class="fas fa-exclamation-circle"></i>
@@ -232,7 +232,7 @@
                             <label for="signup_username">{% trans "Username" %}</label>
                             <div class="input-wrapper" id="signup_username_wrapper">
                                 <i class="fas fa-at"></i>
-                                <input type="text" id="signup_username" name="username" placeholder="{% trans 'Choose a username' %}" required>
+                                <input type="text" id="signup_username" name="username" placeholder="{% trans 'Choose a username' %}">
                             </div>
                             <div class="field-error hidden" id="signup_username_error">
                                 <i class="fas fa-exclamation-circle"></i>
@@ -246,29 +246,12 @@
                                 <small>{% trans "Username must be at least 4 characters and can contain letters, numbers, periods, underscores, and hyphens" %}</small>
                             </div>
                         </div>
-
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="department">{% trans "Department" %} <span class="optional-label">({% trans "Optional" %})</span></label>
-                                <div class="input-wrapper" id="department_wrapper">
-                                    <i class="fas fa-building"></i>
-                                    <input type="text" id="department" name="department" placeholder="{% trans 'Your department' %}">
-                                </div>
-                            </div>
-                            <div class="form-group">
-                                <label for="telephone">{% trans "Telephone" %} <span class="optional-label">({% trans "Optional" %})</span></label>
-                                <div class="input-wrapper" id="telephone_wrapper">
-                                    <i class="fas fa-phone"></i>
-                                    <input type="tel" id="telephone" name="telephone" placeholder="{% trans 'Phone number' %}">
-                                </div>
-                            </div>
-                        </div>
-
+                        
                         <div class="form-group">
                             <label for="signup_password">{% trans "Password" %}</label>
                             <div class="input-wrapper" id="signup_password_wrapper">
                                 <i class="fas fa-lock"></i>
-                                <input type="password" id="signup_password" name="password" placeholder="{% trans 'Create a strong password' %}" required>
+                                <input type="password" id="signup_password" name="password1" placeholder="{% trans 'Create a strong password' %}">
                                 <button type="button" class="password-toggle" onclick="togglePassword('signup_password')">
                                     <i class="fas fa-eye"></i>
                                 </button>
@@ -289,7 +272,7 @@
                             <label for="confirm_password">{% trans "Confirm Password" %}</label>
                             <div class="input-wrapper" id="confirm_password_wrapper">
                                 <i class="fas fa-lock"></i>
-                                <input type="password" id="confirm_password" name="confirm_password" placeholder="{% trans 'Confirm your password' %}" required>
+                                <input type="password" id="confirm_password" name="password2" placeholder="{% trans 'Confirm your password' %}">
                                 <button type="button" class="password-toggle" onclick="togglePassword('confirm_password')">
                                     <i class="fas fa-eye"></i>
                                 </button>
@@ -306,7 +289,7 @@
 
                         <div class="form-group">
                             <label class="checkbox-wrapper terms-agreement">
-                                <input type="checkbox" name="terms_accepted" id="terms_accepted" required>
+                                <input type="checkbox" name="terms_accepted" id="terms_accepted">
                                 <span class="checkmark"></span>
                                 <span class="terms-text">
                                     {% trans "I agree to the" %} 
