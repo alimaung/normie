@@ -106,11 +106,11 @@
                                 <div class="dropdown-products">
                                                         <div class="dropdown-section">
                         <div class="section-title">Request Management</div>
-                        <a href="{% url 'incoming' %}" class="dropdown-item">
+                        <a href="{% url 'requests' %}" class="dropdown-item">
                             <i class="fas fa-inbox"></i>
                             <div class="dropdown-item-content">
                                 <div class="dropdown-item-title">Requests</div>
-                                <div class="dropdown-item-description">Incoming material requests</div>
+                                <div class="dropdown-item-description">Manage material requests</div>
                             </div>
                         </a>
                         <a href="{% url 'under_construction' %}" class="dropdown-item">
@@ -118,6 +118,13 @@
                             <div class="dropdown-item-content">
                                 <div class="dropdown-item-title">Request Status</div>
                                 <div class="dropdown-item-description">Track processing status</div>
+                            </div>
+                        </a>
+                        <a href="{% url 'pdf_parser' %}" class="dropdown-item">
+                            <i class="fas fa-file-pdf"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Pdf parser</div>
+                                <div class="dropdown-item-description">Parse and process PDF forms</div>
                             </div>
                         </a>
                     </div>
@@ -269,11 +276,11 @@
                                 <div class="dropdown-products">
                                     <div class="dropdown-section">
                                         <div class="section-title">Request Management</div>
-                                        <a href="{% url 'incoming' %}" class="dropdown-item">
+                                        <a href="{% url 'requests' %}" class="dropdown-item">
                                             <i class="fas fa-inbox"></i>
                                             <div class="dropdown-item-content">
                                                 <div class="dropdown-item-title">Requests</div>
-                                                <div class="dropdown-item-description">Incoming material requests</div>
+                                                <div class="dropdown-item-description">Manage material requests</div>
                                             </div>
                                         </a>
                                                                 <a href="{% url 'under_construction' %}" class="dropdown-item">

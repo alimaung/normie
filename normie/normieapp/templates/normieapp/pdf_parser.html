@@ -1,0 +1,82 @@
+{% extends 'normieapp/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <h1><i class="fas fa-file-pdf"></i> {% trans "PDF Parser" %}</h1>
+        <p class="subtitle">{% trans "Upload and process PDF forms" %}</p>
+    </div>
+
+    <div class="card">
+        <div class="card-header">
+            <h2><i class="fas fa-upload"></i> {% trans "Upload PDF Form" %}</h2>
+        </div>
+        <div class="card-body">
+            <form method="post" action="{% url 'pdf_upload' %}" enctype="multipart/form-data" class="pdf-upload-form">
+                {% csrf_token %}
+                <div class="form-group">
+                    <label for="pdf_file" class="form-label">
+                        <i class="fas fa-file-pdf"></i> {% trans "Select PDF File" %}
+                    </label>
+                    <input type="file" 
+                           class="form-control" 
+                           id="pdf_file" 
+                           name="pdf_file" 
+                           accept=".pdf"
+                           required>
+                    <small class="form-text">{% trans "Only PDF files are accepted." %}</small>
+                </div>
+                
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-upload"></i> {% trans "Upload & Parse" %}
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="help-section">
+        <h3><i class="fas fa-info-circle"></i> {% trans "How it works" %}</h3>
+        <ol>
+            <li>{% trans "Upload a PDF form using the form above" %}</li>
+            <li>{% trans "The system will extract all fillable fields from the PDF" %}</li>
+            <li>{% trans "Edit the fields using our web-based editor" %}</li>
+            <li>{% trans "Download the completed PDF with your changes" %}</li>
+        </ol>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+.pdf-upload-form {
+    max-width: 500px;
+}
+
+.help-section {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    background-color: var(--card-background);
+    border-radius: 8px;
+    border: 1px solid var(--border-color);
+}
+
+.help-section h3 {
+    color: var(--primary-color);
+    margin-bottom: 1rem;
+}
+
+.help-section ol {
+    margin: 0;
+    padding-left: 1.5rem;
+}
+
+.help-section li {
+    margin-bottom: 0.5rem;
+    line-height: 1.5;
+}
+</style>
+{% endblock %} 

@@ -29,11 +29,26 @@ def home(request):
     return render(request, 'normieapp/home.html')
 
 @restrict_read_only_users
-def incoming(request):
+def requests_page(request):
     """
-    Incoming page view - requires applicant role or above.
+    Requests page view - requires applicant role or above.
+    This will be a comprehensive requests management page to be built later.
     """
-    return render(request, 'normieapp/incoming.html')
+    context = {
+        'page_title': _('Requests Management'),
+    }
+    return render(request, 'normieapp/requests.html', context)
+
+@admin_required
+def pdf_parser(request):
+    """
+    PDF parser page view - requires admin role.
+    Central hub for PDF form processing and management.
+    """
+    context = {
+        'page_title': _('PDF Parser'),
+    }
+    return render(request, 'normieapp/pdf_parser.html', context)
 
 @restrict_read_only_users
 def directory(request):
@@ -731,10 +746,10 @@ def cmsr_documents(request, pk):
     }
     return render(request, 'normieapp/prototyping/cmsr_documents.html', context)
 
-@restrict_read_only_users
+@admin_required
 def pdf_upload(request):
     """
-    Handle PDF form upload - requires applicant role or above.
+    Handle PDF form upload - requires admin role.
     """
     if request.method == 'POST' and request.FILES.get('pdf_file'):
         pdf_file = request.FILES['pdf_file']
@@ -767,24 +782,24 @@ def pdf_upload(request):
                 'file_path': file_path
             }
             
-            return redirect('pdf_edit', form_id=form_id)
+            return redirect('pdf_editor', form_id=form_id)
         except Exception as e:
             messages.error(request, f"Error processing PDF: {str(e)}")
-            return redirect('incoming')
+            return redirect('pdf_parser')
     
-    return redirect('incoming')
+    return redirect('pdf_parser')
 
-@restrict_read_only_users
-def pdf_edit(request, form_id):
+@admin_required
+def pdf_editor(request, form_id):
     """
-    Display PDF form editor - requires applicant role or above.
+    Display PDF form editor - requires admin role.
     """
     # Get form data from session
     form_data = request.session.get(f'pdf_form_{form_id}')
     
     if not form_data:
         messages.error(request, _("Form session expired or invalid."))
-        return redirect('incoming')
+        return redirect('pdf_parser')
     
     fields = form_data.get('fields', [])
     file_path = form_data.get('file_path')
@@ -804,10 +819,10 @@ def pdf_edit(request, form_id):
     })
 
 @csrf_exempt  # Add CSRF exemption for AJAX calls
-@restrict_read_only_users
+@admin_required
 def pdf_save(request, form_id):
     """
-    Save edited PDF form fields back to the original PDF file - requires applicant role or above.
+    Save edited PDF form fields back to the original PDF file - requires admin role.
     """
     if request.method == 'POST':
         try:
@@ -855,17 +870,17 @@ def pdf_save(request, form_id):
     
     return JsonResponse({'success': False, 'message': _("Invalid request method.")})
 
-@restrict_read_only_users
+@admin_required
 def pdf_download(request, form_id):
     """
-    Download the updated PDF file (with saved changes) - requires applicant role or above.
+    Download the updated PDF file (with saved changes) - requires admin role.
     """
     # Get form data from session
     form_data = request.session.get(f'pdf_form_{form_id}')
     
     if not form_data:
         messages.error(request, _("Form session expired or invalid."))
-        return redirect('incoming')
+        return redirect('pdf_parser')
     
     try:
         file_path = form_data.get('file_path')
@@ -873,7 +888,7 @@ def pdf_download(request, form_id):
         # Check if the original file exists
         if not file_path or not os.path.exists(file_path):
             messages.error(request, _("Original PDF file not found."))
-            return redirect('pdf_edit', form_id=form_id)
+            return redirect('pdf_editor', form_id=form_id)
         
         # Read the updated PDF file (which contains the saved changes)
         with open(file_path, 'rb') as f:
@@ -896,7 +911,7 @@ def pdf_download(request, form_id):
         messages.error(request, f"Error downloading PDF: {str(e)}")
         print(f"Error details: {e}")
         print(f"Form data: {form_data}")
-        return redirect('pdf_edit', form_id=form_id)
+        return redirect('pdf_editor', form_id=form_id)
 
 @admin_required
 def pdf_debug(request, form_id):

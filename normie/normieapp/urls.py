@@ -7,7 +7,7 @@ from . import views
 
 urlpatterns = [
     path('', views.home, name='home'),
-    path('incoming/', views.incoming, name='incoming'),	
+    path('requests/', views.requests_page, name='requests'),	
     path('directory/', views.directory, name='directory'),
     path('chemscan/', views.chemscan, name='chemscan'),
     path('standards/', views.standards, name='standards'),
@@ -45,12 +45,13 @@ urlpatterns = [
     path('cmsr/<uuid:pk>/standards/', views.cmsr_standards, name='cmsr_standards'),
     path('cmsr/<uuid:pk>/documents/', views.cmsr_documents, name='cmsr_documents'),
     
-    # PDF Form handling routes
-    path('pdf/upload/', views.pdf_upload, name='pdf_upload'),
-    path('pdf/edit/<str:form_id>/', views.pdf_edit, name='pdf_edit'),
-    path('pdf/save/<str:form_id>/', views.pdf_save, name='pdf_save'),
-    path('pdf/download/<str:form_id>/', views.pdf_download, name='pdf_download'),
-    path('pdf/debug/<str:form_id>/', views.pdf_debug, name='pdf_debug'),
+    # PDF Parser routes
+    path('pdf-parser/', views.pdf_parser, name='pdf_parser'),
+    path('pdf-parser/upload/', views.pdf_upload, name='pdf_upload'),
+    path('pdf-parser/editor/<str:form_id>/', views.pdf_editor, name='pdf_editor'),
+    path('pdf-parser/save/<str:form_id>/', views.pdf_save, name='pdf_save'),
+    path('pdf-parser/download/<str:form_id>/', views.pdf_download, name='pdf_download'),
+    path('pdf-parser/debug/<str:form_id>/', views.pdf_debug, name='pdf_debug'),
     
     # AJAX validation endpoints
     path('ajax/check-username/', views.check_username_availability, name='check_username'),
