@@ -2,11 +2,26 @@
 {% load i18n %}
 {% load static %}
 
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/directory.css' %}">
+<link rel="stylesheet" href="{% static 'normieapp/css/pdf_form.css' %}">
+{% endblock %}
+
 {% block content %}
-<div class="container">
-    <div class="page-header">
-        <h1><i class="fas fa-file-pdf"></i> {% trans "PDF Parser" %}</h1>
-        <p class="subtitle">{% trans "Upload and process PDF forms" %}</p>
+<div class="pdf-form-container">
+    <!-- Form Actions Bar -->
+    <div class="form-actions">
+        <div class="left">
+            <h2 style="margin: 0; font-size: 14px;">{% trans "PDF Parser" %}</h2>
+            <span style="color: #666; font-size: 11px;">{% trans "Upload and process PDF forms" %}</span>
+        </div>
+        <div class="right">
+            <div id="alert-container"></div>
+            <a href="{% url 'home' %}" class="btn btn-cancel">
+                <i class="fas fa-arrow-left"></i> {% trans "Back to Home" %}
+            </a>
+        </div>
     </div>
 
     <div class="card">
@@ -39,7 +54,9 @@
     </div>
 
     <div class="help-section">
-        <h3><i class="fas fa-info-circle"></i> {% trans "How it works" %}</h3>
+        <div class="section-header">
+            <i class="fas fa-info-circle"></i> {% trans "How it works" %}
+        </div>
         <ol>
             <li>{% trans "Upload a PDF form using the form above" %}</li>
             <li>{% trans "The system will extract all fillable fields from the PDF" %}</li>
@@ -50,33 +67,6 @@
 </div>
 {% endblock %}
 
-{% block extra_css %}
-<style>
-.pdf-upload-form {
-    max-width: 500px;
-}
-
-.help-section {
-    margin-top: 2rem;
-    padding: 1.5rem;
-    background-color: var(--card-background);
-    border-radius: 8px;
-    border: 1px solid var(--border-color);
-}
-
-.help-section h3 {
-    color: var(--primary-color);
-    margin-bottom: 1rem;
-}
-
-.help-section ol {
-    margin: 0;
-    padding-left: 1.5rem;
-}
-
-.help-section li {
-    margin-bottom: 0.5rem;
-    line-height: 1.5;
-}
-</style>
-{% endblock %} 
+{% block extra_js %}
+<script src="{% static 'normieapp/js/pdf_form.js' %}"></script>
+{% endblock %}
