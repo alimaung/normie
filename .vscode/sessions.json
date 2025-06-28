@@ -22,7 +22,7 @@
           "icon": "python",
           "color": "terminal.ansiGreen",
           "commands": [
-            "py \\normie\\manage.py runserver 0.0.0.0:8001"
+            "py .\\normie\\manage.py runserver 0.0.0.0:8001"
           ]
         },
         {
