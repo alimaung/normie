@@ -120,13 +120,6 @@
                                 <div class="dropdown-item-description">Track processing status</div>
                             </div>
                         </a>
-                        <a href="{% url 'pdf_parser' %}" class="dropdown-item">
-                            <i class="fas fa-file-pdf"></i>
-                            <div class="dropdown-item-content">
-                                <div class="dropdown-item-title">Pdf parser</div>
-                                <div class="dropdown-item-description">Parse and process PDF forms</div>
-                            </div>
-                        </a>
                     </div>
                     
                     <div class="dropdown-section">
@@ -145,10 +138,6 @@
                                 <div class="dropdown-item-description">Chemical analysis tool</div>
                             </div>
                         </a>
-                    </div>
-                    
-                    <div class="dropdown-section">
-                        <div class="section-title">Tools</div>
                         <a href="{% url 'under_construction' %}" class="dropdown-item">
                             <i class="fas fa-code"></i>
                             <div class="dropdown-item-content">
@@ -156,6 +145,21 @@
                                 <div class="dropdown-item-description">Technical classification</div>
                             </div>
                         </a>
+                    </div>
+                    
+                    <div class="dropdown-section">
+                        <div class="section-title">Workflows</div>
+                        <a href="{% url 'pdf_parser' %}" class="dropdown-item">
+                            <i class="fas fa-file-pdf"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">PDF Parser</div>
+                                <div class="dropdown-item-description">Parse and process PDF forms</div>
+                            </div>
+                        </a>
+                    </div>
+                    
+                    <div class="dropdown-section">
+                        <div class="section-title">Tools</div>
                         <a href="{% url 'under_construction' %}" class="dropdown-item simple">
                             <i class="fas fa-calculator"></i>
                             <div class="dropdown-item-content">
@@ -595,6 +599,11 @@
         
         <!-- Right side - Icons -->
         <div class="navbar-icons">
+            <!-- Mobile Menu Button -->
+            <button class="mobile-menu-button" id="mobile-menu-toggle" title="{% trans 'Menu' %}">
+                <i class="fas fa-bars"></i>
+            </button>
+            
             <!-- Language Toggle -->
             <a id="lang-toggle"
                 href="#"
@@ -720,6 +729,9 @@
         </div>
     </nav>
 
+    <!-- Dropdown overlay -->
+    <div class="dropdown-overlay" id="dropdown-overlay"></div>
+
     <!-- Content area -->
     <div class="content">
         <!-- Messages -->
@@ -798,9 +810,105 @@
             };
         }
         
-        // Handle navbar card dropdowns with professional hover behavior
+        // Handle navbar card dropdowns with full-width behavior
         document.addEventListener('DOMContentLoaded', function() {
             const navbarDropdowns = document.querySelectorAll('.navbar-dropdown');
+            const overlay = document.getElementById('dropdown-overlay');
+            const navbar = document.querySelector('.navbar');
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const navbarLinks = document.querySelector('.navbar-links');
+            
+            // Smart navbar behavior
+            let lastScrollY = window.scrollY;
+            let ticking = false;
+            
+            function handleScroll() {
+                const currentScrollY = window.scrollY;
+                
+                if (currentScrollY <= 5) {
+                    // At the top (small threshold for smooth transition)
+                    navbar.classList.add('at-top');
+                    navbar.classList.remove('visible', 'scrolled');
+                } else if (currentScrollY > lastScrollY && currentScrollY > 80) {
+                    // Scrolling down, hide navbar (reduced threshold)
+                    navbar.classList.remove('visible', 'at-top');
+                    navbar.classList.add('scrolled');
+                } else if (currentScrollY < lastScrollY) {
+                    // Scrolling up, show navbar
+                    navbar.classList.add('visible', 'scrolled');
+                    navbar.classList.remove('at-top');
+                }
+                
+                lastScrollY = currentScrollY;
+            }
+            
+            function requestTick() {
+                if (!ticking) {
+                    requestAnimationFrame(function() {
+                        handleScroll();
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            }
+            
+            window.addEventListener('scroll', requestTick);
+            
+            // Initialize navbar state
+            if (window.scrollY <= 5) {
+                navbar.classList.add('at-top');
+                navbar.classList.remove('visible', 'scrolled');
+            } else {
+                navbar.classList.add('visible', 'scrolled');
+                navbar.classList.remove('at-top');
+            }
+            handleScroll();
+            
+            // Click navbar to toggle visibility
+            navbar.addEventListener('click', function(e) {
+                // Don't trigger if clicking on interactive elements
+                if (e.target.closest('.dropdown-toggle, .mobile-menu-button, #dark-mode-toggle, #lang-toggle, .user-badge')) {
+                    return;
+                }
+                
+                const currentScrollY = window.scrollY;
+                if (currentScrollY > 5) {
+                    if (navbar.classList.contains('visible')) {
+                        // Hide navbar
+                        navbar.classList.remove('visible');
+                        navbar.classList.add('scrolled');
+                    } else {
+                        // Show navbar
+                        navbar.classList.add('visible', 'scrolled');
+                        navbar.classList.remove('at-top');
+                    }
+                }
+            });
+            
+            // Mobile menu toggle
+            if (mobileMenuToggle && navbarLinks) {
+                mobileMenuToggle.addEventListener('click', function() {
+                    navbarLinks.classList.toggle('active');
+                    const icon = this.querySelector('i');
+                    if (navbarLinks.classList.contains('active')) {
+                        icon.classList.remove('fa-bars');
+                        icon.classList.add('fa-times');
+                    } else {
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+                
+                // Close mobile menu when clicking outside
+                document.addEventListener('click', function(e) {
+                    if (!navbarLinks.contains(e.target) && !mobileMenuToggle.contains(e.target)) {
+                        navbarLinks.classList.remove('active');
+                        const icon = mobileMenuToggle.querySelector('i');
+                        icon.classList.remove('fa-times');
+                        icon.classList.add('fa-bars');
+                    }
+                });
+            }
             
             navbarDropdowns.forEach(dropdown => {
                 const toggle = dropdown.querySelector('.dropdown-toggle');
@@ -825,6 +933,9 @@
                         
                         isOpen = true;
                         dropdown.classList.add('active');
+                        if (overlay) {
+                            overlay.classList.add('active');
+                        }
                     }
                     
                     // Function to close dropdown
@@ -834,16 +945,19 @@
                         
                         isOpen = false;
                         dropdown.classList.remove('active');
+                        if (overlay) {
+                            overlay.classList.remove('active');
+                        }
                     }
                     
                     // Mouse enter on dropdown trigger
                     toggle.addEventListener('mouseenter', function(e) {
                         if (leaveTimeout) clearTimeout(leaveTimeout);
                         
-                        // Quick response for opening (50ms delay)
+                        // Comfortable delay for full-width dropdowns (150ms)
                         hoverTimeout = setTimeout(() => {
                             openDropdown();
-                        }, 50);
+                        }, 150);
                     });
                     
                     // Mouse enter on dropdown menu itself
@@ -854,20 +968,36 @@
                         }
                     });
                     
-                    // Mouse leave from dropdown container
-                    dropdown.addEventListener('mouseleave', function(e) {
+                    // Mouse leave from dropdown trigger
+                    toggle.addEventListener('mouseleave', function(e) {
                         if (hoverTimeout) clearTimeout(hoverTimeout);
                         
-                        // Check if we're moving to a related element
+                        // Check if we're moving to the dropdown menu
                         const relatedTarget = e.relatedTarget;
-                        if (relatedTarget && dropdown.contains(relatedTarget)) {
-                            return; // Don't close if moving within dropdown
+                        if (relatedTarget && menu.contains(relatedTarget)) {
+                            return; // Don't close if moving to dropdown menu
                         }
                         
-                        // Quick close (100ms delay)
+                        // Comfortable delay for closing (250ms)
                         leaveTimeout = setTimeout(() => {
                             closeDropdown();
-                        }, 100);
+                        }, 250);
+                    });
+                    
+                    // Mouse leave from dropdown menu
+                    menu.addEventListener('mouseleave', function(e) {
+                        if (hoverTimeout) clearTimeout(hoverTimeout);
+                        
+                        // Check if we're moving to the toggle
+                        const relatedTarget = e.relatedTarget;
+                        if (relatedTarget && toggle.contains(relatedTarget)) {
+                            return; // Don't close if moving to toggle
+                        }
+                        
+                        // Close after delay
+                        leaveTimeout = setTimeout(() => {
+                            closeDropdown();
+                        }, 250);
                     });
                     
                     // Toggle dropdown on click (mobile and backup)
@@ -882,12 +1012,21 @@
                         }
                     });
                     
-                    // Close dropdown when clicking outside
+                    // Close dropdown when clicking outside or on overlay
                     document.addEventListener('click', function(e) {
-                        if (!dropdown.contains(e.target) && isOpen) {
+                        if (!dropdown.contains(e.target) && !menu.contains(e.target) && isOpen) {
                             closeDropdown();
                         }
                     });
+                    
+                    // Close dropdown when clicking on overlay
+                    if (overlay) {
+                        overlay.addEventListener('click', function() {
+                            if (isOpen) {
+                                closeDropdown();
+                            }
+                        });
+                    }
                     
                     // Handle dropdown item clicks
                     const dropdownItems = menu.querySelectorAll('.dropdown-item');

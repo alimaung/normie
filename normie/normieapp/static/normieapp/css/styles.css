@@ -108,13 +108,60 @@ body {
     background-color: var(--color-background);
     padding: 0 2rem;
     height: 64px;
-    position: relative;
-    z-index: 10;
-    max-width: 1400px;
+    position: fixed;
+    top: -64px;
+    left: 0;
+    right: 0;
+    z-index: 1000;
     width: 100%;
-    margin: 0 auto;
-    transition: background-color var(--transition-speed) ease,
-                box-shadow var(--transition-speed) ease;
+    margin: 0;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    border-bottom: 1px solid transparent;
+}
+
+.navbar.visible {
+    top: 0 !important;
+}
+
+.navbar.at-top {
+    position: relative !important;
+    top: 0 !important;
+    background-color: var(--color-background);
+    backdrop-filter: none;
+    transform: none !important;
+}
+
+.navbar.scrolled {
+    background-color: rgba(255, 255, 255, 0.95);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.dark-mode .navbar.scrolled {
+    background-color: rgba(26, 32, 44, 0.95);
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.dark-mode .navbar.at-top {
+    background-color: var(--color-dark-background);
+}
+
+/* Add top padding to content when navbar is fixed */
+.content {
+    padding-top: 64px;
+}
+
+/* Remove content padding when navbar is at top */
+.navbar.at-top ~ .content {
+    padding-top: 0;
+}
+
+/* Ensure navbar is visible on page load */
+.navbar.at-top {
+    position: relative !important;
+    top: 0 !important;
 }
 
 .dark-mode .navbar {
@@ -159,6 +206,106 @@ body {
     gap: 1rem;
     height: 100%;
     align-items: center;
+}
+
+/* Mobile menu button */
+.mobile-menu-button {
+    display: none;
+    background: none;
+    border: none;
+    color: var(--color-text-light);
+    font-size: 1.2rem;
+    cursor: pointer;
+    padding: 0.5rem;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.mobile-menu-button:hover {
+    background: rgba(0, 0, 0, 0.05);
+    color: var(--color-primary);
+}
+
+.dark-mode .mobile-menu-button {
+    color: var(--color-dark-text-light);
+}
+
+.dark-mode .mobile-menu-button:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--color-primary);
+}
+
+/* Mobile responsive */
+@media (max-width: 768px) {
+    .navbar-links {
+        display: none;
+        position: fixed;
+        top: 64px;
+        left: 0;
+        right: 0;
+        background: var(--color-background);
+        flex-direction: column;
+        padding: 1rem;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        height: auto;
+        gap: 0;
+        z-index: 1001;
+        max-height: calc(100vh - 64px);
+        overflow-y: auto;
+    }
+    
+    .navbar-links.active {
+        display: flex;
+    }
+    
+    .mobile-menu-button {
+        display: block;
+    }
+    
+    .navbar {
+        padding: 0 1rem;
+    }
+    
+    .dark-mode .navbar-links {
+        background: var(--color-dark-surface);
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    }
+    
+    /* Mobile dropdown styles */
+    .navbar-dropdown {
+        width: 100%;
+        border-bottom: 1px solid var(--color-border);
+    }
+    
+    .navbar-dropdown:last-child {
+        border-bottom: none;
+    }
+    
+    .dropdown-toggle {
+        width: 100%;
+        padding: 1.25rem 1rem;
+        justify-content: space-between;
+        background: transparent;
+        border: none;
+        text-align: left;
+        font-size: 1rem;
+        color: var(--color-text);
+        min-height: 56px;
+        display: flex;
+        align-items: center;
+    }
+    
+    .dropdown-toggle::after {
+        display: none;
+    }
+    
+    .dark-mode .navbar-dropdown {
+        border-color: var(--color-dark-border);
+    }
+    
+    .dark-mode .dropdown-toggle {
+        color: var(--color-dark-text);
+    }
 }
 
 .navbar-links a {
@@ -211,31 +358,9 @@ body {
     color: var(--color-primary);
 }
 
-/* Navbar Dropdown */
-.navbar-dropdown {
-    position: relative;
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
-.dropdown-toggle {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    cursor: pointer;
-}
-
-.dropdown-toggle i {
-    font-size: 0.8rem;
-    transition: transform var(--transition-speed) ease;
-}
-
-.navbar-dropdown:hover .dropdown-toggle i {
-    transform: rotate(180deg);
-}
-
-.dropdown-menu {
+/* Legacy dropdown styles - replaced by card dropdowns in base.css */
+/* These styles are kept for any simple dropdowns that might still use .dropdown-menu class */
+.dropdown-menu:not(.card-dropdown) {
     position: absolute;
     top: 100%;
     left: 0;
@@ -251,13 +376,13 @@ body {
     z-index: 1000;
 }
 
-.navbar-dropdown:hover .dropdown-menu {
+.navbar-dropdown:hover .dropdown-menu:not(.card-dropdown) {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
-.dropdown-menu a {
+.dropdown-menu:not(.card-dropdown) a {
     display: flex;
     padding: 12px 16px;
     color: var(--color-text);
@@ -268,47 +393,47 @@ body {
     transition: background-color var(--transition-speed) ease;
 }
 
-.dropdown-menu a:last-child {
+.dropdown-menu:not(.card-dropdown) a:last-child {
     border-bottom: none;
     border-radius: 0 0 8px 8px;
 }
 
-.dropdown-menu a:first-child {
+.dropdown-menu:not(.card-dropdown) a:first-child {
     border-radius: 8px 8px 0 0;
 }
 
-.dropdown-menu a:hover {
+.dropdown-menu:not(.card-dropdown) a:hover {
     background-color: var(--color-surface);
     color: var(--color-primary);
 }
 
-.dropdown-menu a.active {
+.dropdown-menu:not(.card-dropdown) a.active {
     background-color: var(--color-primary);
     color: white;
 }
 
-.dropdown-menu a::after {
+.dropdown-menu:not(.card-dropdown) a::after {
     display: none;
 }
 
 /* Dark mode dropdown */
-.dark-mode .dropdown-menu {
+.dark-mode .dropdown-menu:not(.card-dropdown) {
     background-color: var(--color-dark-surface);
     border-color: var(--color-dark-border);
     box-shadow: 0 4px 12px var(--color-dark-shadow);
 }
 
-.dark-mode .dropdown-menu a {
+.dark-mode .dropdown-menu:not(.card-dropdown) a {
     color: var(--color-dark-text);
     border-color: var(--color-dark-border);
 }
 
-.dark-mode .dropdown-menu a:hover {
+.dark-mode .dropdown-menu:not(.card-dropdown) a:hover {
     background-color: var(--color-dark-background);
     color: var(--color-primary);
 }
 
-.dark-mode .dropdown-menu a.active {
+.dark-mode .dropdown-menu:not(.card-dropdown) a.active {
     background-color: var(--color-primary);
     color: white;
 }

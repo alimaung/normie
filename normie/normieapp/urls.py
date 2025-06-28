@@ -9,6 +9,7 @@ urlpatterns = [
     path('', views.home, name='home'),
     path('requests/', views.requests_page, name='requests'),	
     path('directory/', views.directory, name='directory'),
+    path('directory/row/<int:row_number>/', views.directory_detail, name='directory_detail'),
     path('chemscan/', views.chemscan, name='chemscan'),
     path('standards/', views.standards, name='standards'),
     path('requests/', views.requests, name='requests'),

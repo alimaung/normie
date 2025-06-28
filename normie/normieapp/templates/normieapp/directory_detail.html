@@ -1,0 +1,503 @@
+{% extends "normieapp/base.html" %}
+{% load static %}
+
+{% block title %}
+    Directory Item #{{ row_number }}
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'normieapp/css/directory.css' %}">
+    <link rel="stylesheet" href="{% static 'normieapp/css/directory-detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="directory-detail-container">
+    <!-- Header Section -->
+    <div class="detail-header status-header-{{ status_class }}">
+        
+        <div class="header-main">
+            <div class="header-info">
+                <div class="application-info">
+                    <h1 class="application-number">{{ item.antrag_nummer }}</h1>
+                    <div class="part-number">
+                        <span class="label">Part Number:</span>
+                        <span class="value">{{ item.teile_nummer|default:"-" }}</span>
+                    </div>
+                </div>
+                
+                <div class="product-info">
+                    <h2 class="product-name">{{ item.produktname|default:"No Product Name" }}</h2>
+                    <p class="product-description">{{ item.benennung|default:"No Description Available" }}</p>
+                </div>
+            </div>
+            
+            <div class="status-section">
+                <div class="approval-status">
+                    {% if item.color == "#CCFFCC" %}
+                        <span class="status-badge approved">
+                            <i class="fas fa-check-circle"></i> Approved
+                        </span>
+                    {% elif item.color == "#CCFF99" %}
+                        <span class="status-badge first-use">
+                            <i class="fas fa-play-circle"></i> First Use
+                        </span>
+                    {% elif item.color == "#FFCC99" %}
+                        <span class="status-badge rejected">
+                            <i class="fas fa-times-circle"></i> Rejected
+                        </span>
+                    {% else %}
+                        <span class="status-badge processing">
+                            <i class="fas fa-clock"></i> Processing
+                        </span>
+                    {% endif %}
+                </div>
+                
+                <div class="relevance-indicator">
+                    {% if item.aircraft_relevant == "ja" %}
+                        <div class="aircraft-relevant glow-aircraft">
+                            <i class="fas fa-plane"></i>
+                            <span>Aircraft Relevant</span>
+                        </div>
+                    {% else %}
+                        <div class="not-aircraft-relevant">
+                            <i class="fas fa-times"></i>
+                            <span>Not Aircraft Relevant</span>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Process Section -->
+    <div class="detail-section">
+        <div class="section-header">
+            <h3><i class="fas fa-cogs"></i> Process Information</h3>
+        </div>
+        <div class="section-grid">
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-sign-in-alt"></i>
+                    <h4>Application Received</h4>
+                </div>
+                <div class="card-content">
+                    <span class="date-value">
+                        {% if item.eingang %}
+                            {{ item.eingang|date:"F j, Y" }}
+                        {% else %}
+                            Not specified
+                        {% endif %}
+                    </span>
+                    <span class="status-text">Applicant State</span>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-flag-checkered"></i>
+                    <h4>Process Completed</h4>
+                </div>
+                <div class="card-content">
+                    <span class="date-value">
+                        {% if item.abschluss %}
+                            {{ item.abschluss|date:"F j, Y" }}
+                        {% else %}
+                            In Progress
+                        {% endif %}
+                    </span>
+                    <span class="status-text">
+                        {% if item.color == "#CCFFCC" or item.color == "#CCFF99" %}
+                            Approved
+                        {% elif item.color == "#FFCC99" %}
+                            Rejected
+                        {% else %}
+                            Processing
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-user-cog"></i>
+                    <h4>Current Processor</h4>
+                </div>
+                <div class="card-content">
+                    <span class="processor-value">
+                        {% if item.bearbeiter %}
+                            <span class="processor-badge {{ item.bearbeiter|lower }}">{{ item.bearbeiter }}</span>
+                        {% else %}
+                            <span class="processor-badge applicant">Applicant</span>
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h4>Last Updated</h4>
+                </div>
+                <div class="card-content">
+                    <span class="date-value">
+                        {% if item.datum %}
+                            {{ item.datum|date:"F j, Y" }}
+                        {% else %}
+                            Not specified
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+        
+        {% if item.bemerkung %}
+        <div class="comments-section">
+            <div class="comments-header">
+                <i class="fas fa-comment-alt"></i>
+                <h4>Process Comments</h4>
+            </div>
+            <div class="comments-content">
+                <p>{{ item.bemerkung }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Scope Section -->
+    <div class="detail-section">
+        <div class="section-header">
+            <h3><i class="fas fa-crosshairs"></i> Scope & Application</h3>
+        </div>
+        <div class="section-grid">
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-certificate"></i>
+                    <h4>Approval Specification</h4>
+                </div>
+                <div class="card-content">
+                    <span class="spec-value">{{ item.produktzulassungs_spezifikation|default:"Not specified" }}</span>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-building"></i>
+                    <h4>Department</h4>
+                </div>
+                <div class="card-content">
+                    <span class="dept-value">{{ item.abteilung|default:"Not specified" }}</span>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <h4>Use Location</h4>
+                </div>
+                <div class="card-content">
+                    {% if item.einsatzort %}
+                        <span class="location-badge {{ item.einsatzort|lower }}">{{ item.einsatzort }}</span>
+                    {% else %}
+                        <span class="location-value">Not specified</span>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-user"></i>
+                    <h4>Applicant</h4>
+                </div>
+                <div class="card-content">
+                    <span class="applicant-value">{{ item.antragsteller|default:"Not specified" }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Attachments Section -->
+    <div class="detail-section">
+        <div class="section-header">
+            <h3><i class="fas fa-paperclip"></i> Documents & Attachments</h3>
+        </div>
+        <div class="attachments-grid">
+            <div class="attachment-item">
+                <div class="attachment-icon">
+                    {% if item.antrag_doc %}
+                        <a href="#" class="doc-link available" title="Application Document">
+                            <i class="fas fa-file-pdf"></i>
+                        </a>
+                    {% else %}
+                        <div class="doc-link unavailable" title="No Application Document">
+                            <i class="fas fa-file-pdf"></i>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="attachment-label">
+                    <span class="doc-name">Application</span>
+                    <span class="doc-status">{{ item.antrag_doc|yesno:"Available,Not Available" }}</span>
+                </div>
+            </div>
+            
+            <div class="attachment-item">
+                <div class="attachment-icon">
+                    {% if item.datenblatt %}
+                        <a href="#" class="doc-link available" title="Data Sheet">
+                            <i class="fas fa-file-excel"></i>
+                        </a>
+                    {% else %}
+                        <div class="doc-link unavailable" title="No Data Sheet">
+                            <i class="fas fa-file-excel"></i>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="attachment-label">
+                    <span class="doc-name">Data Sheet</span>
+                    <span class="doc-status">{{ item.datenblatt|yesno:"Available,Not Available" }}</span>
+                </div>
+            </div>
+            
+            <div class="attachment-item">
+                <div class="attachment-icon">
+                    {% if item.produkt_zulassung %}
+                        <a href="#" class="doc-link available" title="Product Approval">
+                            <i class="fas fa-certificate"></i>
+                        </a>
+                    {% else %}
+                        <div class="doc-link unavailable" title="No Product Approval">
+                            <i class="fas fa-certificate"></i>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="attachment-label">
+                    <span class="doc-name">Product Approval</span>
+                    <span class="doc-status">{{ item.produkt_zulassung|yesno:"Available,Not Available" }}</span>
+                </div>
+            </div>
+            
+            <div class="attachment-item">
+                <div class="attachment-icon">
+                    {% if item.sdb_msds %}
+                        <a href="#" class="doc-link available" title="SDB MSDS">
+                            <i class="fas fa-file-medical"></i>
+                        </a>
+                    {% else %}
+                        <div class="doc-link unavailable" title="No SDB MSDS">
+                            <i class="fas fa-file-medical"></i>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="attachment-label">
+                    <span class="doc-name">SDB MSDS</span>
+                    <span class="doc-status">{{ item.sdb_msds|yesno:"Available,Not Available" }}</span>
+                </div>
+            </div>
+            
+            <div class="attachment-item">
+                <div class="attachment-icon">
+                    {% if item.gefährdungsprüfung_beurteilung %}
+                        <a href="#" class="doc-link available" title="ChemScan Assessment">
+                            <i class="fas fa-shield-alt"></i>
+                        </a>
+                    {% else %}
+                        <div class="doc-link unavailable" title="No ChemScan Assessment">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="attachment-label">
+                    <span class="doc-name">ChemScan</span>
+                    <span class="doc-status">{{ item.gefährdungsprüfung_beurteilung|yesno:"Available,Not Available" }}</span>
+                </div>
+            </div>
+            
+            <div class="attachment-item">
+                <div class="attachment-icon">
+                    {% if item.gefährdungsprüfung %}
+                        <a href="#" class="doc-link available" title="Hazard Assessment">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </a>
+                    {% else %}
+                        <div class="doc-link unavailable" title="No Hazard Assessment">
+                            <i class="fas fa-exclamation-triangle"></i>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="attachment-label">
+                    <span class="doc-name">Hazard Assessment</span>
+                    <span class="doc-status">{{ item.gefährdungsprüfung|yesno:"Available,Not Available" }}</span>
+                </div>
+            </div>
+            
+            <div class="attachment-item">
+                <div class="attachment-icon">
+                    {% if item.sonstiges %}
+                        <a href="#" class="doc-link available" title="Miscellaneous Documents">
+                            <i class="fas fa-file-alt"></i>
+                        </a>
+                    {% else %}
+                        <div class="doc-link unavailable" title="No Miscellaneous Documents">
+                            <i class="fas fa-file-alt"></i>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="attachment-label">
+                    <span class="doc-name">Miscellaneous</span>
+                    <span class="doc-status">{{ item.sonstiges|yesno:"Available,Not Available" }}</span>
+                </div>
+            </div>
+            
+            <div class="attachment-item">
+                <div class="attachment-icon">
+                    {% if item.schriftverkehr %}
+                        <a href="#" class="doc-link available" title="Correspondence">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    {% else %}
+                        <div class="doc-link unavailable" title="No Correspondence">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="attachment-label">
+                    <span class="doc-name">Correspondence</span>
+                    <span class="doc-status">{{ item.schriftverkehr|yesno:"Available,Not Available" }}</span>
+                </div>
+            </div>
+            
+            <div class="attachment-item">
+                <div class="attachment-icon">
+                    {% if item.änderungshistorie %}
+                        <a href="#" class="doc-link available" title="Change History">
+                            <i class="fas fa-history"></i>
+                        </a>
+                    {% else %}
+                        <div class="doc-link unavailable" title="No Change History">
+                            <i class="fas fa-history"></i>
+                        </div>
+                    {% endif %}
+                </div>
+                <div class="attachment-label">
+                    <span class="doc-name">Change History</span>
+                    <span class="doc-status">{{ item.änderungshistorie|yesno:"Available,Not Available" }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Change History Section -->
+    <div class="detail-section">
+        <div class="section-header">
+            <h3><i class="fas fa-code-branch"></i> Change History & Process Timeline</h3>
+        </div>
+        <div class="timeline-container">
+            <div class="timeline">
+                <!-- Application Submitted -->
+                <div class="timeline-item completed">
+                    <div class="timeline-marker">
+                        <i class="fas fa-file-plus"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h4>Application Submitted</h4>
+                            <span class="timeline-date">
+                                {% if item.eingang %}
+                                    {{ item.eingang|date:"M j, Y" }}
+                                {% else %}
+                                    Not specified
+                                {% endif %}
+                            </span>
+                        </div>
+                        <p class="timeline-description">Initial application submitted by {{ item.antragsteller|default:"Unknown" }}</p>
+                        <div class="timeline-meta">
+                            <span class="timeline-actor">{{ item.antragsteller|default:"Unknown Applicant" }}</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Processing Stage -->
+                <div class="timeline-item {% if item.bearbeiter %}completed{% else %}current{% endif %}">
+                    <div class="timeline-marker">
+                        <i class="fas fa-cogs"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h4>Under Review</h4>
+                            <span class="timeline-date">
+                                {% if item.datum %}
+                                    {{ item.datum|date:"M j, Y" }}
+                                {% else %}
+                                    In Progress
+                                {% endif %}
+                            </span>
+                        </div>
+                        <p class="timeline-description">Application under review and processing</p>
+                        <div class="timeline-meta">
+                            <span class="timeline-actor">
+                                {% if item.bearbeiter %}
+                                    Processor: <span class="processor-badge {{ item.bearbeiter|lower }}">{{ item.bearbeiter }}</span>
+                                {% else %}
+                                    <span class="processor-badge applicant">Applicant</span>
+                                {% endif %}
+                            </span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Final Decision -->
+                {% if item.abschluss %}
+                <div class="timeline-item completed final">
+                    <div class="timeline-marker final-marker status-{{ status_class }}">
+                        {% if status_class == "approved" or status_class == "first-use" %}
+                            <i class="fas fa-check"></i>
+                        {% elif status_class == "rejected" %}
+                            <i class="fas fa-times"></i>
+                        {% else %}
+                            <i class="fas fa-clock"></i>
+                        {% endif %}
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h4>
+                                {% if status_class == "approved" %}
+                                    Approved
+                                {% elif status_class == "first-use" %}
+                                    Approved for First Use
+                                {% elif status_class == "rejected" %}
+                                    Rejected
+                                {% else %}
+                                    Completed
+                                {% endif %}
+                            </h4>
+                            <span class="timeline-date">{{ item.abschluss|date:"M j, Y" }}</span>
+                        </div>
+                        <p class="timeline-description">
+                            Final decision reached for application {{ item.antrag_nummer }}
+                        </p>
+                        {% if item.bemerkung %}
+                        <div class="timeline-comments">
+                            <strong>Comments:</strong>
+                            <p>{{ item.bemerkung }}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                {% else %}
+                <div class="timeline-item pending">
+                    <div class="timeline-marker pending-marker">
+                        <i class="fas fa-clock"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-header">
+                            <h4>Awaiting Decision</h4>
+                            <span class="timeline-date">Pending</span>
+                        </div>
+                        <p class="timeline-description">Application is still under review</p>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %} 

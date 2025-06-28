@@ -41,17 +41,15 @@ document.addEventListener('DOMContentLoaded', function() {
         localStorage.setItem('dark-mode', isDark ? 'enabled' : 'disabled');
     }
     
-    // Initialize dark mode based on user preference or system preference
+    // Initialize dark mode based on user preference, defaulting to light mode
     function initializeTheme() {
         const savedTheme = localStorage.getItem('dark-mode');
         
         if (savedTheme === 'enabled') {
             setDarkMode(true);
-        } else if (savedTheme === 'disabled') {
+        } else {
+            // Default to light mode (even if system prefers dark)
             setDarkMode(false);
-        } else if (prefersDarkMode.matches) {
-            // If no saved preference, respect system preference
-            setDarkMode(true);
         }
     }
 
@@ -79,12 +77,13 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     // Listen for changes in system color scheme preference
-    prefersDarkMode.addEventListener('change', (event) => {
-        // Only apply if the user hasn't set a preference
-        if (!localStorage.getItem('dark-mode')) {
-            setDarkMode(event.matches);
-        }
-    });
+    // Disabled to maintain light mode preference
+    // prefersDarkMode.addEventListener('change', (event) => {
+    //     // Only apply if the user hasn't set a preference
+    //     if (!localStorage.getItem('dark-mode')) {
+    //         setDarkMode(event.matches);
+    //     }
+    // });
     
     // Enhanced Message System
     function initializeMessages() {

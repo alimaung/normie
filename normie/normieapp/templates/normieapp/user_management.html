@@ -1,237 +1,23 @@
 {% extends "normieapp/base.html" %}
 {% load i18n %}
+{% load static %}
 
 {% block title %}{{ page_title }}{% endblock %}
 
 {% block extra_css %}
-<style>
-    .page-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        padding: 3rem 0;
-        margin-bottom: 2rem;
-    }
-    
-    .page-header h1 {
-        font-size: 2.5rem;
-        font-weight: 700;
-        margin-bottom: 0.5rem;
-    }
-    
-    .page-header p {
-        font-size: 1.1rem;
-        opacity: 0.9;
-        margin: 0;
-    }
-    
-    .user-management-card {
-        border: none;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-    }
-    
-    .user-table {
-        margin: 0;
-    }
-    
-    .user-table th {
-        background: #f8f9fa;
-        border: none;
-        padding: 1rem;
-        font-weight: 600;
-        color: #495057;
-    }
-    
-    .user-table td {
-        border: none;
-        padding: 1rem;
-        vertical-align: middle;
-    }
-    
-    .user-table tbody tr {
-        border-bottom: 1px solid #f1f3f4;
-        transition: background-color 0.2s ease;
-    }
-    
-    .user-table tbody tr:hover {
-        background-color: #f8f9fa;
-    }
-    
-    .user-avatar-small {
-        width: 40px;
-        height: 40px;
-        border-radius: 50%;
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        color: white;
-        font-weight: 600;
-        margin-right: 0.75rem;
-        font-size: 0.9rem;
-    }
-    
-    .user-info {
-        display: flex;
-        align-items: center;
-    }
-    
-    .user-details {
-        display: flex;
-        flex-direction: column;
-    }
-    
-    .user-name {
-        font-weight: 500;
-        color: #1d1d1f;
-        margin-bottom: 0.25rem;
-    }
-    
-    .user-username {
-        font-size: 0.85rem;
-        color: #6c757d;
-    }
-    
-    .role-badge {
-        display: inline-block;
-        padding: 0.375rem 0.75rem;
-        border-radius: 20px;
-        font-size: 0.8rem;
-        font-weight: 500;
-        text-align: center;
-    }
-    
-    .role-admin {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-    }
-    
-    .role-manager {
-        background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        color: white;
-    }
-    
-    .role-specialist {
-        background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        color: white;
-    }
-    
-    .role-reviewer {
-        background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-        color: white;
-    }
-    
-    .role-applicant {
-        background: #e9ecef;
-        color: #495057;
-    }
-    
-    .role-read-only {
-        background: #f8d7da;
-        color: #721c24;
-    }
-    
-    .btn-change-role {
-        background: rgba(102, 126, 234, 0.1);
-        border: 1px solid rgba(102, 126, 234, 0.3);
-        color: #667eea;
-        padding: 0.5rem 1rem;
-        border-radius: 20px;
-        font-size: 0.85rem;
-        font-weight: 500;
-        transition: all 0.2s ease;
-    }
-    
-    .btn-change-role:hover {
-        background: #667eea;
-        color: white;
-        transform: translateY(-1px);
-    }
-    
-    .stats-cards {
-        display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-        gap: 1.5rem;
-        margin-bottom: 2rem;
-    }
-    
-    .stat-card {
-        background: white;
-        padding: 1.5rem;
-        border-radius: 12px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-        text-align: center;
-        border: 1px solid #f1f3f4;
-    }
-    
-    .stat-number {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #667eea;
-        margin-bottom: 0.5rem;
-    }
-    
-    .stat-label {
-        color: #6c757d;
-        font-size: 0.9rem;
-        font-weight: 500;
-    }
-    
-    .modal-content {
-        border: none;
-        border-radius: 15px;
-        box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
-    }
-    
-    .modal-header {
-        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        color: white;
-        border-radius: 15px 15px 0 0;
-        padding: 1.5rem;
-    }
-    
-    .modal-title {
-        font-weight: 600;
-    }
-    
-    .btn-close {
-        filter: invert(1);
-    }
-    
-    .form-select {
-        border-radius: 10px;
-        border: 2px solid #e9ecef;
-        padding: 0.75rem;
-        font-size: 0.95rem;
-    }
-    
-    .form-select:focus {
-        border-color: #667eea;
-        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
-    }
-    
-    .alert-info {
-        background: rgba(102, 126, 234, 0.1);
-        border: 1px solid rgba(102, 126, 234, 0.2);
-        color: #495057;
-        border-radius: 10px;
-    }
-</style>
+<link rel="stylesheet" href="{% static 'normieapp/css/user-management.css' %}">
 {% endblock %}
 
 {% block content %}
-<!-- Page Header -->
-<div class="page-header">
-    <div class="container">
+<div class="user-management-container">
+    <!-- Page Header -->
+    <div class="page-header">
         <h1>{{ page_title }}</h1>
         <p>{% trans "Manage user roles and permissions across your organization" %}</p>
     </div>
-</div>
 
-<div class="container">
     <!-- Stats Cards -->
-    <div class="stats-cards">
+    <div class="stats-grid">
         <div class="stat-card">
             <div class="stat-number">{{ page_obj.paginator.count }}</div>
             <div class="stat-label">{% trans "Total Users" %}</div>
@@ -250,19 +36,18 @@
         </div>
     </div>
     
-    <div class="user-management-card card">
-        <div class="card-body">
-            {% if messages %}
-                {% for message in messages %}
-                    <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
-                        {{ message }}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    </div>
-                {% endfor %}
-            {% endif %}
+    <div class="users-card">
+        {% if messages %}
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }} alert-dismissible fade show" role="alert">
+                    {{ message }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                </div>
+            {% endfor %}
+        {% endif %}
 
-            <div class="table-responsive">
-                <table class="table user-table">
+        <div class="table-responsive">
+            <table class="users-table">
                     <thead>
                         <tr>
                             <th>{% trans "User" %}</th>
@@ -277,7 +62,7 @@
                             <tr>
                                 <td>
                                     <div class="user-info">
-                                        <div class="user-avatar-small">
+                                        <div class="user-avatar">
                                             {{ user.username|first|upper }}
                                         </div>
                                         <div class="user-details">
@@ -286,7 +71,9 @@
                                         </div>
                                     </div>
                                 </td>
-                                <td>{{ user.email|default:"-" }}</td>
+                                <td>
+                                    <div class="user-email">{{ user.email|default:"-" }}</div>
+                                </td>
                                 <td>
                                     {% if user.profile %}
                                         {% with role=user.profile.role %}
@@ -305,23 +92,32 @@
                                     {% endif %}
                                 </td>
                                 <td>
-                                    {% if user.profile %}
-                                        {{ user.profile.department|default:"-" }}
+                                    {% if user.profile and user.profile.department %}
+                                        <span class="dept-badge">{{ user.profile.department }}</span>
                                     {% else %}
-                                        -
+                                        <span class="dept-badge">-</span>
                                     {% endif %}
                                 </td>
                                 <td>
-                                    <button class="btn btn-change-role" 
-                                            data-bs-toggle="modal" 
-                                            data-bs-target="#roleModal{{ user.id }}">
-                                        {% trans "Change Role" %}
-                                    </button>
+                                    <div class="action-buttons">
+                                        <button class="btn-change-role" 
+                                                data-bs-toggle="modal" 
+                                                data-bs-target="#roleModal{{ user.id }}">
+                                            <i class="fas fa-user-cog"></i>
+                                            {% trans "Change Role" %}
+                                        </button>
+                                    </div>
                                 </td>
                             </tr>
                         {% empty %}
                             <tr>
-                                <td colspan="5" class="text-center">{% trans "No users found." %}</td>
+                                <td colspan="5">
+                                    <div class="empty-state">
+                                        <i class="fas fa-users"></i>
+                                        <h3>{% trans "No users found" %}</h3>
+                                        <p>{% trans "There are no users to display at this time." %}</p>
+                                    </div>
+                                </td>
                             </tr>
                         {% endfor %}
                     </tbody>
@@ -330,8 +126,9 @@
 
             <!-- Pagination -->
             {% if page_obj.has_other_pages %}
-                <nav aria-label="User pagination">
-                    <ul class="pagination justify-content-center">
+                <div class="pagination-wrapper">
+                    <nav aria-label="User pagination">
+                        <ul class="pagination">
                         {% if page_obj.has_previous %}
                             <li class="page-item">
                                 <a class="page-link" href="?page=1">{% trans "First" %}</a>
@@ -355,10 +152,10 @@
                                 <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">{% trans "Last" %}</a>
                             </li>
                         {% endif %}
-                    </ul>
-                </nav>
+                        </ul>
+                    </nav>
+                </div>
             {% endif %}
-        </div>
     </div>
 </div>
 
@@ -375,7 +172,7 @@
                     {% csrf_token %}
                     <div class="modal-body">
                         <input type="hidden" name="user_id" value="{{ user.id }}">
-                        <div class="mb-3">
+                        <div class="form-group">
                             <label for="role{{ user.id }}" class="form-label">{% trans "Select Role" %}</label>
                             <select class="form-select" id="role{{ user.id }}" name="role" required>
                                 {% for role_value, role_display in role_choices %}

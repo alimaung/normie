@@ -26,6 +26,7 @@ SECRET_KEY = 'django-insecure-7)tc)oq^kg7tvf&$9+70xo=htl8#vuy#g9&_0)ui&7q6ue!_lz
 DEBUG = True
 
 ALLOWED_HOSTS = [
+    '*',
     'normie.de',
     'localhost',
     '127.0.0.1',

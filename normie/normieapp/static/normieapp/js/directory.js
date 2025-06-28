@@ -1586,7 +1586,7 @@ class DirectoryManager {
             ${this.createDocumentCells(item)}
             <td class="text-center">${this.createProcessorBadge(item['Bearbeiter'])}</td>
             <td class="actions-cell">
-                <button class="action-btn" title="View"><i class="fas fa-eye"></i></button>
+                <a href="/directory/row/${this.getItemRowNumber(item)}/" class="action-btn" title="View"><i class="fas fa-eye"></i></a>
                 <button class="action-btn" title="Edit"><i class="fas fa-edit"></i></button>
             </td>
         `;
@@ -1656,9 +1656,9 @@ class DirectoryManager {
                         <div class="card-processor">${this.createProcessorBadge(item['Bearbeiter'])}</div>
                     </div>
                     <div class="card-actions">
-                        <button class="card-action-btn" title="View">
+                        <a href="/directory/row/${this.getItemRowNumber(item)}/" class="card-action-btn" title="View">
                             <i class="fas fa-eye"></i>
-                        </button>
+                        </a>
                         <button class="card-action-btn" title="Edit">
                             <i class="fas fa-edit"></i>
                         </button>
@@ -1932,6 +1932,15 @@ class DirectoryManager {
         
         // Update the badge
         filterCountBadge.textContent = count;
+    }
+
+    getItemRowNumber(item) {
+        // Find the item's position in the search results (current view order)
+        // This matches what the user sees in the table/grid
+        const index = this.searchResults.findIndex(dataItem => 
+            dataItem['Antrag-nummer'] === item['Antrag-nummer']
+        );
+        return index + 1; // Convert to 1-indexed
     }
 
     toggleAttachments() {
