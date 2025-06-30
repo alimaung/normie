@@ -13,12 +13,12 @@
     <div class="directory-header">
         <div class="header-left">
             <h1>{% trans "Applicant State Parser" %}</h1>
-            <p class="header-summary">{% trans "Upload and parse applicant status data from various file formats" %}</p>
+            <p class="header-summary">{% trans "Upload and parse applicant status data from PDF files" %}</p>
         </div>
         <div class="header-stats">
             <div class="stat-card">
                 <span class="stat-value">{% trans "Upload" %}</span>
-                <span class="stat-label">{% trans "Data Files" %}</span>
+                <span class="stat-label">{% trans "PDF Files" %}</span>
             </div>
             <div class="stat-card">
                 <span class="stat-value">{% trans "Parse" %}</span>
@@ -33,16 +33,16 @@
     
     <div class="upload-container">
         <h2>{% trans "Upload Applicant Data" %}</h2>
-        <p>{% trans "Upload files containing applicant status data. Supported formats: PDF, CSV, Excel (.xlsx, .xls), and JSON files." %}</p>
+        <p>{% trans "Upload PDF files containing applicant status data." %}</p>
         
         <form action="{% url 'applicant_upload' %}" method="post" enctype="multipart/form-data" id="upload-form">
             {% csrf_token %}
             
             <div class="upload-area" id="drop-area">
                 <i class="fas fa-user-check upload-icon"></i>
-                <div class="upload-text">{% trans "Drag & Drop data files here" %}</div>
+                <div class="upload-text">{% trans "Drag & Drop PDF files here" %}</div>
                 <div class="upload-hint">{% trans "or click to browse files" %}</div>
-                <input type="file" name="data_file" id="data-file" class="hidden-input" accept=".pdf,.csv,.xlsx,.xls,.json">
+                <input type="file" name="pdf_file" id="pdf-file" class="hidden-input" accept=".pdf,application/pdf">
             </div>
             
             <div class="file-info" id="file-info">
@@ -52,7 +52,7 @@
             
             <div class="text-center">
                 <button type="submit" class="btn-upload" id="submit-btn" disabled>
-                    {% trans "Upload & Parse Data" %}
+                    {% trans "Upload & Parse PDF" %}
                 </button>
             </div>
         </form>
@@ -63,7 +63,7 @@
                 <i class="fas fa-info-circle" style="color: #0071e3;"></i> {% trans "How it works" %}
             </div>
             <ol style="margin: 0; padding-left: 20px; color: #1d1d1f; line-height: 1.6;">
-                <li>{% trans "Upload a file containing applicant data" %}</li>
+                <li>{% trans "Upload a PDF file containing applicant data" %}</li>
                 <li>{% trans "The system will extract applicant information and status data" %}</li>
                 <li>{% trans "Review and edit applicant fields using the web interface" %}</li>
                 <li>{% trans "Save changes or export the processed applicant data" %}</li>
@@ -74,5 +74,5 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'normieapp/js/incoming.js' %}"></script>
+<script src="{% static 'normieapp/js/applicant_uploader.js' %}"></script>
 {% endblock %} 

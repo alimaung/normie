@@ -5,6 +5,196 @@
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'normieapp/css/directory.css' %}">
 <link rel="stylesheet" href="{% static 'normieapp/css/pdf_form.css' %}">
+<style>
+    /* Modern Material Design Styles */
+    .form-container {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        padding: 32px;
+        margin-bottom: 32px;
+    }
+    
+    .form-header {
+        margin-bottom: 24px;
+        border-bottom: 1px solid #f0f0f5;
+        padding-bottom: 16px;
+    }
+    
+    .form-fields {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
+        gap: 24px;
+    }
+    
+    .field-group {
+        position: relative;
+        margin-bottom: 0;
+        transition: all 0.2s ease;
+    }
+    
+    .field-label {
+        display: block;
+        font-size: 14px;
+        font-weight: 500;
+        color: #555;
+        margin-bottom: 8px;
+    }
+    
+    .field-input {
+        width: 100%;
+        padding: 12px 16px;
+        border: 1px solid #e0e0e5;
+        border-radius: 8px;
+        font-size: 15px;
+        transition: all 0.2s ease;
+        background-color: #fafafa;
+    }
+    
+    .field-input:focus {
+        border-color: #0071e3;
+        background-color: #fff;
+        box-shadow: 0 0 0 2px rgba(0,113,227,0.2);
+        outline: none;
+    }
+    
+    .field-type-badge {
+        display: inline-block;
+        font-size: 11px;
+        font-weight: 500;
+        padding: 2px 8px;
+        border-radius: 12px;
+        background-color: #f0f0f5;
+        color: #666;
+        margin-left: 8px;
+        vertical-align: middle;
+    }
+    
+    .textarea-input {
+        min-height: 100px;
+        resize: vertical;
+    }
+    
+    .checkbox-container {
+        display: flex;
+        align-items: center;
+    }
+    
+    .checkbox-input {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+        accent-color: #0071e3;
+    }
+    
+    .checkbox-label {
+        font-size: 15px;
+    }
+    
+    .signature-container {
+        position: relative;
+    }
+    
+    .signature-input {
+        background-color: #f5f5f7;
+        cursor: not-allowed;
+    }
+    
+    .signature-note {
+        display: block;
+        font-size: 12px;
+        color: #888;
+        margin-top: 4px;
+    }
+    
+    .form-actions {
+        margin-top: 32px;
+        padding-top: 24px;
+        border-top: 1px solid #f0f0f5;
+        display: flex;
+        gap: 16px;
+        flex-wrap: wrap;
+    }
+    
+    .btn {
+        padding: 12px 24px;
+        border-radius: 8px;
+        font-weight: 500;
+        font-size: 15px;
+        transition: all 0.2s ease;
+        cursor: pointer;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+        border: none;
+    }
+    
+    .btn-primary {
+        background-color: #0071e3;
+        color: white;
+    }
+    
+    .btn-primary:hover {
+        background-color: #0062c4;
+    }
+    
+    .btn-secondary {
+        background-color: #f5f5f7;
+        color: #333;
+    }
+    
+    .btn-secondary:hover {
+        background-color: #e5e5ea;
+    }
+    
+    .btn-outline {
+        background-color: transparent;
+        border: 1px solid #d1d1d6;
+        color: #333;
+    }
+    
+    .btn-outline:hover {
+        background-color: #f5f5f7;
+    }
+    
+    .alert-container {
+        margin-bottom: 24px;
+    }
+    
+    .alert {
+        padding: 16px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        font-size: 15px;
+    }
+    
+    .alert-success {
+        background-color: #e8f5e9;
+        color: #2e7d32;
+        border-left: 4px solid #4caf50;
+    }
+    
+    .alert-danger {
+        background-color: #ffebee;
+        color: #c62828;
+        border-left: 4px solid #ef5350;
+    }
+    
+    .field-id {
+        font-size: 11px;
+        color: #aaa;
+        margin-top: 4px;
+    }
+    
+    .file-info {
+        font-size: 14px;
+        color: #666;
+        margin-top: 8px;
+    }
+</style>
 {% endblock %}
 
 {% block content %}
@@ -19,7 +209,7 @@
         <div class="header-stats">
             <div class="stat-card">
                 <span class="stat-value">{{ fields|length }}</span>
-                <span class="stat-label">{% trans "Fields Found" %}</span>
+                <span class="stat-label">{% trans "Fields Displayed" %}</span>
             </div>
             <div class="stat-card">
                 <span class="stat-value">{% trans "Edit" %}</span>
@@ -141,6 +331,18 @@ document.addEventListener('DOMContentLoaded', function() {
     const form = document.getElementById('applicant-edit-form');
     const alertContainer = document.getElementById('alert-container');
     
+    // Debug logging for fields
+    console.log('Total fields received: {{ fields|length }}');
+    
+    // Log field information
+    const fieldGroups = document.querySelectorAll('.field-group');
+    console.log('Field groups displayed:', fieldGroups.length);
+    fieldGroups.forEach((group, index) => {
+        const fieldId = group.querySelector('[data-field-id]')?.dataset.fieldId;
+        const fieldLabel = group.querySelector('.field-label')?.textContent.trim();
+        console.log(`Field ${index + 1}:`, { id: fieldId, label: fieldLabel });
+    });
+    
     if (saveButton) {
         saveButton.addEventListener('click', function() {
             // Collect all field values
@@ -196,13 +398,10 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     }
     
-    // Auto-save on field changes (optional)
-    const autoSaveEnabled = false; // Set to true to enable auto-save
-    if (autoSaveEnabled) {
-        form.addEventListener('input', debounce(function() {
-            saveButton.click();
-        }, 2000));
-    }
+    // Auto-save on field changes
+    form.addEventListener('input', debounce(function() {
+        saveButton.click();
+    }, 1500));
     
     // Debounce function for auto-save
     function debounce(func, wait) {

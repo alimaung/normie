@@ -71,8 +71,8 @@ def applicant_upload(request):
     """
     Handle applicant data file upload - requires applicant role or above.
     """
-    if request.method == 'POST' and request.FILES.get('data_file'):
-        data_file = request.FILES['data_file']
+    if request.method == 'POST' and request.FILES.get('pdf_file'):
+        pdf_file = request.FILES['pdf_file']
         
         # Generate a unique ID for this form session
         form_id = str(uuid.uuid4())
@@ -82,31 +82,31 @@ def applicant_upload(request):
         temp_dir = os.path.join(base_dir, 'normieapp', 'static', 'normieapp', 'temp_forms')
         os.makedirs(temp_dir, exist_ok=True)
         
-        # Get file extension
-        file_extension = os.path.splitext(data_file.name)[1].lower()
-        
         # Save the uploaded file temporarily
-        file_path = os.path.join(temp_dir, f"{form_id}{file_extension}")
+        file_path = os.path.join(temp_dir, f"{form_id}.pdf")
         with open(file_path, 'wb+') as destination:
-            for chunk in data_file.chunks():
+            for chunk in pdf_file.chunks():
                 destination.write(chunk)
         
-        # Parse applicant fields based on file type
+        # Parse PDF fields
         try:
-            if file_extension == '.pdf':
-                # Use PDF service for PDF files
-                from .services import pdf_service
-                raw_fields = pdf_service.extract_pdf_fields(file_path)
-                # Filter to only applicant-related fields
-                fields = filter_applicant_fields(raw_fields)
-            elif file_extension in ['.csv', '.xlsx', '.xls']:
-                # Parse Excel/CSV files
-                fields = parse_spreadsheet_applicant_data(file_path)
-            elif file_extension == '.json':
-                # Parse JSON files
-                fields = parse_json_applicant_data(file_path)
-            else:
-                raise ValueError("Unsupported file format")
+            # Use PDF service for PDF files
+            from .services import pdf_service
+            logger.info(f"Extracting fields from PDF: {pdf_file.name}")
+            raw_fields = pdf_service.extract_pdf_fields(file_path)
+            logger.info(f"Extracted {len(raw_fields)} raw fields from PDF")
+            
+            # Debug: Log raw fields
+            for i, field in enumerate(raw_fields):
+                logger.debug(f"Raw field {i+1}: id={field.get('id')}, name={field.get('name')}, type={field.get('type')}")
+            
+            # Filter to only applicant-related fields
+            fields = filter_applicant_fields(raw_fields)
+            logger.info(f"Filtered to {len(fields)} applicant-related fields")
+            
+            # Debug: Log filtered fields
+            for i, field in enumerate(fields):
+                logger.debug(f"Filtered field {i+1}: id={field.get('id')}, name={field.get('name')}, type={field.get('type')}")
             
             # Store fields in session for later use
             serializable_fields = json.loads(json.dumps(fields))
@@ -114,12 +114,13 @@ def applicant_upload(request):
             request.session[f'applicant_form_{form_id}'] = {
                 'fields': serializable_fields,
                 'file_path': file_path,
-                'original_filename': data_file.name
+                'original_filename': pdf_file.name
             }
             
             return redirect('applicant_editor', form_id=form_id)
         except Exception as e:
-            messages.error(request, f"Error processing file: {str(e)}")
+            logger.error(f"Error processing PDF: {str(e)}", exc_info=True)
+            messages.error(request, f"Error processing PDF: {str(e)}")
             return redirect('applicant_state_parser')
     
     return redirect('applicant_state_parser')
@@ -220,23 +221,40 @@ def applicant_download(request, form_id):
 
 def filter_applicant_fields(raw_fields):
     """
-    Filter PDF fields to only include applicant-related ones.
+    Take fields from positions 2 to 21 from the raw fields list.
+    Ensures fields are properly sorted for display.
     """
-    applicant_keywords = [
-        'name', 'first', 'last', 'applicant', 'candidate', 'employee',
-        'email', 'phone', 'contact', 'address', 'date', 'birth',
-        'id', 'number', 'department', 'position', 'title', 'status',
-        'application', 'request', 'approval', 'notes', 'comments'
-    ]
+    # Sort fields by ID using natural sort (ensures "2" comes before "10")
+    def natural_sort_key(field):
+        import re
+        def convert(text):
+            return int(text) if text.isdigit() else text.lower()
+        field_id = field['id']
+        return [convert(c) for c in re.split('([0-9]+)', str(field_id))]
     
-    filtered_fields = []
-    for field in raw_fields:
-        field_name_lower = field['name'].lower()
-        field_id_lower = field['id'].lower()
-        
-        # Check if field name or ID contains applicant-related keywords
-        if any(keyword in field_name_lower or keyword in field_id_lower for keyword in applicant_keywords):
-            filtered_fields.append(field)
+    # Sort the raw fields first
+    sorted_fields = sorted(raw_fields, key=natural_sort_key)
+    
+    # Log the sorted fields for debugging
+    logger.info(f"Total fields after sorting: {len(sorted_fields)}")
+    for i, field in enumerate(sorted_fields):
+        logger.debug(f"Sorted field {i+1}: id={field.get('id')}, name={field.get('name')}, type={field.get('type')}")
+    
+    # Take fields from positions 2 to 21 (if available)
+    start_idx = 1  # 0-indexed, so position 2 is index 1
+    end_idx = min(21, len(sorted_fields))  # Don't go beyond the available fields
+    
+    # Handle case where there are fewer than 2 fields
+    if start_idx >= len(sorted_fields):
+        return []
+    
+    # Get the fields from positions 2 to 21
+    filtered_fields = sorted_fields[start_idx:end_idx]
+    
+    # Log the filtered fields for debugging
+    logger.info(f"Selected fields from positions 2-21: {len(filtered_fields)}")
+    for i, field in enumerate(filtered_fields):
+        logger.debug(f"Selected field {i+1}: id={field.get('id')}, name={field.get('name')}, type={field.get('type')}")
     
     return filtered_fields
 
