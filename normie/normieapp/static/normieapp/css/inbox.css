@@ -1,0 +1,573 @@
+/* Inbox CSS - Outlook-like styling */
+
+/* Main layout */
+.inbox-container {
+    display: flex;
+    height: calc(100vh - 60px);
+    background-color: #f8f9fa;
+}
+
+.inbox-sidebar {
+    width: 250px;
+    background-color: #f8f9fa;
+    border-right: 1px solid #e5e5e5;
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    box-shadow: 0 0 10px rgba(0,0,0,0.03);
+}
+
+.inbox-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+/* Account selector */
+.account-selector {
+    padding: 15px;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.account-selector .form-select {
+    border-radius: 6px;
+    border: 1px solid #d1d1d1;
+    box-shadow: none;
+    padding: 8px 12px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.account-selector .form-select:focus {
+    border-color: #0078d4;
+    box-shadow: 0 0 0 2px rgba(0,120,212,0.25);
+}
+
+/* Folder list */
+.folder-list {
+    padding: 10px 0;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.folder-header {
+    font-weight: 600;
+    color: #666;
+    padding: 5px 15px;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.folder-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.folder-item {
+    padding: 0;
+    margin: 0;
+}
+
+.folder-item a {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.folder-item a:hover {
+    background-color: #f0f0f0;
+    border-left-color: #c7c7c7;
+}
+
+.folder-item.active a {
+    background-color: #e6f2fa;
+    color: #0078d4;
+    border-left-color: #0078d4;
+    font-weight: 500;
+}
+
+.folder-item i {
+    margin-right: 10px;
+    width: 16px;
+    text-align: center;
+    color: #666;
+}
+
+.folder-item.active i {
+    color: #0078d4;
+}
+
+/* Categories section */
+.categories-section {
+    padding: 10px 0;
+}
+
+.categories-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.categories-section li a {
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    color: #333;
+    text-decoration: none;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    border-left: 3px solid transparent;
+}
+
+.categories-section li a:hover {
+    background-color: #f0f0f0;
+    border-left-color: #c7c7c7;
+}
+
+.category-color {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    margin-right: 10px;
+}
+
+/* Toolbar */
+.inbox-toolbar {
+    padding: 12px 16px;
+    background-color: #fff;
+    border-bottom: 1px solid #e5e5e5;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+
+.toolbar-left {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.toolbar-right {
+    display: flex;
+    align-items: center;
+}
+
+/* Button styling */
+.btn {
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 8px 12px;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background-color: #0078d4;
+    border-color: #0078d4;
+}
+
+.btn-primary:hover {
+    background-color: #106ebe;
+    border-color: #106ebe;
+}
+
+.btn-outline-secondary {
+    color: #505050;
+    border-color: #d1d1d1;
+}
+
+.btn-outline-secondary:hover {
+    background-color: #f0f0f0;
+    color: #333;
+    border-color: #b8b8b8;
+}
+
+.btn-outline-danger {
+    color: #d83b01;
+    border-color: #d1d1d1;
+}
+
+.btn-outline-danger:hover {
+    background-color: #fdebe6;
+    color: #d83b01;
+    border-color: #d83b01;
+}
+
+.btn i {
+    margin-right: 6px;
+}
+
+/* Search container */
+.search-container {
+    width: 300px;
+    position: relative;
+}
+
+.search-container .input-group {
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+}
+
+.search-container .form-control {
+    border-radius: 20px 0 0 20px;
+    border: 1px solid #d1d1d1;
+    padding: 8px 15px;
+    font-size: 14px;
+    border-right: none;
+}
+
+.search-container .form-control:focus {
+    box-shadow: none;
+    border-color: #0078d4;
+}
+
+.search-container .btn {
+    border-radius: 0 20px 20px 0;
+    background-color: #fff;
+    border: 1px solid #d1d1d1;
+    border-left: none;
+    color: #666;
+}
+
+.search-container .btn:hover {
+    background-color: #f0f0f0;
+    color: #333;
+}
+
+/* Email list */
+.email-list {
+    flex: 1;
+    overflow-y: auto;
+    background-color: white;
+}
+
+/* Email header row */
+.email-header-row {
+    display: flex;
+    padding: 12px 16px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #e5e5e5;
+    font-weight: 600;
+    color: #505050;
+    font-size: 13px;
+}
+
+.email-header-checkbox {
+    width: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.email-header-flags {
+    width: 80px;
+}
+
+.email-header-sender {
+    width: 25%;
+}
+
+.email-header-subject {
+    flex: 1;
+}
+
+.email-header-date {
+    width: 120px;
+    text-align: right;
+}
+
+/* Email items */
+.email-items {
+    display: flex;
+    flex-direction: column;
+}
+
+.email-item {
+    display: flex;
+    align-items: center;
+    padding: 12px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    cursor: pointer;
+    transition: all 0.15s ease;
+}
+
+.email-item:hover {
+    background-color: #f5f9fd;
+}
+
+.email-item.unread {
+    background-color: #f0f7ff;
+    font-weight: 500;
+}
+
+.email-item.unread:hover {
+    background-color: #e6f2fa;
+}
+
+.email-item-checkbox {
+    width: 30px;
+    display: flex;
+    align-items: center;
+}
+
+.email-item-checkbox input[type="checkbox"] {
+    cursor: pointer;
+}
+
+.email-item-flags {
+    width: 80px;
+    display: flex;
+    gap: 8px;
+    color: #666;
+}
+
+.email-item-sender {
+    width: 25%;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 10px;
+    color: #333;
+}
+
+.email-item-subject {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding-right: 10px;
+}
+
+.email-item-subject a {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+
+.email-preview {
+    font-weight: normal;
+    color: #666;
+    font-size: 13px;
+    margin-top: 3px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.email-item-date {
+    width: 120px;
+    text-align: right;
+    white-space: nowrap;
+    color: #666;
+    font-size: 13px;
+}
+
+/* No emails message */
+.no-emails-message {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 300px;
+    color: #666;
+}
+
+.no-emails-message i {
+    font-size: 48px;
+    margin-bottom: 20px;
+    color: #ccc;
+}
+
+/* Pagination */
+.pagination-container {
+    padding: 15px;
+    display: flex;
+    justify-content: center;
+    border-top: 1px solid #e5e5e5;
+}
+
+.pagination {
+    border-radius: 4px;
+    overflow: hidden;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    display: flex;
+    flex-direction: row;
+}
+
+.page-item {
+    display: inline-block;
+}
+
+.page-link {
+    color: #0078d4;
+    border-color: #e5e5e5;
+    padding: 8px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-block;
+}
+
+.page-link:hover {
+    background-color: #f0f7ff;
+    color: #0078d4;
+    border-color: #e5e5e5;
+}
+
+.page-item.active .page-link {
+    background-color: #0078d4;
+    border-color: #0078d4;
+    color: white;
+    z-index: 3;
+}
+
+.page-item.disabled .page-link {
+    color: #a0a0a0;
+    background-color: #f8f9fa;
+    pointer-events: none;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .inbox-container {
+        flex-direction: column;
+        height: auto;
+    }
+    
+    .inbox-sidebar {
+        width: 100%;
+        max-height: 300px;
+    }
+    
+    .email-item-sender {
+        display: none;
+    }
+    
+    .search-container {
+        width: 100%;
+    }
+    
+    .toolbar-left, .toolbar-right {
+        flex-wrap: wrap;
+    }
+}
+
+/* Selected email styling */
+.email-item.selected {
+    background-color: #e6f2fa;
+}
+
+.email-item.selected:hover {
+    background-color: #d9eaf7;
+}
+
+.email-item.selected.unread {
+    background-color: #d9eaf7;
+}
+
+/* Checkbox styling */
+input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    border-radius: 3px;
+    border: 1px solid #b8b8b8;
+    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    outline: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+input[type="checkbox"]:checked {
+    background-color: #0078d4;
+    border-color: #0078d4;
+}
+
+input[type="checkbox"]:checked::after {
+    content: '';
+    position: absolute;
+    left: 5px;
+    top: 2px;
+    width: 5px;
+    height: 9px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+
+/* Category dropdown */
+.dropdown-menu {
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border: 1px solid #e5e5e5;
+    padding: 6px 0;
+}
+
+.dropdown-item {
+    font-size: 14px;
+    padding: 8px 16px;
+    color: #333;
+}
+
+.dropdown-item:hover {
+    background-color: #f0f7ff;
+}
+
+.dropdown-item.category-item {
+    display: flex;
+    align-items: center;
+}
+
+.dropdown-divider {
+    margin: 6px 0;
+    border-top: 1px solid #e5e5e5;
+}
+
+/* Alerts styling */
+.notification-container {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    width: 100%;
+}
+
+.notification-container .alert {
+    margin: 15px;
+    border-radius: 4px;
+    margin-bottom: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border: none;
+    padding: 12px 16px;
+    font-size: 14px;
+}
+
+.alert-success {
+    background-color: #dff6dd;
+    color: #107c10;
+}
+
+.alert-danger {
+    background-color: #fde7e9;
+    color: #d83b01;
+}
+
+.alert-warning {
+    background-color: #fff4ce;
+    color: #8a6d3b;
+}
+
+.alert-info {
+    background-color: #e5f4fd;
+    color: #0078d4;
+} 

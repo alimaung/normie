@@ -1,0 +1,265 @@
+{% extends 'normieapp/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/inbox.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="inbox-container">
+    <!-- Sidebar -->
+    <div class="inbox-sidebar">
+        <div class="account-selector">
+            <select id="account-selector" class="form-select">
+                {% for account in allowed_accounts %}
+                <option value="{{ account }}" {% if account == email_address %}selected{% endif %}>{{ account }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        
+        <div class="folder-list">
+            <div class="folder-header">{% trans "Folders" %}</div>
+            <ul>
+                <li class="folder-item {% if folder_type == 'inbox' %}active{% endif %}">
+                    <a href="{% url 'inbox' %}?account={{ email_address }}&folder=inbox">
+                        <i class="fas fa-inbox"></i> {% trans "Inbox" %}
+                    </a>
+                </li>
+                <li class="folder-item {% if folder_type == 'drafts' %}active{% endif %}">
+                    <a href="{% url 'inbox' %}?account={{ email_address }}&folder=drafts">
+                        <i class="fas fa-file-alt"></i> {% trans "Drafts" %}
+                    </a>
+                </li>
+                <li class="folder-item {% if folder_type == 'sent' %}active{% endif %}">
+                    <a href="{% url 'inbox' %}?account={{ email_address }}&folder=sent">
+                        <i class="fas fa-paper-plane"></i> {% trans "Sent Items" %}
+                    </a>
+                </li>
+                <li class="folder-item {% if folder_type == 'deleted' %}active{% endif %}">
+                    <a href="{% url 'inbox' %}?account={{ email_address }}&folder=deleted">
+                        <i class="fas fa-trash-alt"></i> {% trans "Deleted Items" %}
+                    </a>
+                </li>
+                <li class="folder-item {% if folder_type == 'junk' %}active{% endif %}">
+                    <a href="{% url 'inbox' %}?account={{ email_address }}&folder=junk">
+                        <i class="fas fa-ban"></i> {% trans "Junk Email" %}
+                    </a>
+                </li>
+                <li class="folder-item {% if folder_type == 'archive' %}active{% endif %}">
+                    <a href="{% url 'inbox' %}?account={{ email_address }}&folder=archive">
+                        <i class="fas fa-archive"></i> {% trans "Archive" %}
+                    </a>
+                </li>
+            </ul>
+        </div>
+        
+        <div class="categories-section">
+            <div class="folder-header">{% trans "Categories" %}</div>
+            <ul>
+                {% if available_categories %}
+                    {% for cat in available_categories %}
+                    <li>
+                        <a href="{% url 'inbox' %}?account={{ email_address }}&category={{ cat.name }}">
+                            <span class="category-color" style="background-color: {{ cat.color }};"></span> {{ cat.name }}
+                        </a>
+                    </li>
+                    {% endfor %}
+                {% else %}
+                    <li><a href="{% url 'inbox' %}?account={{ email_address }}&category=Important"><span class="category-color" style="background-color: #FF0000;"></span> {% trans "Important" %}</a></li>
+                    <li><a href="{% url 'inbox' %}?account={{ email_address }}&category=Work"><span class="category-color" style="background-color: #FFA500;"></span> {% trans "Work" %}</a></li>
+                    <li><a href="{% url 'inbox' %}?account={{ email_address }}&category=Personal"><span class="category-color" style="background-color: #0000FF;"></span> {% trans "Personal" %}</a></li>
+                    <li><a href="{% url 'inbox' %}?account={{ email_address }}&category=Follow-up"><span class="category-color" style="background-color: #008000;"></span> {% trans "Follow-up" %}</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+    
+    <!-- Main content -->
+    <div class="inbox-main">
+        <!-- Hidden form with CSRF token for AJAX requests -->
+        <form id="csrf-form" style="display: none;">
+            {% csrf_token %}
+        </form>
+        
+        <!-- Notification container -->
+        <div class="notification-container"></div>
+        
+        <!-- Toolbar -->
+        <div class="inbox-toolbar">
+            <div class="toolbar-left">
+                <a href="{% url 'inbox_compose' %}?account={{ email_address }}" class="btn btn-primary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% trans 'Compose new email' %}">
+                    <i class="fas fa-pen"></i> {% trans "New Email" %}
+                </a>
+                
+                <button type="button" id="refresh-btn" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% trans 'Refresh inbox' %}">
+                    <i class="fas fa-sync-alt"></i> {% trans "Refresh" %}
+                </button>
+                
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" disabled title="{% trans 'Apply category to selected emails' %}">
+                        <i class="fas fa-tag"></i> {% trans "Categorize" %}
+                    </button>
+                    <ul class="dropdown-menu">
+                        {% if available_categories %}
+                            {% for cat in available_categories %}
+                            <li>
+                                <a class="dropdown-item category-item" data-category="{{ cat.name }}" href="#">
+                                    <span class="category-color" style="background-color: {{ cat.color }};"></span> {{ cat.name }}
+                                </a>
+                            </li>
+                            {% endfor %}
+                        {% else %}
+                            <li><a class="dropdown-item category-item" data-category="Important" href="#"><span class="category-color" style="background-color: #FF0000;"></span> {% trans "Important" %}</a></li>
+                            <li><a class="dropdown-item category-item" data-category="Work" href="#"><span class="category-color" style="background-color: #FFA500;"></span> {% trans "Work" %}</a></li>
+                            <li><a class="dropdown-item category-item" data-category="Personal" href="#"><span class="category-color" style="background-color: #0000FF;"></span> {% trans "Personal" %}</a></li>
+                            <li><a class="dropdown-item category-item" data-category="Follow-up" href="#"><span class="category-color" style="background-color: #008000;"></span> {% trans "Follow-up" %}</a></li>
+                        {% endif %}
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item category-item" data-category="" href="#"><i class="fas fa-times"></i> {% trans "Clear Category" %}</a></li>
+                    </ul>
+                </div>
+                
+                <button type="button" id="delete-btn" class="btn btn-outline-danger" disabled data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% trans 'Delete selected emails' %}">
+                    <i class="fas fa-trash-alt"></i> {% trans "Delete" %}
+                </button>
+            </div>
+            
+            <div class="toolbar-right">
+                <div class="search-container">
+                    <form action="{% url 'inbox' %}" method="get" id="search-form">
+                        <input type="hidden" name="account" value="{{ email_address }}">
+                        <input type="hidden" name="folder" value="{{ folder_type }}">
+                        <div class="input-group">
+                            <input type="text" name="search" class="form-control" placeholder="{% trans 'Search emails...' %}" value="{{ search_term|default:'' }}">
+                            <button class="btn" type="submit">
+                                <i class="fas fa-search"></i>
+                            </button>
+                            {% if search_term %}
+                            <button class="btn" type="button" id="clear-search">
+                                <i class="fas fa-times"></i>
+                            </button>
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Email list -->
+        <div class="email-list">
+            {% if connection_error %}
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i> {% trans "Could not connect to Microsoft Outlook. Please ensure Outlook is installed and running." %}
+            </div>
+            {% elif value_error %}
+            <div class="alert alert-warning">
+                <i class="fas fa-exclamation-triangle"></i> {% trans "Access to the requested email account is not allowed or the account was not found." %}
+            </div>
+            {% elif error %}
+            <div class="alert alert-danger">
+                <i class="fas fa-exclamation-circle"></i> {% trans "An error occurred while retrieving emails." %}
+            </div>
+            {% elif using_fallback %}
+            <div class="alert alert-info">
+                <i class="fas fa-info-circle"></i> {% trans "Using fallback email account" %} <strong>{{ email_address }}</strong> {% trans "because" %} <strong>{{ original_email }}</strong> {% trans "was not found in Outlook." %}
+            </div>
+            {% endif %}
+            
+            {% if emails %}
+                <div class="email-header-row">
+                    <div class="email-header-checkbox"><input type="checkbox" id="select-all"></div>
+                    <div class="email-header-flags"></div>
+                    <div class="email-header-sender">{% trans "From" %}</div>
+                    <div class="email-header-subject">{% trans "Subject" %}</div>
+                    <div class="email-header-date">{% trans "Received" %}</div>
+                </div>
+                
+                <div class="email-items">
+                    {% for email in emails %}
+                    <div class="email-item {% if email.unread %}unread{% endif %}" data-id="{{ email.id }}">
+                        <div class="email-item-checkbox">
+                            <input type="checkbox" class="email-checkbox" data-id="{{ email.id }}">
+                        </div>
+                        <div class="email-item-flags">
+                            {% if email.has_attachments %}
+                            <i class="fas fa-paperclip"></i>
+                            {% endif %}
+                            
+                            {% if email.importance == 2 %}
+                            <i class="fas fa-exclamation text-danger"></i>
+                            {% elif email.importance == 0 %}
+                            <i class="fas fa-arrow-down"></i>
+                            {% endif %}
+                            
+                            {% if email.categories %}
+                            <i class="fas fa-tag" style="color: {% if 'Important' in email.categories %}#FF0000{% elif 'Work' in email.categories %}#FFA500{% elif 'Personal' in email.categories %}#0000FF{% elif 'Follow-up' in email.categories %}#008000{% else %}#777777{% endif %}"></i>
+                            {% endif %}
+                        </div>
+                        <div class="email-item-sender">{{ email.sender }}</div>
+                        <div class="email-item-subject">
+                            <a href="{% url 'inbox_view_message' email.id %}?account={{ email_address }}">
+                                {{ email.subject }}
+                                <div class="email-preview">{{ email.preview }}</div>
+                            </a>
+                        </div>
+                        <div class="email-item-date">
+                            {% if email.received_time %}
+                            {{ email.received_time|slice:":16" }}
+                            {% elif email.sent_time %}
+                            {{ email.sent_time|slice:":16" }}
+                            {% endif %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <!-- Pagination -->
+                <div class="pagination-container">
+                    <nav aria-label="Email navigation">
+                        <ul class="pagination">
+                            {% if has_prev %}
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'inbox' %}?account={{ email_address }}&folder={{ folder_type }}&page={{ page|add:'-1' }}{% if search_term %}&search={{ search_term }}{% endif %}{% if category %}&category={{ category }}{% endif %}" aria-label="Previous">
+                                    <i class="fas fa-chevron-left"></i> <span class="d-none d-sm-inline">{% trans "Previous" %}</span>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link"><i class="fas fa-chevron-left"></i> <span class="d-none d-sm-inline">{% trans "Previous" %}</span></span>
+                            </li>
+                            {% endif %}
+                            
+                            <li class="page-item active">
+                                <span class="page-link">{{ page }}</span>
+                            </li>
+                            
+                            {% if has_next %}
+                            <li class="page-item">
+                                <a class="page-link" href="{% url 'inbox' %}?account={{ email_address }}&folder={{ folder_type }}&page={{ page|add:'1' }}{% if search_term %}&search={{ search_term }}{% endif %}{% if category %}&category={{ category }}{% endif %}" aria-label="Next">
+                                    <span class="d-none d-sm-inline">{% trans "Next" %}</span> <i class="fas fa-chevron-right"></i>
+                                </a>
+                            </li>
+                            {% else %}
+                            <li class="page-item disabled">
+                                <span class="page-link"><span class="d-none d-sm-inline">{% trans "Next" %}</span> <i class="fas fa-chevron-right"></i></span>
+                            </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            {% else %}
+                <div class="no-emails-message">
+                    <i class="fas fa-envelope-open"></i>
+                    <h3>{% trans "No emails found" %}</h3>
+                    <p>{% trans "There are no emails in this folder or matching your search criteria." %}</p>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'normieapp/js/inbox.js' %}"></script>
+{% endblock %} 
