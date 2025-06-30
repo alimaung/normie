@@ -11,81 +11,41 @@ import logging
 
 logger = logging.getLogger(__name__)
 
-class OutlookService:
-    """
-    Service for interacting with Microsoft Outlook via win32com.
-    Provides email functionality for specific accounts.
-    """
+class SimpleAccount:
+    """A simple class to mimic the Account object when we can't get the real one."""
     
-    ALLOWED_ACCOUNTS = [
-        'irm-standardisation-office@rolls-royce.com',
-        'microfilm.rollsroyce@outlook.com'  # Only for testing
-    ]
-    
-    def __init__(self):
-        """Initialize the Outlook service."""
-        # Initialize COM in the current thread
-        pythoncom.CoInitialize()
+    def __init__(self, smtp_address, display_name):
+        self.SmtpAddress = smtp_address
+        self.DisplayName = display_name
         
-        # Store email cache directory
-        self.cache_dir = Path(settings.BASE_DIR) / 'normieapp' / 'static' / 'normieapp' / 'data' / 'email_cache'
-        os.makedirs(self.cache_dir, exist_ok=True)
+    def __getattr__(self, name):
+        """Handle any attribute access gracefully."""
+        if name == 'DeliveryStore':
+            # Return a simple object that can handle GetDefaultFolder
+            return SimpleStore(self.DisplayName)
+        return None
+
+class SimpleStore:
+    """A simple class to mimic the Store object when we can't get the real one."""
     
-    def _get_outlook_application(self):
-        """Get the Outlook application COM object."""
+    def __init__(self, display_name):
+        self.DisplayName = display_name
+        
+    def GetDefaultFolder(self, folder_id):
+        """Try to get the default folder from the namespace."""
         try:
-            return win32com.client.Dispatch("Outlook.Application")
-        except Exception as e:
-            logger.error(f"Failed to connect to Outlook: {str(e)}")
-            raise ConnectionError("Could not connect to Microsoft Outlook. Please ensure Outlook is installed and running.")
-    
-    def _get_namespace(self):
-        """Get the MAPI namespace from Outlook."""
-        app = self._get_outlook_application()
-        return app.GetNamespace("MAPI")
-    
-    def _get_account(self, email_address):
-        """
-        Get the specific account object by email address.
-        Only allows access to pre-approved email addresses.
-        Falls back to testing email if primary email is not found.
-        """
-        if email_address not in self.ALLOWED_ACCOUNTS:
-            raise ValueError(f"Access to email account '{email_address}' is not allowed.")
-        
-        namespace = self._get_namespace()
-        
-        # Try to find the account
-        try:
-            # Check if Accounts is iterable
-            accounts_list = list(namespace.Accounts)
-            for account in accounts_list:
-                if account.SmtpAddress.lower() == email_address.lower():
-                    return account
+            # Initialize COM in the current thread
+            pythoncom.CoInitialize()
             
-            # If the requested account is the primary one and not found, try the testing account
-            if email_address == self.ALLOWED_ACCOUNTS[0]:
-                logger.warning(f"Primary email account '{email_address}' not found. Trying fallback account.")
-                fallback_email = self.ALLOWED_ACCOUNTS[1]  # Use testing email as fallback
-                
-                for account in accounts_list:
-                    if account.SmtpAddress.lower() == fallback_email.lower():
-                        logger.info(f"Using fallback email account: {fallback_email}")
-                        return account
-        except TypeError as e:
-            # Accounts object is not iterable
-            logger.error(f"Accounts object is not iterable: {str(e)}")
-            # Try to access the default account
-            try:
-                default_account = namespace.Accounts.Item(1)
-                if default_account.SmtpAddress.lower() in [acc.lower() for acc in self.ALLOWED_ACCOUNTS]:
-                    logger.info(f"Using default account: {default_account.SmtpAddress}")
-                    return default_account
-            except Exception as inner_e:
-                logger.error(f"Error accessing default account: {str(inner_e)}")
-                raise ValueError(f"Could not find any allowed email accounts in Outlook")
-        
-        raise ValueError(f"Email account '{email_address}' not found in Outlook, and no fallback account is available.")
+            # Get the namespace
+            app = win32com.client.Dispatch("Outlook.Application")
+            namespace = app.GetNamespace("MAPI")
+            
+            # Get the default folder
+            return namespace.GetDefaultFolder(folder_id)
+        except Exception as e:
+            logger.error(f"Error getting default folder: {str(e)}")
+            raise
     
     def _get_folder(self, namespace, folder_type='inbox'):
         """
@@ -166,80 +126,117 @@ class OutlookService:
         """
         try:
             # Get the account
-            account = self._get_account(email_address)
+            try:
+                account = self._get_account(email_address)
+                # If we get a SimpleAccount, adjust our expectations
+                is_simple_account = isinstance(account, SimpleAccount)
+            except Exception as e:
+                logger.error(f"Error getting account: {str(e)}")
+                # Return empty list rather than crashing
+                return []
+                
             namespace = self._get_namespace()
             
             # Get the folder
-            folder = self._get_folder(namespace, folder_type)
+            try:
+                folder = self._get_folder(namespace, folder_type)
+            except Exception as e:
+                logger.error(f"Error getting folder: {str(e)}")
+                # Try to get inbox as fallback
+                try:
+                    folder = namespace.GetDefaultFolder(6)  # 6 = olFolderInbox
+                except Exception:
+                    # If we can't get any folder, return empty list
+                    return []
             
             # Get emails from folder
             emails = []
-            items = folder.Items
             
-            # Sort by received time (newest first)
-            items.Sort("[ReceivedTime]", True)
-            
-            # Apply search filter if provided
-            if search_term:
-                items = items.Restrict(f"@SQL=\"urn:schemas:httpmail:subject\" LIKE '%{search_term}%' OR \"urn:schemas:httpmail:textdescription\" LIKE '%{search_term}%' OR \"urn:schemas:httpmail:fromname\" LIKE '%{search_term}%' OR \"urn:schemas:httpmail:fromemail\" LIKE '%{search_term}%'")
-            
-            # Apply category filter if provided
-            if category:
-                items = items.Restrict(f"[Categories] = '{category}'")
-            
-            # Apply pagination
-            count = 0
-            skipped = 0
-            
-            # Get list of allowed account display names
-            allowed_display_names = []
             try:
-                accounts_list = list(namespace.Accounts)
-                allowed_display_names = [acc.DisplayName for acc in accounts_list if acc.SmtpAddress in self.ALLOWED_ACCOUNTS]
-            except TypeError:
-                # If Accounts is not iterable, try to get the current account's display name
-                try:
-                    current_account = namespace.Accounts.Item(1)
-                    if current_account.SmtpAddress in self.ALLOWED_ACCOUNTS:
-                        allowed_display_names = [current_account.DisplayName]
-                except:
-                    # If we can't get any account display names, just process all emails
-                    logger.warning("Could not get account display names, processing all emails")
-            
-            for item in items:
-                # Skip items until we reach the offset
-                if skipped < offset:
-                    skipped += 1
-                    continue
+                items = folder.Items
                 
-                # Stop if we've reached the limit
-                if count >= limit:
-                    break
-                
+                # Sort by received time (newest first)
                 try:
-                    # Check if this email belongs to an allowed account
-                    include_email = True
-                    if allowed_display_names:  # Only check if we have display names to compare against
-                        try:
-                            if item.Parent.Store.DisplayName not in allowed_display_names:
-                                include_email = False
-                        except:
-                            # If we can't check the store, include the email anyway
-                            pass
-                    
-                    if include_email:
-                        # Get email details
-                        email = self._extract_email_details(item)
-                        emails.append(email)
-                        count += 1
+                    items.Sort("[ReceivedTime]", True)
                 except Exception as e:
-                    logger.error(f"Error processing email: {str(e)}")
+                    logger.warning(f"Error sorting emails: {str(e)}")
+                
+                # Apply search filter if provided
+                if search_term:
+                    try:
+                        items = items.Restrict(f"@SQL=\"urn:schemas:httpmail:subject\" LIKE '%{search_term}%' OR \"urn:schemas:httpmail:textdescription\" LIKE '%{search_term}%' OR \"urn:schemas:httpmail:fromname\" LIKE '%{search_term}%' OR \"urn:schemas:httpmail:fromemail\" LIKE '%{search_term}%'")
+                    except Exception as e:
+                        logger.warning(f"Error applying search filter: {str(e)}")
+                
+                # Apply category filter if provided
+                if category:
+                    try:
+                        items = items.Restrict(f"[Categories] = '{category}'")
+                    except Exception as e:
+                        logger.warning(f"Error applying category filter: {str(e)}")
+                
+                # Get list of allowed account display names
+                allowed_display_names = []
+                try:
+                    accounts_list = list(namespace.Accounts)
+                    allowed_display_names = [acc.DisplayName for acc in accounts_list if acc.SmtpAddress in self.ALLOWED_ACCOUNTS]
+                except TypeError:
+                    # If Accounts is not iterable, try to get the current account's display name
+                    try:
+                        current_account = namespace.Accounts.Item(1)
+                        if current_account.SmtpAddress in self.ALLOWED_ACCOUNTS:
+                            allowed_display_names = [current_account.DisplayName]
+                    except:
+                        # If we can't get any account display names, just process all emails
+                        logger.warning("Could not get account display names, processing all emails")
+                except Exception as e:
+                    logger.warning(f"Error getting account display names: {str(e)}")
+                
+                # Apply pagination
+                count = 0
+                skipped = 0
+                
+                # Process emails
+                try:
+                    for item in items:
+                        # Skip items until we reach the offset
+                        if skipped < offset:
+                            skipped += 1
+                            continue
+                        
+                        # Stop if we've reached the limit
+                        if count >= limit:
+                            break
+                        
+                        try:
+                            # Check if this email belongs to an allowed account
+                            include_email = True
+                            if allowed_display_names:  # Only check if we have display names to compare against
+                                try:
+                                    if item.Parent.Store.DisplayName not in allowed_display_names:
+                                        include_email = False
+                                except:
+                                    # If we can't check the store, include the email anyway
+                                    pass
+                            
+                            if include_email:
+                                # Get email details
+                                email = self._extract_email_details(item)
+                                emails.append(email)
+                                count += 1
+                        except Exception as e:
+                            logger.error(f"Error processing email: {str(e)}")
+                except Exception as e:
+                    logger.error(f"Error iterating through emails: {str(e)}")
+            except Exception as e:
+                logger.error(f"Error accessing folder items: {str(e)}")
             
             return emails
             
         except Exception as e:
             logger.error(f"Error getting emails: {str(e)}")
-            raise
+            # Return empty list instead of raising an exception
+            return []
     
     def _extract_email_details(self, item):
         """
@@ -553,38 +550,39 @@ class OutlookService:
         Returns:
             List of category dictionaries with name and color
         """
+        # Default categories to use if we can't get them from Outlook
+        default_categories = [
+            {"name": "Important", "color": "#FF0000"},
+            {"name": "Work", "color": "#FFA500"},
+            {"name": "Personal", "color": "#0000FF"},
+            {"name": "Follow-up", "color": "#008000"},
+            {"name": "Project", "color": "#800080"}
+        ]
+        
         try:
             # Get the account - using try/except to handle potential iteration issues
             try:
                 account = self._get_account(email_address)
+                # If we get a SimpleAccount, just return default categories
+                if isinstance(account, SimpleAccount):
+                    return default_categories
             except Exception as e:
                 logger.error(f"Error getting account for categories: {str(e)}")
                 # Return default categories if we can't get the account
-                return [
-                    {"name": "Important", "color": "#FF0000"},
-                    {"name": "Work", "color": "#FFA500"},
-                    {"name": "Personal", "color": "#0000FF"},
-                    {"name": "Follow-up", "color": "#008000"},
-                    {"name": "Project", "color": "#800080"}
-                ]
+                return default_categories
                 
             namespace = self._get_namespace()
             
             # Try to get categories from the store
             categories = []
             
-            # Default categories if we can't get them from Outlook
-            default_categories = [
-                {"name": "Important", "color": "#FF0000"},
-                {"name": "Work", "color": "#FFA500"},
-                {"name": "Personal", "color": "#0000FF"},
-                {"name": "Follow-up", "color": "#008000"},
-                {"name": "Project", "color": "#800080"}
-            ]
-            
             try:
                 # Try to access the Categories collection (this might not work in all Outlook versions)
-                store = account.DeliveryStore
+                try:
+                    store = account.DeliveryStore
+                except Exception:
+                    # If we can't get the delivery store, return default categories
+                    return default_categories
                 
                 # This is a bit tricky as the API for categories varies by Outlook version
                 # Try to access categories through the store's Master Category List
@@ -592,16 +590,20 @@ class OutlookService:
                     category_list = namespace.Categories
                     if category_list and category_list.Count > 0:
                         for i in range(1, category_list.Count + 1):
-                            cat = category_list.Item(i)
-                            categories.append({
-                                "name": cat.Name,
-                                "color": self._convert_outlook_color_to_hex(cat.Color)
-                            })
-                except:
+                            try:
+                                cat = category_list.Item(i)
+                                categories.append({
+                                    "name": cat.Name,
+                                    "color": self._convert_outlook_color_to_hex(cat.Color)
+                                })
+                            except Exception:
+                                # Skip this category if there's an error
+                                continue
+                except Exception:
                     # Fall back to default categories if we can't get them from Outlook
                     categories = default_categories
                     logger.warning("Could not access Outlook categories, using default categories")
-            except:
+            except Exception:
                 # Fall back to default categories if we can't access the store
                 categories = default_categories
                 logger.warning("Could not access Outlook store categories, using default categories")
@@ -615,13 +617,7 @@ class OutlookService:
         except Exception as e:
             logger.error(f"Error retrieving categories: {str(e)}")
             # Return default categories on error
-            return [
-                {"name": "Important", "color": "#FF0000"},
-                {"name": "Work", "color": "#FFA500"},
-                {"name": "Personal", "color": "#0000FF"},
-                {"name": "Follow-up", "color": "#008000"},
-                {"name": "Project", "color": "#800080"}
-            ]
+            return default_categories
     
     def _convert_outlook_color_to_hex(self, outlook_color):
         """Convert Outlook category color to hex color."""
@@ -727,3 +723,111 @@ class OutlookService:
             pythoncom.CoUninitialize()
         except:
             pass 
+
+class OutlookService:
+    """
+    Service for interacting with Microsoft Outlook via win32com.
+    Provides email functionality for specific accounts.
+    """
+    
+    ALLOWED_ACCOUNTS = [
+        'irm-standardisation-office@rolls-royce.com',
+        'ali.maung@rolls-royce.com',  # Ali Maung's account (belongs to the IRM group)
+        'microfilm.rollsroyce@outlook.com'  # Only for testing
+    ]
+    
+    def __init__(self):
+        """Initialize the Outlook service."""
+        # Initialize COM in the current thread
+        pythoncom.CoInitialize()
+        
+        # Store email cache directory
+        self.cache_dir = Path(settings.BASE_DIR) / 'normieapp' / 'static' / 'normieapp' / 'data' / 'email_cache'
+        os.makedirs(self.cache_dir, exist_ok=True)
+    
+    def _get_outlook_application(self):
+        """Get the Outlook application COM object."""
+        try:
+            return win32com.client.Dispatch("Outlook.Application")
+        except Exception as e:
+            logger.error(f"Failed to connect to Outlook: {str(e)}")
+            raise ConnectionError("Could not connect to Microsoft Outlook. Please ensure Outlook is installed and running.")
+    
+    def _get_namespace(self):
+        """Get the MAPI namespace from Outlook."""
+        app = self._get_outlook_application()
+        return app.GetNamespace("MAPI")
+    
+    def _get_account(self, email_address):
+        """
+        Get the specific account object by email address.
+        Only allows access to pre-approved email addresses.
+        Falls back to testing email if primary email is not found.
+        """
+        if email_address not in self.ALLOWED_ACCOUNTS:
+            raise ValueError(f"Access to email account '{email_address}' is not allowed.")
+        
+        namespace = self._get_namespace()
+        
+        # First approach: Try to find the account in the Accounts collection
+        try:
+            # Check if Accounts is iterable
+            accounts_list = list(namespace.Accounts)
+            for account in accounts_list:
+                if account.SmtpAddress.lower() == email_address.lower():
+                    return account
+            
+            # If the requested account is the primary one and not found, try the other allowed accounts
+            for fallback_email in self.ALLOWED_ACCOUNTS:
+                if fallback_email != email_address:
+                    logger.warning(f"Email account '{email_address}' not found. Trying fallback account '{fallback_email}'.")
+                    for account in accounts_list:
+                        if account.SmtpAddress.lower() == fallback_email.lower():
+                            logger.info(f"Using fallback email account: {fallback_email}")
+                            return account
+        except TypeError as e:
+            # Accounts object is not iterable
+            logger.warning(f"Accounts object is not iterable: {str(e)}")
+        except Exception as e:
+            logger.warning(f"Error iterating through accounts: {str(e)}")
+        
+        # Second approach: Try to access accounts by index
+        try:
+            # Try to access accounts one by one using Item(index)
+            for i in range(1, 10):  # Try up to 10 accounts
+                try:
+                    account = namespace.Accounts.Item(i)
+                    if account.SmtpAddress.lower() in [acc.lower() for acc in self.ALLOWED_ACCOUNTS]:
+                        logger.info(f"Found allowed account by index: {account.SmtpAddress}")
+                        return account
+                except Exception:
+                    # If we can't access this index, move to the next one
+                    continue
+        except Exception as e:
+            logger.warning(f"Error accessing accounts by index: {str(e)}")
+        
+        # Third approach: Try to access the default profile directly
+        try:
+            # Get the default profile
+            app = self._get_outlook_application()
+            session = app.Session
+            
+            # Try to access the default folder directly
+            inbox = namespace.GetDefaultFolder(6)  # 6 = olFolderInbox
+            if inbox:
+                # We can access the inbox, so return a minimal account object
+                logger.info("Using default profile as fallback")
+                return SimpleAccount(email_address, inbox.Store.DisplayName)
+        except Exception as e:
+            logger.warning(f"Error accessing default profile: {str(e)}")
+        
+        # Fourth approach: Last resort - just create a dummy account object
+        # This will let the application continue but with limited functionality
+        try:
+            logger.warning("Using emergency fallback - creating dummy account object")
+            return SimpleAccount(email_address, "Default Outlook Profile")
+        except Exception as e:
+            logger.error(f"Error creating dummy account: {str(e)}")
+        
+        # If all approaches fail, raise an error
+        raise ValueError(f"Could not find any allowed email accounts in Outlook. Please ensure Outlook is properly configured with one of these accounts: {', '.join(self.ALLOWED_ACCOUNTS)}") 

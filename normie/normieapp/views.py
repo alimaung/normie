@@ -1629,10 +1629,23 @@ def inbox(request):
         'page': page,
         'per_page': per_page,
         'allowed_accounts': OutlookService.ALLOWED_ACCOUNTS,
+        'emails': [],  # Default empty list
+        'has_next': False,
+        'has_prev': page > 1
     }
     
+    # Default categories if we can't fetch them
+    default_categories = [
+        {"name": "Important", "color": "#FF0000"},
+        {"name": "Work", "color": "#FFA500"},
+        {"name": "Personal", "color": "#0000FF"},
+        {"name": "Follow-up", "color": "#008000"},
+        {"name": "Project", "color": "#800080"}
+    ]
+    context['available_categories'] = default_categories
+    
     try:
-        # Connect to Outlook and get emails
+        # Connect to Outlook
         outlook = OutlookService()
         
         # Try to get the account to check if we're using the fallback
@@ -1649,9 +1662,9 @@ def inbox(request):
                 context['original_email'] = original_email
                 email_address = account.SmtpAddress
                 messages.warning(request, _(f"Using fallback email account '{email_address}' because '{original_email}' was not found."))
-        except Exception:
-            # Will be handled in the main try-except block
-            pass
+        except Exception as e:
+            messages.warning(request, _(f"Could not access email account: {str(e)}"))
+            context['connection_warning'] = True
         
         # Fetch available categories
         try:
@@ -1659,31 +1672,33 @@ def inbox(request):
             context['available_categories'] = categories
         except Exception as e:
             logger.error(f"Error fetching categories: {str(e)}")
-            # Use default categories if we can't fetch them
-            context['available_categories'] = [
-                {"name": "Important", "color": "#FF0000"},
-                {"name": "Work", "color": "#FFA500"},
-                {"name": "Personal", "color": "#0000FF"},
-                {"name": "Follow-up", "color": "#008000"},
-                {"name": "Project", "color": "#800080"}
-            ]
+            messages.warning(request, _(f"Could not fetch email categories. Using default categories."))
         
-        emails = outlook.get_emails(
-            email_address=email_address,
-            folder_type=folder_type,
-            limit=per_page,
-            offset=offset,
-            search_term=search_term,
-            category=category
-        )
-        
-        # Add emails to context
-        context['emails'] = emails
-        
-        # Add pagination info
-        # Note: Outlook doesn't provide an easy way to get total count without fetching all emails
-        context['has_next'] = len(emails) == per_page
-        context['has_prev'] = page > 1
+        # Fetch emails
+        try:
+            emails = outlook.get_emails(
+                email_address=email_address,
+                folder_type=folder_type,
+                limit=per_page,
+                offset=offset,
+                search_term=search_term,
+                category=category
+            )
+            
+            # Add emails to context
+            context['emails'] = emails
+            
+            # Add pagination info
+            context['has_next'] = len(emails) == per_page
+            context['has_prev'] = page > 1
+            
+            if not emails and page == 1:
+                messages.info(request, _("No emails found in this folder."))
+                
+        except Exception as e:
+            logger.error(f"Error fetching emails: {str(e)}")
+            messages.error(request, _(f"Could not fetch emails: {str(e)}"))
+            context['error'] = True
         
     except ConnectionError as e:
         messages.error(request, str(e))
@@ -1692,7 +1707,7 @@ def inbox(request):
         messages.error(request, str(e))
         context['value_error'] = True
     except Exception as e:
-        messages.error(request, f"An unexpected error occurred: {str(e)}")
+        messages.error(request, _(f"An unexpected error occurred: {str(e)}"))
         context['error'] = True
     
     return render(request, 'normieapp/inbox.html', context)
@@ -1710,10 +1725,11 @@ def inbox_view_message(request, message_id):
     context = {
         'page_title': _('View Email'),
         'email_address': email_address,
+        'allowed_accounts': OutlookService.ALLOWED_ACCOUNTS,
     }
     
     try:
-        # Connect to Outlook and get the email
+        # Connect to Outlook
         outlook = OutlookService()
         
         # Try to get the account to check if we're using the fallback
@@ -1730,22 +1746,30 @@ def inbox_view_message(request, message_id):
                 context['original_email'] = original_email
                 email_address = account.SmtpAddress
                 messages.warning(request, _(f"Using fallback email account '{email_address}' because '{original_email}' was not found."))
-        except Exception:
-            # Will be handled in the main try-except block
-            pass
+        except Exception as e:
+            messages.warning(request, _(f"Could not access email account: {str(e)}"))
+            context['connection_warning'] = True
         
-        email = outlook.get_email(email_address, message_id)
-        
-        if not email:
-            messages.error(request, _('Email not found.'))
+        try:
+            # Get the email
+            email = outlook.get_email(email_address, message_id)
+            
+            if not email:
+                messages.error(request, _('Email not found.'))
+                return redirect('inbox')
+            
+            # Add email to context
+            context['email'] = email
+            
+            # Try to mark as read
+            try:
+                outlook.mark_as_read(email_address, message_id)
+            except Exception as e:
+                logger.warning(f"Could not mark email as read: {str(e)}")
+                # Not critical, continue without showing error to user
+        except Exception as e:
+            messages.error(request, _(f"Could not retrieve email: {str(e)}"))
             return redirect('inbox')
-        
-        # Mark as read
-        outlook.mark_as_read(email_address, message_id)
-        
-        # Add email to context
-        context['email'] = email
-        context['allowed_accounts'] = OutlookService.ALLOWED_ACCOUNTS
         
     except ConnectionError as e:
         messages.error(request, str(e))
@@ -1754,7 +1778,7 @@ def inbox_view_message(request, message_id):
         messages.error(request, str(e))
         return redirect('inbox')
     except Exception as e:
-        messages.error(request, f"An unexpected error occurred: {str(e)}")
+        messages.error(request, _(f"An unexpected error occurred: {str(e)}"))
         return redirect('inbox')
     
     return render(request, 'normieapp/inbox_view.html', context)
