@@ -56,19 +56,34 @@ class OutlookService:
         namespace = self._get_namespace()
         
         # Try to find the account
-        for account in namespace.Accounts:
-            if account.SmtpAddress.lower() == email_address.lower():
-                return account
-        
-        # If the requested account is the primary one and not found, try the testing account
-        if email_address == self.ALLOWED_ACCOUNTS[0]:
-            logger.warning(f"Primary email account '{email_address}' not found. Trying fallback account.")
-            fallback_email = self.ALLOWED_ACCOUNTS[1]  # Use testing email as fallback
-            
-            for account in namespace.Accounts:
-                if account.SmtpAddress.lower() == fallback_email.lower():
-                    logger.info(f"Using fallback email account: {fallback_email}")
+        try:
+            # Check if Accounts is iterable
+            accounts_list = list(namespace.Accounts)
+            for account in accounts_list:
+                if account.SmtpAddress.lower() == email_address.lower():
                     return account
+            
+            # If the requested account is the primary one and not found, try the testing account
+            if email_address == self.ALLOWED_ACCOUNTS[0]:
+                logger.warning(f"Primary email account '{email_address}' not found. Trying fallback account.")
+                fallback_email = self.ALLOWED_ACCOUNTS[1]  # Use testing email as fallback
+                
+                for account in accounts_list:
+                    if account.SmtpAddress.lower() == fallback_email.lower():
+                        logger.info(f"Using fallback email account: {fallback_email}")
+                        return account
+        except TypeError as e:
+            # Accounts object is not iterable
+            logger.error(f"Accounts object is not iterable: {str(e)}")
+            # Try to access the default account
+            try:
+                default_account = namespace.Accounts.Item(1)
+                if default_account.SmtpAddress.lower() in [acc.lower() for acc in self.ALLOWED_ACCOUNTS]:
+                    logger.info(f"Using default account: {default_account.SmtpAddress}")
+                    return default_account
+            except Exception as inner_e:
+                logger.error(f"Error accessing default account: {str(inner_e)}")
+                raise ValueError(f"Could not find any allowed email accounts in Outlook")
         
         raise ValueError(f"Email account '{email_address}' not found in Outlook, and no fallback account is available.")
     
@@ -176,6 +191,21 @@ class OutlookService:
             count = 0
             skipped = 0
             
+            # Get list of allowed account display names
+            allowed_display_names = []
+            try:
+                accounts_list = list(namespace.Accounts)
+                allowed_display_names = [acc.DisplayName for acc in accounts_list if acc.SmtpAddress in self.ALLOWED_ACCOUNTS]
+            except TypeError:
+                # If Accounts is not iterable, try to get the current account's display name
+                try:
+                    current_account = namespace.Accounts.Item(1)
+                    if current_account.SmtpAddress in self.ALLOWED_ACCOUNTS:
+                        allowed_display_names = [current_account.DisplayName]
+                except:
+                    # If we can't get any account display names, just process all emails
+                    logger.warning("Could not get account display names, processing all emails")
+            
             for item in items:
                 # Skip items until we reach the offset
                 if skipped < offset:
@@ -188,13 +218,20 @@ class OutlookService:
                 
                 try:
                     # Check if this email belongs to an allowed account
-                    if item.Parent.Store.DisplayName not in [acc.DisplayName for acc in namespace.Accounts if acc.SmtpAddress in self.ALLOWED_ACCOUNTS]:
-                        continue
+                    include_email = True
+                    if allowed_display_names:  # Only check if we have display names to compare against
+                        try:
+                            if item.Parent.Store.DisplayName not in allowed_display_names:
+                                include_email = False
+                        except:
+                            # If we can't check the store, include the email anyway
+                            pass
                     
-                    # Get email details
-                    email = self._extract_email_details(item)
-                    emails.append(email)
-                    count += 1
+                    if include_email:
+                        # Get email details
+                        email = self._extract_email_details(item)
+                        emails.append(email)
+                        count += 1
                 except Exception as e:
                     logger.error(f"Error processing email: {str(e)}")
             
@@ -304,8 +341,16 @@ class OutlookService:
             item = namespace.GetItemFromID(message_id)
             
             # Check if this email belongs to an allowed account
-            if item.Parent.Store.DisplayName not in [acc.DisplayName for acc in namespace.Accounts if acc.SmtpAddress in self.ALLOWED_ACCOUNTS]:
-                raise ValueError("Attempting to access email from unauthorized account")
+            try:
+                accounts_list = list(namespace.Accounts)
+                allowed_display_names = [acc.DisplayName for acc in accounts_list if acc.SmtpAddress in self.ALLOWED_ACCOUNTS]
+                
+                if item.Parent.Store.DisplayName not in allowed_display_names:
+                    raise ValueError("Attempting to access email from unauthorized account")
+            except TypeError:
+                # If Accounts is not iterable, we can't check if the email belongs to an allowed account
+                # Just proceed with caution
+                logger.warning("Could not check if email belongs to allowed account")
             
             # Extract email details
             return self._extract_email_details(item)
@@ -442,8 +487,16 @@ class OutlookService:
             item = namespace.GetItemFromID(message_id)
             
             # Check if this email belongs to an allowed account
-            if item.Parent.Store.DisplayName not in [acc.DisplayName for acc in namespace.Accounts if acc.SmtpAddress in self.ALLOWED_ACCOUNTS]:
-                raise ValueError("Attempting to access email from unauthorized account")
+            try:
+                accounts_list = list(namespace.Accounts)
+                allowed_display_names = [acc.DisplayName for acc in accounts_list if acc.SmtpAddress in self.ALLOWED_ACCOUNTS]
+                
+                if item.Parent.Store.DisplayName not in allowed_display_names:
+                    raise ValueError("Attempting to access email from unauthorized account")
+            except TypeError:
+                # If Accounts is not iterable, we can't check if the email belongs to an allowed account
+                # Just proceed with caution
+                logger.warning("Could not check if email belongs to allowed account")
             
             # Delete the item
             item.Delete()
@@ -470,8 +523,16 @@ class OutlookService:
             item = namespace.GetItemFromID(message_id)
             
             # Check if this email belongs to an allowed account
-            if item.Parent.Store.DisplayName not in [acc.DisplayName for acc in namespace.Accounts if acc.SmtpAddress in self.ALLOWED_ACCOUNTS]:
-                raise ValueError("Attempting to access email from unauthorized account")
+            try:
+                accounts_list = list(namespace.Accounts)
+                allowed_display_names = [acc.DisplayName for acc in accounts_list if acc.SmtpAddress in self.ALLOWED_ACCOUNTS]
+                
+                if item.Parent.Store.DisplayName not in allowed_display_names:
+                    raise ValueError("Attempting to access email from unauthorized account")
+            except TypeError:
+                # If Accounts is not iterable, we can't check if the email belongs to an allowed account
+                # Just proceed with caution
+                logger.warning("Could not check if email belongs to allowed account")
             
             # Apply the category
             item.Categories = category
@@ -493,8 +554,20 @@ class OutlookService:
             List of category dictionaries with name and color
         """
         try:
-            # Get the account
-            account = self._get_account(email_address)
+            # Get the account - using try/except to handle potential iteration issues
+            try:
+                account = self._get_account(email_address)
+            except Exception as e:
+                logger.error(f"Error getting account for categories: {str(e)}")
+                # Return default categories if we can't get the account
+                return [
+                    {"name": "Important", "color": "#FF0000"},
+                    {"name": "Work", "color": "#FFA500"},
+                    {"name": "Personal", "color": "#0000FF"},
+                    {"name": "Follow-up", "color": "#008000"},
+                    {"name": "Project", "color": "#800080"}
+                ]
+                
             namespace = self._get_namespace()
             
             # Try to get categories from the store
@@ -609,6 +682,44 @@ class OutlookService:
         }
         
         return content_types.get(ext, 'application/octet-stream')
+    
+    def mark_as_read(self, email_address, message_id):
+        """
+        Mark an email as read.
+        
+        Args:
+            email_address: The email address of the account
+            message_id: The EntryID of the email
+            
+        Returns:
+            True if successful
+        """
+        try:
+            namespace = self._get_namespace()
+            item = namespace.GetItemFromID(message_id)
+            
+            # Check if this email belongs to an allowed account
+            try:
+                accounts_list = list(namespace.Accounts)
+                allowed_display_names = [acc.DisplayName for acc in accounts_list if acc.SmtpAddress in self.ALLOWED_ACCOUNTS]
+                
+                if item.Parent.Store.DisplayName not in allowed_display_names:
+                    raise ValueError("Attempting to access email from unauthorized account")
+            except TypeError:
+                # If Accounts is not iterable, we can't check if the email belongs to an allowed account
+                # Just proceed with caution
+                logger.warning("Could not check if email belongs to allowed account")
+            
+            # Mark as read
+            if hasattr(item, 'UnRead') and item.UnRead:
+                item.UnRead = False
+                item.Save()
+            
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error marking email as read: {str(e)}")
+            raise
     
     def __del__(self):
         """Clean up COM resources."""

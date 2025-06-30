@@ -89,6 +89,29 @@ def start_django_server(project_root, host="0.0.0.0", port="8001"):
         print(f"✗ Failed to start Django server: {e}")
         raise
 
+def read_process_output(process):
+    """
+    Read and display output from the process if available.
+    
+    Args:
+        process (subprocess.Popen): The process to read output from
+        
+    Returns:
+        bool: True if process is still running, False otherwise
+    """
+    if process.poll() is not None:
+        return False
+    
+    # Read output without blocking
+    while True:
+        output = process.stdout.readline()
+        if output:
+            print(f"[Django] {output.rstrip()}")
+        else:
+            break
+            
+    return True
+
 def open_browser_fullscreen(url, delay=2):
     """
     Open the default web browser to the specified URL in fullscreen mode.
@@ -253,11 +276,11 @@ def main():
             # Keep the script running and monitor the server
             try:
                 while True:
-                    # Check if server process is still running
-                    if server_process.poll() is not None:
+                    # Display server output and check if still running
+                    if not read_process_output(server_process):
                         print("\n⚠️  Server process has stopped")
                         break
-                    time.sleep(1)
+                    time.sleep(0.1)  # Small delay to avoid high CPU usage
             except KeyboardInterrupt:
                 print("\n🛑 Shutting down...")
                 
