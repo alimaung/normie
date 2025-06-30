@@ -11,6 +11,7 @@ from django.conf import settings
 import os
 import json
 import uuid
+import logging
 from datetime import datetime
 from .services import pdf_service
 from pathlib import Path
@@ -22,6 +23,8 @@ from .decorators import (
 )
 from .models import UserProfile
 
+# Configure logger
+logger = logging.getLogger(__name__)
 
 def home(request):
     """

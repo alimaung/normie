@@ -8,8 +8,49 @@ from pathlib import Path
 import json
 import uuid
 import logging
+import traceback
+import sys
 
+# Define logger at module level
 logger = logging.getLogger(__name__)
+
+# Set up debug logging to file
+def setup_debug_logging():
+    """Set up a separate debug log file for the Outlook service."""
+    try:
+        # Create logs directory if it doesn't exist
+        log_dir = Path(settings.BASE_DIR) / 'logs'
+        os.makedirs(log_dir, exist_ok=True)
+        
+        # Set up a file handler for debug logging
+        debug_handler = logging.FileHandler(log_dir / 'outlook_debug.log')
+        debug_handler.setLevel(logging.DEBUG)
+        
+        # Add formatter
+        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
+        debug_handler.setFormatter(formatter)
+        
+        # Add handler to logger
+        outlook_logger = logging.getLogger(__name__)
+        outlook_logger.setLevel(logging.DEBUG)
+        
+        # Check if handler already exists to avoid duplicates
+        handler_exists = False
+        for handler in outlook_logger.handlers:
+            if isinstance(handler, logging.FileHandler) and handler.baseFilename.endswith('outlook_debug.log'):
+                handler_exists = True
+                break
+        
+        if not handler_exists:
+            outlook_logger.addHandler(debug_handler)
+            
+        return log_dir / 'outlook_debug.log'
+    except Exception as e:
+        print(f"Error setting up debug logging: {str(e)}")
+        return None
+
+# Set up debug logging
+debug_log_path = setup_debug_logging()
 
 class SimpleAccount:
     """A simple class to mimic the Account object when we can't get the real one."""
@@ -17,9 +58,11 @@ class SimpleAccount:
     def __init__(self, smtp_address, display_name):
         self.SmtpAddress = smtp_address
         self.DisplayName = display_name
+        logger.debug(f"Created SimpleAccount: {smtp_address}, {display_name}")
         
     def __getattr__(self, name):
         """Handle any attribute access gracefully."""
+        logger.debug(f"SimpleAccount: Accessing attribute {name}")
         if name == 'DeliveryStore':
             # Return a simple object that can handle GetDefaultFolder
             return SimpleStore(self.DisplayName)
@@ -30,9 +73,11 @@ class SimpleStore:
     
     def __init__(self, display_name):
         self.DisplayName = display_name
+        logger.debug(f"Created SimpleStore: {display_name}")
         
     def GetDefaultFolder(self, folder_id):
         """Try to get the default folder from the namespace."""
+        logger.debug(f"SimpleStore: Getting default folder {folder_id}")
         try:
             # Initialize COM in the current thread
             pythoncom.CoInitialize()
@@ -42,9 +87,13 @@ class SimpleStore:
             namespace = app.GetNamespace("MAPI")
             
             # Get the default folder
-            return namespace.GetDefaultFolder(folder_id)
+            folder = namespace.GetDefaultFolder(folder_id)
+            logger.debug(f"SimpleStore: Successfully got folder {folder_id}, name: {folder.Name if hasattr(folder, 'Name') else 'Unknown'}")
+            return folder
         except Exception as e:
+            # Use module-level logger
             logger.error(f"Error getting default folder: {str(e)}")
+            logger.debug(f"Stack trace: {traceback.format_exc()}")
             raise
     
     def _get_folder(self, namespace, folder_type='inbox'):
@@ -124,14 +173,17 @@ class SimpleStore:
         Returns:
             List of email dictionaries
         """
+        logger.debug(f"Getting emails for {email_address}, folder: {folder_type}, limit: {limit}, offset: {offset}, search: {search_term}, category: {category}")
         try:
             # Get the account
             try:
                 account = self._get_account(email_address)
                 # If we get a SimpleAccount, adjust our expectations
                 is_simple_account = isinstance(account, SimpleAccount)
+                logger.debug(f"Got account: {account.DisplayName}, SimpleAccount: {is_simple_account}")
             except Exception as e:
                 logger.error(f"Error getting account: {str(e)}")
+                logger.debug(f"Stack trace: {traceback.format_exc()}")
                 # Return empty list rather than crashing
                 return []
                 
@@ -140,12 +192,17 @@ class SimpleStore:
             # Get the folder
             try:
                 folder = self._get_folder(namespace, folder_type)
+                logger.debug(f"Got folder: {folder.Name if hasattr(folder, 'Name') else 'Unknown'}, EntryID: {folder.EntryID if hasattr(folder, 'EntryID') else 'Unknown'}")
             except Exception as e:
                 logger.error(f"Error getting folder: {str(e)}")
+                logger.debug(f"Stack trace: {traceback.format_exc()}")
                 # Try to get inbox as fallback
                 try:
                     folder = namespace.GetDefaultFolder(6)  # 6 = olFolderInbox
-                except Exception:
+                    logger.debug(f"Using default inbox as fallback: {folder.Name if hasattr(folder, 'Name') else 'Unknown'}")
+                except Exception as inner_e:
+                    logger.error(f"Error getting default inbox: {str(inner_e)}")
+                    logger.debug(f"Stack trace: {traceback.format_exc()}")
                     # If we can't get any folder, return empty list
                     return []
             
@@ -154,43 +211,57 @@ class SimpleStore:
             
             try:
                 items = folder.Items
+                logger.debug(f"Got folder items, count: {items.Count if hasattr(items, 'Count') else 'Unknown'}")
                 
                 # Sort by received time (newest first)
                 try:
                     items.Sort("[ReceivedTime]", True)
+                    logger.debug("Successfully sorted items by received time")
                 except Exception as e:
                     logger.warning(f"Error sorting emails: {str(e)}")
+                    logger.debug(f"Stack trace: {traceback.format_exc()}")
                 
                 # Apply search filter if provided
                 if search_term:
                     try:
-                        items = items.Restrict(f"@SQL=\"urn:schemas:httpmail:subject\" LIKE '%{search_term}%' OR \"urn:schemas:httpmail:textdescription\" LIKE '%{search_term}%' OR \"urn:schemas:httpmail:fromname\" LIKE '%{search_term}%' OR \"urn:schemas:httpmail:fromemail\" LIKE '%{search_term}%'")
+                        filter_query = f"@SQL=\"urn:schemas:httpmail:subject\" LIKE '%{search_term}%' OR \"urn:schemas:httpmail:textdescription\" LIKE '%{search_term}%' OR \"urn:schemas:httpmail:fromname\" LIKE '%{search_term}%' OR \"urn:schemas:httpmail:fromemail\" LIKE '%{search_term}%'"
+                        logger.debug(f"Applying search filter: {filter_query}")
+                        items = items.Restrict(filter_query)
+                        logger.debug(f"Search filter applied, filtered count: {items.Count if hasattr(items, 'Count') else 'Unknown'}")
                     except Exception as e:
                         logger.warning(f"Error applying search filter: {str(e)}")
+                        logger.debug(f"Stack trace: {traceback.format_exc()}")
                 
                 # Apply category filter if provided
                 if category:
                     try:
-                        items = items.Restrict(f"[Categories] = '{category}'")
+                        category_filter = f"[Categories] = '{category}'"
+                        logger.debug(f"Applying category filter: {category_filter}")
+                        items = items.Restrict(category_filter)
+                        logger.debug(f"Category filter applied, filtered count: {items.Count if hasattr(items, 'Count') else 'Unknown'}")
                     except Exception as e:
                         logger.warning(f"Error applying category filter: {str(e)}")
+                        logger.debug(f"Stack trace: {traceback.format_exc()}")
                 
                 # Get list of allowed account display names
                 allowed_display_names = []
                 try:
                     accounts_list = list(namespace.Accounts)
                     allowed_display_names = [acc.DisplayName for acc in accounts_list if acc.SmtpAddress in self.ALLOWED_ACCOUNTS]
+                    logger.debug(f"Got allowed account display names: {allowed_display_names}")
                 except TypeError:
                     # If Accounts is not iterable, try to get the current account's display name
                     try:
                         current_account = namespace.Accounts.Item(1)
                         if current_account.SmtpAddress in self.ALLOWED_ACCOUNTS:
                             allowed_display_names = [current_account.DisplayName]
+                            logger.debug(f"Using single account display name: {allowed_display_names}")
                     except:
                         # If we can't get any account display names, just process all emails
                         logger.warning("Could not get account display names, processing all emails")
                 except Exception as e:
                     logger.warning(f"Error getting account display names: {str(e)}")
+                    logger.debug(f"Stack trace: {traceback.format_exc()}")
                 
                 # Apply pagination
                 count = 0
@@ -198,6 +269,7 @@ class SimpleStore:
                 
                 # Process emails
                 try:
+                    logger.debug(f"Starting to process emails, offset: {offset}, limit: {limit}")
                     for item in items:
                         # Skip items until we reach the offset
                         if skipped < offset:
@@ -213,28 +285,41 @@ class SimpleStore:
                             include_email = True
                             if allowed_display_names:  # Only check if we have display names to compare against
                                 try:
-                                    if item.Parent.Store.DisplayName not in allowed_display_names:
+                                    store_display_name = item.Parent.Store.DisplayName if hasattr(item, 'Parent') and hasattr(item.Parent, 'Store') else None
+                                    logger.debug(f"Email store: {store_display_name}, allowed stores: {allowed_display_names}")
+                                    if store_display_name not in allowed_display_names:
+                                        logger.debug(f"Skipping email from unauthorized store: {store_display_name}")
                                         include_email = False
-                                except:
+                                except Exception as e:
+                                    logger.debug(f"Error checking email store: {str(e)}")
                                     # If we can't check the store, include the email anyway
                                     pass
                             
                             if include_email:
                                 # Get email details
+                                subject = item.Subject if hasattr(item, 'Subject') else "(No Subject)"
+                                logger.debug(f"Processing email: {subject}")
                                 email = self._extract_email_details(item)
                                 emails.append(email)
                                 count += 1
+                                logger.debug(f"Added email {count}: {email['subject']}")
                         except Exception as e:
                             logger.error(f"Error processing email: {str(e)}")
+                            logger.debug(f"Stack trace: {traceback.format_exc()}")
+                    
+                    logger.debug(f"Finished processing emails, total retrieved: {len(emails)}")
                 except Exception as e:
                     logger.error(f"Error iterating through emails: {str(e)}")
+                    logger.debug(f"Stack trace: {traceback.format_exc()}")
             except Exception as e:
                 logger.error(f"Error accessing folder items: {str(e)}")
+                logger.debug(f"Stack trace: {traceback.format_exc()}")
             
             return emails
             
         except Exception as e:
             logger.error(f"Error getting emails: {str(e)}")
+            logger.debug(f"Stack trace: {traceback.format_exc()}")
             # Return empty list instead of raising an exception
             return []
     
@@ -248,47 +333,72 @@ class SimpleStore:
         Returns:
             Dictionary with email details
         """
+        logger.debug(f"Extracting details from email: {item.Subject if hasattr(item, 'Subject') else 'Unknown'}")
         try:
             # Get sender email address
             sender_email = ""
             if hasattr(item, "SenderEmailAddress"):
                 sender_email = item.SenderEmailAddress
+                logger.debug(f"Sender email: {sender_email}")
             
             # Get recipient email addresses
             to_list = []
             if hasattr(item, "To") and item.To:
                 to_list = [recipient.strip() for recipient in item.To.split(';')]
+                logger.debug(f"To recipients: {to_list}")
             
             # Get CC email addresses
             cc_list = []
             if hasattr(item, "CC") and item.CC:
                 cc_list = [recipient.strip() for recipient in item.CC.split(';')]
+                logger.debug(f"CC recipients: {cc_list}")
             
             # Get attachments
             attachments = []
             if hasattr(item, "Attachments") and item.Attachments.Count > 0:
+                logger.debug(f"Found {item.Attachments.Count} attachments")
                 for i in range(1, item.Attachments.Count + 1):
-                    attachment = item.Attachments.Item(i)
-                    attachments.append({
-                        'name': attachment.FileName,
-                        'size': attachment.Size,
-                        'id': i  # Use index as ID for now
-                    })
+                    try:
+                        attachment = item.Attachments.Item(i)
+                        attachments.append({
+                            'name': attachment.FileName,
+                            'size': attachment.Size,
+                            'id': i  # Use index as ID for now
+                        })
+                        logger.debug(f"Attachment {i}: {attachment.FileName}, Size: {attachment.Size}")
+                    except Exception as e:
+                        logger.debug(f"Error processing attachment {i}: {str(e)}")
             
             # Get body
             body = ""
             if hasattr(item, "Body"):
                 body = item.Body
+                body_preview = body[:50] + "..." if len(body) > 50 else body
+                logger.debug(f"Body (preview): {body_preview}")
             
             # Get HTML body if available
             html_body = ""
             if hasattr(item, "HTMLBody"):
                 html_body = item.HTMLBody
+                html_preview = html_body[:50] + "..." if len(html_body) > 50 else html_body
+                logger.debug(f"HTML Body (preview): {html_preview}")
             
             # Get categories as list
             categories = []
             if hasattr(item, "Categories") and item.Categories:
                 categories = [category.strip() for category in item.Categories.split(',')]
+                logger.debug(f"Categories: {categories}")
+            
+            # Get received and sent times
+            received_time = None
+            if hasattr(item, 'ReceivedTime'):
+                received_time = item.ReceivedTime.strftime('%Y-%m-%d %H:%M:%S')
+                logger.debug(f"Received time: {received_time}")
+                
+            sent_time = None
+            if hasattr(item, 'SentOn'):
+                sent_time = item.SentOn.strftime('%Y-%m-%d %H:%M:%S')
+                logger.debug(f"Sent time: {sent_time}")
             
             # Create email dictionary
             email = {
@@ -298,8 +408,8 @@ class SimpleStore:
                 'sender_email': sender_email,
                 'to': "; ".join(to_list),
                 'cc': "; ".join(cc_list),
-                'received_time': item.ReceivedTime.strftime('%Y-%m-%d %H:%M:%S') if hasattr(item, 'ReceivedTime') else None,
-                'sent_time': item.SentOn.strftime('%Y-%m-%d %H:%M:%S') if hasattr(item, 'SentOn') else None,
+                'received_time': received_time,
+                'sent_time': sent_time,
                 'has_attachments': len(attachments) > 0,
                 'attachments': attachments,
                 'body': body,
@@ -310,17 +420,28 @@ class SimpleStore:
                 'preview': body[:200] + '...' if len(body) > 200 else body
             }
             
+            logger.debug(f"Successfully extracted email details for: {email['subject']}")
             return email
             
         except Exception as e:
             logger.error(f"Error extracting email details: {str(e)}")
+            logger.debug(f"Stack trace: {traceback.format_exc()}")
             # Return minimal email details on error
-            return {
-                'id': item.EntryID if hasattr(item, 'EntryID') else "",
-                'subject': item.Subject if hasattr(item, 'Subject') else "(Error)",
-                'sender': item.SenderName if hasattr(item, 'SenderName') else "",
-                'preview': "Error extracting email details"
-            }
+            try:
+                return {
+                    'id': item.EntryID if hasattr(item, 'EntryID') else "",
+                    'subject': item.Subject if hasattr(item, 'Subject') else "(Error)",
+                    'sender': item.SenderName if hasattr(item, 'SenderName') else "",
+                    'preview': "Error extracting email details"
+                }
+            except Exception as inner_e:
+                logger.error(f"Error creating minimal email details: {str(inner_e)}")
+                return {
+                    'id': "",
+                    'subject': "(Error)",
+                    'sender': "",
+                    'preview': "Error extracting email details"
+                }
     
     def get_email(self, email_address, message_id):
         """
@@ -550,6 +671,7 @@ class SimpleStore:
         Returns:
             List of category dictionaries with name and color
         """
+        logger.debug(f"Getting categories for {email_address}")
         # Default categories to use if we can't get them from Outlook
         default_categories = [
             {"name": "Important", "color": "#FF0000"},
@@ -563,11 +685,14 @@ class SimpleStore:
             # Get the account - using try/except to handle potential iteration issues
             try:
                 account = self._get_account(email_address)
+                logger.debug(f"Got account: {account.DisplayName}")
                 # If we get a SimpleAccount, just return default categories
                 if isinstance(account, SimpleAccount):
+                    logger.debug("Using SimpleAccount, returning default categories")
                     return default_categories
             except Exception as e:
                 logger.error(f"Error getting account for categories: {str(e)}")
+                logger.debug(f"Stack trace: {traceback.format_exc()}")
                 # Return default categories if we can't get the account
                 return default_categories
                 
@@ -579,43 +704,58 @@ class SimpleStore:
             try:
                 # Try to access the Categories collection (this might not work in all Outlook versions)
                 try:
+                    logger.debug("Attempting to access DeliveryStore")
                     store = account.DeliveryStore
-                except Exception:
+                    logger.debug(f"Got DeliveryStore: {store.DisplayName if hasattr(store, 'DisplayName') else 'Unknown'}")
+                except Exception as e:
+                    logger.debug(f"Error accessing DeliveryStore: {str(e)}")
                     # If we can't get the delivery store, return default categories
                     return default_categories
                 
                 # This is a bit tricky as the API for categories varies by Outlook version
                 # Try to access categories through the store's Master Category List
                 try:
+                    logger.debug("Attempting to access namespace.Categories")
                     category_list = namespace.Categories
-                    if category_list and category_list.Count > 0:
+                    logger.debug(f"Got Categories collection with {category_list.Count if hasattr(category_list, 'Count') else 'unknown'} items")
+                    
+                    if category_list and hasattr(category_list, 'Count') and category_list.Count > 0:
                         for i in range(1, category_list.Count + 1):
                             try:
+                                logger.debug(f"Accessing category at index {i}")
                                 cat = category_list.Item(i)
+                                logger.debug(f"Category {i}: {cat.Name}, Color: {cat.Color}")
                                 categories.append({
                                     "name": cat.Name,
                                     "color": self._convert_outlook_color_to_hex(cat.Color)
                                 })
-                            except Exception:
+                            except Exception as e:
+                                logger.debug(f"Error accessing category at index {i}: {str(e)}")
                                 # Skip this category if there's an error
                                 continue
-                except Exception:
+                except Exception as e:
+                    logger.debug(f"Error accessing Categories collection: {str(e)}")
                     # Fall back to default categories if we can't get them from Outlook
                     categories = default_categories
                     logger.warning("Could not access Outlook categories, using default categories")
-            except Exception:
+            except Exception as e:
+                logger.debug(f"Error in outer try block: {str(e)}")
                 # Fall back to default categories if we can't access the store
                 categories = default_categories
                 logger.warning("Could not access Outlook store categories, using default categories")
             
             # If no categories were found, use default categories
             if not categories:
+                logger.debug("No categories found, using default categories")
                 categories = default_categories
+            else:
+                logger.debug(f"Successfully retrieved {len(categories)} categories")
                 
             return categories
             
         except Exception as e:
             logger.error(f"Error retrieving categories: {str(e)}")
+            logger.debug(f"Stack trace: {traceback.format_exc()}")
             # Return default categories on error
             return default_categories
     
@@ -738,25 +878,48 @@ class OutlookService:
     
     def __init__(self):
         """Initialize the Outlook service."""
+        logger.debug("Initializing OutlookService")
         # Initialize COM in the current thread
-        pythoncom.CoInitialize()
+        try:
+            pythoncom.CoInitialize()
+            logger.debug("COM initialized successfully")
+        except Exception as e:
+            logger.error(f"Failed to initialize COM: {str(e)}")
+            logger.debug(f"Stack trace: {traceback.format_exc()}")
         
         # Store email cache directory
         self.cache_dir = Path(settings.BASE_DIR) / 'normieapp' / 'static' / 'normieapp' / 'data' / 'email_cache'
         os.makedirs(self.cache_dir, exist_ok=True)
+        logger.debug(f"Email cache directory: {self.cache_dir}")
+        
+        # Log debug file location
+        if debug_log_path:
+            logger.info(f"Debug logs are being written to: {debug_log_path}")
     
     def _get_outlook_application(self):
         """Get the Outlook application COM object."""
+        logger.debug("Getting Outlook application object")
         try:
-            return win32com.client.Dispatch("Outlook.Application")
+            app = win32com.client.Dispatch("Outlook.Application")
+            logger.debug("Successfully got Outlook application")
+            return app
         except Exception as e:
             logger.error(f"Failed to connect to Outlook: {str(e)}")
+            logger.debug(f"Stack trace: {traceback.format_exc()}")
             raise ConnectionError("Could not connect to Microsoft Outlook. Please ensure Outlook is installed and running.")
     
     def _get_namespace(self):
         """Get the MAPI namespace from Outlook."""
-        app = self._get_outlook_application()
-        return app.GetNamespace("MAPI")
+        logger.debug("Getting MAPI namespace")
+        try:
+            app = self._get_outlook_application()
+            namespace = app.GetNamespace("MAPI")
+            logger.debug("Successfully got MAPI namespace")
+            return namespace
+        except Exception as e:
+            logger.error(f"Failed to get MAPI namespace: {str(e)}")
+            logger.debug(f"Stack trace: {traceback.format_exc()}")
+            raise
     
     def _get_account(self, email_address):
         """
@@ -764,70 +927,105 @@ class OutlookService:
         Only allows access to pre-approved email addresses.
         Falls back to testing email if primary email is not found.
         """
+        logger.debug(f"Getting account for email: {email_address}")
         if email_address not in self.ALLOWED_ACCOUNTS:
+            logger.error(f"Access denied for email: {email_address}")
             raise ValueError(f"Access to email account '{email_address}' is not allowed.")
         
         namespace = self._get_namespace()
+        logger.debug("Got namespace, attempting to find account")
         
         # First approach: Try to find the account in the Accounts collection
         try:
             # Check if Accounts is iterable
+            logger.debug("Attempting to iterate through Accounts collection")
             accounts_list = list(namespace.Accounts)
+            logger.debug(f"Found {len(accounts_list)} accounts")
+            
+            # Log all available accounts for debugging
+            for i, acc in enumerate(accounts_list):
+                try:
+                    logger.debug(f"Account {i+1}: {acc.DisplayName} - {acc.SmtpAddress}")
+                except Exception as e:
+                    logger.debug(f"Account {i+1}: Could not get details - {str(e)}")
+            
             for account in accounts_list:
-                if account.SmtpAddress.lower() == email_address.lower():
-                    return account
+                try:
+                    if account.SmtpAddress.lower() == email_address.lower():
+                        logger.debug(f"Found exact match for {email_address}")
+                        return account
+                except Exception as e:
+                    logger.debug(f"Error checking account: {str(e)}")
             
             # If the requested account is the primary one and not found, try the other allowed accounts
             for fallback_email in self.ALLOWED_ACCOUNTS:
                 if fallback_email != email_address:
                     logger.warning(f"Email account '{email_address}' not found. Trying fallback account '{fallback_email}'.")
                     for account in accounts_list:
-                        if account.SmtpAddress.lower() == fallback_email.lower():
-                            logger.info(f"Using fallback email account: {fallback_email}")
-                            return account
+                        try:
+                            if account.SmtpAddress.lower() == fallback_email.lower():
+                                logger.info(f"Using fallback email account: {fallback_email}")
+                                return account
+                        except Exception as e:
+                            logger.debug(f"Error checking fallback account: {str(e)}")
         except TypeError as e:
             # Accounts object is not iterable
             logger.warning(f"Accounts object is not iterable: {str(e)}")
+            logger.debug(f"Stack trace: {traceback.format_exc()}")
         except Exception as e:
             logger.warning(f"Error iterating through accounts: {str(e)}")
+            logger.debug(f"Stack trace: {traceback.format_exc()}")
         
         # Second approach: Try to access accounts by index
+        logger.debug("First approach failed, trying to access accounts by index")
         try:
             # Try to access accounts one by one using Item(index)
             for i in range(1, 10):  # Try up to 10 accounts
                 try:
+                    logger.debug(f"Trying to access account at index {i}")
                     account = namespace.Accounts.Item(i)
+                    logger.debug(f"Got account at index {i}: {account.DisplayName} - {account.SmtpAddress}")
                     if account.SmtpAddress.lower() in [acc.lower() for acc in self.ALLOWED_ACCOUNTS]:
                         logger.info(f"Found allowed account by index: {account.SmtpAddress}")
                         return account
-                except Exception:
+                except Exception as e:
+                    logger.debug(f"Error accessing account at index {i}: {str(e)}")
                     # If we can't access this index, move to the next one
                     continue
         except Exception as e:
             logger.warning(f"Error accessing accounts by index: {str(e)}")
+            logger.debug(f"Stack trace: {traceback.format_exc()}")
         
         # Third approach: Try to access the default profile directly
+        logger.debug("Second approach failed, trying to access default profile")
         try:
             # Get the default profile
             app = self._get_outlook_application()
             session = app.Session
+            logger.debug("Got Outlook session")
             
             # Try to access the default folder directly
             inbox = namespace.GetDefaultFolder(6)  # 6 = olFolderInbox
+            logger.debug(f"Got default inbox: {inbox.Name if hasattr(inbox, 'Name') else 'Unknown'}")
             if inbox:
                 # We can access the inbox, so return a minimal account object
-                logger.info("Using default profile as fallback")
-                return SimpleAccount(email_address, inbox.Store.DisplayName)
+                store_name = inbox.Store.DisplayName if hasattr(inbox, 'Store') and hasattr(inbox.Store, 'DisplayName') else "Default Store"
+                logger.info(f"Using default profile as fallback, store: {store_name}")
+                return SimpleAccount(email_address, store_name)
         except Exception as e:
             logger.warning(f"Error accessing default profile: {str(e)}")
+            logger.debug(f"Stack trace: {traceback.format_exc()}")
         
         # Fourth approach: Last resort - just create a dummy account object
         # This will let the application continue but with limited functionality
+        logger.debug("Third approach failed, using emergency fallback")
         try:
             logger.warning("Using emergency fallback - creating dummy account object")
             return SimpleAccount(email_address, "Default Outlook Profile")
         except Exception as e:
             logger.error(f"Error creating dummy account: {str(e)}")
+            logger.debug(f"Stack trace: {traceback.format_exc()}")
         
         # If all approaches fail, raise an error
+        logger.error(f"All approaches failed to get account for {email_address}")
         raise ValueError(f"Could not find any allowed email accounts in Outlook. Please ensure Outlook is properly configured with one of these accounts: {', '.join(self.ALLOWED_ACCOUNTS)}") 
