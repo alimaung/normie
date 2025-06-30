@@ -54,6 +54,13 @@ urlpatterns = [
     path('pdf-parser/download/<str:form_id>/', views.pdf_download, name='pdf_download'),
     path('pdf-parser/debug/<str:form_id>/', views.pdf_debug, name='pdf_debug'),
     
+    # Applicant State Parser routes
+    path('applicant-state-parser/', views.applicant_state_parser, name='applicant_state_parser'),
+    path('applicant-state-parser/upload/', views.applicant_upload, name='applicant_upload'),
+    path('applicant-state-parser/editor/<str:form_id>/', views.applicant_editor, name='applicant_editor'),
+    path('applicant-state-parser/save/<str:form_id>/', views.applicant_save, name='applicant_save'),
+    path('applicant-state-parser/download/<str:form_id>/', views.applicant_download, name='applicant_download'),
+    
     # AJAX validation endpoints
     path('ajax/check-username/', views.check_username_availability, name='check_username'),
     path('ajax/check-email/', views.check_email_availability, name='check_email'),

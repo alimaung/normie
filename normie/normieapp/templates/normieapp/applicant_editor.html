@@ -1,0 +1,221 @@
+{% extends "normieapp/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/directory.css' %}">
+<link rel="stylesheet" href="{% static 'normieapp/css/pdf_form.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="directory-container">
+    <!-- Header Section -->
+    <div class="directory-header">
+        <div class="header-left">
+            <h1>{% trans "Applicant Data Editor" %}</h1>
+            <p class="header-summary">{% trans "Review and edit parsed applicant information" %}</p>
+            <p class="file-info">{% trans "Source file:" %} <strong>{{ original_filename }}</strong></p>
+        </div>
+        <div class="header-stats">
+            <div class="stat-card">
+                <span class="stat-value">{{ fields|length }}</span>
+                <span class="stat-label">{% trans "Fields Found" %}</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value">{% trans "Edit" %}</span>
+                <span class="stat-label">{% trans "Applicant Data" %}</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value">{% trans "Export" %}</span>
+                <span class="stat-label">{% trans "Processed Data" %}</span>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Alert Container -->
+    <div class="alert-container" id="alert-container"></div>
+    
+    <!-- Form Container -->
+    <div class="form-container">
+        <form id="applicant-edit-form" class="pdf-form">
+            {% csrf_token %}
+            
+            <div class="form-header">
+                <h2>{% trans "Applicant Information" %}</h2>
+                <p>{% trans "Review and modify the extracted applicant data below. Changes are saved automatically." %}</p>
+            </div>
+            
+            <div class="form-fields">
+                {% for field in fields %}
+                <div class="field-group">
+                    <label for="{{ field.id }}" class="field-label">
+                        {{ field.name }}
+                        {% if field.type == '/Btn' %}
+                            <span class="field-type-badge">{% trans "Checkbox" %}</span>
+                        {% elif field.type == '/Sig' %}
+                            <span class="field-type-badge">{% trans "Signature" %}</span>
+                        {% else %}
+                            <span class="field-type-badge">{% trans "Text" %}</span>
+                        {% endif %}
+                    </label>
+                    
+                    {% if field.type == '/Btn' %}
+                        <!-- Checkbox field -->
+                        <div class="checkbox-container">
+                            <input type="checkbox" 
+                                   id="{{ field.id }}" 
+                                   name="{{ field.id }}" 
+                                   data-field-id="{{ field.id }}" 
+                                   class="field-input checkbox-input"
+                                   {% if field.value == '/0' or field.value == 'true' or field.value == '1' %}checked{% endif %}>
+                            <span class="checkbox-label">{% trans "Checked" %}</span>
+                        </div>
+                    {% elif field.type == '/Sig' %}
+                        <!-- Signature field (read-only) -->
+                        <div class="signature-container">
+                            <input type="text" 
+                                   id="{{ field.id }}" 
+                                   name="{{ field.id }}" 
+                                   data-field-id="{{ field.id }}" 
+                                   value="{{ field.value }}" 
+                                   class="field-input signature-input" 
+                                   readonly>
+                            <span class="signature-note">{% trans "Signature fields are read-only" %}</span>
+                        </div>
+                    {% else %}
+                        <!-- Text field -->
+                        {% if field.name|length > 50 or 'note' in field.name|lower or 'comment' in field.name|lower or 'description' in field.name|lower %}
+                            <textarea id="{{ field.id }}" 
+                                      name="{{ field.id }}" 
+                                      data-field-id="{{ field.id }}" 
+                                      class="field-input textarea-input" 
+                                      rows="3">{{ field.value }}</textarea>
+                        {% else %}
+                            <input type="text" 
+                                   id="{{ field.id }}" 
+                                   name="{{ field.id }}" 
+                                   data-field-id="{{ field.id }}" 
+                                   value="{{ field.value }}" 
+                                   class="field-input text-input">
+                        {% endif %}
+                    {% endif %}
+                    
+                    <div class="field-id">{% trans "Field ID:" %} {{ field.id }}</div>
+                </div>
+                {% empty %}
+                <div class="no-fields-message">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <h3>{% trans "No Applicant Fields Found" %}</h3>
+                    <p>{% trans "No applicant-related fields were detected in the uploaded file. Please check the file content and try again." %}</p>
+                    <a href="{% url 'applicant_state_parser' %}" class="btn btn-primary">
+                        {% trans "Upload Another File" %}
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+            
+            {% if fields %}
+            <div class="form-actions">
+                <button type="button" id="save-applicant-data" class="btn btn-primary">
+                    <i class="fas fa-save"></i> {% trans "Save Changes" %}
+                </button>
+                
+                <a href="{% url 'applicant_download' form_id=form_id %}" class="btn btn-secondary">
+                    <i class="fas fa-download"></i> {% trans "Download JSON" %}
+                </a>
+                
+                <a href="{% url 'applicant_state_parser' %}" class="btn btn-outline">
+                    <i class="fas fa-upload"></i> {% trans "Upload New File" %}
+                </a>
+            </div>
+            {% endif %}
+        </form>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const saveButton = document.getElementById('save-applicant-data');
+    const form = document.getElementById('applicant-edit-form');
+    const alertContainer = document.getElementById('alert-container');
+    
+    if (saveButton) {
+        saveButton.addEventListener('click', function() {
+            // Collect all field values
+            const formData = {};
+            const textInputs = form.querySelectorAll('input[type="text"], textarea');
+            const checkboxInputs = form.querySelectorAll('input[type="checkbox"]');
+            
+            textInputs.forEach(input => {
+                const fieldId = input.dataset.fieldId;
+                formData[fieldId] = input.value;
+            });
+            
+            checkboxInputs.forEach(checkbox => {
+                const fieldId = checkbox.dataset.fieldId;
+                formData[fieldId] = checkbox.checked ? '/0' : '/1';
+            });
+            
+            // Send the data to the server
+            fetch('/applicant-state-parser/save/{{ form_id }}/', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'X-CSRFToken': '{{ csrf_token }}'
+                },
+                body: JSON.stringify(formData)
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    showAlert('success', data.message || '{% trans "Applicant data saved successfully!" %}');
+                } else {
+                    showAlert('danger', data.message || '{% trans "An error occurred while saving the data." %}');
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                showAlert('danger', '{% trans "An error occurred while saving the data." %}');
+            });
+        });
+    }
+    
+    function showAlert(type, message) {
+        alertContainer.innerHTML = `
+            <div class="alert alert-${type}">
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-triangle'}"></i>
+                ${message}
+            </div>
+        `;
+        
+        // Auto-hide the alert after 5 seconds
+        setTimeout(() => {
+            alertContainer.innerHTML = '';
+        }, 5000);
+    }
+    
+    // Auto-save on field changes (optional)
+    const autoSaveEnabled = false; // Set to true to enable auto-save
+    if (autoSaveEnabled) {
+        form.addEventListener('input', debounce(function() {
+            saveButton.click();
+        }, 2000));
+    }
+    
+    // Debounce function for auto-save
+    function debounce(func, wait) {
+        let timeout;
+        return function executedFunction(...args) {
+            const later = () => {
+                clearTimeout(timeout);
+                func(...args);
+            };
+            clearTimeout(timeout);
+            timeout = setTimeout(later, wait);
+        };
+    }
+});
+</script>
+{% endblock %} 
