@@ -60,7 +60,7 @@ def open_chem(driver, data):
 def upload_files(driver, data):
     # ats, ats comment
     # sdb, sdb comment
-
+    time.sleep(2)
 
     for row in data:
         # write the comment 

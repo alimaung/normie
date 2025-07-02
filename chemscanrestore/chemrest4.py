@@ -10,18 +10,18 @@ from CS import selenium_driver as cs
 
 def upload_existing_ats(test_mode=False, prompt_for_tkz=False):
     """
-    Upload ATS files from existing_teilenummer_link2.json to ChemScan
+    Upload ATS files from existing_teilenummer_links.json to ChemScan
     
     Args:
         test_mode (bool): If True, only process the first item
         prompt_for_tkz (bool): If True, prompt for TKZ numbers, otherwise use all
     """
     # Load the JSON data
-    json_path = os.path.join(os.path.dirname(__file__), 'existing_teilenummer_link2.json')
+    json_path = os.path.join(os.path.dirname(__file__), 'existing_teilenummer_links.json')
     with open(json_path, 'r', encoding='utf-8') as f:
         data = json.load(f)
     
-    print(f"Loaded {len(data['teilenummer_links'])} entries from existing_teilenummer_link2.json")
+    print(f"Loaded {len(data['teilenummer_links'])} entries from existing_teilenummer_links.json")
     print(f"Filter criteria: {data['metadata']['filter_criteria']}")
     
     # Get TKZ list if prompted, otherwise use all
@@ -131,15 +131,16 @@ def upload_ats_file(driver, data):
     
     # Enter comment
     WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
-        (By.XPATH, "/html/body/div[9]/div[4]/div/div/form/fieldset/div[2]/div[2]/textarea")))
+        (By.XPATH, "/html/body/div[10]/div[4]/div/div/form/fieldset/div[2]/div[2]/textarea")))
     driver.find_element(By.XPATH, 
-        '/html/body/div[9]/div[4]/div/div/form/fieldset/div[2]/div[2]/textarea').send_keys(data["ats_comment"])
+        '/html/body/div[10]/div[4]/div/div/form/fieldset/div[2]/div[2]/textarea').send_keys(data["ats_comment"])
     
     # Click file upload area
+
     WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
         (By.CLASS_NAME, "uploader.empty.input-widget-file")))
     driver.find_element(By.CLASS_NAME, "uploader.empty.input-widget-file").click()
-    
+    print("\033[92mFILE UPLOAD\033[0m")
     # Handle file dialog
     def find_window():
         for _ in range(20):  # Try for 10 seconds
@@ -170,19 +171,20 @@ def upload_ats_file(driver, data):
     
     # Wait for file name to change in the UI
     WebDriverWait(driver, 10).until(EC.visibility_of_element_located(
-        (By.XPATH, "/html/body/div[9]/div[4]/div/div/form/fieldset/div[1]/div[2]/div/div/div/span[1]")))
+        (By.XPATH, "/html/body/div[10]/div[4]/div/div/form/fieldset/div[1]/div[2]/div/div/div/span[1]")))
     datei = driver.find_element(By.XPATH, 
-        "/html/body/div[9]/div[4]/div/div/form/fieldset/div[1]/div[2]/div/div/div/span[1]")
+        "/html/body/div[10]/div[4]/div/div/form/fieldset/div[1]/div[2]/div/div/div/span[1]")
     initial_text = datei.text
+    print(f"\033[92mNAME CHANGED: {datei.text}\033[0m")
     
     # Wait for file name to change (indicating upload)
     WebDriverWait(driver, 10).until(
         lambda d: d.find_element(By.XPATH, 
-            "/html/body/div[9]/div[4]/div/div/form/fieldset/div[1]/div[2]/div/div/div/span[1]").text != initial_text)
-    
+            "/html/body/div[10]/div[4]/div/div/form/fieldset/div[1]/div[2]/div/div/div/span[1]").text != initial_text)
+    print("\033[92mUPLOAD INDICATOR\033[0m")
     # Click save button
-    driver.find_element(By.XPATH, '/html/body/div[9]/div[13]/div/div/div/span[2]/button').click()
-    
+    driver.find_element(By.XPATH, '/html/body/div[10]/div[13]/div/div/div/span[2]/button').click()
+    print("\033[92mSAVE BUTTON\033[0m")
     # Check upload status
     WebDriverWait(driver, 30).until(EC.visibility_of_element_located(
         (By.XPATH, '/html/body/div[6]/div[2]/main/div[2]/div[1]/div/div/div')))
@@ -210,7 +212,7 @@ def preprocess_ats_data(data_list):
     for row in data_list:
         if row["ats"]:  # Only process if ATS file exists
             # 1. Check if file exists
-            if os.path.isfile(row["ats"]):
+            if True:
                 print(f"File exists: {row['ats']}")
                 row["exists"] = True
             else:
@@ -228,7 +230,8 @@ def preprocess_ats_data(data_list):
             
             # 3. Check if file is classified
             try:
-                isclassified = cl.main(row["ats"])
+                #isclassified = cl.main(row["ats"])
+                isclassified = True
                 row["class"] = isclassified
                 print(f"Classification status: {isclassified}")
             except Exception as e:

@@ -106,6 +106,7 @@ def classify(classified, file):
                 time.sleep(1)
             print("DONE!")
             classified = True
+            time.sleep(2)
             return classified
 
         else:
