@@ -1,0 +1,35 @@
+{
+  "metadata": {
+    "original_total_entries": 137,
+    "filtered_total_entries": 43,
+    "filter_criteria": "Exists in ChemScan database",
+    "original_verzeichnis_file": "Verzeichnis_teilenummer_links.json",
+    "original_results_file": "chemscan_tkz_results.json"
+  },
+  "teilenummer_links": [
+    {
+      "Antrag-nummer": "090-2025",
+      "Teile-nummer": "01044318",
+      "Location": "DW",
+      "File_URL": "\\\\dehesdna-a009a\\projekte\\k-z\\Ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\2025\\090-2025_01044318_Erstbestellung.pdf",
+      "Original_URL": "V:\\Antrag\\2025\\090-2025_01044318_Erstbestellung.pdf",
+      "Display_Text": "pdf",
+      "Chemscan_URL": "\\\\dehesdna-a009a\\projekte\\k-z\\Ofs\\Dokumentenservice\\TeileundStoffe\\Gefährdungsbeurteilung\\090-2025_01044318_HI Card_ChemScan.pdf",
+      "Chemscan_Original_URL": "V:\\Gefährdungsbeurteilung\\090-2025_01044318_HI Card_ChemScan.pdf",
+      "Chemscan_Display_Text": "pdf",
+      "Comment": "ATS_090-2025_01044318_DW --NUR ERSTBESTELLUNG--"
+    },
+    {
+      "Antrag-nummer": "092-2025",
+      "Teile-nummer": "01009406",
+      "Location": "OU",
+      "File_URL": "\\\\dehesdna-a009a\\projekte\\k-z\\Ofs\\Dokumentenservice\\TeileundStoffe\\Antrag\\2025\\092-2025_01009406_Erstbestellung.pdf",
+      "Original_URL": "V:\\Antrag\\2025\\092-2025_01009406_Erstbestellung.pdf",
+      "Display_Text": "pdf",
+      "Chemscan_URL": "\\\\dehesdna-a009a\\projekte\\k-z\\Ofs\\Dokumentenservice\\TeileundStoffe\\Gefährdungsbeurteilung\\092-2025_01009406_Eastman Turbo Oil 2380_ChemScan.pdf",
+      "Chemscan_Original_URL": "V:\\Gefährdungsbeurteilung\\092-2025_01009406_Eastman Turbo Oil 2380_ChemScan.pdf",
+      "Chemscan_Display_Text": "pdf",
+      "Comment": "ATS_092-2025_01009406_OU --NUR ERSTBESTELLUNG--"
+    }
+  ]
+}
