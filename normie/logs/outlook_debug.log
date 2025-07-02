@@ -26,3 +26,19 @@
 2025-06-30 13:45:27,041 - normieapp.services.outlook_service - DEBUG - Found 1 accounts
 2025-06-30 13:45:27,042 - normieapp.services.outlook_service - DEBUG - Account 1: microfilm.rollsroyce@outlook.com - microfilm.rollsroyce@outlook.com
 2025-06-30 13:45:27,042 - normieapp.services.outlook_service - DEBUG - Found exact match for microfilm.rollsroyce@outlook.com
+2025-07-02 10:50:16,038 - normieapp.services.outlook_service - DEBUG - Initializing OutlookService
+2025-07-02 10:50:16,039 - normieapp.services.outlook_service - DEBUG - COM initialized successfully
+2025-07-02 10:50:16,039 - normieapp.services.outlook_service - DEBUG - Email cache directory: Y:\normie\normie\normieapp\static\normieapp\data\email_cache
+2025-07-02 10:50:16,039 - normieapp.services.outlook_service - INFO - Debug logs are being written to: Y:\normie\normie\logs\outlook_debug.log
+2025-07-02 10:50:16,039 - normieapp.services.outlook_service - DEBUG - Getting account for email: irm-standardisation-office@rolls-royce.com
+2025-07-02 10:50:16,039 - normieapp.services.outlook_service - DEBUG - Getting MAPI namespace
+2025-07-02 10:50:16,039 - normieapp.services.outlook_service - DEBUG - Getting Outlook application object
+2025-07-02 10:50:17,102 - normieapp.services.outlook_service - DEBUG - Successfully got Outlook application
+2025-07-02 10:50:17,105 - normieapp.services.outlook_service - DEBUG - Successfully got MAPI namespace
+2025-07-02 10:50:17,105 - normieapp.services.outlook_service - DEBUG - Got namespace, attempting to find account
+2025-07-02 10:50:17,105 - normieapp.services.outlook_service - DEBUG - Attempting to iterate through Accounts collection
+2025-07-02 10:50:18,017 - normieapp.services.outlook_service - DEBUG - Found 1 accounts
+2025-07-02 10:50:18,025 - normieapp.services.outlook_service - DEBUG - Account 1: microfilm.rollsroyce@outlook.com - microfilm.rollsroyce@outlook.com
+2025-07-02 10:50:18,025 - normieapp.services.outlook_service - WARNING - Email account 'irm-standardisation-office@rolls-royce.com' not found. Trying fallback account 'ali.maung@rolls-royce.com'.
+2025-07-02 10:50:18,026 - normieapp.services.outlook_service - WARNING - Email account 'irm-standardisation-office@rolls-royce.com' not found. Trying fallback account 'microfilm.rollsroyce@outlook.com'.
+2025-07-02 10:50:18,026 - normieapp.services.outlook_service - INFO - Using fallback email account: microfilm.rollsroyce@outlook.com

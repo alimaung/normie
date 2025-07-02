@@ -1,0 +1,866 @@
+{
+  "metadata": {
+    "total_checked": 137,
+    "total_found": 43,
+    "timestamp": "2025-07-02 10:54:18"
+  },
+  "results": [
+    {
+      "tkz": "01005520",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01008263",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043506",
+      "exists": true,
+      "total_records": 1,
+      "name": "TRI-FLOW LUBRICANT",
+      "manufacturer": "Sherwin Williams Diversified Brands Limited",
+      "symbol_signs": "GHS02, GHS07, GHS08",
+      "hazard_codes": "EUH066, H226, H304, H336, H412"
+    },
+    {
+      "tkz": "01043518",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043521",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043466",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043541",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043554",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043561",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043562",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043569",
+      "exists": true,
+      "total_records": 2,
+      "name": "Curing Solution 6005",
+      "manufacturer": "Akzo Nobel Car Refinishes B.V.",
+      "symbol_signs": "GHS05, GHS07",
+      "hazard_codes": "H315, H317, H318"
+    },
+    {
+      "tkz": "01043581",
+      "exists": true,
+      "total_records": 1,
+      "name": "M-Prep Conditioner A",
+      "manufacturer": "VISHAY MEASUREMENTS GROUP GMBH",
+      "symbol_signs": "GHS05",
+      "hazard_codes": "H290"
+    },
+    {
+      "tkz": "01043585",
+      "exists": true,
+      "total_records": 1,
+      "name": "MIL-P-21563B #28913 Fluorescent Red Acrylic",
+      "manufacturer": "Wesco Aircraft EMEA Ltd",
+      "symbol_signs": "GHS02, GHS07",
+      "hazard_codes": "H225, H315, H319"
+    },
+    {
+      "tkz": "01043588",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "10004012",
+      "exists": true,
+      "total_records": 1,
+      "name": "rhenus ZW 977",
+      "manufacturer": "Rhenus Lub GmbH & Co KG",
+      "symbol_signs": "GHS07",
+      "hazard_codes": "H302, H412"
+    },
+    {
+      "tkz": "01043609",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043610",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043611",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043612",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043614",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043615",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043621",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043635",
+      "exists": true,
+      "total_records": 1,
+      "name": "ISO-Core \"EL\" Hochtemperaturlot PbSnAg Pb93Sn5Ag2",
+      "manufacturer": "FELDER GMBH",
+      "symbol_signs": "GHS08",
+      "hazard_codes": "H360FD, H362, H372"
+    },
+    {
+      "tkz": "01043637",
+      "exists": true,
+      "total_records": 1,
+      "name": "ISO-Core \"EL\" SnPb, PbSn Sn 40,0-63,0; Pb 37,0-60,0; Sn63Pb37(E); Sn60Pb40(E); Sn50Pb50; Pb60Sn40",
+      "manufacturer": "FELDER GMBH",
+      "symbol_signs": "GHS08",
+      "hazard_codes": "H360FD, H362, H372"
+    },
+    {
+      "tkz": "01043638",
+      "exists": true,
+      "total_records": 1,
+      "name": "ISO-Core \"EL\", bleifrei Sn95Ag4Cu1 (Sn95,5Ag3,8Cu0,7)",
+      "manufacturer": "FELDER GMBH",
+      "symbol_signs": "",
+      "hazard_codes": ""
+    },
+    {
+      "tkz": "01043644",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043654",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043673",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043682",
+      "exists": true,
+      "total_records": 1,
+      "name": "Brush Tagnite Electrolyte 12",
+      "manufacturer": "Technology Applications Group, Inc.",
+      "symbol_signs": "GHS05",
+      "hazard_codes": "H314"
+    },
+    {
+      "tkz": "01043689",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043704",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01042357",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043709",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043729",
+      "exists": true,
+      "total_records": 1,
+      "name": "MOBIL SHC 626",
+      "manufacturer": "ExxonMobil Petroleum & Chemical BV",
+      "symbol_signs": "",
+      "hazard_codes": "EUH210"
+    },
+    {
+      "tkz": "01043781",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043783",
+      "exists": true,
+      "total_records": 1,
+      "name": "Ultracur3D\u00ae RG 1100",
+      "manufacturer": "BASF 3D Printing Solutions GmbH",
+      "symbol_signs": "GHS05, GHS07, GHS08, GHS09",
+      "hazard_codes": "H315, H317, H318, H373, H411"
+    },
+    {
+      "tkz": "10003001",
+      "exists": true,
+      "total_records": 1,
+      "name": "Khaki Ipseal High Temperature Sealer",
+      "manufacturer": "INDESTRUCTIBLE PAINT LTD",
+      "symbol_signs": "GHS05, GHS07, GHS08, GHS09",
+      "hazard_codes": "H315, H317, H318, H332, H334, H335, H340, H350, H373, H400, H412"
+    },
+    {
+      "tkz": "01043812",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043813",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043814",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043815",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043816",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043817",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043818",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043819",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043820",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043821",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043822",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01040051",
+      "exists": true,
+      "total_records": 1,
+      "name": "MA5",
+      "manufacturer": "Universal Marking Systems Ltd",
+      "symbol_signs": "",
+      "hazard_codes": ""
+    },
+    {
+      "tkz": "01042623",
+      "exists": true,
+      "total_records": 1,
+      "name": "UCA-2M",
+      "manufacturer": "Chemetall GmbH",
+      "symbol_signs": "GHS07",
+      "hazard_codes": "H319"
+    },
+    {
+      "tkz": "01043830",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043831",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043832",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043833",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043834",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043835",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043836",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043837",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043838",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043839",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043840",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043841",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043842",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043843",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043844",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043845",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043847",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043848",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043849",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043850",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043851",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043852",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "10002882",
+      "exists": true,
+      "total_records": 2,
+      "name": "LOCTITE ABLESTIK 104 PTA",
+      "manufacturer": "Henkel AG & Co. KGaA",
+      "symbol_signs": "GHS07, GHS09",
+      "hazard_codes": "H315, H317, H319, H411"
+    },
+    {
+      "tkz": "01043855",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043856",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043857",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043864",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043865",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043866",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043867",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043868",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043869",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043870",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043871",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043883",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01043980",
+      "exists": true,
+      "total_records": 1,
+      "name": "SOCOGLAZE SPC 0980 CF",
+      "manufacturer": "Socomore SASU - Zone Industrielle du Prat - CS",
+      "symbol_signs": "GHS02, GHS08, GHS09",
+      "hazard_codes": "H226, H371, H411"
+    },
+    {
+      "tkz": "01040136",
+      "exists": true,
+      "total_records": 1,
+      "name": "NYCO 65 VASELINE",
+      "manufacturer": "NYCO",
+      "symbol_signs": "",
+      "hazard_codes": ""
+    },
+    {
+      "tkz": "01044044",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044045",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044080",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044081",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044083",
+      "exists": true,
+      "total_records": 1,
+      "name": "DIGESIL GEL",
+      "manufacturer": "RPM Technology, LLC",
+      "symbol_signs": "GHS05, GHS07, GHS08",
+      "hazard_codes": "H304, H314, H336"
+    },
+    {
+      "tkz": "01044085",
+      "exists": true,
+      "total_records": 1,
+      "name": "Silver Goop",
+      "manufacturer": "Swagelok",
+      "symbol_signs": "GHS09",
+      "hazard_codes": "H410"
+    },
+    {
+      "tkz": "01044089",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044091",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044097",
+      "exists": true,
+      "total_records": 2,
+      "name": "LOCTITE EA 9492 A",
+      "manufacturer": "Henkel Central Eastern Europe GmbH",
+      "symbol_signs": "GHS07, GHS09",
+      "hazard_codes": "H315, H317, H319, H411"
+    },
+    {
+      "tkz": "01044098",
+      "exists": true,
+      "total_records": 1,
+      "name": "SKYRESTORE 406",
+      "manufacturer": "Socomore SASU  Zone Industrielle du Prat",
+      "symbol_signs": "GHS07, GHS09",
+      "hazard_codes": "H315, H317, H319, H411"
+    },
+    {
+      "tkz": "01044104",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044105",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044139",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044185",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044186",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044192",
+      "exists": true,
+      "total_records": 1,
+      "name": "GOM Coating Concentrate Rev. 2",
+      "manufacturer": "Carl Zeiss GOM Metrology GmbH",
+      "symbol_signs": "",
+      "hazard_codes": "EUH208, EUH210"
+    },
+    {
+      "tkz": "01043568",
+      "exists": true,
+      "total_records": 1,
+      "name": "ECOCOOL S 761 B",
+      "manufacturer": "FUCHS LUBRICANTS GERMANY GmbH",
+      "symbol_signs": "GHS07, GHS09",
+      "hazard_codes": "H315, H317, H319, H411"
+    },
+    {
+      "tkz": "01041807",
+      "exists": true,
+      "total_records": 1,
+      "name": "Tusche A wei\u00df",
+      "manufacturer": "Pelikan Vertriebsgesellschaft mbH & Co. KG",
+      "symbol_signs": "",
+      "hazard_codes": ""
+    },
+    {
+      "tkz": "01043461",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044227",
+      "exists": true,
+      "total_records": 1,
+      "name": "EC75 Epoxy Topcoat Silver RAL9006 5Lt",
+      "manufacturer": "PPG Coatings S.A.",
+      "symbol_signs": "GHS02, GHS07, GHS08",
+      "hazard_codes": "H225, H315, H317, H319, H336, H351, H412"
+    },
+    {
+      "tkz": "01044234",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044235",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044237",
+      "exists": true,
+      "total_records": 1,
+      "name": "Toluene BS805/1",
+      "manufacturer": "Indestructible Pera SRL",
+      "symbol_signs": "GHS02, GHS07, GHS08",
+      "hazard_codes": "H225, H315, H336, H361d, H373"
+    },
+    {
+      "tkz": "01044239",
+      "exists": true,
+      "total_records": 1,
+      "name": "3M(TM) Scotch(TM) Bleiklebeband 420",
+      "manufacturer": "3M Deutschland GmbH",
+      "symbol_signs": "",
+      "hazard_codes": ""
+    },
+    {
+      "tkz": "01044240",
+      "exists": true,
+      "total_records": 1,
+      "name": "3M(TM) Scotch(TM) Bleiklebeband 420",
+      "manufacturer": "3M Deutschland GmbH",
+      "symbol_signs": "",
+      "hazard_codes": ""
+    },
+    {
+      "tkz": "01044241",
+      "exists": true,
+      "total_records": 1,
+      "name": "3M(TM) Scotch(TM) Bleiklebeband 420",
+      "manufacturer": "3M Deutschland GmbH",
+      "symbol_signs": "",
+      "hazard_codes": ""
+    },
+    {
+      "tkz": "01044242",
+      "exists": true,
+      "total_records": 1,
+      "name": "3M(TM) Scotch(TM) Bleiklebeband 420",
+      "manufacturer": "3M Deutschland GmbH",
+      "symbol_signs": "",
+      "hazard_codes": ""
+    },
+    {
+      "tkz": "01044243",
+      "exists": true,
+      "total_records": 1,
+      "name": "3M(TM) Scotch(TM) Bleiklebeband 420",
+      "manufacturer": "3M Deutschland GmbH",
+      "symbol_signs": "",
+      "hazard_codes": ""
+    },
+    {
+      "tkz": "01044244",
+      "exists": true,
+      "total_records": 1,
+      "name": "3M(TM) Scotch(TM) Bleiklebeband 420",
+      "manufacturer": "3M Deutschland GmbH",
+      "symbol_signs": "",
+      "hazard_codes": ""
+    },
+    {
+      "tkz": "01044245",
+      "exists": true,
+      "total_records": 1,
+      "name": "3M(TM) Scotch(TM) Bleiklebeband 420",
+      "manufacturer": "3M Deutschland GmbH",
+      "symbol_signs": "",
+      "hazard_codes": ""
+    },
+    {
+      "tkz": "01044246",
+      "exists": true,
+      "total_records": 1,
+      "name": "NOX-RUST\u00ae 509",
+      "manufacturer": "HH Compliance limited",
+      "symbol_signs": "",
+      "hazard_codes": ""
+    },
+    {
+      "tkz": "01044263",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044264",
+      "exists": true,
+      "total_records": 1,
+      "name": "TECTYL\u00ae 437D",
+      "manufacturer": "HH Compliance limited",
+      "symbol_signs": "",
+      "hazard_codes": ""
+    },
+    {
+      "tkz": "01044265",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044096",
+      "exists": true,
+      "total_records": 1,
+      "name": "FASTBLOCK 100",
+      "manufacturer": "TA Aerospace Co.",
+      "symbol_signs": "GHS07, GHS08",
+      "hazard_codes": "H302, H312, H317, H319, H332, H361, H373, H412"
+    },
+    {
+      "tkz": "01044278",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044280",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "10004495.0",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044284",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044287",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044288",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044292",
+      "exists": true,
+      "total_records": 1,
+      "name": "Hexafluorosilicic acid 34 %, pure",
+      "manufacturer": "Honeywell International, Inc.",
+      "symbol_signs": "GHS05, GHS06",
+      "hazard_codes": "H290, H302, H311, H314"
+    },
+    {
+      "tkz": "01044293",
+      "exists": true,
+      "total_records": 1,
+      "name": "BAG DESI PAK 32U DINB 3/PE 432/PBX",
+      "manufacturer": "Clariant Produkte (Deutschland) GmbH",
+      "symbol_signs": "",
+      "hazard_codes": ""
+    },
+    {
+      "tkz": "01043569",
+      "exists": true,
+      "total_records": 2,
+      "name": "Curing Solution 6005",
+      "manufacturer": "Akzo Nobel Car Refinishes B.V.",
+      "symbol_signs": "GHS05, GHS07",
+      "hazard_codes": "H315, H317, H318"
+    },
+    {
+      "tkz": "01044308",
+      "exists": true,
+      "total_records": 2,
+      "name": "SYLGARD\u2122 577 Primerless Silicone Adhesive Base",
+      "manufacturer": "DOW SILICONES DEUTSCHLAND GMBH",
+      "symbol_signs": "",
+      "hazard_codes": "EUH210"
+    },
+    {
+      "tkz": "01044315",
+      "exists": true,
+      "total_records": 1,
+      "name": "Shell Tellus S2 MX 22",
+      "manufacturer": "Shell Deutschland GmbH",
+      "symbol_signs": "",
+      "hazard_codes": "EUH208, EUH210"
+    },
+    {
+      "tkz": "01044317",
+      "exists": false,
+      "total_records": 0
+    },
+    {
+      "tkz": "01044318",
+      "exists": true,
+      "total_records": 1,
+      "name": "HI Card, AEC826004NE, CDF, 10-60%RH, G/B",
+      "manufacturer": "Clariant Corporation",
+      "symbol_signs": "GHS08",
+      "hazard_codes": "H317, H334, H350"
+    },
+    {
+      "tkz": "01009406",
+      "exists": true,
+      "total_records": 2,
+      "name": "BP Turbo Oil 2380",
+      "manufacturer": "BP Europa SE",
+      "symbol_signs": "",
+      "hazard_codes": ""
+    },
+    {
+      "tkz": "01044322",
+      "exists": false,
+      "total_records": 0
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+{
+  "metadata": {
+    "original_total_entries": 137,
+    "filtered_total_entries": 43,
+    "filter_criteria": "Exists in ChemScan database",
+    "original_verzeichnis_file": "Verzeichnis_teilenummer_links.json",
+    "original_results_file": "chemscan_tkz_results.json"
+  },
+  "teilenummer_links": [
+    {
+      "Antrag-nummer": "167-2019",
+      "Teile-nummer": "01043506",
+      "Location": "DW",
+      "File_URL": "Y:\\normie\\chemscanrestore\\T00221.pdf",
+      "Original_URL": "V:\\Antrag\\2019\\167-2019_01043506_Erstbestellung.pdf",
+      "Display_Text": "pdf",
+      "Chemscan_URL": "\\\\dehesdna-a009a\\projekte\\k-z\\Ofs\\Dokumentenservice\\TeileundStoffe\\Gefährdungsbeurteilung\\167-2019_01043506_Tri-Flow Lubricant RON014793-01.pdf",
+      "Chemscan_Original_URL": "V:\\Gefährdungsbeurteilung\\167-2019_01043506_Tri-Flow Lubricant RON014793-01.pdf",
+      "Chemscan_Display_Text": "pdf",
+      "Comment": "ATS_167-2019_01043506_DW --NUR ERSTBESTELLUNG--"
+    }
+  ]
+}
