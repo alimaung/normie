@@ -1171,6 +1171,7 @@ def pdf_upload(request):
 def pdf_editor(request, form_id):
     """
     Display PDF form editor - requires admin role.
+    Enhanced to populate field options for proper German button field display.
     """
     # Get form data from session
     form_data = request.session.get(f'pdf_form_{form_id}')
@@ -1181,6 +1182,14 @@ def pdf_editor(request, form_id):
     
     fields = form_data.get('fields', [])
     file_path = form_data.get('file_path')
+    
+    # Enhance fields with options for button fields
+    for field in fields:
+        field_id = field.get('id')
+        if field_id and field.get('dict_type') == 'btn':
+            # Get options from PDF_FIELD_DICT
+            options = pdf_service.get_field_options(field_id)
+            field['options'] = options
     
     # Get signature details if available
     signature_details = {}
@@ -1252,6 +1261,7 @@ def pdf_save(request, form_id):
 def pdf_download(request, form_id):
     """
     Download the updated PDF file (with saved changes) - requires admin role.
+    Now uses <antragsnummer>_<tkz>.pdf format for filename.
     """
     # Get form data from session
     form_data = request.session.get(f'pdf_form_{form_id}')
@@ -1262,6 +1272,7 @@ def pdf_download(request, form_id):
     
     try:
         file_path = form_data.get('file_path')
+        fields = form_data.get('fields', [])
         
         # Check if the original file exists
         if not file_path or not os.path.exists(file_path):
@@ -1272,17 +1283,53 @@ def pdf_download(request, form_id):
         with open(file_path, 'rb') as f:
             pdf_content = f.read()
         
-        # Extract original filename for a better download name
-        original_filename = os.path.basename(file_path)
-        if original_filename.endswith('.pdf'):
-            base_name = original_filename[:-4]  # Remove .pdf extension
-            download_filename = f"{base_name}_updated.pdf"
-        else:
-            download_filename = f"updated_form_{form_id}.pdf"
+        # Extract Antragsnummer (field 1) and TKZ (field 51) for custom filename
+        antragsnummer = ""
+        tkz = ""
         
-        # Create response
+        for field in fields:
+            field_id = field.get('id', '')
+            field_value = field.get('value', '')
+            
+            if field_id == '1':  # Antragsnummer
+                antragsnummer = str(field_value).strip()
+            elif field_id == '51':  # Teilenummer (TKZ)
+                tkz = str(field_value).strip()
+        
+        # Clean the values for use in filename (remove invalid characters)
+        def clean_filename_part(text):
+            import re
+            # Remove or replace invalid filename characters
+            text = re.sub(r'[<>:"/\\|?*]', '_', text)
+            text = re.sub(r'\s+', '_', text)  # Replace spaces with underscores
+            return text[:50]  # Limit length
+        
+        antragsnummer = clean_filename_part(antragsnummer)
+        tkz = clean_filename_part(tkz)
+        
+        # Create custom filename
+        if antragsnummer and tkz:
+            download_filename = f"{antragsnummer}_{tkz}.pdf"
+        elif antragsnummer:
+            download_filename = f"{antragsnummer}.pdf"
+        elif tkz:
+            download_filename = f"TKZ_{tkz}.pdf"
+        else:
+            # Fallback to original logic
+            original_filename = os.path.basename(file_path)
+            if original_filename.endswith('.pdf'):
+                base_name = original_filename[:-4]  # Remove .pdf extension
+                download_filename = f"{base_name}_updated.pdf"
+            else:
+                download_filename = f"updated_form_{form_id}.pdf"
+        
+        # Create response with explicit download headers
         response = HttpResponse(pdf_content, content_type='application/pdf')
         response['Content-Disposition'] = f'attachment; filename="{download_filename}"'
+        response['Content-Type'] = 'application/octet-stream'  # Force download instead of inline viewing
+        response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        response['Pragma'] = 'no-cache'
+        response['Expires'] = '0'
         
         return response
     except Exception as e:

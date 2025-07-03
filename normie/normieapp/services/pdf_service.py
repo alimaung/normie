@@ -11,11 +11,968 @@ from datetime import datetime
 import tempfile
 import shutil
 
+"""
+PDF Service Module - Enhanced with German Field Mapping
+
+This module has been updated to implement the functionality from:
+- pdf_fields.py: Proper field extraction and cleaning
+- pdf_decode.py: German field mapping and value translation
+
+Key Features:
+1. PDF_FIELD_DICT integration for German field names and types
+2. Button value translation (PDF values ↔ German display text)
+3. Proper signature field handling and formatting
+4. Natural field sorting (1, 2a, 2b, 3, ...)
+5. Field validation and type checking
+
+Updated Functions:
+- extract_pdf_fields_pypdf2(): Now uses PDF_FIELD_DICT for field mapping
+- save_pdf_changes(): Converts German values back to PDF values
+- Added helper functions for value translation and validation
+
+TODO: Replace PDF_FIELD_DICT placeholder with actual mapping from pdf_decode.py
+"""
+
 try:
     import fitz  # PyMuPDF
     FITZ_AVAILABLE = True
 except ImportError:
     FITZ_AVAILABLE = False
+
+# PDF Field Dictionary - maps field IDs to German names, types, and values
+# TODO: Replace this placeholder with the actual pdf_dict from pdf_decode.py
+PDF_FIELD_DICT = {
+    "1": {
+        "name": "Antragsnummer",
+        "type": "text",
+    },
+    "2a": {
+        "name": "Antragsteller Name",
+        "type": "text",
+    },
+    "2b": {
+        "name": "Antragserstellungsdatum",
+        "type": "text",
+    },
+    "2c": {
+        "name": "Antragsteller Abteilung",
+        "type": "text",
+    },
+    "2d": {
+        "name": "Antragsteller Telefonnummer",
+        "type": "text",
+    },
+    "3": {
+        "name": "Benennung",
+        "type": "text",
+    },
+    "4": {
+        "name": "Fremdteilenummer",
+        "type": "text",
+    },
+    "5": {
+        "name": "Kennzeichnung des Bedarfs",
+        "type": "btn",
+        "values": {
+            "Neubedarf": "/0",
+            "Bedarfsänderung": "/1"
+        },
+    },
+    "6": {
+        "name": "Kennzeichnung des Produkts",
+        "type": "btn",
+        "values": {
+            "Stoff": "/0",
+            "Teil": "/1"
+        },
+    },
+    "7": {
+        "name": "REACh-Code",
+        "type": "text",
+    },
+    "8": {
+        "name": "Lieferant",
+        "type": "text",
+    },
+    "9": {
+        "name": "Hersteller",
+        "type": "text",
+    },
+    "10": {
+        "name": "Verwendungszweck, Anforderungsgrund, Prozessbeschreibung, Anwendungsform",
+        "type": "text",
+    },
+    "11": {
+        "name": "Triebwerksprogramm",
+        "type": "text",
+    },
+    "12a": {
+        "name": "Einsatzort / Standort",
+        "type": "text",
+    },
+    "12b": {
+        "name": "Bereich Teamleiter*innen",
+        "type": "text",
+    },
+         "13": {
+         "name": "Erzeugnisrelevant, besteht Kontakt mit Luftfahrtteilen? ja (Produktzulassung ist erforderlich) nein (Produktzulassung ist nicht erforderlich)",
+         "type": "btn",
+         "values": {
+             "Ja": "/0",
+             "Nein": "/1"
+         },
+     },
+    "14": {
+        "name": "Nutzung",
+        "type": "btn",
+        "values": {
+            "kurzfristig": "/0",
+            "langfristig": "/1"
+        },
+    },
+    "15a": {
+        "name": "Lagerhaltig?",
+        "type": "btn",
+        "values": {
+            "Ja": "/0",
+            "Nein": "/1"
+        },
+    },
+    "15b": {
+        "name": "Bestellung über SAP?",
+        "type": "btn",
+        "values": {
+            "Ja": "/0",
+            "Nein": "/1"
+        },
+    },
+    "16": {
+        "name": "Basismengeneinheit SAP",
+        "type": "text",
+    },
+    "17a": {
+        "name": "monatlicher Bedarf",
+        "type": "text",
+    },
+    "17b": {
+        "name": "Häufigkeit der Anwendung",
+        "type": "text",
+    },
+    "17c": {
+        "name": "Menge pro Anwendung",
+        "type": "text",
+    },
+    "18a": {
+        "name": "EU-Sicherheitsdatenblatt",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "18b": {
+        "name": "Technisches Datenblatt",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "18c": {
+        "name": "Gefährdungsbeurteilung",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "18d": {
+        "name": "Produktzulassung nach",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "18e": {
+        "name": "Produktzulassung nach Spezifikation",
+        "type": "text",
+    },
+    "19": {
+        "name": "Erläuterungen",
+        "type": "text",
+    },
+    "20": {
+        "name": "Verweis auf vergangene Anträge",
+        "type": "text",
+    },
+    "21": {
+        "name": "Wunschtermin für Produkteinsatz",
+        "type": "text",
+    },
+    "22a": {
+        "name": "ChemScan durch",
+        "type": "text",
+    },
+    "22a1": {
+        "name": "ChemScan Datum",
+        "type": "text",
+    },
+    "22a2": {
+        "name": "ChemScan durchgeführt",
+        "type": "btn",
+        "values": {
+            "Ja": "/0",
+            "Nein": "/1"
+        },
+    },
+    "22b": {
+        "name": "ChemScan durch",
+        "type": "text",
+    },
+    "22b1": {
+        "name": "ChemScan Datum",
+        "type": "text",
+    },
+    "22b2": {
+        "name": "ChemScan durchgeführt",
+        "type": "btn",
+        "values": {
+            "Ja": "/1",
+            "Nein": "/0"
+        },
+    },
+    "23a1": {
+        "name": "ChemVV",
+        "type": "text",
+    },
+    "23a2": {
+        "name": "Sonstige",
+        "type": "text",
+    },
+    "23a3": {
+        "name": "KMR (TRGS 905)",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23a4": {
+        "name": "ArbMedVV",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23a5": {
+        "name": "SVHC / REACh XIV",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23a6": {
+        "name": "ChemVV",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23a7": {
+        "name": "AGW (TRGS 900)",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23a8": {
+        "name": "ODIN",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23a9": {
+        "name": "REACh XVII",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23a10": {
+        "name": "Sonstige",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23a11": {
+        "name": "BGW (TRGS 903)",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23a12": {
+        "name": "ERB (Bek 910)",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23a13": {
+        "name": "Ex-Schutz",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23a14": {
+        "name": "Physikalische Gefahr",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23b1": {
+        "name": "ChemVV",
+        "type": "text",
+    },
+    "23b2": {
+        "name": "Sonstige",
+        "type": "text",
+    },
+    "23b3": {
+        "name": "KMR (TRGS 905)",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23b4": {
+        "name": "ArbMedVV",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23b5": {
+        "name": "SVHC / REACh XIV",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23b6": {
+        "name": "ChemVV",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23b7": {
+        "name": "AGW (TRGS 900)",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23b8": {
+        "name": "ODIN",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23b9": {
+        "name": "REACh XVII",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23b10": {
+        "name": "Sonstige",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23b11": {
+        "name": "BGW (TRGS 903)",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23b12": {
+        "name": "ERB (Bek 910)",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23b13": {
+        "name": "Ex-Schutz",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "23b14": {
+        "name": "Physikalische Gefahr",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "24a1": {
+        "name": "AWSV - WGK =",
+        "type": "text",
+    },
+    "24a2": {
+        "name": "ADR - UN Nr. =",
+        "type": "text",
+    },
+    "24a3": {
+        "name": "TRGS 510- Lagerkl. =",
+        "type": "text",
+    },
+    "24a4": {
+        "name": "SVHC PBT",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "24a5": {
+        "name": "AWSV - WGK =",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "24a6": {
+        "name": "ADR - UN Nr. =",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "24a7": {
+        "name": "TRGS 510- Lagerkl. =",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "24a8": {
+        "name": "SVHC vPvB",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "24a9": {
+        "name": "2.BImSchV (KMR Kat1)",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "24a10": {
+        "name": "12.BImSchV (H1, H2, P8)",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "24a11": {
+        "name": "31.BImSchV (VOC)",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "24b1": {
+        "name": "AWSV - WGK =",
+        "type": "text",
+    },
+    "24b2": {
+        "name": "ADR - UN Nr. =",
+        "type": "text",
+    },
+    "24b3": {
+        "name": "TRGS 510- Lagerkl. =",
+        "type": "text",
+    },
+    "24b4": {
+        "name": "SVHC PBT",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "24b5": {
+        "name": "AWSV - WGK =",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "24b6": {
+        "name": "ADR - UN Nr. =",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "24b7": {
+        "name": "TRGS 510- Lagerkl. =",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "24b8": {
+        "name": "SVHC vPvB",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "24b9": {
+        "name": "2.BImSchV (KMR Kat1)",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "24b10": {
+        "name": "12.BImSchV (H1, H2, P8)",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "24b11": {
+        "name": "31.BImSchV (VOC)",
+        "type": "btn",
+        "values": {
+            "Ja": "/Ja",
+            "Nein": "/Off"
+        },
+    },
+    "25a": {
+        "name": "Umweltschutz Name",
+        "type": "text",
+    },
+    "25b": {
+        "name": "Umweltschutz Unterschrift",
+        "type": "sig",
+    },
+    "25c": {
+        "name": "Datum der Umweltschutz Prüfung",
+        "type": "text",
+    },
+    "26": {
+        "name": "Ergebnis der Prüfung für Umweltschutz",
+        "type": "btn",
+        "values": {
+            "Genehmigt": "/0",
+            "Nicht genehmigt": "/1",
+            "Genehmigt mit Einschränkung": "/2"
+        },
+    },
+    "27": {
+        "name": "BImSch-Genehmigung erfoderlich?",
+        "type": "btn",
+        "values": {
+            "Ja": "/0",
+            "Nein": "/1"
+        },
+    },
+    "28": {
+        "name": "AwSV Anlage erforderlich?",
+        "type": "btn",
+        "values": {
+            "Ja": "/0",
+            "Nein": "/1"
+        },
+    },
+    "29": {
+        "name": "Beteiligung Umweltschutz bei Gefährdungsbeurteilung erforderlich?",
+        "type": "btn",
+        "values": {
+            "Ja": "/0",
+            "Nein": "/1"
+        },
+    },
+    "30": {
+        "name": "Zusammenlagerung zu beachten?",
+        "type": "btn",
+        "values": {
+            "Ja": "/0",
+            "Nein": "/1"
+        },
+    },
+    "31": {
+        "name": "Erläuterungen - Erläuterungen zur Freigabe und Hinweise für den Wareneingang.",
+        "type": "text",
+    },
+    "32a": {
+        "name": "Arbeits- & Gesundheitschutz Name",
+        "type": "text",
+    },
+    "32b": {
+        "name": "Arbeits- & Gesundheitschutz Unterschrift",
+        "type": "sig",
+    },
+    "32c": {
+        "name": "Datum der Arbeits- & Gesundheitschutz Prüfung",
+        "type": "text",
+    },
+    "33": {
+        "name": "Ergebnis der Prüfung für Arbeits- & Gesundheitsschutz",
+        "type": "btn",
+        "values": {
+            "Genehmigt": "/2",
+            "Nicht genehmigt": "/1",
+            "Genehmigt mit Einschränkung": "/0"
+        },
+    },
+    "34": {
+        "name": "Produkt ist HS&E-relevant?",
+        "type": "btn",
+        "values": {
+            "Ja": "/0",
+            "Nein": "/1"
+        },
+    },
+    "35": {
+        "name": "Information an Lager erforderlich?",
+        "type": "btn",
+        "values": {
+            "Ja": "/0",
+            "Nein": "/1"
+        },
+    },
+    "36": {
+        "name": "Gefahrstoffspezifische Gefährdungsbeurteilung erforderlich?",
+        "type": "btn",
+        "values": {
+            "Ja": "/0",
+            "Nein": "/1"
+        },
+    },
+    "37": {
+        "name": "Betriebsanweisung erforderlich?",
+        "type": "btn",
+        "values": {
+            "Ja": "/0",
+            "Nein": "/1"
+        },
+    },
+    "38": {
+        "name": "Erläuterungen - Erläuterungen zur Freigabe und Hinweise für den Wareneingang.",
+        "type": "text",
+    },
+    "39": {
+        "name": "Produkt und Lieferantenzulassung",
+        "type": "btn",
+        "values": {
+            "erforderlich und nicht vorhanden": "/0",
+            "erforderlich und vorhanden": "/1",
+            "nicht erforderlich": "/2",
+            "nicht möglich": "/3",
+        },
+    },
+    "39a": {
+        "name": "nicht möglich / Ablehnung Grund:",
+        "type": "text",
+    },
+    "40a": {
+        "name": "Fertigungslabor Name",
+        "type": "text",
+    },
+    "40b": {
+        "name": "Fertigungslabor Unterschrift",
+        "type": "sig",
+    },
+    "40c": {
+        "name": "Datum der Fertigungslabor Prüfung",
+        "type": "text",
+    },
+    "41": {
+        "name": "Haltbarkeit bei Bestellung",
+        "type": "btn",
+        "values": {
+            "Ablauf zu max. 1/4": "/0",
+            "Mindesthaltbarkeit": "/1",
+            "keine Einschränkung": "/2",
+        },
+    },
+    "41a": {
+        "name": "Tagen",
+        "type": "text",
+    },
+    "42": {
+        "name": "Zertifikat (nach DIN EN 10204)",
+        "type": "btn",
+        "values": {
+            "2.1": "/0",
+            "3.1": "/1",
+            "Andere": "/2",
+            "nicht erforderlich": "/3",
+        },
+    },
+    "42a": {
+        "name": "Andere Zertifikat",
+        "type": "text",
+    },
+    "43": {
+        "name": "MLC104-Eintrag erforderlich?",
+        "type": "btn",
+        "values": {
+            "Ja": "/0",
+            "Nein": "/1",
+            "bereits eingetragen": "/2",
+        },
+    },
+    "44": {
+        "name": "OMat-Eintrag erforderlich?",
+        "type": "btn",
+        "values": {
+            "Ja": "/0",
+            "Nein": "/1",
+            "bereits eingetragen": "/2",
+        },
+    },
+    "44a": {
+        "name": "OMat Nr.",
+        "type": "text",
+    },
+    "45": {
+        "name": "Produktzulassung nach:",
+        "type": "text",
+    },
+    "46": {
+        "name": "Lieferantenanforderung / Produktzulassungsforderungen",
+        "type": "text",
+    },
+    "47a": {
+        "name": "Fertigungslabor Name",
+        "type": "text",
+    },
+    "47b": {
+        "name": "Fertigungslabor Unterschrift",
+        "type": "sig",
+    },
+    "47c": {
+        "name": "Datum der Fertigungslabor Prüfung",
+        "type": "text",
+    },
+    "48": {
+        "name": "Zertifikat (nach DIN EN 10204)",
+        "type": "btn",
+        "values": {
+            "2.1": "/0",
+            "3.1": "/1",
+            "Andere": "/2",
+            "nicht erforderlich": "/3",
+        },
+    },
+    "48a": {
+        "name": "Andere Zertifikat",
+        "type": "text",
+    },
+    "49": {
+        "name": "Lieferantenanforderung / Produktzulassungsforderungen",
+        "type": "text",
+    },
+    "50a": {
+        "name": "Normenstelle Name",
+        "type": "text",
+    },
+    "50b": {
+        "name": "Normenstelle Unterschrift",
+        "type": "sig",
+    },
+    "50c": {
+        "name": "Normenstelle Datum",
+        "type": "text",
+    },
+    "51": {
+        "name": "Teilenummer",
+        "type": "text",
+    },
+    "52": {
+        "name": "Erläuterungen bzw. Änderungen",
+        "type": "text",
+    },
+}
+
+def get_field_name_from_dict(field_id):
+    """
+    Get the German field name from PDF_FIELD_DICT.
+    Falls back to field_id if not found.
+    """
+    if field_id in PDF_FIELD_DICT:
+        return PDF_FIELD_DICT[field_id]["name"]
+    return field_id
+
+def get_field_type_from_dict(field_id):
+    """
+    Get the field type from PDF_FIELD_DICT.
+    Falls back to basic PDF type detection if not found.
+    """
+    if field_id in PDF_FIELD_DICT:
+        return PDF_FIELD_DICT[field_id]["type"]
+    return "text"  # Default fallback
+
+def translate_button_value_to_display(field_id, pdf_value):
+    """
+    Convert PDF button values to German display text.
+    Example: "/0" -> "Ja", "/1" -> "Nein"
+    """
+    if field_id in PDF_FIELD_DICT and "values" in PDF_FIELD_DICT[field_id]:
+        values_map = PDF_FIELD_DICT[field_id]["values"]
+        # Look for the display label that maps to this PDF value
+        for display_label, mapped_pdf_value in values_map.items():
+            if mapped_pdf_value == pdf_value:
+                return display_label
+    # Return the original value if no mapping found
+    return str(pdf_value)
+
+def translate_display_value_to_pdf(field_id, display_value):
+    """
+    Convert German display text back to PDF values.
+    Example: "Ja" -> "/0", "Nein" -> "/1"
+    """
+    if field_id in PDF_FIELD_DICT and "values" in PDF_FIELD_DICT[field_id]:
+        values_map = PDF_FIELD_DICT[field_id]["values"]
+        if display_value in values_map:
+            return values_map[display_value]
+    # Return the original value if no mapping found
+    return str(display_value)
+
+def clean_signature_field_data(field_data):
+    """
+    Clean signature field data for JSON serialization.
+    Based on clean_signature_field from pdf_fields.py
+    """
+    if '/FT' in field_data and field_data['/FT'] == '/Sig' and '/V' in field_data:
+        sig_value = field_data['/V']
+        cleaned_sig = {}
+        
+        # Handle various signature components
+        if '/ByteRange' in sig_value:
+            cleaned_sig['ByteRange'] = sig_value['/ByteRange']
+            
+        if '/ContactInfo' in sig_value:
+            cleaned_sig['ContactInfo'] = str(sig_value['/ContactInfo'])
+            
+        if '/Contents' in sig_value:
+            # Convert binary content to base64
+            binary_content = sig_value['/Contents']
+            if isinstance(binary_content, (bytes, PyPDF2.generic.ByteStringObject)):
+                cleaned_sig['Contents'] = base64.b64encode(binary_content).decode('utf-8')
+            else:
+                cleaned_sig['Contents'] = str(binary_content)
+
+        if '/Filter' in sig_value:
+            cleaned_sig['Filter'] = sig_value['/Filter']
+        
+        if '/Location' in sig_value:
+            cleaned_sig['Location'] = sig_value['/Location']
+        
+        if '/M' in sig_value:
+            cleaned_sig['M'] = sig_value['/M']
+            
+        if '/Name' in sig_value:
+            cleaned_sig['Name'] = sig_value['/Name']
+            
+        if '/Reason' in sig_value:
+            cleaned_sig['Reason'] = sig_value['/Reason']
+
+        if '/App' in sig_value:
+            cleaned_sig['App'] = sig_value['/App']
+            
+        if '/SubFilter' in sig_value:
+            cleaned_sig['SubFilter'] = sig_value['/SubFilter']
+                    
+        # Return cleaned signature data
+        return cleaned_sig
+        
+    return field_data
+
+def format_signature_display(signature_data):
+    """
+    Format signature data for display.
+    Based on signature formatting from pdf_decode.py
+    """
+    if isinstance(signature_data, dict):
+        signatory = signature_data.get('Name', 'Unknown')
+        sign_date = signature_data.get('M', '')
+        
+        if sign_date and len(sign_date) >= 16:
+            try:
+                # Parse date format from PDF signature
+                date_str = sign_date[2:16]
+                timezone_str = sign_date[16:].strip()
+                
+                # Convert to datetime
+                dt = datetime.strptime(date_str, '%Y%m%d%H%M%S')
+                
+                # Format for display
+                german_date = dt.strftime('%d.%m.%Y, %H:%M:%S')
+                
+                return f"{signatory} - {german_date} {timezone_str}"
+            except ValueError:
+                pass
+        
+        return f"{signatory} - {sign_date}"
+    
+    return str(signature_data)
 
 def natural_sort_key(s):
     """
@@ -119,7 +1076,8 @@ def extract_pdf_fields_fitz(pdf_path):
 
 def extract_pdf_fields_pypdf2(pdf_path):
     """
-    Extract form fields using PyPDF2 (fallback method).
+    Extract form fields using PyPDF2 with proper German field mapping.
+    Now uses PDF_FIELD_DICT for field names, types, and value translation.
     """
     fields = []
     
@@ -132,31 +1090,66 @@ def extract_pdf_fields_pypdf2(pdf_path):
             # Get all form fields
             form_fields = reader.get_fields()
             
-            # Process each field
+            # Process each field with natural sorting
             field_ids = sorted(form_fields.keys(), key=natural_sort_key)
             for field_id in field_ids:
                 field = form_fields[field_id]
                 
-                # Get field type
-                field_type = field.get('/FT', 'Unknown')
+                # Remove /Kids entries that can cause issues
+                if '/Kids' in field:
+                    del field['/Kids']
+                
+                # Get basic field type from PDF
+                pdf_field_type = field.get('/FT', 'Unknown')
                 
                 # Get field value and clean it for JSON serialization
                 raw_value = field.get('/V', '')
                 field_value = clean_value(raw_value)
                 
-                # Get human-readable name from /TU (tooltip/description) or use field_id as fallback
-                field_name = field.get('/TU', field_id)
-                if field_name:
-                    field_name = clean_value(field_name)
-                else:
-                    field_name = field_id
+                # Use PDF_FIELD_DICT for field metadata
+                field_name = get_field_name_from_dict(field_id)
+                field_type = get_field_type_from_dict(field_id)
                 
-                # Add field to result
+                # Handle different field types properly
+                if pdf_field_type == '/Tx':  # Text field
+                    # For text fields, just use the cleaned value
+                    processed_value = field_value
+                    
+                elif pdf_field_type == '/Btn':  # Button field
+                    # For button fields, translate PDF values to German display text
+                    if field_value:
+                        processed_value = translate_button_value_to_display(field_id, field_value)
+                    else:
+                        processed_value = ""
+                    
+                elif pdf_field_type == '/Sig':  # Signature field
+                    # For signature fields, clean and format the data
+                    if field_value:
+                        cleaned_sig = clean_signature_field_data(field)
+                        if cleaned_sig != field:
+                            # If signature was cleaned, format it for display
+                            processed_value = format_signature_display(cleaned_sig)
+                        else:
+                            processed_value = "Digital Signature Present"
+                    else:
+                        processed_value = ""
+                        
+                else:
+                    # Default handling for unknown field types
+                    processed_value = field_value
+                
+                # Validate field exists in our dictionary
+                if field_id not in PDF_FIELD_DICT:
+                    print(f"Warning: Field '{field_id}' not found in PDF_FIELD_DICT")
+                
+                # Add field to result with proper type mapping
                 fields.append({
                     'id': field_id,
                     'name': field_name,
-                    'type': str(field_type),
-                    'value': field_value
+                    'type': f"/{pdf_field_type[1:]}" if pdf_field_type.startswith('/') else f"/{pdf_field_type}",  # Keep PDF format for compatibility
+                    'value': processed_value,
+                    'dict_type': field_type,  # Add the dictionary type for reference
+                    'raw_value': field_value,  # Keep raw value for debugging
                 })
     
     return fields
@@ -311,10 +1304,64 @@ def remove_appearance_streams_from_pdf(pdf_path):
         print(f"Error removing appearance streams: {e}")
         return False
 
+def refresh_pdf_fields_for_adobe(pdf_path):
+    """
+    Refresh PDF fields for better Adobe Acrobat compatibility.
+    Uses the field refresh technique from refresh_text_fields.py to force Adobe
+    to regenerate appearance streams without removing them completely.
+    """
+    try:
+        print(f"Refreshing PDF fields in: {pdf_path}")
+        doc = fitz.open(pdf_path)
+        
+        fields_refreshed = 0
+        
+        for page_num in range(len(doc)):
+            page = doc[page_num]
+            widgets = page.widgets()
+            
+            for widget in widgets:
+                if widget.field_name and widget.field_type == fitz.PDF_WIDGET_TYPE_TEXT:
+                    try:
+                        # Get original value
+                        original_value = str(widget.field_value or '')
+                        
+                        if original_value.strip():  # Only refresh fields with content
+                            # Use the "newline refresh" technique: add newline, then remove it
+                            # This forces Adobe to regenerate the appearance without data loss
+                            temp_value = original_value + "\n"
+                            widget.field_value = temp_value
+                            widget.update()
+                            
+                            # Restore original value
+                            widget.field_value = original_value
+                            widget.update()
+                            
+                            fields_refreshed += 1
+                            print(f"  ✅ Refreshed field: {widget.field_name}")
+                    
+                    except Exception as widget_error:
+                        print(f"  ⚠️ Could not refresh field {widget.field_name}: {widget_error}")
+        
+        if fields_refreshed > 0:
+            # Save with incremental update
+            doc.saveIncr()
+            print(f"✅ Successfully refreshed {fields_refreshed} text fields")
+        else:
+            print("ℹ️ No text fields found to refresh")
+            
+        doc.close()
+        return True
+        
+    except Exception as e:
+        print(f"❌ Error refreshing PDF fields: {e}")
+        return False
+
 def save_pdf_changes(template_path, fields):
     """
     Save changes back to the original PDF file.
     Uses PyMuPDF for reliable form field updates and removes appearance streams to prevent clipping.
+    Now properly converts German display values back to PDF values and handles combined fields.
     """
     # Use PyMuPDF approach directly - it's more reliable for preserving appearances
     if not FITZ_AVAILABLE:
@@ -324,13 +1371,61 @@ def save_pdf_changes(template_path, fields):
         # Open the PDF document with PyMuPDF
         doc = fitz.open(template_path)
         
-        # Create a dictionary of field updates
+        # Create a dictionary of field updates with proper value conversion
         field_updates = {}
         for field in fields:
             field_id = field.get('id', '')
             field_value = field.get('value', '')
+            dict_type = field.get('dict_type', 'text')
+            
             if field_id:
-                field_updates[field_id] = str(field_value)
+                # Convert German display values back to PDF values for button fields
+                if dict_type == 'btn' and field_value:
+                    # Handle the new German "Ja"/"Nein" format
+                    if field_value in ['Ja', 'ja', 'Yes', 'yes', 'True', 'true', '1', 1, True]:
+                        # Find the PDF value for "checked" state
+                        pdf_value = translate_display_value_to_pdf(field_id, 'Ja')
+                        if not pdf_value:  # Fallback if translation fails
+                            # Check if this field uses /Ja format or /0 format
+                            field_def = PDF_FIELD_DICT.get(field_id, {})
+                            values = field_def.get('values', {})
+                            if '/Ja' in values.values():
+                                pdf_value = '/Ja'
+                            else:
+                                pdf_value = '/0'
+                        field_updates[field_id] = pdf_value
+                    elif field_value in ['Nein', 'nein', 'No', 'no', 'False', 'false', '0', 0, False]:
+                        # Find the PDF value for "unchecked" state
+                        pdf_value = translate_display_value_to_pdf(field_id, 'Nein')
+                        if not pdf_value:  # Fallback if translation fails
+                            # Check if this field uses /Off format or /1 format
+                            field_def = PDF_FIELD_DICT.get(field_id, {})
+                            values = field_def.get('values', {})
+                            if '/Off' in values.values():
+                                pdf_value = '/Off'
+                            else:
+                                pdf_value = '/1'
+                        field_updates[field_id] = pdf_value
+                    else:
+                        # Try direct translation for other values (radio buttons)
+                        pdf_value = translate_display_value_to_pdf(field_id, field_value)
+                        # If translation returns the same value, it means no mapping was found
+                        # For radio buttons, we should still save the translated value
+                        if pdf_value != field_value:
+                            field_updates[field_id] = pdf_value
+                        else:
+                            # Check if this is a valid display value that should be translated
+                            field_def = PDF_FIELD_DICT.get(field_id, {})
+                            values = field_def.get('values', {})
+                            if field_value in values:
+                                # This is a valid German display text, use its PDF value
+                                field_updates[field_id] = values[field_value]
+                            else:
+                                # Fallback to original value
+                                field_updates[field_id] = field_value
+                else:
+                    # For text and signature fields, use the value as-is
+                    field_updates[field_id] = str(field_value)
         
         # Update form fields using PyMuPDF
         updated_count = 0
@@ -346,16 +1441,33 @@ def save_pdf_changes(template_path, fields):
                         continue
                         
                     new_value = field_updates[widget.field_name]
+                    field_dict_type = get_field_type_from_dict(widget.field_name)
+                    
                     try:
-                        # Handle different field types (same as standalone script)
+                        # Handle different field types based on both PyMuPDF type and our dictionary type
                         if widget.field_type_string in ['Text', 'FreeText']:
                             widget.field_value = new_value
                         elif widget.field_type_string in ['CheckBox', 'RadioButton']:
-                            # For checkboxes/radio buttons, handle boolean values
-                            if new_value in ['/0', '/Yes', 'True', 'true', '1', True]:
-                                widget.field_value = True
+                            # For radio buttons, use the PDF value directly 
+                            # For checkboxes, convert to boolean
+                            if widget.field_type_string == 'RadioButton':
+                                # Radio buttons need the exact PDF value
+                                widget.field_value = new_value
                             else:
-                                widget.field_value = False
+                                # Checkboxes need boolean values
+                                if field_dict_type == 'btn':
+                                    # Check for "checked" values in various formats
+                                    checked_values = ['/0', '/Yes', '/Ja', 'True', 'true', '1', True, 1]
+                                    if new_value in checked_values:
+                                        widget.field_value = True
+                                    else:
+                                        widget.field_value = False
+                                else:
+                                    # Fallback to original logic
+                                    if new_value in ['/0', '/Yes', '/Ja', 'True', 'true', '1', True, 1]:
+                                        widget.field_value = True
+                                    else:
+                                        widget.field_value = False
                         else:
                             # Default handling for other field types
                             widget.field_value = new_value
@@ -366,29 +1478,23 @@ def save_pdf_changes(template_path, fields):
                     except Exception as widget_error:
                         print(f"Error updating field '{widget.field_name}': {widget_error}")
         
-        # Save the document using the same approach as the standalone script
-        # Always use temporary file to avoid encryption/incremental save issues
-        temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.pdf')
-        temp_path = temp_file.name
-        temp_file.close()
+        # Save the document using incremental save for better compatibility
         
         try:
-            # Save to temporary file first (like the standalone script)
-            doc.save(temp_path)
+            # Use incremental save to avoid warnings and preserve compatibility
+            doc.saveIncr()
             doc.close()
             
-            # Replace original file with updated version
-            shutil.move(temp_path, template_path)
+            # Don't use temporary file for incremental save
+            print("✅ PDF saved using incremental save method")
             
-            # IMPORTANT: Remove appearance streams to fix text clipping issues
-            # This forces PDF viewers to regenerate appearance streams with proper text layout
-            print("Applying text clipping fix...")
-            remove_appearance_streams_from_pdf(template_path)
+            # IMPORTANT: Use field refresh technique instead of removing appearance streams
+            # This is more compatible with Adobe Acrobat
+            print("🔄 Refreshing PDF fields for Adobe Acrobat compatibility...")
+            refresh_pdf_fields_for_adobe(template_path)
             
         except Exception as save_error:
-            # Clean up temporary file if it exists
-            if os.path.exists(temp_path):
-                os.remove(temp_path)
+            # Close document on error
             doc.close()
             raise save_error
         
@@ -535,32 +1641,63 @@ def get_field_type_and_value(field):
     
     return field_type, field_value
 
+def validate_field_value(field_id, value):
+    """
+    Validate field values against PDF_FIELD_DICT definitions.
+    Returns True if valid, False otherwise.
+    """
+    if field_id not in PDF_FIELD_DICT:
+        return False
+    
+    field_def = PDF_FIELD_DICT[field_id]
+    field_type = field_def.get('type', 'text')
+    
+    if field_type == 'btn' and 'values' in field_def:
+        # For button fields, check if the value is in the allowed values
+        allowed_values = list(field_def['values'].keys()) + list(field_def['values'].values())
+        return value in allowed_values
+    
+    # For text and sig fields, any value is acceptable
+    return True
+
 def get_field_metadata():
     """
     Return the metadata for PDF form fields.
-    This maps field IDs to human-readable names and types.
+    Now uses the PDF_FIELD_DICT instead of hardcoded values.
     """
-    # This is a simplified version - you might want to load this from a config file
-    return {
-        "1": {
-            "name": "Antragsnummer",
-            "type": "text",
-        },
-        "2a": {
-            "name": "Antragsteller Name",
-            "type": "text",
-        },
-        "2b": {
-            "name": "Antragserstellungsdatum",
-            "type": "text",
-        },
-        "2c": {
-            "name": "Antragsteller Abteilung",
-            "type": "text",
-        },
-        # Add more field definitions as needed
-        # This is just a sample - you should include all fields from pdf_decode.py
-    }
+    # Return a copy of the PDF_FIELD_DICT for external use
+    return PDF_FIELD_DICT.copy()
+
+def get_field_options(field_id):
+    """
+    Get field options for button fields from PDF_FIELD_DICT.
+    Returns a list of (display_text, pdf_value) tuples.
+    """
+    if field_id not in PDF_FIELD_DICT:
+        return []
+    
+    field_def = PDF_FIELD_DICT[field_id]
+    if field_def.get('type') != 'btn' or 'values' not in field_def:
+        return []
+    
+    # Return list of (display_text, pdf_value) tuples
+    return list(field_def['values'].items())
+
+def get_fields_by_type(field_type):
+    """
+    Get all fields of a specific type from PDF_FIELD_DICT.
+    Useful for grouping fields in the UI.
+    """
+    fields_of_type = []
+    for field_id, field_def in PDF_FIELD_DICT.items():
+        if field_def.get('type') == field_type:
+            fields_of_type.append({
+                'id': field_id,
+                'name': field_def['name'],
+                'type': field_type,
+                'values': field_def.get('values', {})
+            })
+    return fields_of_type
 
 def fill_pdf_form(template_path, form_data):
     """

@@ -42,3 +42,65 @@
 2025-07-02 10:50:18,025 - normieapp.services.outlook_service - WARNING - Email account 'irm-standardisation-office@rolls-royce.com' not found. Trying fallback account 'ali.maung@rolls-royce.com'.
 2025-07-02 10:50:18,026 - normieapp.services.outlook_service - WARNING - Email account 'irm-standardisation-office@rolls-royce.com' not found. Trying fallback account 'microfilm.rollsroyce@outlook.com'.
 2025-07-02 10:50:18,026 - normieapp.services.outlook_service - INFO - Using fallback email account: microfilm.rollsroyce@outlook.com
+2025-07-03 08:10:19,780 - normieapp.services.outlook_service - DEBUG - Initializing OutlookService
+2025-07-03 08:10:19,780 - normieapp.services.outlook_service - DEBUG - COM initialized successfully
+2025-07-03 08:10:19,780 - normieapp.services.outlook_service - DEBUG - Email cache directory: Y:\normie\normie\normieapp\static\normieapp\data\email_cache
+2025-07-03 08:10:19,780 - normieapp.services.outlook_service - INFO - Debug logs are being written to: Y:\normie\normie\logs\outlook_debug.log
+2025-07-03 08:10:19,780 - normieapp.services.outlook_service - DEBUG - Getting account for email: irm-standardisation-office@rolls-royce.com
+2025-07-03 08:10:19,781 - normieapp.services.outlook_service - DEBUG - Getting MAPI namespace
+2025-07-03 08:10:19,781 - normieapp.services.outlook_service - DEBUG - Getting Outlook application object
+2025-07-03 08:10:50,516 - normieapp.services.outlook_service - ERROR - Failed to connect to Outlook: (-2146959355, 'Server execution failed', None, None)
+2025-07-03 08:10:50,537 - normieapp.services.outlook_service - DEBUG - Stack trace: Traceback (most recent call last):
+  File "C:\Users\user1\AppData\Local\Programs\Python\Python313\Lib\site-packages\win32com\client\dynamic.py", line 80, in _GetGoodDispatch
+    IDispatch = pythoncom.connect(IDispatch)
+pywintypes.com_error: (-2147221021, 'Operation unavailable', None, None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "Y:\normie\normie\normieapp\services\outlook_service.py", line 903, in _get_outlook_application
+    app = win32com.client.Dispatch("Outlook.Application")
+  File "C:\Users\user1\AppData\Local\Programs\Python\Python313\Lib\site-packages\win32com\client\__init__.py", line 114, in Dispatch
+    dispatch, userName = dynamic._GetGoodDispatchAndUserName(dispatch, userName, clsctx)
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user1\AppData\Local\Programs\Python\Python313\Lib\site-packages\win32com\client\dynamic.py", line 100, in _GetGoodDispatchAndUserName
+    return (_GetGoodDispatch(IDispatch, clsctx), userName)
+            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user1\AppData\Local\Programs\Python\Python313\Lib\site-packages\win32com\client\dynamic.py", line 82, in _GetGoodDispatch
+    IDispatch = pythoncom.CoCreateInstance(
+        IDispatch, None, clsctx, pythoncom.IID_IDispatch
+    )
+pywintypes.com_error: (-2146959355, 'Server execution failed', None, None)
+
+2025-07-03 08:10:50,537 - normieapp.services.outlook_service - ERROR - Failed to get MAPI namespace: Could not connect to Microsoft Outlook. Please ensure Outlook is installed and running.
+2025-07-03 08:10:50,538 - normieapp.services.outlook_service - DEBUG - Stack trace: Traceback (most recent call last):
+  File "C:\Users\user1\AppData\Local\Programs\Python\Python313\Lib\site-packages\win32com\client\dynamic.py", line 80, in _GetGoodDispatch
+    IDispatch = pythoncom.connect(IDispatch)
+pywintypes.com_error: (-2147221021, 'Operation unavailable', None, None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "Y:\normie\normie\normieapp\services\outlook_service.py", line 903, in _get_outlook_application
+    app = win32com.client.Dispatch("Outlook.Application")
+  File "C:\Users\user1\AppData\Local\Programs\Python\Python313\Lib\site-packages\win32com\client\__init__.py", line 114, in Dispatch
+    dispatch, userName = dynamic._GetGoodDispatchAndUserName(dispatch, userName, clsctx)
+                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user1\AppData\Local\Programs\Python\Python313\Lib\site-packages\win32com\client\dynamic.py", line 100, in _GetGoodDispatchAndUserName
+    return (_GetGoodDispatch(IDispatch, clsctx), userName)
+            ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\user1\AppData\Local\Programs\Python\Python313\Lib\site-packages\win32com\client\dynamic.py", line 82, in _GetGoodDispatch
+    IDispatch = pythoncom.CoCreateInstance(
+        IDispatch, None, clsctx, pythoncom.IID_IDispatch
+    )
+pywintypes.com_error: (-2146959355, 'Server execution failed', None, None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "Y:\normie\normie\normieapp\services\outlook_service.py", line 915, in _get_namespace
+    app = self._get_outlook_application()
+  File "Y:\normie\normie\normieapp\services\outlook_service.py", line 909, in _get_outlook_application
+    raise ConnectionError("Could not connect to Microsoft Outlook. Please ensure Outlook is installed and running.")
+ConnectionError: Could not connect to Microsoft Outlook. Please ensure Outlook is installed and running.
+
