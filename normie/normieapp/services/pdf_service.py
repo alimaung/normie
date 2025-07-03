@@ -114,14 +114,14 @@ PDF_FIELD_DICT = {
         "name": "Bereich Teamleiter*innen",
         "type": "text",
     },
-         "13": {
-         "name": "Erzeugnisrelevant, besteht Kontakt mit Luftfahrtteilen? ja (Produktzulassung ist erforderlich) nein (Produktzulassung ist nicht erforderlich)",
-         "type": "btn",
-         "values": {
-             "Ja": "/0",
-             "Nein": "/1"
-         },
-     },
+    "13": {
+        "name": "Erzeugnisrelevant, besteht Kontakt mit Luftfahrtteilen?",
+        "type": "btn",
+        "values": {
+            "Ja (Produktzulassung ist erforderlich)": "/0",
+            "Nein (Produktzulassung ist nicht erforderlich)": "/1"
+        },
+    },
     "14": {
         "name": "Nutzung",
         "type": "btn",
@@ -1488,10 +1488,10 @@ def save_pdf_changes(template_path, fields):
             # Don't use temporary file for incremental save
             print("✅ PDF saved using incremental save method")
             
-            # IMPORTANT: Use field refresh technique instead of removing appearance streams
-            # This is more compatible with Adobe Acrobat
-            print("🔄 Refreshing PDF fields for Adobe Acrobat compatibility...")
-            refresh_pdf_fields_for_adobe(template_path)
+            # IMPORTANT: Apply the more effective text clipping fix
+            # Remove appearance streams from text fields to prevent clipping
+            print("🔧 Removing appearance streams from text fields to fix clipping...")
+            remove_appearance_streams_from_pdf(template_path)
             
         except Exception as save_error:
             # Close document on error

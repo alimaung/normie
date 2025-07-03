@@ -4,9 +4,6 @@
 {% load pdf_extras %}
 
 {% block extra_css %}
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 <link rel="stylesheet" href="{% static 'normieapp/css/directory.css' %}">
 <link rel="stylesheet" href="{% static 'normieapp/css/pdf_form.css' %}">
@@ -44,7 +41,7 @@
     border-radius: 4px;
     cursor: pointer;
     font-size: 14px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Sofia Sans', sans-serif;
     min-width: 40px;
     display: flex;
     align-items: center;
@@ -81,6 +78,7 @@
 .combined-field-container .input-container {
     flex: 1;
     min-width: 200px;
+    margin-left: 47px;
 }
 
 .combined-input {
@@ -239,6 +237,225 @@ input.field-value:focus, textarea.field-value:focus {
 .dynamic-label:empty {
     display: none;
 }
+
+/* File Upload Styling */
+.checkbox-container.has-file-upload {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.file-upload-container {
+    display: none;
+    flex: 1;
+    width: 100%;
+    margin-left: 20px;
+    min-width: 0;
+}
+
+.file-upload-container.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.files-grid {
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.file-slot {
+    flex: 1;
+    min-width: 80px;
+    padding: 6px;
+    border: 1px dashed #dadce0;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.file-upload-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 28px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    padding: 3px 6px;
+    width: 100%;
+}
+
+.file-upload-area:hover {
+    background-color: rgba(26, 115, 232, 0.04);
+    border-color: #1a73e8;
+}
+
+.file-upload-area.has-file {
+    background-color: rgba(76, 175, 80, 0.04);
+    border-color: #4caf50;
+}
+
+.file-upload-content {
+    text-align: center;
+    color: #5f6368;
+}
+
+.file-upload-icon {
+    font-size: 14px;
+    color: #1a73e8;
+    margin-bottom: 1px;
+}
+
+.file-upload-text {
+    font-size: 11px;
+    font-weight: 500;
+    margin-bottom: 0;
+    line-height: 1.1;
+}
+
+.file-upload-hint {
+    font-size: 9px;
+    color: #9aa0a6;
+    line-height: 1.0;
+}
+
+.file-selected {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 6px;
+    background-color: #e8f5e8;
+    border-radius: 4px;
+    border: 1px solid #4caf50;
+    min-height: 28px;
+    width: 100%;
+    height: 100%;
+}
+
+.file-slot.narrow .file-selected {
+    gap: 3px;
+    padding: 3px;
+}
+
+.file-slot.narrow .file-selected .file-info {
+    min-width: 0;
+}
+
+.file-slot.narrow .file-selected .file-name {
+    font-size: 10px !important;
+    margin-bottom: 1px;
+}
+
+.file-slot.narrow .file-selected .file-size {
+    font-size: 8px !important;
+}
+
+.file-slot.narrow .file-selected .file-icon {
+    font-size: 12px !important;
+}
+
+.file-slot.narrow .file-selected .file-remove {
+    font-size: 10px !important;
+    width: 16px;
+    height: 16px;
+}
+
+/* Upload slot inherits same flex behavior as file slots */
+
+.file-remove {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+    margin-left: auto;
+}
+
+.file-remove:hover {
+    color: #d32f2f;
+    background-color: rgba(211, 47, 47, 0.1);
+}
+
+.file-selected .file-icon {
+    font-size: 16px;
+    color: #4caf50;
+    flex-shrink: 0;
+}
+
+.file-selected .file-info {
+    flex: 1;
+    min-width: 0;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    background: transparent !important;
+    border: none !important;
+    text-align: center;
+    overflow: hidden;
+}
+
+.file-selected .file-name {
+    font-weight: 500;
+    color: #1d1d1f !important;
+    margin-bottom: 1px;
+    margin-left: 1px;
+    font-size: 13px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    text-align: center;
+    max-width: 100%;
+    width: 100%;
+}
+
+.file-selected .file-size {
+    font-size: 11px !important;
+    color: #666 !important;
+    line-height: 1.1;
+    display: block !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    text-align: center;
+    margin: 0;
+}
+
+.file-selected .file-remove {
+    background: none;
+    border: none;
+    color: #f44336;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 2px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-selected .file-remove:hover {
+    background-color: rgba(244, 67, 54, 0.1);
+}
+
+.file-upload-input {
+    display: none;
+}
 </style>
 {% endblock %}
 
@@ -258,9 +475,12 @@ input.field-value:focus, textarea.field-value:focus {
             <button id="save-form" class="btn btn-save">
                 <i class="fas fa-save"></i> {% trans "Save to Document" %}
             </button>
-            <a href="{% url 'pdf_download' form_id=form_id %}" class="btn btn-download">
+            <button id="view-form" class="btn btn-view" disabled>
+                <i class="fas fa-eye"></i> {% trans "View PDF" %}
+            </button>
+            <button id="download-form" class="btn btn-download" disabled>
                 <i class="fas fa-download"></i> {% trans "Download Updated PDF" %}
-            </a>
+            </button>
         </div>
     </div>
 
@@ -270,141 +490,504 @@ input.field-value:focus, textarea.field-value:focus {
         <div class="form-subtitle">Antrag für Teile und Stoffe - Consumable Material Supply Request</div>
     </div>
     
+    <!-- Key Fields Header -->
+    <div class="key-fields-header">
+        {% for field in fields %}
+            {% if field.id == '1' %}
+                <div class="key-field primary-field">
+                    <div class="key-field-label">
+                        <span class="key-field-id">{{ field.id }}</span>
+                        <span class="key-field-description">{{ field.name }}</span>
+                    </div>
+                    <div class="key-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields %}
+            {% if field.id == '51' %}
+                <div class="key-field secondary-field">
+                    <div class="key-field-label">
+                        <span class="key-field-id">{{ field.id }}</span>
+                        <span class="key-field-description">{{ field.name }}</span>
+                    </div>
+                    <div class="key-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
     <form id="pdf-edit-form">
         {% csrf_token %}
         
         <!-- Antragsteller Section -->
-        <div class="section-header">
-            <i class="fas fa-user"></i>
-            Antragsteller (Applicant Information)
-        </div>
-        <table class="form-table">
-            {% for field in fields|get_fields_for_section:"applicant" %}
+        <div class="section-card">
+            <div class="section-header">
+                <i class="fas fa-user"></i>
+                Antragsteller (Applicant Information)
+            </div>
+            <!-- Special Row Layout for 2a, 2b, 2c, 2d -->
+            <div class="four-column-row">
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '2a' %}
+                        <div class="column-field flex-1-2">
+                            <div class="column-field-header">
+                                <span class="column-field-id">{{ field.id }}</span>
+                                <span class="column-field-title">{{ field.name }}</span>
+                            </div>
+                            <div class="column-field-input">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '2b' %}
+                        <div class="column-field flex-0-8">
+                            <div class="column-field-header">
+                                <span class="column-field-id">{{ field.id }}</span>
+                                <span class="column-field-title">{{ field.name }}</span>
+                            </div>
+                            <div class="column-field-input">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '2c' %}
+                        <div class="column-field flex-0-5">
+                            <div class="column-field-header">
+                                <span class="column-field-id">{{ field.id }}</span>
+                                <span class="column-field-title">{{ field.name }}</span>
+                            </div>
+                            <div class="column-field-input">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '2d' %}
+                        <div class="column-field flex-1">
+                            <div class="column-field-header">
+                                <span class="column-field-id">{{ field.id }}</span>
+                                <span class="column-field-title">{{ field.name }}</span>
+                            </div>
+                            <div class="column-field-input">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            
+            <!-- Field 3 in its own row -->
+            <table class="form-table">
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '3' %}
+                        <tr class="form-row">
+                            <td class="field-label">
+                                <div class="field-id">{{ field.id }}</div>
+                                <div class="field-description">{{ field.name }}</div>
+                            </td>
+                            <td class="field-input">
+                                {% render_field_input field fields %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+            
+            <!-- Fields 4 and 7 in one row -->
+            <div class="two-column-row">
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '4' %}
+                        <div class="column-field two-col-field">
+                            <div class="column-field-header">
+                                <span class="column-field-id">{{ field.id }}</span>
+                                <span class="column-field-title">{{ field.name }}</span>
+                            </div>
+                            <div class="column-field-input">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '7' %}
+                        <div class="column-field two-col-field">
+                            <div class="column-field-header">
+                                <span class="column-field-id">{{ field.id }}</span>
+                                <span class="column-field-title">{{ field.name }}</span>
+                            </div>
+                            <div class="column-field-input">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            
+            <!-- Fields 5 and 6 in one table row -->
+            <table class="form-table">
                 <tr class="form-row">
-                    <td class="field-label">
-                        <div class="field-id">{{ field.id }}</div>
-                        <div class="field-description">{{ field.name }}</div>
+                    <td class="field-label" style="width: 15%;">
+                        <div class="field-id">5</div>
+                        {% for field in fields|get_fields_for_section:"applicant" %}
+                            {% if field.id == '5' %}
+                                <div class="field-description">{{ field.name }}</div>
+                            {% endif %}
+                        {% endfor %}
                     </td>
-                    <td class="field-input">
-                        {% render_field_input field fields %}
+                    <td class="field-input" style="width: 35%;">
+                        {% for field in fields|get_fields_for_section:"applicant" %}
+                            {% if field.id == '5' %}
+                                <div class="stacked-radio">
+                                    {% render_field_input field fields %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="field-label" style="width: 15%;">
+                        <div class="field-id">6</div>
+                        {% for field in fields|get_fields_for_section:"applicant" %}
+                            {% if field.id == '6' %}
+                                <div class="field-description">{{ field.name }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="field-input" style="width: 35%;">
+                        {% for field in fields|get_fields_for_section:"applicant" %}
+                            {% if field.id == '6' %}
+                                <div class="stacked-radio">
+                                    {% render_field_input field fields %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
                     </td>
                 </tr>
-            {% endfor %}
-        </table>
+            </table>
+            
+            <!-- Fields 8 and 9 in one row -->
+            <div class="two-column-row">
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '8' %}
+                        <div class="column-field two-col-field">
+                            <div class="column-field-header">
+                                <span class="column-field-id">{{ field.id }}</span>
+                                <span class="column-field-title">{{ field.name }}</span>
+                            </div>
+                            <div class="column-field-input">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '9' %}
+                        <div class="column-field two-col-field">
+                            <div class="column-field-header">
+                                <span class="column-field-id">{{ field.id }}</span>
+                                <span class="column-field-title">{{ field.name }}</span>
+                            </div>
+                            <div class="column-field-input">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            
+            <!-- Fields 12a and 12b in one row -->
+            <div class="two-column-row">
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '12a' %}
+                        <div class="column-field two-col-field">
+                            <div class="column-field-header">
+                                <span class="column-field-id">{{ field.id }}</span>
+                                <span class="column-field-title">{{ field.name }}</span>
+                            </div>
+                            <div class="column-field-input">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '12b' %}
+                        <div class="column-field two-col-field">
+                            <div class="column-field-header">
+                                <span class="column-field-id">{{ field.id }}</span>
+                                <span class="column-field-title">{{ field.name }}</span>
+                            </div>
+                            <div class="column-field-input">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            
+            <!-- Fields 14, 15a, 15b combined in one table row -->
+            <table class="form-table">
+                <tr class="form-row">
+                    <td class="field-label" style="width: 10%;">
+                        <div class="field-id">14</div>
+                        {% for field in fields|get_fields_for_section:"applicant" %}
+                            {% if field.id == '14' %}
+                                <div class="field-description">{{ field.name }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="field-input" style="width: 30%;">
+                        {% for field in fields|get_fields_for_section:"applicant" %}
+                            {% if field.id == '14' %}
+                                <div class="stacked-radio">
+                                    {% render_field_input field fields %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="field-label" style="width: 10%;">
+                        <div class="field-id">15</div>
+                        <div class="field-description">SAP und Lager</div>
+                    </td>
+                    <td class="field-input" style="width: 50%;">
+                        {% for field in fields|get_fields_for_section:"applicant" %}
+                            {% if field.id == '15a' %}
+                                <div class="inline-radio-field">
+                                    <span class="radio-field-label">{{ field.name }}:</span>
+                                    {% render_field_input field fields %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                        {% for field in fields|get_fields_for_section:"applicant" %}
+                            {% if field.id == '15b' %}
+                                <div class="inline-radio-field">
+                                    <span class="radio-field-label">{{ field.name }}:</span>
+                                    {% render_field_input field fields %}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+            </table>
+            
+            <!-- Fields 16, 17a, 17b, 17c in four-column row -->
+            <div class="four-column-row">
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '16' %}
+                        <div class="column-field flex-1">
+                            <div class="column-field-header">
+                                <span class="column-field-id">{{ field.id }}</span>
+                                <span class="column-field-title">{{ field.name }}</span>
+                            </div>
+                            <div class="column-field-input">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '17a' %}
+                        <div class="column-field flex-1">
+                            <div class="column-field-header">
+                                <span class="column-field-id">{{ field.id }}</span>
+                                <span class="column-field-title">{{ field.name }}</span>
+                            </div>
+                            <div class="column-field-input">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '17b' %}
+                        <div class="column-field flex-1">
+                            <div class="column-field-header">
+                                <span class="column-field-id">{{ field.id }}</span>
+                                <span class="column-field-title">{{ field.name }}</span>
+                            </div>
+                            <div class="column-field-input">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '17c' %}
+                        <div class="column-field flex-1">
+                            <div class="column-field-header">
+                                <span class="column-field-id">{{ field.id }}</span>
+                                <span class="column-field-title">{{ field.name }}</span>
+                            </div>
+                            <div class="column-field-input">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </div>
+            
+            <!-- Regular Table Layout for Other Fields -->
+            <table class="form-table">
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id != '1' and field.id != '2a' and field.id != '2b' and field.id != '2c' and field.id != '2d' and field.id != '3' and field.id != '4' and field.id != '5' and field.id != '6' and field.id != '7' and field.id != '8' and field.id != '9' and field.id != '12a' and field.id != '12b' and field.id != '14' and field.id != '15a' and field.id != '15b' and field.id != '16' and field.id != '17a' and field.id != '17b' and field.id != '17c' %}
+                        <tr class="form-row">
+                            <td class="field-label">
+                                <div class="field-id">{{ field.id }}</div>
+                                <div class="field-description">{{ field.name }}</div>
+                            </td>
+                            <td class="field-input">
+                                {% render_field_input field fields %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
+        </div>
         
         <!-- ChemScan Part A Section -->
-        <div class="section-header">
-            <i class="fas fa-flask"></i>
-            ChemScan (Part A) - Ergebnis der Prüfung für Arbeitsschutz / Gesundheitsschutz
+        <div class="section-card">
+            <div class="section-header">
+                <i class="fas fa-flask"></i>
+                ChemScan (Part A) - Ergebnis der Prüfung für Arbeitsschutz / Gesundheitsschutz
+            </div>
+            <table class="form-table">
+                {% for field in fields|get_fields_for_section:"chemscan_a" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            {% render_field_input field fields %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
-        <table class="form-table">
-            {% for field in fields|get_fields_for_section:"chemscan_a" %}
-                <tr class="form-row">
-                    <td class="field-label">
-                        <div class="field-id">{{ field.id }}</div>
-                        <div class="field-description">{{ field.name }}</div>
-                    </td>
-                    <td class="field-input">
-                        {% render_field_input field fields %}
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
         
         <!-- ChemScan Part B Section -->
-        <div class="section-header">
-            <i class="fas fa-flask"></i>
-            ChemScan (Part B) - Falls erforderlich
+        <div class="section-card">
+            <div class="section-header">
+                <i class="fas fa-flask"></i>
+                ChemScan (Part B) - Falls erforderlich
+            </div>
+            <table class="form-table">
+                {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            {% render_field_input field fields %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
-        <table class="form-table">
-            {% for field in fields|get_fields_for_section:"chemscan_b" %}
-                <tr class="form-row">
-                    <td class="field-label">
-                        <div class="field-id">{{ field.id }}</div>
-                        <div class="field-description">{{ field.name }}</div>
-                    </td>
-                    <td class="field-input">
-                        {% render_field_input field fields %}
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
         
         <!-- Umweltschutz Section -->
-        <div class="section-header">
-            <i class="fas fa-leaf"></i>
-            Umweltschutz (Environmental Protection)
+        <div class="section-card">
+            <div class="section-header">
+                <i class="fas fa-leaf"></i>
+                Umweltschutz (Environmental Protection)
+            </div>
+            <table class="form-table">
+                {% for field in fields|get_fields_for_section:"environment" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            {% render_field_input field fields %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
-        <table class="form-table">
-            {% for field in fields|get_fields_for_section:"environment" %}
-                <tr class="form-row">
-                    <td class="field-label">
-                        <div class="field-id">{{ field.id }}</div>
-                        <div class="field-description">{{ field.name }}</div>
-                    </td>
-                    <td class="field-input">
-                        {% render_field_input field fields %}
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
         
         <!-- Arbeits- & Gesundheitsschutz Section -->
-        <div class="section-header">
-            <i class="fas fa-hard-hat"></i>
-            Arbeits- & Gesundheitsschutz (Occupational Health & Safety)
+        <div class="section-card">
+            <div class="section-header">
+                <i class="fas fa-hard-hat"></i>
+                Arbeits- & Gesundheitsschutz (Occupational Health & Safety)
+            </div>
+            <table class="form-table">
+                {% for field in fields|get_fields_for_section:"health_safety" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            {% render_field_input field fields %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
-        <table class="form-table">
-            {% for field in fields|get_fields_for_section:"health_safety" %}
-                <tr class="form-row">
-                    <td class="field-label">
-                        <div class="field-id">{{ field.id }}</div>
-                        <div class="field-description">{{ field.name }}</div>
-                    </td>
-                    <td class="field-input">
-                        {% render_field_input field fields %}
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
         
         <!-- Fertigungslabor Section -->
-        <div class="section-header">
-            <i class="fas fa-industry"></i>
-            Fertigungslabor (Manufacturing Laboratory)
+        <div class="section-card">
+            <div class="section-header">
+                <i class="fas fa-industry"></i>
+                Fertigungslabor (Manufacturing Laboratory)
+            </div>
+            <table class="form-table">
+                {% for field in fields|get_fields_for_section:"manufacturing" %}
+                    <tr class="form-row">
+                        <td class="field-label">
+                            <div class="field-id">{{ field.id }}</div>
+                            <div class="field-description">{{ field.name }}</div>
+                        </td>
+                        <td class="field-input">
+                            {% render_field_input field fields %}
+                        </td>
+                    </tr>
+                {% endfor %}
+            </table>
         </div>
-        <table class="form-table">
-            {% for field in fields|get_fields_for_section:"manufacturing" %}
-                <tr class="form-row">
-                    <td class="field-label">
-                        <div class="field-id">{{ field.id }}</div>
-                        <div class="field-description">{{ field.name }}</div>
-                    </td>
-                    <td class="field-input">
-                        {% render_field_input field fields %}
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
         
         <!-- Normstelle Section -->
-        <div class="section-header">
-            <i class="fas fa-stamp"></i>
-            Normstelle (Standards Department)
+        <div class="section-card">
+            <div class="section-header">
+                <i class="fas fa-stamp"></i>
+                Normstelle (Standards Department)
+            </div>
+            <table class="form-table">
+                {% for field in fields|get_fields_for_section:"standards" %}
+                    {% if field.id != '51' %}
+                        <tr class="form-row">
+                            <td class="field-label">
+                                <div class="field-id">{{ field.id }}</div>
+                                <div class="field-description">{{ field.name }}</div>
+                            </td>
+                            <td class="field-input">
+                                {% render_field_input field fields %}
+                            </td>
+                        </tr>
+                    {% endif %}
+                {% endfor %}
+            </table>
         </div>
-        <table class="form-table">
-            {% for field in fields|get_fields_for_section:"standards" %}
-                <tr class="form-row">
-                    <td class="field-label">
-                        <div class="field-id">{{ field.id }}</div>
-                        <div class="field-description">{{ field.name }}</div>
-                    </td>
-                    <td class="field-input">
-                        {% render_field_input field fields %}
-                    </td>
-                </tr>
-            {% endfor %}
-        </table>
     </form>
 </div>
 {% endblock %}
@@ -413,8 +996,13 @@ input.field-value:focus, textarea.field-value:focus {
 <script>
 document.addEventListener('DOMContentLoaded', function() {
     const saveButton = document.getElementById('save-form');
+    const viewButton = document.getElementById('view-form');
+    const downloadButton = document.getElementById('download-form');
     const form = document.getElementById('pdf-edit-form');
     const alertContainer = document.getElementById('alert-container');
+    
+    // Track if form has been saved
+    let formSaved = false;
     
     // Initialize combined field functionality
     initializeCombinedFields();
@@ -424,6 +1012,44 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Initialize dynamic button state updates
     initializeDynamicButtonStates();
+    
+    // Track form changes to disable download when unsaved changes exist
+    function trackFormChanges() {
+        const inputs = form.querySelectorAll('input, textarea, select');
+        inputs.forEach(input => {
+            input.addEventListener('change', function() {
+                formSaved = false;
+                updateDownloadButton();
+            });
+            input.addEventListener('input', function() {
+                formSaved = false;
+                updateDownloadButton();
+            });
+        });
+    }
+    
+    function updateDownloadButton() {
+        if (formSaved) {
+            viewButton.disabled = false;
+            viewButton.classList.remove('btn-disabled');
+            viewButton.title = '';
+            
+            downloadButton.disabled = false;
+            downloadButton.classList.remove('btn-disabled');
+            downloadButton.title = '';
+        } else {
+            viewButton.disabled = true;
+            viewButton.classList.add('btn-disabled');
+            viewButton.title = 'Please save the form first before viewing';
+            
+            downloadButton.disabled = true;
+            downloadButton.classList.add('btn-disabled');
+            downloadButton.title = 'Please save the form first before downloading';
+        }
+    }
+    
+    // Initialize form change tracking
+    trackFormChanges();
     
     if (saveButton) {
         saveButton.addEventListener('click', function() {
@@ -479,7 +1105,9 @@ document.addEventListener('DOMContentLoaded', function() {
             .then(response => response.json())
             .then(data => {
                 if (data.success) {
-                    showAlert('success', data.message || '{% trans "Form saved successfully!" %}');
+                    formSaved = true;
+                    updateDownloadButton();
+                    showAlert('success', data.message || '{% trans "Form saved successfully! You can now view or download the PDF." %}');
                 } else {
                     showAlert('danger', data.message || '{% trans "An error occurred while saving the form." %}');
                 }
@@ -488,6 +1116,32 @@ document.addEventListener('DOMContentLoaded', function() {
                 console.error('Error:', error);
                 showAlert('danger', '{% trans "An error occurred while saving the form." %}');
             });
+        });
+    }
+    
+    // View button functionality
+    if (viewButton) {
+        viewButton.addEventListener('click', function() {
+            if (!formSaved) {
+                showAlert('danger', '{% trans "Please save the form before viewing." %}');
+                return;
+            }
+            
+            // Open PDF in new tab/window for viewing (not downloading)
+            window.open('{% url "pdf_download" form_id=form_id %}?view=1', '_blank');
+        });
+    }
+    
+    // Download button functionality
+    if (downloadButton) {
+        downloadButton.addEventListener('click', function() {
+            if (!formSaved) {
+                showAlert('danger', '{% trans "Please save the form before downloading." %}');
+                return;
+            }
+            
+            // Trigger download
+            window.location.href = '{% url "pdf_download" form_id=form_id %}';
         });
     }
     
@@ -512,6 +1166,33 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     });
                 }
+            }
+        });
+        
+        // Handle file upload checkboxes
+        const fileUploadCheckboxes = form.querySelectorAll('.file-upload-checkbox');
+        fileUploadCheckboxes.forEach(checkbox => {
+            const fieldId = checkbox.dataset.fieldId;
+            const uploadContainer = form.querySelector(`.file-upload-container[data-field-id="${fieldId}"]`);
+            
+            if (uploadContainer) {
+                // Set initial state
+                if (checkbox.checked) {
+                    uploadContainer.classList.add('active');
+                } else {
+                    uploadContainer.classList.remove('active');
+                }
+                
+                // Add event listener
+                checkbox.addEventListener('change', function() {
+                    if (this.checked) {
+                        uploadContainer.classList.add('active');
+                    } else {
+                        uploadContainer.classList.remove('active');
+                        // Clear any selected file
+                        removeFile(fieldId);
+                    }
+                });
             }
         });
         
@@ -724,6 +1405,207 @@ document.addEventListener('DOMContentLoaded', function() {
             alertContainer.innerHTML = '';
         }, 5000);
     }
+    
+    // Initialize file upload functionality
+    initializeFileUploads();
 });
+
+// File upload functionality
+const fileStorage = {}; // Store files for each field
+
+function initializeFileUploads() {
+    console.log('Initializing file uploads...');
+    
+    // Initialize file storage
+    const fileInputs = document.querySelectorAll('.file-upload-input');
+    fileInputs.forEach(input => {
+        const fieldId = input.dataset.fieldId;
+        fileStorage[fieldId] = [];
+    });
+    
+    // Handle file input changes
+    fileInputs.forEach(input => {
+        console.log('Setting up file input for field:', input.dataset.fieldId);
+        input.addEventListener('change', function(e) {
+            const fieldId = this.dataset.fieldId;
+            const files = Array.from(e.target.files);
+            
+            console.log('Files selected:', files.length, 'for field:', fieldId);
+            
+            files.forEach(file => {
+                if (fileStorage[fieldId].length < 3) {
+                    addFileToGrid(fieldId, file);
+                }
+            });
+            
+            // Clear the input to allow selecting the same file again
+            this.value = '';
+        });
+    });
+    
+    // Handle drag and drop
+    const uploadAreas = document.querySelectorAll('.file-upload-area');
+    uploadAreas.forEach(area => {
+        area.addEventListener('dragover', function(e) {
+            e.preventDefault();
+            this.style.backgroundColor = 'rgba(26, 115, 232, 0.08)';
+        });
+        
+        area.addEventListener('dragleave', function(e) {
+            e.preventDefault();
+            this.style.backgroundColor = '';
+        });
+        
+        area.addEventListener('drop', function(e) {
+            e.preventDefault();
+            this.style.backgroundColor = '';
+            
+            const fieldId = this.closest('.file-upload-container').dataset.fieldId;
+            const files = Array.from(e.dataTransfer.files);
+            
+            files.forEach(file => {
+                if (fileStorage[fieldId].length < 3) {
+                    addFileToGrid(fieldId, file);
+                }
+            });
+        });
+    });
+    
+    // Handle checkbox changes for file upload fields
+    const fileUploadCheckboxes = document.querySelectorAll('.file-upload-checkbox');
+    fileUploadCheckboxes.forEach(checkbox => {
+        checkbox.addEventListener('change', function() {
+            const fieldId = this.dataset.fieldId;
+            const container = document.querySelector(`.file-upload-container[data-field-id="${fieldId}"]`);
+            
+            if (this.checked) {
+                container.style.display = 'block';
+                container.classList.add('active');
+            } else {
+                container.style.display = 'none';
+                container.classList.remove('active');
+                // Clear all files
+                clearAllFiles(fieldId);
+            }
+        });
+    });
+}
+
+function addFileToGrid(fieldId, file) {
+    console.log('Adding file to grid:', file.name, 'for field:', fieldId);
+    
+    // Add file to storage
+    const fileId = Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+    fileStorage[fieldId].push({ id: fileId, file: file });
+    
+    const grid = document.getElementById(`files-grid-${fieldId}`);
+    if (!grid) {
+        console.error('Grid not found for field:', fieldId);
+        return;
+    }
+    
+    // Create file slot
+    const fileSlot = document.createElement('div');
+    fileSlot.className = 'file-slot';
+    fileSlot.id = `file-slot-${fileId}`;
+    
+    // Determine icon based on file type
+    let iconClass = 'fas fa-file';
+    if (file.type.includes('pdf')) {
+        iconClass = 'fas fa-file-pdf';
+    } else if (file.type.includes('word') || file.name.endsWith('.doc') || file.name.endsWith('.docx')) {
+        iconClass = 'fas fa-file-word';
+    }
+    
+    fileSlot.innerHTML = `
+        <div class="file-selected">
+            <div class="file-icon">
+                <i class="${iconClass}"></i>
+            </div>
+            <div class="file-info">
+                <div class="file-name">${file.name}</div>
+                <div class="file-size">${formatFileSize(file.size)}</div>
+            </div>
+            <button type="button" class="file-remove" onclick="removeFileFromGrid('${fieldId}', '${fileId}')">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    `;
+    
+    // Insert before upload slot
+    const uploadSlot = document.getElementById(`upload-slot-${fieldId}`);
+    grid.insertBefore(fileSlot, uploadSlot);
+    
+    updateGridLayout(fieldId);
+    console.log('File added to grid');
+}
+
+function removeFileFromGrid(fieldId, fileId) {
+    // Remove from storage
+    fileStorage[fieldId] = fileStorage[fieldId].filter(f => f.id !== fileId);
+    
+    // Remove from DOM
+    const fileSlot = document.getElementById(`file-slot-${fileId}`);
+    if (fileSlot) {
+        fileSlot.remove();
+    }
+    
+    updateGridLayout(fieldId);
+}
+
+function updateGridLayout(fieldId) {
+    const grid = document.getElementById(`files-grid-${fieldId}`);
+    const fileCount = fileStorage[fieldId].length;
+    const totalSlots = fileCount + 1; // +1 for upload slot
+    
+    // Update all slots - let flexbox handle equal distribution
+    const slots = grid.querySelectorAll('.file-slot');
+    slots.forEach(slot => {
+        // Remove any custom width styling to let flex: 1 work
+        slot.style.flexBasis = '';
+        slot.style.maxWidth = '';
+        slot.style.minWidth = '';
+        
+        // Add narrow class if slot is too small
+        if (totalSlots >= 4) {
+            slot.classList.add('narrow');
+        } else {
+            slot.classList.remove('narrow');
+        }
+    });
+    
+    // Hide upload slot if max files reached
+    const uploadSlot = document.getElementById(`upload-slot-${fieldId}`);
+    if (fileCount >= 3) {
+        uploadSlot.style.display = 'none';
+    } else {
+        uploadSlot.style.display = 'block';
+    }
+}
+
+function clearAllFiles(fieldId) {
+    // Clear file storage
+    fileStorage[fieldId] = [];
+    
+    // Remove all file slots except upload slot
+    const grid = document.getElementById(`files-grid-${fieldId}`);
+    const fileSlots = grid.querySelectorAll('.file-slot:not(.upload-slot)');
+    fileSlots.forEach(slot => slot.remove());
+    
+    // Reset upload slot - let flexbox handle the sizing
+    const uploadSlot = document.getElementById(`upload-slot-${fieldId}`);
+    uploadSlot.style.display = 'block';
+    uploadSlot.style.flexBasis = '';
+    uploadSlot.style.maxWidth = '';
+    uploadSlot.classList.remove('narrow');
+}
+
+function formatFileSize(bytes) {
+    if (bytes === 0) return '0 Bytes';
+    const k = 1024;
+    const sizes = ['Bytes', 'KB', 'MB', 'GB'];
+    const i = Math.floor(Math.log(bytes) / Math.log(k));
+    return parseFloat((bytes / Math.pow(k, i)).toFixed(2)) + ' ' + sizes[i];
+}
 </script>
 {% endblock %} 

@@ -204,6 +204,22 @@ def is_checkbox_field(field_id):
                       '24b8', '24b9', '24b10', '24b11']
     return field_id in checkbox_fields
 
+@register.filter
+def is_file_upload_field(field_id):
+    """Check if field should have file upload functionality."""
+    file_upload_fields = ['18a', '18b', '18c']
+    return field_id in file_upload_fields
+
+@register.filter
+def get_file_upload_label(field_id):
+    """Get the appropriate label for file upload fields."""
+    labels = {
+        '18a': 'EU-Sicherheitsdatenblatt (eSDB)',
+        '18b': 'Technisches Datenblatt, Produktbeschreibung', 
+        '18c': 'Gefährdungsbeurteilung'
+    }
+    return labels.get(field_id, 'Dokument')
+
 def parse_checkbox_value(field_value):
     """Parse checkbox values to determine if checked."""
     if not field_value:
@@ -376,13 +392,47 @@ def render_field_input(field, all_fields=None):
                 # Field only has binary values - show Ja/Nein based on checked state
                 display_text = 'Ja' if checked else 'Nein'
             
-            return mark_safe(f'''
-                <div class="checkbox-container {disabled_class}">
-                    <input type="checkbox" name="{field_id}" {checked} 
-                           data-field-id="{field_id}" {disabled_attr}>
-                    <label class="dynamic-label">{display_text}</label>
-                </div>
-            ''')
+            # Check if this is a file upload field
+            if is_file_upload_field(field_id):
+                file_label = get_file_upload_label(field_id)
+                return mark_safe(f'''
+                    <div class="checkbox-container has-file-upload {disabled_class}">
+                        <div style="display: flex; align-items: center; gap: 8px; flex-shrink: 0;">
+                            <input type="checkbox" name="{field_id}" {checked} 
+                                   data-field-id="{field_id}" class="file-upload-checkbox" {disabled_attr}>
+                            <label class="dynamic-label">{display_text}</label>
+                        </div>
+                        <div class="file-upload-container" data-field-id="{field_id}">
+                            <div class="files-grid" id="files-grid-{field_id}">
+                                <div class="file-slot upload-slot" id="upload-slot-{field_id}">
+                                    <div class="file-upload-area" onclick="document.getElementById('file-{field_id}').click()">
+                                        <div class="file-upload-content">
+                                            <div class="file-upload-icon">
+                                                <i class="fas fa-cloud-upload-alt"></i>
+                                            </div>
+                                            <div class="file-upload-text">
+                                                Datei hochladen
+                                            </div>
+                                            <div class="file-upload-hint">
+                                                PDF, DOC, DOCX
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <input type="file" id="file-{field_id}" class="file-upload-input" 
+                                           accept=".pdf,.doc,.docx" data-field-id="{field_id}" multiple>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                ''')
+            else:
+                return mark_safe(f'''
+                    <div class="checkbox-container {disabled_class}">
+                        <input type="checkbox" name="{field_id}" {checked} 
+                               data-field-id="{field_id}" {disabled_attr}>
+                        <label class="dynamic-label">{display_text}</label>
+                    </div>
+                ''')
     
     elif field_type == 'sig':
         return mark_safe(f'''

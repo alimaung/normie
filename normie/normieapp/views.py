@@ -1323,10 +1323,20 @@ def pdf_download(request, form_id):
             else:
                 download_filename = f"updated_form_{form_id}.pdf"
         
-        # Create response with explicit download headers
+        # Check if this is a view request (inline) or download request
+        is_view_request = request.GET.get('view') == '1'
+        
+        # Create response
         response = HttpResponse(pdf_content, content_type='application/pdf')
-        response['Content-Disposition'] = f'attachment; filename="{download_filename}"'
-        response['Content-Type'] = 'application/octet-stream'  # Force download instead of inline viewing
+        
+        if is_view_request:
+            # For viewing: display inline in browser
+            response['Content-Disposition'] = f'inline; filename="{download_filename}"'
+        else:
+            # For downloading: force download
+            response['Content-Disposition'] = f'attachment; filename="{download_filename}"'
+            response['Content-Type'] = 'application/octet-stream'  # Force download instead of inline viewing
+        
         response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
         response['Pragma'] = 'no-cache'
         response['Expires'] = '0'

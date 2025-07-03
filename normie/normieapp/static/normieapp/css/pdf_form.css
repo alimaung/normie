@@ -1,5 +1,11 @@
 /* Google Material Design PDF Form Styles */
-@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap');
+@font-face {
+    font-family: 'Sofia Sans';
+    src: url('../fonts/SofiaSans-VariableFont_wght.ttf') format('truetype');
+    font-weight: 100 900;
+    font-style: normal;
+    font-display: swap;
+}
 
 /* Global Material Design Base Styles */
 * {
@@ -7,7 +13,7 @@
 }
 
 body {
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Sofia Sans', sans-serif;
     background-color: #f8f9fa;
     color: #202124;
     margin: 0;
@@ -49,7 +55,7 @@ a:hover {
     border-radius: 8px;
     box-shadow: 0 1px 3px rgba(60,64,67,.3);
     transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Sofia Sans', sans-serif;
 }
 
 .upload-container:hover {
@@ -124,7 +130,7 @@ a:hover {
     font-size: 14px;
     font-weight: 500;
     cursor: pointer;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Sofia Sans', sans-serif;
     box-shadow: 0 1px 3px rgba(60,64,67,.3);
     transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
@@ -142,7 +148,7 @@ a:hover {
 }
 
 .file-info {
-    margin-top: 15px;
+    margin: 5px;
     padding: 15px;
     border: 1px solid #e8e8ed;
     border-radius: 8px;
@@ -170,7 +176,7 @@ a:hover {
     max-width: 1200px;
     margin: 0 auto;
     background: #f8f9fa;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Sofia Sans', sans-serif;
     font-size: 14px;
     padding: 24px;
     color: #202124;
@@ -209,11 +215,123 @@ a:hover {
     background: #ffffff;
     border-radius: 8px;
     padding: 24px;
-    margin-bottom: 24px;
+    margin-bottom: 16px;
     box-shadow: 0 1px 3px rgba(60,64,67,.3);
     position: relative;
     overflow: hidden;
     border: 1px solid #dadce0;
+}
+
+/* Key Fields Header */
+.key-fields-header {
+    background: #ffffff;
+    border-radius: 8px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 1px 3px rgba(60,64,67,.3);
+    border: 1px solid #dadce0;
+    display: flex;
+    flex-direction: row;
+    gap: 24px;
+    align-items: stretch;
+}
+
+.key-field {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+    padding: 16px 20px;
+    border-radius: 8px;
+    transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    flex: 1;
+}
+
+.key-field.primary-field {
+    background: rgba(26, 115, 232, 0.04);
+    border: 2px solid #1a73e8;
+    flex: 1.2;
+}
+
+.key-field.secondary-field {
+    background: rgba(52, 168, 83, 0.04);
+    border: 2px solid #34a853;
+    flex: 1;
+}
+
+.key-field-label {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 200px;
+}
+
+.key-field-id {
+    font-size: 18px;
+    font-weight: 700;
+    color: #1a73e8;
+    font-family: 'Sofia Sans', monospace;
+}
+
+.key-field.secondary-field .key-field-id {
+    color: #34a853;
+}
+
+.key-field-description {
+    font-size: 16px;
+    font-weight: 600;
+    color: #202124;
+    line-height: 1.3;
+}
+
+.key-field.primary-field .key-field-description {
+    font-size: 18px;
+    font-weight: 700;
+}
+
+.key-field-input {
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.key-field-input input[type="text"],
+.key-field-input textarea {
+    width: 100%;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+    font-size: 32px;
+    font-family: 'Sofia Sans', sans-serif;
+    font-weight: 500;
+    transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    outline: none;
+    background: transparent;
+}
+
+.key-field.primary-field .key-field-input input[type="text"],
+.key-field.primary-field .key-field-input textarea {
+    font-size: 36px;
+    font-weight: 600;
+}
+
+.key-field.secondary-field .key-field-input input[type="text"],
+.key-field.secondary-field .key-field-input textarea {
+    font-size: 32px;
+    font-weight: 500;
+}
+
+.key-field-input input[type="text"]:focus,
+.key-field-input textarea:focus {
+    background: rgba(26, 115, 232, 0.05);
+    border-radius: 4px;
+    padding: 4px;
+}
+
+.key-field.secondary-field .key-field-input input[type="text"]:focus,
+.key-field.secondary-field .key-field-input textarea:focus {
+    background: rgba(52, 168, 83, 0.05);
+    border-radius: 4px;
+    padding: 4px;
 }
 
 .form-title {
@@ -287,10 +405,137 @@ a:hover {
 .section-card {
     background: #ffffff;
     border-radius: 8px;
-    margin-bottom: 24px;
+    margin-bottom: 32px;
     box-shadow: 0 1px 3px rgba(60,64,67,.3);
     overflow: hidden;
     border: 1px solid #dadce0;
+    transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.section-card:hover {
+    box-shadow: 0 2px 8px rgba(60,64,67,.15);
+    transform: translateY(-1px);
+}
+
+/* Four Column Row Layout */
+.four-column-row {
+    display: flex;
+    gap: 0;
+    /* margin-bottom: 24px; */
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.column-field {
+    display: flex;
+    flex-direction: column;
+    border-right: 1px solid #dadce0;
+}
+
+.column-field:last-child {
+    border-right: none;
+}
+
+.column-field.flex-1-2 {
+    width: 30%;
+    flex: 0 0 30%;
+}
+
+.column-field.flex-0-8 {
+    flex: 1.2;
+}
+
+.column-field.flex-0-5 {
+    flex: 1;
+}
+
+.column-field.flex-1 {
+    flex: 1;
+}
+
+.column-field-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 16px;
+    background: #f8f9fa;
+    border-bottom: 1px solid #dadce0;
+    min-height: 24px;
+}
+
+.column-field-id {
+    font-weight: 500;
+    color: #1a73e8;
+    font-size: 12px;
+    font-family: 'Sofia Sans', monospace;
+    flex-shrink: 0;
+}
+
+.column-field-title {
+    color: #5f6368;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 500;
+    flex: 1;
+}
+
+.column-field-input {
+    padding: 16px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    min-height: 60px;
+}
+
+.column-field-input input[type="text"],
+.column-field-input textarea {
+    width: 100%;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-family: 'Sofia Sans', sans-serif;
+    transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    outline: none;
+}
+
+.column-field-input input[type="text"]:focus,
+.column-field-input textarea:focus {
+    border-color: #1a73e8;
+    outline: none;
+    box-shadow: 0 0 0 1px #1a73e8;
+}
+
+/* Two Column Row Layout */
+.two-column-row {
+    display: flex;
+    gap: 0;
+    /* margin-bottom: 24px; */
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    overflow: hidden;
+    width: 100%;
+}
+
+.two-col-field {
+    flex: 1;
+}
+
+/* Radio Buttons in Column Layout */
+.stacked-radio .radio-group {
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 16px;
+    flex-wrap: wrap;
+    min-height: 40px;
+}
+
+.stacked-radio .radio-option {
+    flex-shrink: 0;
 }
 
 .section-header {
@@ -330,7 +575,9 @@ a:hover {
 
 .form-row {
     border-bottom: 1px solid #dadce0;
+    border-top: 1px solid #dadce0;
     transition: background-color 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+    vertical-align: middle;
 }
 
 .form-row:hover {
@@ -347,8 +594,9 @@ a:hover {
     border-right: 1px solid #dadce0;
     background: #f8f9fa;
     font-weight: 500;
-    vertical-align: top;
+    vertical-align: middle;
     font-size: 14px;
+    display: table-cell;
 }
 
 .field-id {
@@ -356,7 +604,7 @@ a:hover {
     color: #1a73e8;
     margin-bottom: 4px;
     font-size: 12px;
-    font-family: 'Roboto', monospace;
+    font-family: 'Sofia Sans', monospace;
 }
 
 .field-description {
@@ -368,7 +616,8 @@ a:hover {
 .field-input {
     width: 70%;
     padding: 16px 24px;
-    vertical-align: top;
+    vertical-align: middle;
+    display: table-cell;
 }
 
 .field-input input[type="text"],
@@ -378,7 +627,7 @@ a:hover {
     border-radius: 4px;
     padding: 8px 12px;
     font-size: 16px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Sofia Sans', sans-serif;
     transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
     outline: none;
 }
@@ -399,7 +648,9 @@ a:hover {
 .checkbox-container {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 12px;
+    min-height: 40px;
 }
 
 .checkbox-container input[type="checkbox"] {
@@ -468,14 +719,18 @@ a:hover {
     display: flex;
     gap: 24px;
     align-items: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
+    min-height: 40px;
 }
 
 .radio-option {
     display: flex;
     align-items: center;
+    justify-content: flex-start;
     gap: 8px;
     cursor: pointer;
+    min-height: 32px;
 }
 
 .radio-option input[type="radio"] {
@@ -533,7 +788,7 @@ a:hover {
     display: flex;
     align-items: center;
     gap: 12px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Sofia Sans', sans-serif;
 }
 
 .signature-indicator i {
@@ -553,7 +808,7 @@ a:hover {
     display: inline-flex;
     align-items: center;
     gap: 8px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Sofia Sans', sans-serif;
     box-shadow: 0 1px 3px rgba(60,64,67,.3);
     transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
 }
@@ -583,6 +838,18 @@ a:hover {
     box-shadow: 0 2px 8px rgba(60,64,67,.15);
 }
 
+.btn-view {
+    background: #ff9800;
+    color: white;
+}
+
+.btn-view:hover {
+    background: #f57c00;
+    text-decoration: none;
+    color: white;
+    box-shadow: 0 2px 8px rgba(60,64,67,.15);
+}
+
 .btn-download {
     background: #34a853;
     color: white;
@@ -595,10 +862,40 @@ a:hover {
     box-shadow: 0 2px 8px rgba(60,64,67,.15);
 }
 
+.btn-download:disabled,
+.btn-download.btn-disabled {
+    background: #dadce0;
+    color: #5f6368;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.btn-view:disabled,
+.btn-view.btn-disabled {
+    background: #dadce0;
+    color: #5f6368;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.btn-view:disabled:hover,
+.btn-view.btn-disabled:hover {
+    background: #dadce0;
+    color: #5f6368;
+    box-shadow: none;
+}
+
+.btn-download:disabled:hover,
+.btn-download.btn-disabled:hover {
+    background: #dadce0;
+    color: #5f6368;
+    box-shadow: none;
+}
+
 /* Google Material Design Alert styling */
 #alert-container {
     position: fixed;
-    top: 24px;
+    bottom: 24px;
     right: 24px;
     z-index: 1000;
 }
@@ -608,7 +905,7 @@ a:hover {
     padding: 16px 24px;
     border-radius: 4px;
     font-size: 14px;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Sofia Sans', sans-serif;
     box-shadow: 0 2px 8px rgba(60,64,67,.15);
     animation: slideIn 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
     display: flex;
@@ -743,4 +1040,237 @@ a:hover {
         align-items: flex-start;
         gap: 10px;
     }
+    
+    /* Key Fields Header Mobile */
+    .key-fields-header {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .key-field {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        flex: 1;
+    }
+    
+    .key-field.primary-field {
+        flex: 1;
+    }
+    
+    .key-field-label {
+        min-width: auto;
+        width: 100%;
+    }
+    
+    .key-field-input {
+        width: 100%;
+    }
+    
+    /* Four Column Row Mobile */
+    .four-column-row {
+        flex-direction: column;
+        gap: 0;
+        padding: 0 16px;
+    }
+    
+    .column-field {
+        flex: 1 !important;
+        border-right: none;
+        border-bottom: 1px solid #dadce0;
+    }
+    
+    .column-field:last-child {
+        border-bottom: none;
+    }
+    
+    /* Two Column Row Mobile */
+    .two-column-row {
+        flex-direction: column;
+        gap: 0;
+        padding: 0 16px;
+    }
+    
+    .two-col-field {
+        flex: 1 !important;
+        border-right: none;
+        border-bottom: 1px solid #dadce0;
+    }
+    
+    .two-col-field:last-child {
+        border-bottom: none;
+    }
+}
+
+/* Radio activation field styling */
+.radio-activation-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: flex-start;
+    justify-content: center;
+    width: 100%;
+    min-height: 50px;
+}
+
+.activation-input-container {
+    margin-left: 20px;
+    margin-top: 10px;
+    width: calc(100% - 20px);
+}
+
+.activation-input {
+    width: 100%;
+    min-width: 200px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    padding: 8px;
+    transition: all 0.3s ease;
+    font-family: 'Sofia Sans', sans-serif;
+}
+
+.activation-input:focus {
+    border-color: #1a73e8;
+    outline: none;
+    box-shadow: 0 0 0 1px #1a73e8;
+}
+
+.activation-input[style*="display: none"] {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+/* Special handling for fields with long descriptions that wrap */
+.field-description {
+    word-wrap: break-word;
+    line-height: 1.3;
+    max-width: 100%;
+}
+
+/* Ensure radio buttons are centered even when field labels wrap */
+.field-input .radio-group,
+.field-input .radio-activation-container {
+    display: flex;
+    align-items: center;
+    min-height: 50px;
+    width: 100%;
+}
+
+.field-input .radio-activation-container {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.field-input .radio-activation-container .radio-group {
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+/* Specific vertical centering for problematic fields */
+.field-input[data-field-id="13"] .radio-group,
+.field-input[data-field-id="33"] .radio-group,
+.field-input[data-field-id="39"] .radio-activation-container,
+.field-input[data-field-id="41"] .radio-activation-container,
+.field-input[data-field-id="42"] .radio-activation-container,
+.field-input[data-field-id="48"] .radio-activation-container {
+    align-items: center;
+    justify-content: center;
+    min-height: 60px;
+}
+
+/* Column field input vertical centering for radio buttons */
+.column-field-input .radio-group,
+.column-field-input .radio-activation-container {
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+}
+
+.column-field-input .radio-activation-container {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+/* Stacked radios in one table row */
+.stacked-radios-row {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.radio-field-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 100%;
+}
+
+.radio-field-label {
+    font-weight: 500;
+    color: #202124;
+    font-size: 14px;
+    margin-bottom: 4px;
+}
+
+.radio-field-group .radio-group {
+    margin-top: 0;
+    align-items: center;
+    justify-content: flex-start;
+}
+
+/* Inline Radio Field Styles */
+.inline-radio-field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+    gap: 12px;
+}
+
+.inline-radio-field .radio-field-label {
+    font-weight: 500;
+    color: #202124;
+    font-size: 14px;
+    min-width: 200px;
+    flex-shrink: 0;
+}
+
+.inline-radio-field .radio-group {
+    display: flex;
+    gap: 16px;
+    margin: 0;
+    align-items: center;
+}
+
+/* Vertical stacked radio buttons for table cells */
+td.field-input:has(.stacked-radio) {
+    vertical-align: middle;
+}
+
+.field-input .stacked-radio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+
+.stacked-radio .radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    align-items: flex-start;
+}
+
+.stacked-radio .radio-option {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0;
 }
