@@ -422,8 +422,6 @@ a:hover {
     display: flex;
     gap: 0;
     /* margin-bottom: 24px; */
-    border: 1px solid #dadce0;
-    border-radius: 4px;
     overflow: hidden;
     width: 100%;
 }
@@ -514,8 +512,6 @@ a:hover {
     display: flex;
     gap: 0;
     /* margin-bottom: 24px; */
-    border: 1px solid #dadce0;
-    border-radius: 4px;
     overflow: hidden;
     width: 100%;
 }
@@ -584,9 +580,9 @@ a:hover {
     background-color: rgba(26, 115, 232, 0.02);
 }
 
-.form-row:last-child {
+/* .form-row:last-child {
     border-bottom: none;
-}
+} */
 
 .field-label {
     width: 30%;
@@ -618,6 +614,7 @@ a:hover {
     padding: 16px 24px;
     vertical-align: middle;
     display: table-cell;
+    align-content: center;
 }
 
 .field-input input[type="text"],
@@ -649,7 +646,7 @@ a:hover {
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    gap: 12px;
+    gap: 8px;
     min-height: 40px;
 }
 

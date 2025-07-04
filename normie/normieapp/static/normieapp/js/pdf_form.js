@@ -6,9 +6,10 @@ document.addEventListener('DOMContentLoaded', function() {
     saveButton.addEventListener('click', function() {
         // Collect all field values
         const formData = {};
-        const textInputs = form.querySelectorAll('input[type="text"], textarea');
-        const checkboxInputs = form.querySelectorAll('input[type="checkbox"]');
-        const radioInputs = form.querySelectorAll('input[type="radio"]:checked');
+        // Search both within the form and in the key-fields-header section
+        const textInputs = document.querySelectorAll('input[type="text"], textarea');
+        const checkboxInputs = document.querySelectorAll('input[type="checkbox"]');
+        const radioInputs = document.querySelectorAll('input[type="radio"]:checked');
         
         textInputs.forEach(input => {
             const fieldId = input.dataset.fieldId;

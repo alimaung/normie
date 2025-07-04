@@ -12,8 +12,8 @@
 9. 13 radio stacked - make description of row be Erzeugnisrelevant, besteht Kontakt mit Luftfahrtteilen? and the desiplay for the options be labeled with ja (Produktzulassung ist erforderlich) nein (Produktzulassung ist nicht erforderlich)
 10. 14, 14a, 15b radios stacked, one row
 11. 16, 17a, b, c one row
-_________________________________________________________________________________________________
 12. 18a, b, c add a file upload field when checked. (mock for now, only open explorer and fetch the filename to display it, no uploads)
+______________________________________________________________________
 13. 20, 21 one row
 14. add more space between stages
 15. 22a and 22a1, 2 one row

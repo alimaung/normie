@@ -1154,155 +1154,80 @@ def extract_pdf_fields_pypdf2(pdf_path):
     
     return fields
 
-def remove_appearance_streams_from_pdf(pdf_path):
+def set_need_appearances_flag(pdf_path):
     """
-    Remove appearance streams (/AP) from PDF text form fields to prevent text clipping.
-    This forces PDF viewers to regenerate appearance streams with proper text layout.
-    Preserves appearance streams for checkboxes, radio buttons, and signatures.
+    Set the NeedAppearances flag in the PDF's AcroForm dictionary.
+    This tells PDF viewers (especially Adobe) to regenerate appearance streams dynamically.
+    Much simpler and more reliable than removing appearance streams.
     
     Args:
         pdf_path: Path to the PDF file to fix
     
     Returns:
-        bool: True if changes were made, False otherwise
+        bool: True if successful, False otherwise
     """
     try:
-        # Read the PDF data
-        with open(pdf_path, 'rb') as f:
-            pdf_data = f.read()
+        print(f"Setting NeedAppearances flag for better compatibility...")
         
-        print(f"Removing appearance streams from text fields to fix text clipping...")
+        # Create a temporary file for the updated PDF
+        temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.pdf')
+        temp_path = temp_file.name
+        temp_file.close()
         
-        # Find all form field objects with appearance streams - use a broader pattern first
-        # Look for objects with /Type/Annot, /Subtype/Widget, and /AP
-        form_field_ap_pattern = rb'/Type\s*/Annot[^>]*?/Subtype\s*/Widget[^>]*?/AP\s*(?:<<[^>]*>>|\d+\s+\d+\s+R)'
-        
-        matches = list(re.finditer(form_field_ap_pattern, pdf_data, re.DOTALL))
-        
-        if not matches:
-            print("No form field appearance streams found")
-            return False
-        
-        print(f"Found {len(matches)} form field objects with appearance streams")
-        
-        modified_data = pdf_data
-        total_changes = 0
-        text_fields_processed = 0
-        other_fields_skipped = 0
-        
-        # Process each match to check if it's a text field and remove /AP entries
-        for match in reversed(matches):  # Process in reverse to maintain positions
-            # Find the object boundaries
-            obj_start = pdf_data.rfind(b' obj', 0, match.start())
-            if obj_start == -1:
-                continue
-                
-            # Find the actual start of the object number
-            obj_start = pdf_data.rfind(b'\n', 0, obj_start) + 1
-            if obj_start == 0:
-                obj_start = pdf_data.rfind(b'\r', 0, obj_start) + 1
+        # Read the original PDF
+        with open(pdf_path, 'rb') as file:
+            reader = PyPDF2.PdfReader(file)
+            writer = PyPDF2.PdfWriter()
             
-            # Find the end of the object
-            obj_end = pdf_data.find(b'endobj', match.end())
-            if obj_end == -1:
-                continue
-            obj_end += len(b'endobj')
+            # Copy all pages
+            for page in reader.pages:
+                writer.add_page(page)
             
-            # Extract the object data
-            obj_data = pdf_data[obj_start:obj_end]
-            
-            try:
-                obj_text = obj_data.decode('latin-1', errors='replace')
-            except:
-                continue
-            
-            # Check if this object has /AP entries
-            if '/AP' not in obj_text:
-                continue
-            
-            # Determine field type and decide whether to remove appearance streams
-            is_text_field = '/FT/Tx' in obj_text
-            is_button_field = '/FT/Btn' in obj_text
-            is_signature_field = ('/Lock' in obj_text or '/SigFlags' in obj_text or 
-                                'Signature' in obj_text or '/Type/Sig' in obj_text)
-            
-            # Only remove appearance streams from text fields
-            if is_text_field and not is_signature_field:
-                print(f"Processing text field object...")
-                
-                # Remove /AP entries using multiple patterns
-                obj_text_modified = obj_text
-                
-                # Pattern 1: /AP<<...>> (nested dictionary) - more flexible matching
-                ap_dict_pattern = r'/AP\s*<<(?:[^<>]|<<[^<>]*>>)*>>'
-                obj_text_modified = re.sub(ap_dict_pattern, '', obj_text_modified, flags=re.DOTALL)
-                
-                # Pattern 2: /AP <reference> (object reference)
-                ap_ref_pattern = r'/AP\s+\d+\s+\d+\s+R'
-                obj_text_modified = re.sub(ap_ref_pattern, '', obj_text_modified)
-                
-                # Pattern 3: Remove any remaining /AP entries
-                ap_simple_pattern = r'/AP[^\s/]*'
-                obj_text_modified = re.sub(ap_simple_pattern, '', obj_text_modified)
-                
-                # Clean up any double spaces
-                obj_text_modified = re.sub(r'\s+', ' ', obj_text_modified)
-                
-                if obj_text_modified != obj_text:
-                    # Convert back to bytes and replace in the PDF data
-                    try:
-                        modified_obj_data = obj_text_modified.encode('latin-1')
-                        modified_data = modified_data[:obj_start] + modified_obj_data + modified_data[obj_end:]
-                        total_changes += 1
-                        text_fields_processed += 1
-                        print(f"  ✅ Removed appearance streams (size change: {len(obj_data)} -> {len(modified_obj_data)} bytes)")
-                    except Exception as e:
-                        print(f"  ❌ Error encoding modified object: {e}")
+            # Set the NeedAppearances flag in AcroForm
+            success = False
+            if hasattr(writer, '_root_object') and writer._root_object:
+                acro_form = writer._root_object.get('/AcroForm')
+                if acro_form:
+                    acro_form_obj = acro_form.get_object()
+                    # Set NeedAppearances to True
+                    acro_form_obj[PyPDF2.generic.NameObject('/NeedAppearances')] = PyPDF2.generic.BooleanObject(True)
+                    print("✅ Successfully set NeedAppearances flag to True")
+                    success = True
                 else:
-                    print(f"  ℹ️ No /AP entries found to remove")
-            
-            elif is_button_field:
-                print(f"Skipping button field (checkbox/radio) - preserving appearance streams")
-                other_fields_skipped += 1
-            elif is_signature_field:
-                print(f"Skipping signature field - preserving appearance streams")
-                other_fields_skipped += 1
+                    print("⚠️ No AcroForm found in PDF")
             else:
-                print(f"Skipping unknown field type - preserving appearance streams")
-                other_fields_skipped += 1
-        
-        if total_changes > 0:
-            # Create a temporary file
-            temp_file = tempfile.NamedTemporaryFile(delete=False, suffix='.pdf')
-            temp_path = temp_file.name
-            temp_file.close()
+                print("⚠️ Could not access PDF root object")
             
-            try:
-                # Write the modified data to temp file
-                with open(temp_path, 'wb') as f:
-                    f.write(modified_data)
-                
-                # Replace the original file
-                shutil.move(temp_path, pdf_path)
-                
-                print(f"Successfully removed appearance streams from {text_fields_processed} text field objects")
-                print(f"Preserved appearance streams for {other_fields_skipped} non-text field objects")
-                return True
-                
-            except Exception as e:
-                # Clean up temp file if it exists
-                if os.path.exists(temp_path):
-                    os.remove(temp_path)
-                print(f"Error saving modified PDF: {e}")
-                return False
+            # Write the updated PDF to temp file
+            with open(temp_path, 'wb') as output_file:
+                writer.write(output_file)
+        
+        if success:
+            # Replace the original file
+            shutil.move(temp_path, pdf_path)
+            print("✅ PDF updated with NeedAppearances flag")
+            return True
         else:
-            print(f"No text field appearance streams were removed")
-            print(f"Analyzed {text_fields_processed + other_fields_skipped} form field objects")
+            # Clean up temp file if we didn't succeed
+            if os.path.exists(temp_path):
+                os.remove(temp_path)
+            print("❌ Failed to set NeedAppearances flag")
             return False
             
     except Exception as e:
-        print(f"Error removing appearance streams: {e}")
+        # Clean up temp file on error
+        if 'temp_path' in locals() and os.path.exists(temp_path):
+            os.remove(temp_path)
+        print(f"Error setting NeedAppearances flag: {e}")
         return False
+
+def remove_appearance_streams_from_pdf(pdf_path):
+    """
+    DEPRECATED: Now uses NeedAppearances flag instead of removing streams.
+    This is much more reliable and works better with Adobe Acrobat.
+    """
+    print("🔄 Using improved NeedAppearances approach instead of removing streams...")
+    return set_need_appearances_flag(pdf_path)
 
 def refresh_pdf_fields_for_adobe(pdf_path):
     """
@@ -1377,6 +1302,11 @@ def save_pdf_changes(template_path, fields):
             field_id = field.get('id', '')
             field_value = field.get('value', '')
             dict_type = field.get('dict_type', 'text')
+            
+            # CRITICAL FIX: Skip signature fields completely to prevent timestamp corruption
+            if dict_type == 'sig':
+                print(f"🔒 Skipping signature field '{field_id}' completely - will not process")
+                continue
             
             if field_id:
                 # Convert German display values back to PDF values for button fields
@@ -1485,13 +1415,10 @@ def save_pdf_changes(template_path, fields):
             doc.saveIncr()
             doc.close()
             
-            # Don't use temporary file for incremental save
-            print("✅ PDF saved using incremental save method")
-            
-            # IMPORTANT: Apply the more effective text clipping fix
-            # Remove appearance streams from text fields to prevent clipping
-            print("🔧 Removing appearance streams from text fields to fix clipping...")
-            remove_appearance_streams_from_pdf(template_path)
+            # IMPORTANT: Apply compatibility fix for all PDF viewers
+            # Set NeedAppearances flag to ensure proper field rendering
+            print("🔧 Setting NeedAppearances flag for better compatibility...")
+            # set_need_appearances_flag(template_path)  # COMMENTED OUT FOR TESTING
             
         except Exception as save_error:
             # Close document on error

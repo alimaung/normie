@@ -78,7 +78,7 @@
 .combined-field-container .input-container {
     flex: 1;
     min-width: 200px;
-    margin-left: 47px;
+    margin-left: 28px;
 }
 
 .combined-input {
@@ -708,36 +708,41 @@ input.field-value:focus, textarea.field-value:focus {
                 {% endfor %}
             </div>
             
-            <!-- Fields 12a and 12b in one row -->
-            <div class="two-column-row">
-                {% for field in fields|get_fields_for_section:"applicant" %}
-                    {% if field.id == '12a' %}
-                        <div class="column-field two-col-field">
-                            <div class="column-field-header">
-                                <span class="column-field-id">{{ field.id }}</span>
-                                <span class="column-field-title">{{ field.name }}</span>
-                            </div>
-                            <div class="column-field-input">
+            <!-- Fields 12a and 12b in one table row -->
+            <table class="form-table">
+                <tr class="form-row">
+                    <td class="field-label" style="width: 15%;">
+                        <div class="field-id">12a</div>
+                        {% for field in fields|get_fields_for_section:"applicant" %}
+                            {% if field.id == '12a' %}
+                                <div class="field-description">{{ field.name }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="field-input" style="width: 35%;">
+                        {% for field in fields|get_fields_for_section:"applicant" %}
+                            {% if field.id == '12a' %}
                                 {% render_field_input field fields %}
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-                
-                {% for field in fields|get_fields_for_section:"applicant" %}
-                    {% if field.id == '12b' %}
-                        <div class="column-field two-col-field">
-                            <div class="column-field-header">
-                                <span class="column-field-id">{{ field.id }}</span>
-                                <span class="column-field-title">{{ field.name }}</span>
-                            </div>
-                            <div class="column-field-input">
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="field-label" style="width: 15%;">
+                        <div class="field-id">12b</div>
+                        {% for field in fields|get_fields_for_section:"applicant" %}
+                            {% if field.id == '12b' %}
+                                <div class="field-description">{{ field.name }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="field-input" style="width: 35%;">
+                        {% for field in fields|get_fields_for_section:"applicant" %}
+                            {% if field.id == '12b' %}
                                 {% render_field_input field fields %}
-                            </div>
-                        </div>
-                    {% endif %}
-                {% endfor %}
-            </div>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+            </table>
             
             <!-- Fields 14, 15a, 15b combined in one table row -->
             <table class="form-table">
@@ -843,10 +848,46 @@ input.field-value:focus, textarea.field-value:focus {
                 {% endfor %}
             </div>
             
+            <!-- Fields 20 and 21 in one table row -->
+            <table class="form-table">
+                <tr class="form-row">
+                    <td class="field-label" style="width: 15%;">
+                        <div class="field-id">20</div>
+                        {% for field in fields|get_fields_for_section:"applicant" %}
+                            {% if field.id == '20' %}
+                                <div class="field-description">{{ field.name }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="field-input" style="width: 35%;">
+                        {% for field in fields|get_fields_for_section:"applicant" %}
+                            {% if field.id == '20' %}
+                                {% render_field_input field fields %}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="field-label" style="width: 15%;">
+                        <div class="field-id">21</div>
+                        {% for field in fields|get_fields_for_section:"applicant" %}
+                            {% if field.id == '21' %}
+                                <div class="field-description">{{ field.name }}</div>
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                    <td class="field-input" style="width: 35%;">
+                        {% for field in fields|get_fields_for_section:"applicant" %}
+                            {% if field.id == '21' %}
+                                {% render_field_input field fields %}
+                            {% endif %}
+                        {% endfor %}
+                    </td>
+                </tr>
+            </table>
+            
             <!-- Regular Table Layout for Other Fields -->
             <table class="form-table">
                 {% for field in fields|get_fields_for_section:"applicant" %}
-                    {% if field.id != '1' and field.id != '2a' and field.id != '2b' and field.id != '2c' and field.id != '2d' and field.id != '3' and field.id != '4' and field.id != '5' and field.id != '6' and field.id != '7' and field.id != '8' and field.id != '9' and field.id != '12a' and field.id != '12b' and field.id != '14' and field.id != '15a' and field.id != '15b' and field.id != '16' and field.id != '17a' and field.id != '17b' and field.id != '17c' %}
+                    {% if field.id != '1' and field.id != '2a' and field.id != '2b' and field.id != '2c' and field.id != '2d' and field.id != '3' and field.id != '4' and field.id != '5' and field.id != '6' and field.id != '7' and field.id != '8' and field.id != '9' and field.id != '12a' and field.id != '12b' and field.id != '14' and field.id != '15a' and field.id != '15b' and field.id != '16' and field.id != '17a' and field.id != '17b' and field.id != '17c' and field.id != '20' and field.id != '21' %}
                         <tr class="form-row">
                             <td class="field-label">
                                 <div class="field-id">{{ field.id }}</div>
@@ -1015,16 +1056,20 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Track form changes to disable download when unsaved changes exist
     function trackFormChanges() {
-        const inputs = form.querySelectorAll('input, textarea, select');
+        // Include fields outside the form element (like fields 1 and 51 in key-fields-header)
+        const inputs = document.querySelectorAll('input, textarea, select');
         inputs.forEach(input => {
-            input.addEventListener('change', function() {
-                formSaved = false;
-                updateDownloadButton();
-            });
-            input.addEventListener('input', function() {
-                formSaved = false;
-                updateDownloadButton();
-            });
+            // Only track inputs that have a field ID (form fields)
+            if (input.dataset.fieldId) {
+                input.addEventListener('change', function() {
+                    formSaved = false;
+                    updateDownloadButton();
+                });
+                input.addEventListener('input', function() {
+                    formSaved = false;
+                    updateDownloadButton();
+                });
+            }
         });
     }
     
@@ -1056,8 +1101,8 @@ document.addEventListener('DOMContentLoaded', function() {
             // Collect all field values
             const formData = {};
             
-            // Handle text inputs and textareas
-            const textInputs = form.querySelectorAll('input[type="text"], textarea');
+            // Handle text inputs and textareas (search entire document to include key fields)
+            const textInputs = document.querySelectorAll('input[type="text"], textarea');
             textInputs.forEach(input => {
                 const fieldId = input.dataset.fieldId;
                 if (fieldId) {
@@ -1066,7 +1111,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             // Handle checkboxes (including combined checkboxes)
-            const checkboxInputs = form.querySelectorAll('input[type="checkbox"]');
+            const checkboxInputs = document.querySelectorAll('input[type="checkbox"]');
             checkboxInputs.forEach(checkbox => {
                 const fieldId = checkbox.dataset.fieldId;
                 if (fieldId) {
@@ -1085,7 +1130,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             // Handle radio buttons
-            const radioInputs = form.querySelectorAll('input[type="radio"]:checked');
+            const radioInputs = document.querySelectorAll('input[type="radio"]:checked');
             radioInputs.forEach(radio => {
                 const fieldId = radio.dataset.fieldId;
                 if (fieldId) {
@@ -1151,7 +1196,7 @@ document.addEventListener('DOMContentLoaded', function() {
         combinedCheckboxes.forEach(checkbox => {
             const targetInputId = checkbox.dataset.targetInput;
             if (targetInputId) {
-                const targetInput = form.querySelector(`input[data-field-id="${targetInputId}"]`);
+                const targetInput = document.querySelector(`input[data-field-id="${targetInputId}"]`);
                 if (targetInput) {
                     // Set initial state
                     targetInput.style.display = checkbox.checked ? 'block' : 'none';
@@ -1203,7 +1248,7 @@ document.addEventListener('DOMContentLoaded', function() {
             const activationValue = radio.dataset.activationValue;
             
             if (targetInputId) {
-                const targetInput = form.querySelector(`input[data-field-id="${targetInputId}"]`);
+                const targetInput = document.querySelector(`input[data-field-id="${targetInputId}"]`);
                 if (targetInput) {
                     radio.addEventListener('change', function() {
                         if (this.checked && this.value === activationValue) {
@@ -1220,12 +1265,14 @@ document.addEventListener('DOMContentLoaded', function() {
         
         // Also handle radio groups to hide input when other options are selected
         const radioGroups = {};
-        form.querySelectorAll('input[type="radio"]').forEach(radio => {
-            const groupName = radio.name;
-            if (!radioGroups[groupName]) {
-                radioGroups[groupName] = [];
+        document.querySelectorAll('input[type="radio"]').forEach(radio => {
+            if (radio.dataset.fieldId) {
+                const groupName = radio.name;
+                if (!radioGroups[groupName]) {
+                    radioGroups[groupName] = [];
+                }
+                radioGroups[groupName].push(radio);
             }
-            radioGroups[groupName].push(radio);
         });
         
         // Set up listeners for each radio group
@@ -1239,7 +1286,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             group.forEach(otherRadio => {
                                 const otherTargetInputId = otherRadio.dataset.targetInput;
                                 if (otherTargetInputId && otherRadio !== this) {
-                                    const otherTargetInput = form.querySelector(`input[data-field-id="${otherTargetInputId}"]`);
+                                    const otherTargetInput = document.querySelector(`input[data-field-id="${otherTargetInputId}"]`);
                                     if (otherTargetInput) {
                                         otherTargetInput.style.display = 'none';
                                         otherTargetInput.value = '';
@@ -1260,7 +1307,7 @@ document.addEventListener('DOMContentLoaded', function() {
             button.addEventListener('click', function(e) {
                 e.preventDefault();
                 const targetFieldId = this.dataset.target;
-                const targetInput = form.querySelector(`input[data-field-id="${targetFieldId}"]`);
+                const targetInput = document.querySelector(`input[data-field-id="${targetFieldId}"]`);
                 if (targetInput && !targetInput.disabled) {
                     // Create a temporary date input to trigger native date picker
                     const tempDateInput = document.createElement('input');
@@ -1330,33 +1377,55 @@ document.addEventListener('DOMContentLoaded', function() {
     }
     
     function initializeDynamicButtonStates() {
-        // Update radio button states dynamically
-        const radioButtons = form.querySelectorAll('input[type="radio"]');
+        // Update radio button states dynamically (include fields outside form)
+        const radioButtons = document.querySelectorAll('input[type="radio"]');
         radioButtons.forEach(radio => {
-            radio.addEventListener('change', function() {
-                updateButtonStateDisplay(this.name, this.value);
-            });
+            if (radio.dataset.fieldId) {
+                radio.addEventListener('change', function() {
+                    updateButtonStateDisplay(this.name, this.value);
+                });
+            }
         });
         
-        // Update checkbox states dynamically
-        const checkboxes = form.querySelectorAll('input[type="checkbox"]:not(.combined-checkbox)');
+        // Update checkbox states dynamically and set initial state (include fields outside form)
+        const checkboxes = document.querySelectorAll('input[type="checkbox"]:not(.combined-checkbox)');
         checkboxes.forEach(checkbox => {
-            checkbox.addEventListener('change', function() {
-                updateCheckboxStateDisplay(this);
-            });
+            if (checkbox.dataset.fieldId) {
+                // Set initial state for activation checkboxes
+                updateCheckboxStateDisplay(checkbox);
+                
+                // Add change listener
+                checkbox.addEventListener('change', function() {
+                    updateCheckboxStateDisplay(this);
+                });
+            }
+        });
+        
+        // Also handle combined checkboxes and file upload checkboxes
+        const combinedCheckboxes = document.querySelectorAll('input[type="checkbox"].combined-checkbox, input[type="checkbox"].file-upload-checkbox');
+        combinedCheckboxes.forEach(checkbox => {
+            if (checkbox.dataset.fieldId) {
+                // Set initial state
+                updateCheckboxStateDisplay(checkbox);
+                
+                // Add change listener
+                checkbox.addEventListener('change', function() {
+                    updateCheckboxStateDisplay(this);
+                });
+            }
         });
     }
     
     function updateButtonStateDisplay(fieldName, selectedValue) {
-        // Find all radio buttons in this group
-        const radioGroup = form.querySelectorAll(`input[type="radio"][name="${fieldName}"]`);
+        // Find all radio buttons in this group (search entire document)
+        const radioGroup = document.querySelectorAll(`input[type="radio"][name="${fieldName}"]`);
         
         // Update any status display elements for this field
         radioGroup.forEach(radio => {
             const fieldId = radio.dataset.fieldId;
             if (fieldId) {
                 // Find any status indicator for this field (could be added later)
-                const statusElement = form.querySelector(`[data-status-for="${fieldId}"]`);
+                const statusElement = document.querySelector(`[data-status-for="${fieldId}"]`);
                 if (statusElement) {
                     statusElement.textContent = radio.checked ? selectedValue : '';
                 }
@@ -1372,20 +1441,16 @@ document.addEventListener('DOMContentLoaded', function() {
             if (label) {
                 let labelText = label.textContent.trim();
                 
-                // Only update labels that are currently showing Ja/Nein or are empty
-                // Don't update labels with meaningful custom text
-                if (labelText === 'Ja' || labelText === 'Nein' || labelText === '' || labelText === 'Aktivieren') {
+                // Always update activation checkboxes and standard checkboxes to show Ja/Nein
+                // Only preserve meaningful custom text that isn't generic
+                if (labelText === 'Ja' || labelText === 'Nein' || labelText === '' || labelText === 'Aktivieren' || 
+                    checkbox.classList.contains('combined-checkbox') || checkbox.classList.contains('file-upload-checkbox')) {
                     label.textContent = checkbox.checked ? 'Ja' : 'Nein';
-                }
-                
-                // Special case: if the label is empty (activation checkboxes), keep it empty
-                if (labelText === '' || labelText === 'Aktivieren') {
-                    label.textContent = '';
                 }
             }
             
             // Find any status indicator for this field
-            const statusElement = form.querySelector(`[data-status-for="${fieldId}"]`);
+            const statusElement = document.querySelector(`[data-status-for="${fieldId}"]`);
             if (statusElement) {
                 statusElement.textContent = checkbox.checked ? 'Ja' : 'Nein';
             }
