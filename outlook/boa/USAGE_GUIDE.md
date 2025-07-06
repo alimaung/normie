@@ -25,7 +25,6 @@ Common OAB files in a typical setup:
 - `extract_contacts.py` - Main extraction script (improved version)
 - `boa.py` - Original extraction script (basic functionality)
 - `schema.py` - Property definitions and data types
-- `show_sample_contacts.py` - Display sample extracted contacts
 
 ## Usage
 
@@ -44,12 +43,6 @@ python extract_contacts.py path/to/your/file.oab
 The script generates two output files:
 - `contacts.json` - Complete contact data in JSON format
 - `contacts.csv` - Contact data in CSV format (suitable for Excel/spreadsheets)
-
-### View Sample Contacts
-
-```bash
-python show_sample_contacts.py
-```
 
 ## Contact Information Extracted
 
