@@ -10,7 +10,6 @@
         display: flex;
         flex-direction: column;
         padding: 0;
-        position: relative;
         overflow: hidden;
     }
 
@@ -26,7 +25,7 @@
     }
 
     .construction-title {
-        font-size: 6rem;
+        font-size: 5rem;
         font-weight: 700;
         margin-bottom: 1rem;
         text-transform: uppercase;
@@ -37,7 +36,7 @@
     }
 
     .construction-subtitle {
-        font-size: 2rem;
+        font-size: 1.5rem;
         font-weight: 300;
         margin-bottom: 1rem;
         color: #666;
@@ -61,6 +60,7 @@
         color: white;
         padding: 1rem 3rem;
         font-size: 1.3rem;
+        margin-top: 2rem;
         font-weight: 600;
         text-decoration: none;
         border-radius: 50px;
@@ -83,18 +83,21 @@
     }
 
     .construction-image-container {
-        flex: 1;
+        position: absolute;
+        top: 100px;
+        left: 0;
+        width: 100%;
+        height: 100%;
         display: flex;
         align-items: center;
         justify-content: center;
+        z-index: 1;
     }
 
     .construction-image {
-        width: 100%;
-        height: 100%;
-        max-width: none;
-        max-height: none;
-        object-fit: contain;
+        width: 100vw;
+        height: 100vh;
+        object-fit: cover;
         opacity: 0;
         animation: fadeInScale 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.4s forwards;
     }
@@ -123,15 +126,15 @@
 
     @media (max-width: 768px) {
         .construction-title {
-            font-size: 3.5rem;
+            font-size: 2.5rem;
         }
         
         .construction-subtitle {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
         }
         
         .construction-message {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
         }
 
         .go-back-button {
@@ -143,23 +146,19 @@
             top: 10%;
             padding: 0 1rem;
         }
-        
-        .construction-image-container {
-            margin-top: 25%;
-        }
     }
 
     @media (max-width: 480px) {
         .construction-title {
-            font-size: 2.5rem;
+            font-size: 2rem;
         }
         
         .construction-subtitle {
-            font-size: 1.3rem;
+            font-size: 1rem;
         }
         
         .construction-message {
-            font-size: 1.1rem;
+            font-size: 1rem;
         }
 
         .go-back-button {
@@ -171,10 +170,6 @@
             top: 8%;
             padding: 0 1rem;
         }
-        
-        .construction-image-container {
-            margin-top: 30%;
-        }
     }
 </style>
 {% endblock %}
@@ -183,12 +178,12 @@
 <div class="construction-page">
     <div class="construction-header">
         <h1 class="construction-title">Under Construction</h1>
-        <p class="construction-subtitle">
-            We're working hard to bring you something amazing!
-        </p>
         <p class="construction-message">
             Our team is currently building an incredible experience for you.<br>
             This feature will be available soon. Stay tuned for updates!
+        </p>
+        <p class="construction-subtitle">
+            We're working hard to bring you something amazing!
         </p>
         <a href="javascript:history.back()" class="go-back-button">
             ← Go Back

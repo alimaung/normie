@@ -2421,3 +2421,103 @@ def inbox_compose(request):
     
     return render(request, 'normieapp/inbox_compose.html', context)
 
+def open_request(request):
+    """
+    Open Request page view - public access for all users including guests.
+    Handles both GET (display form) and POST (submit form) requests.
+    """
+    if request.method == 'POST':
+        try:
+            import json
+            data = json.loads(request.body)
+            
+            # Validate required fields
+            required_fields = [
+                'field_2a', 'field_2b', 'field_2c', 'field_2d', 'field_3',
+                'field_5', 'field_6', 'field_7', 'field_8', 'field_9',
+                'field_10', 'field_11', 'field_12a', 'field_12b', 'field_14'
+            ]
+            
+            missing_fields = []
+            for field in required_fields:
+                if not data.get(field):
+                    missing_fields.append(field)
+            
+            if missing_fields:
+                return JsonResponse({
+                    'success': False,
+                    'message': f'Required fields missing: {", ".join(missing_fields)}'
+                })
+            
+            # Generate Antragnummer (XXX/YYYY format)
+            from datetime import datetime
+            current_year = datetime.now().year
+            
+            # For now, we'll simulate auto-increment logic
+            # In a real implementation, this would query the database for the next number
+            next_number = 1  # This would be calculated from database
+            antragnummer = f"{next_number:03d}/{current_year}"
+            
+            # Print form data to console
+            print("\n" + "="*80)
+            print("NEW OPEN REQUEST SUBMITTED")
+            print("="*80)
+            print(f"Antragnummer: {antragnummer}")
+            print(f"TKZ: {data.get('tkz', 'Auto-generated')}")
+            print("\nApplicant Information:")
+            print(f"  2a - Name, Vorname: {data.get('field_2a', '')}")
+            print(f"  2b - Kostenstelle: {data.get('field_2b', '')}")
+            print(f"  2c - Abteilung: {data.get('field_2c', '')}")
+            print(f"  2d - E-Mail: {data.get('field_2d', '')}")
+            print(f"  3  - Telefon: {data.get('field_3', '')}")
+            print(f"  4  - Projektname/Projektnummer: {data.get('field_4', '')}")
+            print(f"  5  - Triebwerk: {data.get('field_5', '')}")
+            print(f"  6  - Bereich: {data.get('field_6', '')}")
+            print(f"  7  - Datum: {data.get('field_7', '')}")
+            print(f"  8  - Benötigtes Datum: {data.get('field_8', '')}")
+            print(f"  9  - Verwendungszweck: {data.get('field_9', '')}")
+            print(f"  10 - Benennung des Teils/Stoffes: {data.get('field_10', '')}")
+            print(f"  11 - Lieferant: {data.get('field_11', '')}")
+            print(f"  12a- Teilenummer/Typbezeichnung: {data.get('field_12a', '')}")
+            print(f"  12b- Menge: {data.get('field_12b', '')}")
+            print(f"  13 - Bemerkungen: {data.get('field_13', '')}")
+            print(f"  14 - Dringlichkeit: {data.get('field_14', '')}")
+            print(f"  15a- SAP-Material: {data.get('field_15a', '')}")
+            print(f"  15b- Lagerbestand: {data.get('field_15b', '')}")
+            print(f"  16 - Gültigkeitsdauer: {data.get('field_16', '')}")
+            print(f"  17a- Lagerfähigkeit: {data.get('field_17a', '')}")
+            print(f"  17b- Lagerbedingungen: {data.get('field_17b', '')}")
+            print(f"  17c- Entsorgung: {data.get('field_17c', '')}")
+            print(f"  18 - Einsatzort: {data.get('field_18', '')}")
+            print(f"  19 - Sicherheitsdatenblatt beiliegend: {data.get('field_19', '')}")
+            print(f"  20 - Alternativprodukt: {data.get('field_20', '')}")
+            print(f"  21 - Verwendung seit: {data.get('field_21', '')}")
+            print("="*80)
+            print("Note: This is a console output only. No database or PDF operations performed yet.")
+            print("="*80 + "\n")
+            
+            return JsonResponse({
+                'success': True,
+                'message': 'Antrag erfolgreich eingereicht!',
+                'antragnummer': antragnummer
+            })
+            
+        except json.JSONDecodeError:
+            return JsonResponse({
+                'success': False,
+                'message': 'Invalid JSON data'
+            })
+        except Exception as e:
+            print(f"Error processing open request: {str(e)}")
+            return JsonResponse({
+                'success': False,
+                'message': 'Internal server error'
+            })
+    
+    # GET request - display the form
+    context = {
+        'page_title': _('Open Request'),
+        'description': _('Submit a request for materials, chemicals, or support - accessible to all users'),
+    }
+    return render(request, 'normieapp/open_request.html', context)
+

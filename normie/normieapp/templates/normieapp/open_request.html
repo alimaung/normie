@@ -1,0 +1,1083 @@
+{% extends "normieapp/base.html" %}
+{% load static %}
+{% load i18n %}
+
+{% block extra_css %}
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'normieapp/css/pdf_form.css' %}">
+<style>
+/* Additional styling for open request form */
+.disabled-field {
+    background-color: #f8f9fa !important;
+    color: #5f6368 !important;
+    cursor: not-allowed !important;
+    border-color: #dadce0 !important;
+    opacity: 0.6;
+}
+
+.disabled-field:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Error Styling */
+.field-error {
+    border-color: #d32f2f !important;
+    background-color: #fff5f5 !important;
+}
+
+.field-error:focus {
+    border-color: #d32f2f !important;
+    box-shadow: 0 0 0 1px #d32f2f !important;
+}
+
+.error-message {
+    color: #d32f2f;
+    font-size: 12px;
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.error-message i {
+    font-size: 14px;
+}
+
+/* Radio button and checkbox styling improvements */
+.radio-group.disabled-field {
+    opacity: 0.6;
+}
+
+.radio-group.disabled-field input[type="radio"] {
+    cursor: not-allowed;
+}
+
+.checkbox-container.disabled-field {
+    opacity: 0.6;
+}
+
+.checkbox-container.disabled-field input[type="checkbox"] {
+    cursor: not-allowed;
+}
+
+/* Better spacing for form rows */
+.form-row td {
+    padding: 8px 12px;
+    vertical-align: top;
+}
+
+.form-row .field-label {
+    width: 30%;
+    min-width: 200px;
+}
+
+.form-row .field-input {
+    width: 70%;
+}
+
+/* Input field styling improvements - using specific selectors to avoid conflicts */
+input.field-value, textarea.field-value {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+input.field-value:focus, textarea.field-value:focus {
+    border-color: #1a73e8;
+    outline: none;
+    box-shadow: 0 0 0 1px #1a73e8;
+}
+
+/* Long text fields */
+.long-text {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Alert styling */
+.alert {
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+.alert i {
+    margin-right: 8px;
+}
+
+/* Required field indicator */
+.required::after {
+    content: " *";
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+/* Date picker styling */
+.date-input-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.date-field {
+    flex: 1;
+}
+
+.date-picker-toggle {
+    background: #1a73e8;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Sofia Sans', sans-serif;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(60,64,67,.3);
+    transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.date-picker-toggle:hover {
+    background: #1769d3;
+    box-shadow: 0 2px 8px rgba(60,64,67,.15);
+}
+
+.date-picker-toggle:disabled {
+    background: #dadce0;
+    color: #5f6368;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Loading state */
+.btn-loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn-loading i {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="pdf-form-container">
+    <!-- Form Actions Bar -->
+    <div class="form-actions">
+        <div class="left">
+            <h2 style="margin: 0; font-size: 14px;">{% trans "Antrag für Teile und Stoffe" %}</h2>
+            <span style="color: #666; font-size: 11px;">Applicant Fields Only</span>
+        </div>
+        <div class="right">
+            <div id="alert-container"></div>
+            <a href="javascript:history.back()" class="btn btn-cancel">
+                <i class="fas fa-times"></i> {% trans "Cancel" %}
+            </a>
+            <button type="submit" form="open-request-form" class="btn btn-save">
+                <i class="fas fa-paper-plane"></i> {% trans "Submit Request" %}
+            </button>
+        </div>
+    </div>
+
+    <!-- Form Header -->
+    <div class="form-header-section">
+        <div class="form-title">Rolls-Royce Deutschland Ltd & Co KG</div>
+        <div class="form-subtitle">Antrag für Teile und Stoffe - Consumable Material Supply Request</div>
+    </div>
+    
+    <form id="open-request-form" novalidate>
+        {% csrf_token %}
+        
+        <!-- Antragsteller Section -->
+        <div class="section-card">
+            <div class="section-header">
+                <i class="fas fa-user"></i>
+                Antragsteller (Applicant Information)
+            </div>
+            
+            <!-- Special Row Layout for 2a, 2b, 2c, 2d -->
+            <div class="four-column-row">
+                <div class="column-field flex-1-2">
+                    <div class="column-field-header">
+                        <span class="column-field-id">2a</span>
+                        <span class="column-field-title required">Antragsteller Name</span>
+                    </div>
+                    <div class="column-field-input">
+                        <input type="text" class="field-value" name="field_2a" value="" data-field-id="2a" required>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column-field flex-0-8">
+                    <div class="column-field-header">
+                        <span class="column-field-id">2b</span>
+                        <span class="column-field-title required">Antragserstellungsdatum</span>
+                    </div>
+                    <div class="column-field-input">
+                        <div class="date-input-container">
+                            <input type="text" class="field-value date-field" name="field_2b" value="" data-field-id="2b" placeholder="DD.MM.YYYY" required>
+                            <button type="button" class="date-picker-toggle" data-target="2b">
+                                <i class="fas fa-calendar-alt"></i>
+                            </button>
+                        </div>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column-field flex-0-5">
+                    <div class="column-field-header">
+                        <span class="column-field-id">2c</span>
+                        <span class="column-field-title required">Antragsteller Abteilung</span>
+                    </div>
+                    <div class="column-field-input">
+                        <input type="text" class="field-value" name="field_2c" value="" data-field-id="2c" required>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column-field flex-1">
+                    <div class="column-field-header">
+                        <span class="column-field-id">2d</span>
+                        <span class="column-field-title required">Antragsteller Telefonnummer</span>
+                    </div>
+                    <div class="column-field-input">
+                        <input type="text" class="field-value" name="field_2d" value="" data-field-id="2d" required>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Fields 3 and 4 in two-column row -->
+            <div class="two-column-row">
+                <div class="column-field two-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">3</span>
+                        <span class="column-field-title required">Benennung</span>
+                    </div>
+                    <div class="column-field-input">
+                        <input type="text" class="field-value" name="field_3" value="" data-field-id="3" required>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column-field two-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">4</span>
+                        <span class="column-field-title">Fremdteilenummer</span>
+                    </div>
+                    <div class="column-field-input">
+                        <input type="text" class="field-value" name="field_4" value="" data-field-id="4">
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Fields 5, 6, and 7 in three-column row -->
+            <div class="three-column-row">
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">5</span>
+                        <span class="column-field-title required">Kennzeichnung des Bedarfs</span>
+                    </div>
+                    <div class="column-field-input">
+                        <div class="stacked-radio">
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="field_5" value="Neubedarf" id="5_0" data-field-id="5" required>
+                                    <label for="5_0">Neubedarf</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="field_5" value="Bedarfsänderung" id="5_1" data-field-id="5" required>
+                                    <label for="5_1">Bedarfsänderung</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">6</span>
+                        <span class="column-field-title required">Kennzeichnung des Produkts</span>
+                    </div>
+                    <div class="column-field-input">
+                        <div class="stacked-radio">
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="field_6" value="Stoff" id="6_0" data-field-id="6" required>
+                                    <label for="6_0">Stoff</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="field_6" value="Teil" id="6_1" data-field-id="6" required>
+                                    <label for="6_1">Teil</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">7</span>
+                        <span class="column-field-title">REACh-Code</span>
+                    </div>
+                    <div class="column-field-input">
+                        <input type="text" class="field-value" name="field_7" value="" data-field-id="7">
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Fields 8 and 9 in one row -->
+            <div class="two-column-row">
+                <div class="column-field two-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">8</span>
+                        <span class="column-field-title">Lieferant</span>
+                    </div>
+                    <div class="column-field-input">
+                        <input type="text" class="field-value disabled-field" name="field_8" value="(wird vom Einkauf festgelegt)" data-field-id="8" disabled>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column-field two-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">9</span>
+                        <span class="column-field-title required">Hersteller</span>
+                    </div>
+                    <div class="column-field-input">
+                        <input type="text" class="field-value" name="field_9" value="" data-field-id="9" required>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Fields 12a and 12b in one table row -->
+            <table class="form-table">
+                <tr class="form-row" style="border-bottom: none;">
+                    <td class="field-label" style="width: 15%;">
+                        <div class="field-id">12a</div>
+                        <div class="field-description">Einsatzort / Standort</div>
+                    </td>
+                    <td class="field-input" style="width: 35%;">
+                        <input type="text" class="field-value" name="field_12a" value="" data-field-id="12a">
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </td>
+                    <td class="field-label" style="width: 15%; border-left: 1px solid #dadce0;">
+                        <div class="field-id">12b</div>
+                        <div class="field-description">Bereich Teamleiter*innen</div>
+                    </td>
+                    <td class="field-input" style="width: 35%;">
+                        <input type="text" class="field-value" name="field_12b" value="" data-field-id="12b">
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            
+            <!-- Fields 14, 15a, 15b combined in one table row -->
+            <table class="form-table">
+                <tr class="form-row">
+                    <td class="field-label" style="width: 10%;">
+                        <div class="field-id">14</div>
+                        <div class="field-description required">Nutzung</div>
+                    </td>
+                    <td class="field-input" style="width: 30%;">
+                        <div class="stacked-radio">
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="field_14" value="kurzfristig" id="14_0" data-field-id="14" required>
+                                    <label for="14_0">kurzfristig</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="field_14" value="langfristig" id="14_1" data-field-id="14" required>
+                                    <label for="14_1">langfristig</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </td>
+                    <td class="field-label" style="width: 10%; border-left: 1px solid #dadce0;">
+                        <div class="field-id">15</div>
+                        <div class="field-description">SAP und Lager</div>
+                    </td>
+                    <td class="field-input" style="width: 50%;">
+                        <div class="inline-radio-field">
+                            <span class="radio-field-label">Lagerhaltig?:</span>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="field_15a" value="Ja" id="15a_0" data-field-id="15a">
+                                    <label for="15a_0">Ja</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="field_15a" value="Nein" id="15a_1" data-field-id="15a">
+                                    <label for="15a_1">Nein</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="inline-radio-field">
+                            <span class="radio-field-label">Bestellung über SAP?:</span>
+                            <div class="radio-group">
+                                <div class="radio-option">
+                                    <input type="radio" name="field_15b" value="Ja" id="15b_0" data-field-id="15b">
+                                    <label for="15b_0">Ja</label>
+                                </div>
+                                <div class="radio-option">
+                                    <input type="radio" name="field_15b" value="Nein" id="15b_1" data-field-id="15b">
+                                    <label for="15b_1">Nein</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            
+            <!-- Fields 16, 17a, 17b, 17c in four-column row -->
+            <div class="four-column-row">
+                <div class="column-field flex-1">
+                    <div class="column-field-header">
+                        <span class="column-field-id">16</span>
+                        <span class="column-field-title">Basismengeneinheit SAP</span>
+                    </div>
+                    <div class="column-field-input">
+                        <input type="text" class="field-value" name="field_16" value="" data-field-id="16">
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column-field flex-1">
+                    <div class="column-field-header">
+                        <span class="column-field-id">17a</span>
+                        <span class="column-field-title">monatlicher Bedarf</span>
+                    </div>
+                    <div class="column-field-input">
+                        <input type="text" class="field-value" name="field_17a" value="" data-field-id="17a">
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column-field flex-1">
+                    <div class="column-field-header">
+                        <span class="column-field-id">17b</span>
+                        <span class="column-field-title">Häufigkeit der Anwendung</span>
+                    </div>
+                    <div class="column-field-input">
+                        <input type="text" class="field-value" name="field_17b" value="" data-field-id="17b">
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="column-field flex-1">
+                    <div class="column-field-header">
+                        <span class="column-field-id">17c</span>
+                        <span class="column-field-title">Menge pro Anwendung</span>
+                    </div>
+                    <div class="column-field-input">
+                        <input type="text" class="field-value" name="field_17c" value="" data-field-id="17c">
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Regular Table Layout for Other Fields -->
+            <table class="form-table">
+                <!-- Field 10 -->
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">10</div>
+                        <div class="field-description required">Verwendungszweck, Anforderungsgrund, Prozessbeschreibung, Anwendungsform</div>
+                    </td>
+                    <td class="field-input">
+                        <textarea class="field-value long-text" name="field_10" data-field-id="10" required></textarea>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </td>
+                </tr>
+                
+                <!-- Field 11 -->
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">11</div>
+                        <div class="field-description required">Triebwerksprogramm</div>
+                    </td>
+                    <td class="field-input">
+                        <input type="text" class="field-value" name="field_11" value="" data-field-id="11" required>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </td>
+                </tr>
+                
+                <!-- Field 13 -->
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">13</div>
+                        <div class="field-description required">Erzeugnisrelevant, besteht Kontakt mit Luftfahrtteilen?</div>
+                    </td>
+                    <td class="field-input">
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="field_13" value="Ja (Produktzulassung ist erforderlich)" id="13_0" data-field-id="13" required>
+                                <label for="13_0">Ja (Produktzulassung ist erforderlich)</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="field_13" value="Nein (Produktzulassung ist nicht erforderlich)" id="13_1" data-field-id="13" required>
+                                <label for="13_1">Nein (Produktzulassung ist nicht erforderlich)</label>
+                            </div>
+                        </div>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </td>
+                </tr>
+                
+                <!-- Field 18a -->
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">18a</div>
+                        <div class="field-description">EU-Sicherheitsdatenblatt (eSDB)</div>
+                    </td>
+                    <td class="field-input">
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="field_18a" value="Ja" id="18a_0" data-field-id="18a">
+                                <label for="18a_0">Ja</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="field_18a" value="Nein" id="18a_1" data-field-id="18a">
+                                <label for="18a_1">Nein</label>
+                            </div>
+                        </div>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </td>
+                </tr>
+                
+                <!-- Field 18b -->
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">18b</div>
+                        <div class="field-description">Technisches Datenblatt, Produktbeschreibung</div>
+                    </td>
+                    <td class="field-input">
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="field_18b" value="Ja" id="18b_0" data-field-id="18b">
+                                <label for="18b_0">Ja</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="field_18b" value="Nein" id="18b_1" data-field-id="18b">
+                                <label for="18b_1">Nein</label>
+                            </div>
+                        </div>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </td>
+                </tr>
+                
+                <!-- Field 18c -->
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">18c</div>
+                        <div class="field-description">Gefährdungsbeurteilung</div>
+                    </td>
+                    <td class="field-input">
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="field_18c" value="Ja" id="18c_0" data-field-id="18c">
+                                <label for="18c_0">Ja</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="field_18c" value="Nein" id="18c_1" data-field-id="18c">
+                                <label for="18c_1">Nein</label>
+                            </div>
+                        </div>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </td>
+                </tr>
+                
+                <!-- Field 18d -->
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">18d</div>
+                        <div class="field-description">Produktzulassung nach:</div>
+                    </td>
+                    <td class="field-input">
+                        <div class="radio-group">
+                            <div class="radio-option">
+                                <input type="radio" name="field_18d" value="Ja" id="18d_0" data-field-id="18d">
+                                <label for="18d_0">Ja</label>
+                            </div>
+                            <div class="radio-option">
+                                <input type="radio" name="field_18d" value="Nein" id="18d_1" data-field-id="18d">
+                                <label for="18d_1">Nein</label>
+                            </div>
+                        </div>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </td>
+                </tr>
+                
+                <!-- Field 18e -->
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">18e</div>
+                        <div class="field-description">Produktzulassung nach Spezifikation</div>
+                    </td>
+                    <td class="field-input">
+                        <input type="text" class="field-value" name="field_18e" value="" data-field-id="18e">
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </td>
+                </tr>
+                
+                <!-- Field 19 -->
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">19</div>
+                        <div class="field-description">Erläuterungen</div>
+                    </td>
+                    <td class="field-input">
+                        <textarea class="field-value long-text" name="field_19" data-field-id="19"></textarea>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+            
+            <!-- Fields 20 and 21 in one table row -->
+            <table class="form-table">
+                <tr class="form-row">
+                    <td class="field-label" style="width: 15%;">
+                        <div class="field-id">20</div>
+                        <div class="field-description">Verweis auf vergangene Anträge</div>
+                    </td>
+                    <td class="field-input" style="width: 35%;">
+                        <input type="text" class="field-value" name="field_20" value="" data-field-id="20">
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </td>
+                    <td class="field-label" style="width: 15%; border-left: 1px solid #dadce0;">
+                        <div class="field-id">21</div>
+                        <div class="field-description">Wunschtermin für Produkteinsatz</div>
+                    </td>
+                    <td class="field-input" style="width: 35%;">
+                        <div class="date-input-container">
+                            <input type="text" class="field-value date-field" name="field_21" value="" data-field-id="21" placeholder="DD.MM.YYYY">
+                            <button type="button" class="date-picker-toggle" data-target="21">
+                                <i class="fas fa-calendar-alt"></i>
+                            </button>
+                        </div>
+                        <div class="error-message" style="display: none;">
+                            <i class="fas fa-exclamation-circle"></i>
+                            <span class="error-text"></span>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const form = document.getElementById('open-request-form');
+    const alertContainer = document.getElementById('alert-container');
+    
+    // Form validation rules - updated field names
+    const validationRules = {
+        'field_2a': { required: true, message: 'Antragsteller Name ist erforderlich' },
+        'field_2b': { required: true, message: 'Antragserstellungsdatum ist erforderlich' },
+        'field_2c': { required: true, message: 'Antragsteller Abteilung ist erforderlich' },
+        'field_2d': { required: true, message: 'Antragsteller Telefonnummer ist erforderlich' },
+        'field_3': { required: true, message: 'Benennung ist erforderlich' },
+        'field_5': { required: true, message: 'Kennzeichnung des Bedarfs muss ausgewählt werden' },
+        'field_6': { required: true, message: 'Kennzeichnung des Produkts muss ausgewählt werden' },
+        'field_9': { required: true, message: 'Hersteller ist erforderlich' },
+        'field_10': { required: true, message: 'Verwendungszweck ist erforderlich' },
+        'field_11': { required: true, message: 'Triebwerksprogramm ist erforderlich' },
+        'field_13': { required: true, message: 'Erzeugnisrelevanz muss ausgewählt werden' },
+        'field_14': { required: true, message: 'Nutzung muss ausgewählt werden' }
+    };
+    
+    // Initialize date pickers
+    initializeDatePickers();
+    
+    // Clear error styling
+    function clearError(element) {
+        element.classList.remove('field-error');
+        const errorMsg = element.parentElement.querySelector('.error-message');
+        if (errorMsg) {
+            errorMsg.style.display = 'none';
+        }
+    }
+    
+    // Show error styling
+    function showError(element, message) {
+        element.classList.add('field-error');
+        const errorMsg = element.parentElement.querySelector('.error-message');
+        if (errorMsg) {
+            errorMsg.querySelector('.error-text').textContent = message;
+            errorMsg.style.display = 'flex';
+        }
+        
+        // Scroll to first error if not visible
+        const rect = element.getBoundingClientRect();
+        if (rect.top < 0 || rect.bottom > window.innerHeight) {
+            element.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
+    }
+    
+    // Validate single field
+    function validateField(fieldName, value) {
+        const rule = validationRules[fieldName];
+        if (!rule) return true;
+        
+        // Required field check
+        if (rule.required && (!value || value.trim() === '')) {
+            return { valid: false, message: rule.message };
+        }
+        
+        return { valid: true };
+    }
+    
+    // Validate form
+    function validateForm() {
+        let isValid = true;
+        const formData = new FormData(form);
+        
+        // Clear all previous errors
+        form.querySelectorAll('.field-error').forEach(element => {
+            clearError(element);
+        });
+        
+        // Validate each field
+        for (const [fieldName, rule] of Object.entries(validationRules)) {
+            let value = formData.get(fieldName);
+            const element = form.querySelector(`[name="${fieldName}"]`);
+            
+            if (!element) continue;
+            
+            // Handle radio buttons
+            if (element.type === 'radio') {
+                const radioGroup = form.querySelectorAll(`[name="${fieldName}"]`);
+                const checked = Array.from(radioGroup).some(radio => radio.checked);
+                value = checked ? formData.get(fieldName) : '';
+            }
+            
+            const validation = validateField(fieldName, value);
+            if (!validation.valid) {
+                // For radio buttons, apply error to the container
+                if (element.type === 'radio') {
+                    const container = element.closest('.radio-group') || element.closest('.column-field-input') || element.closest('.field-input');
+                    if (container) {
+                        const errorMsg = container.querySelector('.error-message');
+                        if (errorMsg) {
+                            errorMsg.querySelector('.error-text').textContent = validation.message;
+                            errorMsg.style.display = 'flex';
+                        }
+                    }
+                } else {
+                    showError(element, validation.message);
+                }
+                isValid = false;
+            }
+        }
+        
+        return isValid;
+    }
+    
+    // Real-time validation
+    form.addEventListener('input', function(e) {
+        const fieldName = e.target.name;
+        if (validationRules[fieldName]) {
+            clearError(e.target);
+        }
+    });
+    
+    form.addEventListener('change', function(e) {
+        const fieldName = e.target.name;
+        if (validationRules[fieldName]) {
+            if (e.target.type === 'radio') {
+                const container = e.target.closest('.radio-group') || e.target.closest('.column-field-input') || e.target.closest('.field-input');
+                if (container) {
+                    const errorMsg = container.querySelector('.error-message');
+                    if (errorMsg) {
+                        errorMsg.style.display = 'none';
+                    }
+                }
+            } else {
+                clearError(e.target);
+            }
+        }
+    });
+    
+    // Form submission
+    form.addEventListener('submit', function(e) {
+        e.preventDefault();
+        
+        if (!validateForm()) {
+            showAlert('danger', 'Bitte korrigieren Sie die markierten Fehler und versuchen Sie es erneut.');
+            return;
+        }
+        
+        // Collect form data
+        const formData = new FormData(form);
+        const requestData = {};
+        
+        // Convert FormData to object
+        for (const [key, value] of formData.entries()) {
+            requestData[key] = value;
+        }
+        
+        // Show loading state
+        const submitBtn = form.querySelector('button[type="submit"]');
+        const originalContent = submitBtn.innerHTML;
+        submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Wird eingereicht...';
+        submitBtn.classList.add('btn-loading');
+        submitBtn.disabled = true;
+        
+        // Send data to server
+        fetch('{% url "open_request" %}', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'X-CSRFToken': '{{ csrf_token }}'
+            },
+            body: JSON.stringify(requestData)
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showAlert('success', `Antrag erfolgreich eingereicht! Antragsnummer: ${data.antragnummer || 'Wird generiert'}`);
+                // Reset form
+                form.reset();
+                // Scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            } else {
+                showAlert('danger', data.message || 'Fehler beim Einreichen des Antrags. Bitte versuchen Sie es erneut.');
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            showAlert('danger', 'Fehler beim Einreichen des Antrags. Bitte versuchen Sie es erneut.');
+        })
+        .finally(() => {
+            // Reset button state
+            submitBtn.innerHTML = originalContent;
+            submitBtn.classList.remove('btn-loading');
+            submitBtn.disabled = false;
+        });
+    });
+    
+    function showAlert(type, message) {
+        alertContainer.innerHTML = `
+            <div class="alert alert-${type}">
+                <i class="fas fa-${type === 'success' ? 'check-circle' : 'exclamation-triangle'}"></i>
+                ${message}
+            </div>
+        `;
+        
+        // Auto-hide success alerts after 8 seconds
+        if (type === 'success') {
+            setTimeout(() => {
+                alertContainer.innerHTML = '';
+            }, 8000);
+        }
+    }
+    
+    function initializeDatePickers() {
+        // Add date picker functionality
+        const datePickerButtons = form.querySelectorAll('.date-picker-toggle');
+        datePickerButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetFieldId = this.dataset.target;
+                const targetInput = document.querySelector(`input[data-field-id="${targetFieldId}"]`);
+                if (targetInput && !targetInput.disabled) {
+                    // Create a temporary date input to trigger native date picker
+                    const tempDateInput = document.createElement('input');
+                    tempDateInput.type = 'date';
+                    tempDateInput.style.position = 'fixed';
+                    tempDateInput.style.top = '50%';
+                    tempDateInput.style.left = '50%';
+                    tempDateInput.style.zIndex = '9999';
+                    tempDateInput.style.opacity = '0';
+                    tempDateInput.style.pointerEvents = 'none';
+                    document.body.appendChild(tempDateInput);
+                    
+                    // Convert existing value to date format if present
+                    const currentValue = targetInput.value;
+                    if (currentValue && currentValue.match(/^\d{1,2}\.\d{1,2}\.\d{4}$/)) {
+                        const parts = currentValue.split('.');
+                        const isoDate = `${parts[2]}-${parts[1].padStart(2, '0')}-${parts[0].padStart(2, '0')}`;
+                        tempDateInput.value = isoDate;
+                    }
+                    
+                    tempDateInput.addEventListener('change', function() {
+                        if (this.value) {
+                            // Convert ISO date to German format
+                            const date = new Date(this.value);
+                            const day = String(date.getDate()).padStart(2, '0');
+                            const month = String(date.getMonth() + 1).padStart(2, '0');
+                            const year = date.getFullYear();
+                            targetInput.value = `${day}.${month}.${year}`;
+                        }
+                        if (document.body.contains(this)) {
+                            document.body.removeChild(this);
+                        }
+                    });
+                    
+                    tempDateInput.addEventListener('blur', function() {
+                        setTimeout(() => {
+                            if (document.body.contains(this)) {
+                                document.body.removeChild(this);
+                            }
+                        }, 100);
+                    });
+                    
+                    // Trigger the date picker
+                    setTimeout(() => {
+                        tempDateInput.focus();
+                        tempDateInput.click();
+                        if (tempDateInput.showPicker) {
+                            tempDateInput.showPicker();
+                        }
+                    }, 10);
+                }
+            });
+        });
+        
+        // Also add double-click functionality to date fields
+        const dateFields = form.querySelectorAll('.date-field');
+        dateFields.forEach(field => {
+            field.addEventListener('dblclick', function() {
+                if (!this.disabled) {
+                    const button = this.parentElement.querySelector('.date-picker-toggle');
+                    if (button) {
+                        button.click();
+                    }
+                }
+            });
+        });
+    }
+    
+    // Set today's date as default for field 2b (Antragserstellungsdatum)
+    const dateField = form.querySelector('[name="field_2b"]');
+    if (dateField) {
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, '0');
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const year = today.getFullYear();
+        dateField.value = `${day}.${month}.${year}`;
+    }
+});
+</script>
+{% endblock %} 

@@ -106,6 +106,13 @@
                                 <div class="dropdown-products">
                                                         <div class="dropdown-section">
                         <div class="section-title">Request Management</div>
+                        <a href="{% url 'open_request' %}" class="dropdown-item">
+                            <i class="fas fa-plus-circle"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Open Request</div>
+                                <div class="dropdown-item-description">Submit a new request</div>
+                            </div>
+                        </a>
                         <a href="{% url 'requests' %}" class="dropdown-item">
                             <i class="fas fa-inbox"></i>
                             <div class="dropdown-item-content">
@@ -294,6 +301,13 @@
                                 <div class="dropdown-products">
                                     <div class="dropdown-section">
                                         <div class="section-title">Request Management</div>
+                                        <a href="{% url 'open_request' %}" class="dropdown-item">
+                                            <i class="fas fa-plus-circle"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Open Request</div>
+                                                <div class="dropdown-item-description">Submit a new request</div>
+                                            </div>
+                                        </a>
                                         <a href="{% url 'requests' %}" class="dropdown-item">
                                             <i class="fas fa-inbox"></i>
                                             <div class="dropdown-item-content">
@@ -930,14 +944,9 @@
                 
                 if (toggle && menu) {
                     let isOpen = false;
-                    let hoverTimeout = null;
-                    let leaveTimeout = null;
                     
                     // Function to open dropdown
                     function openDropdown() {
-                        if (hoverTimeout) clearTimeout(hoverTimeout);
-                        if (leaveTimeout) clearTimeout(leaveTimeout);
-                        
                         // Close other dropdowns immediately
                         navbarDropdowns.forEach(otherDropdown => {
                             if (otherDropdown !== dropdown) {
@@ -954,9 +963,6 @@
                     
                     // Function to close dropdown
                     function closeDropdown() {
-                        if (hoverTimeout) clearTimeout(hoverTimeout);
-                        if (leaveTimeout) clearTimeout(leaveTimeout);
-                        
                         isOpen = false;
                         dropdown.classList.remove('active');
                         if (overlay) {
@@ -964,57 +970,7 @@
                         }
                     }
                     
-                    // Mouse enter on dropdown trigger
-                    toggle.addEventListener('mouseenter', function(e) {
-                        if (leaveTimeout) clearTimeout(leaveTimeout);
-                        
-                        // Comfortable delay for full-width dropdowns (150ms)
-                        hoverTimeout = setTimeout(() => {
-                            openDropdown();
-                        }, 150);
-                    });
-                    
-                    // Mouse enter on dropdown menu itself
-                    menu.addEventListener('mouseenter', function(e) {
-                        if (leaveTimeout) clearTimeout(leaveTimeout);
-                        if (!isOpen) {
-                            openDropdown();
-                        }
-                    });
-                    
-                    // Mouse leave from dropdown trigger
-                    toggle.addEventListener('mouseleave', function(e) {
-                        if (hoverTimeout) clearTimeout(hoverTimeout);
-                        
-                        // Check if we're moving to the dropdown menu
-                        const relatedTarget = e.relatedTarget;
-                        if (relatedTarget && menu.contains(relatedTarget)) {
-                            return; // Don't close if moving to dropdown menu
-                        }
-                        
-                        // Comfortable delay for closing (250ms)
-                        leaveTimeout = setTimeout(() => {
-                            closeDropdown();
-                        }, 250);
-                    });
-                    
-                    // Mouse leave from dropdown menu
-                    menu.addEventListener('mouseleave', function(e) {
-                        if (hoverTimeout) clearTimeout(hoverTimeout);
-                        
-                        // Check if we're moving to the toggle
-                        const relatedTarget = e.relatedTarget;
-                        if (relatedTarget && toggle.contains(relatedTarget)) {
-                            return; // Don't close if moving to toggle
-                        }
-                        
-                        // Close after delay
-                        leaveTimeout = setTimeout(() => {
-                            closeDropdown();
-                        }, 250);
-                    });
-                    
-                    // Toggle dropdown on click (mobile and backup)
+                    // Toggle dropdown on click only
                     toggle.addEventListener('click', function(e) {
                         e.preventDefault();
                         e.stopPropagation();

@@ -515,10 +515,425 @@ a:hover {
     /* margin-bottom: 24px; */
     overflow: hidden;
     width: 100%;
+    border-top: 1px solid #dadce0
 }
 
 .two-col-field {
     flex: 1;
+}
+
+/* Three Column Row Layout */
+.three-column-row {
+    display: flex;
+    gap: 0;
+    /* margin-bottom: 24px; */
+    overflow: hidden;
+    width: 100%;
+}
+
+.three-col-field {
+    flex: 1;
+}
+
+/* Ensure consistent height for all three columns */
+.three-column-row .column-field-input {
+    min-height: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Radio button columns should center their stacked radios */
+.three-column-row .column-field-input .stacked-radio {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+/* Input field column (field 7) should center the input */
+.three-column-row .column-field:last-child .column-field-input input[type="text"],
+.three-column-row .column-field:last-child .column-field-input textarea {
+    text-align: center;
+    width: 100%;
+}
+
+/* ChemScan 23a Section */
+.chemscan-23a-section {
+    margin-bottom: none;
+}
+
+.chemscan-23a-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 16px;
+    background: #f8f9fa;
+    border-top: 1px solid #dadce0;
+    border-bottom: 1px solid #dadce0;
+    min-height: 24px;
+}
+
+.chemscan-23a-id {
+    font-weight: 500;
+    color: #1a73e8;
+    font-size: 12px;
+    font-family: 'Sofia Sans', monospace;
+    flex-shrink: 0;
+}
+
+.chemscan-23a-title {
+    color: #5f6368;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 500;
+    flex: 1;
+}
+
+/* ChemScan 23a Compact Grid Layout (3x4) */
+.chemscan-23a-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 1px;
+    overflow: hidden;
+}
+
+/* ChemScan 24a Section */
+.chemscan-24a-section {
+    margin-bottom: none;
+}
+
+.chemscan-24a-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 16px;
+    background: #f8f9fa;
+    border-top: 1px solid #dadce0;
+    border-bottom: 1px solid #dadce0;
+    min-height: 24px;
+}
+
+.chemscan-24a-id {
+    font-weight: 500;
+    color: #1a73e8;
+    font-size: 12px;
+    font-family: 'Sofia Sans', monospace;
+    flex-shrink: 0;
+}
+
+.chemscan-24a-title {
+    color: #5f6368;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 500;
+    flex: 1;
+}
+
+/* ChemScan 24a Compact Grid Layout (4x2) */
+.chemscan-24a-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1px;
+    overflow: hidden;
+}
+
+/* ChemScan 23b Section */
+.chemscan-23b-section {
+    margin-bottom: none;
+}
+
+.chemscan-23b-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 16px;
+    background: #f8f9fa;
+    border-top: 1px solid #dadce0;
+    border-bottom: 1px solid #dadce0;
+    min-height: 24px;
+}
+
+.chemscan-23b-id {
+    font-weight: 500;
+    color: #1a73e8;
+    font-size: 12px;
+    font-family: 'Sofia Sans', monospace;
+    flex-shrink: 0;
+}
+
+.chemscan-23b-title {
+    color: #5f6368;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 500;
+    flex: 1;
+}
+
+/* ChemScan 23b Compact Grid Layout (3x5) */
+.chemscan-23b-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 1px;
+    overflow: hidden;
+}
+
+/* ChemScan 24b Section */
+.chemscan-24b-section {
+    margin-bottom: none;
+}
+
+.chemscan-24b-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+    padding: 6px 16px;
+    background: #f8f9fa;
+    border-top: 1px solid #dadce0;
+    border-bottom: 1px solid #dadce0;
+    min-height: 24px;
+}
+
+.chemscan-24b-id {
+    font-weight: 500;
+    color: #1a73e8;
+    font-size: 12px;
+    font-family: 'Sofia Sans', monospace;
+    flex-shrink: 0;
+}
+
+.chemscan-24b-title {
+    color: #5f6368;
+    font-size: 14px;
+    line-height: 1.4;
+    font-weight: 500;
+    flex: 1;
+}
+
+/* ChemScan 24b Compact Grid Layout (4x2) */
+.chemscan-24b-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1px;
+    overflow: hidden;
+}
+
+/* Umweltschutz Grid Section */
+/* .umweltschutz-grid-section {
+    margin-bottom: 20px;
+} */
+
+.umweltschutz-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1px;
+    overflow: hidden;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+}
+
+/* Arbeitsschutz Grid Section */
+/* .arbeitsschutz-grid-section {
+    margin-bottom: 20px;
+} */
+
+.arbeitsschutz-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1px;
+    overflow: hidden;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+}
+
+/* Fertigungslabor Grid Section */
+/* .fertigungslabor-grid-section {
+    margin-bottom: 20px;
+} */
+
+.fertigungslabor-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+    gap: 1px;
+    overflow: hidden;
+    border-top: 1px solid #dadce0;
+}
+
+/* Subsection Headers */
+.subsection-header {
+    padding: 16px 20px;
+    background: #f1f3f4;
+}
+
+.subsection-title {
+    font-weight: 600;
+    color: #202124;
+    font-size: 16px;
+    line-height: 1.3;
+    margin-bottom: 6px;
+}
+
+.subsection-subtitle {
+    color: #5f6368;
+    font-size: 14px;
+    line-height: 1.4;
+    font-style: italic;
+}
+
+.grid-field {
+    display: flex;
+    flex-direction: row;
+    border-right: 1px solid #dadce0;
+    border-bottom: 1px solid #dadce0;
+    min-height: 100px;
+}
+
+
+.grid-field:nth-child(n+10) {
+    border-bottom: none;
+}
+
+/* 24a Grid specific border rules */
+.chemscan-24a-grid .grid-field:nth-child(4n) {
+    border-right: none;
+}
+
+.chemscan-24a-grid .grid-field:nth-child(n+5) {
+    border-bottom: none;
+}
+
+.grid-field-header {
+    display: flex;
+    flex-direction: column;
+    padding: 8px 12px;
+    background: #f8f9fa;
+    border-right: 1px solid #dadce0;
+    min-width: 120px;
+    width: 120px;
+    flex-shrink: 0;
+    justify-content: center;
+    flex: 1;
+}
+
+.grid-field-id {
+    font-weight: 500;
+    color: #1a73e8;
+    font-size: 12px;
+    font-family: 'Sofia Sans', monospace;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.grid-field-title {
+    color: #5f6368;
+    font-size: 14px;
+    line-height: 1.3;
+    font-weight: 500;
+    word-wrap: break-word;
+    hyphens: auto;
+}
+
+.grid-field-input {
+    flex: 1;
+    padding: 8px;
+    background: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Standard styling for grid field inputs */
+.grid-field-input .checkbox-container {
+    gap: 8px;
+    min-height: 40px;
+    font-size: 14px;
+}
+
+.grid-field-input .checkbox-container input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+}
+
+.grid-field-input .checkbox-container label {
+    font-size: 14px;
+}
+
+.grid-field-input .radio-group {
+    gap: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.grid-field-input .radio-option {
+    gap: 8px;
+    min-height: 32px;
+}
+
+.grid-field-input .radio-option input[type="radio"] {
+    width: 20px;
+    height: 20px;
+}
+
+.grid-field-input .radio-option label {
+    font-size: 14px;
+    line-height: 1.4;
+}
+
+.grid-field-input input[type="text"],
+.grid-field-input textarea {
+    width: 100%;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    font-family: 'Sofia Sans', sans-serif;
+}
+
+/* Combined field styling for grid */
+.grid-field-input .combined-field-container {
+    flex-direction: column;
+    gap: 6px;
+    align-items: flex-start;
+}
+
+.grid-field-input .combined-field-container .input-container {
+    margin-left: 0;
+    width: 100%;
+}
+
+.grid-field-input .combined-input {
+    font-size: 14px;
+    padding: 8px 12px;
+}
+
+/* Radio activation fields in grid */
+.grid-field-input .radio-activation-container {
+    gap: 6px;
+    width: 100%;
+}
+
+.grid-field-input .activation-input-container {
+    margin-left: 0;
+    margin-top: 4px;
+    width: 100%;
+}
+
+.grid-field-input .activation-input {
+    min-width: auto;
+    font-size: 14px;
+    padding: 8px 12px;
 }
 
 /* Radio Buttons in Column Layout */
@@ -558,9 +973,7 @@ a:hover {
     font-weight: 500;
     font-size: 14px;
     display: flex;
-    align-items: center;
     gap: 8px;
-    border-bottom: 1px solid #e8e8ed;
     color: #666;
 }
 
@@ -581,9 +994,9 @@ a:hover {
     background-color: rgba(26, 115, 232, 0.02);
 }
 
-/* .form-row:last-child {
+.form-row:last-child {
     border-bottom: none;
-} */
+}
 
 .field-label {
     width: 30%;
@@ -1098,6 +1511,107 @@ a:hover {
     .two-col-field:last-child {
         border-bottom: none;
     }
+    
+    /* Three Column Row Mobile */
+    .three-column-row {
+        flex-direction: column;
+        gap: 0;
+        padding: 0 16px;
+    }
+    
+    .three-col-field {
+        flex: 1 !important;
+        border-right: none;
+        border-bottom: 1px solid #dadce0;
+    }
+    
+    .three-col-field:last-child {
+        border-bottom: none;
+    }
+    
+    /* ChemScan Grid Mobile */
+    .chemscan-23a-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(12, auto);
+        border-radius: 0 0 4px 4px;
+    }
+    
+    .chemscan-24a-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(8, auto);
+    }
+    
+    .chemscan-23b-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(14, auto);
+    }
+    
+    .chemscan-24b-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(8, auto);
+    }
+    
+    .umweltschutz-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, auto);
+    }
+    
+    .arbeitsschutz-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, auto);
+    }
+    
+    .fertigungslabor-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(4, auto);
+    }
+    
+    .subsection-header {
+        padding: 12px 16px;
+        margin: 16px 0 12px 0;
+    }
+    
+    .subsection-title {
+        font-size: 15px;
+        line-height: 1.2;
+        margin-bottom: 4px;
+    }
+    
+    .subsection-subtitle {
+        font-size: 13px;
+        line-height: 1.3;
+    }
+    
+    .grid-field {
+        border-right: none;
+        border-bottom: 1px solid #dadce0;
+        min-height: 60px;
+        flex-direction: row;
+    }
+    
+    .grid-field:last-child {
+        border-bottom: none;
+    }
+    
+    .grid-field-header {
+        border-right: 1px solid #dadce0;
+        border-bottom: none;
+        min-width: 140px;
+        width: 140px;
+        padding: 6px 8px;
+        justify-content: center;
+        flex: 1;
+    }
+    
+    .grid-field-id {
+        font-size: 12px;
+        margin-bottom: 4px;
+    }
+    
+    .grid-field-title {
+        font-size: 13px;
+        line-height: 1.3;
+    }
 }
 
 /* Radio activation field styling */
@@ -1230,6 +1744,7 @@ a:hover {
     align-items: center;
     margin-bottom: 8px;
     gap: 12px;
+    margin-left: 18px;
 }
 
 .inline-radio-field .radio-field-label {
@@ -1265,6 +1780,7 @@ td.field-input:has(.stacked-radio) {
     flex-direction: column;
     gap: 8px;
     align-items: flex-start;
+    margin-left: 24px;
 }
 
 .stacked-radio .radio-option {

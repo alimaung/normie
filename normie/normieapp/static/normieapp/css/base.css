@@ -355,8 +355,6 @@ body:not(.dark-mode) .user-profile-container.active .user-badge {
     text-decoration: none;
 }
 
-.dropdown-toggle:hover::after,
-.navbar-dropdown:hover .dropdown-toggle::after,
 .navbar-dropdown.active .dropdown-toggle::after {
     transform: scaleX(1);
 }
@@ -367,7 +365,6 @@ body:not(.dark-mode) .user-profile-container.active .user-badge {
     transition: transform 0.2s ease;
 }
 
-.navbar-dropdown:hover .dropdown-toggle i,
 .navbar-dropdown.active .dropdown-toggle i {
     transform: rotate(180deg);
 }
@@ -402,7 +399,6 @@ body:not(.dark-mode) .user-profile-container.active .user-badge {
     /* Full width handled by parent */
 }
 
-.navbar-dropdown:hover .card-dropdown,
 .navbar-dropdown.active .card-dropdown {
     opacity: 1;
     visibility: visible;
@@ -415,9 +411,7 @@ body:not(.dark-mode) .user-profile-container.active .user-badge {
     transition-delay: 0ms;
 }
 
-.navbar-dropdown:not(:hover) .card-dropdown {
-    transition-delay: 0ms;
-}
+
 
 .dropdown-card {
     background: white;

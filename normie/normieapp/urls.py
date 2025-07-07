@@ -26,6 +26,9 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('notifications/', views.notifications, name='notifications'),
     
+    # Open request - accessible to all users
+    path('open-request/', views.open_request, name='open_request'),
+    
     # Email inbox routes
     path('inbox/', views.inbox, name='inbox'),
     path('inbox/view/<str:message_id>/', views.inbox_view_message, name='inbox_view_message'),
