@@ -199,6 +199,10 @@ class CMSRRequest(models.Model):
         super().save(*args, **kwargs)
 
 
+
+# Below models are deprecated and will be removed in a future version.
+# Please use the new implementations above instead.
+
 class ChemScanAssessment(models.Model):
     """ChemScan assessment results (Fields 22-23)"""
     
