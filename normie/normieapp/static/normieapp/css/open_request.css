@@ -1,0 +1,317 @@
+/* Additional styling for open request form */
+.disabled-field {
+    background-color: #f8f9fa !important;
+    color: #5f6368 !important;
+    cursor: not-allowed !important;
+    border-color: #dadce0 !important;
+    opacity: 0.6;
+}
+
+.disabled-field:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Error Styling */
+.field-error {
+    border-color: #d32f2f !important;
+    background-color: #fff5f5 !important;
+}
+
+.field-error:focus {
+    border-color: #d32f2f !important;
+    box-shadow: 0 0 0 1px #d32f2f !important;
+}
+
+.error-message {
+    color: #d32f2f;
+    font-size: 12px;
+    margin-top: 6px;
+    display: none;
+    align-items: center;
+    gap: 4px;
+    padding: 4px 0;
+    line-height: 1.2;
+}
+
+.error-message i {
+    font-size: 14px;
+    flex-shrink: 0;
+}
+
+.error-message .error-text {
+    flex: 1;
+    margin-left: 5px;
+}
+
+/* Radio button and checkbox styling improvements */
+.radio-group {
+    position: relative;
+}
+
+.radio-group.disabled-field {
+    opacity: 0.6;
+}
+
+.radio-group.disabled-field input[type="radio"] {
+    cursor: not-allowed;
+}
+
+.checkbox-container.disabled-field {
+    opacity: 0.6;
+}
+
+.checkbox-container.disabled-field input[type="checkbox"] {
+    cursor: not-allowed;
+}
+
+/* Enhanced Radio Button Styling */
+.radio-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.radio-option:hover {
+    background-color: #f8f9fa;
+}
+
+.radio-option input[type="radio"] {
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #1a73e8;
+}
+
+.radio-option label {
+    margin: 0;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+    flex: 1;
+}
+
+.radio-option input[type="radio"]:checked + label {
+    color: #1a73e8;
+    font-weight: 500;
+}
+
+.radio-option:has(input[type="radio"]:checked) {
+    background-color: #e8f0fe;
+    border: 1px solid #1a73e8;
+}
+
+/* Enhanced Checkbox Styling */
+.checkbox-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.checkbox-option:hover {
+    background-color: #f8f9fa;
+}
+
+.checkbox-option input[type="checkbox"] {
+    margin: 0;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #1a73e8;
+}
+
+.checkbox-option label {
+    margin: 0;
+    cursor: pointer;
+    font-size: 14px;
+    user-select: none;
+    flex: 1;
+}
+
+.checkbox-option input[type="checkbox"]:checked + label {
+    color: #1a73e8;
+    font-weight: 500;
+}
+
+.checkbox-option:has(input[type="checkbox"]:checked) {
+    background-color: #e8f0fe;
+    border: 1px solid #1a73e8;
+}
+
+/* Better spacing for form rows */
+.form-row td {
+    padding: 8px 12px;
+    vertical-align: top;
+}
+
+.form-row .field-label {
+    width: 30%;
+    min-width: 200px;
+}
+
+.form-row .field-input {
+    width: 70%;
+}
+
+/* Input field styling improvements - using specific selectors to avoid conflicts */
+input.field-value, textarea.field-value {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input.field-value:focus, textarea.field-value:focus {
+    border-color: #1a73e8;
+    outline: none;
+    box-shadow: 0 0 0 1px #1a73e8;
+}
+
+/* Column field input containers */
+.column-field-input {
+    position: relative;
+    width: 100%;
+}
+
+/* Error state for radio groups */
+.radio-group-error {
+    border: 1px solid #d32f2f;
+    background-color: #fff5f5;
+    border-radius: 4px;
+    padding: 4px;
+}
+
+/* Error state for column fields */
+.column-field.has-error .column-field-input input,
+.column-field.has-error .column-field-input .radio-group {
+    border-color: #d32f2f;
+    background-color: #fff5f5;
+}
+
+/* Long text fields */
+.long-text {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Alert styling */
+.alert {
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+.alert i {
+    margin-right: 8px;
+}
+
+/* Required field indicator */
+.required::after {
+    content: " *";
+    color: #d32f2f;
+    font-weight: bold;
+}
+
+/* Date picker styling */
+.date-input-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.date-field {
+    flex: 1;
+}
+
+.date-picker-toggle {
+    background: #1a73e8;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Sofia Sans', sans-serif;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(60,64,67,.3);
+    transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.date-picker-toggle:hover {
+    background: #1769d3;
+    box-shadow: 0 2px 8px rgba(60,64,67,.15);
+}
+
+.date-picker-toggle:disabled {
+    background: #dadce0;
+    color: #5f6368;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+/* Loading state */
+.btn-loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+}
+
+.btn-loading i {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+/* Inline radio field styling */
+.inline-radio-field {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 8px;
+}
+
+.inline-radio-field .radio-field-label {
+    font-size: 14px;
+    font-weight: 500;
+    white-space: nowrap;
+}
+
+.inline-radio-field .radio-group {
+    display: flex;
+    gap: 16px;
+}
+
+.inline-radio-field .radio-option {
+    margin-bottom: 0;
+    padding: 2px 6px;
+}

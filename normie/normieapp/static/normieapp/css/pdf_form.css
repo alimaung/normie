@@ -484,7 +484,7 @@ a:hover {
 .column-field-input {
     padding: 16px;
     background: #ffffff;
-    display: flex;
+    /* display: flex; */
     align-items: center;
     min-height: 60px;
 }
