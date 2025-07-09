@@ -1,0 +1,162 @@
+Starting Engineering Software Environment (ESE) version 0.0.10
+located at \\DEBERDNA-C011A\Projekte\a-j\ESE
+######## Site specific environment configuration available
+         for RRCONFIG_SITE=obl in ESE.
+Use command setA1156 to change A1156 server.
+################################################################################
+# ESE commands to get started:                                                 #
+#  helpese    - Display help for ESE commands or the given arguments           #
+#  index   - Display list of available commands in ESE prompt                  #
+#  version - Display versions of software in ESE or the given arguments        #
+################################################################################
+C:\Users\u8064927\Desktop\normie\installer ESE>integ miniconda3
+Init cots\Miniconda3 version py312_24.3.0-0-Windows-x86_64 in integration
+
+For help:              Miniconda3 -h
+To force installation: Miniconda3 -i
+To uninstall:          Miniconda3 -u
+
+Operating System is 64 bit and current process is 64 bit
+Operating System is 64 bit and current process is 64 bit
+#### Copying Miniconda3 installer and config files...
+     Note: in case of network error, simply run this command again to resume the transfer.
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows
+-------------------------------------------------------------------------------
+
+  Started : Mittwoch, 9. Juli 2025 18:51:40
+   Source : \\DEBERDNA-C011A\Projekte\a-j\ESE\cots\Miniconda3\py312_24.3.0-0-Windows-x86_64\
+     Dest : C:\Users\u8064927\AppData\Local\Temp\
+
+    Files : Miniconda3-py312_24.3.0-0-Windows-x86_64.exe
+
+  Options : /FFT /DST /DCOPY:DA /COPY:DAT /Z /R:0 /W:30
+
+------------------------------------------------------------------------------
+
+                           1    \\DEBERDNA-C011A\Projekte\a-j\ESE\cots\Miniconda3\py312_24.3.0-0-Windows-x86_64\
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         0
+   Files :         1         0         1         0         0         0
+   Bytes :   77.50 m         0   77.50 m         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Ended : Mittwoch, 9. Juli 2025 18:51:40
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows
+-------------------------------------------------------------------------------
+
+  Started : Mittwoch, 9. Juli 2025 18:51:40
+   Source : \\DEBERDNA-C011A\Projekte\a-j\ESE\cots\Miniconda3\py312_24.3.0-0-Windows-x86_64\
+     Dest : C:\Users\u8064927\AppData\Local\Temp\
+
+    Files : pip.ini
+            .condarc
+
+  Options : /FFT /DST /DCOPY:DA /COPY:DAT /Z /R:0 /W:30
+
+------------------------------------------------------------------------------
+
+                           2    \\DEBERDNA-C011A\Projekte\a-j\ESE\cots\Miniconda3\py312_24.3.0-0-Windows-x86_64\
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         0
+   Files :         2         0         2         0         0         0
+   Bytes :       510         0       510         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Ended : Mittwoch, 9. Juli 2025 18:51:41
+
+The system cannot find the drive specified.
+######## Verifying checksum for Miniconda3 installer... OK
+######## Installing Miniconda3 version py312_24.3.0-0-Windows-x86_64...
+OK
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows
+-------------------------------------------------------------------------------
+
+  Started : Mittwoch, 9. Juli 2025 18:52:58
+   Source : C:\Users\u8064927\AppData\Local\Temp\
+     Dest : D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\
+
+    Files : .condarc
+
+  Options : /DCOPY:DA /COPY:DAT /R:1000000 /W:30
+
+------------------------------------------------------------------------------
+
+                           1    C:\Users\u8064927\AppData\Local\Temp\
+100%        New File                 329        .condarc
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         0
+   Files :         1         1         0         0         0         0
+   Bytes :       329       329         0         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Ended : Mittwoch, 9. Juli 2025 18:52:58
+
+
+-------------------------------------------------------------------------------
+   ROBOCOPY     ::     Robust File Copy for Windows
+-------------------------------------------------------------------------------
+
+  Started : Mittwoch, 9. Juli 2025 18:52:59
+   Source : C:\Users\u8064927\AppData\Local\Temp\
+     Dest : C:\Users\u8064927\AppData\Roaming\pip\
+
+    Files : pip.ini
+
+  Options : /DCOPY:DA /COPY:DAT /R:1000000 /W:30
+
+------------------------------------------------------------------------------
+
+                           1    C:\Users\u8064927\AppData\Local\Temp\
+
+------------------------------------------------------------------------------
+
+               Total    Copied   Skipped  Mismatch    FAILED    Extras
+    Dirs :         1         0         1         0         0         0
+   Files :         1         0         1         0         0         0
+   Bytes :       181         0       181         0         0         0
+   Times :   0:00:00   0:00:00                       0:00:00   0:00:00
+   Ended : Mittwoch, 9. Juli 2025 18:52:59
+
+no change     D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\Scripts\conda.exe
+no change     D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\Scripts\conda-env.exe
+no change     D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\Scripts\conda-script.py
+no change     D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\Scripts\conda-env-script.py
+no change     D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\condabin\conda.bat
+no change     D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\Library\bin\conda.bat
+no change     D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\condabin\_conda_activate.bat
+no change     D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\condabin\rename_tmp.bat
+no change     D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\condabin\conda_auto_activate.bat
+no change     D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\condabin\conda_hook.bat
+no change     D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\Scripts\activate.bat
+no change     D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\condabin\activate.bat
+no change     D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\condabin\deactivate.bat
+modified      D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\Scripts\activate
+modified      D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\Scripts\deactivate
+modified      D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\etc\profile.d\conda.sh
+modified      D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\etc\fish\conf.d\conda.fish
+no change     D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\shell\condabin\Conda.psm1
+modified      D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\shell\condabin\conda-hook.ps1
+no change     D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\Lib\site-packages\xontrib\conda.xsh
+modified      D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\etc\profile.d\conda.csh
+modified      C:\Users\u8064927\Documents\WindowsPowerShell\profile.ps1
+modified      HKEY_CURRENT_USER\Software\Microsoft\Command Processor\AutoRun
+
+==> For changes to take effect, close and re-open your current shell. <==
+
+#### Adding Miniconda3 py312_24.3.0-0-Windows-x86_64 shortcut to your Programs... OK
+######## Starting Miniconda3 py312_24.3.0-0-Windows-x86_64 from D:\ESEapps\Miniconda3\py312_24.3.0-0-Windows-x86_64\condabin\conda.bat
+
+C:\Users\u8064927\Desktop\normie\installer ESE>

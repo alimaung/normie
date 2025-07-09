@@ -1,0 +1,5 @@
+2025-07-09 20:58:58.270 - Starting ESE automation with path: Y:\normie\installer\debug\ESE.ps1
+2025-07-09 20:58:58.320 - ESE process started with PID: 17760
+2025-07-09 20:59:05.257 - Sent command: integ miniconda3
+2025-07-09 20:59:05.431 - Installation completion detected - conda window found
+2025-07-09 20:59:05.431 - Closed conda window: WindowsTerminal

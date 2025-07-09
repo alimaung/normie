@@ -1,0 +1,12 @@
+Starting Engineering Software Environment (ESE) version 0.0.10
+located at \\DEBERDNA-C011A\Projekte\a-j\ESE
+######## Site specific environment configuration available
+         for RRCONFIG_SITE=obl in ESE.
+Use command setA1156 to change A1156 server.
+################################################################################
+# ESE commands to get started:                                                 #
+#  helpese    - Display help for ESE commands or the given arguments           #
+#  index   - Display list of available commands in ESE prompt                  #
+#  version - Display versions of software in ESE or the given arguments        #
+################################################################################
+C:\Users\u8064927\Desktop\normie\installer ESE>

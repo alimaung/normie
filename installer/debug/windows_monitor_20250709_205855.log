@@ -1,0 +1,257 @@
+2025-07-09 20:58:55.341 - === WINDOWS SNAPSHOT: After folder creation ===
+2025-07-09 20:58:55.373 - WINDOW: ApplicationFrameHost - PID:1076 - Title: Settings
+2025-07-09 20:58:55.373 - WINDOW: chrome - PID:22620 - Title: ChatGPT - Google Chrome
+2025-07-09 20:58:55.373 - WINDOW: CodeSetup-stable-1.1.6.tmp - PID:1072 - Title: Setup
+2025-07-09 20:58:55.373 - WINDOW: Cursor - PID:9824 - Title: kiosk.py - normie - Cursor
+2025-07-09 20:58:55.388 - WINDOW: SystemSettings - PID:17272 - Title: Settings
+2025-07-09 20:58:55.388 - WINDOW: TextInputHost - PID:6532 - Title: Windows Input Experience
+2025-07-09 20:58:55.388 - WINDOW: WindowsTerminal - PID:19636 - Title: C:\Windows\System32\cmd.exe - powershell  -ExecutionPolicy Bypass -File "install.ps1"
+2025-07-09 20:58:55.515 - PROCESS: conhost.exe - PID:15416 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 109 --height 19 --signal 0x418 --server 0x538
+2025-07-09 20:58:55.515 - PROCESS: powershell.exe - PID:16240 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.515 - PROCESS: conhost.exe - PID:17124 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 62 --height 19 --signal 0x484 --server 0x530
+2025-07-09 20:58:55.515 - PROCESS: powershell.exe - PID:15916 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.531 - PROCESS: conhost.exe - PID:17328 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 25 --height 19 --signal 0x48c --server 0x474
+2025-07-09 20:58:55.531 - PROCESS: powershell.exe - PID:16820 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.531 - PROCESS: conhost.exe - PID:14700 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 55 --height 19 --signal 0x5b4 --server 0x5ac
+2025-07-09 20:58:55.531 - PROCESS: powershell.exe - PID:14520 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.531 - PROCESS: conhost.exe - PID:16524 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 25 --height 19 --signal 0x3e4 --server 0x428
+2025-07-09 20:58:55.531 - PROCESS: powershell.exe - PID:7724 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.531 - PROCESS: conhost.exe - PID:15356 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 55 --height 19 --signal 0x624 --server 0x61c
+2025-07-09 20:58:55.531 - PROCESS: powershell.exe - PID:16888 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.531 - PROCESS: conhost.exe - PID:15808 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 25 --height 19 --signal 0x684 --server 0x67c
+2025-07-09 20:58:55.531 - PROCESS: powershell.exe - PID:15512 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.531 - PROCESS: conhost.exe - PID:3580 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 55 --height 19 --signal 0x6dc --server 0x690
+2025-07-09 20:58:55.531 - PROCESS: powershell.exe - PID:16428 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.531 - PROCESS: conhost.exe - PID:16080 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 49 --height 19 --signal 0x730 --server 0x728
+2025-07-09 20:58:55.531 - PROCESS: powershell.exe - PID:16956 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.531 - PROCESS: conhost.exe - PID:16756 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 102 --height 19 --signal 0x774 --server 0x76c
+2025-07-09 20:58:55.531 - PROCESS: powershell.exe - PID:17204 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.531 - PROCESS: conhost.exe - PID:16976 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 49 --height 19 --signal 0x7c8 --server 0x7c0
+2025-07-09 20:58:55.531 - PROCESS: powershell.exe - PID:15588 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.531 - PROCESS: conhost.exe - PID:17420 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 102 --height 19 --signal 0x808 --server 0x80c
+2025-07-09 20:58:55.531 - PROCESS: powershell.exe - PID:17448 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.531 - PROCESS: conhost.exe - PID:17592 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 49 --height 19 --signal 0x86c --server 0x864
+2025-07-09 20:58:55.546 - PROCESS: powershell.exe - PID:17624 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.546 - PROCESS: conhost.exe - PID:17776 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 102 --height 19 --signal 0x8c4 --server 0x8bc
+2025-07-09 20:58:55.546 - PROCESS: powershell.exe - PID:17808 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.546 - PROCESS: conhost.exe - PID:7896 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0x970 --server 0x964
+2025-07-09 20:58:55.546 - PROCESS: powershell.exe - PID:18136 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.546 - PROCESS: conhost.exe - PID:19280 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0xe9c --server 0xe94
+2025-07-09 20:58:55.546 - PROCESS: powershell.exe - PID:19040 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.546 - PROCESS: conhost.exe - PID:9760 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 183 --height 19 --signal 0x1154 --server 0x11d0
+2025-07-09 20:58:55.546 - PROCESS: powershell.exe - PID:21268 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.546 - PROCESS: conhost.exe - PID:14368 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 183 --height 19 --signal 0xff0 --server 0x1394
+2025-07-09 20:58:55.546 - PROCESS: powershell.exe - PID:3028 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.546 - PROCESS: conhost.exe - PID:18992 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0x13a8 --server 0x1258
+2025-07-09 20:58:55.546 - PROCESS: powershell.exe - PID:3484 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.546 - PROCESS: conhost.exe - PID:24648 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 174 --height 19 --signal 0x3d4 --server 0x1394
+2025-07-09 20:58:55.546 - PROCESS: powershell.exe - PID:14056 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.546 - PROCESS: conhost.exe - PID:6232 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0x1054 --server 0x1030
+2025-07-09 20:58:55.546 - PROCESS: powershell.exe - PID:6016 - CMD: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "Import-Module 'c:\Users\user1\.cursor\extensions\ms-vscode.powershell-2025.2.0-universal\modules\PowerShellEditorServices\PowerShellEditorServices.psd1'; Start-EditorServices -HostName 'Visual Studio Code Host' -HostProfileId 'Microsoft.VSCode' -HostVersion '2025.2.0' -BundledModulesPath 'c:\Users\user1\.cursor\extensions\ms-vscode.powershell-2025.2.0-universal\modules' -EnableConsoleRepl -StartupBanner \"PowerShell Extension v2025.2.0
+Copyright (c) Microsoft Corporation.
+
+https://aka.ms/vscode-powershell
+Type 'help' to get help.
+\" -LogLevel 'Warning' -LogPath 'c:\Users\user1\AppData\Roaming\Cursor\logs\20250630T063426\window1\exthost\ms-vscode.powershell' -SessionDetailsPath 'c:\Users\user1\AppData\Roaming\Cursor\User\globalStorage\ms-vscode.powershell\sessions\PSES-VSCode-9824-627168.json' -FeatureFlags @() "
+2025-07-09 20:58:55.546 - PROCESS: conhost.exe - PID:24800 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0x114c --server 0x104c
+2025-07-09 20:58:55.546 - PROCESS: powershell.exe - PID:26032 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:55.546 - PROCESS: cmd.exe - PID:23440 - CMD: "C:\Windows\System32\cmd.exe" 
+2025-07-09 20:58:55.546 - PROCESS: conhost.exe - PID:23836 - CMD: \??\C:\WINDOWS\system32\conhost.exe 0x4
+2025-07-09 20:58:55.546 - PROCESS: powershell.exe - PID:22664 - CMD: powershell  -ExecutionPolicy Bypass -File "install.ps1"
+2025-07-09 20:58:55.546 - === END SNAPSHOT ===
+2025-07-09 20:58:58.323 - === WINDOWS SNAPSHOT: After starting ESE.bat ===
+2025-07-09 20:58:58.333 - WINDOW: ApplicationFrameHost - PID:1076 - Title: Settings
+2025-07-09 20:58:58.347 - WINDOW: chrome - PID:22620 - Title: ChatGPT - Google Chrome
+2025-07-09 20:58:58.347 - WINDOW: CodeSetup-stable-1.1.6.tmp - PID:1072 - Title: Setup
+2025-07-09 20:58:58.347 - WINDOW: Cursor - PID:9824 - Title: kiosk.py - normie - Cursor
+2025-07-09 20:58:58.347 - WINDOW: SystemSettings - PID:17272 - Title: Settings
+2025-07-09 20:58:58.349 - WINDOW: TextInputHost - PID:6532 - Title: Windows Input Experience
+2025-07-09 20:58:58.349 - WINDOW: WindowsTerminal - PID:19636 - Title: C:\Windows\System32\cmd.exe - powershell  -ExecutionPolicy Bypass -File "install.ps1"
+2025-07-09 20:58:58.459 - PROCESS: conhost.exe - PID:15416 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 109 --height 19 --signal 0x418 --server 0x538
+2025-07-09 20:58:58.459 - PROCESS: powershell.exe - PID:16240 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.459 - PROCESS: conhost.exe - PID:17124 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 62 --height 19 --signal 0x484 --server 0x530
+2025-07-09 20:58:58.459 - PROCESS: powershell.exe - PID:15916 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.459 - PROCESS: conhost.exe - PID:17328 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 25 --height 19 --signal 0x48c --server 0x474
+2025-07-09 20:58:58.459 - PROCESS: powershell.exe - PID:16820 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.459 - PROCESS: conhost.exe - PID:14700 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 55 --height 19 --signal 0x5b4 --server 0x5ac
+2025-07-09 20:58:58.459 - PROCESS: powershell.exe - PID:14520 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.459 - PROCESS: conhost.exe - PID:16524 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 25 --height 19 --signal 0x3e4 --server 0x428
+2025-07-09 20:58:58.459 - PROCESS: powershell.exe - PID:7724 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.459 - PROCESS: conhost.exe - PID:15356 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 55 --height 19 --signal 0x624 --server 0x61c
+2025-07-09 20:58:58.459 - PROCESS: powershell.exe - PID:16888 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.459 - PROCESS: conhost.exe - PID:15808 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 25 --height 19 --signal 0x684 --server 0x67c
+2025-07-09 20:58:58.459 - PROCESS: powershell.exe - PID:15512 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.459 - PROCESS: conhost.exe - PID:3580 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 55 --height 19 --signal 0x6dc --server 0x690
+2025-07-09 20:58:58.459 - PROCESS: powershell.exe - PID:16428 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.459 - PROCESS: conhost.exe - PID:16080 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 49 --height 19 --signal 0x730 --server 0x728
+2025-07-09 20:58:58.459 - PROCESS: powershell.exe - PID:16956 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.459 - PROCESS: conhost.exe - PID:16756 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 102 --height 19 --signal 0x774 --server 0x76c
+2025-07-09 20:58:58.459 - PROCESS: powershell.exe - PID:17204 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.459 - PROCESS: conhost.exe - PID:16976 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 49 --height 19 --signal 0x7c8 --server 0x7c0
+2025-07-09 20:58:58.459 - PROCESS: powershell.exe - PID:15588 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.459 - PROCESS: conhost.exe - PID:17420 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 102 --height 19 --signal 0x808 --server 0x80c
+2025-07-09 20:58:58.475 - PROCESS: powershell.exe - PID:17448 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.475 - PROCESS: conhost.exe - PID:17592 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 49 --height 19 --signal 0x86c --server 0x864
+2025-07-09 20:58:58.475 - PROCESS: powershell.exe - PID:17624 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.475 - PROCESS: conhost.exe - PID:17776 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 102 --height 19 --signal 0x8c4 --server 0x8bc
+2025-07-09 20:58:58.475 - PROCESS: powershell.exe - PID:17808 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.475 - PROCESS: conhost.exe - PID:7896 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0x970 --server 0x964
+2025-07-09 20:58:58.475 - PROCESS: powershell.exe - PID:18136 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.475 - PROCESS: conhost.exe - PID:19280 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0xe9c --server 0xe94
+2025-07-09 20:58:58.475 - PROCESS: powershell.exe - PID:19040 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.475 - PROCESS: conhost.exe - PID:9760 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 183 --height 19 --signal 0x1154 --server 0x11d0
+2025-07-09 20:58:58.475 - PROCESS: powershell.exe - PID:21268 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.475 - PROCESS: conhost.exe - PID:14368 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 183 --height 19 --signal 0xff0 --server 0x1394
+2025-07-09 20:58:58.475 - PROCESS: powershell.exe - PID:3028 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.475 - PROCESS: conhost.exe - PID:18992 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0x13a8 --server 0x1258
+2025-07-09 20:58:58.475 - PROCESS: powershell.exe - PID:3484 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.475 - PROCESS: conhost.exe - PID:24648 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 174 --height 19 --signal 0x3d4 --server 0x1394
+2025-07-09 20:58:58.475 - PROCESS: powershell.exe - PID:14056 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.475 - PROCESS: conhost.exe - PID:6232 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0x1054 --server 0x1030
+2025-07-09 20:58:58.475 - PROCESS: powershell.exe - PID:6016 - CMD: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "Import-Module 'c:\Users\user1\.cursor\extensions\ms-vscode.powershell-2025.2.0-universal\modules\PowerShellEditorServices\PowerShellEditorServices.psd1'; Start-EditorServices -HostName 'Visual Studio Code Host' -HostProfileId 'Microsoft.VSCode' -HostVersion '2025.2.0' -BundledModulesPath 'c:\Users\user1\.cursor\extensions\ms-vscode.powershell-2025.2.0-universal\modules' -EnableConsoleRepl -StartupBanner \"PowerShell Extension v2025.2.0
+Copyright (c) Microsoft Corporation.
+
+https://aka.ms/vscode-powershell
+Type 'help' to get help.
+\" -LogLevel 'Warning' -LogPath 'c:\Users\user1\AppData\Roaming\Cursor\logs\20250630T063426\window1\exthost\ms-vscode.powershell' -SessionDetailsPath 'c:\Users\user1\AppData\Roaming\Cursor\User\globalStorage\ms-vscode.powershell\sessions\PSES-VSCode-9824-627168.json' -FeatureFlags @() "
+2025-07-09 20:58:58.475 - PROCESS: conhost.exe - PID:24800 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0x114c --server 0x104c
+2025-07-09 20:58:58.475 - PROCESS: powershell.exe - PID:26032 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:58:58.475 - PROCESS: cmd.exe - PID:23440 - CMD: "C:\Windows\System32\cmd.exe" 
+2025-07-09 20:58:58.475 - PROCESS: conhost.exe - PID:23836 - CMD: \??\C:\WINDOWS\system32\conhost.exe 0x4
+2025-07-09 20:58:58.475 - PROCESS: powershell.exe - PID:22664 - CMD: powershell  -ExecutionPolicy Bypass -File "install.ps1"
+2025-07-09 20:58:58.475 - PROCESS: powershell.exe - PID:17760 - CMD: "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -ExecutionPolicy Bypass -File "Y:\normie\installer\debug\ESE.ps1"
+2025-07-09 20:58:58.491 - PROCESS: conhost.exe - PID:17888 - CMD: \??\C:\WINDOWS\system32\conhost.exe 0x4
+2025-07-09 20:58:58.491 - === END SNAPSHOT ===
+2025-07-09 20:59:01.503 - === WINDOWS SNAPSHOT: After ESE initialization wait ===
+2025-07-09 20:59:01.519 - WINDOW: ApplicationFrameHost - PID:1076 - Title: Settings
+2025-07-09 20:59:01.519 - WINDOW: chrome - PID:22620 - Title: ChatGPT - Google Chrome
+2025-07-09 20:59:01.519 - WINDOW: CodeSetup-stable-1.1.6.tmp - PID:1072 - Title: Setup
+2025-07-09 20:59:01.519 - WINDOW: Cursor - PID:9824 - Title: kiosk.py - normie - Cursor
+2025-07-09 20:59:01.519 - WINDOW: SystemSettings - PID:17272 - Title: Settings
+2025-07-09 20:59:01.519 - WINDOW: TextInputHost - PID:6532 - Title: Windows Input Experience
+2025-07-09 20:59:01.519 - WINDOW: WindowsTerminal - PID:19636 - Title: ESE prompt obl (version 0.0.10)
+2025-07-09 20:59:01.646 - PROCESS: conhost.exe - PID:15416 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 109 --height 19 --signal 0x418 --server 0x538
+2025-07-09 20:59:01.646 - PROCESS: powershell.exe - PID:16240 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.646 - PROCESS: conhost.exe - PID:17124 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 62 --height 19 --signal 0x484 --server 0x530
+2025-07-09 20:59:01.646 - PROCESS: powershell.exe - PID:15916 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.655 - PROCESS: conhost.exe - PID:17328 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 25 --height 19 --signal 0x48c --server 0x474
+2025-07-09 20:59:01.655 - PROCESS: powershell.exe - PID:16820 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.655 - PROCESS: conhost.exe - PID:14700 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 55 --height 19 --signal 0x5b4 --server 0x5ac
+2025-07-09 20:59:01.657 - PROCESS: powershell.exe - PID:14520 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.657 - PROCESS: conhost.exe - PID:16524 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 25 --height 19 --signal 0x3e4 --server 0x428
+2025-07-09 20:59:01.657 - PROCESS: powershell.exe - PID:7724 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.659 - PROCESS: conhost.exe - PID:15356 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 55 --height 19 --signal 0x624 --server 0x61c
+2025-07-09 20:59:01.659 - PROCESS: powershell.exe - PID:16888 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.659 - PROCESS: conhost.exe - PID:15808 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 25 --height 19 --signal 0x684 --server 0x67c
+2025-07-09 20:59:01.661 - PROCESS: powershell.exe - PID:15512 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.661 - PROCESS: conhost.exe - PID:3580 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 55 --height 19 --signal 0x6dc --server 0x690
+2025-07-09 20:59:01.662 - PROCESS: powershell.exe - PID:16428 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.662 - PROCESS: conhost.exe - PID:16080 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 49 --height 19 --signal 0x730 --server 0x728
+2025-07-09 20:59:01.662 - PROCESS: powershell.exe - PID:16956 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.664 - PROCESS: conhost.exe - PID:16756 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 102 --height 19 --signal 0x774 --server 0x76c
+2025-07-09 20:59:01.664 - PROCESS: powershell.exe - PID:17204 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.664 - PROCESS: conhost.exe - PID:16976 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 49 --height 19 --signal 0x7c8 --server 0x7c0
+2025-07-09 20:59:01.667 - PROCESS: powershell.exe - PID:15588 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.667 - PROCESS: conhost.exe - PID:17420 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 102 --height 19 --signal 0x808 --server 0x80c
+2025-07-09 20:59:01.667 - PROCESS: powershell.exe - PID:17448 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.669 - PROCESS: conhost.exe - PID:17592 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 49 --height 19 --signal 0x86c --server 0x864
+2025-07-09 20:59:01.669 - PROCESS: powershell.exe - PID:17624 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.669 - PROCESS: conhost.exe - PID:17776 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 102 --height 19 --signal 0x8c4 --server 0x8bc
+2025-07-09 20:59:01.671 - PROCESS: powershell.exe - PID:17808 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.671 - PROCESS: conhost.exe - PID:7896 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0x970 --server 0x964
+2025-07-09 20:59:01.671 - PROCESS: powershell.exe - PID:18136 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.671 - PROCESS: conhost.exe - PID:19280 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0xe9c --server 0xe94
+2025-07-09 20:59:01.671 - PROCESS: powershell.exe - PID:19040 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.671 - PROCESS: conhost.exe - PID:9760 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 183 --height 19 --signal 0x1154 --server 0x11d0
+2025-07-09 20:59:01.671 - PROCESS: powershell.exe - PID:21268 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.671 - PROCESS: conhost.exe - PID:14368 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 183 --height 19 --signal 0xff0 --server 0x1394
+2025-07-09 20:59:01.671 - PROCESS: powershell.exe - PID:3028 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.671 - PROCESS: conhost.exe - PID:18992 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0x13a8 --server 0x1258
+2025-07-09 20:59:01.671 - PROCESS: powershell.exe - PID:3484 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.671 - PROCESS: conhost.exe - PID:24648 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 174 --height 19 --signal 0x3d4 --server 0x1394
+2025-07-09 20:59:01.678 - PROCESS: powershell.exe - PID:14056 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.678 - PROCESS: conhost.exe - PID:6232 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0x1054 --server 0x1030
+2025-07-09 20:59:01.678 - PROCESS: powershell.exe - PID:6016 - CMD: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "Import-Module 'c:\Users\user1\.cursor\extensions\ms-vscode.powershell-2025.2.0-universal\modules\PowerShellEditorServices\PowerShellEditorServices.psd1'; Start-EditorServices -HostName 'Visual Studio Code Host' -HostProfileId 'Microsoft.VSCode' -HostVersion '2025.2.0' -BundledModulesPath 'c:\Users\user1\.cursor\extensions\ms-vscode.powershell-2025.2.0-universal\modules' -EnableConsoleRepl -StartupBanner \"PowerShell Extension v2025.2.0
+Copyright (c) Microsoft Corporation.
+
+https://aka.ms/vscode-powershell
+Type 'help' to get help.
+\" -LogLevel 'Warning' -LogPath 'c:\Users\user1\AppData\Roaming\Cursor\logs\20250630T063426\window1\exthost\ms-vscode.powershell' -SessionDetailsPath 'c:\Users\user1\AppData\Roaming\Cursor\User\globalStorage\ms-vscode.powershell\sessions\PSES-VSCode-9824-627168.json' -FeatureFlags @() "
+2025-07-09 20:59:01.678 - PROCESS: conhost.exe - PID:24800 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0x114c --server 0x104c
+2025-07-09 20:59:01.678 - PROCESS: powershell.exe - PID:26032 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:01.678 - PROCESS: cmd.exe - PID:23440 - CMD: "C:\Windows\System32\cmd.exe" 
+2025-07-09 20:59:01.678 - PROCESS: conhost.exe - PID:23836 - CMD: \??\C:\WINDOWS\system32\conhost.exe 0x4
+2025-07-09 20:59:01.678 - PROCESS: powershell.exe - PID:22664 - CMD: powershell  -ExecutionPolicy Bypass -File "install.ps1"
+2025-07-09 20:59:01.678 - PROCESS: powershell.exe - PID:17760 - CMD: "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -ExecutionPolicy Bypass -File "Y:\normie\installer\debug\ESE.ps1"
+2025-07-09 20:59:01.678 - PROCESS: conhost.exe - PID:17888 - CMD: \??\C:\WINDOWS\system32\conhost.exe 0x4
+2025-07-09 20:59:01.678 - === END SNAPSHOT ===
+2025-07-09 20:59:05.257 - === WINDOWS SNAPSHOT: After sending integ miniconda3 ===
+2025-07-09 20:59:05.273 - WINDOW: ApplicationFrameHost - PID:1076 - Title: Settings
+2025-07-09 20:59:05.273 - WINDOW: chrome - PID:22620 - Title: ChatGPT - Google Chrome
+2025-07-09 20:59:05.273 - WINDOW: CodeSetup-stable-1.1.6.tmp - PID:1072 - Title: Setup
+2025-07-09 20:59:05.273 - WINDOW: Cursor - PID:9824 - Title: kiosk.py - normie - Cursor
+2025-07-09 20:59:05.273 - WINDOW: SystemSettings - PID:17272 - Title: Settings
+2025-07-09 20:59:05.273 - WINDOW: TextInputHost - PID:6532 - Title: Windows Input Experience
+2025-07-09 20:59:05.273 - WINDOW: WindowsTerminal - PID:19636 - Title: ESE prompt obl (version 0.0.10) - integ miniconda3
+2025-07-09 20:59:05.384 - PROCESS: conhost.exe - PID:15416 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 109 --height 19 --signal 0x418 --server 0x538
+2025-07-09 20:59:05.384 - PROCESS: powershell.exe - PID:16240 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.384 - PROCESS: conhost.exe - PID:17124 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 62 --height 19 --signal 0x484 --server 0x530
+2025-07-09 20:59:05.384 - PROCESS: powershell.exe - PID:15916 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.384 - PROCESS: conhost.exe - PID:17328 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 25 --height 19 --signal 0x48c --server 0x474
+2025-07-09 20:59:05.384 - PROCESS: powershell.exe - PID:16820 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.384 - PROCESS: conhost.exe - PID:14700 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 55 --height 19 --signal 0x5b4 --server 0x5ac
+2025-07-09 20:59:05.384 - PROCESS: powershell.exe - PID:14520 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.384 - PROCESS: conhost.exe - PID:16524 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 25 --height 19 --signal 0x3e4 --server 0x428
+2025-07-09 20:59:05.384 - PROCESS: powershell.exe - PID:7724 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.384 - PROCESS: conhost.exe - PID:15356 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 55 --height 19 --signal 0x624 --server 0x61c
+2025-07-09 20:59:05.384 - PROCESS: powershell.exe - PID:16888 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.384 - PROCESS: conhost.exe - PID:15808 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 25 --height 19 --signal 0x684 --server 0x67c
+2025-07-09 20:59:05.384 - PROCESS: powershell.exe - PID:15512 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.384 - PROCESS: conhost.exe - PID:3580 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 55 --height 19 --signal 0x6dc --server 0x690
+2025-07-09 20:59:05.384 - PROCESS: powershell.exe - PID:16428 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.384 - PROCESS: conhost.exe - PID:16080 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 49 --height 19 --signal 0x730 --server 0x728
+2025-07-09 20:59:05.384 - PROCESS: powershell.exe - PID:16956 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.384 - PROCESS: conhost.exe - PID:16756 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 102 --height 19 --signal 0x774 --server 0x76c
+2025-07-09 20:59:05.384 - PROCESS: powershell.exe - PID:17204 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.384 - PROCESS: conhost.exe - PID:16976 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 49 --height 19 --signal 0x7c8 --server 0x7c0
+2025-07-09 20:59:05.384 - PROCESS: powershell.exe - PID:15588 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.399 - PROCESS: conhost.exe - PID:17420 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 102 --height 19 --signal 0x808 --server 0x80c
+2025-07-09 20:59:05.399 - PROCESS: powershell.exe - PID:17448 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.399 - PROCESS: conhost.exe - PID:17592 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 49 --height 19 --signal 0x86c --server 0x864
+2025-07-09 20:59:05.399 - PROCESS: powershell.exe - PID:17624 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.399 - PROCESS: conhost.exe - PID:17776 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 102 --height 19 --signal 0x8c4 --server 0x8bc
+2025-07-09 20:59:05.399 - PROCESS: powershell.exe - PID:17808 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.399 - PROCESS: conhost.exe - PID:7896 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0x970 --server 0x964
+2025-07-09 20:59:05.399 - PROCESS: powershell.exe - PID:18136 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.399 - PROCESS: conhost.exe - PID:19280 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0xe9c --server 0xe94
+2025-07-09 20:59:05.399 - PROCESS: powershell.exe - PID:19040 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.399 - PROCESS: conhost.exe - PID:9760 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 183 --height 19 --signal 0x1154 --server 0x11d0
+2025-07-09 20:59:05.399 - PROCESS: powershell.exe - PID:21268 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.399 - PROCESS: conhost.exe - PID:14368 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 183 --height 19 --signal 0xff0 --server 0x1394
+2025-07-09 20:59:05.399 - PROCESS: powershell.exe - PID:3028 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.399 - PROCESS: conhost.exe - PID:18992 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0x13a8 --server 0x1258
+2025-07-09 20:59:05.399 - PROCESS: powershell.exe - PID:3484 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.399 - PROCESS: conhost.exe - PID:24648 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 174 --height 19 --signal 0x3d4 --server 0x1394
+2025-07-09 20:59:05.399 - PROCESS: powershell.exe - PID:14056 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.399 - PROCESS: conhost.exe - PID:6232 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0x1054 --server 0x1030
+2025-07-09 20:59:05.399 - PROCESS: powershell.exe - PID:6016 - CMD: C:\WINDOWS\System32\WindowsPowerShell\v1.0\powershell.exe -NoProfile -ExecutionPolicy Bypass -Command "Import-Module 'c:\Users\user1\.cursor\extensions\ms-vscode.powershell-2025.2.0-universal\modules\PowerShellEditorServices\PowerShellEditorServices.psd1'; Start-EditorServices -HostName 'Visual Studio Code Host' -HostProfileId 'Microsoft.VSCode' -HostVersion '2025.2.0' -BundledModulesPath 'c:\Users\user1\.cursor\extensions\ms-vscode.powershell-2025.2.0-universal\modules' -EnableConsoleRepl -StartupBanner \"PowerShell Extension v2025.2.0
+Copyright (c) Microsoft Corporation.
+
+https://aka.ms/vscode-powershell
+Type 'help' to get help.
+\" -LogLevel 'Warning' -LogPath 'c:\Users\user1\AppData\Roaming\Cursor\logs\20250630T063426\window1\exthost\ms-vscode.powershell' -SessionDetailsPath 'c:\Users\user1\AppData\Roaming\Cursor\User\globalStorage\ms-vscode.powershell\sessions\PSES-VSCode-9824-627168.json' -FeatureFlags @() "
+2025-07-09 20:59:05.399 - PROCESS: conhost.exe - PID:24800 - CMD: \\?\C:\WINDOWS\system32\conhost.exe --headless --width 80 --height 30 --signal 0x114c --server 0x104c
+2025-07-09 20:59:05.399 - PROCESS: powershell.exe - PID:26032 - CMD: C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe -noexit -command "try { . \"c:\Users\user1\AppData\Local\Programs\cursor\resources\app\out\vs\workbench\contrib\terminal\common\scripts\shellIntegration.ps1\" } catch {}"
+2025-07-09 20:59:05.399 - PROCESS: cmd.exe - PID:23440 - CMD: "C:\Windows\System32\cmd.exe" 
+2025-07-09 20:59:05.399 - PROCESS: conhost.exe - PID:23836 - CMD: \??\C:\WINDOWS\system32\conhost.exe 0x4
+2025-07-09 20:59:05.399 - PROCESS: powershell.exe - PID:22664 - CMD: powershell  -ExecutionPolicy Bypass -File "install.ps1"
+2025-07-09 20:59:05.399 - PROCESS: powershell.exe - PID:17760 - CMD: "C:\Windows\System32\WindowsPowerShell\v1.0\powershell.exe" -ExecutionPolicy Bypass -File "Y:\normie\installer\debug\ESE.ps1"
+2025-07-09 20:59:05.415 - PROCESS: conhost.exe - PID:17888 - CMD: \??\C:\WINDOWS\system32\conhost.exe 0x4
+2025-07-09 20:59:05.415 - === END SNAPSHOT ===
+2025-07-09 20:59:05.431 - === WINDOWS SNAPSHOT: After Miniconda installation completion ===
+2025-07-09 20:59:05.463 - WINDOW: ApplicationFrameHost - PID:1076 - Title: Settings
+2025-07-09 20:59:05.479 - WINDOW: chrome - PID:22620 - Title: ChatGPT - Google Chrome
+2025-07-09 20:59:05.479 - WINDOW: CodeSetup-stable-1.1.6.tmp - PID:1072 - Title: Setup
+2025-07-09 20:59:05.479 - WINDOW: Cursor - PID:9824 - Title: kiosk.py - normie - Cursor
+2025-07-09 20:59:05.479 - WINDOW: SystemSettings - PID:17272 - Title: Settings
+2025-07-09 20:59:05.479 - WINDOW: TextInputHost - PID:6532 - Title: Windows Input Experience

@@ -1,0 +1,6 @@
+2025-07-09 20:58:55.328 - ESE Pagify Installer started at 07/09/2025 20:58:55
+2025-07-09 20:58:55.341 - Log files: Installer=Y:\normie\installer\debug\installer_20250709_205855.log, ESE=Y:\normie\installer\debug\ese_monitor_20250709_205855.log, Windows=Y:\normie\installer\debug\windows_monitor_20250709_205855.log
+2025-07-09 20:58:55.341 - C:\ESEApps folder created/verified
+2025-07-09 20:58:55.341 - C:\ESEApps\temp folder created/verified
+2025-07-09 20:58:55.562 - Checking ESE.bat at: \\DEBERDNA-C011A\Projekte\a-j\ESE\admin\ESE.bat
+2025-07-09 20:58:58.254 - ESE.bat not accessible, using fallback: Y:\normie\installer\debug\ESE.ps1

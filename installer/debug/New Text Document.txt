@@ -1,0 +1,44 @@
+============================================================
+               ESE Pagify Installer Launcher
+============================================================
+Starting pagify installation process...
+
+Found installer at: D:\debug\installer.ps1
+
+============================================================
+RUNNING INSTALLER
+============================================================
+At D:\debug\installer.ps1:351 char:31
++ Read-Host "Press Enter to exit"
++                               ~
+The string is missing the terminator: ".
+At D:\debug\installer.ps1:228 char:5
++ try {
++     ~
+Missing closing '}' in statement block or type definition.
+At D:\debug\installer.ps1:351 char:32
++ Read-Host "Press Enter to exit"
++                                ~
+The Try statement is missing its Catch or Finally block.
+    + CategoryInfo          : ParserError: (:) [], ParseException
+    + FullyQualifiedErrorId : TerminatorExpectedAtEndOfString
+
+
+============================================================
+INSTALLATION RESULT
+============================================================
+[ERROR] Installation failed with error code: 1
+
+Possible issues:
+- Network connection problems
+- ESE.bat path not accessible
+- Insufficient permissions
+- Miniconda installation failed
+
+Please check the error messages above and try again.
+If the problem persists, run the installation steps manually.
+
+Press any key to exit...
+
+
+

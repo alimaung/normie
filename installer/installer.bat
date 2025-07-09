@@ -14,16 +14,6 @@ echo 5. Open new ESE window and run "rrpytools fix"
 echo 6. Close all windows automatically when done
 echo.
 
-:: Check for administrator privileges
-net session >nul 2>&1
-if %errorLevel% neq 0 (
-    echo WARNING: This script should be run as Administrator for best results.
-    echo Right-click on this file and select "Run as administrator"
-    echo.
-    set /p continue="Continue anyway? (y/n): "
-    if /i "!continue!" neq "y" exit /b 1
-)
-
 :: Step 1: Create ESEApps folder
 echo ============================================================
 echo STEP 1: Creating C:\ESEApps folder
@@ -70,36 +60,45 @@ if exist "%ESE_BAT_PATH%" (
         echo WScript.Sleep 1000
         echo WshShell.SendKeys "integ miniconda3{ENTER}"
         echo.
-        echo ' Monitor for completion
+        echo ' Monitor for Miniconda installation completion
         echo Do
-        echo     WScript.Sleep 5000
-        echo     ' Try to activate ESE window to check if it's responsive
+        echo     WScript.Sleep 3000
+        echo     ' Check if Miniconda window has opened ^(indicates installation is complete^)
         echo     On Error Resume Next
-        echo     result = WshShell.AppActivate^("ESE"^)
-        echo     If Err.Number = 0 Then
-        echo         ' Send a simple command to test if prompt is ready
-        echo         WshShell.SendKeys "echo installation_complete > %TEMP%\ese_done.txt{ENTER}"
-        echo         WScript.Sleep 2000
-        echo         ' Check if the file was created ^(means prompt is ready^)
-        echo         If fso.FileExists^("%TEMP%\ese_done.txt"^) Then
-        echo             Exit Do
-        echo         End If
-        echo     End If
+        echo     Set objWMIService = GetObject^("winmgmts:\\\\.\\root\\cimv2"^)
+        echo     Set colProcesses = objWMIService.ExecQuery^("SELECT * FROM Win32_Process WHERE CommandLine LIKE '%%Miniconda3%%' OR CommandLine LIKE '%%py312_24.3.0-0-Windows%%'"^)
+        echo     minicondaFound = False
+        echo     For Each objProcess in colProcesses
+        echo         minicondaFound = True
+        echo         Exit For
+        echo     Next
         echo     On Error Goto 0
+        echo     
+        echo     ' If Miniconda process found, installation is complete
+        echo     If minicondaFound Then
+        echo         ' Create completion marker file
+        echo         Set objFile = fso.CreateTextFile^("%TEMP%\ese_done.txt", True^)
+        echo         objFile.WriteLine "Miniconda installation complete"
+        echo         objFile.Close
+        echo         Exit Do
+        echo     End If
         echo Loop
         echo.
-        echo ' Installation complete, close ESE and any Miniconda windows
+        echo ' Installation complete, close BOTH ESE and Miniconda windows
+        echo ' Close the original ESE window
+        echo On Error Resume Next
         echo WshShell.AppActivate "ESE"
         echo WScript.Sleep 500
         echo WshShell.SendKeys "exit{ENTER}"
-        echo.
-        echo ' Close any Miniconda windows that might have opened
         echo WScript.Sleep 1000
+        echo.
+        echo ' Close any Miniconda windows that opened
         echo Set objWMIService = GetObject^("winmgmts:\\\\.\\root\\cimv2"^)
-        echo Set colProcesses = objWMIService.ExecQuery^("SELECT * FROM Win32_Process WHERE Name = 'python.exe' OR CommandLine LIKE '%%miniconda%%'"^)
+        echo Set colProcesses = objWMIService.ExecQuery^("SELECT * FROM Win32_Process WHERE CommandLine LIKE '%%Miniconda3%%' OR CommandLine LIKE '%%py312_24.3.0-0-Windows%%'"^)
         echo For Each objProcess in colProcesses
         echo     objProcess.Terminate
         echo Next
+        echo On Error Goto 0
     ) > "%TEMP%\ese_automation.vbs"
     
     :: Start ESE.bat
