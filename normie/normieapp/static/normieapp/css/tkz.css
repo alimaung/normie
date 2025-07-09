@@ -1,0 +1,479 @@
+/* TKZ Directory CSS - Inherits from directory.css with TKZ-specific modifications */
+
+/* Import directory styles as base */
+@import url('directory.css');
+
+/* TKZ Container styling - override for TKZ-specific branding */
+.tkz-container {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif;
+    color: #333;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* TKZ Header styling */
+.tkz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 32px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #e8e8ed;
+}
+
+.tkz-header .header-left h1 {
+    font-size: 28px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: #1d1d1f;
+}
+
+/* TKZ Table styling - override directory table styles */
+.tkz-table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.tkz-table thead {
+    background-color: #f8f9fa;
+}
+
+.tkz-table th {
+    text-align: left;
+    padding: 16px 12px;
+    font-weight: 600;
+    font-size: 14px;
+    color: #495057;
+    border-bottom: 2px solid #dee2e6;
+    position: relative;
+}
+
+.tkz-table th.sortable {
+    cursor: pointer;
+    user-select: none;
+}
+
+.tkz-table th.sortable i {
+    margin-left: 8px;
+    color: #6c757d;
+    transition: color 0.2s ease;
+}
+
+.tkz-table tbody tr {
+    border-bottom: 1px solid #e9ecef;
+    transition: background-color 0.2s ease;
+}
+
+.tkz-table tbody tr:hover {
+    background-color: #f8f9fa;
+}
+
+.tkz-table td {
+    padding: 12px;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+/* TKZ-specific status badges */
+.status-badge.has-to {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+}
+
+.status-badge.no-to {
+    background-color: #fff3cd;
+    color: #856404;
+    border: 1px solid #ffeaa7;
+}
+
+.status-badge.active {
+    background-color: #d1ecf1;
+    color: #0c5460;
+    border: 1px solid #bee5eb;
+}
+
+.status-badge.legacy {
+    background-color: #e2e3e5;
+    color: #383d41;
+    border: 1px solid #d6d8db;
+}
+
+.status-badge.obsolete {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+/* New TKZ status badges based on JSON data */
+.status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 4px 8px;
+    border-radius: 12px;
+    font-size: 11px;
+    font-weight: 500;
+    gap: 4px;
+    margin: 2px;
+}
+
+.status-badge.discontinued {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+}
+
+
+
+/* TKZ status cell styling */
+.tkz-status-cell {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    margin-bottom: 8px;
+}
+
+/* Card status container */
+.card-status-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 4px;
+}
+
+
+
+/* Row status styling based on font color and strikethrough */
+.tkz-table tbody tr.status-discontinued {
+    background-color: rgba(248, 215, 218, 0.1);
+    color: #dc3545; /* Red text for discontinued items */
+}
+
+.tkz-table tbody tr.status-active {
+    background-color: rgba(209, 236, 241, 0.1);
+}
+
+/* TKZ card status styling */
+.tkz-card.status-discontinued {
+    border-left: 4px solid #dc3545;
+    color: #dc3545; /* Red text for discontinued items */
+}
+
+.tkz-card.status-active {
+    border-left: 4px solid #17a2b8;
+}
+
+/* TKZ-specific filter options */
+.filter-option.active {
+    border-color: #28a745;
+    background-color: rgba(40, 167, 69, 0.1);
+}
+
+.filter-option.legacy {
+    border-color: #6c757d;
+    background-color: rgba(108, 117, 125, 0.1);
+}
+
+.filter-option.obsolete {
+    border-color: #dc3545;
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+.filter-option.has-to {
+    border-color: #17a2b8;
+    background-color: rgba(23, 162, 184, 0.1);
+}
+
+.filter-option.no-to {
+    border-color: #ffc107;
+    background-color: rgba(255, 193, 7, 0.1);
+}
+
+/* Filter option styling for new status types */
+.filter-option.discontinued {
+    border-color: #dc3545;
+    background-color: rgba(220, 53, 69, 0.1);
+}
+
+
+
+/* Category badges for TKZ */
+.category-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 500;
+    background-color: #e9ecef;
+    color: #495057;
+    gap: 6px;
+}
+
+.category-badge.electronic {
+    background-color: #e3f2fd;
+    color: #1565c0;
+}
+
+.category-badge.mechanical {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
+}
+
+.category-badge.consumable {
+    background-color: #e8f5e8;
+    color: #2e7d32;
+}
+
+.category-badge.tool {
+    background-color: #fff3e0;
+    color: #ef6c00;
+}
+
+/* TKZ Grid card styling */
+.tkz-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: all 0.3s ease;
+    border: 1px solid #e9ecef;
+    overflow: hidden;
+}
+
+.tkz-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+    transform: translateY(-2px);
+}
+
+.tkz-card .card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 16px 20px 12px 20px;
+    border-bottom: 1px solid #f8f9fa;
+}
+
+.tkz-card .card-part-no {
+    font-size: 18px;
+    font-weight: 600;
+    color: #1d1d1f;
+    margin: 0;
+}
+
+.tkz-card .card-to-number {
+    font-size: 12px;
+    color: #6c757d;
+    margin-top: 4px;
+}
+
+.tkz-card .card-body {
+    padding: 16px 20px;
+}
+
+.tkz-card .card-title {
+    font-size: 16px;
+    font-weight: 500;
+    color: #333;
+    margin: 0 0 8px 0;
+    line-height: 1.4;
+}
+
+.tkz-card .card-description {
+    font-size: 14px;
+    color: #666;
+    margin: 0 0 16px 0;
+    line-height: 1.5;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.tkz-card .card-details {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-bottom: 16px;
+}
+
+.tkz-card .card-detail {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.tkz-card .card-detail-label {
+    font-size: 12px;
+    color: #86868b;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.tkz-card .card-detail-value {
+    font-size: 14px;
+    color: #1d1d1f;
+    font-weight: 400;
+}
+
+.tkz-card .card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px 16px 20px;
+    background-color: #fafafa;
+}
+
+.tkz-card .card-meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.tkz-card .card-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.tkz-card .card-action-btn {
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    border: 1px solid #d2d2d7;
+    background-color: white;
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.tkz-card .card-action-btn:hover {
+    background-color: #0071e3;
+    color: white;
+    border-color: #0071e3;
+    text-decoration: none;
+}
+
+/* Responsive adjustments for TKZ */
+@media (max-width: 1200px) {
+    .tkz-table {
+        font-size: 13px;
+    }
+    
+    .tkz-table th,
+    .tkz-table td {
+        padding: 10px 8px;
+    }
+}
+
+@media (max-width: 992px) {
+    .tkz-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+    }
+    
+    .tkz-card .card-details {
+        grid-template-columns: 1fr;
+        gap: 8px;
+    }
+}
+
+@media (max-width: 768px) {
+    .tkz-card .card-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .tkz-card .card-footer {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .tkz-card .card-actions {
+        align-self: stretch;
+        justify-content: space-around;
+    }
+}
+
+/* Attachment column visibility */
+.table-container.hide-attachments .attachment-column,
+.grid-container.hide-attachments .attachment-column {
+    display: none;
+}
+
+/* Document cell styling */
+.doc-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+}
+
+.doc-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 4px;
+    color: #6c757d;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.doc-icon.available {
+    color: #28a745;
+    background-color: rgba(40, 167, 69, 0.1);
+}
+
+.doc-icon:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+    color: #007bff;
+    transform: scale(1.1);
+}
+
+.doc-dash {
+    color: #adb5bd;
+    font-style: italic;
+}
+
+/* Attachment button styling - matches directory style */
+.attachment-btn {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    background-color: #f5f5f7;
+    border: 1px solid #d2d2d7;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #1d1d1f;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.attachment-btn:hover {
+    background-color: #e8e8ed;
+}
+
+.attachment-btn.active {
+    background-color: #30d158;
+    color: white;
+    border-color: #30d158;
+}
+
+.attachment-btn.active:hover {
+    background-color: #28cd4f;
+}

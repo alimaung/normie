@@ -113,13 +113,7 @@
                                 <div class="dropdown-item-description">Submit a new request</div>
                             </div>
                         </a>
-                        <a href="{% url 'requests' %}" class="dropdown-item">
-                            <i class="fas fa-inbox"></i>
-                            <div class="dropdown-item-content">
-                                <div class="dropdown-item-title">Requests</div>
-                                <div class="dropdown-item-description">Manage material requests</div>
-                            </div>
-                        </a>
+
                         <a href="{% url 'under_construction' %}" class="dropdown-item">
                             <i class="fas fa-clipboard-list"></i>
                             <div class="dropdown-item-content">
@@ -152,7 +146,7 @@
                                 <div class="dropdown-item-description">Email management</div>
                             </div>
                         </a>
-                        <a href="{% url 'under_construction' %}" class="dropdown-item">
+                        <a href="{% url 'tkz' %}" class="dropdown-item">
                             <i class="fas fa-code"></i>
                             <div class="dropdown-item-content">
                                 <div class="dropdown-item-title">TKZ</div>
@@ -308,13 +302,7 @@
                                                 <div class="dropdown-item-description">Submit a new request</div>
                                             </div>
                                         </a>
-                                        <a href="{% url 'requests' %}" class="dropdown-item">
-                                            <i class="fas fa-inbox"></i>
-                                            <div class="dropdown-item-content">
-                                                <div class="dropdown-item-title">Requests</div>
-                                                <div class="dropdown-item-description">Manage material requests</div>
-                                            </div>
-                                        </a>
+                                        
                                                                 <a href="{% url 'under_construction' %}" class="dropdown-item">
                             <i class="fas fa-clipboard-list"></i>
                             <div class="dropdown-item-content">
@@ -436,6 +424,47 @@
                                         </div>
                                     </a>
                                 </div>
+                                
+                                {% if user.profile.role == 'admin' %}
+                                    <!-- Prototype Section - Admin Only -->
+                                    <div class="developers-section">
+                                        <div class="developers-title">Prototype (Deprecated)</div>
+                                        <div class="prototype-grid">
+                                            <a href="{% url 'standards' %}" class="prototype-grid-item">
+                                                <i class="fas fa-balance-scale"></i>
+                                                <span>Standards</span>
+                                            </a>
+                                            <a href="{% url 'requests' %}" class="prototype-grid-item">
+                                                <i class="fas fa-inbox"></i>
+                                                <span>Requests</span>
+                                            </a>
+                                            <a href="{% url 'materials' %}" class="prototype-grid-item">
+                                                <i class="fas fa-cube"></i>
+                                                <span>Materials</span>
+                                            </a>
+                                            <a href="{% url 'releases' %}" class="prototype-grid-item">
+                                                <i class="fas fa-rocket"></i>
+                                                <span>Releases</span>
+                                            </a>
+                                            <a href="{% url 'approvals' %}" class="prototype-grid-item">
+                                                <i class="fas fa-check-circle"></i>
+                                                <span>Approvals</span>
+                                            </a>
+                                            <a href="{% url 'inventory' %}" class="prototype-grid-item">
+                                                <i class="fas fa-warehouse"></i>
+                                                <span>Inventory</span>
+                                            </a>
+                                            <a href="{% url 'reports' %}" class="prototype-grid-item">
+                                                <i class="fas fa-chart-bar"></i>
+                                                <span>Reports</span>
+                                            </a>
+                                            <a href="{% url 'audit' %}" class="prototype-grid-item">
+                                                <i class="fas fa-shield-alt"></i>
+                                                <span>Audit</span>
+                                            </a>
+                                        </div>
+                                    </div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
@@ -524,7 +553,7 @@
                                             <div class="dropdown-item-description">Resource directory</div>
                                         </div>
                                     </a>
-                                    <a href="{% url 'under_construction' %}" class="dropdown-item">
+                                    <a href="{% url 'tkz' %}" class="dropdown-item">
                                         <i class="fas fa-code"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">TKZ</div>
@@ -722,19 +751,7 @@
                                     </a>
                                 {% endif %}
                                 
-                                {% if user.profile.can_view_reports %}
-                                    <a href="{% url 'reports' %}" class="dropdown-item">
-                                        <i class="fas fa-chart-bar"></i>
-                                        <span>{% trans "Reports" %}</span>
-                                    </a>
-                                {% endif %}
-                                
-                                {% if user.profile.can_view_audit_logs %}
-                                    <a href="{% url 'audit' %}" class="dropdown-item">
-                                        <i class="fas fa-shield-alt"></i>
-                                        <span>{% trans "Audit Logs" %}</span>
-                                    </a>
-                                {% endif %}
+
                             </div>
                         {% endif %}
                         

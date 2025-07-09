@@ -1,0 +1,29 @@
+pagify - Installation Instructions
+
+Installation requirements:
+- Local Python installation required
+- Ensure connection to Rolls-Royce network (preferably via LAN)
+
+Installation Steps:
+
+1. Create a folder in the root C:\: C:\ESEApps
+2. Run ESE.bat from: \\DEBERDNA-C011A\Projekte\a-j\ESE\admin\ESE.bat
+3. In the ESE prompt, install Miniconda: integ miniconda3
+4. When it's finished, it says: "Starting Miniconda3 py312_24.3.0-0-Windows-x86_64 from ..." and opens a new window. Close that.
+5. Open a new ESE window (Step 2) and now run: rrpytools fix
+   Wait until it says it's complete
+   
+
+First Launch Setup:
+If Windows asks what program to use when launching pagify for the first time:
+
+1. On the Windows Prompt, click on: "More apps ↓"
+2. Check the box: "Always use this app to open .py files"
+3. Scroll down to "Look for another app on this PC" and click it
+4. On the File Explorer window, insert this as Filename:
+   C:\ESEApps\Miniconda3\py312_24.3.0-0-Windows-x86_64\python.exe
+5. Click on open. Done.
+6. If there's an error: File not found, navigate to this directory:
+   C:\ESEApps\Miniconda3\py312_24.3.0-0-Windows-x86_64
+7. Search and click on the file with the name "python.exe"
+8. Click on open. Done. 

@@ -1,0 +1,250 @@
+{% load pdf_extras %}
+
+<!-- Fertigungslabor Section -->
+<div class="section-card">
+    <div class="section-header">
+        <i class="fas fa-industry"></i>
+        Fertigungslabor (Manufacturing Laboratory)
+    </div>
+    
+    <!-- Subsection: Freigabe zur Erstbestellung (39-46) -->
+    <div class="subsection-header">
+        <div class="subsection-title">Freigabe zur Erstbestellung zur Produkt- und Lieferkettezulassung</div>
+        <div class="subsection-subtitle">Die Erstbestellung ist für eine Einheit des Stoffes auszulösen</div>
+    </div>
+    
+    <!-- Field 39 in regular table layout -->
+    <table class="form-table">
+        {% for field in fields|get_fields_for_section:"manufacturing" %}
+            {% if field.id == '39' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    
+    <!-- Fields 40a, 40b, 40c in three-column row -->
+    <div class="three-column-row" style="border-top: 1px solid #dadce0; ">
+        {% for field in fields|get_fields_for_section:"manufacturing" %}
+            {% if field.id == '40a' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"manufacturing" %}
+            {% if field.id == '40b' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"manufacturing" %}
+            {% if field.id == '40c' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <!-- Fields 41, 42, 43, 44 in 2x2 grid -->
+    <div class="fertigungslabor-grid-section">
+        <div class="fertigungslabor-grid">
+            <!-- Row 1 -->
+            {% for field in fields|get_fields_for_section:"manufacturing" %}
+                {% if field.id == '41' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            <div class="stacked-radio">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"manufacturing" %}
+                {% if field.id == '42' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            <div class="stacked-radio">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            <!-- Row 2 -->
+            {% for field in fields|get_fields_for_section:"manufacturing" %}
+                {% if field.id == '43' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            <div class="stacked-radio">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"manufacturing" %}
+                {% if field.id == '44' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            <div class="stacked-radio">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Fields 45, 46 in regular table layout -->
+    <table class="form-table">
+        {% for field in fields|get_fields_for_section:"manufacturing" %}
+            {% if field.id == '45' or field.id == '46' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    
+    <!-- Subsection: Freigabe zur Verwendung (47-49) -->
+    <div class="subsection-header" style="border-top: 1px solid #dadce0; border-bottom: 1px solid #dadce0;">
+        <div class="subsection-title">Freigabe zur Verwendung</div>
+        <div class="subsection-subtitle">Produktzulassung vorhanden oder nach Erstbestellung erfolgt</div>
+    </div>
+    
+    <!-- Fields 47a, 47b, 47c in three-column row -->
+    <div class="three-column-row">
+        {% for field in fields|get_fields_for_section:"manufacturing" %}
+            {% if field.id == '47a' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"manufacturing" %}
+            {% if field.id == '47b' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"manufacturing" %}
+            {% if field.id == '47c' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <!-- Fields 48, 49 in regular table layout -->
+    <table class="form-table">
+        {% for field in fields|get_fields_for_section:"manufacturing" %}
+            {% if field.id == '48' or field.id == '49' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    
+    <!-- Regular Table Layout for Other Manufacturing Fields -->
+    <table class="form-table">
+        {% for field in fields|get_fields_for_section:"manufacturing" %}
+            {% if field.id != '39' and field.id != '40a' and field.id != '40b' and field.id != '40c' and field.id != '41' and field.id != '42' and field.id != '43' and field.id != '44' and field.id != '45' and field.id != '46' and field.id != '47a' and field.id != '47b' and field.id != '47c' and field.id != '48' and field.id != '49' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+</div> 

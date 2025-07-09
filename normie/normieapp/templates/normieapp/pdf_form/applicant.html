@@ -1,0 +1,490 @@
+{% load pdf_extras %}
+
+<!-- Antragsteller Section -->
+<div class="section-card">
+    <div class="section-header">
+        <i class="fas fa-user"></i>
+        Antragsteller (Applicant Information)
+    </div>
+    <!-- Special Row Layout for 2a, 2b, 2c, 2d -->
+    <div class="four-column-row">
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '2a' %}
+                <div class="column-field flex-1-2">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '2b' %}
+                <div class="column-field flex-0-8">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '2c' %}
+                <div class="column-field flex-0-5">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '2d' %}
+                <div class="column-field flex-1">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <!-- Fields 3 and 4 in two-column row -->
+    <div class="two-column-row" style="border-bottom: 1px solid #dadce0;">
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '3' %}
+                <div class="column-field two-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '4' %}
+                <div class="column-field two-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <!-- Fields 5, 6, and 7 in three-column row -->
+    <div class="three-column-row">
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '5' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        <div class="stacked-radio">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '6' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        <div class="stacked-radio">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '7' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <!-- Fields 8 and 9 in one row -->
+    <div class="two-column-row">
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '8' %}
+                <div class="column-field two-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '9' %}
+                <div class="column-field two-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <!-- Fields 12a and 12b in one table row -->
+    <table class="form-table">
+        <tr class="form-row" style="border-bottom: none;">
+            <td class="field-label" style="width: 15%;">
+                <div class="field-id">12a</div>
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '12a' %}
+                        <div class="field-description">{{ field.name }}</div>
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td class="field-input" style="width: 35%;">
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '12a' %}
+                        {% render_field_input field fields %}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td class="field-label" style="width: 15%;">
+                <div class="field-id">12b</div>
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '12b' %}
+                        <div class="field-description">{{ field.name }}</div>
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td class="field-input" style="width: 35%;">
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '12b' %}
+                        {% render_field_input field fields %}
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+
+    <!-- Field 13 -->
+    <table class="form-table">
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '13' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    
+    <!-- Fields 14, 15a, 15b combined in one table row -->
+    <table class="form-table">
+        <tr class="form-row" style="border-bottom: 1px solid #dadce0;">
+            <td class="field-label" style="width: 10%;">
+                <div class="field-id">14</div>
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '14' %}
+                        <div class="field-description">{{ field.name }}</div>
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td class="field-input" style="width: 30%;">
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '14' %}
+                        <div class="stacked-radio">
+                            {% render_field_input field fields %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td class="field-label" style="width: 10%;">
+                <div class="field-id">15</div>
+                <div class="field-description">SAP und Lager</div>
+            </td>
+            <td class="field-input" style="width: 50%;">
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '15a' %}
+                        <div class="inline-radio-field">
+                            <span class="radio-field-label">{{ field.name }}:</span>
+                            {% render_field_input field fields %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '15b' %}
+                        <div class="inline-radio-field">
+                            <span class="radio-field-label">{{ field.name }}:</span>
+                            {% render_field_input field fields %}
+                        </div>
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+    
+    <!-- Fields 16, 17a, 17b, 17c in four-column row -->
+    <div class="four-column-row">
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '16' %}
+                <div class="column-field flex-1">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '17a' %}
+                <div class="column-field flex-1">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '17b' %}
+                <div class="column-field flex-1">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '17c' %}
+                <div class="column-field flex-1">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <!-- Regular Table Layout for Other Fields -->
+    <table class="form-table">
+        <!-- Field 10 -->
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '10' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        
+        <!-- Field 11 -->
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '11' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        
+        <!-- Fields 18a, 18b, 18c, 18d, 18e -->
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '18a' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '18b' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '18c' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '18d' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '18e' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+        
+        <!-- Field 19 -->
+        {% for field in fields|get_fields_for_section:"applicant" %}
+            {% if field.id == '19' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    
+    <!-- Fields 20 and 21 in one table row -->
+    <table class="form-table">
+        <tr class="form-row">
+            <td class="field-label" style="width: 15%;">
+                <div class="field-id">20</div>
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '20' %}
+                        <div class="field-description">{{ field.name }}</div>
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td class="field-input" style="width: 35%;">
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '20' %}
+                        {% render_field_input field fields %}
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td class="field-label" style="width: 15%;">
+                <div class="field-id">21</div>
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '21' %}
+                        <div class="field-description">{{ field.name }}</div>
+                    {% endif %}
+                {% endfor %}
+            </td>
+            <td class="field-input" style="width: 35%;">
+                {% for field in fields|get_fields_for_section:"applicant" %}
+                    {% if field.id == '21' %}
+                        {% render_field_input field fields %}
+                    {% endif %}
+                {% endfor %}
+            </td>
+        </tr>
+    </table>
+</div> 

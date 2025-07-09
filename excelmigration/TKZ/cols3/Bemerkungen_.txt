@@ -1,0 +1,1035 @@
+(Ersatz für 10003883 in Projekt TP400
+(Ersatz für 10003884 in Projekt TP400
+(Ersatz für ECR)
+(Ersatz für Problem presentation sheet)
+(Ersatz für alte Advance Release Notice)
+(alte Version ist unter 10001810 definiert)
+, CCOC DEFLECTOR SHIELD, ...
+, COMPRESSOR FAIRINGS EEC- TROUGH
+, ECS DUCTS
+0,4 Liter
+0,5 kg
+0,5 kg Dose gemeinsam vervendet mit 10001572
+0,5 kg-Dose gemeinsam verwendet mit 10001573
+0,7 Liter
+1 KG
+1 LB Can. Alter Produktname: "NEVER-SEEZ HIGHT TEMP ANTI SEIZE CMPD", 2013-10-16
+1 Liter
+1 Liter (aus 200 l Fass)
+1 Liter-Gebinde sonst wie 01026472
+1 Liter; Aufgrund von Nummernkollision in SAP umbenummert zu 01041868
+1 kg
+10 KG
+10 L-KANISTER
+10 Liter
+10 Liter
+aufgrund von Nummernkollision umbenummert in 01042836
+10 l
+10 m³ Flasche (50 l)
+10, 7 m³
+10,7 m³ Flasche
+10,7 m³, aufgrund eines SAP-Problems nach 01041114 umbenummert
+100 l
+1000 l Container
+10001866 in Oberursel
+10001867 in Oberursel
+10002800.pdf
+10004191 für Dahlewitz
+10004192 für Dahlewitz
+12-er Flaschenbuendel
+12-er Flaschenbündel
+12-er Flaschenbündel, 10 m³ Flasche (50 l)
+120 l
+125 ml, zum reinigen von Kunststoffrohr (grau)
+150 l
+18 KG
+180 kg
+1L-Gebinde 5L-Gebinde unter 01008862
+1Liter-Dose.
+Auf Anfrage von H&B Stoffe RR Dahlewitz wurde am 19.10.2017 im SAP-Datensatz die Shelf Life Abfrage für diese TKZ im Material Master rausgenommen. (Laut Schriftverkehr zum Antrag 042/2006, war das schon am 18.09.2013 gemacht worden)
+2 Liter
+2,1 m³
+20 L-Kanister identisch mit 01004984 (hier nur 184 kg-Fass)
+20 Liter
+20 Liter Kanister
+20 Liter Kanister; TKZ inaktiv und geändert! Neue TKZ: 01041811 2012-11-28
+20 kg
+20 l
+20 l, Reinigen von Maschinenteilen
+200 KG
+200 Liter
+200 kg
+200 l
+200 l Faß
+22,71 l Gebinde
+25 l
+25 l Kanister
+25 l-Kanister
+250 ml
+250 ml Dose
+250ml Kit
+Andere Gebinde: TKZ 01041451 (150 ml Kartusche = 1 NPT), TKZ 01043954 ( 428g (355ml))
+25l Kanister (früher 20 l Kanister)
+30 l
+35 kg
+siehe auch neue TKZ 01043686 für neuen Hersteller und geändertes Gebinde (Anlage am 13.02.2020)
+4 Liter
+5 KG
+5 Liter
+5 l
+5 l Kanister
+50 ml Cartridges
+500 g
+500 g -> (225g wie im Antrag sind aber im Einkaufsbestelltext in SAP)
+-> siehe auch 01042750 (28.10.2015) neue Anlage für OU, da Probleme in SAP!
+500 ml Sprühdose
+60 L-Behälter
+60 l Behälter
+80 ML. Wegen Nummernkollision mit Rolls-Royce plc Indy Produkt in 01042689 umbenummert (07.09.2015)!
+A. Schreck EV-1B
+A. Schreck EV-1S. 
+Siehe 27.08.2024: Neue Benennung -> BONDERITE L-GP M 709 ACHESON von Henkel
+ACHTUNG: Hier geht es um die Farbe "Rot, Artikelnummer: 13000" ; das Produkt ohne Präzisierung der Farbe läuft auch unter TKZ 01042539 ; die Farbe "Grün, Artikelnummer: 15000" läuft unter TKZ 01043292
+AIR 4049-2618A-T8511-160RD wurde von Fa. Snecma abgelehnt
+AIR 4049.360-200 wurde von Fa. Snecma abgelehnt
+AP-3
+AUSFUELLANWEISUNG 10003255.DOC
+AUTHOR:K.P.LANSCH/EV-23
+AVA0007-367
+Abdruck von Zahnflanken
+Abmeldung für Besucher
+Abnahmeprüfzeugnis nach EN 10204 3.1B
+Abnahmeprüfzeugnis nach EN 10204 B3.1
+Advanced Engineering Release Sheet for Ordering erstellt vo Jürgen Wehmeier ED-6
+Alte Version - neue Version wird unter 10004509 definert
+Alte bezeichnung SCHAUMSTOFFPLATTEN_Typ NPRG 35, 2750 X 600 X 50 MM 21-11-2013.
+Alter Titel: Design Work Package for Service Splitter Faerings
+Alternative Normkurzbezeichnung hinzugefügt, (siehe ÄM M0704-84-0214) 16.11.2016
+Andreas Amann, EV-24
+Angaben von D. Kreissl
+Angefordert durch D.Bernard
+Angefordert durch Frau Mach für alle Triebwerke der Reihe BR700. Jedes Logbook erhält die Serial # der Turbine.
+Angefordert durch Herrn Günter OP-3
+Angefordert durch Herrn K. Wegner
+Angefordert durch Herrn Veeh
+Angefordert durch Herrn Wojan für alle Triebwerke der Reihe BR700. Jedes Logbook erhält die Serial # der Turbine.
+Angefordert von Herrn Schmeier AQ-1
+Anhang zu QBR 5047
+Antrag auf Erteilung/Erweiterung einer Prüfbefugnis
+ERSETZT druch 10003542
+Antrag auf zur Fotogenehmigung
+Antrag gilt für TKZ 10004399 (30kg Gebinde) und TKZ 01041934 (1360kg Gebinde), 2013-06-24. Umbenannt: ALTER NAME: TURCO F.R. CONDITIONER No.2 30kg Gebinde. 2014-01-23.
+Antrag von Jürgen Dupre EV-13
+Antragsvervollständigung angefragt 2013-01-24, GB beim Antragsteller angefragt 2013-01-25. Umbenannt: ALTER NAME: TURCOFORM MASK 522. 20 kg. 2014-01-23.
+Bitte beachten: anderes Gebinde (5kg) siehe TKZ 01044238
+Arbeitsmedizinische Voruntersuchungen; Ärztliche Bescheinigung BMW Rolls-Royce GmbH
+Archiviert in S.:\info\wordvorl
+Artikel-Nummer 76 009 106
+Aufgrund von Produktstreichung wird Garia 405 M-32 als Ersatzprodukt eingeführt (TKZ 01042946)
+Ausfüllanweisungen für Formblätter
+Ausnahme BevorratungMaterial wird Thyssen oder Ladish beigestellt (für die Herstellung von Schmiederohlingen für HPT-Scheiben)BR715
+Austauschwerkstoff für 3.3214 (siehe auch 01616019, 01616031, 01616032)
+Author: J. Kator, ED-2 wird nicht benötigt -Lieferantenbeziehung beendet
+Author:Fred Frayne  (Graphic Engines Designs)
+Author:Morris, Ian (Graphic Engines Designs)
+Author:Morris, Ian (Graphic Engines Designs) wird nicht weiter bearbeitet! e-mail vom 17.06.2002
+Author:Morris, Ian (Graphic Engines Designs) wird nicht weiter bearbeitet! e-mail vom 17.06.2002  wird nicht benötigt - Lieferantenbeziehung beendet
+Autor Berd Rehwald (FI) und Elk Hartmann (ED-6)
+Autor ist Herr M.Wulf; 1729;OP-3
+Autor: C.J.Prosser(EV-52)
+Autor: N.Bone. Formular für MINOR, INITIAL MINOR; FINAL MINOR
+Autor: R.Berghaus(EV-61)
+BS 1768, Peter Weiser
+Bauteil für SPS-Tester für Saudi-Ersatzteile Hersteller VDO
+Beantragt von B. Querengässer
+Bescheinigung für einen Arztbesuch für den Arbeitgeber
+Bestehend aus: 1 Faltkarton 1005x505x275 mm
+Bestellmenge 10.000. Mindestmenge 3.000
+Bestellmenge:  3000 Stck.
+Mindestbestand  500 Stck.
+Bestellung lt. Herrr Moos von  JU-Air  - Verein Freunde der schweizerischen Fliegertruppen
+Bitte beachten: Änderung am 17.05.2019: da SAP Datensatz fehlerhaft, soll diese TKZ nicht mehr verwendet werden und stattdessen durch die TKZ 01041492 ersetzt werden (somit soll es nur noch eine TKZ für Oberursel und Dahlewitz geben)!
+Info H&B Stoffe RR DW (Anja Petzold) am 20.05.2019: die TKZ 10002387 wurde stillgelegt und die Parameter dafür auf die 01041492 übertragen.
+Broschüre in deutsch
+Broschüre in englisch
+Bull Service GmbH
+CS=Deckblatt
+Carl Roth GmbH & Co 76185 Karlsruhe
+Produkt nicht mehr hergestellt soll durch TKZ 01043181 ersetzt werden (siehe Antrag 228/2017 vom 11.12.2017).
+Carsten Ochtrup, EV-23
+D. Mueller,, EV-2T
+DIN 1444
+DIN 1481 wurde durch DIN EN ISO 8752 ersetzt, aber sind sie nicht Äquivalent!
+DIN 1481 wurde durch DIN EN ISO 8752 ersetzt, aber sind sie nicht Äquivalent.
+DIN 1481 wurde durch DIN EN ISO 8752 ersetzt, früher DIN 1481- 2,5X  8-A4C, aber sind sie nicht Äquivalent.
+DIN 2093 wurde durch DIN EN 16983 ersetzt, der Inhalt ist aber Äquivalent ur DIN 2093.
+DIN 55429???
+DIN 7
+DIN 931
+DIN 933
+DIN ISO 7042
+DIN551
+DIN6325
+DIN931
+DIN933
+DIN933, Jetzt 01041007 da durch Indianapolis ünberschrieben
+DIN934
+DIN980
+Da Neuanlage für DW unmöglich (System meldet andere Zuordnung des Materials bezüglich der Materialart, wird am 08.01.2018 eine neue TKZ für die Anlage in SAP vergeben (01043188).
+Das Lastenheft ist einen R&D Projekt zugeordnet; genauer dem E3EII-Projekt
+Das ursprüngliche Bauteil ist :
+HPC Rear Rotor ; TKZ : 10001487 (BRR24357)
+Hierbei sollen die in der Serienfertigung verwendeten Einzelteile zum Einsatz kommen.
+Der Rotor wird nach Versuchende über Concession/MCR als Neuteil (BRR24357) verwendet.
+Definiert für die Beauftragung die Anforderungen für den  Fremdkonstrukteur
+Design Definition (Scheme) Manufacturing Acceptance Sheet (H.Bogenreiter)
+Dient als Unterlage für Kundenschlungen
+Dieses Dokument stellt die Suche von Dokumenten in WORD dar.
+Dow Corning, Rue Gereral de Gaulle 62 Belg.
+EN 24014 ERSATZ FÜR 01101142
+EN 24014 ERSATZ FÜR 01111504
+EN 24014 ERSATZ FÜR 01125793
+EN 29453
+ERSETZT DRUCH 10004600 - Sicherheitsbestand: 100 Stck. jeweils für DW und OU
+EV-3 Gruppenlaufwerk
+Einfahrgenehmigung für Firmen und Mitarbeiter
+Engeneering Change System; 1. Seite
+Engeneering Change System; Full Page 1.
+Engeneering Change System; Full and Minor Change. Wurde in 10001518 eingearbeitet
+Engeneering Change System; Sheet
+Engineering Drawing Manufacturing Acceptance Sheet (H.Bogenreiter)
+Entsprechend KHD-Mikrofilm und Tornadostückliste 02890543 von DIN 835-M5 SN4X16-A4-70 geändert zu DIN 835-M5 SN4X16-S-A4-70, 2016-02-04
+Ergänzung zu Werknorm N0050
+Erlaubnisschein für feuergefährliche Arbeiten
+Ersatz für  S-3612-810 (TN 01007348)
+Ersatz für 01174366
+Ersatz für 01395636 für Lehrwerkstatt
+Ersatz für 01402251,01402252, 01402253,01402254, 01402452, 01402253
+Ersatz für 10001693. Denzin; DW; ED-6
+Ersatz für 10001697. Denzin; DW; EC-3
+Ersatz für LN7-1,5m6x4 (01243686); Normkurzbezeichnung korrigiert von ISO 2338 - 1,5 m6 x 4 - A1 - 80 (DIN 7 - 1,5 m6 X 4 - St) (2014-12-05), ÄM0704-99-0045.
+Ersatz für LN7-2m6x5 (01244497); Normkurzbezeichnung korrigiert von ISO 2338 - 2 m6 x 5 - A1 - 80 (DIN 7 - 2 m6 X 5 - St) (2014-12-05) , ÄM0704-99-0045
+Ersatz für LN7-3m6x10 (01243959); Normkurzbezeichnung korrigiert von ISO2338 - 3 m6 x 10 - A1 - 80 (DIN 7 - 3 m6 X 10 - St), 2014-12-05
+Ersatz für LN7-3m6x6 (01244277); Normkurzbezeichnung korrigiert von ISO2338-3M6X6-A1-80 (DIN7-3M6X6), 2012-06-12. Normkurzbezeichnung korrigiert von ISO 2338 - 3 m6 x 6 - A1 - 80 (DIN 7 - 3 m6 X 6), 2014-10-08. ÄM0704-99-0045.
+Ersatz für LN7-3m6x8 (01246044); Normkurzbezeichnung korrigiert von ISO2338-3M6X8-A1-80 (DIN7-3M6X8-ST), 2012-06-12. Normkurzbezeichnung korrigiert vonISO 2338 - 3 m6 x 8 - A1 - 80 (DIN 7 - 3 m6 X 8 - St), 2014-10-08.
+Ersatz für LN7-4m6x10 (01243720); Normkurzbezeichnung korrigiert von ISO2338-4M6X10-A1-80 (DIN7-4M6X10), 2012-06-12. . Normkurzbezeichnung korrigiert von ISO 2338 - 4 m6 x 10 - A1 - 80, 2014-10-08.
+Ersatz für Primer OP1(10002832)
+Ersetzt durch 10001694. Denzin; DW; ED-6
+Ersetzt durch neue TKZ 01044250.
+Ersetzt durch: 01040787 (Dow Corning 704)
+Ersteller ist EV-6 Chr. Young und J. Gerakis
+Erstellung des monatlichen Tätigkeitsnachweis
+Eröffnet für Herrn Holger von Rhein
+FBR2041
+FUER KUEHLLUFTRINGLEITUNG
+FUER STROEMUNGSTEILE
+Fa. ATLAS Schuhfabrik Frische Luft 159 44319 Dortmund
+Fa. ATLAS Schuhfabrik Frische Luft 159 44319 Dortmund
+alte Bezeichnung des Modells war ATLAS TX620 (11.02.2010)
+Fa. ATLAS Schuhfabrik Frische Luft 159 44319 Dortmund  
+alte Bezeichnung des Modells war ATLAS TX620 (11.02.2010)
+Fa. Dengler
+Modell EKASTU-Atemfilter, Typ 39AST
+Fa. Linde
+Kalibriergas
+Farbe anthrazit
+Fertigungsplan für Empfindliche Teile - Identifikation und Zulassung
+wird in 10001615 integriert
+Dokument ist inaktiv
+AP-4 Nemannn 15.06.00
+Firma Lindapter Cage Code: U6624
+Flight Test Instrumentation
+Fluessigkeit siehe 10002031
+Formular LogForm L 7-34/61 V Vers.Nr. 7530-12-133-4920
+Formular für AVA 0000-106
+Formular für ECM. Ersatz für 10001561; 10001623; 10001742; 01402248; 01402281; 01402295
+Formular für ECM. Ersetzt durch 10001719, War ECM BRR/FLETSCHER
+Formular für Engineering Coordination Memo
+Formular für Engineering Coordination Memo.
+Formular für Engineering Coordination Memo. A. Kussicke; OP-3; 1906
+Formular für Engineering Coordination Memo. A.Hocke (ED-23)
+Formular für Engineering Coordination Memo. Autor: D.Gebser (EV-5) und Dr.H.Klinger (EV-3), ILA = Institut für Luftfahrtantriebe TU Stuttgart
+Formular für Engineering Coordination Memo. Ersatz für 10001521
+Formular für Engineering Coordination Memo. Ersatz für 10001523
+Formular für Engineering Coordination Memo. Ersatz für 10001536
+Formular für Engineering Coordination Memo. Ersatz für 10001563.
+Formular für Engineering Coordination Memo. Ersatz für 10001568.
+Formular für Engineering Coordination Memo. Ersatz für 10001605
+Formular für Engineering Coordination Memo. Ersatz für 10001609
+Formular für Engineering Coordination Memo. Ersatz für 10001717. Autor Stieglauer ET-32.
+Formular für Engineering Coordination Memo. Ersaz für 10001564
+Formular für Engineering Coordination Memo. Ersetzt durch 01402249
+Formular für Engineering Coordination Memo. Ersetzt durch 01402249 und war für ECM BRR nach AIT-M LTD
+Formular für Engineering Coordination Memo. Ersetzt durch 10001520
+Formular für Engineering Coordination Memo. Ersetzt durch 10001522
+Formular für Engineering Coordination Memo. Ersetzt durch 10001535
+Formular für Engineering Coordination Memo. Ersetzt durch 10001562
+Formular für Engineering Coordination Memo. Ersetzt durch 10001567.
+Formular für Engineering Coordination Memo. Ersetzt durch 10001604
+Formular für Engineering Coordination Memo. Ersetzt durch 10001608
+Formular für Engineering Coordination Memo. Uwe Bergmann
+Formular für Engineering Coordination Memo. War TEXTRON-BRR. geändert am 1997-11-11 durch h.Denzin
+Formular für Engineering Coordination Memo. Zurückgezogen
+Formular in AVA 0021-315
+Formular in Word Datei Neu
+Frank Schroer, EV-2
+Frau John; ET
+Frau Mayer-Herlin FI(DW)
+Frau Petra Nurnberger; FI-4
+Frau Wilke
+Fuchs DEA Schmierstoffe GmbH 20 Liter
+Für AVA -0080-xxxx; Sonja Foord
+Für Buchse 2.322.22.092.0    ( Gehäuse 0.322.27.720.0 )
+Für Buchse 2.322.22.094.0    ( Gehäuse 0.322.27.722.0 )
+Für Drucker Digital LA30N
+Für Drucker Hewlett Packard HP870Cxi
+Für Personenrufempfänger
+Gaul, Guido
+Gebinde 100 ml unter TN 10002011
+Gebinde: 1000Stück; geändert von "350X350X0,075 mm Polyaetylen Aufdruck mittig DIN A4 Untergrund weiß, Logo farbig 7cm lang, 1cm von oben 1cm von rechts, Beschriftung Arial 20Pt 5cm von oben 2,5cm von links"; 2012-10-29
+Für das selbe Produkt wurde für die SAP-Anlage in DW am 30.11.2016 die neue TKZ 01042907 angelegt (Bearbeitung vom Antrag 139/2012)
+Gebindegröße 310 ml unter TN 10002414; TKZ 10002011 wurde von Ansty überschrieben und kann nicht mehr verwendet werden - neue TKZ lautet 01041640 (75ml) 2012-05-08
+Gebindegröße: 25kg Kanister; Umbenannt: ALTE NAME: Turco 5948 DPM 25 KG Kanister. 2014-01-23.
+Gehört zur Anlage zur Bestellung. Musterkarte
+Graesel Juergen ED-2
+H.Kembeer
+H.Scholze
+HOSTESS Natura, 1 VE = 6 Rollen/Polybeutel
+	20 cm x 140 m, weiß geprägt, 2lagig
+	36 VE = 1 Palette   (Mindestbestellmenge)
+	Lieferant:  Fa. Dengler     Art.Nr.  1222-05740
+	Hersteller: Kinberly-Clak  Art.Nr.   6851
+Haerter für 10003003
+Handbuch für "Ersatzstromversorgung mit Generator aus Triebwerk T117
+Hans Opper, ECT-22
+Heinrich Preister; ED-6
+Herr Dupre; EV-13;
+Herr Geck
+Herr Hofrichter P3-41
+Herr Opper
+Herr Urban ED-6
+Hersteller Fa. Elten
+Lieferant Fa. Dengler
+Hersteller: Porphyrin Products Inc.
+P.O.Box 31, Logan, Utah, USA
+Homepage; Annika Gohrt
+Hugh Smith EAQ
+IAR=Installation and Removal Historie
+IDENTISCCH MIT 01402447
+IDENTISCH MIT 01000012
+IDENTISCH MIT 01001335
+IDENTISCH MIT 01001387.  TKZ 10002439 nicht mehr benötigt (Stilllegen). 2014-05-22.
+IDENTISCH MIT 01001389
+IDENTISCH MIT 01001392
+IDENTISCH MIT 01001396
+IDENTISCH MIT 01001430
+IDENTISCH MIT 01002177
+IDENTISCH MIT 01002247
+IDENTISCH MIT 01002248
+IDENTISCH MIT 01002249
+IDENTISCH MIT 01002263
+IDENTISCH MIT 01002279
+IDENTISCH MIT 01003802 für Oberursel
+IDENTISCH MIT 01003803
+IDENTISCH MIT 01003804
+IDENTISCH MIT 01003867
+IDENTISCH MIT 01004055
+IDENTISCH MIT 01004945
+IDENTISCH MIT 01004946
+IDENTISCH MIT 01005504
+IDENTISCH MIT 01005513
+IDENTISCH MIT 01007224
+IDENTISCH MIT 01007225
+IDENTISCH MIT 01007480
+IDENTISCH MIT 01007680
+IDENTISCH MIT 01007971
+IDENTISCH MIT 01008129
+IDENTISCH MIT 01008263
+IDENTISCH MIT 01008264
+IDENTISCH MIT 01008269
+IDENTISCH MIT 01008325
+IDENTISCH MIT 01008338
+IDENTISCH MIT 01008375
+IDENTISCH MIT 01008376
+IDENTISCH MIT 01008453
+IDENTISCH MIT 01008518
+IDENTISCH MIT 01008519
+IDENTISCH MIT 01008520
+IDENTISCH MIT 01008900
+IDENTISCH MIT 01009011
+IDENTISCH MIT 01009015
+IDENTISCH MIT 01009038 FUER OU
+IDENTISCH MIT 01009046
+IDENTISCH MIT 01009047
+IDENTISCH MIT 01009059
+IDENTISCH MIT 01009100
+IDENTISCH MIT 01009113
+IDENTISCH MIT 01009115
+IDENTISCH MIT 01009117
+IDENTISCH MIT 01009120
+IDENTISCH MIT 01009121
+IDENTISCH MIT 01009123
+IDENTISCH MIT 01009133
+IDENTISCH MIT 01009135
+IDENTISCH MIT 01009142
+IDENTISCH MIT 01009157
+IDENTISCH MIT 01009158
+IDENTISCH MIT 01009275
+IDENTISCH MIT 01009406
+IDENTISCH MIT 01009406 UND 10002498 VON ESSO
+IDENTISCH MIT 01009558
+IDENTISCH MIT 01009997 (200 l Fass)
+IDENTISCH MIT 01010369
+IDENTISCH MIT 01016074
+IDENTISCH MIT 01016075
+IDENTISCH MIT 01016076
+IDENTISCH MIT 01016077
+IDENTISCH MIT 01016078
+IDENTISCH MIT 01016079
+IDENTISCH MIT 01016199
+ACHTUNG: da für dasselbe Produkt zwei TKZ existieren wurde die TKZ 01041640 am 02.01.2023 aus der automatischen Disposition genommen und auf Status ND gesetzt. Stattdessen soll in Zukunft nur die TKZ 10002831 verwendet werden.
+IDENTISCH MIT 01016200 + 01016200
+IDENTISCH MIT 01020118
+IDENTISCH MIT 01020119
+IDENTISCH MIT 01020120
+IDENTISCH MIT 01020121
+IDENTISCH MIT 01020122
+IDENTISCH MIT 01020123
+IDENTISCH MIT 01020124
+IDENTISCH MIT 01020125
+IDENTISCH MIT 01020126
+IDENTISCH MIT 01020127
+IDENTISCH MIT 01020128
+IDENTISCH MIT 01020209
+IDENTISCH MIT 01020210
+IDENTISCH MIT 01020211
+IDENTISCH MIT 01020212
+IDENTISCH MIT 01020213
+IDENTISCH MIT 01020388
+IDENTISCH MIT 01020389
+IDENTISCH MIT 01020390
+IDENTISCH MIT 01020391
+IDENTISCH MIT 01020392
+IDENTISCH MIT 01020393
+IDENTISCH MIT 01020394
+IDENTISCH MIT 01020395
+IDENTISCH MIT 01020396
+IDENTISCH MIT 01020397
+IDENTISCH MIT 01020398
+IDENTISCH MIT 01021419
+IDENTISCH MIT 01024058
+IDENTISCH MIT 01026339
+IDENTISCH MIT 01030063
+IDENTISCH MIT 01030070
+IDENTISCH MIT 01030193
+IDENTISCH MIT 01030279
+IDENTISCH MIT 01030280
+IDENTISCH MIT 01030326
+IDENTISCH MIT 01030327
+IDENTISCH MIT 01030328
+IDENTISCH MIT 01030394
+IDENTISCH MIT 01031008
+IDENTISCH MIT 01031034
+IDENTISCH MIT 01031039
+IDENTISCH MIT 01031045
+IDENTISCH MIT 01031048
+IDENTISCH MIT 01031063
+IDENTISCH MIT 01031064
+IDENTISCH MIT 01031067
+IDENTISCH MIT 01031068
+IDENTISCH MIT 01031070
+IDENTISCH MIT 01031073
+IDENTISCH MIT 01031076
+IDENTISCH MIT 01031081
+IDENTISCH MIT 01031093
+IDENTISCH MIT 01031184
+IDENTISCH MIT 01080025
+IDENTISCH MIT 01090861
+IDENTISCH MIT 01090896
+IDENTISCH MIT 01090900
+IDENTISCH MIT 01091016
+IDENTISCH MIT 01091374
+IDENTISCH MIT 01091507
+IDENTISCH MIT 01095865
+IDENTISCH MIT 01097952
+IDENTISCH MIT 01101465
+IDENTISCH MIT 01102425
+IDENTISCH MIT 01102440
+IDENTISCH MIT 01102442
+IDENTISCH MIT 01102444
+IDENTISCH MIT 01102469
+IDENTISCH MIT 01102471
+IDENTISCH MIT 01102473
+IDENTISCH MIT 01104281
+IDENTISCH MIT 01104719
+IDENTISCH MIT 01110323
+IDENTISCH MIT 01125176
+IDENTISCH MIT 01136866
+IDENTISCH MIT 01385152
+IDENTISCH MIT 01394874
+IDENTISCH MIT 01402109
+IDENTISCH MIT 01402110
+IDENTISCH MIT 01402111
+IDENTISCH MIT 01402118
+IDENTISCH MIT 01402119
+IDENTISCH MIT 01402120
+IDENTISCH MIT 01402121
+IDENTISCH MIT 01402123
+IDENTISCH MIT 01402124
+IDENTISCH MIT 01402127
+IDENTISCH MIT 01402210
+IDENTISCH MIT 01402211
+IDENTISCH MIT 01402212
+IDENTISCH MIT 01402213
+IDENTISCH MIT 01402214
+IDENTISCH MIT 01402215
+IDENTISCH MIT 01402216
+IDENTISCH MIT 01402217
+IDENTISCH MIT 01402218
+IDENTISCH MIT 01402220
+IDENTISCH MIT 01402223
+IDENTISCH MIT 01402224
+IDENTISCH MIT 01402251
+IDENTISCH MIT 01402252
+IDENTISCH MIT 01402253
+IDENTISCH MIT 01402254
+IDENTISCH MIT 01402307
+IDENTISCH MIT 01402405
+IDENTISCH MIT 01402407
+IDENTISCH MIT 01402408
+IDENTISCH MIT 01402409
+IDENTISCH MIT 01402411
+IDENTISCH MIT 01402412
+IDENTISCH MIT 01402413
+IDENTISCH MIT 01402414
+IDENTISCH MIT 01402415
+IDENTISCH MIT 01402416
+IDENTISCH MIT 01402417
+IDENTISCH MIT 01402418
+IDENTISCH MIT 01402419
+IDENTISCH MIT 01402442
+IDENTISCH MIT 01402443
+IDENTISCH MIT 01402444
+IDENTISCH MIT 01402448
+IDENTISCH MIT 01402449
+IDENTISCH MIT 01402450
+IDENTISCH MIT 01402452
+IDENTISCH MIT 01402454
+IDENTISCH MIT 01402456
+IDENTISCH MIT 01402463
+IDENTISCH MIT 01402469
+IDENTISCH MIT 01402470
+IDENTISCH MIT 01402472
+IDENTISCH MIT 01402476
+IDENTISCH MIT 07004256
+IDENTISCH MIT 07005590
+IDENTISCH MIT 07012978
+IDENTISCH MIT 07012982
+IDENTISCH MIT 07014821
+IDENTISCH MIT 07014822
+IDENTISCH MIT 07015745
+IDENTISCH MIT 07015900
+IDENTISCH MIT 07015905
+IDENTISCH MIT 07015906
+IDENTISCH MIT 07015907
+IDENTISCH MIT 07015908
+IDENTISCH MIT 07015909
+IDENTISCH MIT 07015910
+IDENTISCH MIT 07015911
+IDENTISCH MIT 07015912
+IDENTISCH MIT 07015913
+IDENTISCH MIT 07015915
+IDENTISCH MIT 07015916
+IDENTISCH MIT 07015917
+IDENTISCH MIT 07015919
+IDENTISCH MIT 07015925
+IDENTISCH MIT 07015944
+IDENTISCH MIT 07015996
+IDENTISCH MIT 07015998
+IDENTISCH MIT 07015999
+IDENTISCH MIT 07016038
+IDENTISCH MIT 07016175
+IDENTISCH MIT 07016180
+IDENTISCH MIT 07016230
+IDENTISCH MIT 07016231
+IDENTISCH MIT 07016238
+IDENTISCH MIT 07016245
+IDENTISCH MIT 07016301
+IDENTISCH MIT 07016302
+IDENTISCH MIT 07016381
+IDENTISCH MIT 07017557
+IDENTISCH MIT 07018221
+IDENTISCH MIT 07018223
+IDENTISCH MIT 07019526
+IDENTISCH MIT 07019532
+IDENTISCH MIT 07101428
+IDENTISCH MIT 07101506
+IDENTISCH MIT 07101520
+IDENTISCH MIT 07101549
+IDENTISCH MIT 07101564
+IDENTISCH MIT 07101580
+IDENTISCH MIT 07101599
+IDENTISCH MIT 07101615
+IDENTISCH MIT 07101662
+IDENTISCH MIT 07101702
+IDENTISCH MIT 07105352
+IDENTISCH MIT 07105689
+IDENTISCH MIT 07105725
+IDENTISCH MIT 07105743
+IDENTISCH MIT 07105749
+IDENTISCH MIT 07105750
+IDENTISCH MIT 07105751
+IDENTISCH MIT 07105759
+IDENTISCH MIT 07105771
+IDENTISCH MIT 07105790
+IDENTISCH MIT 07105792
+IDENTISCH MIT 07108399
+IDENTISCH MIT 07109420
+IDENTISCH MIT 07109421
+IDENTISCH MIT 07109429
+IDENTISCH MIT 07110608
+IDENTISCH MIT 07111556
+IDENTISCH MIT 07115732
+IDENTISCH MIT 07120465
+IDENTISCH MIT 07153053
+IDENTISCH MIT 07153142
+IDENTISCH MIT 07153143
+IDENTISCH MIT 07153144
+IDENTISCH MIT 10001501
+IDENTISCH MIT 10001502
+IDENTISCH MIT 10001503
+IDENTISCH MIT 10001504
+IDENTISCH MIT 10001505
+IDENTISCH MIT 10001547
+IDENTISCH MIT 10001549
+IDENTISCH MIT 10001550
+IDENTISCH MIT 10001551
+IDENTISCH MIT 10001580
+IDENTISCH MIT 10001581
+IDENTISCH MIT 10001582
+IDENTISCH MIT 10001583
+IDENTISCH MIT 10001585
+IDENTISCH MIT 10001599
+IDENTISCH MIT 10001600
+IDENTISCH MIT 10001601
+IDENTISCH MIT 10001602
+IDENTISCH MIT 10001603
+IDENTISCH MIT 10001647; für IP 9064 (TN 10001599)
+IDENTISCH MIT 10001667
+IDENTISCH MIT 10001668
+IDENTISCH MIT 10001685
+IDENTISCH MIT 10001751
+IDENTISCH MIT 10001752
+IDENTISCH MIT 10001753
+IDENTISCH MIT 10001758
+IDENTISCH MIT 10001759
+IDENTISCH MIT 10001761
+IDENTISCH MIT 10001772
+IDENTISCH MIT 10001773
+IDENTISCH MIT 10001774
+IDENTISCH MIT 10001785
+IDENTISCH MIT 10001792
+IDENTISCH MIT 10001794
+IDENTISCH MIT 10001854
+IDENTISCH MIT 10001860
+IDENTISCH MIT 10001950
+IDENTISCH MIT 10001951
+IDENTISCH MIT 10001965
+IDENTISCH MIT 10001974. TKZ wurde stillgelegt. Neue TKZ: 10001974
+IDENTISCH MIT 10001995, Nummer wurde vom Einkauf R. Deguelle belegt
+27.09.2021: neues anderes Gebinde, siehe TKZ 01043759 -> Gebindeänderung: es werden keine Kartuschen mehr produziert, sondern in 3,6Kg Eimer geliefert.
+IDENTISCH MIT 10001997
+IDENTISCH MIT 10002130
+IDENTISCH MIT 10002131
+IDENTISCH MIT 10002147
+IDENTISCH MIT 10002154
+IDENTISCH MIT 10002155
+IDENTISCH MIT 10002164
+IDENTISCH MIT 10002229
+IDENTISCH MIT 10002231
+IDENTISCH MIT 10002398
+IDENTISCH MIT 10002399
+IDENTISCH MIT 10002400
+IDENTISCH MIT 10002401
+IDENTISCH MIT 10002428; soll nicht mehr als PSA bestellt werden 2012-07-27
+IDENTISCH MIT 10002729 für Dahlewitz
+IDENTISCH MIT 10002742
+IDENTISCH MIT 10002829
+IDENTISCH MIT 10002830; für IP 9064 (TN 10001599)
+IDENTISCH MIT 10002977 FÜR DW
+IDENTISCH MIT 1001650 FÜR OU
+ISO4017
+ISO8673
+IST IDENTISCH MIT 10001703
+Identisch mit 10001515 für OU
+Identisch mit 10003760 für DW
+Ines Vogel; EB-1
+Info 17.12.2019: siehe eventuell als Alternativprodukt TKZ 01043561
+Info 17.12.2019: siehe eventuell als Alternativprodukt TKZ 01043562
+Instandsetzungsteile-Meldung (AT) und Auftrag
+Jan Briesenick, ECT 1
+Kann nicht mehr bestellt werden. Neues Material siehe unter TKZ 01042906
+Konbtrollschein für Anlieferer und Abholer
+(nur gedrucktes Formular)
+Kontrollschein für Besucher und Dienstleister
+(nur gedrucktes Formular)
+LN 9264-1 zurückgezogen 2006-05 (Der Regelsetzer empfiehlt die Anwendung von VG 96927-9)
+Lastenheft - Technical Specification for EEC Trough HPC Fairing Service Splitters Service Trays for  BR715 / MD-95
+Lastenheft - Technical Specification for Nacelle, EBU and Thrust Reverser for  BR715 / MD-95
+Laut Richtlinie R08; Herr Bradler
+Lieferant: Brangs+Heinrich
+Lieferant: HEKU Pack
+Lieferant: PE Kunsstoff - Fabrik Woffenbach GmbH
+Lieferant: PRONOL GmbH, Ziegelhofstr. 208, 79110 Freiburg, Tel: 0761-83730
+Lieferer: Chemie-Partner
+Lieferer: Med-Lab Ltd.
+Liferant: Chemie- Partner
+Lister aller freigegebenen Formulare und Vorlagen unter "neu"
+Lt. AVA-0178-166
+MC=Modification Certificate
+MSRR 9264
+MSRR 9264 Lieferant: Grace Speciality Polymers, Maintal
+MSRR1055, OMat 7/28B
+MSRR9064
+MSRR9064, 5 Liter; durch TKZ 01041458 ersetzt
+MSRR9064. Aufgrund von Nummernkollision in SAP umbenummert zu 01042594 (2015-03)
+Marcel Beltramini OA-34 Logistics
+Martin Eblenkamp; OP-1; 6840
+Martin Happek EV-14(DW) 1468 schickt in der 13. Woche das WORD Dok zur Verteilung
+Martin Hermann, EV-2
+Meldung für Dienstfahrten mit privaten Fahrzeugen
+Mesh 120 ist in AMS 4779 nicht definiert. Habe Herrn Secherling darauf hingewiesen.
+Michael Hoffmann PR-1
+Mittlerweile heißt das Produkt Silcoset 158. diese TKZ dient zur Lieferung vom Gebinde 75ml -> für das Gebinde 310ml Kartusche siehe TKZ 01043322 (angelegt am 26.07.2018)
+Morris, Ian (Fa. Graphic Engines Designs)
+Nachfolgedokument zu 10003714
+Nachweisführung zur Anerkennung als Entwicklungsbetrieb gegenüber LBA/JAA
+Name wurde geändert, 2015-05-08. Bisher: CASTROL ILOBROACH 9CF
+Neue Bezeichnung "Rocol Anti-Seize Stainless", 2014-08-21
+Neue Info: Es gibt nur noch das 3 KG Gebinde und ein 180 KG Gebinde; 2013-11-29.
+Neues Gebinde unter TKZ 01043185 (18.12.2017)
+Nigel Couchman, EV-2
+Normkurzbezeichnung korrigiert von .1YLN9025-0510L <*>   LN  9025-0510 L (2012-06-21)
+Normkurzbezeichnung korrigiert von .1YLN9338-05 <*>     LN  9338-05 (2012-06-05)
+Normkurzbezeichnung korrigiert von DIN 7 - 2 m6 X 4 - St (2014-12-05, ÄM0704-99-0045)
+Normkurzbezeichnung korrigiert von DIN 7 - 3 m6 X 5 - St (2014-12-05, ÄM0704-99-0045).
+Normkurzbezeichnung korrigiert von DIN7-1,2M8X8-ST, 2012-06-12
+Normkurzbezeichnung korrigiert von DIN7-10M6X18-ST, 2012-06-12
+Normkurzbezeichnung korrigiert von DIN7-12M6X60-ST, 2012-06-12
+Normkurzbezeichnung korrigiert von DIN7-1M6X5-ST (2012-06-05)
+Normkurzbezeichnung korrigiert von DIN7-2,5M6X14-ST (2012-06-05)
+Normkurzbezeichnung korrigiert von DIN7-2,5M6X5-ST (2012-06-05)
+Normkurzbezeichnung korrigiert von DIN7-2,5M6X6-ST50K (2012-06-05)
+Normkurzbezeichnung korrigiert von DIN7-2M6X20-ST (2012-06-05)
+Normkurzbezeichnung korrigiert von DIN7-2M6X8-ST  (2014-12-05, ÄM0704-99-0045).
+Normkurzbezeichnung korrigiert von DIN7-2M6X8-ST (2012-06-05)
+Normkurzbezeichnung korrigiert von DIN7-3M6X28-ST, 2012-06-12
+Normkurzbezeichnung korrigiert von DIN7-4M6X16-ST (2012-06-05)
+Normkurzbezeichnung korrigiert von DIN7-4M6X20-ST, 2012-06-12
+Normkurzbezeichnung korrigiert von DIN7-4M6X40-ST, 2012-06-12
+Normkurzbezeichnung korrigiert von DIN7-5M6X20-ST, 2012-06-12
+Normkurzbezeichnung korrigiert von DIN7-5M6X28-ST, 2012-06-12
+Normkurzbezeichnung korrigiert von DIN7-5M6X40-ST, 2012-06-12
+Normkurzbezeichnung korrigiert von DIN7-6M6X12-ST, 2012-06-12
+Normkurzbezeichnung korrigiert von DIN7-6M6X16-ST, 2012-06-12
+Normkurzbezeichnung korrigiert von DIN7-6M6X20-ST, 2012-06-12
+Normkurzbezeichnung korrigiert von DIN7-6M6X28-ST, 2012-06-12
+Normkurzbezeichnung korrigiert von DIN7-6M6X80-ST, 2012-06-12
+Normkurzbezeichnung korrigiert von DIN7-8M6X20-ST, 2012-06-12
+Normkurzbezeichnung korrigiert von DIN7-8M6X30-ST, 2012-06-12
+Normkurzbezeichnung korrigiert von DIN7-8M6X45-ST, 2012-06-12
+Normkurzbezeichnung korrigiert von ISO2338-3M6X12-A1-80 (DIN7-3M6X12-ST), 2012-06-12
+Normkurzbezeichnung korrigiert von LN29837-1A (2018-10-26)
+Normkurzbezeichnung korrigiert von LN7- 5M6X20 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-1,5M6X 8 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-1,5M6X12 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-1,5M6X4 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-1-5M6X6 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-2H8X12 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-2M6X 5 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-2M6X10 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-2M6X24 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-2M6X8 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-3M6X 6 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-3M6X8 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-4M6X10 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-4M6X12 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-4M6X14 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-4M6X24 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-5M6X12 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-5M6X14 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-5M6X16 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-5M6X24 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-5M6X28 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-5M6X40 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-6M6X12 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-6M6X32 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-6M6X55 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-8M6X20 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-8M6X24 (2012-06-05)
+Normkurzbezeichnung korrigiert von LN7-8M6X28 (2012-06-05)
+Normkurzbezeichnung vom Einkauf angefragt, 2016-09-14, keine handelsübliche Länge
+Normkurzbezeichnung von 810 in 810-1 geändert, 30.04.2008 Haas
+Nummer wird nicht verwendet - bereits 01009406 für dieses öl vergeben
+OR-34
+Opper
+PBR4004
+Peter Weiser
+Polycarbonat, farblos
+Production Pass Off. User Instruction and Information
+Produktbezeichnung präzisiert (vorher: EPOXY FILLER 3524B/A KIT) 2012-07-27
+Produktname wurde geändert (früher: "Applied 8300" bzw. "Metaclean Solvo 3000") 2012-10-25
+Produktname: Supercut
+QBR5003
+QG 21; G. Meyer-Herlin
+QSVA 05-0124 und N0022-003
+QSVA17-0030; von L`Hullier
+QSVA????
+Qualität 1.2 (1-wellig, Flächenbelastung max.20 kg)DIN 55429
+R-D. DREYER
+R.King; EV-55; 2934 beantragt
+RFA Cost Sheet
+Regelung zum Befahren des Werksgelände ohne Dauererlaubnis
+Reiner Pohl
+Reparatur / Voranzeigen Anpassungsbestätigung
+Ringo Zillmann
+Robert Schreiber
+Rolls-Royce nr. NML35A
+gemeinsam mit 01016204 (Härter) verwenden
+S.Roller;EV-3;Wasseranalogieprüfstand
+SB=Service Bulletins/Ads
+SET
+SIEHE ETHANOL 10001996
+SR=Service Record
+SUPPLIER CHANGE PROPOSAL (SCP); Herr Heimerl
+Schnellbeschaffung
+Sehtest nach DIN EN ISO 8596
+Set bestehend aus 10002008, 10002017, 10002018 und 10002019
+Sicherheitsbestand: 20 Stck. jeweils für DW und OU
+Siehe auch ISO4762
+Siehe auch ISO4762 Nummernänderung/- berichtigung. Teile wurde ursprünglich auch untewr 10002330 benummert.
+Spray 300 ml
+Stefan Siebert OE-3
+Stephen Brindley ED-2
+Susanne Oelschig, EV-2
+Susanne Oelschig, EV-23
+T
+TKZ 10004386 nicht mehr benötigt (Stilllegen). 2014-05-22.
+TKZ ist für DW -> siehe TKZ 0100884 für Produkt in OU
+WICHTIGE ÄNDERUNG: Umbenannt am 10.10.2018 ; ALTER NAME: ECCOBOND 104 A+B -> siehe e-mail Claudia Berkenhoff 25.09.2018 (Schriftverkehr zu Anträgen120/2009 & 084/1997). Begründung, bzw. Herstellererläuterungen wurden den geänderten Anträgen angehängt. Benennung wurde auch im SAP Datensatz entsprechend geändert.
+TKZ scheinbar in SAP für DW Lager "WH5" (Ansty Distribution Centre) angelegt; da keine Möglichkeit der Neuanlage für Lager DLZ, siehe auch TKZ 01043077 (Neuanlage in SAP für DW (Lager DLZ) am 10.08.2017)
+TKZ ungültig, neue TKZ 01042032
+TKZ wird nicht mehr verwendet, ersetzt durch 10002752 Bloess; OBS(FM) 2012-10-16
+TN für diesen Röntgenfilm wurde aufgrund von Nummernkollision und Einheitlichkeit neu angelegt
+TN war vorher SICHERHEITSSCHUH GR.44 ATLAS CF4 BLUE läuft aber unter der TN 10003456, daher Neuvergabe (24.02.2010), Fa. ATLAS Schuhfabrik Frische Luft 159 44319 Dortmund,
+TN wurde überschrieben durch RR_Indy
+Teilenummer vergeben für Sabine Henrich MM-3 Werbemittel
+Teilenummer wurde von RR Indy in SAP überschrieben; siehe 10002051
+Th.Michligk
+Titel wird nachgetragen. C.Veeh
+Torausgangsschein für Zeichnungen und Schriftstücke. Ersetzt durch: 10001988
+Toreingangsschein für Privatgut. Ersetzt durch: 10001988
+U. Slotosch EV-24
+U. Slotosch, EV-24
+Umbenannt: ALTE NAME: TURCO 4338-L PART 1 (FASS 300 KG)2014-01-23.
+Umbenannt: ALTE NAME: TURCO 4338-L PART 1 (KANISTER 32 KG) 2014-01-23.
+Umbenannt: ALTE NAME: TURCO 5948 R KN+RWE 25 kg Kanister. 2014-01-23.
+Umbenannt: ALTE NAME: Turco 5948 DPM 210 KG Fass. 2014-01-23.
+Umbenannt: ALTE NAME:TURCO 4338-L PART 2 (FASS 240 KG)2014-01-23.
+Umbenannt: ALTE NAME:TURCO 4338-L PART 2 (KANISTER 24 KG) 2014-01-23.
+Umbenummerung wegen ERP-Migration
+Unfertigteil, keine Dokumentation - ergibt sich aus Arbeitsplan
+Veeh
+"BR710 Nimrod Corrosion Test 
+Eastwick Test Facility Conversion
+at DERA Shoeburyness"
+Verarbeitung gemeinsam mit 10002010
+Versandlabel - "Expressversand MD-95";Despatch label "Emergency Shipments MD-95" von Kilby, Robin
+Vertragsgrundlage
+Von KHD-Mikrofilm hinzugefügt 2015-06-23
+Alternative Normkurzbezeichnung hinzugefügt, siehe auch 02871172, 18.04.2016
+Vorlage für BR700-Zeichnugen in CADDS (siehe auch Werknorm N0018)
+Vorlage für Zeichnugen in CADDS (siehe auch Werknorm N0018)
+W. Humble
+War "Entnahmeschein für Firmenwerkzeuge". Ersatz für: 10001990 und 10001991
+War ECM-Form, ersetzt durch 10001719.
+War ECM. jetzt  10001719
+War MEMO OU
+War ROTADATA. ersetzt durch 01402234
+War bereits lagerhaltig unter falscher Nummer (01133913)
+Werkszeugnis nach EN 10204 B3.1
+Werkszeugnis nach EN 10204 B3.1;
+Wird  von OA-5 herausgegeben
+Wird 1/4-jährlich von AQ-3 heerausgegeben
+Wird nicht mehr hergestellt, Ersetzt durch TKZ 01043973 mit Antrag 027/2023
+ZULASSUNG GILT NUR FUER GNOME H1400-1 GEMAESS AMD2225
+ZULASSUNG GILT NUR FUER T53-L-13B GEMAESS AMD5076
+Zementpulver siehe 10002828
+Zulassungs-Dokument für militärische Projekt
+Zur Erfassung der auf dem Parkplatz parkenden Kraftfahrzeuge
+Zur Reinigung vor Gebrauch von PL32
+Zusatz zu Compliance Sheets die von RR plc in Derby verwaltet werden.  Für die Zulassung der Tay 611-8C muß ein neues Dokument erstellt werden, das die anzuwendenden Vorschriften (Mix aus JAR-E Change 6 und Change 10) zusammenfaßt.
+Zutrittsmeldung für Mitarbeiter
+alter Produktname "INITIATOR NO.1 FÜR PERMABOND F241" (ohne Änderung der Zusammensetzung) 2011-12-22
+and REAR ENGINE MOUNT SUPPORT RING (REMSR) BR715/ MD-95
+andere Breite (12,8mm) siehe TKZ 01001428
+aufgrund Nummernkollision mit RR Ansty in 01041471 umbenummert
+aufgrund von Nummernkollision umbenummert in 01041361
+aufgrund von Nummernkollision umbenummert in 01041390
+aufgrund von Nummernkollision umbenummert in 01041407
+aufgrund von Nummernkollision umbenummert in 01041408
+aus 10003482 ausgegliedert
+aus Messing, versilbert und bebürstet. Rückseite mit doppelseitigem Klebeband, Verpackung Seidenpapier
+belegt für ED-6 H. Denzin
+bestehend aus:
+Wellpapp-Faltkarton 2.7  1170x410x685 mm
+Innenverpackung aus PE-Schaum
+deutsche Version 10002395
+dient als Vorlage für PPS -Ausdruck
+englische Version 10001794
+ersetzt durch Castrol Syntilo CR35 01040486
+for Core and external Dressings for BR715/MD-95
+früher DIN912
+früher: 2X6DIN1481 (ISO-Normkurzbezeichnung mit ÄM A73-005 geändert, 2015-05-29)
+früher: DIN 1481- 1,5X 12
+früher: NOPASCHAUM 1000X1000X25 MM
+früher:NOPASCHAUM 1000X1000X50 MM
+frühere KHD-Bezeichnung: "Scheibe A5,3 DIN 125 - A4"; Alternative Normkurzbezeichnung: "Scheibe DIN 125 A 5,3 - 200 HV - A4"; ISO-Norm korrigiert von "ISO 7090" (mit Fase) in "ISO 7089" (ohne Fase) (siehe eMail an Hrn. Glavacevic 2017-02-23) 2017-02-23
+für 3000 l Tank Gebäude 70.0, Befüllung vom Tankwagen
+für Drucker 3400
+für IP 9064 (TN 10001599)
+für Lupe
+für MM-3
+Sabine Henrich
+für Verpackungs-Vakuumschweißmaschine
+für Verpackungs-Vakuumschweißmaschine
+150 m Rolle
+für Verpackungs-Vakuumschweißmaschine
+Art-.Nr. 866105,A 5864
+gehört zu AVA 0080-230
+gehört zu AVA 0255 - 233  - Michael Katsaounis ED-11
+gehört zu AVA 0255 - 233  - Michael Katsaounis ED-11
+ED-11 Steady State Performance
+gehört zu FAI-AVA
+gehört zu QSP 025 / 01
+gehört zu VA 02-0299
+gehört zu VA 03-0032/Iss 2 Customer Contract Review
+gehört zu VA 03-0305 Commercial Authorisation
+gehört zu VA 04-0104
+gehört zu VA 04-0280
+gehört zu VA 05-0102
+gehört zu VA 13-0304
+gehört zu VA 14-0027
+gehört zu VA 14-0257
+gehört zu VA 17-0030
+gehört zu VA 19-0284
+gehört zu VA 30-0250
+gehört zu VA ???????
+gehört zu VA09-0049
+gehört zu VA19-0134
+gehört zu VA19-0256
+gem. RR-Spec CSS119
+gem. RR-Spec CSS12
+gem. RR-Spec CSS12
+Siehe neue TKZ 01043321 (24.07.2018) für neues Produkt mit demselben Stoff
+geändert von ".1Y24H2225 <>  H   2225-  24" (2012-04-16)
+geändert von "DIN 976-1-M4X18-B-A4-70-GW", 2016-03-17; GW war in DIN 976:1986 definiert, ab 1995 in DIN 976-1 nicht mehr enthalten.
+geändert von DIN 315-M6-GT-C-A4C, 2012-06-21
+geändert von DIN 85-M3X5-4.8-A4C,2012-06-21
+geändert von DIN 85-M3X8-4.8-A4C, 2012-06-21
+geändert von DIN 912-M4X12-10.9-A4C, 2012-06-21
+geändert von DIN 912-M6X12-8.8-A4C, 2012-06-21
+geändert von DIN 931-M5X45-8.8-A4C, 2012-06-21
+geändert von DIN 931-M5X85-8.8-A4C, 2012-06-21
+geändert von DIN 931-M5X90-8.8-A4C, 2012-06-21
+geändert von DIN 933-M4X10-8.8-A4C, 2012-06-21
+geändert von DIN 933-M5X12-8.8-A4C, 2012-06-21
+geändert von DIN 933-M8X25-8.8-A4C, 2012-05-11
+geändert von DIN 933-M8X25-8.8-A4C, 2012-06-21
+geändert von DIN 933-M8X35-8.8-A4C, 2012-06-21
+geändert von DIN 934-M10-8-A4C, 2012-06-21
+geändert von DIN 934-M5-8-A4C, 2012-06-21
+geändert von DIN 963-M4X8-4.8-A4C, 2012-06-21
+geändert von DIN 963-M8X25-4.8-A4C, 2012-06-21
+geändert von DIN 963-M8X30-4.8-A4C, 2012-06-21
+geändert von DIN 963-M8X35-4.8-A4C, 2012-06-21
+gleich 2303.225
+hergestellt aus 10002923, MSRR7952-HBR-60,3
+hergestellt aus 10002924, MSRR 7952-HBR-25,4, siehe WBA 2837.01
+identisch mit 01008377 (Artikel für OU)
+identisch mit 01009743 für Oberursel
+identisch mit 01016199 (Artikel für OU)
+identisch mit 01016200 (Artikel für OU)
+identisch mit 10002255 für Oberursel
+identisch mit 10002897 für Dahlewitz
+im Tankwagen
+in 30 l-Kanister
+Emulgator existiert auch in 200l-Fass unter 01009998
+korrigiert von "LN9499-02060", entsprechend KHD-Mikrofilm, 2016-03-16
+korrigiert von DIN 6885-A5x3x10, 2012-06-19
+mit Herrn T. Schmidt tel 6753 besprochen, daß Formblatt ende 1998 bei Neuanfoderung geändert wird
+nach AQAP-170 + VA
+nach MSRR1001; verwendete Gebindegröße geändert zu 1,985l/Kit, 2011-07-19
+nach MSRR9036
+nach MSRR9150
+nach MSRR9231
+nach MSRR9370
+neue TKZ 01041468 wegen Sperrung in SAP vergeben
+s. VA 05-0072
+s.a. 01040849 & 01042888
+siehe 10002977
+siehe AVA 0049-506
+siehe auch 01043073 (DW)
+siehe neue TKZ 01043091 [Hersteller & Lieferant sind dort andere]
+stillgelegt 2011-05-10; IDENTISCH MIT 01003805
+vergeben für ED-6 H. Denzin
+von RRIndy überschrieben
+von RRIndy überschrieben (neue TKZ 01041347)
+von der Arbeitssicherheit abgelehnt!
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert in: 01040013
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert in: 01040520
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert in: 01040525 
+(die Teilenummer war noch nicht in SAP angelegt!)
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert in: 01040786
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert in: 01040788
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert in: 01040789
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert in: 01040790
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert in: 01040791
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert in: 01040792
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert in: 01040793
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert in: 01040809
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert in: 01041093
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert in: 01041314
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert in: 01041785; Benennung korrigiert von "ESSIGSAEURE 65% NR. 456" 2012-10-30
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert in: 01042330
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert in: 01042331
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert in: 01042775
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert, neu: 01043014
+wegen Nummernkollision mit Rolls-Royce plc Indy Produkt in 01040922 umbenummert!
+wegen Nummernkollision mit Rolls-Royce plc Indy Produkt in 01040980 umbenummert!
+wegen Nummernkollision mit Rolls-Royce plc Indy Produkt in 01041013 umbenummert!
+wegen Nummernkollision mit Rolls-Royce plc Indy Produkt in 01041103 umbenummert!
+wegen Nummernkollision mit Rolls-Royce plc Indy Produkt in 01041416 umbenummert!
+wird als elektr. Wordfomular erstellt
+wird in 10001618 integriert
+Dokument ist inaktiv
+AP-4 Nemannn 15.06.00
+wird in 10001620 integriert
+Dokument ist inaktiv
+AP-4 Nemannn 15.06.00
+wird in 10001621 integriert
+Dokument ist inaktiv
+AP-4 Nemannn 15.06.00
+wird nicht mehr benötigt lt. H. Oest und H. Allahwerde
+Dokument ist inaktiv
+AP-4 Neumann 15.06.00
+wird nicht mehr hergestellt, IDENTISCH MIT 07016237
+wird nicht weiter bearbeitet! e-mail vom 17.06.2002
+wurde bislang und 020542VN bestellt
+wurde bislang und 022999VN bestellt
+zum Einbetten in der Metallografie
+zum Einbetten in der Metallografie. wegen Nummernkollision mit Rolls-Royce Indy Produkt in 01042130 umbenummert; 2013-10-11
+zum Oberflächenschutz von Proben in der Metallografie
+zum reinigen von Kunststoffrohr (blau)
+zweiseitig
+Ä-Antrag A57-009 Alternativteil zu 01174366

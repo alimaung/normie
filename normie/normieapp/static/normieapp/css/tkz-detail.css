@@ -1,0 +1,459 @@
+/* TKZ Detail Page Styling */
+
+.tkz-detail-container {
+    font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", sans-serif;
+    color: #333;
+    margin: 0 auto;
+    padding: 20px;
+    max-width: 1200px;
+}
+
+/* Header Section */
+.detail-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border-radius: 16px;
+    padding: 32px;
+    margin-bottom: 32px;
+    color: white;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+}
+
+.header-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+.header-info {
+    flex: 1;
+}
+
+.part-info .part-number {
+    font-size: 32px;
+    font-weight: 700;
+    margin: 0 0 8px 0;
+    color: white;
+}
+
+.part-info .to-number {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 16px;
+}
+
+.part-info .label {
+    font-weight: 500;
+    margin-right: 8px;
+}
+
+.product-info .product-title {
+    font-size: 24px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+    color: white;
+    opacity: 0.95;
+}
+
+.product-info .product-description {
+    font-size: 16px;
+    margin: 0;
+    opacity: 0.8;
+    line-height: 1.5;
+}
+
+.status-section {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    align-items: flex-end;
+}
+
+.part-status .status-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: 500;
+    gap: 6px;
+    border: none;
+}
+
+.status-badge.has-to {
+    background-color: rgba(40, 167, 69, 0.9);
+    color: white;
+}
+
+.status-badge.no-to {
+    background-color: rgba(255, 193, 7, 0.9);
+    color: #212529;
+}
+
+.category-indicator .category-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 6px 12px;
+    border-radius: 16px;
+    font-size: 12px;
+    font-weight: 500;
+    background-color: rgba(255, 255, 255, 0.2);
+    color: white;
+    gap: 6px;
+}
+
+/* Detail Sections */
+.detail-section {
+    background: white;
+    border-radius: 12px;
+    padding: 24px;
+    margin-bottom: 24px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    border: 1px solid #e9ecef;
+}
+
+.section-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f8f9fa;
+}
+
+.section-header h3 {
+    font-size: 20px;
+    font-weight: 600;
+    margin: 0;
+    color: #1d1d1f;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.section-header i {
+    color: #667eea;
+    font-size: 18px;
+}
+
+/* Section Grid */
+.section-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.info-card {
+    background: #fafafa;
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.info-card:hover {
+    background: #f0f4ff;
+    border-color: #667eea;
+    transform: translateY(-2px);
+}
+
+.card-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.card-header i {
+    color: #667eea;
+    font-size: 16px;
+}
+
+.card-header h4 {
+    font-size: 14px;
+    font-weight: 600;
+    margin: 0;
+    color: #495057;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.card-content .value-text {
+    font-size: 16px;
+    font-weight: 500;
+    color: #1d1d1f;
+    line-height: 1.4;
+}
+
+/* Comments and Additional Info Sections */
+.comments-section,
+.english-section,
+.additional-section {
+    margin-top: 20px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border-left: 4px solid #667eea;
+}
+
+.comments-header,
+.english-header,
+.additional-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.comments-header h4,
+.english-header h4,
+.additional-header h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    color: #495057;
+}
+
+.comments-header i,
+.english-header i,
+.additional-header i {
+    color: #667eea;
+}
+
+.comments-content p,
+.english-content p,
+.additional-content p {
+    margin: 0;
+    line-height: 1.6;
+    color: #495057;
+}
+
+/* Related Information Grid */
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.related-item {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    border: 1px solid #e9ecef;
+    transition: all 0.3s ease;
+}
+
+.related-item:hover {
+    background: #f0f4ff;
+    border-color: #667eea;
+    transform: translateY(-2px);
+}
+
+.related-icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    background: #667eea;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 20px;
+}
+
+.related-content h4 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0 0 4px 0;
+    color: #1d1d1f;
+}
+
+.related-content p {
+    font-size: 14px;
+    color: #6c757d;
+    margin: 0 0 12px 0;
+    line-height: 1.4;
+}
+
+.related-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    color: #667eea;
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.related-link:hover {
+    color: #5a6fd8;
+    text-decoration: none;
+}
+
+.related-link.disabled {
+    color: #adb5bd;
+    cursor: not-allowed;
+}
+
+/* Quick Actions Grid */
+.actions-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+}
+
+.action-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.action-button.primary {
+    background: #667eea;
+    color: white;
+}
+
+.action-button.primary:hover {
+    background: #5a6fd8;
+    transform: translateY(-2px);
+}
+
+.action-button.secondary {
+    background: #f8f9fa;
+    color: #495057;
+    border: 1px solid #dee2e6;
+}
+
+.action-button.secondary:hover {
+    background: #e9ecef;
+    transform: translateY(-2px);
+}
+
+.action-button.danger {
+    background: #dc3545;
+    color: white;
+}
+
+.action-button.danger:hover {
+    background: #c82333;
+    transform: translateY(-2px);
+}
+
+/* Navigation */
+.detail-navigation {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 32px;
+    padding-top: 24px;
+    border-top: 1px solid #e9ecef;
+}
+
+.nav-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 500;
+    text-decoration: none;
+    color: #667eea;
+    border: 1px solid #667eea;
+    transition: all 0.3s ease;
+}
+
+.nav-button:hover {
+    background: #667eea;
+    color: white;
+    text-decoration: none;
+    transform: translateY(-2px);
+}
+
+.nav-pagination {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+}
+
+.nav-current {
+    font-size: 14px;
+    color: #6c757d;
+    font-weight: 500;
+}
+
+/* Responsive Design */
+@media (max-width: 992px) {
+    .header-main {
+        flex-direction: column;
+        gap: 16px;
+    }
+    
+    .status-section {
+        align-items: flex-start;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    
+    .section-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .related-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .actions-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 768px) {
+    .detail-header {
+        padding: 24px 20px;
+    }
+    
+    .part-info .part-number {
+        font-size: 24px;
+    }
+    
+    .product-info .product-title {
+        font-size: 20px;
+    }
+    
+    .detail-section {
+        padding: 20px 16px;
+    }
+    
+    .related-item {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .actions-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .detail-navigation {
+        flex-direction: column;
+        gap: 16px;
+        text-align: center;
+    }
+    
+    .nav-pagination {
+        flex-direction: column;
+        gap: 12px;
+    }
+} 

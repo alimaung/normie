@@ -1,0 +1,176 @@
+{% load pdf_extras %}
+
+<!-- Umweltschutz Section -->
+<div class="section-card">
+    <div class="section-header">
+        <i class="fas fa-leaf"></i>
+        Umweltschutz (Environmental Protection)
+    </div>
+    
+    <!-- Fields 25a, 25b, 25c in three-column row -->
+    <div class="three-column-row">
+        {% for field in fields|get_fields_for_section:"environment" %}
+            {% if field.id == '25a' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"environment" %}
+            {% if field.id == '25b' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"environment" %}
+            {% if field.id == '25c' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <!-- Field 26 in regular table layout -->
+    <table class="form-table">
+        {% for field in fields|get_fields_for_section:"environment" %}
+            {% if field.id == '26' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    
+    <!-- Fields 27, 28, 29, 30 in 2x2 grid -->
+    <div class="umweltschutz-grid-section">
+        <div class="umweltschutz-grid">
+            <!-- Row 1 -->
+            {% for field in fields|get_fields_for_section:"environment" %}
+                {% if field.id == '27' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            <div class="stacked-radio">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"environment" %}
+                {% if field.id == '28' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            <div class="stacked-radio">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            <!-- Row 2 -->
+            {% for field in fields|get_fields_for_section:"environment" %}
+                {% if field.id == '29' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            <div class="stacked-radio">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"environment" %}
+                {% if field.id == '30' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            <div class="stacked-radio">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Field 31 in regular table layout -->
+    <table class="form-table">
+        {% for field in fields|get_fields_for_section:"environment" %}
+            {% if field.id == '31' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    
+    <!-- Regular Table Layout for Other Environment Fields -->
+    <table class="form-table">
+        {% for field in fields|get_fields_for_section:"environment" %}
+            {% if field.id != '25a' and field.id != '25b' and field.id != '25c' and field.id != '26' and field.id != '27' and field.id != '28' and field.id != '29' and field.id != '30' and field.id != '31' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+</div> 

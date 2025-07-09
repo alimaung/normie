@@ -1,0 +1,409 @@
+{% load pdf_extras %}
+
+<!-- ChemScan Part B Section -->
+<div class="section-card">
+    <div class="section-header">
+        <i class="fas fa-flask"></i>
+        ChemScan (Part B) - Falls erforderlich
+    </div>
+    
+    <!-- Fields 22b, 22b1, 22b2 in three-column row -->
+    <div class="three-column-row">
+        {% for field in fields|get_fields_for_section:"chemscan_b" %}
+            {% if field.id == '22b' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"chemscan_b" %}
+            {% if field.id == '22b1' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"chemscan_b" %}
+            {% if field.id == '22b2' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <!-- 23b Section Header -->
+    <div class="chemscan-23b-section">
+        <div class="chemscan-23b-header">
+            <div class="chemscan-23b-id">23b</div>
+            <div class="chemscan-23b-title">Ergebnis der Prüfung für Arbeitsschutz / Gesundheitsschutz – Relevant nach:</div>
+        </div>
+        
+        <!-- 23b Fields in Compact Grid (3x4) -->
+        <div class="chemscan-23b-grid">
+            <!-- Row 1 -->
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '23b1' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '23b2' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '23b3' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            <!-- Row 2 -->
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '23b4' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '23b5' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '23b6' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            <!-- Row 3 -->
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '23b7' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '23b8' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '23b9' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            <!-- Row 4 -->
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '23b10' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '23b11' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '23b12' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            <!-- Row 5 (2 fields in 3-column grid) -->
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '23b13' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '23b14' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+        </div>
+    </div>
+    
+    <!-- 24b Section Header -->
+    <div class="chemscan-24b-section">
+        <div class="chemscan-24b-header">
+            <div class="chemscan-24b-id">24b</div>
+            <div class="chemscan-24b-title">Additional Fields Section:</div>
+        </div>
+        
+        <!-- 24b Fields in Compact Grid (4x2) -->
+        <div class="chemscan-24b-grid">
+            <!-- Row 1 -->
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '24b4' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '24b5' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '24b6' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '24b7' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            <!-- Row 2 -->
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '24b8' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '24b9' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '24b10' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_b" %}
+                {% if field.id == '24b11' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Regular Table Layout for Other ChemScan Part B Fields -->
+    <table class="form-table">
+        {% for field in fields|get_fields_for_section:"chemscan_b" %}
+            {% if field.id != '22b' and field.id != '22b1' and field.id != '22b2' and field.id != '23b1' and field.id != '23b2' and field.id != '23b3' and field.id != '23b4' and field.id != '23b5' and field.id != '23b6' and field.id != '23b7' and field.id != '23b8' and field.id != '23b9' and field.id != '23b10' and field.id != '23b11' and field.id != '23b12' and field.id != '23b13' and field.id != '23b14' and field.id != '24b4' and field.id != '24b5' and field.id != '24b6' and field.id != '24b7' and field.id != '24b8' and field.id != '24b9' and field.id != '24b10' and field.id != '24b11' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+</div> 

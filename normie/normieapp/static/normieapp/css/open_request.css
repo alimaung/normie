@@ -32,8 +32,9 @@
     gap: 4px;
     padding: 4px 0;
     line-height: 1.2;
+    margin-left: 10px;
 }
-
+.stacked-radio .radio-group
 .error-message i {
     font-size: 14px;
     flex-shrink: 0;

@@ -537,7 +537,7 @@ a:hover {
 
 /* Ensure consistent height for all three columns */
 .three-column-row .column-field-input {
-    min-height: 100px;
+    /* min-height: 100px; */
     display: flex;
     align-items: center;
     justify-content: center;
@@ -727,6 +727,11 @@ a:hover {
     overflow: hidden;
 }
 
+/* Remove border-bottom for last row items in chemscan-24b-grid (row 2: items 5-8) */
+.chemscan-24b-grid .grid-field:nth-child(n+5) {
+    border-bottom: none;
+}
+
 /* Umweltschutz Grid Section */
 /* .umweltschutz-grid-section {
     margin-bottom: 20px;
@@ -738,8 +743,21 @@ a:hover {
     grid-template-rows: repeat(2, 1fr);
     gap: 1px;
     overflow: hidden;
-    border: 1px solid #dadce0;
-    border-radius: 4px;
+}
+
+/* Remove border-right for last column items in umweltschutz-grid */
+.umweltschutz-grid .grid-field:nth-child(2n) {
+    border-right: none;
+}
+
+/* Remove border-bottom for last row items in umweltschutz-grid */
+.umweltschutz-grid .grid-field:nth-child(n+3) {
+    border-bottom: none;
+}
+
+/* Add border-top for first row items in umweltschutz-grid */
+.umweltschutz-grid .grid-field:nth-child(-n+2) {
+    border-top: 1px solid #dadce0;
 }
 
 /* Arbeitsschutz Grid Section */
@@ -753,8 +771,21 @@ a:hover {
     grid-template-rows: repeat(2, 1fr);
     gap: 1px;
     overflow: hidden;
-    border: 1px solid #dadce0;
-    border-radius: 4px;
+}
+
+/* Remove border-right for last column items in arbeitsschutz-grid */
+.arbeitsschutz-grid .grid-field:nth-child(2n) {
+    border-right: none;
+}
+
+/* Remove border-bottom for last row items in arbeitsschutz-grid */
+.arbeitsschutz-grid .grid-field:nth-child(n+3) {
+    border-bottom: none;
+}
+
+/* Add border-top for first row items in arbeitsschutz-grid */
+.arbeitsschutz-grid .grid-field:nth-child(-n+2) {
+    border-top: 1px solid #dadce0;
 }
 
 /* Fertigungslabor Grid Section */
@@ -768,6 +799,20 @@ a:hover {
     grid-template-rows: repeat(2, 1fr);
     gap: 1px;
     overflow: hidden;
+}
+
+/* Remove border-right for last column items in fertigungslabor-grid */
+.fertigungslabor-grid .grid-field:nth-child(2n) {
+    border-right: none;
+}
+
+/* Remove border-bottom for last row items in fertigungslabor-grid */
+.fertigungslabor-grid .grid-field:nth-child(n+3) {
+    border-bottom: none;
+}
+
+/* Add border-top for first row items in fertigungslabor-grid */
+.fertigungslabor-grid .grid-field:nth-child(-n+2) {
     border-top: 1px solid #dadce0;
 }
 
@@ -782,7 +827,7 @@ a:hover {
     color: #202124;
     font-size: 16px;
     line-height: 1.3;
-    margin-bottom: 6px;
+    /* margin-bottom: 6px; */
 }
 
 .subsection-subtitle {
@@ -1009,6 +1054,11 @@ a:hover {
     display: table-cell;
 }
 
+/* Second field-label in same row (for split field rows like 12a/12b, 14/15, 20/21) */
+.field-label + .field-input + .field-label {
+    border-left: 1px solid #dadce0;
+}
+
 .field-id {
     font-weight: 500;
     color: #1a73e8;
@@ -1091,8 +1141,8 @@ a:hover {
 .checkbox-container input[type="checkbox"]:checked::after {
     content: '';
     position: absolute;
-    left: 5px;
-    top: 1px;
+    left: 4px;
+    /* top: 1px; */
     width: 4px;
     height: 8px;
     border: solid white;
@@ -1200,11 +1250,40 @@ a:hover {
     align-items: center;
     gap: 12px;
     font-family: 'Sofia Sans', sans-serif;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
 .signature-indicator i {
     font-size: 20px;
     color: #1a73e8;
+}
+
+/* Center column field inputs that contain signatures */
+.column-field-input:has(.signature-indicator) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Align column fields in rows with signatures */
+.three-column-row:has(.signature-indicator) .column-field,
+.two-column-row:has(.signature-indicator) .column-field,
+.four-column-row:has(.signature-indicator) .column-field {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch; /* Make all column fields same height */
+}
+
+/* Center all column field inputs when in the same row as signatures */
+.three-column-row:has(.signature-indicator) .column-field-input,
+.two-column-row:has(.signature-indicator) .column-field-input,
+.four-column-row:has(.signature-indicator) .column-field-input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex: 1; /* Take up remaining space in the column field */
 }
 
 /* Google Material Design Button styles */
@@ -1626,8 +1705,8 @@ a:hover {
 }
 
 .activation-input-container {
-    margin-left: 20px;
-    margin-top: 10px;
+    /* margin-left: 20px;
+    margin-top: 10px; */
     width: calc(100% - 20px);
 }
 
@@ -1667,6 +1746,7 @@ a:hover {
 .field-input .radio-activation-container {
     display: flex;
     align-items: center;
+    justify-content: space-evenly;
     min-height: 50px;
     width: 100%;
 }
@@ -1777,14 +1857,465 @@ td.field-input:has(.stacked-radio) {
 
 .stacked-radio .radio-group {
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     gap: 8px;
     align-items: flex-start;
-    margin-left: 24px;
+    /* margin-left: 24px; */
 }
 
 .stacked-radio .radio-option {
     display: flex;
     align-items: center;
     margin-bottom: 0;
+}
+
+
+/* Additional Google Material Design styles for new features */
+.disabled-field {
+    background-color: #f8f9fa !important;
+    color: #5f6368 !important;
+    cursor: not-allowed !important;
+    border-color: #dadce0 !important;
+    opacity: 0.6;
+}
+
+.disabled-field:focus {
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.date-input-container {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+}
+
+.date-field {
+    flex: 1;
+}
+
+.date-picker-toggle {
+    background: #1a73e8;
+    color: white;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-family: 'Sofia Sans', sans-serif;
+    min-width: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 1px 3px rgba(60,64,67,.3);
+    transition: all 0.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.date-picker-toggle:hover {
+    background: #1769d3;
+    box-shadow: 0 2px 8px rgba(60,64,67,.15);
+}
+
+.date-picker-toggle:disabled {
+    background: #dadce0;
+    color: #5f6368;
+    cursor: not-allowed;
+    box-shadow: none;
+}
+
+.combined-field-container {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    flex-wrap: wrap;
+}
+
+.combined-field-container .checkbox-container {
+    margin: 0;
+    align-self: anchor-center;
+    flex-shrink: 0;
+}
+
+.combined-field-container .input-container {
+    flex: 1;
+    /* min-width: 200px; */
+    margin-left: 28px;
+}
+
+.combined-input {
+    width: 100%;
+    transition: all 0.3s ease;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+}
+
+.combined-input:focus {
+    border-color: #1a73e8;
+    outline: none;
+    box-shadow: 0 0 0 1px #1a73e8;
+}
+
+.combined-input[style*="display: none"] {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+    border: none;
+}
+
+.combined-input:disabled {
+    opacity: 0.5;
+    background-color: #f8f9fa;
+}
+
+/* Radio activation field styling */
+.radio-activation-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* .activation-input-container {
+    margin-left: 20px;
+} */
+
+.activation-input {
+    width: 100%;
+    min-width: 200px;
+    border: 2px solid #ddd;
+    border-radius: 4px;
+    padding: 8px;
+    transition: all 0.3s ease;
+}
+
+.activation-input:focus {
+    border-color: #1a73e8;
+    outline: none;
+    box-shadow: 0 0 0 1px #1a73e8;
+}
+
+.activation-input[style*="display: none"] {
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    margin: 0;
+    padding: 0;
+}
+
+.field-description {
+    max-width: 300px;
+    word-wrap: break-word;
+    line-height: 1.3;
+}
+
+/* Improve radio button and checkbox styling */
+.radio-group.disabled-field {
+    opacity: 0.6;
+}
+
+.radio-group.disabled-field input[type="radio"] {
+    cursor: not-allowed;
+}
+
+.checkbox-container.disabled-field {
+    opacity: 0.6;
+}
+
+.checkbox-container.disabled-field input[type="checkbox"] {
+    cursor: not-allowed;
+}
+
+/* Better spacing for form rows */
+.form-row td {
+    padding: 8px 12px;
+    vertical-align: top;
+}
+
+.form-row .field-label {
+    width: 30%;
+    min-width: 200px;
+}
+
+.form-row .field-input {
+    width: 70%;
+}
+
+/* Signature styling */
+.signature-indicator.disabled-field {
+    opacity: 0.6;
+    background-color: #f8f9fa;
+}
+
+/* Input field styling improvements - using specific selectors to avoid conflicts */
+input.field-value, textarea.field-value {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 14px;
+}
+
+input.field-value:focus, textarea.field-value:focus {
+    border-color: #1a73e8;
+    outline: none;
+    box-shadow: 0 0 0 1px #1a73e8;
+}
+
+/* Long text fields */
+.long-text {
+    min-height: 80px;
+    resize: vertical;
+}
+
+/* Alert styling */
+.alert {
+    padding: 12px 16px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+    border: 1px solid;
+}
+
+.alert-success {
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+    color: #155724;
+}
+
+.alert-danger {
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+    color: #721c24;
+}
+
+.alert i {
+    margin-right: 8px;
+}
+
+/* Dynamic label styling */
+.dynamic-label:empty {
+    display: none;
+}
+
+/* File Upload Styling */
+.checkbox-container.has-file-upload {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.file-upload-container {
+    display: none;
+    flex: 1;
+    width: 100%;
+    margin-left: 20px;
+    min-width: 0;
+}
+
+.file-upload-container.active {
+    display: block;
+    animation: fadeIn 0.3s ease;
+}
+
+.files-grid {
+    display: flex;
+    gap: 8px;
+    flex-wrap: nowrap;
+    width: 100%;
+}
+
+.file-slot {
+    flex: 1;
+    min-width: 80px;
+    padding: 6px;
+    border: 1px dashed #dadce0;
+    border-radius: 4px;
+    background-color: #f8f9fa;
+    transition: all 0.3s ease;
+}
+
+.file-upload-area {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 28px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+    padding: 3px 6px;
+    width: 100%;
+}
+
+.file-upload-area:hover {
+    background-color: rgba(26, 115, 232, 0.04);
+    border-color: #1a73e8;
+}
+
+.file-upload-area.has-file {
+    background-color: rgba(76, 175, 80, 0.04);
+    border-color: #4caf50;
+}
+
+.file-upload-content {
+    text-align: center;
+    color: #5f6368;
+}
+
+.file-upload-icon {
+    font-size: 14px;
+    color: #1a73e8;
+    margin-bottom: 1px;
+}
+
+.file-upload-text {
+    font-size: 11px;
+    font-weight: 500;
+    margin-bottom: 0;
+    line-height: 1.1;
+}
+
+.file-upload-hint {
+    font-size: 9px;
+    color: #9aa0a6;
+    line-height: 1.0;
+}
+
+.file-selected {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 6px;
+    background-color: #e8f5e8;
+    border-radius: 4px;
+    border: 1px solid #4caf50;
+    min-height: 28px;
+    width: 100%;
+    height: 100%;
+}
+
+.file-slot.narrow .file-selected {
+    gap: 3px;
+    padding: 3px;
+}
+
+.file-slot.narrow .file-selected .file-info {
+    min-width: 0;
+}
+
+.file-slot.narrow .file-selected .file-name {
+    font-size: 10px !important;
+    margin-bottom: 1px;
+}
+
+.file-slot.narrow .file-selected .file-size {
+    font-size: 8px !important;
+}
+
+.file-slot.narrow .file-selected .file-icon {
+    font-size: 12px !important;
+}
+
+.file-slot.narrow .file-selected .file-remove {
+    font-size: 10px !important;
+    width: 16px;
+    height: 16px;
+}
+
+/* Upload slot inherits same flex behavior as file slots */
+
+.file-remove {
+    background: none;
+    border: none;
+    color: #666;
+    cursor: pointer;
+    padding: 2px;
+    border-radius: 2px;
+    transition: all 0.2s ease;
+    margin-left: auto;
+}
+
+.file-remove:hover {
+    color: #d32f2f;
+    background-color: rgba(211, 47, 47, 0.1);
+}
+
+.file-selected .file-icon {
+    font-size: 16px;
+    color: #4caf50;
+    flex-shrink: 0;
+}
+
+.file-selected .file-info {
+    flex: 1;
+    min-width: 0;
+    display: flex !important;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    background: transparent !important;
+    border: none !important;
+    text-align: center;
+    overflow: hidden;
+}
+
+.file-selected .file-name {
+    font-weight: 500;
+    color: #1d1d1f !important;
+    margin-bottom: 1px;
+    margin-left: 1px;
+    font-size: 13px !important;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    text-align: center;
+    max-width: 100%;
+    width: 100%;
+}
+
+.file-selected .file-size {
+    font-size: 11px !important;
+    color: #666 !important;
+    line-height: 1.1;
+    display: block !important;
+    background: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    text-align: center;
+    margin: 0;
+}
+
+.file-selected .file-remove {
+    background: none;
+    border: none;
+    color: #f44336;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 2px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.file-selected .file-remove:hover {
+    background-color: rgba(244, 67, 54, 0.1);
+}
+
+.file-upload-input {
+    display: none;
 }

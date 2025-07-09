@@ -1,0 +1,92 @@
+{% extends "normieapp/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load pdf_extras %}
+
+{% block extra_css %}
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<link rel="stylesheet" href="{% static 'normieapp/css/directory.css' %}">
+<link rel="stylesheet" href="{% static 'normieapp/css/pdf_form.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="pdf-form-container">
+    <!-- Form Actions Bar -->
+    <div class="form-actions">
+        <div class="left">
+            <h2 style="margin: 0; font-size: 14px;">{% trans "Antrag für Teile und Stoffe" %}</h2>
+            <span style="color: #666; font-size: 11px;">{{ fields|length }} {% trans "fields" %}</span>
+        </div>
+        <div class="right">
+            <div id="alert-container"></div>
+            <a href="{% url 'pdf_parser' %}" class="btn btn-cancel">
+                <i class="fas fa-times"></i> {% trans "Cancel" %}
+            </a>
+            <button id="save-form" class="btn btn-save">
+                <i class="fas fa-save"></i> {% trans "Save to Document" %}
+            </button>
+            <button id="view-form" class="btn btn-view" disabled>
+                <i class="fas fa-eye"></i> {% trans "View PDF" %}
+            </button>
+            <button id="download-form" class="btn btn-download" disabled>
+                <i class="fas fa-download"></i> {% trans "Download Updated PDF" %}
+            </button>
+        </div>
+    </div>
+
+    <!-- Form Header -->
+    <div class="form-header-section">
+        <div class="form-title">Rolls-Royce Deutschland Ltd & Co KG</div>
+        <div class="form-subtitle">Antrag für Teile und Stoffe - Consumable Material Supply Request</div>
+    </div>
+    
+    <!-- Key Fields Header -->
+    <div class="key-fields-header">
+        {% for field in fields %}
+            {% if field.id == '1' %}
+                <div class="key-field primary-field">
+                    <div class="key-field-label">
+                        <span class="key-field-id">{{ field.id }}</span>
+                        <span class="key-field-description">{{ field.name }}</span>
+                    </div>
+                    <div class="key-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields %}
+            {% if field.id == '51' %}
+                <div class="key-field secondary-field">
+                    <div class="key-field-label">
+                        <span class="key-field-id">{{ field.id }}</span>
+                        <span class="key-field-description">{{ field.name }}</span>
+                    </div>
+                    <div class="key-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <form id="pdf-edit-form">
+        {% csrf_token %}
+        
+        <!-- Include Section Templates -->
+        {% include "normieapp/pdf_form/applicant.html" %}
+        {% include "normieapp/pdf_form/chemscan_a.html" %}
+        {% include "normieapp/pdf_form/chemscan_b.html" %}
+        {% include "normieapp/pdf_form/environment.html" %}
+        {% include "normieapp/pdf_form/health_safety.html" %}
+        {% include "normieapp/pdf_form/manufacturing.html" %}
+        {% include "normieapp/pdf_form/standards.html" %}
+        
+    </form>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'normieapp/js/pdf_form.js' %}"></script>
+{% endblock %} 

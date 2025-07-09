@@ -1,0 +1,71 @@
+{% load pdf_extras %}
+
+<!-- Normstelle Section -->
+<div class="section-card">
+    <div class="section-header">
+        <i class="fas fa-stamp"></i>
+        Normstelle (Standards Department)
+    </div>
+    
+    <!-- Fields 50a, 50b, and 50c in three-column row -->
+    <div class="three-column-row">
+        {% for field in fields|get_fields_for_section:"standards" %}
+            {% if field.id == '50a' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"standards" %}
+            {% if field.id == '50b' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"standards" %}
+            {% if field.id == '50c' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <!-- Regular Table Layout for Other Standards Fields -->
+    <table class="form-table">
+        {% for field in fields|get_fields_for_section:"standards" %}
+            {% if field.id != '50a' and field.id != '50b' and field.id != '50c' and field.id != '51' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+</div> 

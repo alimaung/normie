@@ -1,0 +1,176 @@
+{% load pdf_extras %}
+
+<!-- Arbeits- & Gesundheitsschutz Section -->
+<div class="section-card">
+    <div class="section-header">
+        <i class="fas fa-hard-hat"></i>
+        Arbeits- & Gesundheitsschutz (Occupational Health & Safety)
+    </div>
+    
+    <!-- Fields 32a, 32b, 32c in three-column row -->
+    <div class="three-column-row">
+        {% for field in fields|get_fields_for_section:"health_safety" %}
+            {% if field.id == '32a' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"health_safety" %}
+            {% if field.id == '32b' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"health_safety" %}
+            {% if field.id == '32c' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <!-- Field 33 in regular table layout -->
+    <table class="form-table">
+        {% for field in fields|get_fields_for_section:"health_safety" %}
+            {% if field.id == '33' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    
+    <!-- Fields 34, 35, 36, 37 in 2x2 grid -->
+    <div class="arbeitsschutz-grid-section">
+        <div class="arbeitsschutz-grid">
+            <!-- Row 1 -->
+            {% for field in fields|get_fields_for_section:"health_safety" %}
+                {% if field.id == '34' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            <div class="stacked-radio">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"health_safety" %}
+                {% if field.id == '35' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            <div class="stacked-radio">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            <!-- Row 2 -->
+            {% for field in fields|get_fields_for_section:"health_safety" %}
+                {% if field.id == '36' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            <div class="stacked-radio">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"health_safety" %}
+                {% if field.id == '37' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            <div class="stacked-radio">
+                                {% render_field_input field fields %}
+                            </div>
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Field 38 in regular table layout -->
+    <table class="form-table">
+        {% for field in fields|get_fields_for_section:"health_safety" %}
+            {% if field.id == '38' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+    
+    <!-- Regular Table Layout for Other Health & Safety Fields -->
+    <table class="form-table">
+        {% for field in fields|get_fields_for_section:"health_safety" %}
+            {% if field.id != '32a' and field.id != '32b' and field.id != '32c' and field.id != '33' and field.id != '34' and field.id != '35' and field.id != '36' and field.id != '37' and field.id != '38' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+</div> 

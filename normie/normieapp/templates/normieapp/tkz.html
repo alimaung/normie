@@ -1,0 +1,356 @@
+{% extends "normieapp/base.html" %}
+{% load static %}
+
+{% block title %}
+    TKZ Parts Directory
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'normieapp/css/tkz.css' %}">
+{% endblock %}
+
+{% block extra_js %}
+    <script src="{% static 'normieapp/js/tkz.js' %}"></script>
+{% endblock %}
+
+{% block content %}
+<div class="tkz-container">
+    <!-- Header Section -->
+    <div class="tkz-header">
+        <div class="header-left">
+            <h1>TKZ Parts Directory</h1>
+            <p class="header-summary">Complete database of part numbers and technical specifications</p>
+        </div>
+        <div class="header-stats">
+            <div class="stat-card">
+                <span class="stat-value">5,199</span>
+                <span class="stat-label">Total Parts</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value">4,856</span>
+                <span class="stat-label">With TO Numbers</span>
+            </div>
+            <div class="stat-card">
+                <span class="stat-value">3,342</span>
+                <span class="stat-label">Active Parts</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Active Filters -->
+    <div class="active-filters-container" id="active-filters">
+        <div class="active-filters-title">
+            <i class="fas fa-tags"></i> Active Filters
+        </div>
+        <ul class="active-filters-list"></ul>
+        <button class="clear-filters-btn">
+            <i class="fas fa-times-circle"></i> Clear All Filters
+        </button>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="filter-section-container" id="filter-section" style="display: none;">
+        <div class="filter-section-header">
+            <h3><i class="fas fa-filter"></i> Filter Options</h3>
+            <button class="close-filter-section-btn" id="close-filter-section">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="filter-section-content">
+            <div class="filter-tabs">
+                <button class="filter-tab active" data-tab="basic">Basic Filters</button>
+                <button class="filter-tab" data-tab="advanced">Advanced Filters</button>
+                <button class="filter-tab" data-tab="date">Date Filters</button>
+                <button class="filter-tab" data-tab="department">Department & Project</button>
+            </div>
+
+            <div class="filter-tab-content active" data-tab="basic">
+                <div class="filter-row">
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-circle"></i> Part Status</h4>
+                        <div class="filter-options checkbox-toggle">
+                            <label class="filter-option"><input type="checkbox" name="part-status" value="all" checked> All</label>
+                            <label class="filter-option active"><input type="checkbox" name="part-status" value="active"> Active</label>
+                            <label class="filter-option discontinued"><input type="checkbox" name="part-status" value="discontinued"> Discontinued</label>
+                            <label class="filter-option discontinued-strikethrough"><input type="checkbox" name="part-status" value="discontinued-strikethrough"> Discontinued (Strikethrough)</label>
+                        </div>
+                    </div>
+                    
+
+                    
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-palette"></i> Font Color</h4>
+                        <div class="filter-options checkbox-toggle">
+                            <label class="filter-option"><input type="checkbox" name="font-color" value="all" checked> All</label>
+                            <label class="filter-option default"><input type="checkbox" name="font-color" value="default"> Default (Black)</label>
+                            <label class="filter-option red"><input type="checkbox" name="font-color" value="red"> Red</label>
+                            <label class="filter-option strikethrough"><input type="checkbox" name="font-color" value="strikethrough"> Strikethrough</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-tab-content" data-tab="advanced">
+                <div class="filter-row">
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-hashtag"></i> Part Number</h4>
+                        <div class="filter-input-group">
+                            <select class="filter-condition">
+                                <option value="contains">Contains</option>
+                                <option value="not_contains">Does not contain</option>
+                                <option value="starts_with">Starts with</option>
+                                <option value="ends_with">Ends with</option>
+                                <option value="equals">Equals</option>
+                            </select>
+                            <input type="text" class="filter-text-input" placeholder="Enter part number...">
+                        </div>
+                    </div>
+                    
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-barcode"></i> TO Number</h4>
+                        <div class="filter-input-group">
+                            <select class="filter-condition">
+                                <option value="contains">Contains</option>
+                                <option value="not_contains">Does not contain</option>
+                                <option value="starts_with">Starts with</option>
+                                <option value="ends_with">Ends with</option>
+                                <option value="equals">Equals</option>
+                            </select>
+                            <input type="text" class="filter-text-input" placeholder="Enter TO number...">
+                        </div>
+                    </div>
+
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-font"></i> Description</h4>
+                        <div class="filter-input-group">
+                            <select class="filter-condition">
+                                <option value="contains">Contains</option>
+                                <option value="not_contains">Does not contain</option>
+                                <option value="starts_with">Starts with</option>
+                                <option value="ends_with">Ends with</option>
+                                <option value="equals">Equals</option>
+                            </select>
+                            <input type="text" class="filter-text-input" placeholder="Enter description...">
+                        </div>
+                    </div>
+
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-tag"></i> Title</h4>
+                        <div class="filter-input-group">
+                            <select class="filter-condition">
+                                <option value="contains">Contains</option>
+                                <option value="not_contains">Does not contain</option>
+                                <option value="starts_with">Starts with</option>
+                                <option value="equals">Equals</option>
+                            </select>
+                            <input type="text" class="filter-text-input" placeholder="Enter title...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-tab-content" data-tab="date">
+                <div class="filter-row">
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-calendar-plus"></i> Entry Date</h4>
+                        <div class="filter-date-group">
+                            <div class="date-range">
+                                <label>From:</label>
+                                <input type="date" class="filter-date-input" id="date-from">
+                            </div>
+                            <div class="date-range">
+                                <label>To:</label>
+                                <input type="date" class="filter-date-input" id="date-to">
+                            </div>
+                        </div>
+                        <div class="quick-date-options">
+                            <button class="quick-date-btn" data-range="today">Today</button>
+                            <button class="quick-date-btn" data-range="yesterday">Yesterday</button>
+                            <button class="quick-date-btn" data-range="week">This Week</button>
+                            <button class="quick-date-btn" data-range="month">This Month</button>
+                            <button class="quick-date-btn" data-range="year">This Year</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="filter-tab-content" data-tab="department">
+                <div class="filter-row">
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-building"></i> Department</h4>
+                        <div class="filter-input-group">
+                            <select class="filter-condition">
+                                <option value="contains">Contains</option>
+                                <option value="not_contains">Does not contain</option>
+                                <option value="starts_with">Starts with</option>
+                                <option value="equals">Equals</option>
+                            </select>
+                            <input type="text" class="filter-text-input" placeholder="Enter department...">
+                        </div>
+                    </div>
+
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-project-diagram"></i> Project</h4>
+                        <div class="filter-input-group">
+                            <select class="filter-condition">
+                                <option value="contains">Contains</option>
+                                <option value="not_contains">Does not contain</option>
+                                <option value="starts_with">Starts with</option>
+                                <option value="equals">Equals</option>
+                            </select>
+                            <input type="text" class="filter-text-input" placeholder="Enter project...">
+                        </div>
+                    </div>
+
+                    <div class="filter-group card-style">
+                        <h4><i class="fas fa-user"></i> Responsible Person</h4>
+                        <div class="filter-input-group">
+                            <select class="filter-condition">
+                                <option value="contains">Contains</option>
+                                <option value="not_contains">Does not contain</option>
+                                <option value="starts_with">Starts with</option>
+                                <option value="equals">Equals</option>
+                            </select>
+                            <input type="text" class="filter-text-input" placeholder="Enter name...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="filter-section-footer">
+            <div class="filter-count">
+                <span id="filter-count-badge">0</span> filters selected
+            </div>
+            <div class="filter-actions">
+                <button class="filter-reset-btn">Reset All</button>
+                <button class="filter-apply-btn">Apply Filters</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Search, Filter and Pagination Section -->
+    <div class="search-filter-container">
+        <div class="search-box">
+            <i class="fas fa-search"></i>
+            <div class="search-input-container">
+                <div class="search-badges" id="search-badges">
+                    <!-- Search badges will be populated by JavaScript -->
+                </div>
+                <input type="text" placeholder="Search parts, numbers, descriptions..." id="tkz-search">
+            </div>
+        </div>
+        <div class="controls-right">
+            <div class="pagination-container inline-pagination">
+                <div class="pagination-info">
+                    Showing <span class="current-range">1-25</span> of <span class="total-items">5,199</span> items
+                </div>
+                <div class="pagination-controls">
+                    <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                    <button class="pagination-btn page-number active">1</button>
+                    <button class="pagination-btn page-number">2</button>
+                    <button class="pagination-btn page-number">3</button>
+                    <span class="pagination-ellipsis">...</span>
+                    <button class="pagination-btn page-number">208</button>
+                    <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+                </div>
+                <div class="items-per-page">
+                    <label for="items-per-page-select">Items per page:</label>
+                    <select id="items-per-page-select">
+                        <option value="5">5</option>
+                        <option value="10">10</option>
+                        <option value="25" selected>25</option>
+                        <option value="50">50</option>
+                        <option value="100">100</option>
+                    </select>
+                </div>
+            </div>
+            <div class="filter-controls">
+                <button class="filter-btn" id="toggle-filter-panel">
+                    <i class="fas fa-filter"></i>Filter Data
+                </button>
+                <button class="attachment-btn" id="toggle-attachments">
+                    <i class="fas fa-paperclip"></i> Show Attachments
+                </button>
+                <div class="view-options">
+                    <button class="view-btn active"><i class="fas fa-table"></i></button>
+                    <button class="view-btn"><i class="fas fa-th-large"></i></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Indicator -->
+    <div id="loading-indicator" class="loading-container">
+        <div class="loading-spinner"></div>
+        <p>Loading TKZ data...</p>
+    </div>
+
+    <!-- Table Container -->
+    <div class="table-container" id="table-container" style="display: none;">
+        <table class="tkz-table">
+            <thead>
+                <tr>
+                    <th class="sortable text-center">Part Number <i class="fas fa-sort"></i></th>
+                    <th class="sortable text-center">TO Number <i class="fas fa-sort"></i></th>
+                    <th class="sortable text-center">Status <i class="fas fa-sort"></i></th>
+                    <th class="sortable">Category <i class="fas fa-sort"></i></th>
+                    <th class="sortable">Title/Description <i class="fas fa-sort"></i></th>
+                    <th class="sortable">Project <i class="fas fa-sort"></i></th>
+                    <th class="sortable">Responsible Person <i class="fas fa-sort"></i></th>
+                    <th class="sortable">Department <i class="fas fa-sort"></i></th>
+                    <th class="sortable">Date <i class="fas fa-sort"></i></th>
+                    <th>Comments</th>
+                    <th>English Description</th>
+                    <th class="attachment-column">Additional Info</th>
+                    <th class="text-center">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Table rows will be populated by JavaScript -->
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Grid Container -->
+    <div class="grid-container" id="grid-container" style="display: none;">
+        <!-- Grid cards will be populated by JavaScript -->
+    </div>
+
+    <!-- Bottom Pagination -->
+    <div class="unified-controls bottom-controls">
+        <div class="search-section">
+            <!-- Empty space for alignment -->
+        </div>
+        <div class="pagination-section">
+            <div class="pagination-info">
+                Showing <span class="current-range">1-25</span> of <span class="total-items">5,199</span> items
+            </div>
+            <div class="pagination-controls">
+                <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
+                <button class="pagination-btn page-number active">1</button>
+                <button class="pagination-btn page-number">2</button>
+                <button class="pagination-btn page-number">3</button>
+                <span class="pagination-ellipsis">...</span>
+                <button class="pagination-btn page-number">208</button>
+                <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+            <div class="items-per-page">
+                <label for="items-per-page-select-bottom">Items per page:</label>
+                <select id="items-per-page-select-bottom">
+                    <option value="5">5</option>
+                    <option value="10">10</option>
+                    <option value="25" selected>25</option>
+                    <option value="50">50</option>
+                    <option value="100">100</option>
+                </select>
+            </div>
+        </div>
+        <div class="filter-controls">
+            <!-- Empty space for alignment -->
+        </div>
+    </div>
+</div>
+
+{% endblock %}

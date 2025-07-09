@@ -1,0 +1,409 @@
+{% load pdf_extras %}
+
+<!-- ChemScan Part A Section -->
+<div class="section-card">
+    <div class="section-header">
+        <i class="fas fa-flask"></i>
+        ChemScan (Part A) - Ergebnis der Prüfung für Arbeitsschutz / Gesundheitsschutz
+    </div>
+    
+    <!-- Fields 22a, 22a1, 22a2 in three-column row -->
+    <div class="three-column-row">
+        {% for field in fields|get_fields_for_section:"chemscan_a" %}
+            {% if field.id == '22a' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"chemscan_a" %}
+            {% if field.id == '22a1' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"chemscan_a" %}
+            {% if field.id == '22a2' %}
+                <div class="column-field three-col-field">
+                    <div class="column-field-header">
+                        <span class="column-field-id">{{ field.id }}</span>
+                        <span class="column-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="column-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+    
+    <!-- 23a Section Header -->
+    <div class="chemscan-23a-section">
+        <div class="chemscan-23a-header">
+            <div class="chemscan-23a-id">23a</div>
+            <div class="chemscan-23a-title">Ergebnis der Prüfung für Arbeitsschutz / Gesundheitsschutz – Relevant nach:</div>
+        </div>
+        
+        <!-- 23a Fields in Compact Grid (3x4) -->
+        <div class="chemscan-23a-grid">
+        <!-- Row 1 -->
+        {% for field in fields|get_fields_for_section:"chemscan_a" %}
+            {% if field.id == '23a1' %}
+                <div class="grid-field">
+                    <div class="grid-field-header">
+                        <span class="grid-field-id">{{ field.id }}</span>
+                        <span class="grid-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="grid-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"chemscan_a" %}
+            {% if field.id == '23a2' %}
+                <div class="grid-field">
+                    <div class="grid-field-header">
+                        <span class="grid-field-id">{{ field.id }}</span>
+                        <span class="grid-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="grid-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"chemscan_a" %}
+            {% if field.id == '23a3' %}
+                <div class="grid-field">
+                    <div class="grid-field-header">
+                        <span class="grid-field-id">{{ field.id }}</span>
+                        <span class="grid-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="grid-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        <!-- Row 2 -->
+        {% for field in fields|get_fields_for_section:"chemscan_a" %}
+            {% if field.id == '23a4' %}
+                <div class="grid-field">
+                    <div class="grid-field-header">
+                        <span class="grid-field-id">{{ field.id }}</span>
+                        <span class="grid-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="grid-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"chemscan_a" %}
+            {% if field.id == '23a5' %}
+                <div class="grid-field">
+                    <div class="grid-field-header">
+                        <span class="grid-field-id">{{ field.id }}</span>
+                        <span class="grid-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="grid-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"chemscan_a" %}
+            {% if field.id == '23a6' %}
+                <div class="grid-field">
+                    <div class="grid-field-header">
+                        <span class="grid-field-id">{{ field.id }}</span>
+                        <span class="grid-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="grid-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        <!-- Row 3 -->
+        {% for field in fields|get_fields_for_section:"chemscan_a" %}
+            {% if field.id == '23a7' %}
+                <div class="grid-field">
+                    <div class="grid-field-header">
+                        <span class="grid-field-id">{{ field.id }}</span>
+                        <span class="grid-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="grid-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"chemscan_a" %}
+            {% if field.id == '23a8' %}
+                <div class="grid-field">
+                    <div class="grid-field-header">
+                        <span class="grid-field-id">{{ field.id }}</span>
+                        <span class="grid-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="grid-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"chemscan_a" %}
+            {% if field.id == '23a9' %}
+                <div class="grid-field">
+                    <div class="grid-field-header">
+                        <span class="grid-field-id">{{ field.id }}</span>
+                        <span class="grid-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="grid-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        <!-- Row 4 -->
+        {% for field in fields|get_fields_for_section:"chemscan_a" %}
+            {% if field.id == '23a10' %}
+                <div class="grid-field">
+                    <div class="grid-field-header">
+                        <span class="grid-field-id">{{ field.id }}</span>
+                        <span class="grid-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="grid-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"chemscan_a" %}
+            {% if field.id == '23a11' %}
+                <div class="grid-field">
+                    <div class="grid-field-header">
+                        <span class="grid-field-id">{{ field.id }}</span>
+                        <span class="grid-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="grid-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"chemscan_a" %}
+            {% if field.id == '23a12' %}
+                <div class="grid-field">
+                    <div class="grid-field-header">
+                        <span class="grid-field-id">{{ field.id }}</span>
+                        <span class="grid-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="grid-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        <!-- Row 5 (2 fields in 3-column grid) -->
+        {% for field in fields|get_fields_for_section:"chemscan_a" %}
+            {% if field.id == '23a13' %}
+                <div class="grid-field">
+                    <div class="grid-field-header">
+                        <span class="grid-field-id">{{ field.id }}</span>
+                        <span class="grid-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="grid-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        {% for field in fields|get_fields_for_section:"chemscan_a" %}
+            {% if field.id == '23a14' %}
+                <div class="grid-field">
+                    <div class="grid-field-header">
+                        <span class="grid-field-id">{{ field.id }}</span>
+                        <span class="grid-field-title">{{ field.name }}</span>
+                    </div>
+                    <div class="grid-field-input">
+                        {% render_field_input field fields %}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+        
+        </div>
+    </div>
+    
+    <!-- 24a Section Header -->
+    <div class="chemscan-24a-section">
+        <div class="chemscan-24a-header">
+            <div class="chemscan-24a-id">24a</div>
+            <div class="chemscan-24a-title">Additional Fields Section:</div>
+        </div>
+        
+        <!-- 24a Fields in Compact Grid (4x2) -->
+        <div class="chemscan-24a-grid">
+            <!-- Row 1 -->
+            {% for field in fields|get_fields_for_section:"chemscan_a" %}
+                {% if field.id == '24a4' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_a" %}
+                {% if field.id == '24a5' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_a" %}
+                {% if field.id == '24a6' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_a" %}
+                {% if field.id == '24a7' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            <!-- Row 2 -->
+            {% for field in fields|get_fields_for_section:"chemscan_a" %}
+                {% if field.id == '24a8' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_a" %}
+                {% if field.id == '24a9' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_a" %}
+                {% if field.id == '24a10' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+            
+            {% for field in fields|get_fields_for_section:"chemscan_a" %}
+                {% if field.id == '24a11' %}
+                    <div class="grid-field">
+                        <div class="grid-field-header">
+                            <span class="grid-field-id">{{ field.id }}</span>
+                            <span class="grid-field-title">{{ field.name }}</span>
+                        </div>
+                        <div class="grid-field-input">
+                            {% render_field_input field fields %}
+                        </div>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+    </div>
+    
+    <!-- Regular Table Layout for Other ChemScan Part A Fields -->
+    <table class="form-table">
+        {% for field in fields|get_fields_for_section:"chemscan_a" %}
+            {% if field.id != '22a' and field.id != '22a1' and field.id != '22a2' and field.id != '23a1' and field.id != '23a2' and field.id != '23a3' and field.id != '23a4' and field.id != '23a5' and field.id != '23a6' and field.id != '23a7' and field.id != '23a8' and field.id != '23a9' and field.id != '23a10' and field.id != '23a11' and field.id != '23a12' and field.id != '23a13' and field.id != '23a14' and field.id != '24a4' and field.id != '24a5' and field.id != '24a6' and field.id != '24a7' and field.id != '24a8' and field.id != '24a9' and field.id != '24a10' and field.id != '24a11' %}
+                <tr class="form-row">
+                    <td class="field-label">
+                        <div class="field-id">{{ field.id }}</div>
+                        <div class="field-description">{{ field.name }}</div>
+                    </td>
+                    <td class="field-input">
+                        {% render_field_input field fields %}
+                    </td>
+                </tr>
+            {% endif %}
+        {% endfor %}
+    </table>
+</div> 

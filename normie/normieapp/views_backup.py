@@ -1,0 +1,2523 @@
+from django.shortcuts import render, redirect, get_object_or_404
+from django.http import HttpResponse, JsonResponse
+from django.utils.translation import gettext as _
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_http_methods
+from django.contrib.auth.models import User
+from django.conf import settings
+import os
+import json
+import uuid
+import logging
+from datetime import datetime
+from .services import pdf_service
+from pathlib import Path
+from .decorators import (
+    role_required, permission_required, admin_required, manager_or_admin_required,
+    can_edit_requests, can_view_reports, can_view_audit_logs,
+    user_can_access_request, user_can_edit_request, read_only_or_above_required,
+    restrict_read_only_users
+)
+from .models import UserProfile
+
+# Configure logger
+logger = logging.getLogger(__name__)
+
+def home(request):
+    """
+    Home page view for the Normie standards and material management system.
+    """
+    return render(request, 'normieapp/home.html')
+
+@restrict_read_only_users
+def requests_page(request):
+    """
+    Requests page view - requires applicant role or above.
+    This will be a comprehensive requests management page to be built later.
+    """
+    context = {
+        'page_title': _('Requests Management'),
+    }
+    return render(request, 'normieapp/requests.html', context)
+
+@admin_required
+def pdf_parser(request):
+    """
+    PDF parser page view - requires admin role.
+    Central hub for PDF form processing and management.
+    """
+    context = {
+        'page_title': _('PDF Parser'),
+    }
+    return render(request, 'normieapp/pdf_parser.html', context)
+
+@restrict_read_only_users
+def applicant_state_parser(request):
+    """
+    Applicant State Parser page view - requires applicant role or above.
+    Tool for parsing and analyzing applicant status data.
+    """
+    context = {
+        'page_title': _('Applicant State Parser'),
+        'description': _('Parse and analyze applicant status data from various sources'),
+    }
+    return render(request, 'normieapp/applicant_state_parser.html', context)
+
+@restrict_read_only_users
+def applicant_upload(request):
+    """
+    Handle applicant data file upload - requires applicant role or above.
+    """
+    if request.method == 'POST' and request.FILES.get('pdf_file'):
+        pdf_file = request.FILES['pdf_file']
+        
+        # Generate a unique ID for this form session
+        form_id = str(uuid.uuid4())
+        
+        # Create temp directory if it doesn't exist
+        base_dir = Path(__file__).resolve().parent.parent
+        temp_dir = os.path.join(base_dir, 'normieapp', 'static', 'normieapp', 'temp_forms')
+        os.makedirs(temp_dir, exist_ok=True)
+        
+        # Save the uploaded file temporarily
+        file_path = os.path.join(temp_dir, f"{form_id}.pdf")
+        with open(file_path, 'wb+') as destination:
+            for chunk in pdf_file.chunks():
+                destination.write(chunk)
+        
+        # Parse PDF fields
+        try:
+            # Use PDF service for PDF files
+            from .services import pdf_service
+            logger.info(f"Extracting fields from PDF: {pdf_file.name}")
+            raw_fields = pdf_service.extract_pdf_fields(file_path)
+            logger.info(f"Extracted {len(raw_fields)} raw fields from PDF")
+            
+            # Debug: Log raw fields
+            for i, field in enumerate(raw_fields):
+                logger.debug(f"Raw field {i+1}: id={field.get('id')}, name={field.get('name')}, type={field.get('type')}")
+            
+            # Filter to only applicant-related fields
+            fields = filter_applicant_fields(raw_fields)
+            logger.info(f"Filtered to {len(fields)} applicant-related fields")
+            
+            # Debug: Log filtered fields
+            for i, field in enumerate(fields):
+                logger.debug(f"Filtered field {i+1}: id={field.get('id')}, name={field.get('name')}, type={field.get('type')}")
+            
+            # Store fields in session for later use
+            serializable_fields = json.loads(json.dumps(fields))
+            
+            request.session[f'applicant_form_{form_id}'] = {
+                'fields': serializable_fields,
+                'file_path': file_path,
+                'original_filename': pdf_file.name
+            }
+            
+            return redirect('applicant_editor', form_id=form_id)
+        except Exception as e:
+            logger.error(f"Error processing PDF: {str(e)}", exc_info=True)
+            messages.error(request, f"Error processing PDF: {str(e)}")
+            return redirect('applicant_state_parser')
+    
+    return redirect('applicant_state_parser')
+
+@restrict_read_only_users
+def applicant_editor(request, form_id):
+    """
+    Display applicant data editor - requires applicant role or above.
+    """
+    # Get form data from session
+    form_data = request.session.get(f'applicant_form_{form_id}')
+    
+    if not form_data:
+        messages.error(request, _("Form session expired or invalid."))
+        return redirect('applicant_state_parser')
+    
+    fields = form_data.get('fields', [])
+    original_filename = form_data.get('original_filename', 'unknown')
+    
+    return render(request, 'normieapp/applicant_editor.html', {
+        'form_id': form_id,
+        'fields': fields,
+        'original_filename': original_filename
+    })
+
+@csrf_exempt
+@restrict_read_only_users
+def applicant_save(request, form_id):
+    """
+    Save edited applicant data - requires applicant role or above.
+    """
+    if request.method == 'POST':
+        try:
+            # Get form data from request
+            form_data = json.loads(request.body)
+            
+            # Get original form data from session
+            session_data = request.session.get(f'applicant_form_{form_id}')
+            
+            if not session_data:
+                return JsonResponse({'success': False, 'message': _("Form session expired or invalid.")})
+            
+            # Update fields with new values
+            fields = session_data.get('fields', [])
+            for field in fields:
+                if field['id'] in form_data:
+                    field['value'] = form_data[field['id']]
+            
+            # Save updated fields back to session
+            session_data['fields'] = fields
+            request.session[f'applicant_form_{form_id}'] = session_data
+            request.session.modified = True
+            
+            return JsonResponse({'success': True, 'message': _("Applicant data saved successfully.")})
+        except Exception as e:
+            print(f"Error saving applicant data: {str(e)}")
+            return JsonResponse({'success': False, 'message': str(e)})
+    
+    return JsonResponse({'success': False, 'message': _("Invalid request method.")})
+
+@restrict_read_only_users
+def applicant_download(request, form_id):
+    """
+    Download the processed applicant data - requires applicant role or above.
+    """
+    # Get form data from session
+    form_data = request.session.get(f'applicant_form_{form_id}')
+    
+    if not form_data:
+        messages.error(request, _("Form session expired or invalid."))
+        return redirect('applicant_state_parser')
+    
+    try:
+        fields = form_data.get('fields', [])
+        original_filename = form_data.get('original_filename', 'applicant_data')
+        
+        # Create JSON export of applicant data
+        export_data = {
+            'metadata': {
+                'export_date': json.dumps(datetime.now(), default=str),
+                'original_filename': original_filename,
+                'total_fields': len(fields)
+            },
+            'applicant_data': {field['id']: field['value'] for field in fields}
+        }
+        
+        # Create response
+        response = HttpResponse(
+            json.dumps(export_data, indent=2),
+            content_type='application/json'
+        )
+        response['Content-Disposition'] = f'attachment; filename="applicant_data_{form_id}.json"'
+        
+        return response
+    except Exception as e:
+        messages.error(request, f"Error downloading data: {str(e)}")
+        return redirect('applicant_editor', form_id=form_id)
+
+def filter_applicant_fields(raw_fields):
+    """
+    Take fields from positions 2 to 21 from the raw fields list.
+    Ensures fields are properly sorted for display.
+    """
+    # Sort fields by ID using natural sort (ensures "2" comes before "10")
+    def natural_sort_key(field):
+        import re
+        def convert(text):
+            return int(text) if text.isdigit() else text.lower()
+        field_id = field['id']
+        return [convert(c) for c in re.split('([0-9]+)', str(field_id))]
+    
+    # Sort the raw fields first
+    sorted_fields = sorted(raw_fields, key=natural_sort_key)
+    
+    # Log the sorted fields for debugging
+    logger.info(f"Total fields after sorting: {len(sorted_fields)}")
+    for i, field in enumerate(sorted_fields):
+        logger.debug(f"Sorted field {i+1}: id={field.get('id')}, name={field.get('name')}, type={field.get('type')}")
+    
+    # Take fields from positions 2 to 21 (if available)
+    start_idx = 1  # 0-indexed, so position 2 is index 1
+    end_idx = min(21, len(sorted_fields))  # Don't go beyond the available fields
+    
+    # Handle case where there are fewer than 2 fields
+    if start_idx >= len(sorted_fields):
+        return []
+    
+    # Get the fields from positions 2 to 21
+    filtered_fields = sorted_fields[start_idx:end_idx]
+    
+    # Log the filtered fields for debugging
+    logger.info(f"Selected fields from positions 2-21: {len(filtered_fields)}")
+    for i, field in enumerate(filtered_fields):
+        logger.debug(f"Selected field {i+1}: id={field.get('id')}, name={field.get('name')}, type={field.get('type')}")
+    
+    return filtered_fields
+
+def parse_spreadsheet_applicant_data(file_path):
+    """
+    Parse CSV/Excel files for applicant data.
+    """
+    import pandas as pd
+    
+    try:
+        # Read the file
+        if file_path.endswith('.csv'):
+            df = pd.read_csv(file_path)
+        else:
+            df = pd.read_excel(file_path)
+        
+        fields = []
+        # Convert first row to fields (assuming first row contains applicant data)
+        if not df.empty:
+            for column in df.columns:
+                value = df.iloc[0][column] if not df.empty else ""
+                fields.append({
+                    'id': column.lower().replace(' ', '_'),
+                    'name': column,
+                    'type': '/Tx',  # Text field
+                    'value': str(value) if pd.notna(value) else ""
+                })
+        
+        return fields
+    except Exception as e:
+        raise ValueError(f"Error parsing spreadsheet: {str(e)}")
+
+def parse_json_applicant_data(file_path):
+    """
+    Parse JSON files for applicant data.
+    """
+    try:
+        with open(file_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        
+        fields = []
+        # Flatten JSON data into fields
+        def flatten_dict(d, parent_key='', sep='_'):
+            items = []
+            for k, v in d.items():
+                new_key = f"{parent_key}{sep}{k}" if parent_key else k
+                if isinstance(v, dict):
+                    items.extend(flatten_dict(v, new_key, sep=sep).items())
+                else:
+                    items.append((new_key, v))
+            return dict(items)
+        
+        if isinstance(data, dict):
+            flattened = flatten_dict(data)
+            for key, value in flattened.items():
+                fields.append({
+                    'id': key.lower(),
+                    'name': key.replace('_', ' ').title(),
+                    'type': '/Tx',  # Text field
+                    'value': str(value) if value is not None else ""
+                })
+        elif isinstance(data, list) and data:
+            # Use first item if it's a list
+            first_item = data[0]
+            if isinstance(first_item, dict):
+                for key, value in first_item.items():
+                    fields.append({
+                        'id': key.lower(),
+                        'name': key.replace('_', ' ').title(),
+                        'type': '/Tx',  # Text field
+                        'value': str(value) if value is not None else ""
+                    })
+        
+        return fields
+    except Exception as e:
+        raise ValueError(f"Error parsing JSON: {str(e)}")
+
+@restrict_read_only_users
+def directory(request):
+    """
+    Directory page view - requires applicant role or above.
+    """
+    return render(request, 'normieapp/directory.html')
+
+@restrict_read_only_users
+def directory_detail(request, row_number):
+    """
+    Display detailed view of a specific directory item by row number.
+    """
+    import json
+    import os
+    from django.conf import settings
+    from django.http import Http404
+    
+    # Load the JSON data
+    json_path = os.path.join(settings.BASE_DIR, 'normieapp', 'static', 'normieapp', 'data', 'Verzeichnis.json')
+    
+    try:
+        with open(json_path, 'r', encoding='utf-8') as f:
+            data = json.load(f)
+        
+        # Get item by row number (1-indexed)
+        # Need to sort data same way as frontend (by Application No. descending)
+        data_array = data.get('data', [])
+        
+        # Sort by Application No. descending (same as frontend default)
+        def parse_app_no(app_no):
+            if not app_no or not isinstance(app_no, str):
+                return (0, 0)
+            parts = app_no.split('/')
+            if len(parts) != 2:
+                return (0, 0)
+            try:
+                return (int(parts[1]), int(parts[0]))  # year first, then number
+            except ValueError:
+                return (0, 0)
+        
+        sorted_data = sorted(data_array, key=lambda x: parse_app_no(x.get('Antrag-nummer', '')), reverse=True)
+        
+        if row_number < 1 or row_number > len(sorted_data):
+            raise Http404("Directory item not found")
+        
+        item = sorted_data[row_number - 1]  # Convert to 0-indexed
+        
+        # Get color mapping for status
+        color_mapping = data.get('metadata', {}).get('color_mapping', {})
+        
+        # Map color to status class
+        status_class_map = {
+            "#CCFFCC": "approved",
+            "#CCFF99": "first-use", 
+            "#FFCC99": "rejected",
+            "#FFFFFF": "processing"
+        }
+        status_class = status_class_map.get(item.get('color', ''), 'processing')
+        
+        # Create template-friendly version of item data
+        template_item = {
+            'raw_data': item,
+            'antrag_nummer': item.get('Antrag-nummer', ''),
+            'teile_nummer': item.get('Teile-nummer', ''),
+            'freigabe': item.get('Freigabe', ''),
+            'aircraft_relevant': item.get('relevant für Luftfahrtteile', ''),
+            'benennung': item.get('Benennung', ''),
+            'produktname': item.get('Produktname / Normkurzbezeichnung', ''),
+            'produktzulassungs_spezifikation': item.get('Produktzulassungs-spezifikation', ''),
+            'eingang': item.get('Eingang', ''),
+            'abschluss': item.get('Abschluss', ''),
+            'abteilung': item.get('Abteilung', ''),
+            'einsatzort': item.get('Einsatzort', ''),
+            'antragsteller': item.get('Antragsteller', ''),
+            'bearbeiter': item.get('Bearbeiter', ''),
+            'datum': item.get('Datum', ''),
+            'bemerkung': item.get('Bemerkung \n(310 offene Anträge)', ''),
+            'color': item.get('color', ''),
+            'status': item.get('status', ''),
+            # Documents
+            'antrag_doc': item.get('Antrag'),
+            'datenblatt': item.get('Datenblatt'),
+            'produkt_zulassung': item.get('Produkt-zulassung'),
+            'sdb_msds': item.get('SDB MSDS'),
+            'gefährdungsprüfung_beurteilung': item.get('Gefährdungsprüfungeurteilung'),
+            'gefährdungsprüfung': item.get('Gefährdungsprüfung'),
+            'sonstiges': item.get('Sonstiges'),
+            'schriftverkehr': item.get('Schriftverkehr'),
+            'änderungshistorie': item.get('Änd. Historie'),
+        }
+        
+        context = {
+            'item': template_item,
+            'color_mapping': color_mapping,
+            'row_number': row_number,
+            'status_class': status_class,
+        }
+        
+        return render(request, 'normieapp/directory_detail.html', context)
+        
+    except FileNotFoundError:
+        raise Http404("Directory data not found")
+
+@restrict_read_only_users
+def chemscan(request):
+    """
+    ChemScan analysis and management view - requires applicant role or above.
+    """
+    context = {
+        'page_title': _('ChemScan Analysis'),
+        'analysis_stats': {
+            'total_scans': 1247,
+            'pending_review': 23,
+            'approved_substances': 892,
+            'flagged_substances': 15
+        },
+        'recent_scans': [
+            {'id': 'CS-001', 'substance': 'Acetone', 'status': 'Approved', 'risk_level': 'Low', 'date': '2024-03-15'},
+            {'id': 'CS-002', 'substance': 'Methylene Chloride', 'status': 'Flagged', 'risk_level': 'High', 'date': '2024-03-14'},
+            {'id': 'CS-003', 'substance': 'Isopropanol', 'status': 'Pending', 'risk_level': 'Medium', 'date': '2024-03-13'},
+            {'id': 'CS-004', 'substance': 'Toluene', 'status': 'Under Review', 'risk_level': 'Medium', 'date': '2024-03-12'},
+        ]
+    }
+    return render(request, 'normieapp/chemscan.html', context)
+
+@restrict_read_only_users
+def standards(request):
+    """
+    Standards management view - requires applicant role or above.
+    """
+    context = {
+        'page_title': _('Standards Management'),
+        'standards': [
+            {'id': 1, 'name': 'ISO 9001:2015', 'status': 'Active', 'version': '2.1', 'last_updated': '2024-01-15'},
+            {'id': 2, 'name': 'ISO 14001:2015', 'status': 'Under Review', 'version': '1.3', 'last_updated': '2024-02-20'},
+            {'id': 3, 'name': 'OHSAS 18001', 'status': 'Draft', 'version': '1.0', 'last_updated': '2024-03-10'},
+        ]
+    }
+    return render(request, 'normieapp/prototyping/standards.html', context)
+
+
+@restrict_read_only_users
+def requests(request):
+    """
+    Material requests view - requires applicant role or above.
+    """
+    context = {
+        'page_title': _('Material Requests'),
+        'requests': [
+            {'id': 'REQ-001', 'material': 'Steel Pipes', 'quantity': 50, 'status': 'Pending', 'requested_by': 'John Doe', 'date': '2024-03-15'},
+            {'id': 'REQ-002', 'material': 'Safety Helmets', 'quantity': 25, 'status': 'Approved', 'requested_by': 'Jane Smith', 'date': '2024-03-14'},
+            {'id': 'REQ-003', 'material': 'Welding Rods', 'quantity': 100, 'status': 'In Progress', 'requested_by': 'Mike Johnson', 'date': '2024-03-13'},
+        ]
+    }
+    return render(request, 'normieapp/prototyping/requests.html', context)
+
+
+@restrict_read_only_users
+def materials(request):
+    """
+    Materials catalog view - requires applicant role or above.
+    """
+    context = {
+        'page_title': _('Materials Catalog'),
+        'materials': [
+            {'id': 'MAT-001', 'name': 'Steel Pipes', 'category': 'Construction', 'unit': 'meters', 'stock': 150, 'min_stock': 50},
+            {'id': 'MAT-002', 'name': 'Safety Helmets', 'category': 'Safety', 'unit': 'pieces', 'stock': 75, 'min_stock': 20},
+            {'id': 'MAT-003', 'name': 'Welding Rods', 'category': 'Tools', 'unit': 'kg', 'stock': 25, 'min_stock': 30},
+            {'id': 'MAT-004', 'name': 'Concrete Mix', 'category': 'Construction', 'unit': 'bags', 'stock': 200, 'min_stock': 100},
+        ]
+    }
+    return render(request, 'normieapp/prototyping/materials.html', context)
+
+
+@restrict_read_only_users
+def releases(request):
+    """
+    Release management view - requires applicant role or above.
+    """
+    context = {
+        'page_title': _('Release Management'),
+        'releases': [
+            {'id': 'REL-001', 'material': 'Steel Pipes', 'quantity': 30, 'status': 'Completed', 'released_to': 'Project Alpha', 'date': '2024-03-12'},
+            {'id': 'REL-002', 'material': 'Safety Helmets', 'quantity': 15, 'status': 'Pending', 'released_to': 'Project Beta', 'date': '2024-03-15'},
+            {'id': 'REL-003', 'material': 'Welding Rods', 'quantity': 50, 'status': 'In Transit', 'released_to': 'Project Gamma', 'date': '2024-03-14'},
+        ]
+    }
+    return render(request, 'normieapp/prototyping/releases.html', context)
+
+
+@manager_or_admin_required
+def approvals(request):
+    """
+    Approval workflows view - restricted to managers and administrators.
+    """
+    context = {
+        'page_title': _('Approval Workflows'),
+        'approvals': [
+            {'id': 'APP-001', 'type': 'Material Request', 'item': 'REQ-001', 'status': 'Pending Manager', 'submitted_by': 'John Doe', 'date': '2024-03-15'},
+            {'id': 'APP-002', 'type': 'Standard Update', 'item': 'ISO 9001:2015', 'status': 'Pending Review', 'submitted_by': 'Quality Team', 'date': '2024-03-14'},
+            {'id': 'APP-003', 'type': 'Release Authorization', 'item': 'REL-002', 'status': 'Approved', 'submitted_by': 'Jane Smith', 'date': '2024-03-13'},
+        ]
+    }
+    return render(request, 'normieapp/prototyping/approvals.html', context)
+
+
+@restrict_read_only_users
+def inventory(request):
+    """
+    Inventory management view - requires applicant role or above.
+    """
+    context = {
+        'page_title': _('Inventory Management'),
+        'inventory_stats': {
+            'total_items': 4,
+            'low_stock_items': 1,
+            'total_value': 45750,
+            'last_updated': '2024-03-15 14:30'
+        },
+        'low_stock_items': [
+            {'name': 'Welding Rods', 'current_stock': 25, 'min_stock': 30, 'status': 'Low Stock'},
+        ]
+    }
+    return render(request, 'normieapp/prototyping/inventory.html', context)
+
+
+@can_view_reports
+def reports(request):
+    """
+    Reports and analytics view - restricted to users with report viewing permissions.
+    """
+    context = {
+        'page_title': _('Reports & Analytics'),
+        'reports': [
+            {'name': 'Monthly Material Usage', 'type': 'Usage Report', 'last_generated': '2024-03-01', 'status': 'Available'},
+            {'name': 'Standards Compliance', 'type': 'Compliance Report', 'last_generated': '2024-02-28', 'status': 'Available'},
+            {'name': 'Inventory Valuation', 'type': 'Financial Report', 'last_generated': '2024-03-15', 'status': 'Available'},
+            {'name': 'Approval Metrics', 'type': 'Performance Report', 'last_generated': '2024-03-10', 'status': 'Generating'},
+        ]
+    }
+    return render(request, 'normieapp/prototyping/reports.html', context)
+
+
+@can_view_audit_logs
+def audit(request):
+    """
+    Audit trail view - restricted to users with audit log viewing permissions.
+    """
+    context = {
+        'page_title': _('Audit Trail'),
+        'audit_logs': [
+            {'timestamp': '2024-03-15 14:30:25', 'user': 'john.doe', 'action': 'Created material request', 'details': 'REQ-001 for Steel Pipes'},
+            {'timestamp': '2024-03-15 13:45:12', 'user': 'jane.smith', 'action': 'Approved release', 'details': 'REL-003 for Welding Rods'},
+            {'timestamp': '2024-03-15 12:20:08', 'user': 'admin', 'action': 'Updated standard', 'details': 'ISO 9001:2015 version 2.1'},
+            {'timestamp': '2024-03-15 11:15:33', 'user': 'mike.johnson', 'action': 'Inventory update', 'details': 'Added 50 Safety Helmets'},
+        ]
+    }
+    return render(request, 'normieapp/prototyping/audit.html', context)
+
+
+@read_only_or_above_required
+def settings(request):
+    """
+    Settings page view - requires login with any role.
+    """
+    context = {
+        'page_title': _('Settings'),
+        'user_settings': {
+            'language': 'en',
+            'timezone': 'UTC',
+            'notifications_email': True,
+            'notifications_browser': True,
+            'dark_mode': False,
+        }
+    }
+    return render(request, 'normieapp/settings.html', context)
+
+
+def login_view(request):
+    """
+    Login page view.
+    """
+    # Check if user was redirected here due to login required
+    next_url = request.GET.get('next')
+    if next_url and not request.user.is_authenticated:
+        messages.info(request, _(
+            'Authentication Required: Please log in to access the requested page. '
+            'If you don\'t have an account, you can create one with read-only access.'
+        ))
+    
+    if request.method == 'POST':
+        # Check if this is a signup form submission
+        form_type = request.POST.get('form_type')
+        
+        if form_type == 'signup':
+            # Handle signup
+            from .forms import SignUpForm
+            form = SignUpForm(request.POST)
+            if form.is_valid():
+                user = form.save()
+                messages.success(request, _('Account created successfully! You can now log in with read-only access.'))
+                return redirect('login')
+            else:
+                # Add form errors to messages with better formatting
+                for field, errors in form.errors.items():
+                    field_name = field.replace('_', ' ').title()
+                    if field == 'password1':
+                        field_name = 'Password'
+                    elif field == 'password2':
+                        field_name = 'Confirm Password'
+                    for error in errors:
+                        messages.error(request, f'{field_name}: {error}')
+        else:
+            # Handle login
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            remember_me = request.POST.get('remember_me')
+            
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                
+                # Handle "Remember me" functionality
+                if remember_me:
+                    # Set session to expire in 30 days
+                    request.session.set_expiry(30 * 24 * 60 * 60)  # 30 days in seconds
+                else:
+                    # Set session to expire when browser closes
+                    request.session.set_expiry(0)
+                
+                # Redirect to the originally requested page or home
+                redirect_url = request.GET.get('next', 'home')
+                return redirect(redirect_url)
+            else:
+                messages.error(request, _('Invalid username or password.'))
+    
+    return render(request, 'normieapp/login.html')
+
+
+def signup_view(request):
+    """
+    User registration view.
+    Creates new users with read-only permissions by default.
+    """
+    from .forms import SignUpForm
+    
+    if request.method == 'POST':
+        form = SignUpForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            messages.success(request, _('Account created successfully! You can now log in with read-only access.'))
+            return redirect('login')
+    else:
+        form = SignUpForm()
+    
+    context = {
+        'form': form,
+        'page_title': _('Create Account')
+    }
+    return render(request, 'normieapp/signup.html', context)
+
+
+def logout_view(request):
+    """
+    Logout view.
+    """
+    logout(request)
+    messages.success(request, _('Successfully logged out!'))
+    return redirect('home')
+
+
+@read_only_or_above_required
+def profile(request):
+    """
+    User profile view - requires login with any role.
+    """
+    context = {
+        'page_title': _('User Profile'),
+        'user_info': {
+            'username': request.user.username,
+            'email': request.user.email,
+            'first_name': request.user.first_name,
+            'last_name': request.user.last_name,
+            'date_joined': request.user.date_joined,
+            'last_login': request.user.last_login,
+        }
+    }
+    return render(request, 'normieapp/profile.html', context)
+
+
+@read_only_or_above_required
+def notifications(request):
+    """
+    Notifications view - requires login with any role.
+    """
+    context = {
+        'page_title': _('Notifications'),
+        'notifications': [
+            {'id': 1, 'title': 'New material request', 'message': 'REQ-001 requires your approval', 'type': 'info', 'timestamp': '2024-03-15 14:30'},
+            {'id': 2, 'title': 'Low stock alert', 'message': 'Welding Rods below minimum threshold', 'type': 'warning', 'timestamp': '2024-03-15 12:15'},
+            {'id': 3, 'title': 'Standard updated', 'message': 'ISO 9001:2015 has been updated to version 2.1', 'type': 'success', 'timestamp': '2024-03-15 10:45'},
+        ]
+    }
+    return render(request, 'normieapp/notifications.html', context)
+
+
+@restrict_read_only_users
+def cmsr_request(request):
+    """
+    CMSR (Consumable Material Supply Request) form view - requires applicant role or above.
+    Handles the complete multi-step approval workflow.
+    """
+    from .models import CMSRRequest, CMSRDocument
+    from .forms import CMSRRequestForm, CMSRDocumentForm
+    
+    if request.method == 'POST':
+        form = CMSRRequestForm(request.POST)
+        if form.is_valid():
+            cmsr = form.save(commit=False)
+            cmsr.applicant = request.user
+            cmsr.applicant_name = request.user.get_full_name() or request.user.username
+            cmsr.save()
+            
+            # Handle document uploads
+            for file in request.FILES.getlist('documents'):
+                CMSRDocument.objects.create(
+                    cmsr_request=cmsr,
+                    document_type=request.POST.get('document_type', 'other'),
+                    file=file,
+                    filename=file.name,
+                    uploaded_by=request.user
+                )
+            
+            messages.success(request, _('CMSR request submitted successfully. Application number: {}').format(cmsr.application_number))
+            return redirect('cmsr_detail', pk=cmsr.pk)
+    else:
+        form = CMSRRequestForm()
+    
+    context = {
+        'page_title': _('Consumable Material Supply Request (CMSR)'),
+        'form': form,
+        'document_form': CMSRDocumentForm(),
+        'help_text': {
+            'introduction': _('Submit chemical substance and parts approval requests for industrial use.'),
+            'process_info': _('This is a digital process following RRTI00032 guidelines.'),
+            'search_info': _('Before submitting, search OMat Catalogue, MLC 104, and RRD Consumables Catalogue for existing approved materials.')
+        }
+    }
+    return render(request, 'normieapp/prototyping/cmsr_request.html', context)
+
+
+@restrict_read_only_users
+def cmsr_detail(request, pk):
+    """
+    CMSR request detail view with workflow management - requires applicant role or above.
+    """
+    from .models import CMSRRequest, CMSRWorkflowLog
+    
+    cmsr = get_object_or_404(CMSRRequest, pk=pk)
+    
+    # Check permissions
+    can_edit = (
+        cmsr.applicant == request.user or 
+        request.user.has_perm('normieapp.change_cmsrrequest') or
+        request.user.groups.filter(name__in=['ChemScan', 'Environmental', 'Manufacturing Lab', 'Standards Office']).exists()
+    )
+    
+    # Handle status updates
+    if request.method == 'POST' and can_edit:
+        new_status = request.POST.get('new_status')
+        comments = request.POST.get('comments', '')
+        
+        if new_status and new_status != cmsr.status:
+            # Log the workflow change
+            CMSRWorkflowLog.objects.create(
+                cmsr_request=cmsr,
+                previous_status=cmsr.status,
+                new_status=new_status,
+                changed_by=request.user,
+                comments=comments
+            )
+            
+            cmsr.status = new_status
+            cmsr.save()
+            
+            messages.success(request, _('Status updated to: {}').format(dict(CMSRRequest.STATUS_CHOICES)[new_status]))
+            return redirect('cmsr_detail', pk=pk)
+    
+    context = {
+        'page_title': f'CMSR {cmsr.application_number}',
+        'cmsr': cmsr,
+        'can_edit': can_edit,
+        'workflow_logs': cmsr.workflow_logs.all()[:10],
+        'documents': cmsr.documents.all(),
+        'status_choices': CMSRRequest.STATUS_CHOICES,
+        'next_possible_statuses': get_next_possible_statuses(cmsr.status, request.user)
+    }
+    return render(request, 'normieapp/prototyping/cmsr_detail.html', context)
+
+
+@restrict_read_only_users
+def cmsr_list(request):
+    """
+    List view for CMSR requests with filtering and search - requires applicant role or above.
+    """
+    from .models import CMSRRequest
+    from django.db.models import Q
+    
+    queryset = CMSRRequest.objects.all()
+    
+    # Filter by status
+    status_filter = request.GET.get('status')
+    if status_filter:
+        queryset = queryset.filter(status=status_filter)
+    
+    # Filter by user's requests
+    my_requests = request.GET.get('my_requests')
+    if my_requests:
+        queryset = queryset.filter(applicant=request.user)
+    
+    # Search functionality
+    search_query = request.GET.get('search')
+    if search_query:
+        queryset = queryset.filter(
+            Q(application_number__icontains=search_query) |
+            Q(product_name__icontains=search_query) |
+            Q(manufacturer__icontains=search_query) |
+            Q(applicant_name__icontains=search_query)
+        )
+    
+    # Pagination
+    from django.core.paginator import Paginator
+    paginator = Paginator(queryset, 25)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    context = {
+        'page_title': _('CMSR Requests'),
+        'page_obj': page_obj,
+        'status_choices': CMSRRequest.STATUS_CHOICES,
+        'current_filters': {
+            'status': status_filter,
+            'my_requests': my_requests,
+            'search': search_query
+        }
+    }
+    return render(request, 'normieapp/prototyping/cmsr_list.html', context)
+
+
+def get_next_possible_statuses(current_status, user):
+    """
+    Determine which status transitions are allowed for the current user.
+    """
+    user_groups = user.groups.values_list('name', flat=True)
+    
+    transitions = {
+        'draft': ['submitted'],
+        'submitted': ['chemscan_pending', 'rejected'],
+        'chemscan_pending': ['chemscan_completed', 'requires_modification'] if 'ChemScan' in user_groups else [],
+        'chemscan_completed': ['environmental_review'],
+        'environmental_review': ['manufacturing_lab_review', 'rejected'] if 'Environmental' in user_groups else [],
+        'manufacturing_lab_review': ['standards_office_review', 'requires_modification'] if 'Manufacturing Lab' in user_groups else [],
+        'standards_office_review': ['approved', 'rejected'] if 'Standards Office' in user_groups else [],
+        'requires_modification': ['submitted'],
+        'approved': [],
+        'rejected': []
+    }
+    
+    return transitions.get(current_status, [])
+
+
+@restrict_read_only_users
+def cmsr_edit(request, pk):
+    """
+    Edit CMSR request view - requires applicant role or above.
+    """
+    from .models import CMSRRequest
+    from .forms import CMSRRequestForm
+    
+    cmsr = get_object_or_404(CMSRRequest, pk=pk)
+    
+    # Check permissions
+    if cmsr.applicant != request.user and not request.user.has_perm('normieapp.change_cmsrrequest'):
+        messages.error(request, _('You do not have permission to edit this request.'))
+        return redirect('cmsr_detail', pk=pk)
+    
+    if request.method == 'POST':
+        form = CMSRRequestForm(request.POST, instance=cmsr)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _('CMSR request updated successfully.'))
+            return redirect('cmsr_detail', pk=pk)
+    else:
+        form = CMSRRequestForm(instance=cmsr)
+    
+    context = {
+        'page_title': f'Edit CMSR {cmsr.application_number}',
+        'form': form,
+        'cmsr': cmsr
+    }
+    return render(request, 'normieapp/prototyping/cmsr_edit.html', context)
+
+
+@role_required('admin', 'manager', 'chemscan_specialist')
+def cmsr_chemscan(request, pk):
+    """
+    ChemScan assessment view for CMSR request - restricted to ChemScan specialists, managers, and admins.
+    """
+    from .models import CMSRRequest, ChemScanAssessment
+    from .forms import ChemScanAssessmentForm
+    
+    cmsr = get_object_or_404(CMSRRequest, pk=pk)
+    
+    # Check if user can access this request
+    if not user_can_access_request(request.user, cmsr):
+        messages.error(request, _('You do not have permission to access this request.'))
+        return redirect('cmsr_list')
+    
+    # Get or create ChemScan assessment
+    chemscan, created = ChemScanAssessment.objects.get_or_create(cmsr_request=cmsr)
+    
+    # Check if user can perform ChemScan
+    can_edit = request.user.profile.can_perform_chemscan
+    
+    if request.method == 'POST' and can_edit:
+        form = ChemScanAssessmentForm(request.POST, instance=chemscan)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _('ChemScan assessment updated successfully.'))
+            return redirect('cmsr_detail', pk=pk)
+    else:
+        form = ChemScanAssessmentForm(instance=chemscan)
+    
+    context = {
+        'page_title': f'ChemScan Assessment - CMSR {cmsr.application_number}',
+        'form': form,
+        'cmsr': cmsr,
+        'chemscan': chemscan,
+        'can_edit': can_edit
+    }
+    return render(request, 'normieapp/prototyping/cmsr_chemscan.html', context)
+
+
+@role_required('admin', 'manager', 'environmental_reviewer')
+def cmsr_environmental(request, pk):
+    """
+    Environmental assessment view for CMSR request - restricted to environmental reviewers, managers, and admins.
+    """
+    from .models import CMSRRequest, EnvironmentalAssessment
+    from .forms import EnvironmentalAssessmentForm
+    
+    cmsr = get_object_or_404(CMSRRequest, pk=pk)
+    
+    # Check if user can access this request
+    if not user_can_access_request(request.user, cmsr):
+        messages.error(request, _('You do not have permission to access this request.'))
+        return redirect('cmsr_list')
+    
+    # Get or create Environmental assessment
+    environmental, created = EnvironmentalAssessment.objects.get_or_create(cmsr_request=cmsr)
+    
+    if request.method == 'POST':
+        form = EnvironmentalAssessmentForm(request.POST, instance=environmental)
+        if form.is_valid():
+            assessment = form.save(commit=False)
+            assessment.assessed_by = request.user
+            assessment.save()
+            messages.success(request, _('Environmental assessment updated successfully.'))
+            return redirect('cmsr_detail', pk=pk)
+    else:
+        form = EnvironmentalAssessmentForm(instance=environmental)
+    
+    context = {
+        'page_title': f'Environmental Assessment - CMSR {cmsr.application_number}',
+        'form': form,
+        'cmsr': cmsr,
+        'environmental': environmental
+    }
+    return render(request, 'normieapp/prototyping/cmsr_environmental.html', context)
+
+
+@role_required('admin', 'manager', 'manufacturing_reviewer')
+def cmsr_manufacturing(request, pk):
+    """
+    Manufacturing lab approval view for CMSR request - restricted to manufacturing reviewers, managers, and admins.
+    """
+    from .models import CMSRRequest, ManufacturingLabApproval
+    from .forms import ManufacturingLabApprovalForm
+    
+    cmsr = get_object_or_404(CMSRRequest, pk=pk)
+    
+    # Check if user can access this request
+    if not user_can_access_request(request.user, cmsr):
+        messages.error(request, _('You do not have permission to access this request.'))
+        return redirect('cmsr_list')
+    
+    # Get or create Manufacturing lab approval
+    manufacturing, created = ManufacturingLabApproval.objects.get_or_create(cmsr_request=cmsr)
+    
+    if request.method == 'POST':
+        form = ManufacturingLabApprovalForm(request.POST, instance=manufacturing)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _('Manufacturing lab approval updated successfully.'))
+            return redirect('cmsr_detail', pk=pk)
+    else:
+        form = ManufacturingLabApprovalForm(instance=manufacturing)
+    
+    context = {
+        'page_title': f'Manufacturing Lab Approval - CMSR {cmsr.application_number}',
+        'form': form,
+        'cmsr': cmsr,
+        'manufacturing': manufacturing
+    }
+    return render(request, 'normieapp/prototyping/cmsr_manufacturing.html', context)
+
+
+@role_required('admin', 'manager', 'standards_officer')
+def cmsr_standards(request, pk):
+    """
+    Standards office approval view for CMSR request - restricted to standards officers, managers, and admins.
+    """
+    from .models import CMSRRequest, StandardsOfficeApproval
+    from .forms import StandardsOfficeApprovalForm
+    
+    cmsr = get_object_or_404(CMSRRequest, pk=pk)
+    
+    # Check if user can access this request
+    if not user_can_access_request(request.user, cmsr):
+        messages.error(request, _('You do not have permission to access this request.'))
+        return redirect('cmsr_list')
+    
+    # Get or create Standards office approval
+    standards, created = StandardsOfficeApproval.objects.get_or_create(cmsr_request=cmsr)
+    
+    if request.method == 'POST':
+        form = StandardsOfficeApprovalForm(request.POST, instance=standards)
+        if form.is_valid():
+            form.save()
+            messages.success(request, _('Standards office approval updated successfully.'))
+            return redirect('cmsr_detail', pk=pk)
+    else:
+        form = StandardsOfficeApprovalForm(instance=standards)
+    
+    context = {
+        'page_title': f'Standards Office Approval - CMSR {cmsr.application_number}',
+        'form': form,
+        'cmsr': cmsr,
+        'standards': standards
+    }
+    return render(request, 'normieapp/prototyping/cmsr_standards.html', context)
+
+
+@restrict_read_only_users
+def cmsr_documents(request, pk):
+    """
+    Document management view for CMSR request - requires applicant role or above.
+    """
+    from .models import CMSRRequest, CMSRDocument
+    from .forms import CMSRDocumentForm
+    
+    cmsr = get_object_or_404(CMSRRequest, pk=pk)
+    
+    # Check permissions
+    can_edit = (
+        cmsr.applicant == request.user or 
+        request.user.has_perm('normieapp.change_cmsrrequest') or
+        request.user.groups.filter(name__in=['ChemScan', 'Environmental', 'Manufacturing Lab', 'Standards Office']).exists()
+    )
+    
+    if request.method == 'POST' and can_edit:
+        form = CMSRDocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            document = form.save(commit=False)
+            document.cmsr_request = cmsr
+            document.uploaded_by = request.user
+            document.filename = document.file.name
+            document.save()
+            messages.success(request, _('Document uploaded successfully.'))
+            return redirect('cmsr_documents', pk=pk)
+    else:
+        form = CMSRDocumentForm()
+    
+    context = {
+        'page_title': f'Documents - CMSR {cmsr.application_number}',
+        'form': form,
+        'cmsr': cmsr,
+        'documents': cmsr.documents.all(),
+        'can_edit': can_edit
+    }
+    return render(request, 'normieapp/prototyping/cmsr_documents.html', context)
+
+@admin_required
+def pdf_upload(request):
+    """
+    Handle PDF form upload - requires admin role.
+    """
+    if request.method == 'POST' and request.FILES.get('pdf_file'):
+        pdf_file = request.FILES['pdf_file']
+        
+        # Generate a unique ID for this form session
+        form_id = str(uuid.uuid4())
+        
+        # Create temp directory if it doesn't exist
+        # Use a direct path instead of settings.BASE_DIR
+        base_dir = Path(__file__).resolve().parent.parent
+        temp_dir = os.path.join(base_dir, 'normieapp', 'static', 'normieapp', 'temp_forms')
+        os.makedirs(temp_dir, exist_ok=True)
+        
+        # Save the uploaded file temporarily
+        file_path = os.path.join(temp_dir, f"{form_id}.pdf")
+        with open(file_path, 'wb+') as destination:
+            for chunk in pdf_file.chunks():
+                destination.write(chunk)
+        
+        # Extract form fields
+        try:
+            fields = pdf_service.extract_pdf_fields(file_path)
+            
+            # Store fields in session for later use
+            # Convert to JSON and back to ensure serialization works
+            serializable_fields = json.loads(json.dumps(fields))
+            
+            request.session[f'pdf_form_{form_id}'] = {
+                'fields': serializable_fields,
+                'file_path': file_path
+            }
+            
+            return redirect('pdf_editor', form_id=form_id)
+        except Exception as e:
+            messages.error(request, f"Error processing PDF: {str(e)}")
+            return redirect('pdf_parser')
+    
+    return redirect('pdf_parser')
+
+@admin_required
+def pdf_editor(request, form_id):
+    """
+    Display PDF form editor - requires admin role.
+    Enhanced to populate field options for proper German button field display.
+    """
+    # Get form data from session
+    form_data = request.session.get(f'pdf_form_{form_id}')
+    
+    if not form_data:
+        messages.error(request, _("Form session expired or invalid."))
+        return redirect('pdf_parser')
+    
+    fields = form_data.get('fields', [])
+    file_path = form_data.get('file_path')
+    
+    # Enhance fields with options for button fields
+    for field in fields:
+        field_id = field.get('id')
+        if field_id and field.get('dict_type') == 'btn':
+            # Get options from PDF_FIELD_DICT
+            options = pdf_service.get_field_options(field_id)
+            field['options'] = options
+    
+    # Get signature details if available
+    signature_details = {}
+    if file_path:
+        try:
+            signature_details = pdf_service.get_signature_details(file_path)
+        except Exception as e:
+            print(f"Could not extract signature details: {e}")
+    
+    return render(request, 'normieapp/pdf_form/pdf_form.html', {
+        'form_id': form_id,
+        'fields': fields,
+        'signature_details': signature_details
+    })
+
+@csrf_exempt  # Add CSRF exemption for AJAX calls
+@admin_required
+def pdf_save(request, form_id):
+    """
+    Save edited PDF form fields back to the original PDF file - requires admin role.
+    """
+    if request.method == 'POST':
+        try:
+            # Get form data from request
+            form_data = json.loads(request.body)
+            
+            # Get original form data from session
+            session_data = request.session.get(f'pdf_form_{form_id}')
+            
+            if not session_data:
+                return JsonResponse({'success': False, 'message': _("Form session expired or invalid.")})
+            
+            # Update fields with new values
+            fields = session_data.get('fields', [])
+            for field in fields:
+                if field['id'] in form_data:
+                    field['value'] = form_data[field['id']]
+            
+            # Get the original file path
+            file_path = session_data.get('file_path')
+            if not file_path or not os.path.exists(file_path):
+                return JsonResponse({'success': False, 'message': _("Original PDF file not found.")})
+            
+            # Save changes back to the original PDF file
+            try:
+                pdf_service.save_pdf_changes(file_path, fields)
+            except ImportError as import_error:
+                return JsonResponse({'success': False, 'message': _("PyMuPDF is required for reliable PDF editing. Please install it with: pip install PyMuPDF")})
+            except Exception as save_error:
+                print(f"Error saving PDF: {save_error}")
+                return JsonResponse({'success': False, 'message': _("Failed to save changes to PDF. The form fields may be corrupted or the file may be read-only.")})
+            
+            # Re-serialize to ensure JSON compatibility
+            serializable_fields = json.loads(json.dumps(fields))
+            
+            # Save updated fields back to session
+            session_data['fields'] = serializable_fields
+            request.session[f'pdf_form_{form_id}'] = session_data
+            request.session.modified = True  # Explicitly mark session as modified
+            
+            return JsonResponse({'success': True, 'message': _("Changes saved to the original document.")})
+        except Exception as e:
+            print(f"Error saving form: {str(e)}")
+            return JsonResponse({'success': False, 'message': str(e)})
+    
+    return JsonResponse({'success': False, 'message': _("Invalid request method.")})
+
+@admin_required
+def pdf_download(request, form_id):
+    """
+    Download the updated PDF file (with saved changes) - requires admin role.
+    Now uses <antragsnummer>_<tkz>.pdf format for filename.
+    """
+    # Get form data from session
+    form_data = request.session.get(f'pdf_form_{form_id}')
+    
+    if not form_data:
+        messages.error(request, _("Form session expired or invalid."))
+        return redirect('pdf_parser')
+    
+    try:
+        file_path = form_data.get('file_path')
+        fields = form_data.get('fields', [])
+        
+        # Check if the original file exists
+        if not file_path or not os.path.exists(file_path):
+            messages.error(request, _("Original PDF file not found."))
+            return redirect('pdf_editor', form_id=form_id)
+        
+        # Read the updated PDF file (which contains the saved changes)
+        with open(file_path, 'rb') as f:
+            pdf_content = f.read()
+        
+        # Extract Antragsnummer (field 1) and TKZ (field 51) for custom filename
+        antragsnummer = ""
+        tkz = ""
+        
+        for field in fields:
+            field_id = field.get('id', '')
+            field_value = field.get('value', '')
+            
+            if field_id == '1':  # Antragsnummer
+                antragsnummer = str(field_value).strip()
+            elif field_id == '51':  # Teilenummer (TKZ)
+                tkz = str(field_value).strip()
+        
+        # Clean the values for use in filename (remove invalid characters)
+        def clean_filename_part(text):
+            import re
+            # Remove or replace invalid filename characters
+            text = re.sub(r'[<>:"/\\|?*]', '_', text)
+            text = re.sub(r'\s+', '_', text)  # Replace spaces with underscores
+            return text[:50]  # Limit length
+        
+        antragsnummer = clean_filename_part(antragsnummer)
+        tkz = clean_filename_part(tkz)
+        
+        # Create custom filename
+        if antragsnummer and tkz:
+            download_filename = f"{antragsnummer}_{tkz}.pdf"
+        elif antragsnummer:
+            download_filename = f"{antragsnummer}.pdf"
+        elif tkz:
+            download_filename = f"TKZ_{tkz}.pdf"
+        else:
+            # Fallback to original logic
+            original_filename = os.path.basename(file_path)
+            if original_filename.endswith('.pdf'):
+                base_name = original_filename[:-4]  # Remove .pdf extension
+                download_filename = f"{base_name}_updated.pdf"
+            else:
+                download_filename = f"updated_form_{form_id}.pdf"
+        
+        # Check if this is a view request (inline) or download request
+        is_view_request = request.GET.get('view') == '1'
+        
+        # Create response
+        response = HttpResponse(pdf_content, content_type='application/pdf')
+        
+        if is_view_request:
+            # For viewing: display inline in browser
+            response['Content-Disposition'] = f'inline; filename="{download_filename}"'
+        else:
+            # For downloading: force download
+            response['Content-Disposition'] = f'attachment; filename="{download_filename}"'
+            response['Content-Type'] = 'application/octet-stream'  # Force download instead of inline viewing
+        
+        response['Cache-Control'] = 'no-cache, no-store, must-revalidate'
+        response['Pragma'] = 'no-cache'
+        response['Expires'] = '0'
+        
+        return response
+    except Exception as e:
+        messages.error(request, f"Error downloading PDF: {str(e)}")
+        print(f"Error details: {e}")
+        print(f"Form data: {form_data}")
+        return redirect('pdf_editor', form_id=form_id)
+
+@admin_required
+def pdf_debug(request, form_id):
+    """
+    Debug view to inspect form data in the session - admin only.
+    """
+    form_data = request.session.get(f'pdf_form_{form_id}')
+    
+    if not form_data:
+        return JsonResponse({'error': 'Form session not found'})
+    
+    # Get fields and ensure they have the correct structure
+    fields = form_data.get('fields', [])
+    file_path = form_data.get('file_path', '')
+    
+    # Return debug information
+    debug_info = {
+        'form_id': form_id,
+        'file_path': file_path,
+        'fields_count': len(fields),
+        'fields_type': str(type(fields)),
+        'fields': fields
+    }
+    
+    return JsonResponse(debug_info, json_dumps_params={'indent': 2})
+
+@admin_required
+def user_management(request):
+    """
+    User management view - restricted to administrators only.
+    """
+    from django.contrib.auth.models import User
+    from django.core.paginator import Paginator
+    
+    users = User.objects.select_related('profile').all().order_by('username')
+    
+    # Handle role updates
+    if request.method == 'POST':
+        user_id = request.POST.get('user_id')
+        new_role = request.POST.get('role')
+        
+        if user_id and new_role:
+            try:
+                user = User.objects.get(id=user_id)
+                if hasattr(user, 'profile'):
+                    user.profile.role = new_role
+                    user.profile.save()
+                    messages.success(request, f'Role updated for {user.username}')
+                else:
+                    UserProfile.objects.create(user=user, role=new_role)
+                    messages.success(request, f'Profile created for {user.username}')
+            except User.DoesNotExist:
+                messages.error(request, 'User not found')
+    
+    # Pagination
+    paginator = Paginator(users, 20)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    context = {
+        'page_title': _('User Management'),
+        'page_obj': page_obj,
+        'role_choices': UserProfile.ROLE_CHOICES,
+    }
+    
+    return render(request, 'normieapp/user_management.html', context)
+
+
+@read_only_or_above_required
+def user_profile_view(request):
+    """
+    User profile view - shows current user's profile and permissions, requires login with any role.
+    """
+    # Create profile if it doesn't exist
+    if not hasattr(request.user, 'profile'):
+        UserProfile.objects.create(user=request.user)
+    
+    # Get session information
+    session_expiry = request.session.get_expiry_age()
+    session_expires_at = request.session.get_expiry_date()
+    is_extended_session = session_expiry > 1209600  # More than 2 weeks
+    
+    context = {
+        'page_title': _('My Profile'),
+        'profile': request.user.profile,
+        'session_info': {
+            'expiry_seconds': session_expiry,
+            'expires_at': session_expires_at,
+            'is_extended': is_extended_session,
+            'expiry_days': round(session_expiry / 86400, 1) if session_expiry else 0,
+        }
+    }
+    
+    return render(request, 'normieapp/user_profile.html', context)
+
+def about(request):
+    """
+    About page - public access for guests.
+    """
+    context = {
+        'page_title': _('About Normie'),
+        'team_members': [
+            {
+                'name': 'Dr. Sarah Chen',
+                'role': 'Chief Technology Officer',
+                'description': 'Expert in standards management with 15+ years experience',
+                'image_color': '#667eea'
+            },
+            {
+                'name': 'Michael Rodriguez',
+                'role': 'Head of Product',
+                'description': 'Specializes in workflow optimization and user experience',
+                'image_color': '#764ba2'
+            },
+            {
+                'name': 'Anna Schmidt',
+                'role': 'Compliance Director',
+                'description': 'Regulatory compliance and quality assurance specialist',
+                'image_color': '#f093fb'
+            },
+        ],
+        'stats': {
+            'years_experience': 12,
+            'clients_served': 500,
+            'standards_managed': 10000,
+            'countries': 25
+        }
+    }
+    return render(request, 'normieapp/about.html', context)
+
+
+def contact(request):
+    """
+    Contact page - public access for guests.
+    """
+    if request.method == 'POST':
+        # Handle contact form submission
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        subject = request.POST.get('subject')
+        message = request.POST.get('message')
+        
+        # Here you would typically send an email or save to database
+        # For now, just show a success message
+        messages.success(request, _('Thank you for your message! We will get back to you soon.'))
+        return redirect('contact')
+    
+    context = {
+        'page_title': _('Contact Us'),
+        'office_locations': [
+            {
+                'city': 'Munich',
+                'country': 'Germany',
+                'address': 'Maximilianstraße 35, 80539 München',
+                'phone': '+49 89 123 456 789',
+                'email': 'munich@normie.de'
+            },
+            {
+                'city': 'Frankfurt',
+                'country': 'Germany', 
+                'address': 'Zeil 106, 60313 Frankfurt am Main',
+                'phone': '+49 69 987 654 321',
+                'email': 'frankfurt@normie.de'
+            }
+        ]
+    }
+    return render(request, 'normieapp/contact.html', context)
+
+
+def features_detail(request):
+    """
+    Detailed features page - public access for guests.
+    """
+    context = {
+        'page_title': _('Features & Capabilities'),
+        'feature_categories': [
+            {
+                'title': _('Standards Management'),
+                'description': _('Comprehensive tools for creating, maintaining, and tracking organizational standards.'),
+                'features': [
+                    _('Version control and history tracking'),
+                    _('Collaborative editing and review workflows'),
+                    _('Automated compliance checking'),
+                    _('Document templates and standardization'),
+                    _('Integration with regulatory databases')
+                ],
+                'color': '#667eea'
+            },
+            {
+                'title': _('Request Processing'),
+                'description': _('Streamlined material request workflows with intelligent automation.'),
+                'features': [
+                    _('Smart form validation and auto-completion'),
+                    _('Role-based approval routing'),
+                    _('Real-time status tracking'),
+                    _('Automated notifications and reminders'),
+                    _('Integration with procurement systems')
+                ],
+                'color': '#764ba2'
+            },
+            {
+                'title': _('Analytics & Reporting'),
+                'description': _('Advanced analytics and customizable reporting capabilities.'),
+                'features': [
+                    _('Real-time dashboards and KPIs'),
+                    _('Customizable report templates'),
+                    _('Predictive analytics and forecasting'),
+                    _('Compliance reporting automation'),
+                    _('Data export and API integration')
+                ],
+                'color': '#f093fb'
+            }
+        ]
+    }
+    return render(request, 'normieapp/features.html', context)
+
+
+# AJAX Validation Endpoints
+@require_http_methods(["GET"])
+def check_username_availability(request):
+    """
+    AJAX endpoint to check if username is available
+    """
+    username = request.GET.get('username', '').strip()
+    
+    if not username:
+        return JsonResponse({
+            'available': False,
+            'message': _('Username is required.'),
+            'type': 'error'
+        })
+    
+    # Check minimum length
+    if len(username) < 4:
+        return JsonResponse({
+            'available': False,
+            'message': _('Username must be at least 4 characters long.'),
+            'type': 'error'
+        })
+    
+    # Check maximum length
+    if len(username) > 30:
+        return JsonResponse({
+            'available': False,
+            'message': _('Username must be 30 characters or less.'),
+            'type': 'error'
+        })
+    
+    # Check for valid characters (letters, numbers, periods, underscores, hyphens)
+    import re
+    if not re.match(r'^[a-zA-Z0-9._-]+$', username):
+        return JsonResponse({
+            'available': False,
+            'message': _('Username can only contain letters, numbers, periods (.), underscores (_), and hyphens (-).'),
+            'type': 'error'
+        })
+    
+    # Check if username exists
+    if User.objects.filter(username=username).exists():
+        return JsonResponse({
+            'available': False,
+            'message': _('This username is already taken.'),
+            'type': 'error'
+        })
+    
+    return JsonResponse({
+        'available': True,
+        'message': _('Username is available!'),
+        'type': 'success'
+    })
+
+
+@require_http_methods(["GET"])
+def check_email_availability(request):
+    """
+    AJAX endpoint to check if email is available
+    """
+    email = request.GET.get('email', '').strip()
+    
+    if not email:
+        return JsonResponse({
+            'available': False,
+            'message': _('Email is required.'),
+            'type': 'error'
+        })
+    
+    # Basic email format validation
+    import re
+    email_pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
+    if not re.match(email_pattern, email):
+        return JsonResponse({
+            'available': False,
+            'message': _('Please enter a valid email address.'),
+            'type': 'error'
+        })
+    
+    # Check if email exists
+    if User.objects.filter(email=email).exists():
+        return JsonResponse({
+            'available': False,
+            'message': _('This email address is already registered.'),
+            'type': 'error'
+        })
+    
+    return JsonResponse({
+        'available': True,
+        'message': _('Email is available!'),
+        'type': 'success'
+    })
+
+def solutions_norm(request):
+    return render(request, 'normieapp/solutions_norm.html')
+
+def solutions_chemicals(request):
+    return render(request, 'normieapp/solutions_chemicals.html')
+
+def solutions_spec(request):
+    return render(request, 'normieapp/solutions_spec.html')
+
+def solutions_directory(request):
+    return render(request, 'normieapp/solutions_directory.html')
+
+def solutions_tkz(request):
+    return render(request, 'normieapp/solutions_tkz.html')
+
+def under_construction(request):
+    """
+    Under construction page view - public access.
+    """
+    return render(request, 'normieapp/prototyping/under_contruction.html')
+
+# Email Inbox Views
+@restrict_read_only_users
+def inbox(request):
+    """
+    Email inbox view - requires applicant role or above.
+    Displays emails from allowed accounts.
+    """
+    from .services.outlook_service import OutlookService
+    
+    # Default to the first allowed account
+    email_address = request.GET.get('account', OutlookService.ALLOWED_ACCOUNTS[0])
+    folder_type = request.GET.get('folder', 'inbox')
+    search_term = request.GET.get('search')
+    category = request.GET.get('category')
+    page = int(request.GET.get('page', 1))
+    per_page = int(request.GET.get('per_page', 25))
+    
+    # Calculate offset
+    offset = (page - 1) * per_page
+    
+    context = {
+        'page_title': _('Email Inbox'),
+        'email_address': email_address,
+        'folder_type': folder_type,
+        'search_term': search_term,
+        'category': category,
+        'page': page,
+        'per_page': per_page,
+        'allowed_accounts': OutlookService.ALLOWED_ACCOUNTS,
+        'emails': [],  # Default empty list
+        'has_next': False,
+        'has_prev': page > 1
+    }
+    
+    # Default categories if we can't fetch them
+    default_categories = [
+        {"name": "Important", "color": "#FF0000"},
+        {"name": "Work", "color": "#FFA500"},
+        {"name": "Personal", "color": "#0000FF"},
+        {"name": "Follow-up", "color": "#008000"},
+        {"name": "Project", "color": "#800080"}
+    ]
+    context['available_categories'] = default_categories
+    
+    try:
+        # Connect to Outlook
+        outlook = OutlookService()
+        
+        # Try to get the account to check if we're using the fallback
+        using_fallback = False
+        original_email = email_address
+        
+        try:
+            account = outlook._get_account(email_address)
+            # If the account email is different from requested, we're using fallback
+            if account.SmtpAddress.lower() != email_address.lower():
+                using_fallback = True
+                context['email_address'] = account.SmtpAddress
+                context['using_fallback'] = True
+                context['original_email'] = original_email
+                email_address = account.SmtpAddress
+                messages.warning(request, _(f"Using fallback email account '{email_address}' because '{original_email}' was not found."))
+        except Exception as e:
+            messages.warning(request, _(f"Could not access email account: {str(e)}"))
+            context['connection_warning'] = True
+        
+        # Fetch available categories
+        try:
+            categories = outlook.get_categories(email_address)
+            context['available_categories'] = categories
+        except Exception as e:
+            logger.error(f"Error fetching categories: {str(e)}")
+            messages.warning(request, _(f"Could not fetch email categories. Using default categories."))
+        
+        # Fetch emails
+        try:
+            emails = outlook.get_emails(
+                email_address=email_address,
+                folder_type=folder_type,
+                limit=per_page,
+                offset=offset,
+                search_term=search_term,
+                category=category
+            )
+            
+            # Add emails to context
+            context['emails'] = emails
+            
+            # Add pagination info
+            context['has_next'] = len(emails) == per_page
+            context['has_prev'] = page > 1
+            
+            if not emails and page == 1:
+                messages.info(request, _("No emails found in this folder."))
+                
+        except Exception as e:
+            logger.error(f"Error fetching emails: {str(e)}")
+            messages.error(request, _(f"Could not fetch emails: {str(e)}"))
+            context['error'] = True
+        
+    except ConnectionError as e:
+        messages.error(request, str(e))
+        context['connection_error'] = True
+    except ValueError as e:
+        messages.error(request, str(e))
+        context['value_error'] = True
+    except Exception as e:
+        messages.error(request, _(f"An unexpected error occurred: {str(e)}"))
+        context['error'] = True
+    
+    return render(request, 'normieapp/inbox.html', context)
+
+@restrict_read_only_users
+def inbox_view_message(request, message_id):
+    """
+    View a specific email message.
+    """
+    from .services.outlook_service import OutlookService
+    
+    # Get email address from query params
+    email_address = request.GET.get('account', OutlookService.ALLOWED_ACCOUNTS[0])
+    
+    context = {
+        'page_title': _('View Email'),
+        'email_address': email_address,
+        'allowed_accounts': OutlookService.ALLOWED_ACCOUNTS,
+    }
+    
+    try:
+        # Connect to Outlook
+        outlook = OutlookService()
+        
+        # Try to get the account to check if we're using the fallback
+        using_fallback = False
+        original_email = email_address
+        
+        try:
+            account = outlook._get_account(email_address)
+            # If the account email is different from requested, we're using fallback
+            if account.SmtpAddress.lower() != email_address.lower():
+                using_fallback = True
+                context['email_address'] = account.SmtpAddress
+                context['using_fallback'] = True
+                context['original_email'] = original_email
+                email_address = account.SmtpAddress
+                messages.warning(request, _(f"Using fallback email account '{email_address}' because '{original_email}' was not found."))
+        except Exception as e:
+            messages.warning(request, _(f"Could not access email account: {str(e)}"))
+            context['connection_warning'] = True
+        
+        try:
+            # Get the email
+            email = outlook.get_email(email_address, message_id)
+            
+            if not email:
+                messages.error(request, _('Email not found.'))
+                return redirect('inbox')
+            
+            # Add email to context
+            context['email'] = email
+            
+            # Try to mark as read
+            try:
+                outlook.mark_as_read(email_address, message_id)
+            except Exception as e:
+                logger.warning(f"Could not mark email as read: {str(e)}")
+                # Not critical, continue without showing error to user
+        except Exception as e:
+            messages.error(request, _(f"Could not retrieve email: {str(e)}"))
+            return redirect('inbox')
+        
+    except ConnectionError as e:
+        messages.error(request, str(e))
+        return redirect('inbox')
+    except ValueError as e:
+        messages.error(request, str(e))
+        return redirect('inbox')
+    except Exception as e:
+        messages.error(request, _(f"An unexpected error occurred: {str(e)}"))
+        return redirect('inbox')
+    
+    return render(request, 'normieapp/inbox_view.html', context)
+
+@login_required
+@restrict_read_only_users
+def inbox_reply(request, message_id):
+    """
+    Reply to an email message.
+    """
+    from .services.outlook_service import OutlookService
+    
+    # Get email address from query params
+    email_address = request.GET.get('account', OutlookService.ALLOWED_ACCOUNTS[0])
+    
+    # If this is a POST request, process the form data
+    if request.method == 'POST':
+        # Get form data
+        to = request.POST.get('to', '')
+        cc = request.POST.get('cc', '')
+        subject = request.POST.get('subject', '')
+        body = request.POST.get('body', '')
+        
+        # Get attachments
+        attachments = []
+        for file in request.FILES.getlist('attachments'):
+            # Save attachment to temp directory
+            file_path = os.path.join(settings.MEDIA_ROOT, 'normieapp', 'temp_attachments', file.name)
+            os.makedirs(os.path.dirname(file_path), exist_ok=True)
+            
+            with open(file_path, 'wb+') as destination:
+                for chunk in file.chunks():
+                    destination.write(chunk)
+            
+            attachments.append(file_path)
+        
+        try:
+            # Connect to Outlook and send the email
+            outlook = OutlookService()
+            
+            # Try to get the account to check if we're using the fallback
+            try:
+                account = outlook._get_account(email_address)
+                # If the account email is different from requested, we're using fallback
+                if account.SmtpAddress.lower() != email_address.lower():
+                    email_address = account.SmtpAddress
+                    messages.warning(request, _(f"Using fallback email account '{email_address}'."))
+            except Exception:
+                # Will be handled in the main try-except block
+                pass
+            
+            success = outlook.send_email(
+                email_address=email_address,
+                to=to,
+                cc=cc,
+                subject=subject,
+                body=body,
+                attachments=attachments
+            )
+            
+            # Clean up temp attachments
+            for attachment in attachments:
+                try:
+                    os.remove(attachment)
+                except:
+                    pass
+            
+            if success:
+                messages.success(request, _('Email sent successfully.'))
+                return redirect('inbox')
+            else:
+                messages.error(request, _('Failed to send email.'))
+        
+        except Exception as e:
+            messages.error(request, f"An error occurred: {str(e)}")
+    
+    # Create the reply form
+    context = {
+        'page_title': _('Reply to Email'),
+        'email_address': email_address,
+        'allowed_accounts': OutlookService.ALLOWED_ACCOUNTS,
+        'is_reply': True,
+    }
+    
+    try:
+        # Connect to Outlook and get the original email
+        outlook = OutlookService()
+        
+        # Try to get the account to check if we're using the fallback
+        using_fallback = False
+        original_email = email_address
+        
+        try:
+            account = outlook._get_account(email_address)
+            # If the account email is different from requested, we're using fallback
+            if account.SmtpAddress.lower() != email_address.lower():
+                using_fallback = True
+                context['email_address'] = account.SmtpAddress
+                context['using_fallback'] = True
+                context['original_email'] = original_email
+                email_address = account.SmtpAddress
+                messages.warning(request, _(f"Using fallback email account '{email_address}' because '{original_email}' was not found."))
+        except Exception:
+            # Will be handled in the main try-except block
+            pass
+        
+        email = outlook.get_email(email_address, message_id)
+        
+        if not email:
+            messages.error(request, _('Original email not found.'))
+            return redirect('inbox')
+        
+        # Prepare reply fields
+        context['to'] = email.sender_email
+        context['subject'] = f"RE: {email.subject}"
+        
+        # Prepare reply body with original message
+        reply_body = f"\n\n\n-----Original Message-----\n"
+        reply_body += f"From: {email.sender}\n"
+        reply_body += f"Sent: {email.received_time}\n"
+        reply_body += f"To: {email.to}\n"
+        
+        if email.cc:
+            reply_body += f"Cc: {email.cc}\n"
+            
+        reply_body += f"Subject: {email.subject}\n\n"
+        reply_body += email.body
+        
+        context['body'] = reply_body
+        
+    except Exception as e:
+        messages.error(request, f"An error occurred: {str(e)}")
+        return redirect('inbox')
+    
+    return render(request, 'normieapp/inbox_compose.html', context)
+
+@login_required
+@restrict_read_only_users
+def inbox_forward(request, message_id):
+    """
+    Forward an email message.
+    """
+    from .services.outlook_service import OutlookService
+    
+    # Get email address from query params
+    email_address = request.GET.get('account', OutlookService.ALLOWED_ACCOUNTS[0])
+    
+    # If this is a POST request, process the form data
+    if request.method == 'POST':
+        # Get form data
+        to = request.POST.get('to', '')
+        cc = request.POST.get('cc', '')
+        subject = request.POST.get('subject', '')
+        body = request.POST.get('body', '')
+        
+        # Get attachments
+        attachments = []
+        for file in request.FILES.getlist('attachments'):
+            # Save attachment to temp directory
+            file_path = os.path.join(settings.MEDIA_ROOT, 'normieapp', 'temp_attachments', file.name)
+            os.makedirs(os.path.dirname(file_path), exist_ok=True)
+            
+            with open(file_path, 'wb+') as destination:
+                for chunk in file.chunks():
+                    destination.write(chunk)
+            
+            attachments.append(file_path)
+        
+        # Get original attachments to forward
+        original_attachments = request.POST.getlist('original_attachments')
+        attachments.extend(original_attachments)
+        
+        try:
+            # Connect to Outlook and send the email
+            outlook = OutlookService()
+            
+            # Try to get the account to check if we're using the fallback
+            try:
+                account = outlook._get_account(email_address)
+                # If the account email is different from requested, we're using fallback
+                if account.SmtpAddress.lower() != email_address.lower():
+                    email_address = account.SmtpAddress
+                    messages.warning(request, _(f"Using fallback email account '{email_address}'."))
+            except Exception:
+                # Will be handled in the main try-except block
+                pass
+            
+            success = outlook.send_email(
+                email_address=email_address,
+                to=to,
+                cc=cc,
+                subject=subject,
+                body=body,
+                attachments=attachments
+            )
+            
+            # Clean up temp attachments (but not original attachments)
+            for attachment in attachments:
+                if attachment not in original_attachments:
+                    try:
+                        os.remove(attachment)
+                    except:
+                        pass
+            
+            if success:
+                messages.success(request, _('Email forwarded successfully.'))
+                return redirect('inbox')
+            else:
+                messages.error(request, _('Failed to forward email.'))
+        
+        except Exception as e:
+            messages.error(request, f"An error occurred: {str(e)}")
+    
+    # Create the forward form
+    context = {
+        'page_title': _('Forward Email'),
+        'email_address': email_address,
+        'allowed_accounts': OutlookService.ALLOWED_ACCOUNTS,
+        'is_forward': True,
+    }
+    
+    try:
+        # Connect to Outlook and get the original email
+        outlook = OutlookService()
+        
+        # Try to get the account to check if we're using the fallback
+        using_fallback = False
+        original_email = email_address
+        
+        try:
+            account = outlook._get_account(email_address)
+            # If the account email is different from requested, we're using fallback
+            if account.SmtpAddress.lower() != email_address.lower():
+                using_fallback = True
+                context['email_address'] = account.SmtpAddress
+                context['using_fallback'] = True
+                context['original_email'] = original_email
+                email_address = account.SmtpAddress
+                messages.warning(request, _(f"Using fallback email account '{email_address}' because '{original_email}' was not found."))
+        except Exception:
+            # Will be handled in the main try-except block
+            pass
+        
+        email = outlook.get_email(email_address, message_id)
+        
+        if not email:
+            messages.error(request, _('Original email not found.'))
+            return redirect('inbox')
+        
+        # Prepare forward fields
+        context['subject'] = f"FW: {email.subject}"
+        
+        # Prepare forward body with original message
+        forward_body = f"\n\n\n-----Original Message-----\n"
+        forward_body += f"From: {email.sender}\n"
+        forward_body += f"Sent: {email.received_time}\n"
+        forward_body += f"To: {email.to}\n"
+        
+        if email.cc:
+            forward_body += f"Cc: {email.cc}\n"
+            
+        forward_body += f"Subject: {email.subject}\n\n"
+        forward_body += email.body
+        
+        context['body'] = forward_body
+        
+        # Get original attachments
+        if email.attachments:
+            context['original_attachments'] = email.attachments
+        
+    except Exception as e:
+        messages.error(request, f"An error occurred: {str(e)}")
+        return redirect('inbox')
+    
+    return render(request, 'normieapp/inbox_compose.html', context)
+
+@csrf_exempt
+@restrict_read_only_users
+def inbox_delete_message(request, message_id):
+    """
+    Delete a specific email message.
+    """
+    from .services.outlook_service import OutlookService
+    
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'message': 'Invalid request method'})
+    
+    # Get email address from request
+    try:
+        data = json.loads(request.body)
+        email_address = data.get('email_address', OutlookService.ALLOWED_ACCOUNTS[0])
+    except:
+        email_address = request.POST.get('account', OutlookService.ALLOWED_ACCOUNTS[0])
+    
+    try:
+        # Connect to Outlook and delete the email
+        outlook = OutlookService()
+        success = outlook.delete_email(email_address, message_id)
+        
+        if success:
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'message': 'Failed to delete email'})
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': str(e)})
+
+@csrf_exempt
+@restrict_read_only_users
+def inbox_delete(request):
+    """
+    Delete multiple email messages.
+    """
+    from .services.outlook_service import OutlookService
+    
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'error': 'Invalid request method'})
+    
+    # Get email IDs and account from request
+    email_ids = request.POST.getlist('email_ids[]') or json.loads(request.POST.get('email_ids', '[]'))
+    email_address = request.POST.get('account', OutlookService.ALLOWED_ACCOUNTS[0])
+    
+    if not email_ids:
+        return JsonResponse({'success': False, 'error': 'No emails selected'})
+    
+    try:
+        # Connect to Outlook and delete the emails
+        outlook = OutlookService()
+        deleted_count = 0
+        errors = []
+        
+        for email_id in email_ids:
+            try:
+                success = outlook.delete_email(email_address, email_id)
+                if success:
+                    deleted_count += 1
+                else:
+                    errors.append(f"Failed to delete email {email_id}")
+            except Exception as e:
+                errors.append(f"Error deleting email {email_id}: {str(e)}")
+        
+        if deleted_count == len(email_ids):
+            return JsonResponse({'success': True, 'count': deleted_count})
+        elif deleted_count > 0:
+            return JsonResponse({
+                'success': True,
+                'partial': True,
+                'count': deleted_count,
+                'total': len(email_ids),
+                'errors': errors
+            })
+        else:
+            return JsonResponse({'success': False, 'error': 'Failed to delete any emails', 'errors': errors})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
+
+@csrf_exempt
+@restrict_read_only_users
+def inbox_categorize_message(request, message_id):
+    """
+    Apply a category to a specific email message.
+    """
+    from .services.outlook_service import OutlookService
+    
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'message': 'Invalid request method'})
+    
+    # Get email address and category from request
+    try:
+        data = json.loads(request.body)
+        email_address = data.get('email_address', OutlookService.ALLOWED_ACCOUNTS[0])
+        category = data.get('category', '')
+    except:
+        email_address = request.POST.get('account', OutlookService.ALLOWED_ACCOUNTS[0])
+        category = request.POST.get('category', '')
+    
+    try:
+        # Connect to Outlook and categorize the email
+        outlook = OutlookService()
+        success = outlook.categorize_email(email_address, message_id, category)
+        
+        if success:
+            return JsonResponse({'success': True})
+        else:
+            return JsonResponse({'success': False, 'message': 'Failed to categorize email'})
+    except Exception as e:
+        return JsonResponse({'success': False, 'message': str(e)})
+
+@csrf_exempt
+@restrict_read_only_users
+def inbox_categorize(request):
+    """
+    Apply a category to multiple email messages.
+    """
+    from .services.outlook_service import OutlookService
+    
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'error': 'Invalid request method'})
+    
+    # Get email IDs, account, and category from request
+    email_ids = request.POST.getlist('email_ids[]') or json.loads(request.POST.get('email_ids', '[]'))
+    email_address = request.POST.get('account', OutlookService.ALLOWED_ACCOUNTS[0])
+    category = request.POST.get('category', '')
+    
+    if not email_ids:
+        return JsonResponse({'success': False, 'error': 'No emails selected'})
+    
+    try:
+        # Connect to Outlook and categorize the emails
+        outlook = OutlookService()
+        categorized_count = 0
+        errors = []
+        
+        for email_id in email_ids:
+            try:
+                success = outlook.categorize_email(email_address, email_id, category)
+                if success:
+                    categorized_count += 1
+                else:
+                    errors.append(f"Failed to categorize email {email_id}")
+            except Exception as e:
+                errors.append(f"Error categorizing email {email_id}: {str(e)}")
+        
+        if categorized_count == len(email_ids):
+            return JsonResponse({'success': True, 'count': categorized_count})
+        elif categorized_count > 0:
+            return JsonResponse({
+                'success': True,
+                'partial': True,
+                'count': categorized_count,
+                'total': len(email_ids),
+                'errors': errors
+            })
+        else:
+            return JsonResponse({'success': False, 'error': 'Failed to categorize any emails', 'errors': errors})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': str(e)})
+
+@login_required
+@restrict_read_only_users
+def inbox_compose(request):
+    """
+    Compose a new email message.
+    """
+    from .services.outlook_service import OutlookService
+    
+    # Get email address from query params
+    email_address = request.GET.get('account', OutlookService.ALLOWED_ACCOUNTS[0])
+    
+    # If this is a POST request, process the form data
+    if request.method == 'POST':
+        # Get form data
+        to = request.POST.get('to', '')
+        cc = request.POST.get('cc', '')
+        bcc = request.POST.get('bcc', '')
+        subject = request.POST.get('subject', '')
+        body = request.POST.get('body', '')
+        importance = int(request.POST.get('importance', 1))
+        
+        # Get attachments
+        attachments = []
+        for file in request.FILES.getlist('attachments'):
+            # Save attachment to temp directory
+            file_path = os.path.join(settings.MEDIA_ROOT, 'normieapp', 'temp_attachments', file.name)
+            os.makedirs(os.path.dirname(file_path), exist_ok=True)
+            
+            with open(file_path, 'wb+') as destination:
+                for chunk in file.chunks():
+                    destination.write(chunk)
+            
+            attachments.append(file_path)
+        
+        try:
+            # Connect to Outlook and send the email
+            outlook = OutlookService()
+            
+            # Try to get the account to check if we're using the fallback
+            try:
+                account = outlook._get_account(email_address)
+                # If the account email is different from requested, we're using fallback
+                if account.SmtpAddress.lower() != email_address.lower():
+                    email_address = account.SmtpAddress
+                    messages.warning(request, _(f"Using fallback email account '{email_address}'."))
+            except Exception:
+                # Will be handled in the main try-except block
+                pass
+            
+            # Check if we're saving as draft
+            if 'save_draft' in request.POST:
+                success = outlook.save_draft(
+                    email_address=email_address,
+                    to=to,
+                    cc=cc,
+                    bcc=bcc,
+                    subject=subject,
+                    body=body,
+                    attachments=attachments,
+                    importance=importance
+                )
+                
+                if success:
+                    messages.success(request, _('Email saved as draft.'))
+                    return redirect('inbox')
+                else:
+                    messages.error(request, _('Failed to save draft.'))
+            else:
+                # Send the email
+                success = outlook.send_email(
+                    email_address=email_address,
+                    to=to,
+                    cc=cc,
+                    bcc=bcc,
+                    subject=subject,
+                    body=body,
+                    attachments=attachments,
+                    importance=importance
+                )
+                
+                # Clean up temp attachments
+                for attachment in attachments:
+                    try:
+                        os.remove(attachment)
+                    except:
+                        pass
+                
+                if success:
+                    messages.success(request, _('Email sent successfully.'))
+                    return redirect('inbox')
+                else:
+                    messages.error(request, _('Failed to send email.'))
+        
+        except Exception as e:
+            messages.error(request, f"An error occurred: {str(e)}")
+    
+    # Create the compose form
+    context = {
+        'page_title': _('Compose Email'),
+        'email_address': email_address,
+        'allowed_accounts': OutlookService.ALLOWED_ACCOUNTS,
+    }
+    
+    try:
+        # Try to get the account to check if we're using the fallback
+        outlook = OutlookService()
+        using_fallback = False
+        original_email = email_address
+        
+        try:
+            account = outlook._get_account(email_address)
+            # If the account email is different from requested, we're using fallback
+            if account.SmtpAddress.lower() != email_address.lower():
+                using_fallback = True
+                context['email_address'] = account.SmtpAddress
+                context['using_fallback'] = True
+                context['original_email'] = original_email
+                email_address = account.SmtpAddress
+                messages.warning(request, _(f"Using fallback email account '{email_address}' because '{original_email}' was not found."))
+        except Exception:
+            # Will be handled in the main try-except block
+            pass
+    except Exception as e:
+        messages.error(request, f"An error occurred: {str(e)}")
+    
+    return render(request, 'normieapp/inbox_compose.html', context)
+
+def open_request(request):
+    """
+    Open Request page view - public access for all users including guests.
+    Handles both GET (display form) and POST (submit form) requests.
+    """
+    if request.method == 'POST':
+        try:
+            import json
+            data = json.loads(request.body)
+            
+            # Validate required fields
+            required_fields = [
+                'field_2a', 'field_2b', 'field_2c', 'field_2d', 'field_3',
+                'field_5', 'field_6', 'field_7', 'field_8', 'field_9',
+                'field_10', 'field_11', 'field_12a', 'field_12b', 'field_14'
+            ]
+            
+            missing_fields = []
+            for field in required_fields:
+                if not data.get(field):
+                    missing_fields.append(field)
+            
+            if missing_fields:
+                return JsonResponse({
+                    'success': False,
+                    'message': f'Required fields missing: {", ".join(missing_fields)}'
+                })
+            
+            # Generate Antragnummer (XXX/YYYY format)
+            from datetime import datetime
+            current_year = datetime.now().year
+            
+            # For now, we'll simulate auto-increment logic
+            # In a real implementation, this would query the database for the next number
+            next_number = 1  # This would be calculated from database
+            antragnummer = f"{next_number:03d}/{current_year}"
+            
+            # Print form data to console
+            print("\n" + "="*80)
+            print("NEW OPEN REQUEST SUBMITTED")
+            print("="*80)
+            print(f"Antragnummer: {antragnummer}")
+            print(f"TKZ: {data.get('tkz', 'Auto-generated')}")
+            print("\nApplicant Information:")
+            print(f"  2a - Name, Vorname: {data.get('field_2a', '')}")
+            print(f"  2b - Kostenstelle: {data.get('field_2b', '')}")
+            print(f"  2c - Abteilung: {data.get('field_2c', '')}")
+            print(f"  2d - E-Mail: {data.get('field_2d', '')}")
+            print(f"  3  - Telefon: {data.get('field_3', '')}")
+            print(f"  4  - Projektname/Projektnummer: {data.get('field_4', '')}")
+            print(f"  5  - Triebwerk: {data.get('field_5', '')}")
+            print(f"  6  - Bereich: {data.get('field_6', '')}")
+            print(f"  7  - Datum: {data.get('field_7', '')}")
+            print(f"  8  - Benötigtes Datum: {data.get('field_8', '')}")
+            print(f"  9  - Verwendungszweck: {data.get('field_9', '')}")
+            print(f"  10 - Benennung des Teils/Stoffes: {data.get('field_10', '')}")
+            print(f"  11 - Lieferant: {data.get('field_11', '')}")
+            print(f"  12a- Teilenummer/Typbezeichnung: {data.get('field_12a', '')}")
+            print(f"  12b- Menge: {data.get('field_12b', '')}")
+            print(f"  13 - Bemerkungen: {data.get('field_13', '')}")
+            print(f"  14 - Dringlichkeit: {data.get('field_14', '')}")
+            print(f"  15a- SAP-Material: {data.get('field_15a', '')}")
+            print(f"  15b- Lagerbestand: {data.get('field_15b', '')}")
+            print(f"  16 - Gültigkeitsdauer: {data.get('field_16', '')}")
+            print(f"  17a- Lagerfähigkeit: {data.get('field_17a', '')}")
+            print(f"  17b- Lagerbedingungen: {data.get('field_17b', '')}")
+            print(f"  17c- Entsorgung: {data.get('field_17c', '')}")
+            print(f"  18 - Einsatzort: {data.get('field_18', '')}")
+            print(f"  19 - Sicherheitsdatenblatt beiliegend: {data.get('field_19', '')}")
+            print(f"  20 - Alternativprodukt: {data.get('field_20', '')}")
+            print(f"  21 - Verwendung seit: {data.get('field_21', '')}")
+            print("="*80)
+            print("Note: This is a console output only. No database or PDF operations performed yet.")
+            print("="*80 + "\n")
+            
+            return JsonResponse({
+                'success': True,
+                'message': 'Antrag erfolgreich eingereicht!',
+                'antragnummer': antragnummer
+            })
+            
+        except json.JSONDecodeError:
+            return JsonResponse({
+                'success': False,
+                'message': 'Invalid JSON data'
+            })
+        except Exception as e:
+            print(f"Error processing open request: {str(e)}")
+            return JsonResponse({
+                'success': False,
+                'message': 'Internal server error'
+            })
+    
+    # GET request - display the form
+    context = {
+        'page_title': _('Open Request'),
+        'description': _('Submit a request for materials, chemicals, or support - accessible to all users'),
+    }
+    return render(request, 'normieapp/open_request.html', context)
+

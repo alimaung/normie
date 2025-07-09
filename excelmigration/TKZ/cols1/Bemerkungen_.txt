@@ -1,0 +1,1192 @@
+"Miller Multifunktions- Auffangweste (EUR) Größe M"nicht mehr benötigt;
+(2-Komponenten-Pulver-Flüssigkeits-System), Flüssigkeit -> siehe TKZ 01044309
+(2-Komponenten-Pulver-Flüssigkeits-System), Flüssigkeit -> siehe TKZ 01044310
+(2-Komponenten-Pulver-Flüssigkeits-System), Flüssigkeit -> siehe TKZ 01044311
+(2-Komponenten-Pulver-Flüssigkeits-System), Flüssigkeit -> siehe TKZ 01044312
+(2-Komponenten-Pulver-Flüssigkeits-System), Pulver -> siehe TKZ 01044295
+(2-Komponenten-Pulver-Flüssigkeits-System), Pulver -> siehe TKZ 01044296
+(2-Komponenten-Pulver-Flüssigkeits-System), Pulver -> siehe TKZ 01044297
+(2-Komponenten-Pulver-Flüssigkeits-System), Pulver -> siehe TKZ 01044298
+(AVA 0006-457) Das Formblatt ist für Dokumente und anderes anzuwenden, für welches keine Archivverpflichtung besteht.
+(CoMat Ref.: 10-078)
+(Ellen Binks ist verantwortlich, 2013-03-07)
+0,8mm Dicke
+010
+01042963
+01043231
+01043232
+01043244
+01043289 wurde gecancelled
+01043396 wurde vom Antragsteller am 11.01.2019 gecancelled
+04.01.2024: Nachträgliche Info von Tatjana Roettger: die ESID Nummer 01043947 wurde für Aero Gearbox reserviert, es wurde dann aber mit dem ESID Autor vereinbart, dass wir auch weiterhin die Nummer 01042606 benutzen.
+04.04.2024 nachträgliche Info von Tatjana Roettger: die Nummer 01043882 wurde angefragt, aber nicht benutzt, da entschieden wurde, die existierende Nummer 01043476 für Parker Irvine VC201516 weiter zu nutzen. (siehe Email vom 10.04.2024 von Tatjana Roettger unter Spalte K)
+04.04.2024: da Produkt nicht mehr Lieferbar, siehe Antrag 049/2024 für Nachfolgeprodukt über neue TKZ 01044138.
+05.02.2025: da der Hersteller Fluorchemie-Gruppe des bisherigen Produkts insolvent ist, siehe Ersatzprodukt unter TKZ 01044251
+05.11.2021: Das Produkt soll durch TKZ 01043775
+ersetzt werden (wird nicht mehr produziert).
+1 Karton;20kg mit 16 Tüten
+1 Kg  (Verduenner fuer 10003753)
+1 Liter
+1 Liter Flasche
+1 Liter Grundmaterial
+1 kg
+1,5 ML
+1,5mm Dicke
+10 Stück / Karton
+10,7 m³, aufgrund eines SAP-Problems von 10003315 umbenummert
+ACHTUNG: richtig wäre: Benennung/Kategorie: Kuehlmittel und Titel (Produktname): Argon 5.0, verdichtet!
+100 x 100 x 10 mm
+10ml Glas
+10ml Packung
+10x10 Stück / Karton
+110 x 60 x 30 mm
+120 x 120 x 20 mm
+1360kg Gebinde, geändert 2013-06-24
+140 x 140 x 20 mm
+160 x 110 x 40 mm
+170 x 120 x 20 mm
+170 x 170 x 20 mm
+18 kg
+180 x 110 x 50 mm
+180g -> SAP 150 ml Kartusche = 1 NPT
+Andere Gebinde, siehe TKZ 10003399 (250 ml Kit) und TKZ 01043954 (428g (355ml))
+19.05.2023: Produkt soll  durch NYCO GREASE GN 25013 (TKZ 01043993) ersetzt werden
+1Pack à 50 Tabletten (0,5g/Tablette).
+Bitte beachten: Produkt geliefert als Blister Verpackung. Anderes Gebinde mit neuer Verpackung als Dose am 24.07.2023 unter TKZ 01044028 angelegt.
+1kg
+1kg Dose
+1kg Packung
+1l
+2 kg
+20 Liter
+20 Liter Kanister
+20 Liter Kanister; Ersatz für für TKZ 10003834; 2012-11-28
+20 x 20 x 10 mm
+20.06.2023: nachträgliche Info von Tatjan Roettger: diese TKZ wurde für RR UK vergeben ; parallel wurde aufgrund einer Anfrage aus RRD die TKZ 01043476 vergeben -> am Ende wurde aber ein einziges ESID Dokument fertiggestellt, nur für den Vendor Code 201516 (VC 203750 wurde gelöscht), lediglich mit Verweis im Dokument auf die jeweilige TKZ für RR UK & für RRD (siehe Email vom 20.06.2023 von Tatjana Roettger unter Spalte K)
+20.06.2023: nachträgliche Info von Tatjana Roettger: diese TKZ wurde für RRD vergeben ; parallel wurde aufgrund einer Anfrage aus RR UK die TKZ 01043500 vergeben -> am Ende wurde aber ein einziges ESID Dokument fertiggestellt, nur für den Vendor Code 201516 (VC 203750 wurde gelöscht), lediglich mit Verweis im Dokument auf die jeweilige TKZ für RR UK & für RRD (siehe Email vom 20.06.2023 von Tatjana Roettger unter Spalte K)
+200 L
+200 Liter Faß
+200 Paar; Nachfüllpackung für Bilsomat 400
+210 x 160 x 50 mm
+24.01.2024: Anmerkung -> TKZ für OU, Kein Antrag Teile & Stoffe, eine Bestellkarte ist aber unter der TKZ archiviert
+24.01.2024: Anmerkung -> TKZ für OU, kein Antrag Teile & Stoffe, auch keine Bestellkarte archiviert
+25mm Variante siehe TKZ 01043077
+260 x 110 x 30 mm
+27.05.2021: Nach Rücksprache mit Antragsteller, wird diese TKZ doch nicht benutzt und in SAP angelegt. Da Gebinde gleich bleiben kann, wird weiterhin die TKZ 01042888 verwendet.
+27.06.2024: da Produkt nicht mehr lieferbar soll die neue TKZ 01044179 angelegt werden.
+29.01.2024: Alternativstoff -> siehe  01044103 (LOCTITE EA 956 AERO  - Hysol EA956 (2-part) - Epoxy Paste Adhesive)
+30 l; zur pH-Wert Senkung des 10.000 Liter Tanks in der Cleaning Line
+37,5 kg Gasflasche
+3D Filament von Fiberthree Engineering ; andere 3D-Produkte unter TKZ 01043464 & TKZ 01043375 bis 01043377
+3D Filament von Fiberthree Engineering ; andere 3D-Produkte unter TKZ 01043465 & TKZ 01043375 bis 01043377
+3D Filament von Fiberthree Engineering ; siehe auch TKZ 01043464 & 01043465 ; andere 3D-Produkte unter TKZ 01043138 bis 01043147, 01043203 bis 01043209 & 01043367
+400ml Dose
+40ml Packung
+5 Liter
+50 ml
+500 ml Härter
+500ml
+50g Packung.
+Bitte beachten: 12.05.2020 -> Das Produkt ist nicht mehr lieferbar und soll durch das Produkt Kaliumhydrogenphthalat (Artikel-Nr.: 102400) ersetzt werden.
+50ml Tube , Ersatzprodukt für BOSTIK AXIOM 100SA (TKZ 10002028) und BOSTIK AXIOM 100PM (TKZ 01041754)
+5kg Gebinde
+60 x 60 x 30 mm
+70 x 20 x 10 mm
+70 x 50 x 10 mm
+70 x 70 x 20 mm
+80 ml Tube
+90 x 90 x 20 mm
+ACHTUNG:  Kombination aus Farbe (hier) und Härter -> TKZ 01042862
+ACHTUNG:  Kombination aus Farbe -> TKZ 01042861 und Härter (hier)
+ACHTUNG: Produkt mit Präzisierung der Farbe "Rot 13000" läuft unter TKZ 10002350, und "Grün 15000 unter TKZ 01043292
+ACHTUNG: TDB -> Benennung: Schleiffeile flach 8x16x150 mm SC fein K360 (Artikelnummer 4037073000794)
+ACHTUNG: TDB -> selbe Artikelnummer wie TKZ 01043827
+ACHTUNG: TKZ wird am 09.02.2023 wegen Falschanlage (Plant & Kategorie) in SAP stillgelegt und durch die TKZ 01043960 ersetzt
+ACHTUNG: TKZ wird nicht benutzt und ist nicht in SAP angelegt, RRT098306 wird stattdessen benutzt
+ACHTUNG: diese TKZ ersetzt die vorab vergebene TKZ 01043955, die in SAP nicht korrekt angelegt war (Plant & Kategorie nicht passend für die Bestellung)
+ACHTUNG: laut MLC 104 Produktbezeichnung: D125-245 (120)-BT (3.5)
+ADVANCE Tape ZINC OXIDE AT142 TKZ 10003334 (OMat230) ist nicht mehr lieferbar (hatte aber nie einen genehmigten Antrag). 
+Alternative wäre AT121 Rayon Cloth Tape, welches nicht im OMat Katalog & MLC104 geführt wird
+AVA 0068-008
+AVA 0202-522
+AVA0021-868
+AVA0048-205
+AVA0056-711
+AVA0057-485 (GQP P.8.1 )
+AVA0112-134
+AVA0190-401
+AVA0298-915
+AVA0367-784
+AVA0375-797
+AVA0375-823
+Absaugrohr am Spänekübel (Kühlschmierstoff absaugen )
+Abteilung vom Antragsteller im Telefonbuch: OPC-13
+Achtung: Diese TKZ wird nicht verwendet, sondern TKZ 01041831
+Achtung: Diese TKZ wird nicht verwendet, sondern TKZ 01041832
+Achtung: Diese TKZ wird nicht verwendet, sondern TKZ 01042071
+Achtung: diese TKZ wurde für den Antrag die Größe der Pinsel wurde geändert und die alte Größe wird nicht mehr bestellbar sein (bzw. auch nicht mehr nutzbar)
+Activator für PR 143 (01009741)
+Additiv für den zugelassen "Entlacker" Kemstrip 600 (TKZ 01043877)
+Allgemeine TKZ. Siehe für spezielle Ausführungen TKZ 01043261. 01043262 & 01043263
+Als Ersatz für Ardrox 311 (TKZ 10003461) angedacht
+Alte Bezeichnung: "LOCTITE 209125 (PERMATEX FAG6B)", geändert 2013-09-18
+Alte TKZ: 020870VN
+Alte TKZ: 020872VN
+Alte TKZ_ 01041293 (wegen Nummernkollision 07-02-2014). Neue TKZ wurde vergeben
+Alternativ Produkt zu Terostat-63 (TKZ 01041786), da nicht mehr lieferbar.
+Alternative für Scapa 1417 (Scapa 1714 laut Antragsteller) (nicht mehr lieferbar, siehe TKZ 01042333
+Alternative zu TKZ 01041415
+Alternative zu dem TKZ 01007950 (Hexafluorkieselsäure 35%)  für den Bereich Galvanik
+Alternative zum Easyrun 500. (Easyrun 500 wird nicht mehr hergestellt).
+Alternativprodukt zu Graphitfett Aero-Shell-Grease 8 DTD 806 (TKZ 01003877), da nicht mehr lieferbar.
+Alternativprodukt zu TKZ Antrag 023/2004 (TKZ 10004558)
+Alternativprodukt zu TKZ Antrag 024/2004 (TKZ 10004557)
+Am 06.09.2019 angelegt als Ersatz zur TKZ 01043499: MWS ADDITIVE AF 2124 nicht eindeutig bei RR zugelassen -> Produktwechsel zum MWS ADDITIVE AF 2220 vom Antragsteller erwünscht, da hierfür beim Hersteller eine Freigabe in RR UK besteht.
+Andere Dicke (100 μm) siehe TKZ 01043078
+Andere Dicke (150 μm) siehe TKZ 01043389
+Andere Farbe (Rot) siehe TKZ 10002350
+Andere Farbe siehe TKZ 01040734
+Andere Farbe siehe TKZ 01041388
+Andere Farben, siehe TKZ 01043477 & 01043479
+Andere Farben, siehe TKZ 01043477 & 01043698
+Andere Farben, siehe TKZ 01043479 & 01043698
+Andere Größe (23mm), siehe TKZ 01043986
+Andere Größe (25mm), siehe TKZ 01044100
+Andere Größen, siehe 01044236, 01044252, 01044253, 01044254
+Andere Größen, siehe 01044236, 01044252, 01044253, 01044255
+Andere Größen, siehe 01044236, 01044252, 01044254, 01044255
+Andere Größen, siehe 01044236, 01044253, 01044254, 01044255
+Andere Größen, siehe 01044252, 01044253, 01044254, 01044255
+Andere Größen: siehe TKZ 01043245 & 01043354
+Andere Größen: siehe TKZ 01043245 & 01043355
+Anfrage von der Firma Köppern
+Antrag auf Zulassung für OM-210.
+ACHTUNG: diese TKZ wird nicht mehr verwendet, stattdessen schon vorhandene TKZ 01041114 für das Produkt. Aufgrund einer falschen Benennung, bzw. Betitelung  vom Produkt in der TKZ-Liste wurde das Vorhandensein der alten TKZ erst nach Freigabe vom Antrag 002/2016 mit neuer TKZ entdeckt. Diese TKZ wird im Antrag 002/2016 durch gültige TKZ 01041114 korrigiert.
+Antrag bezieht sich auf Größen 7, 8, 9 & 10
+Antrag gilt für den gesamten Standort Dahlewitz
+Antrag gilt für den gesamten Standort Oberursel
+Antrag gilt für folgende Artikelnummer: 40400131 + 3
+06.06.2024: aus Kostengründen soll dieses Produkt durch das Produkt mit der TKZ 01044167 ersetzt werden.
+Antrag gilt für folgende Artikelnummer: 92002333, 92002316, 92002335, 92002336
+Antrag gilt nur für Galvanik / OU
+Antrag soll für OU & DW gelten. Produkt soll unter Umständen das nicht mehr lieferbare Produkt zum Antrag 160/2017 (01043087) ersetzen!
+Antrag wurde als Ersatz für die Anträge 221/2022; 222/2022; 218/2022; 219/2022 und 220/2022 gestellt
+Artikel laut Angebot: Aluminiumplatte 6,1 mm - 3.3214 T651, LN 9073, DAN 26/422 - 200.0 x 200.0 mm - 1 Stück
+Artikel-Nr.: 4640090
+Artikel. Nr. 2212 - SDB: Ethanol vollvergällt min. 69,0 %
+Artikel. Nr. 2294 - SDB: Ethanol vollvergällt > 70 %
+Artikelnummer auf dem Antrag angegeben entspricht bei der Firma Dengler dem Produkt: Gesichts-/Gehörschutzkombination G5V5F1H51 G500 Multisystem (siehe Auszug aus dem Katalog unter "Sonstiges")
+Artikelnummer laut Datenblatt: 1009202
+Artikelnummer: 6101751093
+Auf Anfrage von H&B Stoffe RR Dahlewitz wurde am 19.10.2017 im SAP-Datensatz die Shelf Life Abfrage für diese TKZ im Material Master rausgenommen.
+Auf Wunsch von T. Roettger am 09.10.23 die Bezeichnung geändert.
+Aufbewaren von VE-Wasser (Material HD-Polyethylen )
+Aus Kostengründen soll dieses Produkt das Produkt mit der TKZ 01043253 ersetzen.
+Autor Koenecke, K.
+B50TF205 MESH 120 DMR35-304  GPN7248441
+BITTE BEACHTEN: Gebinde auf dem Antrag 081/2005 war ursprünglich 20kg, wurde da nie bestellt am 08.12.2020 auf Gebinde 5 Liter umgeändert  -> siehe hierzu stillgelegte TKZ 01043683, bzw. Antrag Teile und Stoffe 111/2020
+BS381
+Behandlung von Abwasser aus der Triebwerksreinigung
+Benennung nachträglich präzisiert am 07.11.2018 (siehe Antrag 156/2018). Ursprünglich als SILIKON - Elastosil M 4643 aufgenommen.
+Benennung von BAUTEILAUFNAHME in ABDECKSTOPFEN auf Wunsch von Herrn Riebel am 12.12.2018 umgeschrieben.
+Beschichtungs- /Auflagematerial für die Greifbacken eines Hebelifts
+Betreuer A. Gebel
+Bezeichnung "AR" hinzugefügt 2012-07-03
+Bezeichnung "JF AR" hinzugefügt 2012-07-03
+Bezeichnung geändert 2011-04-13
+Bezeichnung geändert 2011-07-14; früher: 75368-55 B6 (176x125 mm)
+Bezeichnung geändert von "Epoxy-Klebestoff RS 850-940 Zweikomponenten-Kleber" 2013-03-27
+Bezeichnung von Elaston in Arenga geändert, 2011-12-01
+Bitte beachten: Gebinde nachträglich am 09.11.2018 korrigiert (s. Email H&B Stoffe RR DW als Anhang zum Originalantrag 161/2010)
+Bitte beachten: TKZ 01043402 bis 01043415 unterschiedliche Ausführungen vom gleichen Produkt.
+Bitte beachten: für das Produkt sind schon im Jahr 2013 folgende TKZ ohne Anträge Teile & Stoffe vergeben worden: 01041901 (Größe 7), 01041902 (Größe 8), 01041903 (Größe 9), 01041904 (Größe 10) ; für die TKZ 01041901 wurde der Antrag Teile & Stoffe 061/2013 gestellt und am 04.11.2014 storniert. Die jetzige TKZ soll nicht in SAP angelegt werden. Falls über SAP später bestellt werden sollte, müssten speziell für die zu bestellende Größe jeweils eine neue TKZ vergeben werden.
+Bitte beachten: für die Bestellung für das "Gleitschleifen" soll die TKZ 01043112 verwendet werden!
+Bitte beachten: später bekannt als Bonderite S-ST 5668 AERO, da nicht mehr produziert soll durch das Produkt Kemstrip 600 (TKZ 01043877) ersetzt werden (18.05.2022)
+Bitte beachten: Änderung am 17.05.2019: da SAP Datensatz fehlerhaft, soll diese TKZ die TKZ 10002387 ersetztzen (somit soll es nur noch eine TKZ für Oberursel und Dahlewitz geben)!
+CQP-01042626
+CQP-01042691
+CQP-01042692
+CQP-01042709
+CQP-01042849 (alte QP 132)
+CQP-01042850 (alte QP 133)
+CQP-01042851 (alte QP 134)
+CQP-01042934
+CQP-01043264
+CSS13
+Carl Roth GmbH & Co 76185 Karlsruhe
+Ch. Hoffmann Schweisstechnik
+DDQP-01043006
+Da nicht mehr lieferbar siehe Ersatzprodukt unter TKZ 01043212 (06.02.2018) & später (17.12.2019) neuer Antrag für TKZ 01043563
+Da nicht mehr lieferbar, Ersatz durch Artikel-Nr. 9190275 (TKZ 01043242).
+Das Blech wird für für die Herstellung des Rings 0299 2320 für T312 (TORNADO) verwendet
+Das NUOSEPT  MIT-10 soll das Konservierungsmittel PARMETOL MBX (TKZ: 01042164 ) der Firma Schülke & Mayr GmbH ersetzen.
+Das Produkt Schutzbrille Ventura Protector GCV 140 P (angelegt am 15.02.2010) wurde durch das Nachfolgemodell SG760/CA ersetzt (Email von Herrn Thomas Hanf am 02.08.2016).
+Das Produkt soll als Alternative für TKZ 01042552
+verwendet werden (wird nicht mehr produziert).
+Das Produkt wird Ersatz für das nicht mehr lieferbare Produkt Kaliumhydrogenphthalat (Artikel-Nr.: 60357)
+Das Produkt wird Ersatz für das nicht mehr lieferbare Produkt mit der bisherigen Teile-Nr. 01042749 ( KLC Exfoam 8).
+Der Antrag gilt für den kompletten Standort Oberursel.
+Der Antrag gilt für den kompletten Standort Oberursel. Ersatz für Schutzbrille Uvex astroflex 9163.265 blau (TKZ 01042474), da von Uvex nicht mehr lieferbar.
+Der KSS soll beim Lieferanten Präwest zum Einsatz kommen. Idealerweise kann er zeitgleich für die interne Fertigung in Oberursel zugelassen werden.
+Der Kleber besteht aus 2 Komponenten (Part A: Adhesive Sealant, Part B: Catalyst)
+Die Alte Bezeichnung: " G0713 1 1200 TCT"wurde geändert 2013-10-18
+Die Kabelbinder sind am Engine konfiguriert also
+zugelassen und haben im SAP die Teilenummer
+PT2A.
+Die TO-Nummer wurde gemäß der Spezifikation 0160 6074 angepasst. 26.02.2018
+Die bisherigen Mittel Bonderite S-ST 5668 AERO und Bonderite S-AD 5668-3 AERO werden auf Grund des Inhaltsstoffes NMP nicht mehr produziert und müssen ersetzt werden.
+Diese Handschuh sollen komplett die zur Zeit angewendeten weißen Baumwollhandschuh (Antrag 174/2011, TKZ 01041537) ersetzen.
+Grund:                  
+1. Bisherige weiße Baumwollhandschuh erzeugen Abrieb, der beim Rissprüfen (FPI) unter UV-Strahlung sichtbar ist
+2. Neue unbehandelte Baumwollhandschuh sind kostengünstiger
+3. Test der unbehandelten Baumwollhandschuh bei Peter Bockmühl (FPI) und Thomas Weber (EKO Front Drum) waren erfolgreich.
+Dokumentnummer: CQP-01042147
+Dokumentnummer: CQP-01042148
+Dokumentnummer: CQP-01042252
+Dokumentnummer: PQP-01042131
+Dokumentnummer: SPQP-01042129
+Dokumentnummer: SPQP-01042132
+Dokumentnummer: SPQP-01042134
+Dokumentnummer: SPQP-01042135
+Dokumentnummer: SPQP-01042136
+EN ISO 20345/S1
+EN ISO 20345/S2
+EN ISO 20345:2004/S2
+EN ISO 20345:2011/S1
+EN ISO 20345:2011/S2
+EN ISO 20345:2011/S3
+ESID-01043039
+ESID-01043103
+ESID-01043117
+ESID-01043118
+ESID-01043124
+ESID-01043125
+ESID-01043130
+ESID-01043133
+ESID-01043152
+ESID-01043153
+ESID-01043173
+ESID-01043182
+ESID-01043183
+ESID-01043226
+Einbettmittel für Heisseinbettpresse
+Einführung wegen Produktstreichung von Garia 203 M-32 (10001715) durch Houghton.
+Einsatz bei MIC Feuchtwangen (alternativwerkstoff für Kugelstrahlabdeckungen)
+Einsatz beim Lieferanten: Betriebsmittel des Lieferanten NDT-Service. (Stoff wird nicht in OU vorgehalten)
+Entschäumer als Ersatz für den Kühlschmierstoff Hocut 795 B (01042767)
+Erläuterung: ursprünglich beim Antrag als Benennung: Diff Case AS3214-2 or AMS5689 (0.8mm) or Safety Cable (CoMat Ref.: 02-141)
+Erläuterung: ursprünglich beim Antrag als Benennung: JCR-070, QQ-W-423, MS-9226-04, AMS 5687 (Hochtemp, blauer Draht 0.8 mm) (CoMat Ref.: 02-119)
+Erläuterung: ursprünglich beim Antrag als Benennung: MS 20995C32 oder JCR-069 (0,8 MM)
+(CoMat Ref.: 02-147)
+Erläuterung: ursprünglich beim Antrag als Benennung: MS 20995N32 (0,8 MM) (CoMat Ref.: 02-156)
+Erläuterung: ursprünglich beim Antrag als Benennung: Safe-T-Cable® Ferrules, DANIELS F10-1, CoMat 02-289.
+Erläuterung: ursprünglich beim Antrag als Benennung: Safe-T-Cable® Kits, DANIELS C10-118, CoMat 02-284.
+Ersatz TKZ, siehe 01044126
+Ersatz für 01004946 und 10002457
+Ersatz für 01040104 (HEBROWHITE)
+Ersatz für 01040107
+Ersatz für 10002470
+Ersatz für 10003289
+Ersatz für 3M 8835 (keine TKZ in DW) -> siehe TKZ 01007685 & 01041035
+Ersatz für ARAX Lötdraht (siehe TKZ 01043383), da ARAX Lötdraht mit Zusammensetzung Sn60Pb40 nicht mehr hersgestellt wird.
+Ersatz für Abwasserreiniger AR7120 (TKZ01040829) -> identisches Stoff wie AR7120 (Pulverform) aber  in Form des Granulates geliefert.
+Ersatz für Ardrox 3961 (siehe TKZ 10003926)
+Ersatz für Artikel-Nr. 9190315, da nicht mehr lieferbar (TKZ 01042972)
+Ersatz für BONDERITE C-AK 4338 P1 (Reinigungsbad)
+Ersatz für BONDERITE C-AK 4338 P2 (Reinigungsbad)
+Ersatz für BONDERITE C-AK 4781-7 (Reinigungsbad)
+Ersatz für Braycote 248 (TKZ 01044143)
+Ersatz für Castrol MEQQEM COB 8407 H, 10003292
+Ersatz für Chemetall Britemor 447 (TKZ 01040290)
+Ersatz für DPM5948 (Reinigungsbad). Angelegt für Gebinde 200 Liter in SAP -> Gebinde 25 Liter siehe TKZ 01043123 (11.10.2017)
+Ersatz für LN7-1,5m6x6 (01244453); Normkurzbezeichnung korrigiert von ISO2338-1,5M6X6-A1-80, 2012-06-12. Normkurzbezeichnung korrigiert von ISO 2338 - 1,5 m6 x 6 - A1 - 80, 2014-12-05, ÄM0704-99-0045.
+Ersatz für PR 1422 B 1/2 (10004157)
+Ersatz für RLSS 5 (Rösler Abrasivkorn SiC). (TKZ 01042739) -> siehe Antrag 125/2015
+Ersatz für RR-SCH-SC-F244. (TKZ 01040895) -> siehe Antrag 053/2009
+Ersatz für Schleifpapier RRT062156 (siehe Antrag 020/2011), da nicht mehr lieferbar. Bitte beachten: Vorantrag hierzu (204/2019, TKZ 01043549) wurde zwar am 25.11.2019 freigegeben, da Produkt aber auch bald nicht mehr lieferbar, wird der neue Antrag 210/2019 gestellt. Neue TKZ 01043555 wird nur für die interne Verwaltung angelegt und sonst weder benutzt noch in SAP angelegt, sondern stattdessen TKZ RRT118071. Achtung: RRT118071 zwar in SAP vorhanden, Einkaufbestelltext aber nicht vorhanden (18.11.2019)! -> siehe auch TKZ 01043029 zu dem für den selben Zweck gestellten Vorgängertantrag  091/2017, der bis heute (18.11.2019) wegen fehlender Zulassung nicht freigegeben werden konnte.
+Ersatz für Schleifpapier RRT062156 (siehe Antrag 020/2011), da nicht mehr lieferbar. Neue TKZ wird nur für die interne Verwaltung angelegt und sonst weder benutzt noch in SAP angelegt, sondern stattdessen TKZ RRT118071. Achtung: RRT118071 zwar in SAP vorhanden, Einkaufbestelltext aber nicht vorhanden (15.11.2019)! -> siehe auch TKZ 01043029 zu dem für den selben Zweck gestellten Vorgängertantrag  091/2017, der bis heute (15.11.2019) wegen fehlender Zulassung nicht freigegeben werden konnte.
+Bitte beachten: diese TKZ wurde für den Antrag 202/2019 angelegt, der mittlerweile am 18.11.2019 storniert und durch den Antrag 204/2019  (TKZ 01043549) ersetzt wurde.
+Ersatz für Schleifpapier RRT062156 (siehe Antrag 020/2011), da nicht mehr lieferbar. Neue TKZ wird nur für die interne Verwaltung angelegt und sonst weder benutzt noch in SAP angelegt, sondern stattdessen TKZ RRT118071. Achtung: RRT118071 zwar in SAP vorhanden, Einkaufbestelltext aber nicht vorhanden (18.11.2019)! -> siehe auch TKZ 01043029 zu dem für den selben Zweck gestellten Vorgängertantrag  091/2017, der bis heute (18.11.2019) wegen fehlender Zulassung nicht freigegeben werden konnte. Diese TKZ 01043549 wird für den Antrag 204/2019 vergeben, der den am 18.11.2019 stornierten Antrag 202/2019 ersetzen soll.
+Ersatz für TKZ 01002049
+Ersatz für TKZ 01040769 (nicht mehr lieferbar)
+Ersatz für TKZ 01041757 (nicht mehr lieferbar)
+Ersatz für TKZ 10002011
+ACHTUNG STILLLEGUNG: da für dasselbe Produkt zwei TKZ existieren wurde die TKZ 01041640 am 02.01.2023 aus der automatischen Disposition genommen und auf Status ND gesetzt. Stattdessen soll in Zukunft die TKZ 10002831 verwendet werden.
+Ersatz für TKZ 10002673
+Ersatz für TKZ 10003256 (Produkt wird nicht mehr hergestellt)
+Ersatz für TKZ 10003719
+Ersatz für TKZ 10003901
+Ersatz für Zylinderstift LN7-4M6x14; 01243721; Normkurzbezeichnung korrigiert von ISO2338-4M6X14-A1-80, 2012-06-12; Normkurzbezeichnung geändert von ISO 2338 - 4 m6 x 14 - A1 - 80, 2014-10-08
+Ersatz für Zylinderstift LN7-8M6x24; 01244278; Normkurzbezeichnung korrigiert von ISO 2338 - 8 m6 x 24 - A1 - 80, 2014-12-05
+Ersatz für bisherige TKZ 10003602.
+Produkt nicht mehr lieferbar -> soll durch KLC Exfoam 8a ersetzt werden (siehe TKZ 01043642)
+Ersatz für das Konservierungsmittel Parmetol MBX (Anträge 205/2013 (TKZ 01042164) & 130/2017 (TKZ 01043112)).
+Ersatz für das Produkt Aeroshell Grease 16 (TKZ 01009266)
+Ersatz für das bisherige Produkt von der Firma Henkel, welches nicht mehr produziert wird: Bonderite S-ST 5668 AERO (früher TURCO 5668 -> TKZ 01009189)
+Ersatz für nicht mehr lieferbares Tape Scapa 1417 TKZ 01042333, Produkt nicht genehmigt da chlorhaltig. Neuantrag abwarten um neue TKZ zu referenzieren.
+Ersatz für: 10003521 (AN20)
+Ersatz zu Vinbrite A6 (TKZ 10003462), da der Hersteller seine Produktion eingestellt hat.
+Ersatz zur TKZ 01044082 (Antrag storniert)
+Ersatzmaterial für  Glaslot Nr.G018-120a TKZ 01041547
+Ersatzmaterial siehe X0770174 Frit (TKZ 01043425) angelegt am 25.02.2019
+Ersatzprodukt für TKZ 01003636 (Antrag 042/2003), da der Hersteller Fluorchemie-Gruppe des bisherigen Produkts insolvent ist.
+Ersatzprodukt für TKZ: 01040565
+Ersatzprodukt für das MOBIL DTE 21 (TKZ 01009452).
+Neue TKZ für das Gebinde 208 Liter Faß angelegt ; anderes Gebinde (20 Liter) siehe unter TKZ 01041826 (20.12.2012)
+Ersatzprodukt für die vorherige TKZ 01043587
+Ersatzprodukt siehe TKZ 01043746
+Ersatzstoff für Abdruckmasse "Provil Novo Putty" TKZ 01040445
+Ersatzstoff für Abdruckmasse "Provil Novo Putty" TKZ 01040445.
+Eine einzige TKZ, da laut Hersteller Basis und Katalysator innerhalb einer einzigen Packung geliefert werden.
+Ersatzstoff für Aktivkohle KS830A / TKZ 01040255.
+Bitte beachten: Mangelnde Qualität -> soll durch TKZ 01043428 ersetzt werden (28.02.2019).
+Ersatzstoff für P354 (REACH! nicht länger freigegeben!) -> siehe TKZ 10002010 & 10002013
+Ersatzstoff für TKZ.01042811
+Ersatzstoff und Empfehlung von Henkel da CHROME III haltig. Wird als Nachfolgeprodukt von BONDERITE-M-CR-ALCRM 1200BR AERO PART A&B, TKZ10003217, 059/2021 empfohlen, da dieserStoff im Moment nur bis max. 21-09-2024 benutzt werden darf, CHROME VI haltig.
+Ersetzt TKZ 01040108
+Ersetzt TKZ 10002843. Grund: ist der fehlende Qualitätsreiter in SAP bei der alten TKZ und damit verbundene Probleme bei der Warenkontrolle
+Ersetzt bei gleicher Anwendung TKZ 01041117 (Wasserstoffperoxid 35% nicht Spez. DIN EN902 konform)
+Es handelt sich hierbei um ein Werkzeug, welches auch bei N3 in Arnstadt verwendet wird. Im  XWB Bereich wird momentan ein Kunststoffschaber verwendet, welche nicht optimal sind und keine mehrmalige Verwendung zulassen, ein Wechsel zu den Plexiglasschabern ist eine Verbesserung. Zu Beginn sollten 100Stk. bestellt werden. Sollte andere Bereich auch den Spachtel verwenden wollen, sollte ein gesonderter Antrag gestellt werden, um den Mindestbestand zu erhöhen.
+Es wurde doch die alte Nummer verwenden, da es ist die gleiche VC 202159. Für diese DDQP Nummer existiert kein Dokument. Die DDQP Nummer ist die alte 01042442
+Es wurde versehentlich in SAP die TKZ 01044165 für den Stoff "AeroShell Calibrating Fluid 2 (US)" angelegt. TKZ wurde abgeändert und diese TKZ 01044163 wird somit nicht weiter verwendet.
+Fa. ATLAS Schuhfabrik Frische Luft 159 44319 Dortmund
+Fa. Eugen Noelle
+Fa. Innospec
+Fachabteilung bestellt direkt. Keine Katalog Verfügbarkeit. Keine PSA-Schrank verfügbarkeit
+Formular in Word Datei Neu
+Fremdteilenummer: 017258775-020015-869
+Fremdteilenummer: 21874.(Referenzpunkt für optische Messung)
+Früher 10002947 ( Von Indianapolis überschrieben)
+Für Material Inconel 718 und Titan 6-2-4-6. Besatzmaterial SIC K120x0.6
+Für die allegemeine Bestellung vom Produkt (größenunabhängig) wurde die TKZ 01043424 am 22.02.2019 angelegt (Keine Anlage in SAP, da externe Bestellung für die Automaten)
+Gebinde 0,4 Liter. Anderes Gebinde (1 Barrel) siehe TKZ 01043475
+Gebinde 1 Barrel. Anderes Gebinde (0,4 Liter) siehe TKZ 01042968
+Gebinde 1 Liter (Gebinde 5 Liter, siehe TKZ 01041767)
+Gebinde 1Barrel (Faß) 204Liter -> siehe Neue TKZ 01043419 für Gebinde 946ml Dosen.
+Gebinde 20 Liter ; anderes Gebinde 208 Liter Faß siehe unter TKZ 01043872 (13.05.2022)
+Gebinde 30ml Dose im Antrag 149/2012, Gebinde: 1 pt = 0,47 Liter laut SAP.
+Anderes Gebinde (), siehe TKZ 01044136 (Box of 10x 10g)
+Gebinde 4 Liter. Anderes Gebinde (400 ml) unter TKZ 01043506
+Gebinde 400 ml. Anderes Gebinde (4 Liter), siehe TKZ 01043875.
+Bitte beachten: Produktbezeichnung (Zusatz RON014793-01 wurde aufgrund der Änderungen und Korrekturen zum Antrag -> Neuantrag durch Julia Striegler am 04.09.2019, entsprechend aktualisiert)!
+Gebinde 428g (355ml)
+Andere Gebinde: TKZ 01041451 (150 ml Kartusche = 1 NPT), TKZ 10003399 (250 ml Kit)
+Gebinde 5 Liter. Anderes Gebinde (1 L) unter TKZ 10003013 (Antrag 47/2022)
+Gebinde Box of 10x 10g.
+Anderes Gebinde, siehe TKZ 01041796 (Gebinde 30ml Dose im Antrag 149/2012, Gebinde: 1 pt = 0,47 Liter laut SAP)
+Gebinde: 1 Liter Dose
+Siehe 01042925 gleiches Produkt mit anderem Gebinde (Semkit 654 -> 100 cm3 Kartusche )
+Gebinde: 1l; aufgrund von Nummernkollision in SAP umbenummert von 10003711
+Gebinde: 2OZ=59ml 
+anderes Gebinde, siehe TKZ 01042405
+Gebinde: 8OZ=236ml 
+anderes Gebinde, siehe TKZ 01044285
+Gebinde: Semkit 654 -> 100 cm3 Kartusche
+Siehe 01041761 gleiches Produkt mit anderem Gebinde (1 Liter Dose)
+Gebinde: hier 1275 kg (1000 L) ; für anderes Gebinde 26 kg Kanister (20 L) , siehe TKZ 01044144
+General Market-Variante von EC3524
+Gleiches Produkt/TDB wie TKZ 01041449 mit dem Zusatz HS (high sheer)daher neue TKZ
+Grabenhorst & Vetterlein
+Grundmaterial 800mm x 200mm; 10kg
+Größe 10 siehe TKZ 01044223
+Größe 10 siehe TKZ 01044230, Größe 12 siehe TKZ 01044231
+Importeur ist die Firma JAH GmbH; Hersteller: Leathertex Gloving (PVT) Ltd.
+Größe 8 siehe TKZ 01044220
+Größe 8 siehe TKZ 01044229, Größe 10 siehe TKZ 01044230
+Importeur ist die Firma JAH GmbH; Hersteller: Leathertex Gloving (PVT) Ltd.
+Größe 8 siehe TKZ 01044229, Größe 12 siehe TKZ 01044231
+Importeur ist die Firma JAH GmbH; Hersteller: Leathertex Gloving (PVT) Ltd.
+Haftmittel für Tinte für Ink Jet Beschriftung
+Handbuch
+Hierzu wird eine Zeichnung erstellt
+Hinweis Antragsteller: Die Rundbürste soll mit der TKZ.-Nr. RRT121063 verwaltet werden (schon in SAP).
+Hinweis Antragsteller: to replace WipeMaster Wipe 2 due to better material compatibility (siehe TKZ 01042867)
+Hinweis für das Labor: mit Silicon im Kleber, Tape wird NICHT aufs Bauteil geklebt, nur PTFE-Seite hat Kontakt mit dem Bauteil
+Horst Wingen
+Härter: 10003858
+Hier 5 Liter Gebinde ; Gebinde 1 Liter (siehe TKZ 01044129)
+IDENTISCH MIT 01009406
+IDENTISCH MIT 01040178
+IDENTISCH MIT 10001503
+IP9029 R1 updated to IP9029-R2 has been replaced with IP9029-R3 for latest details.
+Identisch mit 10003433. Aufgrund von Nummernkollision in SAP umbenummert zu 01042594. (2015-03)
+Identisch mit 10004394. Aufgrund von einen Fehler in SAP wurde eine neue TKZ vergeben (2015-12)
+Identisch mit AFM-Medium aus Antrag 033/2004 [siehe TKZ 01040013]. Bisheriger Lieferant MTT nicht mehr aktiv. 4mi ist Neugründung von ehemaligen MTT Mitarbeitern (ehemalige Ansprechpartner für Applikation und AFM-Medium)
+Im Antrag 029/2016 wird TKZ 01387695 erwähnt ("Kein Antrag auf Teile und Stoffe vorhanden"). Für diese TKZ wurde aber im Antrag 094/2015 das Material als nicht mehr beschaffbar angegeben, deswegen wurde eine neue TKZ 01042705 angelegt. Hier wird nun dementsprechend auch eine neue TKZ 01042786 (für D. 16) angelegt
+Info 24.05.2019 (siehe Antrag 126/2019): Produkt aktuell bekannt unter der Benennung "BONDERITE S-AD 5555B AD1 AERO" (Hersteller: Henkel)
+Info 24.10.2019: Produkt soll durch Lötzinn ECOLOY TS ersetzt werden. Siehe TKZ 01043533.
+Info bei Antragstellung: alte Produktbenennung war: DUPLEX EP No. 1
+Info vom Antragsteller: der Kleber „Loctite EA 9658 100NWG Aero“ dient als Ersatz für den bisherigen Kleber „FM1000“ (TKZ: 10004448 Antragsnummer: 071-2008) , der nicht mehr hergestellt wird.
+Info zu SDB von Brenntag UK geliefert am 14.11.2016: "Please note these are purely translations of the English SDS, and are not necessarily applicable to products you may get from the other Brenntag subsidiaries in other countries, or the associated legislation in these countries. In the occasion that a specific phrase has not been translated, these will not appear in translated safety data sheets. "
+Inspektionsspiegel liegt bei Christoph Uhrig und kann angefordert werden.
+Ist  Ersatz für Cool 2, Teilenummer  01041425, der nicht mehr hergestellt wird.
+Keine Anlage in SAP
+Keine Anlage in SAP.
+Keine Anlage in SAP.
+Beschaffung in den üblichen Größen 7(S), 8(M), 9(L) und 10(XL)
+Keine Anlage in SAP.
+Info Antragsteller: Produkt "Darf nur von der Instandhaltung benutzt werden".
+Keine Anlage in SAP.
+Produkt wird im PSA Katalog Dahlewitz eingepflegt
+Keine Anlage in SAP.
+R&T Project Kompakt; NUR zur Forschungszwecken bei R&T Kooperationspartner IFAM Bremen
+Keine Anlage in SAP. Bestellung durch Fachbereich über Fa LSS. Alternative siehe auch TKZ 01043459
+Keine Anlage in SAP. Bestellung durch Fachbereich über Fa. LSS. Alternative zu TKZ 01043416
+Keine Anlage in SAP. Produkt soll weiterhin über CBS bestellt werden.
+Produkt wird seit längerer Zeit verwendet. Da noch kein Antrag gestellt wurde, soll nun dies geschehen. Produkt hat kontakt mit Bauteilen.
+Klebestift zur Beschichtung der Druckplatte des 3D-Druckers für bessere Haftung des Druckteils; z.B. für Druck von Prototypen, Ersatzteilen, Abdeckungen, Hebezeugauflagen
+Komponente A für 2-K-Epoxidklebstoff (siehe TKZ 01042407 für Komponente B)
+Komponente B für 2-K-Epoxidklebstoff (siehe TKZ 01042882 für Komponente A)
+Kopie zur Archivierung wird noch vom Antragssteller zugesand Vorgänger: 01030278
+Kopie zur Archivierung wird noch vom Antragssteller zugesand Vorgänger: 01030279
+Kopie zur Archivierung wird noch vom Antragssteller zugesand Vorgänger: 01030394
+Kopie zur Archivierung wird noch vom Antragssteller zugesand Vorgänger: 01031008
+Kopie zur Archivierung wird noch vom Antragssteller zugesand Vorgänger: 01402449
+Kopie zur Archivierung wird noch vom Antragssteller zugesand Vorgänger: 01402450
+Kopie zur Archivierung wird noch vom Antragssteller zugesand Vorgänger: 10002606
+Kopie zur Archivierung wird noch vom Antragssteller zugesand Vorgänger: 10003002
+Kopie zur Archivierung wird noch vom Antragssteller zugesand Vorgänger: 10004398
+Kopie zur Archivierung wird noch vom Antragssteller zugesand Vorgänger: 10004527
+Kurzzeit-Konservierung von Stahlteilen; Der Stoff ist in MLC104 und CSS231 gelistet.
+"Prüföl Ardrox Base Oil HF" am 10.07.2019 in "LÖSEMITTEL MPI Diluent (HF)" umbenannt, da ursprünglich falsches Produkt beantragt wurde
+Laut Lieferant GOM stammen die Produktkomponenten (Melinex339, 3M 9471 FL & Loparex Poly Slik) von 3 unterschiedlichen Zulieferern.
+Laut TDB & SDB anderes Produkt (Schrumpffolie) als TKZ 01043389 (nur Folie)
+Leichtstahlflasche 2L 200bar
+Lichtdichtes abkleben von vorkonfektionierten Röntgenfilmen
+Lieferant ist die Fa. Hildebrandt AG (Vendor-Code 213014) Bedarfsträger ist der Versand
+Lieferant unklar? Umbenannt: ALTE NAME: TURCO SCALE-GON NR. 7 2014-01-23.
+Lieferant: Brangs+Heinrich
+Lieferer: Med-Lab Ltd.
+MSRR 9040, aktuelle Prodkutnummer lautet IP9136-R2;
+Ersetzt durch TKZ 01041923
+Lokale Bauteil Reinigung for Geometrie Messungen (mit Alkohol)
+Luftfahrtzulassung wird noch benötigt
+M-Prep Neutralizer 5A in SDB
+für Kontakt mit Luftfahrtteilen, siehe TKZ 01043582
+Mail an Frau Moebs/Herr Mueller mit Bitte um dt. Sicherheitsdatenblatt
+Mail an Herr Neite mit Bitte um Spec.
+Material existiert nicht mehr, 2013-12-05.
+Material wird in Vorrichtungen von Rolls-Royce in Annesley bereits verwendet
+Mischung aus: 01003657 und 01008523
+N/A
+N0059
+Nach Rücksprache mit MTM DW soll das Produkt zukünftig das Produkt TKZ01041062 Schwefelsäure 37% techn. ersetzen.
+Nach Spezifikation AMS2431/2
+Nachfolgeprodukt für TKZ01041062, da dieses nicht mehr lieferbar ist. 
+Anderes Gebinde (30kg) als beim Antrag 096/2024 (TKZ 01044201) (75kg)
+Nachfolgeprodukt für TKZ01041062, da dieses nicht mehr lieferbar ist. 
+Anderes Gebinde (75kg) als beim Antrag 049/2024 (TKZ 01044138) (30kg)
+Nachfolgeprodukt für TKZ01043568, da dieses nicht mehr lieferbar ist.
+Nachfolgeprodukt von Ardrox 6333A das bereits zugelassen ist - siehe TKZ 10003242
+Name am 04.05.2018 aufgrund der Email-Historie zum Antrag 006/2010 von LOCTITE 29053 GRÜN in LOCTITE 290 geändert. Produkt wird zur Schraubensicherung verwendet als Loctite 290, 50ml - Herst.-Teile-Nr.: 29053 
+Bitte beachten: siehe TKZ 01043634 für das Produkt in DW
+Name hat geädert, 2014-09-10. Alte:BRS_TEST_BED_CHANGE. Neue: BRS On Test Change
+Name wurde geändert . Alte Name:  Fotogenehmigung Besucher DW; 2014-10-15.
+Neu Info: IMA Materialforschung und Anwendungstechnik (VC212498) 2016-05-10.
+Neuanlage als Ersatz für TKZ 10004554, da 1) für Lager DLZ in DW nicht in SAP und 2) Neuanlage für DW DLZ Maschinenbau vom System nicht akzeptiert wird.
+12mm Variante siehe TKZ 01043083
+Neuanlage für Gebinde 20kg Eimer. siehe TKZ 10002772 -> Gebinde SAP: 12 Kartuschen (a 200 g) = 1 Kit und TKZ 01043759 -> Gebinde SAP: 3,6kg Eimer, jeweils Part A & Part B
+Neuanlage wegen Gebindeänderung auf 5 Liter. Produkt schon für 20kg unter TKZ 01040229 freigegeben. BITTE BEACHTEN: TKZ am 08.12.2020 stillgelegt, bzw. nicht mehr verwendet und stattdessen die TKZ 01040229 mit Gebinde 5 Liter statt 20Liter, da noch nie bestellt. (siehe Antrag Teile und Stoffe 111/2020)
+Neubeantragung 09.09.2011
+Neubenummerung von TKZ 10003524 wegen SAP-Nummernkollision mit Ansty
+Neue TKZ angelegt da über die alte vorhandene TKZ 10003215 das Gebinde 75ml geliefert wird.
+Neue TKZ angelegt, da Gebinde 25 Liter ; Produkt für DW unter TKZ 01042785 (Gebinde 200 Liter) freigegeben.
+Neue TKZ da Produkt unter TKZ 01042164 kostenfrei bestellt wird. Diese TKZ wird speziell für die Bestellung vom Produkt für das Gleitschleifen angelegt (siehe E-Mail von Herrn Tilgner vom 15.09.2017 zum Antrag 130/2017). Bitte beachten: aufgrund von Herstelleränderung, wurde am 08.09.2022 die neue TKZ 01043922 angelegt.
+Neue TKZ da Produkt unter TKZ 10003550 vom anderen Hersteller stammt.
+Neue TKZ für Gebinde (946ml Dosen). Anderes Gebinde (204 Liter) siehe TKZ 01042757
+Neue TKZ wegen Bedarf von anderem Gebinde. Stoff existiert bereits unter TKZ 01043954, TKZ 01041451 und TKZ 10003399
+Neue TKZ, da neues Produkt zum schon genehmigten Stoff (TKZ 10003910)
+Neue Verpackung als Dose. Produkt läuft schon unter TKZ 01041794 für ein anderes Gebinde (Blister Verpackung)
+Neuer Formulartitel "CIVIL AEROSPACE SAFETY INCIDENT REPORT", 2012-11-19
+Neuer Stoff (NMP frei), siehe TKZ01044098 (Skyrestore 406, Liquid) -> Info von H&B Stoffe DW am 17.01.2023, dass der Stoff nicht mehr verfügbar ist.
+Neuer Stoff (NMP frei), siehe TKZ01044099 (Skyrestore 407, Gel) -> Info von H&B Stoffe DW am 17.01.2023, dass der Stoff nicht mehr verfügbar ist.
+Neues Gebinde 5L ; anderes Gebinde (20 kg Kanister) siehe TKZ 10004094
+Neutrlisierer fü ECE
+Nicht für die Anwendung an Luftfahrtteilen freigegeben, Bezeichnung geändert von: "VITsafe aus PE-LD; 500 ml; Weithals mit VENT-CAP Verschraubung ohne Aufdruck", 2013-02-21
+Nicht mehr benötigt. TKZ 01042476_Lindesa K Hautschutz und Pflegecreme.
+Nicht mehr benötigt. TKZ 01042480_SBM_Freistellungsantrag wurde stillgelegt.
+Nicht mehr benötigt. TKZ 01042769_ CROSS MANUFACTURING CO  (Devizes) VC 202504 wurde stillgelegt. Für diese VC gab es bereits eine Nummer von 19.01.2016 (TKZ 01042758)
+Nicht mehr benötigt. TKZ 01042806_ DDQP IMA Materialforschung und Anwendungstechnik (VC212498) wurde stillgelegt. Für diese VC gab es bereits eine Nummer von 2010 (TKZ 01041200)
+Nicht mehr lieferbar -> Ersatz: TKZ 01043063 (26.07.2017)
+Nolte Kunststoffe und Technik GmbH
+Normkurzbezeichnung von "7m6" auf "8m6" korrigiert; 2014-11-24
+Nummer ist frei
+Nummer wird laut Sandra Wrobel nicht mehr benötigt, da der Lieferant bereits eine andere Nummer hatte. 28.04.2025
+Nummer wird nicht verwendet, falsch angelegt in SAP siehe 01040859!
+Nummer wurde nicht benötigt und kann neu vergeben werden.
+Nummernkollision: TN: 01042264 für "Audit need evaluation for internal audits "
+OMAT2/88
+OMat1038
+OMat2/148
+PDQP- 01043002  lt Email 12.09.17 gecancelled
+PDQP- 01043003
+PDQP-01042399
+PDQP-01042410
+PDQP-01042417
+PDQP-01042437
+PDQP-01042438
+PDQP-01042439
+PDQP-01042445
+PDQP-01042446
+PDQP-01042490
+PDQP-01042511
+PDQP-01042517
+PDQP-01042544
+PDQP-01042575
+PDQP-01042583
+PDQP-01042585
+PDQP-01042595
+PDQP-01042608
+PDQP-01042639
+PDQP-01042647
+PDQP-01042648
+PDQP-01042694
+PDQP-01042695
+PDQP-01042708
+PDQP-01042711
+PDQP-01042716
+PDQP-01042736
+PDQP-01042743
+PDQP-01042744
+PDQP-01042745
+PDQP-01042746
+PDQP-01042747
+PDQP-01042748
+PDQP-01042760
+PDQP-01042762
+PDQP-01042781
+PDQP-01042782
+PDQP-01042784
+PDQP-01042798
+die AdQ 208 wird durch den PDQP ersetzt werden.
+PDQP-01042803
+PDQP-01042815
+PDQP-01042816
+PDQP-01042829
+PDQP-01042835
+PDQP-01042837
+PDQP-01042839
+PDQP-01042841
+PDQP-01042846
+PDQP-01042847
+PDQP-01042854
+PDQP-01042860
+PDQP-01042866
+PDQP-01042869
+PDQP-01042871  Die Nummer wird nicht mehr benützt 2017-02-17 Hr. Martinez (EC)
+PDQP-01042872
+PDQP-01042883
+PDQP-01042884
+PDQP-01042885
+PDQP-01042896
+PDQP-01042903
+(wird nicht mehr benötigt, Inhalte werden durch PDQP-01042937 abgedeckt, 2017-01-27)
+PDQP-01042904
+PDQP-01042909
+PDQP-01042910
+PDQP-01042911
+PDQP-01042912
+PDQP-01042913
+PDQP-01042926
+PDQP-01042927
+PDQP-01042928
+PDQP-01042937
+PDQP-01042938
+PDQP-01042944
+PDQP-01042950
+PDQP-01042951
+PDQP-01042952
+PDQP-01042955
+PDQP-01042961
+PDQP-01042962
+PDQP-01042965
+PDQP-01042967 (TKZ: NQF006202)
+PDQP-01042970
+PDQP-01042976
+PDQP-01042977
+PDQP-01042980 (PDQP wurde nach Anweisung von Anna Chrobry abgesagt)
+PDQP-01042982
+PDQP-01042987
+PDQP-01042991
+PDQP-01042999
+PDQP-01043005
+PDQP-01043008
+PDQP-01043009
+PDQP-01043015
+PDQP-01043016
+PDQP-01043017
+PDQP-01043020
+PDQP-01043021
+PDQP-01043024
+PDQP-01043026
+PDQP-01043027
+PDQP-01043028
+PDQP-01043031
+PDQP-01043043
+PDQP-01043044
+PDQP-01043047
+PDQP-01043048
+PDQP-01043051
+PDQP-01043085
+PDQP-01043089
+PDQP-01043102
+PDQP-01043105
+PDQP-01043111
+PDQP-01043115
+PDQP-01043119
+PDQP-01043120
+PDQP-01043122
+PDQP-01043128
+PDQP-01043131
+PDQP-01043134
+PDQP-01043135
+PDQP-01043148
+PDQP-01043149
+PDQP-01043150
+PDQP-01043151
+PDQP-01043166
+PDQP-01043167
+PDQP-01043168
+PDQP-01043169
+PDQP-01043177
+PDQP-01043179
+PDQP-01043187
+PDQP-01043190
+PDQP-01043191
+PDQP-01043193
+PDQP-01043197
+PDQP-01043200
+PDQP-01043202
+PDQP-01043213
+PDQP-01043222
+PDQP-01043224
+PDQP-01043227
+PDQP-01043228
+PDQP-01043233
+PDQP-01043243
+PDQP-01043248
+PDQP-01043249
+PDQP-01043250
+PDQP-01043254
+PDQP-01043256
+PDQP-01043260
+PDQP-01043266
+PDQP-01043269
+PDQP-01043271
+PDQP-01043276
+PDQP-01043277
+PDQP-01043280
+PDQP-01043284
+PDQP-01043285
+PDQP-01043291
+PDQP-01043294
+PDQP-01043297
+PDQP-01043298
+PDQP-01043300
+PDQP-01043301
+PDQP-01043303
+PDQP-01043304
+PDQP-01043309
+PDQP-01043310
+PDQP-01043311
+PDQP-01043312
+PDQP-01043313
+PDQP-01043314
+PDQP-01043315
+PDQP-01043316
+PDQP-01043318
+PDQP-01043324
+PDQP-01043325
+PP Filament von Verbatim ; andere 3D-Produkte unter TKZ 01043138 bis 01043147 & 01043203 bis 01043209
+PPD-01043050
+PPD-01043065
+PPD-01043066
+PPD-01043069
+PPD-01043387
+PQP-01042412
+PQP-01042421
+PQP-01042557
+PQP-01042584
+PQP-01042597
+PQP-01042602
+PQP-01042641
+PQP-01042642
+PQP-01042645
+PQP-01042669
+PQP-01042696
+PQP-01042774
+PQP-01042812
+PQP-01042830
+PQP-01042864
+PQP-01042870
+PQP-01042877
+PQP-01042879
+PQP-01042943
+PQP-01042988
+PQP-01042989
+PQP-01043000
+PQP-01043018
+PQP-01043053
+PQP-01043159
+PQP-01043165
+PQP-01043180
+PQP-01043201
+PQP-01043225
+PQP-01043295
+PS-BR715, R. Brodmühler
+Pipette werden schon genutzt. TKZ soll zur SAP-Bestandsgesteuerten, lagerhaltigen Wiederbeschaffung dienen
+Polythene sheet
+Primer für Redux 322 [TKZ 01043258]
+Produkt (Farbe Blau) unter TKZ 01043072
+Produkt (Farbe Blau) unter TKZ 01043073
+Produkt (Farbe Schwarz) unter TKZ 01040074
+Produkt (Farbe Schwarz) unter TKZ 01040075 ; auch identisch mit TKZ 10004178 (für OU).
+Produkt Pekasol 50 schon freigegeben (TKZ: 10002418)
+Produkt SPHERIGLASS-2429 (Glass Beads ø70-100µm) nicht mehr lieferbar: TKZ 01043995 wird am 06.09.2023 dem Ersatzprodukt STRAHLMITTEL Glasperlen Nr. 7 (ø70-110µm) vom Hersteller Hasenfratz GmbH zugeteilt (freigegeben über Antrag 096/2023).
+Produkt allgemein zum Test unter TKZ 01043610 schon registriert
+Produkt als PL345-Green siehe TKZ 01041799
+Produkt am 01.07.2015 vom Labor abgelehnt. Antrag zum Produkt eines anderen Herstellers am 03.03.2023, siehe TKZ 01043967
+Produkt am 10.12.2024 abgelehnt, Ersatzprodukt siehe TKZ 01044248 (NOX-RUST 509)
+Produkt am 28.09.2018 von Shell Tellus S2 M 46 auf Shell Tellus S2 MX 46 umbenannt (Genehmigung von HS&E DW & Labor am 27.09.2018, anhand der vom Hersteller gelieferten Informationen). Details dazu siehe Anträge 183/2013 & 084/2015.
+Produkt auch für andere Anwendung am 01.06.2018 unter TKZ 01043293 angelegt
+Produkt ersetzt durch TKZ 01043621
+Produkt ersetzt durch TKZ: 01041848
+Produkt freigegeben mit anderen Farben -> Siehe TKZ 01042729 & 01042730
+Produkt für DW siehe TKZ 10004515 (anderer Lieferant ; Anmerkung: Unklarheit, da Gebinde 50g im Gefahrstoffkataster, 32g in SAP)
+Produkt für spezielle Größen (35 bis 52) wird bei Bedarf (SAP Bestellung) unter neuanzulegende TKZ bestellt.
+Produkt für spezielle Größen (6 bis 11) unter TKZ 01041885 bis 01041890 zu finden.
+Produkt für spezielle Größen (6 bis 11) wird bei Bedarf (SAP Bestellung) unter neuanzulegende TKZ bestellt.
+Produkt für spezielle Größen (7 bis 10) wird bei Bedarf (SAP Bestellung) unter neuanzulegende TKZ bestellt. Siehe auch TKZ 01043723 für die spezielle Anfertigung "rot".
+Produkt für spezielle Größen (7 bis 11) wird bei Bedarf (SAP Bestellung) unter neuanzulegende TKZ bestellt.
+Produkt für spezielle Größen (9 bis 11) wird bei Bedarf (SAP Bestellung) unter neuanzulegende TKZ bestellt.
+Produkt ist schon unter TKZ 02893345 in SAP für DW angelegt
+Produkt lief unter TKZ 10001645 (Anträge 006/1996 & 092/2002, dann wegen Änderung der Gebindegröße unter TKZ 01040849 (Antrag 031/2009). Acheson ist jetzt "registered Trademark" von Henkel.
+Produkt läuft für DW unter TKZ 01042543
+Produkt läuft für OU unter TKZ 01041360
+Produkt läuft unter TKZ 01041385 für eine spezielle Anwendung nach Bombardiervorgaben in DW. Awird einmalig für eine Testdurchführung benötigt ->  Einsatz bei einer Fremdfirma (Bertrandt in Tappenbeck).
+Produkt läuft unter TKZ 10002435 in OU. Antrag auch für DW (056/1998), allerdings keine SAP Anlage für DW vorhanden. Neuanlage für DW unmöglich -> System meldet "Das angegebene Material ist bereits der Materialart Werkzeug (nicht GSE) zugeordnet".
+Produkt nicht mehr lieferbar ersetzt durch Uvex Schutzbrille astrospec 2.0 (TKZ 01043036)
+Produkt schon unter TKZ 01041312 & 01042589 aber mit unterschiedlichem Gebinde registriert.
+Produkt schon unter TKZ 01041487 ( 5 Liter Gebinde) vorhanden.
+Produkt soll TKZ 01042855 ersetzen. Lagerbestand und SAP Einstellungen bitte identisch zu TKZ 01042855 erstellen.
+Produkt soll als Ersatz für KCB 351 (TKZ 01042367) freigegeben werden.
+Produkt soll als Ersatz für KCK 155 (TKZ 01042368) freigegeben werden.
+Produkt soll als Ersatz für den Reiniger „Bonderite C-AK ARR 4181 AERO“ TKZ:01003900 eingeführt werden.
+Gebinde: hier 26 kg Kanister (20 L) ; für anderes Gebinde 1275 kg (1000 L), siehe TKZ 01044198
+Produkt soll der Nachfolger für TKZ01040366 werden. TKZ01040366 kann nach Freigabe durch den Fachbereich stillgelegt werden.
+Produkt soll durch KCB 352 (TKZ 01043735) ersetzt werden.
+Produkt soll durch KCK 152 (TKZ 01043736) ersetzt werden.
+Produkt umbenannt. Alte Bez.: RP 03/05 ZS-V15
+Produkt vom anderen Hersteller, am 01.07.2015 abgelehnt, siehe TKZ 01042635
+Produkt von 10004095 in 01042130 wegen Nummernkollision mit Rolls-Royce Indy umbenummert; 2013-10-11
+Produkt von 10004349 in 01040922 wegen Nummernkollision mit Rolls-Royce plc Indy umbenummert!
+Produkt wird als Einlegenatte / Zwischenlagegitter für den SPP-Bereich verwendet.
+Produkt wird auch in weiteren Qualitäten beantragt (siehe TKZ 01043471 & TKZ 01043472)
+Produkt wird auch in weiteren Qualitäten beantragt (siehe TKZ 01043471 & TKZ 01043473)
+Produkt wird auch in weiteren Qualitäten beantragt (siehe TKZ 01043472 & TKZ 01043473)
+Produkt wird in unterschiedlichen Qualitäten beantragt (siehe TKZ 01043434 bis 01043443)
+Produkt wird in unterschiedlichen Qualitäten beantragt (siehe TKZ 01043444 bis 01043454)
+Produkt wird von der Firma NDT-Service verwendet.
+Produktbezeichnung laut Spez. 01606072 "Loctite 601"
+Produkteinsatz zur Vorbereitung / Abfüllen von Dow Corning 3-6548 Silicone RTV Foam A&B
+EAN: 0000124203158
+Produkteinsatz zur Vorbereitung / Abfüllen von Dow Corning 3-6548 Silicone RTV Foam A&B
+EAN: 3661221001961
+Produkteinsatz zur Vorbereitung / Abfüllen von Dow Corning 3-6548 Silicone RTV Foam A&B
+EAN: 4016176323542
+Produkteinsatz zur Vorbereitung / Abfüllen von Dow Corning 3-6548 Silicone RTV Foam A&B
+EAN: 4260497151005
+Produktzusammenführung von Mobil HLP 46 und ESSO Nuto H46, unter dem Namen Produkt Nuto H46 mit der TN 10002027, Stilllegung der 01005087,  14.04.2010
+QBR5040
+Qualität: 2.91. FEFCO-Code: 0201. Wellentyp: BAA. Antrag nicht notwendig. Verpackung direkt in SAP angelegt.
+Qualität: 2.91. FEFCO-Code: 0201. Wellentyp: BAA. dreiwellig, für Bauteil à 20 kg Abmessung ist Innenmaß.  Antrag nicht notwendig. Verpackung direkt in SAP angelegt.
+Quick Connect IBC - Natriumbisulfitlösung zur Abwasserbehandlung
+Andere Gebindeart -> siehe TKZ 01002252
+Quick Connect IBC mit Eisen-III chloridlösung zur Abwasserbehandlung
+R&T Project FastCoat; NUR zur Forschungszwecken bei R&T Kooperationspartner Fraunhofer IWS
+R&T Project PARZIVAL (LuFo V/3); NUR zur Forschungszwecken bei R&T Kooperationspartner Forschungszentrum Jülich
+RRD wird das o.g. Material kaufen und dem Schmied "Forge de Bologne" zur Verfügung stellen.
+RRT085301 ; als Ersatz für Biresin 1305 A+B angedacht (siehe TKZ 01041318, 01042658 & 01042659)
+RRT085301 ; als Ersatz für Biresin 1305 A+B angedacht (siehe TKZ 01041318, 01042658 & 01042659) 
+Anmerkung: Komponente B (Härter) -> siehe TKZ 01042659 (Antrag 058/2015) -> neue TKZ 01043361 vergeben zwecks SAP-Anlage und Bestellung vom gesamten Produkt (Komponenten A+B)
+RTM322
+RTV 106 - red laut Antrag (SDB: RTV 106Q)
+Referenz ist die WI.QI.0001
+Reiniger für BvL Reinigungsmaschine Al und St
+Reiniger für Lackierpistolen
+Reinigung von Lackierpistolen
+Reinigungsmittel für Tinte für Ink Jet Beschriftung
+Roboter Abdeckung, Pralltuch
+SDB Bezteichnung: 2 Pack Polyurethane Gloss Black Base (Produktnummer: IP6-9000)
+SLA-3D-Druckverfahren
+SPQP- 01042684
+SPQP-01042431
+SPQP-01042482
+SPQP-01042494
+SPQP-01042520
+SPQP-01042524
+SPQP-01042569
+SPQP-01042573
+SPQP-01042574
+SPQP-01042586
+SPQP-01042587
+SPQP-01042593
+SPQP-01042596
+SPQP-01042600
+SPQP-01042603
+SPQP-01042604
+SPQP-01042607
+SPQP-01042625
+SPQP-01042650
+SPQP-01042655
+SPQP-01042656
+SPQP-01042773
+SPQP-01042776
+SPQP-01042790
+SPQP-01042805
+SPQP-01042814 zurückgezogen/ CBSam 09.06.2017
+SPQP-01042825
+SPQP-01042832
+SPQP-01042853
+SPQP-01042923
+SPQP-01042929
+SPQP-01042983
+SPQP-01043049
+SPQP-01043052
+SPQP-01043060
+SPQP-01043070
+SPQP-01043090
+SPQP-01043217
+Saugerbürste: Gehäuse aus PP (Polypropylen = Plastik); Borsten aus 100% PP (Polypropylen) - Hersteller: Drehflex ; Lieferant Ersatzteil-Land Mengeler e.K. -> Referenznummer: 557632001 / DUE44
+ACHTUNG: Bereits RRT Nummer erhalten (RRT107175)
+Saugerbürste: Gehäuse aus PP (Polypropylen); Borsten aus 30% Schweinehaar (Chinaborsten) und 70% PP (Polypropylen) - Hersteller: Drehflex ; Lieferant Ersatzteil-Land Mengeler e.K. -> Referenznummer: 557072504 / DUE62
+ACHTUNG: Bereits RRT Nummer erhalten (RRT107176)
+15.12.2023: Bitte beachten: Produkt kann vom Hersteller nicht mehr geliefert werden -> Alternativprodukt soll über den Antrag 151/2023 (TKZ 01044093) freigegeben werden und über die RRT107176 in Zukunft als Ersatz bestellt werden.
+Schutz vor Schnittverletzungen
+Selber Stoff wie in TKZ 01043171, Gebindegröße wurde geändert
+Soll TKZ RRT062156 (siehe Antrag 020/2011) ersetzen, da nicht mehr lieferbar. Neue TKZ wird nur für die interne Verwaltung angelegt und sonst weder benutzt noch in SAP angelegt, sondern stattdessen TKZ RRT103957. Achtung: RRT103957 zwar in SAP vorhanden, Einkaufbestelltext aber nicht vorhanden (08.06.2017)!
+Soll das Produkt Transcal N (TKZ: 01042636, Antrag 046/2015) ersetzen
+Soll ersetzt werden durch MOBIL DTE 10 EXCEL 15 (TKZ 01043872 angelegt am 13.05.2022)
+Soll nicht mehr als PSA bestellt werden 2012-07-27
+Soll zusammen mit TKZ 01044141 & 01044170 verwendet werden.
+Soll zusammen mit TKZ 01044141 & 01044171 verwendet werden.
+Soll zusammen mit TKZ 01044170 & 01044171 verwendet werden.
+Sonderbearbeitung und -Lieferung vom unter TKZ 01042143 aufgeführten Produkt
+Sonderbearbeitung und -Lieferung vom unter TKZ 01042144 aufgeführten Produkt
+Sonderbearbeitung und -Lieferung vom unter TKZ 01043713 aufgeführten Produkt
+Spänebegleitkartenhalter (Tasche mit Seiteneinschub)
+Spänebegleitkartenhalter (Tasche zum einschieben eines Blattes)
+Stoff soll für die Verwendung von Werkzeugen und Vorrichtungen zugelassen werden ; hier beim Induktiven Heizen der HPT Stg.1 das De-& Montieren des FCP (Front Cover Plate)
+TKZ 01040179 nicht mehr benötigt (Stilllegen). 2014-04-30.
+TKZ 01040860 nicht mehr benötigt (Stilllegen). 2014-05-22.
+TKZ 01040903 nicht mehr benötigt (Stilllegen). 2014-04-30.
+TKZ 01041454 wurde in 01041457 zusammengefasst
+TKZ 01041924 nicht mehr benötigt (Stilllegen). TKZ zusammentgefasst von 01041924 zu 10002029; 2013-12-20
+TKZ 01041928  nicht mehr benötigt (stilllegen). TKZ zusammentgefasst von 01041928 zu 10002007; 2014-05-05.
+TKZ 01041929 nicht mehr benötigt (stilllegen). TKZ zusammentgefasst von 01041929 zu 10002007; 2014-06-02.
+TKZ 01042383 wird nicht mehr benötig, 2014-06-27.
+TKZ 01042384 wird nicht mehr benötig, 2014-06-27.
+TKZ 01042809 & 01042810 auf Wunsch von Antragsteller getrennt angelegt um Verwechslungen zu vermeiden.
+TKZ 01044062 für anderes Gebinde (540x250mm)
+TKZ 01044063 für anderes Gebinde (1000x100mm)
+TKZ 01044064 für anderes Gebinde (1000x250mm)
+TKZ 01044065 für anderes Gebinde (1000x100mm)
+TKZ 01044068 anderes Gebinde = 700x50mm
+TKZ01044069 anderes Gebinde = 700x100mm
+TKZ 01044068 anderes Gebinde = 700x50mm
+TKZ01044070 anderes Gebinde = 1420x100mm
+TKZ 01044069 anderes Gebinde = 700x100mm
+TKZ01044070 anderes Gebinde = 1420x100mm
+TKZ 01044071 anderes Gebinde = 710x50mm
+TKZ 01044072 anderes Gebinde = 1500x75mm
+TKZ 01044074 anderes Gebinde = 500x150mm
+TKZ 01044075 anderes Gebinde = 710x100mm
+TKZ 01044077 anderes Gebinde = 540x100mm
+TKZ 01044078 anderes Gebinde = 410x100mm
+TKZ ersetzt alte TKZ 01016212 mit dem Antrag 240/2001
+TKZ falsch in SAP angelegt, TKZ wird nicht mehr benutzt, gültige TKZ 01041707
+TKZ für neue Gebinde 150ml Kartusche  (andere Gebinde  existieren schon -> 01040178 (Semkit Kartusche 100ml), 01040500 (KIT10 100ml), 01044115 (55ml Kartusche))
+TKZ für neues Gebinde KIT10 100ml (andere Gebinde  existieren schon -> 01040178 (SemkitCartidge 100ml), 01044048 (150ml Kartusche), 01044115 (55ml Kartusche))
+TKZ für neues Gebinde Semkit 55ml Kartusche (andere Gebinde  existieren schon -> 01040178 (Semkit Kartusche 100ml), 01040500 (KIT10 100ml), 01044048 (150ml Kartusche))
+TKZ für neues Gebinde. Produkt schon unter TKZ 01042702 & 01040906 zugelassen
+TKZ gilt für 1 Pinselsorte in 2 verschiedenen Größen -> Allgemeine Freigabe vom Produkt, siehe TKZ 01043235
+TKZ gilt für 1 Pinselsorte in einer Größe -> Allgemeine Freigabe vom Produkt, siehe TKZ 01043235
+TKZ identisch mit 10004395 für DW. 2015-02-26 SAP-Kollision.
+TKZ ist für OU -> siehe TKZ 10002882 für Produkt in DW
+WICHTIGE ÄNDERUNG: Umbenannt am 10.10.2018 ; ALTER NAME: ECCOBOND 104 A+B -> siehe e-mail Claudia Berkenhoff 25.09.2018 (Schriftverkehr zu Anträgen120/2009 & 084/1997). Begründung, bzw. Herstellererläuterungen wurden den geänderten Anträgen angehängt. Benennung wurde auch im SAP Datensatz entsprechend geändert.
+TKZ nicht aktiv; wurde in 01041457 zusammengefasst
+TKZ soll als Ersatz für die TKZ01043551 dienen
+TKZ soll nicht in SAP angelegt werden. Falls über SAP später bestellt werden sollte, müssten speziell für die zu bestellende Größe jeweils eine neue TKZ vergeben werden.
+TKZ soll nicht verwendet werden, stattdessen die bestehende RRT110666
+TKZ stillgelegt, da Produkt identisch mit TKZ 01040182 ist.
+TKZ wird nicht benutzt und ist nicht in SAP angelegt, RRT wird stattdessen benutzt
+TKZ wird nicht benutzt und ist nicht in SAP angelegt. RRT057600 wird stattdessen verwendet.
+SIC-ENTGRATBUERSTE  KORN120. Die Bürste hat die TKZ.-Nr.: RRT057600 AEZ.00.
+TKZ wird nicht mehr benötig; es wurde stillgelegt, 2014-12-17.
+TKZ wird nicht mehr benötigt, ist identisch mit 10002432
+TKZ wird nicht mehr verwendet; 2013-10-11.
+TKZ wurde fälscherlicherweise für "Acknowledgement letter" (neu TKZ 01041293) vergeben
+TKZ wurde korrgiert, alte Bezeichnung: "HS&E Information Card for Visitors DW"; ersetzt durch TKZ 01042277 (wegen Nummernkollision 07-02-2014)
+TKZ wurde stillgelegt
+TKZ wurde stillgelegt, 10004207 verwenden
+TKZ wurde stillgelegt, Die Breite von 6mm kann nicht geliefert werden, 2013-01-02
+TKZ wurden aufgrund eines Speicherfehlers neu vergeben
+TKZ01042624 wird nach RRD-Vorgaben bestellt (TKZ01041420 wird nach Bombardier-Vorgaben bestellt)
+Tinte für Ink Jet Beschriftung
+Trennmittel für Heisseinbettpresse
+Tubenspitzen für Sicherungslack TKZ 10002350 und 01043292
+Umbenannt: ALTE NAME: TURCO SPRAYEZE-NPLT 2014-01-23.
+Umbenannt: ALTER NAME: TURCO 5948-R
+Umbenannt: zuvor "Vacuum pump oil GS 77" 2013-04-29
+Universelles Reinigungsmittel für die Betriebs- und Maschinenreinigung
+Unzureichende ursprüngliche Bezeichnung (Schleifpapier FEPA-P1200-15MICRON) vom 14.04.2015 korrigiert und laut korrigierter Antrag vom 10.06.2015 präzisiert
+Unzureichende ursprüngliche Bezeichnung (Schleifpapier FEPA-P600-15MICRON) vom 14.04.2015 korrigiert und laut korrigierter Antrag vom 10.06.2015 präzisiert
+Ursprünglich angelegt für die 3 Größen: 4-5; 7-8; 10-11mm. Um Bestellungen der unterschiedlichen Größen zu ermöglichen werden am 11.09.2018 2 getrennte neue TKZ angelegt: TKZ 01043354 für die Größe 7-8mm, & TKZ 01043355 für die Größe 10-11mm.
+Ursprüngliche Benennung "LOCTITE TYP A ROT"  am 22.05.2019 präzisiert (In SAP steht auch die Präzisierung "Schraubensicherungsmittel Nr. 243". Antragsteller gibt als "Fremdteilenummer" die Bezeichnung "Loctite 243", passend zu den gelieferten Datenblätter. Das Produkt ist im MLC104 registriert).
+Ursprüngliche Produktbenennung "O-RING aus FKM V 8769" am 04.05.2018 zur Wiederverwendung der noch nie verwendeten TKZ abgeändert.
+Ursprüngliche Produktbenennung: "3M 420-12,8 MM BLEIFOLIE". Am 22.05.2017 wurde in Anlehnung an das SDB zum Antrag 122/2019 die Produktbenennung "3M(TM) Scotch(TM) Bleiklebeband 420 " übernommen.
+Bitte beachten: andere Breite (20mm) siehe TKZ 10004489
+Ursprüngliche TKZ 01044165 wurde versehentlich für den Stoff  "AeroShell Calibrating Fluid 2 (US)" in SAP angelegt. Es wurde eine neue TKZ für den Stoff "Alert Reflective Coating Silver White" vergeben. Auf dem Antrag geändert.
+VA - Nummer muß noch geklärt werden
+VA 01-0001
+VA 10-0048
+VA 19-0130
+VA 19-0134
+VA 19-0254
+VA.EP.
+VA.MS.0137
+VA.MS.0271
+VA01-0287
+VA01-0290 „Zahlungsverkehr“
+VA04-0217
+VA05-0101
+VA05-0305
+VA06-0275
+VA06-0354
+VA09-0099
+VA10-0011
+VA11-0029
+VA11-0212
+VA14-0027
+VA15-0047
+VA19-0137
+VA19-0286
+VA19-0388
+Vendor Code noch nicht vergeben, lt. Fr. Worbel
+Verduennung für Tinte für Ink Jet Beschriftung
+Verschiedene Größen, Teilenr.: 020149V0747 und 020150V0747
+Verweis auf TKZ 10002368: nur Unterschied im Durchmesser.
+Verwendungszweck: Eindringprüfung
+Ersetzt Prüfmittel Magnaflux ZL27A (TKZ 10003867) - (Antrag 150/2019)
+Produktzulassung nach AMS2644
+Omat Verzeichnis: OMat651G
+Verwendungszweck: Polieren von Triebwerksteilen aus Aluminium Legierung
+Anforderungsgrund: Reparatur
+In Verbindung mit Polierscheibe (OMat512)
+Vlies wird benötigt um den Brush Tagnite Prozess nach FBR2071 mit dem Elektrolyt 01043682 durchzuführen.
+Vorbehandlung im Klebeprozess von Pins
+Vorgängerprodukt unter TKZ 01043752 (Skyrestore 306). neuer Stoff ist NMP frei. -> Info von H&B Stoffe DW am 17.01.2023, dass der Vorgängerstoff nicht mehr verfügbar ist.
+Vorgängerprodukt unter TKZ 01043753 (Skyrestore 307). neuer Stoff ist NMP frei. -> Info von H&B Stoffe DW am 17.01.2023, dass der Vorgängerstoff nicht mehr verfügbar ist.
+Vorläuferdokumente waren:
+
+DDQP 01041110
+DDQP 10003873
+ESID 01043039
+WICHTIGE ÄNDERUNG: Umbenannt am 13.08.2018 ; ALTER NAME: BP TURBO OIL 2197 -> siehe e-mail Thomas Hanf 07.08.2018 (Schriftverkehr zu Anträgen 042/2008 & 083/2015). Begründung, bzw. Herstellererläuterungen wurden den geänderten Anträgen angehängt. Änderung in der TKZ-Liste vorgenommen. Benennung wurde auch im SAP Datensatz entsprechend geändert.
+Wegen Nummernkollision mit Rolls-Royce plc Indy Produkt in 01042689 umbenummert! (Früher 10003774) -> 09.03.2021: Nachträgliche extra Freigabe der Farbe "Rot" unter TKZ 01043715 zu finden.
+Werbemeittel
+Werbemittel
+Wird für Anwendung von Silcoset 152 (TKZ: 10002831) gebraucht.
+Wird nicht mehr hergestellt. Soll durch Cool 3 ersetzt werden. (18.11.2016)
+Zubehör für Elektrolytische Beschriftung, Fa. Westerhoff GmbH
+Zubehör für Kennzeichnung Dot Peening nach JES131 Fa. Pryor
+Zulassung: siehe PWA 36545 (CoMat Ref.: 10-130)
+Zulassungs-Dokument für militärische Projekt
+Zur Info (22.11.2019): nicht mehr Lieferbar, soll durch TKZ 01043551 ersetzt werden.
+Zuschnitt von TKZ 10003117
+Zusätzliches Modell zur Trageakzeptanzerhöhung
+achtung: ersetzt TKZ 01041263
+alte TKZ_ 10003808 (wegen SAP Nummernkollision 07-02-2014). Neue TKZ wurde vergeben
+alternativ Stoff zu Hysol EA9394 (TKZ 01043707)
+alternativ existiert Blech 01394650 81,25 mm dick)
+andere Gebinde  existieren auch -> 01040500 (KIT10 100ml), 01044048 (150ml Kartusche), 01044115 (55ml Kartusche).
+anderer Hersteller und Lieferant wie 01003802
+anderes Gebinde als bei Antrag 148/2019 (01043486) ; Produktbenennung auf Wunsch vom Antragsteller am 02.04.2024 von "STATIC INTERCEPT Schrumpffolie PE-LD (Korrosionsschutz) 150μm (Rolle 4m x 50m)"  in "INTERCEPT GLASSCHUTZFOLIE (weiß/schwarz) 2m auf 1m gefaltet 50m lang, 150μm" korrigiert.
+anderes Gebinde, 1000ml, siehe TKZ 01044148
+anderes Gebinde, 25 Liter, siehe TKZ 01044269
+auf Zeichnung RRT073032 erwähnt. Es soll noch endgültig geklärt werden, ob TKZ in SAP angelegt wird, oder über RRT Nummer weiterhin bestellt wird.
+auf Zeichnung RRT122905 erwähnt. Es soll noch endgültig geklärt werden, ob TKZ in SAP angelegt wird, oder über RRT Nummer weiterhin bestellt wird.
+auf Zeichnung RRT123821 erwähnt. Es soll noch endgültig geklärt werden, ob TKZ in SAP angelegt wird, oder über RRT Nummer weiterhin bestellt wird.
+aufgrund Nummernkollision mit RR Ansty von 10001676 umbenummert
+aufgrund Nummernkollision mit RR Ansty von 10004595 umbenummert
+aufgrund eines SAP-Fehlers umbenummert zu 01041843, 2013-02-19
+bisher: WIPEMASTER LITE ROLL 20cmX38cm; geändert 2011-11-14
+das Produkt von einem neuen Hersteller und Lieferant soll als Bürste RRT107176 in SAP, das vorherige nicht mehr lieferbare Produkt (siehe TKZ 01043220) ersetzen.
+das „alte“ Material (TKZ 10002927) ist ein US Material, und kann nicht mehr bestellt werden (28.11.2016).
+der Plan wird nur im intranet veröffentlicht
+die Bezeichnung hat geändert. Alte "Photography policy RRD", 2014-09-26.
+die Bezeichnung hat geändert. Alte Bezeichnung  "Fotografie Richtlinien RRD", 2014-09-26.
+dient als Ersatz für TKZ 01040590 - Hylomar Aerograde PL32 Light
+diese TKZ soll zum Zweck der korrekten Bestellung über SAP die frühere TKZ 1019412 ersetzen, die nicht in der Liste aufgeführt war und stillgelegt werden soll.
+diese neue TKZ wird zur Bearbeitung des Antrags 139/2012 (SAP-Anlage für DW) auf Anfrage von Herrn Lohse am 30.11.2016 angelegt -> es handelt sich aber um das selbe Produkt wie unter TKZ 10002001
+ehem. APPH (BOLTON) LTD
+entspricht TKZ 10002071; wurde wegen Sperrung in SAP neu benummert
+entspricht TKZ 10004327; wurde aufgrund einer neuen Basismengeneinheit in SAP neu benummert; Bezeichnung wurde präzisiert (vorher: EPOXY FILLER EC3524 PARTS A&B) 2012-07-27
+ersetzt durch 01040129 wegen nicht veränderbarer Daten in SAP
+ersetzt durch 01040148 wegen nicht veränderbarer Daten in SAP
+extra Dokument (Addendum 1 BR725) im Rahmen des SPIRIT ESIDS siehe TKZ 01043574
+extra Dokument (Addendum 2 FP) im Rahmen des SPIRIT ESIDS siehe TKZ 01043574
+früheres anderes Gebinde, siehe TKZ 10002772.
+Gebindeänderung: es werden keine Kartuschen mehr produziert, sondern in 3,6Kg Eimer geliefert (Einkauf schon informiert).
+für Kontakt mit Luftfahrtteilen, siehe TKZ 01043580
+für Kontakt mit Luftfahrtteilen, siehe TKZ 01043581
+für MTOC siehe TKZ 01041483
+für MTOC siehe TKZ 01041927
+für MTOC siehe TKZ 01042878
+für Roboter Abdeckung, Prallschild
+für Workcenter RE013, zentr. Entfettungsanlage
+für die Variante "nach DIN EN902, siehe TKZ 01043694
+gehört zu AVA 0067-639
+gehört zu AVA 0096-020
+gehört zu VA (Nummer wird noch von H. Denzin angegeben)
+gehört zu VA 01-0333, unter Verwaltung im System
+gehört zu VA 01-0333, unter Verwaltung im System
+früher Sicherheits-Check
+gehört zu VA 02-0298
+gehört zu VA 03-0310
+gehört zu VA 09-0049
+gehört zu VA 09-0276
+gehört zu VA 09-0349
+gehört zu VA 17-0030
+gehört zu VA.QI.0068
+gehört zu VA10-0050
+gehört zur AVA0112-134
+gem. RR-Spec CSS211
+geändert von "YY" zu "XY", 2014-04-24
+gleiches Produkt wie TKZ 10001791 mit anderem Gebinde (946ml) -> siehe auch TKZ 01040676 (Produkt von BP)
+hier in Pulverform -> auch als Granulat: siehe TKZ 01043345
+http://www.wallcolmonoy.com/Products/Support/MSDS_NBZ.htm
+identisch mit 10003015 für Dahlewitz
+identisch mit TKZ 07019429 (Verwendet seit 2009 in OU, wurde über COGLAS gesteuert)
+in 10 l Kanister
+in 200 l Fass
+in 200 l Fass (Ersatz für: ZYGLO EMULGATOR ZR-10C)
+in 200 l Fass (Ersatz für: ZYGLO ZL-27A)
+in 200 l Fass (Ersatz für: ZYGLO ZL-37)
+in 200 l Fass (Ersatz für: ZYGLO ZL-56). Ersatz am 07.09.2018 -> Sherwin Dubl-Check HM-704 (TKZ 01043349)
+in 200 l Fass (Ersatz für: ZYGLO ZL-60C)
+in 25 l-Kanister
+in 5 kg Gebinde (Ersatz für: ZYGLO ZP-4B)
+in SAP angelegt
+in accordance to OP-Task 70-00-00-100-148 Subtask 70-00-00-180-148-001
+ist in SAP angelegt mit der Nummer RRT042314
+nachträgliche Validierung
+ist in SAP angelegt mit der Nummer RRT044598
+nachträgliche Validierung
+ist in SAP angelegt mit der Nummer RRT066116
+nachträgliche Validierung
+keine Anlage in SAP. Verwendung für den kompletten Standort Oberursel
+keine Anwendung an Triebwerksteilen, für MTOC
+keine SAP Anlage
+keine SAP-Anlage gewünscht
+kein Produktdatenblatt vorhanden; Informationen des Herstellers über das Produkt beigefügt
+keine SAP-Anlage, Bestellung erfolgt dezentral
+lt. E-Mail am 20.02.19 von Hr. Oehlsen zurückgezogen und Nummer wird nicht mehr benötigt
+lt. Hr. Dietrich: Titel aktualisiert 16.08.2021
+mit wichtigen Nummern zum Aufkleben auf den Telefonhörer
+nach CSS130
+nach MIL PRF 7808
+neue TKZ laut Antrag für das Gebinde 2 Liter angelegt. Bereits in DW für Gebinde 10 Liter & 50 Liter, jeweils unter TKZ 10003761 (130/2001) & 10003760 (131/2001) zugelassen.
+nicht mehr benötigt; TKZ 01004939 wird für "Loctite 5926" verwendet, 2014-02-18
+nicht mehr benötigt; TKZ 01042283 wird für "Schnittschutzhandschuh Ejendals Tegera 993 Größe 7" verwendet, 2014-02-25.
+nicht mehr benötigt; TKZ 01042449_SCHUTZHANDSCHUH Scorpio 19-024 Gr. 10
+nicht mehr benötigt; TKZ 01042451_ Krytech Handschuh Typ 586 Gr. 7
+nicht mehr benötigt; TKZ 01042452_ Krytech Handschuh Typ 586 Gr. 8
+nicht mehr benötigt; TKZ 01042453_ Krytech Handschuh Typ 586 Gr. 9
+nicht mehr benötigt; TKZ 01042454_ Krytech Handschuh Typ 586 Gr. 10
+nicht mehr benötigt; TKZ 01042455_ Krytech Handschuh Typ 586 Gr. 11
+nicht mehr benötigt; TKZ 01042458_ SICHERHEITSHALBSCHUH Ladies classic S3. 8698.2 Gr.36
+nicht mehr benötigt; TKZ 01042459_ SICHERHEITSHALBSCHUH Ladies classic S3. 8698.2 Gr.37
+nicht mehr benötigt; TKZ 01042460_ SICHERHEITSHALBSCHUH Ladies classic S3. 8698.2 Gr.38
+nicht mehr benötigt; TKZ 01042461_ SICHERHEITSHALBSCHUH Ladies classic S3. 8698.2 Gr.39
+nicht mehr benötigt; TKZ 01042462_ SICHERHEITSHALBSCHUH Ladies classic S3. 8698.2 Gr.40
+nicht mehr benötigt; TKZ 01042463_ SICHERHEITSHALBSCHUH Ladies classic S3. 8698.2 Gr.41
+nicht mehr benötigt; TKZ 01042464_ SICHERHEITSHALBSCHUH Ladies classic S3. 8698.2 Gr.42
+nicht mehr benötigt; TKZ 01042465_ SICHERHEITSHALBSCHUH Ladies classic S3. 8698.2 Gr.43
+nicht mehr lieferbar 2013-05-15
+nur für Versand, ohne Antrag
+ohne Antrag, keine Anwendung an Triebwerksteilen
+ohne Antrag, keine Anwendung an Triebwerksteilen, nur für Versand/WE
+replacement for E.A.4. 5991 - BLAU GLAENZEND
+s.a. 10001645. Gebindegröße geändert wurde; 2013-12-10. siehe auch 01042888
+siehe 01040040 (Teilenummer in PDM neu angelegt)
+siehe Antrag 012/2010
+siehe TKZ 01008294 für OU (kann nicht verwendet werden, da für Material "Halbfabrikat" angelegt.
+siehe TKZ 01009015
+siehe TKZ 01041312 & 01043011 für andere Gebinde.
+siehe TKZ 01042589 & 01043011 für andere Gebinde.
+siehe VA 09-0359
+siehe auch 01009999 als 5 kg Gebinde
+siehe auch 01040366 als 1 kg Gebinde
+siehe auch 10003911
+siehe auch TKZ 01041603 (leicht abweichende Abmessung)
+siehe auch TKZ 01043299 (leicht abweichende Abmessung)
+siehe auch TKZ 10003311 (Anlage in SAP Fehlerhaft, da keine Zertifikatsabfrage im Reiter Qualitätsmanagement registriert)
+Bitte beachten: anderes Produkt unter dieser TKZ (10003311) im Gefahrstoffkataster gelistet!
+siehe auch TKZ 10003743 (anderer Hersteller & Gebinde möglicherweise geändert)
+soll TKZ 01041770 ersetzen (nicht mehr lieferbar)
+soll als Ersatz für TKZ 01042143 & 01042144 verwendet werden.
+soll als Ersatz für TKZ 01042143 verwendet werden, allerdings, gibt es mittlerweile aus Kostengründen keine Zertifizierung mehr für dieses Produkt.
+soll als Ersatz für TKZ 01042144 verwendet werden, allerdings, gibt es mittlerweile aus Kostengründen keine Zertifizierung mehr für dieses Produkt.
+soll nicht mehr als PSA bestellt werden 2012-07-27
+soll separat die Bestellung der Farbe "rot" ermöglichen (Produkt schon genehmigt unter TKZ 01042689 für die Farbe "Blau")
+stillgelegt. Diese TKZ wird nicht mehr benötigt. 2014-01-15
+vom Labor abgelehnt
+vorgetränkte Reinigunstücher
+wegen Doppelbenummerung mit 01005157 gelöscht
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert von: 10002084 
+(die Teilenummer war noch nicht in SAP angelegt!)
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert von: 10002361
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert von: 10004581
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert von: 10004582
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert von: 10004583
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert von: 10004584
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert, alt: 10002057
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert, alt: 10002058
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert, alt: 10002060
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert, alt: 10002062
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert, alt: 10002067
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert, alt: 10002069
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert, alt: 10002079.
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert, alt: 10002080.
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert, alt: 10002081
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert, alt: 10002082
+wegen Nummernkollision in SAP mit Rolls-Royce plc umbenummert, alt: 10004576
+wegen Nummernkollision in SAP mit Rolls-Royce plc von 10001777 umbenummert
+wegen Nummernkollision in SAP mit Rolls-Royce plc von 10001778 umbenummert
+wegen Nummernkollision in SAP mit Rolls-Royce plc von 10002059 umbenummert
+wegen Nummernkollision in SAP mit Rolls-Royce plc von 10002061 umbenummert
+wegen Nummernkollision in SAP mit Rolls-Royce plc von 10003559 umbenummert
+wegen Nummernkollision in SAP mit Rolls-Royce plc von 10003729 umbenummert
+wegen Nummernkollision in SAP mit Rolls-Royce plc von 10004221 umbenummert
+wegen Nummernkollision in SAP mit Rolls-Royce plc von 10004318 umbenummert
+wegen Nummernkollision in SAP mit Rolls-Royce plc von 10004450 umbenummert
+wegen Nummernkollision in SAP mit Rolls-Royce plc wurde alte TKZ 10003107 durch 01042775 ersetzt
+wegen Nummernkollision mit Rolls-Royce plc Indy Produkt von 10003264 umbenummert!
+wegen Nummernkollision mit Rolls-Royce plc Indy Produkt von 10003949 umbenummert!
+wird nicht mehr benötigt, siehe 01041516
+wird nicht verwendet
+wird zusammen mit TKZ 01043987 freigegeben: Verbrauchsmaterialien, die nicht mit Engine- Bauteilen in Verbindung kommen und die langfristig auf Grund von geänderter Liefermengen / Gebinden für die Anwendung von MSRR9403 (TKZ01043952) benötigt werden.
+wird zusammen mit TKZ 01043988 freigegeben: Verbrauchsmaterialien, die nicht mit Engine- Bauteilen in Verbindung kommen und die langfristig auf Grund von geänderter Liefermengen / Gebinden für die Anwendung von MSRR9403 (TKZ01043952) benötigt werden.
+wurde in SAP für Hydrauliköl Mobil DTE 24 neu vergeben und angelegt, jedoch gibt es dazu doch keinen Antrag und die Nummer kann daher neu vergeben werden (siehe Anträge Teile und Stoffe 028/2010)
+{gelöscht - TKZ wird nicht mehr verwendet}
+Ähnlich zugelassene Stoffe: 136/2023, TKZ01044082 und 137/2023, TKZ01044083.
+Gebinde: 1L (6 pro Karton)
+Ähnliches Produkt Rev. 2, siehe TKZ 01044192
+Ähnliches Produkt Rev. A, siehe TKZ 01043393
+Ähnliches Produkt wie TKZ 01042845 (Antrag 071/2016) aber mit anderem Gebinde (Dose 125 Stk)
+Ähnliches Produkt wie TKZ 01042845 (Antrag 071/2016) aber mit anderem Hersteller: Clariant Produkte (Deutschland) GmbH
+Ähnliches Produkt wie TKZ 01042981 (Antrag 057/2017) aber mit anderem Gebinde (6 dot cards / Dose 200 Stk)
+Ätzmediumbestandteil zum chemisch Ätzen von Ni-Schmiedeteilen
+ähnliches Produkt vom anderen Hersteller, siehe TKZ 01042565
+ähnliches Produkt vom anderen Hersteller, siehe TKZ 01043691

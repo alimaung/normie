@@ -4,12 +4,15 @@ URL configuration for normieapp.
 
 from django.urls import path
 from . import views
+from .views.auth import settings as auth_settings
 
 urlpatterns = [
     path('', views.home, name='home'),
     path('requests/', views.requests_page, name='requests'),	
     path('directory/', views.directory, name='directory'),
     path('directory/row/<int:row_number>/', views.directory_detail, name='directory_detail'),
+    path('tkz/', views.tkz, name='tkz'),
+    path('tkz/part/<int:row_number>/', views.tkz_detail, name='tkz_detail'),
     path('chemscan/', views.chemscan, name='chemscan'),
     path('standards/', views.standards, name='standards'),
     path('requests/', views.requests, name='requests'),
@@ -19,7 +22,7 @@ urlpatterns = [
     path('inventory/', views.inventory, name='inventory'),
     path('reports/', views.reports, name='reports'),
     path('audit/', views.audit, name='audit'),
-    path('settings/', views.settings, name='settings'),
+    path('settings/', auth_settings, name='settings'),
     path('login/', views.login_view, name='login'),
     path('signup/', views.signup_view, name='signup'),
     path('logout/', views.logout_view, name='logout'),
@@ -67,6 +70,9 @@ urlpatterns = [
     path('pdf-parser/save/<str:form_id>/', views.pdf_save, name='pdf_save'),
     path('pdf-parser/download/<str:form_id>/', views.pdf_download, name='pdf_download'),
     path('pdf-parser/debug/<str:form_id>/', views.pdf_debug, name='pdf_debug'),
+    
+    # PDF Form routes (alternative access path)
+    path('pdf_form/pdf_form/', views.pdf_parser, name='pdf_form_alt'),
     
     # Applicant State Parser routes
     path('applicant-state-parser/', views.applicant_state_parser, name='applicant_state_parser'),

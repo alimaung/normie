@@ -1,0 +1,315 @@
+{% extends "normieapp/base.html" %}
+{% load static %}
+
+{% block title %}
+    TKZ Part #{{ row_number }}
+{% endblock %}
+
+{% block extra_css %}
+    <link rel="stylesheet" href="{% static 'normieapp/css/tkz.css' %}">
+    <link rel="stylesheet" href="{% static 'normieapp/css/tkz-detail.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="tkz-detail-container">
+    <!-- Header Section -->
+    <div class="detail-header">
+        <div class="header-main">
+            <div class="header-info">
+                <div class="part-info">
+                    <h1 class="part-number">{{ item.teilenummer }}</h1>
+                    <div class="to-number">
+                        <span class="label">TO Number:</span>
+                        <span class="value">{{ item.to_nummer|default:"-" }}</span>
+                    </div>
+                </div>
+                
+                <div class="product-info">
+                    <h2 class="product-title">{{ item.titel|default:"No Title Available" }}</h2>
+                    <p class="product-description">{{ item.kategorie|default:"No Category Available" }}</p>
+                </div>
+            </div>
+            
+            <div class="status-section">
+                <div class="part-status">
+                    {% if item.to_nummer %}
+                        <span class="status-badge has-to">
+                            <i class="fas fa-check-circle"></i> Has TO Number
+                        </span>
+                    {% else %}
+                        <span class="status-badge no-to">
+                            <i class="fas fa-exclamation-triangle"></i> No TO Number
+                        </span>
+                    {% endif %}
+                </div>
+                
+                <div class="category-indicator">
+                    <div class="category-badge">
+                        <i class="fas fa-tag"></i>
+                        <span>{{ item.kategorie|default:"Uncategorized" }}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Part Information Section -->
+    <div class="detail-section">
+        <div class="section-header">
+            <h3><i class="fas fa-info-circle"></i> Part Information</h3>
+        </div>
+        <div class="section-grid">
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-barcode"></i>
+                    <h4>Part Number</h4>
+                </div>
+                <div class="card-content">
+                    <span class="value-text">{{ item.teilenummer }}</span>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-clipboard-list"></i>
+                    <h4>TO Number</h4>
+                </div>
+                <div class="card-content">
+                    <span class="value-text">{{ item.to_nummer|default:"Not specified" }}</span>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-tags"></i>
+                    <h4>Category</h4>
+                </div>
+                <div class="card-content">
+                    <span class="value-text">{{ item.kategorie|default:"Not specified" }}</span>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-heading"></i>
+                    <h4>Title/Description</h4>
+                </div>
+                <div class="card-content">
+                    <span class="value-text">{{ item.titel|default:"Not specified" }}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Project & Organization Section -->
+    <div class="detail-section">
+        <div class="section-header">
+            <h3><i class="fas fa-sitemap"></i> Project & Organization</h3>
+        </div>
+        <div class="section-grid">
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-project-diagram"></i>
+                    <h4>Project</h4>
+                </div>
+                <div class="card-content">
+                    <span class="value-text">{{ item.projekt|default:"Not assigned" }}</span>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-user"></i>
+                    <h4>Responsible Person</h4>
+                </div>
+                <div class="card-content">
+                    <span class="value-text">{{ item.name|default:"Not assigned" }}</span>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-building"></i>
+                    <h4>Department</h4>
+                </div>
+                <div class="card-content">
+                    <span class="value-text">{{ item.abteilung|default:"Not specified" }}</span>
+                </div>
+            </div>
+            
+            <div class="info-card">
+                <div class="card-header">
+                    <i class="fas fa-calendar-alt"></i>
+                    <h4>Date</h4>
+                </div>
+                <div class="card-content">
+                    <span class="value-text">
+                        {% if item.datum %}
+                            {{ item.datum|date:"F j, Y" }}
+                        {% else %}
+                            Not specified
+                        {% endif %}
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Additional Information Section -->
+    <div class="detail-section">
+        <div class="section-header">
+            <h3><i class="fas fa-clipboard-check"></i> Additional Information</h3>
+        </div>
+        
+        {% if item.bemerkungen %}
+        <div class="comments-section">
+            <div class="comments-header">
+                <i class="fas fa-comment-alt"></i>
+                <h4>Comments</h4>
+            </div>
+            <div class="comments-content">
+                <p>{{ item.bemerkungen }}</p>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if item.ben_en %}
+        <div class="english-section">
+            <div class="english-header">
+                <i class="fas fa-language"></i>
+                <h4>English Description</h4>
+            </div>
+            <div class="english-content">
+                <p>{{ item.ben_en }}</p>
+            </div>
+        </div>
+        {% endif %}
+
+        {% if item.zusatzinfo %}
+        <div class="additional-section">
+            <div class="additional-header">
+                <i class="fas fa-info"></i>
+                <h4>Additional Information</h4>
+            </div>
+            <div class="additional-content">
+                <p>{{ item.zusatzinfo }}</p>
+            </div>
+        </div>
+        {% endif %}
+    </div>
+
+    <!-- Related Parts Section -->
+    <div class="detail-section">
+        <div class="section-header">
+            <h3><i class="fas fa-link"></i> Related Information</h3>
+        </div>
+        <div class="related-grid">
+            <div class="related-item">
+                <div class="related-icon">
+                    <i class="fas fa-search"></i>
+                </div>
+                <div class="related-content">
+                    <h4>Find Similar Parts</h4>
+                    <p>Search for parts with similar categories or descriptions</p>
+                    <a href="/tkz/?search={{ item.kategorie|urlencode }}" class="related-link">
+                        Search Similar <i class="fas fa-external-link-alt"></i>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="related-item">
+                <div class="related-icon">
+                    <i class="fas fa-project-diagram"></i>
+                </div>
+                <div class="related-content">
+                    <h4>Project Parts</h4>
+                    <p>View all parts assigned to the same project</p>
+                    {% if item.projekt %}
+                    <a href="/tkz/?project={{ item.projekt|urlencode }}" class="related-link">
+                        View Project Parts <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    {% else %}
+                    <span class="related-link disabled">No project assigned</span>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <div class="related-item">
+                <div class="related-icon">
+                    <i class="fas fa-building"></i>
+                </div>
+                <div class="related-content">
+                    <h4>Department Parts</h4>
+                    <p>Browse all parts from the same department</p>
+                    {% if item.abteilung %}
+                    <a href="/tkz/?department={{ item.abteilung|urlencode }}" class="related-link">
+                        View Department Parts <i class="fas fa-external-link-alt"></i>
+                    </a>
+                    {% else %}
+                    <span class="related-link disabled">No department specified</span>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Quick Actions Section -->
+    <div class="detail-section">
+        <div class="section-header">
+            <h3><i class="fas fa-bolt"></i> Quick Actions</h3>
+        </div>
+        <div class="actions-grid">
+            <button class="action-button primary">
+                <i class="fas fa-edit"></i>
+                Edit Part Information
+            </button>
+            <button class="action-button secondary">
+                <i class="fas fa-copy"></i>
+                Duplicate Part
+            </button>
+            <button class="action-button secondary">
+                <i class="fas fa-print"></i>
+                Print Details
+            </button>
+            <button class="action-button secondary">
+                <i class="fas fa-download"></i>
+                Export Data
+            </button>
+            <button class="action-button secondary">
+                <i class="fas fa-share"></i>
+                Share Link
+            </button>
+            <button class="action-button danger">
+                <i class="fas fa-archive"></i>
+                Archive Part
+            </button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <div class="detail-navigation">
+        <a href="/tkz/" class="nav-button back">
+            <i class="fas fa-arrow-left"></i>
+            Back to TKZ Directory
+        </a>
+        
+        <div class="nav-pagination">
+            {% if row_number > 1 %}
+            <a href="/tkz/part/{{ row_number|add:"-1" }}/" class="nav-button prev">
+                <i class="fas fa-chevron-left"></i>
+                Previous Part
+            </a>
+            {% endif %}
+            
+            <span class="nav-current">Part {{ row_number }} of {{ total_parts }}</span>
+            
+            {% if row_number < total_parts %}
+            <a href="/tkz/part/{{ row_number|add:"1" }}/" class="nav-button next">
+                Next Part
+                <i class="fas fa-chevron-right"></i>
+            </a>
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %} 
