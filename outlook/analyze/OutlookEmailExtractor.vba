@@ -4,36 +4,110 @@ Option Explicit
 ' This macro runs continuously and extracts emails to JSON files every X minutes
 ' Place this in Outlook VBA (Alt+F11 -> Insert -> Module)
 
+' Windows API declarations (must be at module level)
+Private Declare PtrSafe Function SetTimer Lib "user32" ( _
+    ByVal hwnd As LongPtr, _
+    ByVal nIDEvent As LongPtr, _
+    ByVal uElapse As Long, _
+    ByVal lpTimerFunc As LongPtr) As LongPtr
+
+Private Declare PtrSafe Function KillTimer Lib "user32" ( _
+    ByVal hwnd As LongPtr, _
+    ByVal nIDEvent As LongPtr) As Long
+
 ' Global variables for polling
-Private WithEvents pollTimer As Outlook.Application
-Private Const POLL_INTERVAL_MINUTES As Integer = 5
-Private Const OUTPUT_FOLDER As String = "C:\temp\outlook_extract\"
+Private Const POLL_INTERVAL_MINUTES As Integer = 1
 Private Const MAX_EMAILS_PER_ACCOUNT As Integer = 50
+Private Const TARGET_ACCOUNT As String = "IRM-Standardisation-Office"
+
+' Change tracking
+Private LastEmailCount As Integer
+Private LastModifiedTime As Date
+
+' Dynamic paths
+Private Function GetOutputFolder() As String
+    GetOutputFolder = "C:\Users\" & Environ("USERNAME") & "\Desktop\normie\outlook\analyze\outlook_extract\"
+End Function
+
+Private Function GetAttachmentsFolder() As String
+    GetAttachmentsFolder = "C:\Users\" & Environ("USERNAME") & "\Desktop\normie\outlook\analyze\outlook_extract\attachments\"
+End Function
+
+' Helper function to create directory path recursively
+Private Sub CreateDirectoryPath(fullPath As String)
+    On Error Resume Next
+    
+    Dim pathParts() As String
+    Dim currentPath As String
+    Dim i As Integer
+    
+    ' Remove trailing backslash if present
+    If Right(fullPath, 1) = "\" Then
+        fullPath = Left(fullPath, Len(fullPath) - 1)
+    End If
+    
+    pathParts = Split(fullPath, "\")
+    
+    ' Start with the drive letter
+    currentPath = pathParts(0) & "\"
+    
+    ' Create each directory level
+    For i = 1 To UBound(pathParts)
+        currentPath = currentPath & pathParts(i) & "\"
+        If Dir(currentPath, vbDirectory) = "" Then
+            MkDir currentPath
+        End If
+    Next i
+    
+    On Error GoTo 0
+End Sub
+
+' Timer variables
+Private PollTimerID As Long
+Private IsPolling As Boolean
 
 ' Main entry point - call this to start polling
 Public Sub StartEmailPolling()
     Debug.Print "Starting email polling every " & POLL_INTERVAL_MINUTES & " minutes..."
-    Debug.Print "Output folder: " & OUTPUT_FOLDER
+    Debug.Print "Output folder: " & GetOutputFolder()
+    Debug.Print "Target account: " & TARGET_ACCOUNT
     
     ' Create output folder if it doesn't exist
-    If Dir(OUTPUT_FOLDER, vbDirectory) = "" Then
-        MkDir OUTPUT_FOLDER
-    End If
+    CreateDirectoryPath GetOutputFolder()
+    
+    ' Create attachments subfolder
+    CreateDirectoryPath GetAttachmentsFolder()
     
     ' Run extraction immediately
     ExtractAllEmails
     
-    ' Schedule next run
-    Application.OnTime Now + TimeValue("00:" & Format(POLL_INTERVAL_MINUTES, "00") & ":00"), "ExtractAllEmails"
+    ' Start timer for recurring extractions (interval in milliseconds)
+    Dim intervalMS As Long
+    intervalMS = POLL_INTERVAL_MINUTES * 60 * 1000
     
-    Debug.Print "Polling started. To stop, run StopEmailPolling"
+    PollTimerID = SetTimer(0, 0, intervalMS, AddressOf TimerCallback)
+    IsPolling = True
+    
+    Debug.Print "Polling started with timer ID: " & PollTimerID
+    Debug.Print "To stop, run StopEmailPolling"
 End Sub
 
 ' Stop the polling
 Public Sub StopEmailPolling()
+    If IsPolling And PollTimerID <> 0 Then
+        KillTimer 0, PollTimerID
+        PollTimerID = 0
+        IsPolling = False
+        Debug.Print "Polling stopped."
+    Else
+        Debug.Print "Polling was not active."
+    End If
+End Sub
+
+' Timer callback function
+Private Sub TimerCallback()
     On Error Resume Next
-    Application.OnTime Now + TimeValue("00:" & Format(POLL_INTERVAL_MINUTES, "00") & ":00"), "ExtractAllEmails", , False
-    Debug.Print "Polling stopped."
+    ExtractAllEmails
 End Sub
 
 ' Main extraction routine
@@ -48,31 +122,37 @@ Public Sub ExtractAllEmails()
     Set olApp = Application
     Set olNamespace = olApp.GetNamespace("MAPI")
     
-    ' Extract from all stores (accounts)
+    ' Extract from target account only
     Dim store As Outlook.Store
+    Dim hasChanges As Boolean
+    hasChanges = False
+    
     For Each store In olNamespace.Stores
-        Debug.Print "Processing store: " & store.DisplayName
-        ExtractEmailsFromStore store
+        If InStr(UCase(store.DisplayName), UCase(TARGET_ACCOUNT)) > 0 Then
+            Debug.Print "Processing target store: " & store.DisplayName
+            hasChanges = ExtractEmailsFromStore(store)
+            Exit For ' Only process the first matching store
+        End If
     Next store
     
-    ' Create status file with timestamp
-    CreateStatusFile
+    ' Only create status file if there were changes
+    If hasChanges Then
+        CreateStatusFile
+        Debug.Print "Changes detected - files updated"
+    Else
+        Debug.Print "No changes detected - skipping file writes"
+    End If
     
     Debug.Print "=== Email Extraction Completed: " & Now & " ==="
-    
-    ' Schedule next run
-    Application.OnTime Now + TimeValue("00:" & Format(POLL_INTERVAL_MINUTES, "00") & ":00"), "ExtractAllEmails"
     
     Exit Sub
     
 ErrorHandler:
     Debug.Print "Error in ExtractAllEmails: " & Err.Description
-    ' Continue polling even if there's an error
-    Application.OnTime Now + TimeValue("00:" & Format(POLL_INTERVAL_MINUTES, "00") & ":00"), "ExtractAllEmails"
 End Sub
 
 ' Extract emails from a specific store
-Private Sub ExtractEmailsFromStore(store As Outlook.Store)
+Private Function ExtractEmailsFromStore(store As Outlook.Store) As Boolean
     On Error GoTo ErrorHandler
     
     Dim rootFolder As Outlook.Folder
@@ -88,33 +168,24 @@ Private Sub ExtractEmailsFromStore(store As Outlook.Store)
     
     If Not inboxFolder Is Nothing Then
         Debug.Print "  Extracting from Inbox: " & inboxFolder.Items.Count & " items"
-        ExtractEmailsFromFolder inboxFolder, storeName & "_inbox"
+        ExtractEmailsFromStore = ExtractEmailsFromFolder(inboxFolder, "emails")
+    Else
+        ExtractEmailsFromStore = False
     End If
     
-    ' Extract from Sent Items
-    Dim sentFolder As Outlook.Folder
-    Set sentFolder = FindFolderByName(rootFolder, "Sent Items")
-    
-    If Not sentFolder Is Nothing Then
-        Debug.Print "  Extracting from Sent Items: " & sentFolder.Items.Count & " items"
-        ExtractEmailsFromFolder sentFolder, storeName & "_sent"
-    End If
-    
-    Exit Sub
+    Exit Function
     
 ErrorHandler:
     Debug.Print "Error extracting from store " & store.DisplayName & ": " & Err.Description
-End Sub
+    ExtractEmailsFromStore = False
+End Function
 
 ' Extract emails from a specific folder
-Private Sub ExtractEmailsFromFolder(folder As Outlook.Folder, filePrefix As String)
+Private Function ExtractEmailsFromFolder(folder As Outlook.Folder, filePrefix As String) As Boolean
     On Error GoTo ErrorHandler
     
     Dim jsonContent As String
     Dim emailCount As Integer
-    Dim timestamp As String
-    
-    timestamp = Format(Now, "yyyy-mm-dd_hh-nn-ss")
     
     ' Start JSON structure
     jsonContent = "{" & vbCrLf
@@ -128,6 +199,30 @@ Private Sub ExtractEmailsFromFolder(folder As Outlook.Folder, filePrefix As Stri
     Dim items As Outlook.items
     Set items = folder.items
     items.Sort "[ReceivedTime]", True
+    
+    ' Check if folder has changed since last run
+    Dim currentCount As Integer
+    Dim latestEmailTime As Date
+    currentCount = items.Count
+    
+    If currentCount > 0 Then
+        Dim firstItem As Object
+        Set firstItem = items.Item(1)
+        If TypeOf firstItem Is Outlook.MailItem Then
+            latestEmailTime = firstItem.ReceivedTime
+        End If
+    End If
+    
+    ' Compare with last run
+    If currentCount = LastEmailCount And latestEmailTime <= LastModifiedTime Then
+        Debug.Print "    No changes detected (Count: " & currentCount & ", Latest: " & latestEmailTime & ")"
+        ExtractEmailsFromFolder = False
+        Exit Function
+    End If
+    
+    Debug.Print "    Changes detected - updating files"
+    LastEmailCount = currentCount
+    LastModifiedTime = latestEmailTime
     
     emailCount = 0
     
@@ -193,10 +288,37 @@ Private Sub ExtractEmailsFromFolder(folder As Outlook.Folder, filePrefix As Stri
             Dim attachment As Outlook.attachment
             For Each attachment In mailItem.Attachments
                 If attachmentIndex > 0 Then jsonContent = jsonContent & "," & vbCrLf
+                
+                ' Download attachment
+                Dim attachmentPath As String
+                Dim safeFileName As String
+                Dim relativeAttachmentPath As String
+                safeFileName = CleanFileName(attachment.FileName)
+                relativeAttachmentPath = "attachments\" & safeFileName
+                attachmentPath = GetAttachmentsFolder() & safeFileName
+                
+                ' Save attachment to disk (only if it doesn't exist)
+                On Error Resume Next
+                If Dir(attachmentPath) = "" Then
+                    attachment.SaveAsFile attachmentPath
+                    If Err.Number = 0 Then
+                        Debug.Print "      Downloaded: " & safeFileName
+                        attachmentPath = relativeAttachmentPath
+                    Else
+                        Debug.Print "      Failed to download: " & safeFileName & " (Error: " & Err.Description & ")"
+                        attachmentPath = "" ' Failed to save
+                    End If
+                Else
+                    Debug.Print "      Already exists: " & safeFileName
+                    attachmentPath = relativeAttachmentPath
+                End If
+                On Error GoTo ErrorHandler
+                
                 jsonContent = jsonContent & "        {" & vbCrLf
                 jsonContent = jsonContent & "          ""filename"": """ & EscapeJson(attachment.FileName) & """," & vbCrLf
                 jsonContent = jsonContent & "          ""size"": " & attachment.Size & "," & vbCrLf
-                jsonContent = jsonContent & "          ""type"": " & attachment.Type & vbCrLf
+                jsonContent = jsonContent & "          ""type"": " & attachment.Type & "," & vbCrLf
+                jsonContent = jsonContent & "          ""filepath"": """ & EscapeJson(attachmentPath) & """" & vbCrLf
                 jsonContent = jsonContent & "        }"
                 attachmentIndex = attachmentIndex + 1
                 If attachmentIndex >= 10 Then Exit For ' Limit attachments
@@ -214,9 +336,9 @@ Private Sub ExtractEmailsFromFolder(folder As Outlook.Folder, filePrefix As Stri
     jsonContent = jsonContent & "  ""extracted_count"": " & emailCount & vbCrLf
     jsonContent = jsonContent & "}" & vbCrLf
     
-    ' Write to file
+    ' Write to file (overwrite same file)
     Dim fileName As String
-    fileName = OUTPUT_FOLDER & filePrefix & "_" & timestamp & ".json"
+    fileName = GetOutputFolder() & filePrefix & ".json"
     
     Dim fileNum As Integer
     fileNum = FreeFile
@@ -225,12 +347,14 @@ Private Sub ExtractEmailsFromFolder(folder As Outlook.Folder, filePrefix As Stri
     Close #fileNum
     
     Debug.Print "    Exported " & emailCount & " emails to: " & fileName
+    ExtractEmailsFromFolder = True
     
-    Exit Sub
+    Exit Function
     
 ErrorHandler:
     Debug.Print "Error extracting emails from folder: " & Err.Description
-End Sub
+    ExtractEmailsFromFolder = False
+End Function
 
 ' Helper function to find folder by name
 Private Function FindFolderByName(parentFolder As Outlook.Folder, folderName As String) As Outlook.Folder
@@ -291,13 +415,14 @@ End Function
 ' Create status file with current timestamp
 Private Sub CreateStatusFile()
     Dim statusFile As String
-    statusFile = OUTPUT_FOLDER & "last_extraction.txt"
+    statusFile = GetOutputFolder() & "last_extraction.txt"
     
     Dim fileNum As Integer
     fileNum = FreeFile
     Open statusFile For Output As #fileNum
     Print #fileNum, "Last extraction: " & Format(Now, "yyyy-mm-dd hh:nn:ss")
-    Print #fileNum, "Next extraction: " & Format(Now + TimeValue("00:" & Format(POLL_INTERVAL_MINUTES, "00") & ":00"), "yyyy-mm-dd hh:nn:ss")
+    Print #fileNum, "Next extraction: " & Format(Now + TimeValue("00:0" & Format(POLL_INTERVAL_MINUTES, "0") & ":00"), "yyyy-mm-dd hh:nn:ss")
+    Print #fileNum, "Target account: " & TARGET_ACCOUNT
     Close #fileNum
 End Sub
 
