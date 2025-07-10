@@ -270,7 +270,7 @@ Private Function ExtractEmailsFromFolder(folder As Outlook.folder, filePrefix As
             subjectAttachmentFolder = GetAttachmentsFolder() & subjectFolderName & "\"
             msgFileName = emailHash & "_" & CleanFileName(mailItem.Subject) & ".msg"
             
-            jsonContent = jsonContent & "      ""msg_file"": ""data\" & subjectFolderName & "\" & msgFileName & """," & vbCrLf
+            jsonContent = jsonContent & "      ""msg_file"": """ & EscapeJson("data\" & subjectFolderName & "\" & msgFileName) & """," & vbCrLf
             
             ' Extract body (truncate if too long)
             Dim bodyText As String
@@ -349,7 +349,7 @@ Private Function ExtractEmailsFromFolder(folder As Outlook.folder, filePrefix As
                     
                     ' Download attachment (keep original filename) - only if folder was created
                     If folderCreated Then
-                        relativeAttachmentPath = "data\" & subjectFolderName & "\" & attachment.fileName
+                        relativeAttachmentPath = "data/" & subjectFolderName & "/" & attachment.fileName
                         attachmentPath = subjectAttachmentFolder & "\" & attachment.fileName
                         
                         WriteLog "      Attachment path: " & attachmentPath

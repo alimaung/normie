@@ -140,28 +140,6 @@ $(document).ready(function() {
         }
     });
     
-    // Handle category assignment
-    $('.category-item').on('click', function(e) {
-        e.preventDefault();
-        
-        const selectedEmails = getSelectedEmailIds();
-        
-        if (selectedEmails.length === 0) {
-            showNotification('Please select at least one email to categorize.', 'warning');
-            return;
-        }
-        
-        const category = $(this).data('category');
-        const categoryName = category ? $(this).text().trim() : 'None';
-        const account = $('#account-selector').val();
-        
-        // Show loading indicator
-        $('.dropdown-toggle').html('<i class="fas fa-spinner fa-spin"></i> Categorizing...');
-        $('.dropdown-toggle').prop('disabled', true);
-        
-        categorizeEmails(selectedEmails, category, account);
-    });
-    
     // Clear search
     $('#clear-search').on('click', function() {
         const currentUrl = new URL(window.location.href);
@@ -188,10 +166,8 @@ $(document).ready(function() {
         
         if (selectedCount > 0) {
             $('#delete-btn').prop('disabled', false);
-            $('.dropdown-toggle').prop('disabled', false);
         } else {
             $('#delete-btn').prop('disabled', true);
-            $('.dropdown-toggle').prop('disabled', true);
         }
         
         // Update button text to show count
@@ -207,68 +183,11 @@ $(document).ready(function() {
         }
     }
     
-    // Function to categorize emails
-    function categorizeEmails(emailIds, category, account) {
-        $.ajax({
-            url: '/inbox/categorize/',
-            type: 'POST',
-            data: {
-                'email_ids': emailIds,
-                'category': category,
-                'account': account,
-                'csrfmiddlewaretoken': $('#csrf-form input[name="csrfmiddlewaretoken"]').val()
-            },
-            success: function(response) {
-                if (response.success) {
-                    // Update UI to show the new category
-                    const count = emailIds.length;
-                    let message;
-                    
-                    if (category) {
-                        message = count === 1 
-                            ? `Email categorized as "${category}".` 
-                            : `${count} emails categorized as "${category}".`;
-                    } else {
-                        message = count === 1 
-                            ? 'Category removed from email.' 
-                            : `Categories removed from ${count} emails.`;
-                    }
-                    
-                    showNotification(message, 'success');
-                    
-                    // Reload to show updated categories
-                    setTimeout(function() {
-                        showLoadingOverlay();
-                        location.reload();
-                    }, 1000);
-                } else {
-                    showNotification('Error categorizing email(s): ' + response.error, 'danger');
-                    
-                    // Reset button
-                    $('.dropdown-toggle').html('<i class="fas fa-tag"></i> Categorize');
-                    updateToolbarState();
-                }
-            },
-            error: function() {
-                showNotification('An error occurred while categorizing the email(s).', 'danger');
-                
-                // Reset button
-                $('.dropdown-toggle').html('<i class="fas fa-tag"></i> Categorize');
-                updateToolbarState();
-            }
-        });
-    }
-    
     // Create context menu for right-click
     function createContextMenu() {
         // Create the context menu
         const contextMenu = $(`
             <div id="email-context-menu" class="dropdown-menu">
-                <h6 class="dropdown-header">Categorize</h6>
-                <div class="category-menu-items">
-                    ${getCategoryMenuItems()}
-                </div>
-                <div class="dropdown-divider"></div>
                 <a class="dropdown-item" href="#" id="context-delete">
                     <i class="fas fa-trash-alt text-danger"></i> Delete
                 </a>
@@ -286,17 +205,12 @@ $(document).ready(function() {
                     position: absolute;
                     z-index: 1000;
                     display: none;
-                    min-width: 200px;
+                    min-width: 120px;
                     box-shadow: 0 2px 10px rgba(0,0,0,0.2);
                     border: 1px solid #e5e5e5;
                     border-radius: 4px;
                     background-color: #fff;
                     padding: 8px 0;
-                }
-                #email-context-menu .dropdown-header {
-                    font-weight: 600;
-                    color: #333;
-                    padding: 8px 16px;
                 }
                 #email-context-menu .dropdown-item {
                     padding: 8px 16px;
@@ -304,13 +218,6 @@ $(document).ready(function() {
                 }
                 #email-context-menu .dropdown-item:hover {
                     background-color: #f0f7ff;
-                }
-                #email-context-menu .category-color {
-                    display: inline-block;
-                    width: 12px;
-                    height: 12px;
-                    border-radius: 3px;
-                    margin-right: 10px;
                 }
             `)
             .appendTo('head');
@@ -336,22 +243,6 @@ $(document).ready(function() {
                 top: e.pageY + 'px',
                 left: e.pageX + 'px'
             }).show();
-        });
-        
-        // Handle click on category items in context menu
-        $('#email-context-menu').on('click', '.context-category-item', function(e) {
-            e.preventDefault();
-            
-            // Get the email ID and category
-            const emailId = $('#email-context-menu').data('email-id');
-            const category = $(this).data('category');
-            const account = $('#account-selector').val();
-            
-            // Hide the context menu
-            $('#email-context-menu').hide();
-            
-            // Categorize the email
-            categorizeEmails([emailId], category, account);
         });
         
         // Handle click on delete item in context menu
@@ -416,56 +307,7 @@ $(document).ready(function() {
         });
     }
     
-    // Helper function to get category menu items HTML
-    function getCategoryMenuItems() {
-        let html = '';
-        
-        // Get available categories
-        if ($('.category-item').length > 0) {
-            $('.category-item').each(function() {
-                const category = $(this).data('category');
-                if (category) {  // Skip the "Clear Category" item
-                    const color = $(this).find('.category-color').css('background-color');
-                    html += `
-                        <a class="dropdown-item context-category-item" href="#" data-category="${category}">
-                            <span class="category-color" style="background-color: ${color || $(this).find('.category-color').attr('style').split('background-color: ')[1].split(';')[0]};"></span>
-                            ${$(this).text().trim()}
-                        </a>
-                    `;
-                }
-            });
-            
-            // Add "Clear Category" item
-            html += `
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item context-category-item" href="#" data-category="">
-                    <i class="fas fa-times"></i> Clear Category
-                </a>
-            `;
-        } else {
-            // Default categories if none are available
-            html += `
-                <a class="dropdown-item context-category-item" href="#" data-category="Important">
-                    <span class="category-color" style="background-color: #FF0000;"></span> Important
-                </a>
-                <a class="dropdown-item context-category-item" href="#" data-category="Work">
-                    <span class="category-color" style="background-color: #FFA500;"></span> Work
-                </a>
-                <a class="dropdown-item context-category-item" href="#" data-category="Personal">
-                    <span class="category-color" style="background-color: #0000FF;"></span> Personal
-                </a>
-                <a class="dropdown-item context-category-item" href="#" data-category="Follow-up">
-                    <span class="category-color" style="background-color: #008000;"></span> Follow-up
-                </a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item context-category-item" href="#" data-category="">
-                    <i class="fas fa-times"></i> Clear Category
-                </a>
-            `;
-        }
-        
-        return html;
-    }
+
     
     // Show notification
     function showNotification(message, type) {

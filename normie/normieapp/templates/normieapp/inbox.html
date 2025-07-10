@@ -51,27 +51,7 @@
                         <i class="fas fa-archive"></i> {% trans "Archive" %}
                     </a>
                 </li>
-            </ul>
-        </div>
-        
-        <div class="categories-section">
-            <div class="folder-header">{% trans "Categories" %}</div>
-            <ul>
-                {% if available_categories %}
-                    {% for cat in available_categories %}
-                    <li>
-                        <a href="{% url 'inbox' %}?account={{ email_address }}&category={{ cat.name }}">
-                            <span class="category-color" style="background-color: {{ cat.color }};"></span> {{ cat.name }}
-                        </a>
-                    </li>
-                    {% endfor %}
-                {% else %}
-                    <li><a href="{% url 'inbox' %}?account={{ email_address }}&category=Important"><span class="category-color" style="background-color: #FF0000;"></span> {% trans "Important" %}</a></li>
-                    <li><a href="{% url 'inbox' %}?account={{ email_address }}&category=Work"><span class="category-color" style="background-color: #FFA500;"></span> {% trans "Work" %}</a></li>
-                    <li><a href="{% url 'inbox' %}?account={{ email_address }}&category=Personal"><span class="category-color" style="background-color: #0000FF;"></span> {% trans "Personal" %}</a></li>
-                    <li><a href="{% url 'inbox' %}?account={{ email_address }}&category=Follow-up"><span class="category-color" style="background-color: #008000;"></span> {% trans "Follow-up" %}</a></li>
-                {% endif %}
-            </ul>
+                        </ul>
         </div>
     </div>
     
@@ -95,30 +75,6 @@
                 <button type="button" id="refresh-btn" class="btn btn-outline-secondary" data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% trans 'Refresh inbox' %}">
                     <i class="fas fa-sync-alt"></i> {% trans "Refresh" %}
                 </button>
-                
-                <div class="btn-group">
-                    <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false" disabled title="{% trans 'Apply category to selected emails' %}">
-                        <i class="fas fa-tag"></i> {% trans "Categorize" %}
-                    </button>
-                    <ul class="dropdown-menu">
-                        {% if available_categories %}
-                            {% for cat in available_categories %}
-                            <li>
-                                <a class="dropdown-item category-item" data-category="{{ cat.name }}" href="#">
-                                    <span class="category-color" style="background-color: {{ cat.color }};"></span> {{ cat.name }}
-                                </a>
-                            </li>
-                            {% endfor %}
-                        {% else %}
-                            <li><a class="dropdown-item category-item" data-category="Important" href="#"><span class="category-color" style="background-color: #FF0000;"></span> {% trans "Important" %}</a></li>
-                            <li><a class="dropdown-item category-item" data-category="Work" href="#"><span class="category-color" style="background-color: #FFA500;"></span> {% trans "Work" %}</a></li>
-                            <li><a class="dropdown-item category-item" data-category="Personal" href="#"><span class="category-color" style="background-color: #0000FF;"></span> {% trans "Personal" %}</a></li>
-                            <li><a class="dropdown-item category-item" data-category="Follow-up" href="#"><span class="category-color" style="background-color: #008000;"></span> {% trans "Follow-up" %}</a></li>
-                        {% endif %}
-                        <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item category-item" data-category="" href="#"><i class="fas fa-times"></i> {% trans "Clear Category" %}</a></li>
-                    </ul>
-                </div>
                 
                 <button type="button" id="delete-btn" class="btn btn-outline-danger" disabled data-bs-toggle="tooltip" data-bs-placement="bottom" title="{% trans 'Delete selected emails' %}">
                     <i class="fas fa-trash-alt"></i> {% trans "Delete" %}
@@ -192,9 +148,7 @@
                             <i class="fas fa-arrow-down"></i>
                             {% endif %}
                             
-                            {% if email.categories %}
-                            <i class="fas fa-tag" style="color: {% if 'Important' in email.categories %}#FF0000{% elif 'Work' in email.categories %}#FFA500{% elif 'Personal' in email.categories %}#0000FF{% elif 'Follow-up' in email.categories %}#008000{% else %}#777777{% endif %}"></i>
-                            {% endif %}
+
                         </div>
                         <div class="email-item-sender">{{ email.sender }}</div>
                         <div class="email-item-subject">

@@ -79,13 +79,8 @@ def inbox(request):
             messages.warning(request, _(f"Could not access email account: {str(e)}"))
             context['connection_warning'] = True
         
-        # Fetch available categories
-        try:
-            categories = outlook.get_categories(email_address)
-            context['available_categories'] = categories
-        except Exception as e:
-            logger.error(f"Error fetching categories: {str(e)}")
-            messages.warning(request, _(f"Could not fetch email categories. Using default categories."))
+        # Categories are disabled - using default categories
+        context['available_categories'] = default_categories
         
         # Fetch emails
         try:
@@ -444,38 +439,10 @@ def inbox_categorize_message(request, message_id):
     """
     Apply a category to a specific email message.
     """
-    from ..services.outlook_service import OutlookService
-    
-    if request.method != 'POST':
-        return JsonResponse({'success': False, 'message': 'Invalid request method'})
-    
-    # Check if this is a VBA email ID
-    if message_id.startswith('vba_'):
-        return JsonResponse({
-            'success': False, 
-            'message': 'Cannot categorize emails from VBA cache. Please wait for the next refresh or use Outlook directly.'
-        })
-    
-    # Get email address and category from request
-    try:
-        data = json.loads(request.body)
-        email_address = data.get('email_address', OutlookService.ALLOWED_ACCOUNTS[0])
-        category = data.get('category', '')
-    except:
-        email_address = request.POST.get('account', OutlookService.ALLOWED_ACCOUNTS[0])
-        category = request.POST.get('category', '')
-    
-    try:
-        # Connect to Outlook and categorize the email
-        outlook = OutlookService()
-        success = outlook.categorize_email(email_address, message_id, category)
-        
-        if success:
-            return JsonResponse({'success': True})
-        else:
-            return JsonResponse({'success': False, 'message': 'Failed to categorize email'})
-    except Exception as e:
-        return JsonResponse({'success': False, 'message': str(e)})
+    return JsonResponse({
+        'success': False, 
+        'message': 'Category functionality has been disabled. Please use external labeling system.'
+    })
 
 
 @csrf_exempt
@@ -484,64 +451,10 @@ def inbox_categorize(request):
     """
     Apply a category to multiple email messages.
     """
-    from ..services.outlook_service import OutlookService
-    
-    if request.method != 'POST':
-        return JsonResponse({'success': False, 'error': 'Invalid request method'})
-    
-    # Get email IDs, account, and category from request
-    email_ids = request.POST.getlist('email_ids[]') or json.loads(request.POST.get('email_ids', '[]'))
-    email_address = request.POST.get('account', OutlookService.ALLOWED_ACCOUNTS[0])
-    category = request.POST.get('category', '')
-    
-    if not email_ids:
-        return JsonResponse({'success': False, 'error': 'No emails selected'})
-    
-    # Check for VBA email IDs
-    vba_ids = [email_id for email_id in email_ids if email_id.startswith('vba_')]
-    com_ids = [email_id for email_id in email_ids if not email_id.startswith('vba_')]
-    
-    if vba_ids and not com_ids:
-        return JsonResponse({
-            'success': False, 
-            'error': 'Cannot categorize emails from VBA cache. Please wait for the next refresh or use Outlook directly.'
-        })
-    elif vba_ids and com_ids:
-        return JsonResponse({
-            'success': False, 
-            'error': f'Cannot categorize mixed email sources. {len(vba_ids)} emails are from VBA cache and cannot be categorized via web interface.'
-        })
-    
-    try:
-        # Connect to Outlook and categorize the emails
-        outlook = OutlookService()
-        categorized_count = 0
-        errors = []
-        
-        for email_id in com_ids:
-            try:
-                success = outlook.categorize_email(email_address, email_id, category)
-                if success:
-                    categorized_count += 1
-                else:
-                    errors.append(f"Failed to categorize email {email_id}")
-            except Exception as e:
-                errors.append(f"Error categorizing email {email_id}: {str(e)}")
-        
-        if categorized_count == len(com_ids):
-            return JsonResponse({'success': True, 'count': categorized_count})
-        elif categorized_count > 0:
-            return JsonResponse({
-                'success': True,
-                'partial': True,
-                'count': categorized_count,
-                'total': len(com_ids),
-                'errors': errors
-            })
-        else:
-            return JsonResponse({'success': False, 'error': 'Failed to categorize any emails', 'errors': errors})
-    except Exception as e:
-        return JsonResponse({'success': False, 'error': str(e)})
+    return JsonResponse({
+        'success': False, 
+        'error': 'Category functionality has been disabled. Please use external labeling system.'
+    })
 
 
 # Additional inbox views for reply and forward functionality

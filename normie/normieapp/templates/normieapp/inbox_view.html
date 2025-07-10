@@ -27,19 +27,7 @@
                 <i class="fas fa-trash-alt"></i> {% trans "Delete" %}
             </button>
             
-            <div class="btn-group">
-                <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                    <i class="fas fa-tag"></i> {% trans "Categorize" %}
-                </button>
-                <ul class="dropdown-menu">
-                    <li><a class="dropdown-item category-item" data-id="{{ message_id }}" data-account="{{ email_address }}" data-category="Important" href="#"><span class="category-color" style="background-color: #FF0000;"></span> {% trans "Important" %}</a></li>
-                    <li><a class="dropdown-item category-item" data-id="{{ message_id }}" data-account="{{ email_address }}" data-category="Work" href="#"><span class="category-color" style="background-color: #FFA500;"></span> {% trans "Work" %}</a></li>
-                    <li><a class="dropdown-item category-item" data-id="{{ message_id }}" data-account="{{ email_address }}" data-category="Personal" href="#"><span class="category-color" style="background-color: #0000FF;"></span> {% trans "Personal" %}</a></li>
-                    <li><a class="dropdown-item category-item" data-id="{{ message_id }}" data-account="{{ email_address }}" data-category="Follow-up" href="#"><span class="category-color" style="background-color: #008000;"></span> {% trans "Follow-up" %}</a></li>
-                    <li><hr class="dropdown-divider"></li>
-                    <li><a class="dropdown-item category-item" data-id="{{ message_id }}" data-account="{{ email_address }}" data-category="" href="#"><i class="fas fa-times"></i> {% trans "Clear Category" %}</a></li>
-                </ul>
-            </div>
+
         </div>
     </div>
 
@@ -91,12 +79,7 @@
                     {% endif %}
                 </div>
                 
-                {% if email.categories %}
-                <div class="category-info">
-                    <strong>{% trans "Categories:" %}</strong> 
-                    <span class="email-categories">{{ email.categories }}</span>
-                </div>
-                {% endif %}
+
                 
                 {% if email.importance == 2 %}
                 <div class="importance-info high-importance">
