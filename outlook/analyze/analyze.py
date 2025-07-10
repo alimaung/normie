@@ -3,12 +3,9 @@
 Outlook COM Application Analyzer
 
 This script analyzes the Outlook COM application to extract comprehensive information about:
-- Email accounts (Exchange)
 - Folder structure and statistics
-- Groups and distribution lists
+- Email content from both accounts
 - Calendar information
-- Contact information
-- Application settings and configuration
 
 Requires: pywin32 (pip install pywin32)
 """
@@ -31,10 +28,8 @@ class OutlookAnalyzer:
         self.namespace = None
         self.results = {
             'timestamp': datetime.datetime.now().isoformat(),
-            'accounts': [],
             'folders': {},
-            'groups': [],
-            'contacts': [],
+            'emails': {},
             'calendar_info': {},
             'statistics': {},
             'errors': []
@@ -54,57 +49,6 @@ class OutlookAnalyzer:
             print(f"✗ {error_msg}")
             self.results['errors'].append(error_msg)
             return False
-    
-    def analyze_accounts(self):
-        """Analyze all email accounts in Outlook."""
-        try:
-            print("\nAnalyzing email accounts...")
-            accounts = self.namespace.Accounts
-            print(f"Found {accounts.Count} account(s)")
-            
-            for i in range(1, accounts.Count + 1):
-                account = accounts.Item(i)
-                account_info = {
-                    'index': i,
-                    'display_name': getattr(account, 'DisplayName', 'Unknown'),
-                    'smtp_address': getattr(account, 'SmtpAddress', 'Unknown'),
-                    'account_type': self._get_account_type(account),
-                    'current_user': getattr(account, 'CurrentUser', {}).Name if hasattr(account, 'CurrentUser') and account.CurrentUser else 'Unknown',
-                    'delivery_store': {},
-                    'session': {}
-                }
-                
-                # Get delivery store information
-                try:
-                    if hasattr(account, 'DeliveryStore') and account.DeliveryStore:
-                        store = account.DeliveryStore
-                        account_info['delivery_store'] = {
-                            'display_name': getattr(store, 'DisplayName', 'Unknown'),
-                            'file_path': getattr(store, 'FilePath', 'Unknown'),
-                            'size': getattr(store, 'Size', 0),
-                            'categories': self._get_store_categories(store)
-                        }
-                except Exception as e:
-                    account_info['delivery_store']['error'] = str(e)
-                
-                # Get session information
-                try:
-                    if hasattr(account, 'Session'):
-                        session = account.Session
-                        account_info['session'] = {
-                            'current_user': getattr(session, 'CurrentUser', {}).Name if hasattr(session, 'CurrentUser') and session.CurrentUser else 'Unknown',
-                            'default_store': getattr(session, 'DefaultStore', {}).DisplayName if hasattr(session, 'DefaultStore') and session.DefaultStore else 'Unknown'
-                        }
-                except Exception as e:
-                    account_info['session']['error'] = str(e)
-                
-                self.results['accounts'].append(account_info)
-                print(f"  ✓ {account_info['display_name']} ({account_info['smtp_address']})")
-            
-        except Exception as e:
-            error_msg = f"Error analyzing accounts: {str(e)}"
-            print(f"✗ {error_msg}")
-            self.results['errors'].append(error_msg)
     
     def analyze_folders(self):
         """Analyze folder structure and statistics."""
@@ -155,8 +99,7 @@ class OutlookAnalyzer:
             'unread_items': getattr(folder, 'UnReadItemCount', 0),
             'folder_path': getattr(folder, 'FolderPath', 'Unknown'),
             'default_item_type': getattr(folder, 'DefaultItemType', 'Unknown'),
-            'subfolders': [],
-            'recent_items': []
+            'subfolders': []
         }
         
         # Get subfolders
@@ -172,26 +115,6 @@ class OutlookAnalyzer:
                     folder_info['subfolders'].append(subfolder_info)
         except Exception as e:
             folder_info['subfolders_error'] = str(e)
-        
-        # Get recent items (for email folders)
-        if folder_type in ['inbox', 'sent_items', 'drafts']:
-            try:
-                items = folder.Items
-                items.Sort("[ReceivedTime]", True)  # Sort by received time, descending
-                
-                for i in range(1, min(items.Count + 1, 6)):  # Get up to 5 recent items
-                    item = items.Item(i)
-                    item_info = {
-                        'subject': getattr(item, 'Subject', 'No Subject'),
-                        'sender': getattr(item, 'SenderName', 'Unknown'),
-                        'received_time': str(getattr(item, 'ReceivedTime', 'Unknown')),
-                        'size': getattr(item, 'Size', 0),
-                        'unread': getattr(item, 'UnRead', False),
-                        'importance': getattr(item, 'Importance', 1)
-                    }
-                    folder_info['recent_items'].append(item_info)
-            except Exception as e:
-                folder_info['recent_items_error'] = str(e)
         
         return folder_info
     
@@ -248,99 +171,148 @@ class OutlookAnalyzer:
         
         return custom_folders
     
-    def analyze_groups(self):
-        """Analyze groups and distribution lists."""
+    def extract_emails(self):
+        """Extract first 5 emails from both accounts' inboxes."""
         try:
-            print("\nAnalyzing groups and distribution lists...")
+            print("\nExtracting emails from both accounts...")
             
-            # Try to get address lists (which include distribution lists)
-            try:
-                address_lists = self.namespace.AddressLists
+            # Get all stores (accounts)
+            stores = self.namespace.Stores
+            
+            for i in range(1, stores.Count + 1):
+                store = stores.Item(i)
+                store_name = getattr(store, 'DisplayName', f'Store_{i}')
                 
-                for i in range(1, address_lists.Count + 1):
-                    address_list = address_lists.Item(i)
-                    list_info = {
-                        'name': getattr(address_list, 'Name', 'Unknown'),
-                        'address_list_type': getattr(address_list, 'AddressListType', 'Unknown'),
-                        'is_read_only': getattr(address_list, 'IsReadOnly', True),
-                        'entry_count': 0,
-                        'entries': []
-                    }
+                try:
+                    print(f"  Processing account: {store_name}")
                     
-                    try:
-                        entries = address_list.AddressEntries
-                        list_info['entry_count'] = entries.Count
+                    # Get the inbox for this store
+                    root_folder = store.GetRootFolder()
+                    inbox = self._find_inbox_in_store(root_folder)
+                    
+                    if inbox and hasattr(inbox, 'Items'):
+                        emails = self._extract_emails_from_folder(inbox, store_name, 5)
+                        if emails:
+                            self.results['emails'][store_name] = emails
+                            print(f"    ✓ Extracted {len(emails)} emails from {store_name}")
+                        else:
+                            print(f"    ✗ No emails extracted from {store_name}")
+                    else:
+                        print(f"    ✗ Could not find inbox for {store_name}")
                         
-                        # Get first few entries for sample
-                        for j in range(1, min(entries.Count + 1, 6)):
-                            entry = entries.Item(j)
-                            entry_info = {
-                                'name': getattr(entry, 'Name', 'Unknown'),
-                                'address': getattr(entry, 'Address', 'Unknown'),
-                                'type': getattr(entry, 'Type', 'Unknown')
-                            }
-                            list_info['entries'].append(entry_info)
-                    
-                    except Exception as e:
-                        list_info['entries_error'] = str(e)
-                    
-                    self.results['groups'].append(list_info)
-                    print(f"  ✓ {list_info['name']}: {list_info['entry_count']} entries")
-            
-            except Exception as e:
-                print(f"  ✗ Error accessing address lists: {str(e)}")
-                self.results['groups'].append({'error': str(e)})
+                except Exception as e:
+                    error_msg = f"Error processing {store_name}: {str(e)}"
+                    print(f"    ✗ {error_msg}")
+                    self.results['errors'].append(error_msg)
             
         except Exception as e:
-            error_msg = f"Error analyzing groups: {str(e)}"
+            error_msg = f"Error extracting emails: {str(e)}"
             print(f"✗ {error_msg}")
             self.results['errors'].append(error_msg)
     
-    def analyze_contacts(self):
-        """Analyze contact information."""
+    def _find_inbox_in_store(self, root_folder):
+        """Find the Inbox folder in a store."""
         try:
-            print("\nAnalyzing contacts...")
+            if hasattr(root_folder, 'Folders'):
+                for i in range(1, root_folder.Folders.Count + 1):
+                    folder = root_folder.Folders.Item(i)
+                    folder_name = getattr(folder, 'Name', '').lower()
+                    if folder_name == 'inbox':
+                        return folder
+            return None
+        except:
+            return None
+    
+    def _extract_emails_from_folder(self, folder, account_name, limit=5):
+        """Extract emails from a specific folder."""
+        emails = []
+        try:
+            items = folder.Items
+            items.Sort("[ReceivedTime]", True)  # Sort by received time, descending
             
-            contacts_folder = self.namespace.GetDefaultFolder(10)  # olFolderContacts
-            contacts = contacts_folder.Items
-            
-            contact_summary = {
-                'total_contacts': contacts.Count,
-                'sample_contacts': [],
-                'contact_fields': set()
-            }
-            
-            # Get sample contacts
-            for i in range(1, min(contacts.Count + 1, 6)):
-                contact = contacts.Item(i)
-                contact_info = {
-                    'full_name': getattr(contact, 'FullName', 'Unknown'),
-                    'email1_address': getattr(contact, 'Email1Address', ''),
-                    'company_name': getattr(contact, 'CompanyName', ''),
-                    'job_title': getattr(contact, 'JobTitle', ''),
-                    'business_telephone_number': getattr(contact, 'BusinessTelephoneNumber', '')
-                }
-                
-                # Collect field names for analysis
+            for i in range(1, min(items.Count + 1, limit + 1)):
                 try:
-                    for prop in dir(contact):
-                        if not prop.startswith('_') and not callable(getattr(contact, prop)):
-                            contact_summary['contact_fields'].add(prop)
-                except:
-                    pass
-                
-                contact_summary['sample_contacts'].append(contact_info)
-            
-            # Convert set to list for JSON serialization
-            contact_summary['contact_fields'] = list(contact_summary['contact_fields'])
-            
-            self.results['contacts'] = contact_summary
-            print(f"  ✓ Found {contact_summary['total_contacts']} contacts")
+                    item = items.Item(i)
+                    
+                    # Extract email details
+                    email_info = {
+                        'index': i,
+                        'subject': self._safe_get_property(item, 'Subject', 'No Subject'),
+                        'sender_name': self._safe_get_property(item, 'SenderName', 'Unknown'),
+                        'sender_email': self._safe_get_property(item, 'SenderEmailAddress', 'Unknown'),
+                        'received_time': str(self._safe_get_property(item, 'ReceivedTime', 'Unknown')),
+                        'sent_on': str(self._safe_get_property(item, 'SentOn', 'Unknown')),
+                        'size': self._safe_get_property(item, 'Size', 0),
+                        'importance': self._safe_get_property(item, 'Importance', 1),
+                        'unread': self._safe_get_property(item, 'UnRead', False),
+                        'categories': self._safe_get_property(item, 'Categories', ''),
+                        'body': self._safe_get_property(item, 'Body', ''),
+                        'body_format': self._safe_get_property(item, 'BodyFormat', 'Unknown'),
+                        'html_body': '',
+                        'recipients': [],
+                        'attachments': []
+                    }
+                    
+                    # Try to get HTML body
+                    try:
+                        email_info['html_body'] = self._safe_get_property(item, 'HTMLBody', '')
+                    except:
+                        email_info['html_body'] = 'Error accessing HTML body'
+                    
+                    # Get recipients
+                    try:
+                        if hasattr(item, 'Recipients'):
+                            for j in range(1, min(item.Recipients.Count + 1, 11)):  # Max 10 recipients
+                                recipient = item.Recipients.Item(j)
+                                recipient_info = {
+                                    'name': self._safe_get_property(recipient, 'Name', 'Unknown'),
+                                    'address': self._safe_get_property(recipient, 'Address', 'Unknown'),
+                                    'type': self._safe_get_property(recipient, 'Type', 'Unknown')
+                                }
+                                email_info['recipients'].append(recipient_info)
+                    except Exception as e:
+                        email_info['recipients_error'] = str(e)
+                    
+                    # Get attachments
+                    try:
+                        if hasattr(item, 'Attachments'):
+                            for j in range(1, min(item.Attachments.Count + 1, 11)):  # Max 10 attachments
+                                attachment = item.Attachments.Item(j)
+                                attachment_info = {
+                                    'filename': self._safe_get_property(attachment, 'FileName', 'Unknown'),
+                                    'size': self._safe_get_property(attachment, 'Size', 0),
+                                    'type': self._safe_get_property(attachment, 'Type', 'Unknown')
+                                }
+                                email_info['attachments'].append(attachment_info)
+                    except Exception as e:
+                        email_info['attachments_error'] = str(e)
+                    
+                    # Truncate body if too long (for JSON storage)
+                    if len(email_info['body']) > 2000:
+                        email_info['body'] = email_info['body'][:2000] + "... [TRUNCATED]"
+                    if len(email_info['html_body']) > 3000:
+                        email_info['html_body'] = email_info['html_body'][:3000] + "... [TRUNCATED]"
+                    
+                    emails.append(email_info)
+                    
+                except Exception as e:
+                    error_info = {
+                        'index': i,
+                        'error': f"Error extracting email {i}: {str(e)}"
+                    }
+                    emails.append(error_info)
             
         except Exception as e:
-            error_msg = f"Error analyzing contacts: {str(e)}"
-            print(f"✗ {error_msg}")
-            self.results['errors'].append(error_msg)
+            print(f"    ✗ Error accessing items in folder: {str(e)}")
+        
+        return emails
+    
+    def _safe_get_property(self, obj, property_name, default_value):
+        """Safely get a property from an Outlook object."""
+        try:
+            return getattr(obj, property_name, default_value)
+        except:
+            return default_value
     
     def analyze_calendar(self):
         """Analyze calendar information."""
@@ -371,12 +343,13 @@ class OutlookAnalyzer:
                 for i in range(1, min(filtered_appointments.Count + 1, 11)):
                     appointment = filtered_appointments.Item(i)
                     appointment_info = {
-                        'subject': getattr(appointment, 'Subject', 'No Subject'),
-                        'start': str(getattr(appointment, 'Start', 'Unknown')),
-                        'end': str(getattr(appointment, 'End', 'Unknown')),
-                        'location': getattr(appointment, 'Location', ''),
-                        'organizer': getattr(appointment, 'Organizer', 'Unknown'),
-                        'is_recurring': getattr(appointment, 'IsRecurring', False)
+                        'subject': self._safe_get_property(appointment, 'Subject', 'No Subject'),
+                        'start': str(self._safe_get_property(appointment, 'Start', 'Unknown')),
+                        'end': str(self._safe_get_property(appointment, 'End', 'Unknown')),
+                        'location': self._safe_get_property(appointment, 'Location', ''),
+                        'organizer': self._safe_get_property(appointment, 'Organizer', 'Unknown'),
+                        'is_recurring': self._safe_get_property(appointment, 'IsRecurring', False),
+                        'body': self._safe_get_property(appointment, 'Body', '')[:500]  # Truncate body
                     }
                     calendar_info['upcoming_appointments'].append(appointment_info)
             
@@ -397,12 +370,12 @@ class OutlookAnalyzer:
             print("\nGenerating statistics...")
             
             stats = {
-                'total_accounts': len(self.results['accounts']),
                 'total_folders_analyzed': len(self.results['folders']),
-                'total_groups': len(self.results['groups']),
+                'total_accounts_with_emails': len(self.results['emails']),
                 'inbox_stats': {},
                 'overall_email_count': 0,
-                'overall_unread_count': 0
+                'overall_unread_count': 0,
+                'emails_extracted': 0
             }
             
             # Calculate email statistics
@@ -418,45 +391,21 @@ class OutlookAnalyzer:
                             'subfolders_count': len(folder_info.get('subfolders', []))
                         }
             
+            # Count extracted emails
+            for account_name, emails in self.results['emails'].items():
+                stats['emails_extracted'] += len(emails)
+            
             self.results['statistics'] = stats
             print(f"  ✓ Statistics generated")
-            print(f"    - Accounts: {stats['total_accounts']}")
+            print(f"    - Accounts with emails: {stats['total_accounts_with_emails']}")
             print(f"    - Total emails: {stats['overall_email_count']}")
             print(f"    - Unread emails: {stats['overall_unread_count']}")
+            print(f"    - Emails extracted: {stats['emails_extracted']}")
             
         except Exception as e:
             error_msg = f"Error generating statistics: {str(e)}"
             print(f"✗ {error_msg}")
             self.results['errors'].append(error_msg)
-    
-    def _get_account_type(self, account):
-        """Determine the account type."""
-        try:
-            if hasattr(account, 'AccountType'):
-                return account.AccountType
-            elif hasattr(account, 'DeliveryStore') and account.DeliveryStore:
-                store = account.DeliveryStore
-                if hasattr(store, 'ExchangeStoreType'):
-                    return f"Exchange ({store.ExchangeStoreType})"
-            return "Unknown"
-        except:
-            return "Unknown"
-    
-    def _get_store_categories(self, store):
-        """Get categories from a store."""
-        try:
-            if hasattr(store, 'Categories'):
-                categories = []
-                for i in range(1, store.Categories.Count + 1):
-                    category = store.Categories.Item(i)
-                    categories.append({
-                        'name': getattr(category, 'Name', 'Unknown'),
-                        'color': getattr(category, 'Color', 'Unknown')
-                    })
-                return categories
-        except:
-            pass
-        return []
     
     def save_results(self, output_file="outlook_analysis.json"):
         """Save analysis results to a JSON file."""
@@ -476,12 +425,14 @@ class OutlookAnalyzer:
         print("OUTLOOK ANALYSIS SUMMARY")
         print("="*60)
         
-        if self.results['accounts']:
-            print(f"\n📧 EMAIL ACCOUNTS ({len(self.results['accounts'])})")
-            for account in self.results['accounts']:
-                print(f"  • {account['display_name']}")
-                print(f"    Email: {account['smtp_address']}")
-                print(f"    Type: {account['account_type']}")
+        if self.results['emails']:
+            print(f"\n📧 EMAIL EXTRACTION")
+            for account_name, emails in self.results['emails'].items():
+                print(f"  • {account_name}: {len(emails)} emails extracted")
+                for email in emails[:2]:  # Show first 2 emails
+                    if 'subject' in email:
+                        print(f"    - {email['subject'][:50]}{'...' if len(email['subject']) > 50 else ''}")
+                        print(f"      From: {email['sender_name']} ({email['received_time'][:10]})")
         
         if self.results['folders']:
             print(f"\n📁 FOLDER ANALYSIS")
@@ -494,11 +445,7 @@ class OutlookAnalyzer:
             print(f"\n📊 STATISTICS")
             print(f"  • Total Emails: {stats['overall_email_count']}")
             print(f"  • Unread Emails: {stats['overall_unread_count']}")
-            print(f"  • Groups/Lists: {stats['total_groups']}")
-        
-        if self.results['contacts']:
-            print(f"\n👥 CONTACTS")
-            print(f"  • Total Contacts: {self.results['contacts']['total_contacts']}")
+            print(f"  • Emails Extracted: {stats['emails_extracted']}")
         
         if self.results['calendar_info']:
             print(f"\n📅 CALENDAR")
@@ -507,7 +454,7 @@ class OutlookAnalyzer:
         
         if self.results['errors']:
             print(f"\n⚠️  ERRORS ({len(self.results['errors'])})")
-            for error in self.results['errors'][:5]:  # Show first 5 errors
+            for error in self.results['errors'][:3]:  # Show first 3 errors
                 print(f"  • {error}")
     
     def cleanup(self):
@@ -534,10 +481,8 @@ def main():
             return 1
         
         # Run analysis modules
-        analyzer.analyze_accounts()
         analyzer.analyze_folders()
-        analyzer.analyze_groups()
-        analyzer.analyze_contacts()
+        analyzer.extract_emails()
         analyzer.analyze_calendar()
         analyzer.generate_statistics()
         

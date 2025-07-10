@@ -1,474 +1,484 @@
 {
-  "timestamp": "2025-07-10T10:24:37.900665",
-  "accounts": [],
+  "timestamp": "2025-07-10T10:34:55.324988",
   "folders": {
     "inbox": {
       "name": "Inbox",
-      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE5F0000",
-      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
-      "total_items": 173,
-      "unread_items": 2,
-      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Inbox",
+      "entry_id": "00000000272D2C0C5CE2D34C8D41F1EB7CB302470100CAE579C2CE7A7940AFC4E9DFD30D2F6900000000010C0000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C0000006D6963726F66696C6D2E726F6C6C73726F796365406F75746C6F6F6B2E636F6D002F6F3D4669727374204F7267616E697A6174696F6E2F6F753D45786368616E67652041646D696E6973747261746976652047726F75702846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D3030303334303032393032383833433200E94632F45400000002000000100000006D006900630072006F00660069006C006D002E0072006F006C006C00730072006F0079006300650040006F00750074006C006F006F006B002E0063006F006D0000000000",
+      "total_items": 1,
+      "unread_items": 0,
+      "folder_path": "\\\\microfilm.rollsroyce@outlook.com\\Inbox",
       "default_item_type": 0,
-      "subfolders": [],
-      "recent_items": [],
-      "recent_items_error": "(-2147467259, 'Unspecified error', None, None)"
+      "subfolders": []
     },
     "sent_items": {
       "name": "Sent Items",
-      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE610000",
-      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
-      "total_items": 171,
+      "entry_id": "00000000272D2C0C5CE2D34C8D41F1EB7CB302470100CAE579C2CE7A7940AFC4E9DFD30D2F690000000001090000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C0000006D6963726F66696C6D2E726F6C6C73726F796365406F75746C6F6F6B2E636F6D002F6F3D4669727374204F7267616E697A6174696F6E2F6F753D45786368616E67652041646D696E6973747261746976652047726F75702846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D3030303334303032393032383833433200E94632F45400000002000000100000006D006900630072006F00660069006C006D002E0072006F006C006C00730072006F0079006300650040006F00750074006C006F006F006B002E0063006F006D0000000000",
+      "total_items": 1,
       "unread_items": 0,
-      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Sent Items",
+      "folder_path": "\\\\microfilm.rollsroyce@outlook.com\\Sent Items",
       "default_item_type": 0,
-      "subfolders": [],
-      "recent_items": [],
-      "recent_items_error": "(-2147467259, 'Unspecified error', None, None)"
+      "subfolders": []
     },
     "drafts": {
       "name": "Drafts",
-      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE6A0000",
-      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
-      "total_items": 2,
-      "unread_items": 1,
-      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Drafts",
+      "entry_id": "00000000272D2C0C5CE2D34C8D41F1EB7CB302470100CAE579C2CE7A7940AFC4E9DFD30D2F6900000000010F0000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C0000006D6963726F66696C6D2E726F6C6C73726F796365406F75746C6F6F6B2E636F6D002F6F3D4669727374204F7267616E697A6174696F6E2F6F753D45786368616E67652041646D696E6973747261746976652047726F75702846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D3030303334303032393032383833433200E94632F45400000002000000100000006D006900630072006F00660069006C006D002E0072006F006C006C00730072006F0079006300650040006F00750074006C006F006F006B002E0063006F006D0000000000",
+      "total_items": 3,
+      "unread_items": 0,
+      "folder_path": "\\\\microfilm.rollsroyce@outlook.com\\Drafts",
       "default_item_type": 0,
-      "subfolders": [],
-      "recent_items": [],
-      "recent_items_error": "(-2147467259, 'Unspecified error', None, None)"
+      "subfolders": []
     },
     "deleted_items": {
       "name": "Deleted Items",
-      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE620000",
-      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
-      "total_items": 154,
-      "unread_items": 8,
-      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Deleted Items",
+      "entry_id": "00000000272D2C0C5CE2D34C8D41F1EB7CB302470100CAE579C2CE7A7940AFC4E9DFD30D2F6900000000010A0000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C0000006D6963726F66696C6D2E726F6C6C73726F796365406F75746C6F6F6B2E636F6D002F6F3D4669727374204F7267616E697A6174696F6E2F6F753D45786368616E67652041646D696E6973747261746976652047726F75702846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D3030303334303032393032383833433200E94632F45400000002000000100000006D006900630072006F00660069006C006D002E0072006F006C006C00730072006F0079006300650040006F00750074006C006F006F006B002E0063006F006D0000000000",
+      "total_items": 32,
+      "unread_items": 0,
+      "folder_path": "\\\\microfilm.rollsroyce@outlook.com\\Deleted Items",
       "default_item_type": 0,
-      "subfolders": [],
-      "recent_items": []
+      "subfolders": []
     },
     "outbox": {
       "name": "Outbox",
-      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE600000",
-      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
+      "entry_id": "00000000272D2C0C5CE2D34C8D41F1EB7CB302470100CAE579C2CE7A7940AFC4E9DFD30D2F6900000000010B0000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C0000006D6963726F66696C6D2E726F6C6C73726F796365406F75746C6F6F6B2E636F6D002F6F3D4669727374204F7267616E697A6174696F6E2F6F753D45786368616E67652041646D696E6973747261746976652047726F75702846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D3030303334303032393032383833433200E94632F45400000002000000100000006D006900630072006F00660069006C006D002E0072006F006C006C00730072006F0079006300650040006F00750074006C006F006F006B002E0063006F006D0000000000",
       "total_items": 0,
       "unread_items": 0,
-      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Outbox",
+      "folder_path": "\\\\microfilm.rollsroyce@outlook.com\\Outbox",
       "default_item_type": 0,
-      "subfolders": [
-        {
-          "name": "DlpOutbox",
-          "total_items": 0,
-          "unread_items": 0
-        }
-      ],
-      "recent_items": []
+      "subfolders": []
     },
     "junk": {
-      "name": "Junk E-Mail",
-      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF0000007103060000",
-      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
+      "name": "Junk Email",
+      "entry_id": "00000000272D2C0C5CE2D34C8D41F1EB7CB302470100CAE579C2CE7A7940AFC4E9DFD30D2F6900000000011A0000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C0000006D6963726F66696C6D2E726F6C6C73726F796365406F75746C6F6F6B2E636F6D002F6F3D4669727374204F7267616E697A6174696F6E2F6F753D45786368616E67652041646D696E6973747261746976652047726F75702846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D3030303334303032393032383833433200E94632F45400000002000000100000006D006900630072006F00660069006C006D002E0072006F006C006C00730072006F0079006300650040006F00750074006C006F006F006B002E0063006F006D0000000000",
       "total_items": 0,
       "unread_items": 0,
-      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Junk E-Mail",
+      "folder_path": "\\\\microfilm.rollsroyce@outlook.com\\Junk Email",
       "default_item_type": 0,
-      "subfolders": [],
-      "recent_items": []
+      "subfolders": []
     },
     "calendar": {
       "name": "Calendar",
-      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE680000",
-      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
-      "total_items": 17,
+      "entry_id": "00000000272D2C0C5CE2D34C8D41F1EB7CB302470100CAE579C2CE7A7940AFC4E9DFD30D2F6900000000010D0000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C0000006D6963726F66696C6D2E726F6C6C73726F796365406F75746C6F6F6B2E636F6D002F6F3D4669727374204F7267616E697A6174696F6E2F6F753D45786368616E67652041646D696E6973747261746976652047726F75702846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D3030303334303032393032383833433200E94632F45400000002000000100000006D006900630072006F00660069006C006D002E0072006F006C006C00730072006F0079006300650040006F00750074006C006F006F006B002E0063006F006D0000000000",
+      "total_items": 0,
       "unread_items": 0,
-      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Calendar",
+      "folder_path": "\\\\microfilm.rollsroyce@outlook.com\\Calendar",
       "default_item_type": 1,
-      "subfolders": [],
-      "recent_items": []
+      "subfolders": []
     },
     "contacts": {
       "name": "Contacts",
-      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE690000",
-      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
-      "total_items": 44049,
+      "entry_id": "00000000272D2C0C5CE2D34C8D41F1EB7CB302470100CAE579C2CE7A7940AFC4E9DFD30D2F6900000000010E0000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C0000006D6963726F66696C6D2E726F6C6C73726F796365406F75746C6F6F6B2E636F6D002F6F3D4669727374204F7267616E697A6174696F6E2F6F753D45786368616E67652041646D696E6973747261746976652047726F75702846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D3030303334303032393032383833433200E94632F45400000002000000100000006D006900630072006F00660069006C006D002E0072006F006C006C00730072006F0079006300650040006F00750074006C006F006F006B002E0063006F006D0000000000",
+      "total_items": 0,
       "unread_items": 0,
-      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Contacts",
+      "folder_path": "\\\\microfilm.rollsroyce@outlook.com\\Contacts",
       "default_item_type": 2,
-      "subfolders": [],
-      "recent_items": []
+      "subfolders": [
+        {
+          "name": "{A9E2BC46-B3A0-4243-B315-60D991004455}",
+          "total_items": 0,
+          "unread_items": 0
+        },
+        {
+          "name": "Recipient Cache",
+          "total_items": 0,
+          "unread_items": 0
+        },
+        {
+          "name": "Companies",
+          "total_items": 0,
+          "unread_items": 0
+        },
+        {
+          "name": "GAL Contacts",
+          "total_items": 0,
+          "unread_items": 0
+        },
+        {
+          "name": "Organizational Contacts",
+          "total_items": 0,
+          "unread_items": 0
+        },
+        {
+          "name": "PeopleCentricConversation Buddies",
+          "total_items": 0,
+          "unread_items": 0
+        },
+        {
+          "name": "{06967759-274D-40B2-A3EB-D7F9E73727D7}",
+          "total_items": 0,
+          "unread_items": 0
+        }
+      ]
     },
     "tasks": {
       "name": "Tasks",
-      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE6D0000",
-      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
+      "entry_id": "00000000272D2C0C5CE2D34C8D41F1EB7CB302470100CAE579C2CE7A7940AFC4E9DFD30D2F690000000001120000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C0000006D6963726F66696C6D2E726F6C6C73726F796365406F75746C6F6F6B2E636F6D002F6F3D4669727374204F7267616E697A6174696F6E2F6F753D45786368616E67652041646D696E6973747261746976652047726F75702846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D3030303334303032393032383833433200E94632F45400000002000000100000006D006900630072006F00660069006C006D002E0072006F006C006C00730072006F0079006300650040006F00750074006C006F006F006B002E0063006F006D0000000000",
       "total_items": 0,
       "unread_items": 0,
-      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Tasks",
+      "folder_path": "\\\\microfilm.rollsroyce@outlook.com\\Tasks",
       "default_item_type": 3,
-      "subfolders": [],
-      "recent_items": []
+      "subfolders": []
     },
     "notes": {
       "name": "Notes",
-      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE6C0000",
-      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
-      "total_items": 1,
+      "entry_id": "00000000272D2C0C5CE2D34C8D41F1EB7CB302470100CAE579C2CE7A7940AFC4E9DFD30D2F690000000001110000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C0000006D6963726F66696C6D2E726F6C6C73726F796365406F75746C6F6F6B2E636F6D002F6F3D4669727374204F7267616E697A6174696F6E2F6F753D45786368616E67652041646D696E6973747261746976652047726F75702846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D3030303334303032393032383833433200E94632F45400000002000000100000006D006900630072006F00660069006C006D002E0072006F006C006C00730072006F0079006300650040006F00750074006C006F006F006B002E0063006F006D0000000000",
+      "total_items": 0,
       "unread_items": 0,
-      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Notes",
+      "folder_path": "\\\\microfilm.rollsroyce@outlook.com\\Notes",
       "default_item_type": 5,
-      "subfolders": [],
-      "recent_items": []
+      "subfolders": []
     },
     "journal": {
       "name": "Journal",
-      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE6B0000",
-      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
+      "entry_id": "00000000272D2C0C5CE2D34C8D41F1EB7CB302470100CAE579C2CE7A7940AFC4E9DFD30D2F690000000001100000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C0000006D6963726F66696C6D2E726F6C6C73726F796365406F75746C6F6F6B2E636F6D002F6F3D4669727374204F7267616E697A6174696F6E2F6F753D45786368616E67652041646D696E6973747261746976652047726F75702846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D3030303334303032393032383833433200E94632F45400000002000000100000006D006900630072006F00660069006C006D002E0072006F006C006C00730072006F0079006300650040006F00750074006C006F006F006B002E0063006F006D0000000000",
       "total_items": 0,
       "unread_items": 0,
-      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Journal",
+      "folder_path": "\\\\microfilm.rollsroyce@outlook.com\\Journal",
       "default_item_type": 4,
-      "subfolders": [],
-      "recent_items": []
+      "subfolders": []
     },
     "custom_folders": {
-      "Ali.Maung@Rolls-Royce.com": [
+      "My Outlook Data File(1)": [
         {
           "name": "Deleted Items",
-          "total_items": 154,
-          "unread_items": 8,
-          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Deleted Items"
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\My Outlook Data File(1)\\Deleted Items"
         },
         {
           "name": "Inbox",
-          "total_items": 173,
-          "unread_items": 2,
-          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Inbox"
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\My Outlook Data File(1)\\Inbox"
         },
         {
           "name": "Outbox",
           "total_items": 0,
           "unread_items": 0,
-          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Outbox",
-          "subfolders": [
-            {
-              "name": "DlpOutbox",
-              "total_items": 0,
-              "unread_items": 0,
-              "path": "\\\\Ali.Maung@Rolls-Royce.com\\Outbox\\DlpOutbox"
-            }
-          ]
+          "path": "\\\\My Outlook Data File(1)\\Outbox"
         },
         {
           "name": "Sent Items",
-          "total_items": 171,
+          "total_items": 0,
           "unread_items": 0,
-          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Sent Items"
+          "path": "\\\\My Outlook Data File(1)\\Sent Items"
         },
         {
           "name": "Calendar",
-          "total_items": 17,
+          "total_items": 0,
           "unread_items": 0,
-          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Calendar"
+          "path": "\\\\My Outlook Data File(1)\\Calendar"
         },
         {
           "name": "Contacts",
-          "total_items": 44049,
-          "unread_items": 0,
-          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Contacts"
-        },
-        {
-          "name": "Conversation Action Settings",
           "total_items": 0,
           "unread_items": 0,
-          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Conversation Action Settings"
-        },
-        {
-          "name": "Drafts",
-          "total_items": 2,
-          "unread_items": 1,
-          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Drafts"
+          "path": "\\\\My Outlook Data File(1)\\Contacts"
         },
         {
           "name": "Journal",
           "total_items": 0,
           "unread_items": 0,
-          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Journal"
-        },
-        {
-          "name": "Junk E-Mail",
-          "total_items": 0,
-          "unread_items": 0,
-          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Junk E-Mail"
+          "path": "\\\\My Outlook Data File(1)\\Journal"
         },
         {
           "name": "Notes",
-          "total_items": 1,
+          "total_items": 0,
           "unread_items": 0,
-          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Notes"
+          "path": "\\\\My Outlook Data File(1)\\Notes"
         },
         {
           "name": "Tasks",
           "total_items": 0,
           "unread_items": 0,
-          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Tasks"
+          "path": "\\\\My Outlook Data File(1)\\Tasks"
         },
         {
-          "name": "Sync Issues",
-          "total_items": 12,
-          "unread_items": 12,
-          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Sync Issues",
-          "subfolders": [
-            {
-              "name": "Conflicts",
-              "total_items": 27,
-              "unread_items": 0,
-              "path": "\\\\Ali.Maung@Rolls-Royce.com\\Sync Issues\\Conflicts"
-            },
-            {
-              "name": "Local Failures",
-              "total_items": 0,
-              "unread_items": 0,
-              "path": "\\\\Ali.Maung@Rolls-Royce.com\\Sync Issues\\Local Failures"
-            },
-            {
-              "name": "Server Failures",
-              "total_items": 0,
-              "unread_items": 0,
-              "path": "\\\\Ali.Maung@Rolls-Royce.com\\Sync Issues\\Server Failures"
-            }
-          ]
+          "name": "Drafts",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\My Outlook Data File(1)\\Drafts"
+        },
+        {
+          "name": "RSS Feeds",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\My Outlook Data File(1)\\RSS Feeds"
+        },
+        {
+          "name": "Conversation Action Settings",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\My Outlook Data File(1)\\Conversation Action Settings"
         },
         {
           "name": "Quick Step Settings",
           "total_items": 0,
           "unread_items": 0,
-          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Quick Step Settings"
+          "path": "\\\\My Outlook Data File(1)\\Quick Step Settings"
         },
         {
-          "name": "RRD IT Hub",
+          "name": "Junk Email",
           "total_items": 0,
           "unread_items": 0,
-          "path": "\\\\Ali.Maung@Rolls-Royce.com\\RRD IT Hub"
-        },
-        {
-          "name": "Private",
-          "total_items": 0,
-          "unread_items": 0,
-          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Private"
-        },
-        {
-          "name": "Iron Mountain",
-          "total_items": 0,
-          "unread_items": 0,
-          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Iron Mountain"
-        },
-        {
-          "name": "Archive",
-          "total_items": 1,
-          "unread_items": 0,
-          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Archive"
+          "path": "\\\\My Outlook Data File(1)\\Junk Email"
         }
       ],
-      "IRM-Standardisation-Office": [
+      "microfilm.rollsroyce@outlook.com": [
         {
-          "name": "Vorgeschlagene Kontakte",
-          "total_items": 0,
+          "name": "Deleted Items",
+          "total_items": 32,
           "unread_items": 0,
-          "path": "\\\\IRM-Standardisation-Office\\Vorgeschlagene Kontakte"
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\Deleted Items"
         },
         {
-          "name": "Tasks",
-          "total_items": 0,
+          "name": "Inbox",
+          "total_items": 1,
           "unread_items": 0,
-          "path": "\\\\IRM-Standardisation-Office\\Tasks"
-        },
-        {
-          "name": "Synchronisierungsprobleme",
-          "total_items": 0,
-          "unread_items": 0,
-          "path": "\\\\IRM-Standardisation-Office\\Synchronisierungsprobleme",
-          "subfolders": [
-            {
-              "name": "Serverfehler",
-              "total_items": 0,
-              "unread_items": 0,
-              "path": "\\\\IRM-Standardisation-Office\\Synchronisierungsprobleme\\Serverfehler"
-            },
-            {
-              "name": "Lokale Fehler",
-              "total_items": 0,
-              "unread_items": 0,
-              "path": "\\\\IRM-Standardisation-Office\\Synchronisierungsprobleme\\Lokale Fehler"
-            },
-            {
-              "name": "Konflikte",
-              "total_items": 0,
-              "unread_items": 0,
-              "path": "\\\\IRM-Standardisation-Office\\Konflikte"
-            }
-          ]
-        },
-        {
-          "name": "Suggested Contacts",
-          "total_items": 0,
-          "unread_items": 0,
-          "path": "\\\\IRM-Standardisation-Office\\Suggested Contacts"
-        },
-        {
-          "name": "Sent Items",
-          "total_items": 0,
-          "unread_items": 0,
-          "path": "\\\\IRM-Standardisation-Office\\Sent Items"
-        },
-        {
-          "name": "RSS-Feeds",
-          "total_items": 0,
-          "unread_items": 0,
-          "path": "\\\\IRM-Standardisation-Office\\RSS-Feeds"
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\Inbox"
         },
         {
           "name": "Outbox",
           "total_items": 0,
           "unread_items": 0,
-          "path": "\\\\IRM-Standardisation-Office\\Outbox"
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\Outbox"
         },
         {
-          "name": "Notes",
-          "total_items": 0,
+          "name": "Sent Items",
+          "total_items": 1,
           "unread_items": 0,
-          "path": "\\\\IRM-Standardisation-Office\\Notes"
-        },
-        {
-          "name": "Newsfeed",
-          "total_items": 0,
-          "unread_items": 0,
-          "path": "\\\\IRM-Standardisation-Office\\Newsfeed"
-        },
-        {
-          "name": "Junk E-Mail",
-          "total_items": 0,
-          "unread_items": 0,
-          "path": "\\\\IRM-Standardisation-Office\\Junk E-Mail"
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\Sent Items"
         },
         {
           "name": "Journal",
           "total_items": 0,
           "unread_items": 0,
-          "path": "\\\\IRM-Standardisation-Office\\Journal"
-        },
-        {
-          "name": "Inbox",
-          "total_items": 261,
-          "unread_items": 8,
-          "path": "\\\\IRM-Standardisation-Office\\Inbox",
-          "subfolders": [
-            {
-              "name": "Zeichnungs",
-              "total_items": 1,
-              "unread_items": 0,
-              "path": "\\\\IRM-Standardisation-Office\\Inbox\\Zeichnungs"
-            },
-            {
-              "name": "T&S",
-              "total_items": 2899,
-              "unread_items": 0,
-              "path": "\\\\IRM-Standardisation-Office\\Inbox\\T&S"
-            },
-            {
-              "name": "Quality Info",
-              "total_items": 10,
-              "unread_items": 0,
-              "path": "\\\\IRM-Standardisation-Office\\Inbox\\Quality Info"
-            },
-            {
-              "name": "Normen",
-              "total_items": 312,
-              "unread_items": 0,
-              "path": "\\\\IRM-Standardisation-Office\\Inbox\\Normen"
-            },
-            {
-              "name": "Luxmessung",
-              "total_items": 14,
-              "unread_items": 0,
-              "path": "\\\\IRM-Standardisation-Office\\Inbox\\Luxmessung"
-            },
-            {
-              "name": "Intern Spezifikationen",
-              "total_items": 0,
-              "unread_items": 0,
-              "path": "\\\\IRM-Standardisation-Office\\Inbox\\Intern Spezifikationen"
-            },
-            {
-              "name": "gel\u00f6scht",
-              "total_items": 10,
-              "unread_items": 0,
-              "path": "\\\\IRM-Standardisation-Office\\Inbox\\gel\u00f6scht"
-            },
-            {
-              "name": "Bearbeitung_JM",
-              "total_items": 8,
-              "unread_items": 0,
-              "path": "\\\\IRM-Standardisation-Office\\Inbox\\Bearbeitung_JM"
-            }
-          ]
-        },
-        {
-          "name": "Einstellungen f\u00fcr QuickSteps",
-          "total_items": 0,
-          "unread_items": 0,
-          "path": "\\\\IRM-Standardisation-Office\\Einstellungen f\u00fcr QuickSteps"
-        },
-        {
-          "name": "Drafts",
-          "total_items": 0,
-          "unread_items": 0,
-          "path": "\\\\IRM-Standardisation-Office\\Drafts",
-          "subfolders": [
-            {
-              "name": "Werkstoff",
-              "total_items": 0,
-              "unread_items": 0,
-              "path": "\\\\IRM-Standardisation-Office\\Drafts\\Werkstoff"
-            }
-          ]
-        },
-        {
-          "name": "Deleted Items",
-          "total_items": 0,
-          "unread_items": 0,
-          "path": "\\\\IRM-Standardisation-Office\\Deleted Items"
-        },
-        {
-          "name": "Conversation Action Settings",
-          "total_items": 0,
-          "unread_items": 0,
-          "path": "\\\\IRM-Standardisation-Office\\Conversation Action Settings"
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\Journal"
         },
         {
           "name": "Contacts",
           "total_items": 0,
           "unread_items": 0,
-          "path": "\\\\IRM-Standardisation-Office\\Contacts"
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\Contacts",
+          "subfolders": [
+            {
+              "name": "{A9E2BC46-B3A0-4243-B315-60D991004455}",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\microfilm.rollsroyce@outlook.com\\Contacts\\{A9E2BC46-B3A0-4243-B315-60D991004455}"
+            },
+            {
+              "name": "Recipient Cache",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\microfilm.rollsroyce@outlook.com\\Contacts\\Recipient Cache"
+            },
+            {
+              "name": "Companies",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\microfilm.rollsroyce@outlook.com\\Contacts\\Companies"
+            },
+            {
+              "name": "GAL Contacts",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\microfilm.rollsroyce@outlook.com\\Contacts\\GAL Contacts"
+            },
+            {
+              "name": "Organizational Contacts",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\microfilm.rollsroyce@outlook.com\\Contacts\\Organizational Contacts"
+            },
+            {
+              "name": "PeopleCentricConversation Buddies",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\microfilm.rollsroyce@outlook.com\\Contacts\\PeopleCentricConversation Buddies"
+            },
+            {
+              "name": "{06967759-274D-40B2-A3EB-D7F9E73727D7}",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\microfilm.rollsroyce@outlook.com\\Contacts\\{06967759-274D-40B2-A3EB-D7F9E73727D7}"
+            }
+          ]
+        },
+        {
+          "name": "Drafts",
+          "total_items": 3,
+          "unread_items": 0,
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\Drafts"
+        },
+        {
+          "name": "Sync Issues",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\Sync Issues",
+          "subfolders": [
+            {
+              "name": "Server Failures",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\microfilm.rollsroyce@outlook.com\\Sync Issues\\Server Failures"
+            },
+            {
+              "name": "Conflicts",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\microfilm.rollsroyce@outlook.com\\Sync Issues\\Conflicts"
+            },
+            {
+              "name": "Local Failures",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\microfilm.rollsroyce@outlook.com\\Sync Issues\\Local Failures"
+            }
+          ]
+        },
+        {
+          "name": "RSS Feeds",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\RSS Feeds"
+        },
+        {
+          "name": "Quick Step Settings",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\Quick Step Settings"
+        },
+        {
+          "name": "Notes",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\Notes"
+        },
+        {
+          "name": "Junk Email",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\Junk Email"
         },
         {
           "name": "Calendar",
-          "total_items": 31,
+          "total_items": 0,
           "unread_items": 0,
-          "path": "\\\\IRM-Standardisation-Office\\Calendar"
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\Calendar"
+        },
+        {
+          "name": "Files",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\Files"
+        },
+        {
+          "name": "ExternalContacts",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\ExternalContacts"
+        },
+        {
+          "name": "Conversation Action Settings",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\Conversation Action Settings"
+        },
+        {
+          "name": "Archive",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\Archive"
+        },
+        {
+          "name": "Yammer Root",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\Yammer Root",
+          "subfolders": [
+            {
+              "name": "Feeds",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\microfilm.rollsroyce@outlook.com\\Yammer Root\\Feeds"
+            },
+            {
+              "name": "Inbound",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\microfilm.rollsroyce@outlook.com\\Yammer Root\\Inbound"
+            },
+            {
+              "name": "Outbound",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\microfilm.rollsroyce@outlook.com\\Yammer Root\\Outbound"
+            }
+          ]
+        },
+        {
+          "name": "Tasks",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\Tasks"
+        },
+        {
+          "name": "Conversation History",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\microfilm.rollsroyce@outlook.com\\Conversation History",
+          "subfolders": [
+            {
+              "name": "Team Chat",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\microfilm.rollsroyce@outlook.com\\Conversation History\\Team Chat"
+            }
+          ]
         }
       ]
     }
   },
-  "groups": [
-    {
-      "error": "(-2147467260, 'Operation aborted', None, None)"
-    }
-  ],
-  "contacts": [],
+  "emails": {
+    "microfilm.rollsroyce@outlook.com": [
+      {
+        "index": 1,
+        "subject": "Test",
+        "sender_name": "Ali Ma",
+        "sender_email": "ali.maung001@gmail.com",
+        "received_time": "2025-06-30 07:16:05.428000+00:00",
+        "sent_on": "2025-06-30 07:15:51+00:00",
+        "size": 39362,
+        "importance": 1,
+        "unread": false,
+        "categories": "",
+        "body": "Test123",
+        "body_format": 2,
+        "html_body": "<div dir=\"auto\">Test123</div>\r\n",
+        "recipients": [
+          {
+            "name": "microfilm.rollsroyce@outlook.com",
+            "address": "microfilm.rollsroyce@outlook.com",
+            "type": 1
+          }
+        ],
+        "attachments": []
+      }
+    ]
+  },
   "calendar_info": {
-    "total_appointments": 17,
+    "total_appointments": 0,
     "upcoming_appointments": [
       {
         "subject": "No Subject",
@@ -476,7 +486,8 @@
         "end": "Unknown",
         "location": "",
         "organizer": "Unknown",
-        "is_recurring": false
+        "is_recurring": false,
+        "body": ""
       },
       {
         "subject": "No Subject",
@@ -484,7 +495,8 @@
         "end": "Unknown",
         "location": "",
         "organizer": "Unknown",
-        "is_recurring": false
+        "is_recurring": false,
+        "body": ""
       },
       {
         "subject": "No Subject",
@@ -492,7 +504,8 @@
         "end": "Unknown",
         "location": "",
         "organizer": "Unknown",
-        "is_recurring": false
+        "is_recurring": false,
+        "body": ""
       },
       {
         "subject": "No Subject",
@@ -500,7 +513,8 @@
         "end": "Unknown",
         "location": "",
         "organizer": "Unknown",
-        "is_recurring": false
+        "is_recurring": false,
+        "body": ""
       },
       {
         "subject": "No Subject",
@@ -508,7 +522,8 @@
         "end": "Unknown",
         "location": "",
         "organizer": "Unknown",
-        "is_recurring": false
+        "is_recurring": false,
+        "body": ""
       },
       {
         "subject": "No Subject",
@@ -516,7 +531,8 @@
         "end": "Unknown",
         "location": "",
         "organizer": "Unknown",
-        "is_recurring": false
+        "is_recurring": false,
+        "body": ""
       },
       {
         "subject": "No Subject",
@@ -524,7 +540,8 @@
         "end": "Unknown",
         "location": "",
         "organizer": "Unknown",
-        "is_recurring": false
+        "is_recurring": false,
+        "body": ""
       },
       {
         "subject": "No Subject",
@@ -532,7 +549,8 @@
         "end": "Unknown",
         "location": "",
         "organizer": "Unknown",
-        "is_recurring": false
+        "is_recurring": false,
+        "body": ""
       },
       {
         "subject": "No Subject",
@@ -540,7 +558,8 @@
         "end": "Unknown",
         "location": "",
         "organizer": "Unknown",
-        "is_recurring": false
+        "is_recurring": false,
+        "body": ""
       },
       {
         "subject": "No Subject",
@@ -548,25 +567,23 @@
         "end": "Unknown",
         "location": "",
         "organizer": "Unknown",
-        "is_recurring": false
+        "is_recurring": false,
+        "body": ""
       }
     ],
     "calendar_name": "Calendar"
   },
   "statistics": {
-    "total_accounts": 0,
     "total_folders_analyzed": 12,
-    "total_groups": 1,
+    "total_accounts_with_emails": 1,
     "inbox_stats": {
-      "total_items": 173,
-      "unread_items": 2,
+      "total_items": 1,
+      "unread_items": 0,
       "subfolders_count": 0
     },
-    "overall_email_count": 44567,
-    "overall_unread_count": 11
+    "overall_email_count": 37,
+    "overall_unread_count": 0,
+    "emails_extracted": 1
   },
-  "errors": [
-    "Error analyzing accounts: (-2147467260, 'Operation aborted', None, None)",
-    "Error analyzing contacts: (-2147467260, 'Operation aborted', None, None)"
-  ]
+  "errors": []
 }
