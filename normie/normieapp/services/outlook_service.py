@@ -10,6 +10,7 @@ import uuid
 import logging
 import traceback
 import sys
+import time
 
 # Define logger at module level
 logger = logging.getLogger(__name__)
@@ -160,7 +161,7 @@ class SimpleStore:
     
     def get_emails(self, email_address, folder_type='inbox', limit=50, offset=0, search_term=None, category=None):
         """
-        Get emails from the specified folder.
+        Get emails from the specified folder using hybrid approach.
         
         Args:
             email_address: The email address of the account
@@ -174,6 +175,26 @@ class SimpleStore:
             List of email dictionaries
         """
         logger.debug(f"Getting emails for {email_address}, folder: {folder_type}, limit: {limit}, offset: {offset}, search: {search_term}, category: {category}")
+        
+        # Try VBA data first if it's fresh and we're requesting inbox
+        if folder_type == 'inbox' and self._is_vba_data_fresh():
+            logger.info("Using VBA data for email content")
+            vba_emails = self._get_emails_from_vba(folder_type, limit, offset, search_term, category)
+            if vba_emails:
+                return vba_emails
+            else:
+                logger.warning("VBA data failed, falling back to COM")
+        else:
+            logger.debug(f"Using COM for emails (folder: {folder_type}, VBA fresh: {self._is_vba_data_fresh()})")
+        
+        # Fallback to COM (with restricted content)
+        return self._get_emails_from_com(email_address, folder_type, limit, offset, search_term, category)
+    
+    def _get_emails_from_com(self, email_address, folder_type='inbox', limit=50, offset=0, search_term=None, category=None):
+        """
+        Get emails from COM (original method with restricted content).
+        """
+        logger.debug(f"Getting emails via COM for {email_address}, folder: {folder_type}")
         try:
             # Get the account
             try:
@@ -445,14 +466,32 @@ class SimpleStore:
     
     def get_email(self, email_address, message_id):
         """
-        Get a specific email by ID.
+        Get a specific email by ID using hybrid approach.
         
         Args:
             email_address: The email address of the account
-            message_id: The EntryID of the email
+            message_id: The EntryID of the email (or VBA format ID)
             
         Returns:
             Dictionary with email details
+        """
+        logger.debug(f"Getting email: {message_id}")
+        
+        # Check if this is a VBA email ID
+        if message_id.startswith('vba_') and self._is_vba_data_fresh():
+            logger.info("Getting email from VBA data")
+            vba_email = self._get_email_from_vba(message_id)
+            if vba_email:
+                return vba_email
+            else:
+                logger.warning("Email not found in VBA data, trying COM")
+        
+        # Fallback to COM
+        return self._get_email_from_com(email_address, message_id)
+    
+    def _get_email_from_com(self, email_address, message_id):
+        """
+        Get a specific email by ID from COM (original method).
         """
         try:
             namespace = self._get_namespace()
@@ -868,6 +907,7 @@ class OutlookService:
     """
     Service for interacting with Microsoft Outlook via win32com.
     Provides email functionality for specific accounts.
+    Now supports hybrid approach: VBA files for content, COM for actions.
     """
     
     ALLOWED_ACCOUNTS = [
@@ -1029,3 +1069,182 @@ class OutlookService:
         # If all approaches fail, raise an error
         logger.error(f"All approaches failed to get account for {email_address}")
         raise ValueError(f"Could not find any allowed email accounts in Outlook. Please ensure Outlook is properly configured with one of these accounts: {', '.join(self.ALLOWED_ACCOUNTS)}") 
+
+    def _get_vba_data_path(self):
+        """Get path to VBA-exported emails.json file."""
+        username = os.environ.get('USERNAME', 'user')
+        vba_path = Path(f"C:/Users/{username}/Desktop/normie/outlook/analyze/mail/emails.json")
+        return vba_path
+    
+    def _is_vba_data_fresh(self, max_age_minutes=2):
+        """Check if VBA data is recent enough to use."""
+        vba_file = self._get_vba_data_path()
+        if not vba_file.exists():
+            logger.debug(f"VBA file does not exist: {vba_file}")
+            return False
+        
+        file_age = time.time() - vba_file.stat().st_mtime
+        is_fresh = file_age < (max_age_minutes * 60)
+        logger.debug(f"VBA file age: {file_age:.1f} seconds, fresh: {is_fresh}")
+        return is_fresh
+    
+    def _get_emails_from_vba(self, folder_type='inbox', limit=50, offset=0, search_term=None, category=None):
+        """
+        Get emails from VBA-exported JSON files.
+        
+        Args:
+            folder_type: The type of folder (inbox, sent, etc.)
+            limit: Maximum number of emails to return
+            offset: Number of emails to skip
+            search_term: Optional search term to filter emails
+            category: Optional category to filter emails
+            
+        Returns:
+            List of email dictionaries
+        """
+        logger.debug(f"Getting emails from VBA files: folder={folder_type}, limit={limit}, offset={offset}")
+        
+        vba_file = self._get_vba_data_path()
+        
+        try:
+            with open(vba_file, 'r', encoding='utf-8') as f:
+                vba_data = json.load(f)
+            
+            logger.debug(f"Loaded VBA data: {len(vba_data.get('emails', []))} emails")
+            
+            # Get emails from VBA data
+            emails = vba_data.get('emails', [])
+            
+            # Convert VBA format to our expected format
+            converted_emails = []
+            for email in emails:
+                try:
+                    converted_email = self._convert_vba_email_format(email)
+                    
+                    # Apply search filter
+                    if search_term:
+                        search_lower = search_term.lower()
+                        if not (search_lower in converted_email.get('subject', '').lower() or 
+                               search_lower in converted_email.get('sender', '').lower() or 
+                               search_lower in converted_email.get('body', '').lower()):
+                            continue
+                    
+                    # Apply category filter
+                    if category:
+                        email_categories = converted_email.get('categories', [])
+                        if isinstance(email_categories, str):
+                            email_categories = [cat.strip() for cat in email_categories.split(',') if cat.strip()]
+                        if category not in email_categories:
+                            continue
+                    
+                    converted_emails.append(converted_email)
+                    
+                except Exception as e:
+                    logger.warning(f"Error converting VBA email: {e}")
+                    continue
+            
+            # Apply pagination
+            total_emails = len(converted_emails)
+            paginated_emails = converted_emails[offset:offset + limit]
+            
+            logger.debug(f"Returning {len(paginated_emails)} emails from VBA data (total: {total_emails})")
+            return paginated_emails
+            
+        except Exception as e:
+            logger.error(f"Error reading VBA emails: {e}")
+            logger.debug(f"Stack trace: {traceback.format_exc()}")
+            return []
+    
+    def _convert_vba_email_format(self, vba_email):
+        """
+        Convert VBA email format to our expected format.
+        
+        Args:
+            vba_email: Email dictionary from VBA JSON
+            
+        Returns:
+            Email dictionary in our expected format
+        """
+        # Extract attachment info
+        attachments = []
+        for attachment in vba_email.get('attachments', []):
+            attachments.append({
+                'name': attachment.get('filename', 'Unknown'),
+                'size': attachment.get('size', 0),
+                'id': len(attachments) + 1,
+                'filepath': attachment.get('filepath', '')
+            })
+        
+        # Parse recipients
+        recipients = vba_email.get('recipients', [])
+        to_list = []
+        cc_list = []
+        
+        for recipient in recipients:
+            if recipient.get('type') == 1:  # TO recipient
+                to_list.append(recipient.get('address', ''))
+            elif recipient.get('type') == 2:  # CC recipient
+                cc_list.append(recipient.get('address', ''))
+        
+        # Convert categories
+        categories = []
+        vba_categories = vba_email.get('categories', '')
+        if vba_categories:
+            categories = [cat.strip() for cat in vba_categories.split(';') if cat.strip()]
+        
+        # Generate unique ID from VBA data
+        email_id = f"vba_{vba_email.get('index', 0)}_{hash(vba_email.get('subject', '') + vba_email.get('received_time', ''))}"
+        
+        return {
+            'id': email_id,
+            'subject': vba_email.get('subject', '(No Subject)'),
+            'sender': vba_email.get('sender_name', ''),
+            'sender_email': vba_email.get('sender_email', ''),
+            'to': '; '.join(to_list),
+            'cc': '; '.join(cc_list),
+            'received_time': vba_email.get('received_time', ''),
+            'sent_time': vba_email.get('sent_on', ''),
+            'has_attachments': len(attachments) > 0,
+            'attachments': attachments,
+            'body': vba_email.get('body', ''),
+            'html_body': vba_email.get('html_body', ''),
+            'unread': vba_email.get('unread', False),
+            'importance': vba_email.get('importance', 1),
+            'categories': categories,
+            'preview': vba_email.get('body', '')[:200] + '...' if len(vba_email.get('body', '')) > 200 else vba_email.get('body', ''),
+            'msg_file': vba_email.get('msg_file', ''),
+            'source': 'vba'
+        }
+    
+    def _get_email_from_vba(self, email_id):
+        """
+        Get a specific email by ID from VBA files.
+        
+        Args:
+            email_id: The email ID (VBA format)
+            
+        Returns:
+            Email dictionary or None
+        """
+        logger.debug(f"Getting email from VBA files: {email_id}")
+        
+        vba_file = self._get_vba_data_path()
+        
+        try:
+            with open(vba_file, 'r', encoding='utf-8') as f:
+                vba_data = json.load(f)
+            
+            emails = vba_data.get('emails', [])
+            
+            for email in emails:
+                converted_email = self._convert_vba_email_format(email)
+                if converted_email['id'] == email_id:
+                    logger.debug(f"Found email in VBA data: {converted_email['subject']}")
+                    return converted_email
+            
+            logger.warning(f"Email not found in VBA data: {email_id}")
+            return None
+            
+        except Exception as e:
+            logger.error(f"Error reading VBA email: {e}")
+            return None 

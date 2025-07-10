@@ -101,6 +101,12 @@ def inbox(request):
             # Add emails to context
             context['emails'] = emails
             
+            # Check if we're using VBA data
+            if emails and any(email.get('source') == 'vba' for email in emails):
+                context['using_vba_data'] = True
+                context['vba_data_info'] = True
+                messages.info(request, _("📧 Displaying emails from VBA cache (updated every minute). Actions like delete and categorize work in real-time via COM."))
+            
             # Add pagination info
             context['has_next'] = len(emails) == per_page
             context['has_prev'] = page > 1
@@ -175,12 +181,15 @@ def inbox_view_message(request, message_id):
             # Add email to context
             context['email'] = email
             
-            # Try to mark as read
-            try:
-                outlook.mark_as_read(email_address, message_id)
-            except Exception as e:
-                logger.warning(f"Could not mark email as read: {str(e)}")
-                # Not critical, continue without showing error to user
+            # Try to mark as read (skip for VBA emails)
+            if not message_id.startswith('vba_'):
+                try:
+                    outlook.mark_as_read(email_address, message_id)
+                except Exception as e:
+                    logger.warning(f"Could not mark email as read: {str(e)}")
+                    # Not critical, continue without showing error to user
+            else:
+                logger.debug("Skipping mark as read for VBA email")
         except Exception as e:
             messages.error(request, _(f"Could not retrieve email: {str(e)}"))
             return redirect('inbox')
@@ -337,6 +346,13 @@ def inbox_delete_message(request, message_id):
     if request.method != 'POST':
         return JsonResponse({'success': False, 'message': 'Invalid request method'})
     
+    # Check if this is a VBA email ID
+    if message_id.startswith('vba_'):
+        return JsonResponse({
+            'success': False, 
+            'message': 'Cannot delete emails from VBA cache. Please wait for the next refresh or use Outlook directly.'
+        })
+    
     # Get email address from request
     try:
         data = json.loads(request.body)
@@ -375,13 +391,28 @@ def inbox_delete(request):
     if not email_ids:
         return JsonResponse({'success': False, 'error': 'No emails selected'})
     
+    # Check for VBA email IDs
+    vba_ids = [email_id for email_id in email_ids if email_id.startswith('vba_')]
+    com_ids = [email_id for email_id in email_ids if not email_id.startswith('vba_')]
+    
+    if vba_ids and not com_ids:
+        return JsonResponse({
+            'success': False, 
+            'error': 'Cannot delete emails from VBA cache. Please wait for the next refresh or use Outlook directly.'
+        })
+    elif vba_ids and com_ids:
+        return JsonResponse({
+            'success': False, 
+            'error': f'Cannot delete mixed email sources. {len(vba_ids)} emails are from VBA cache and cannot be deleted via web interface.'
+        })
+    
     try:
         # Connect to Outlook and delete the emails
         outlook = OutlookService()
         deleted_count = 0
         errors = []
         
-        for email_id in email_ids:
+        for email_id in com_ids:
             try:
                 success = outlook.delete_email(email_address, email_id)
                 if success:
@@ -391,14 +422,14 @@ def inbox_delete(request):
             except Exception as e:
                 errors.append(f"Error deleting email {email_id}: {str(e)}")
         
-        if deleted_count == len(email_ids):
+        if deleted_count == len(com_ids):
             return JsonResponse({'success': True, 'count': deleted_count})
         elif deleted_count > 0:
             return JsonResponse({
                 'success': True,
                 'partial': True,
                 'count': deleted_count,
-                'total': len(email_ids),
+                'total': len(com_ids),
                 'errors': errors
             })
         else:
@@ -417,6 +448,13 @@ def inbox_categorize_message(request, message_id):
     
     if request.method != 'POST':
         return JsonResponse({'success': False, 'message': 'Invalid request method'})
+    
+    # Check if this is a VBA email ID
+    if message_id.startswith('vba_'):
+        return JsonResponse({
+            'success': False, 
+            'message': 'Cannot categorize emails from VBA cache. Please wait for the next refresh or use Outlook directly.'
+        })
     
     # Get email address and category from request
     try:
@@ -459,13 +497,28 @@ def inbox_categorize(request):
     if not email_ids:
         return JsonResponse({'success': False, 'error': 'No emails selected'})
     
+    # Check for VBA email IDs
+    vba_ids = [email_id for email_id in email_ids if email_id.startswith('vba_')]
+    com_ids = [email_id for email_id in email_ids if not email_id.startswith('vba_')]
+    
+    if vba_ids and not com_ids:
+        return JsonResponse({
+            'success': False, 
+            'error': 'Cannot categorize emails from VBA cache. Please wait for the next refresh or use Outlook directly.'
+        })
+    elif vba_ids and com_ids:
+        return JsonResponse({
+            'success': False, 
+            'error': f'Cannot categorize mixed email sources. {len(vba_ids)} emails are from VBA cache and cannot be categorized via web interface.'
+        })
+    
     try:
         # Connect to Outlook and categorize the emails
         outlook = OutlookService()
         categorized_count = 0
         errors = []
         
-        for email_id in email_ids:
+        for email_id in com_ids:
             try:
                 success = outlook.categorize_email(email_address, email_id, category)
                 if success:
@@ -475,14 +528,14 @@ def inbox_categorize(request):
             except Exception as e:
                 errors.append(f"Error categorizing email {email_id}: {str(e)}")
         
-        if categorized_count == len(email_ids):
+        if categorized_count == len(com_ids):
             return JsonResponse({'success': True, 'count': categorized_count})
         elif categorized_count > 0:
             return JsonResponse({
                 'success': True,
                 'partial': True,
                 'count': categorized_count,
-                'total': len(email_ids),
+                'total': len(com_ids),
                 'errors': errors
             })
         else:
