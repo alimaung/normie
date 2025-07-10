@@ -11,21 +11,24 @@ Requires: pywin32 (pip install pywin32)
 """
 
 import win32com.client
+import win32com.client.gencache
 import pythoncom
 import json
 import os
 import datetime
 import traceback
 import sys
+import shutil
 from pathlib import Path
 
 class OutlookAnalyzer:
     """Comprehensive Outlook COM application analyzer."""
     
-    def __init__(self):
+    def __init__(self, debug=False):
         """Initialize the analyzer."""
         self.app = None
         self.namespace = None
+        self.debug = debug
         self.results = {
             'timestamp': datetime.datetime.now().isoformat(),
             'folders': {},
@@ -35,6 +38,32 @@ class OutlookAnalyzer:
             'errors': []
         }
     
+    def clear_win32com_cache(self):
+        """Clear the win32com cache to prevent CLSIDToClassMap errors."""
+        try:
+            print("Clearing win32com cache to prevent COM errors...")
+            
+            # Get the cache directory
+            cache_dir = win32com.client.gencache.GetGeneratePath()
+            
+            if os.path.exists(cache_dir):
+                print(f"  Cache directory: {cache_dir}")
+                
+                # Remove the entire cache directory
+                shutil.rmtree(cache_dir, ignore_errors=True)
+                print("  ✓ Cache directory cleared successfully")
+                
+                # Recreate the directory structure
+                os.makedirs(cache_dir, exist_ok=True)
+                print("  ✓ Cache directory recreated")
+            else:
+                print("  ✓ Cache directory doesn't exist, nothing to clear")
+                
+        except Exception as e:
+            error_msg = f"Warning: Could not clear win32com cache: {str(e)}"
+            print(f"  ⚠️  {error_msg}")
+            # Don't add to errors as this is not critical
+    
     def connect_to_outlook(self):
         """Connect to the Outlook COM application."""
         try:
@@ -42,6 +71,29 @@ class OutlookAnalyzer:
             pythoncom.CoInitialize()
             self.app = win32com.client.Dispatch("Outlook.Application")
             self.namespace = self.app.GetNamespace("MAPI")
+            
+            # Test basic access
+            print("Testing basic Outlook access...")
+            try:
+                version = getattr(self.app, 'Version', 'Unknown')
+                print(f"  Outlook Version: {version}")
+                
+                # Test namespace access
+                default_profile = getattr(self.namespace, 'DefaultProfileName', 'Unknown')
+                print(f"  Default Profile: {default_profile}")
+                
+                # Test store access
+                stores = self.namespace.Stores
+                print(f"  Available Stores: {stores.Count}")
+                
+                for i in range(1, min(stores.Count + 1, 3)):  # Show first 3 stores
+                    store = stores.Item(i)
+                    store_name = getattr(store, 'DisplayName', f'Store_{i}')
+                    print(f"    Store {i}: {store_name}")
+                
+            except Exception as e:
+                print(f"  Warning: Error during basic access test: {e}")
+            
             print("✓ Successfully connected to Outlook")
             return True
         except Exception as e:
@@ -233,65 +285,151 @@ class OutlookAnalyzer:
             for i in range(1, min(items.Count + 1, limit + 1)):
                 try:
                     item = items.Item(i)
+                    debug_context = f"Email {i} in {account_name}"
                     
-                    # Extract email details
+                    if self.debug:
+                        print(f"    DEBUG: Processing {debug_context}")
+                        print(f"    DEBUG: Item type: {type(item).__name__}")
+                        print(f"    DEBUG: Item class: {self._safe_get_property(item, 'Class', 'Unknown', debug_context if self.debug else '')}")
+                    
+                    # Extract email details with detailed debugging
                     email_info = {
                         'index': i,
-                        'subject': self._safe_get_property(item, 'Subject', 'No Subject'),
-                        'sender_name': self._safe_get_property(item, 'SenderName', 'Unknown'),
-                        'sender_email': self._safe_get_property(item, 'SenderEmailAddress', 'Unknown'),
-                        'received_time': str(self._safe_get_property(item, 'ReceivedTime', 'Unknown')),
-                        'sent_on': str(self._safe_get_property(item, 'SentOn', 'Unknown')),
-                        'size': self._safe_get_property(item, 'Size', 0),
-                        'importance': self._safe_get_property(item, 'Importance', 1),
-                        'unread': self._safe_get_property(item, 'UnRead', False),
-                        'categories': self._safe_get_property(item, 'Categories', ''),
-                        'body': self._safe_get_property(item, 'Body', ''),
-                        'body_format': self._safe_get_property(item, 'BodyFormat', 'Unknown'),
+                        'debug_info': {
+                            'item_type': str(type(item)),
+                            'item_class': self._safe_get_property(item, 'Class', 'Unknown', debug_context),
+                            'available_properties': []
+                        }
+                    }
+                    
+                    # Try to list available properties
+                    if self.debug:
+                        try:
+                            available_props = [prop for prop in dir(item) if not prop.startswith('_')]
+                            email_info['debug_info']['available_properties'] = available_props[:20]  # First 20 properties
+                            print(f"    DEBUG: Available properties: {len(available_props)}")
+                        except:
+                            pass
+                    
+                    # Extract basic properties with debugging
+                    email_info.update({
+                        'subject': self._safe_get_property(item, 'Subject', 'No Subject', debug_context),
+                        'sender_name': self._safe_get_property(item, 'SenderName', 'Unknown', debug_context),
+                        'sender_email': self._safe_get_property(item, 'SenderEmailAddress', 'Unknown', debug_context),
+                        'received_time': str(self._safe_get_property(item, 'ReceivedTime', 'Unknown', debug_context)),
+                        'sent_on': str(self._safe_get_property(item, 'SentOn', 'Unknown', debug_context)),
+                        'size': self._safe_get_property(item, 'Size', 0, debug_context),
+                        'importance': self._safe_get_property(item, 'Importance', 1, debug_context),
+                        'unread': self._safe_get_property(item, 'UnRead', False, debug_context),
+                        'categories': self._safe_get_property(item, 'Categories', '', debug_context),
+                        'body': '',
+                        'body_format': self._safe_get_property(item, 'BodyFormat', 'Unknown', debug_context),
                         'html_body': '',
                         'recipients': [],
                         'attachments': []
-                    }
+                    })
                     
-                    # Try to get HTML body
-                    try:
-                        email_info['html_body'] = self._safe_get_property(item, 'HTMLBody', '')
-                    except:
-                        email_info['html_body'] = 'Error accessing HTML body'
+                    # Try alternative sender properties
+                    if email_info['sender_name'] == 'Unknown':
+                        if self.debug:
+                            print(f"    DEBUG: Trying alternative sender properties...")
+                        email_info['sender_name'] = self._safe_get_property(item, 'SentOnBehalfOfName', 'Unknown', debug_context if self.debug else '')
+                        if email_info['sender_name'] == 'Unknown':
+                            # Try to get from SenderEmailAddress property differently
+                            try:
+                                sender_obj = getattr(item, 'Sender', None)
+                                if sender_obj:
+                                    email_info['sender_name'] = self._safe_get_property(sender_obj, 'Name', 'Unknown', f"{debug_context} Sender" if self.debug else '')
+                                    email_info['sender_email'] = self._safe_get_property(sender_obj, 'Address', 'Unknown', f"{debug_context} Sender" if self.debug else '')
+                            except Exception as e:
+                                if self.debug:
+                                    print(f"    DEBUG: Error accessing Sender object: {e}")
                     
-                    # Get recipients
+                    # Try to get body with different approaches
+                    if self.debug:
+                        print(f"    DEBUG: Attempting to get email body...")
+                    body_attempts = [
+                        ('Body', 'body'),
+                        ('HTMLBody', 'html_body'),
+                        ('RTFBody', 'rtf_body')
+                    ]
+                    
+                    for prop_name, result_key in body_attempts:
+                        try:
+                            if hasattr(item, prop_name):
+                                body_content = getattr(item, prop_name)
+                                if body_content and len(str(body_content).strip()) > 0:
+                                    if result_key == 'body' or result_key == 'html_body':
+                                        if len(str(body_content)) > 2000:
+                                            email_info[result_key] = str(body_content)[:2000] + "... [TRUNCATED]"
+                                        else:
+                                            email_info[result_key] = str(body_content)
+                                    if self.debug:
+                                        print(f"    DEBUG: Successfully got {prop_name} ({len(str(body_content))} chars)")
+                                else:
+                                    if self.debug:
+                                        print(f"    DEBUG: {prop_name} is empty or None")
+                            else:
+                                if self.debug:
+                                    print(f"    DEBUG: {prop_name} property not available")
+                        except Exception as e:
+                            if self.debug:
+                                print(f"    DEBUG: Error getting {prop_name}: {e}")
+                            email_info[f'{result_key}_error'] = str(e)
+                    
+                    # Get recipients with detailed debugging
+                    print(f"    DEBUG: Attempting to get recipients...")
                     try:
                         if hasattr(item, 'Recipients'):
-                            for j in range(1, min(item.Recipients.Count + 1, 11)):  # Max 10 recipients
-                                recipient = item.Recipients.Item(j)
-                                recipient_info = {
-                                    'name': self._safe_get_property(recipient, 'Name', 'Unknown'),
-                                    'address': self._safe_get_property(recipient, 'Address', 'Unknown'),
-                                    'type': self._safe_get_property(recipient, 'Type', 'Unknown')
-                                }
-                                email_info['recipients'].append(recipient_info)
+                            recipients_obj = getattr(item, 'Recipients')
+                            recipients_count = getattr(recipients_obj, 'Count', 0)
+                            print(f"    DEBUG: Found {recipients_count} recipients")
+                            
+                            for j in range(1, min(recipients_count + 1, 11)):  # Max 10 recipients
+                                try:
+                                    recipient = recipients_obj.Item(j)
+                                    recipient_info = {
+                                        'name': self._safe_get_property(recipient, 'Name', 'Unknown', f"{debug_context} Recipient {j}"),
+                                        'address': self._safe_get_property(recipient, 'Address', 'Unknown', f"{debug_context} Recipient {j}"),
+                                        'type': self._safe_get_property(recipient, 'Type', 'Unknown', f"{debug_context} Recipient {j}")
+                                    }
+                                    email_info['recipients'].append(recipient_info)
+                                    print(f"    DEBUG: Got recipient {j}: {recipient_info['name']}")
+                                except Exception as e:
+                                    print(f"    DEBUG: Error getting recipient {j}: {e}")
+                                    email_info['recipients'].append({'error': str(e), 'index': j})
+                        else:
+                            print(f"    DEBUG: No Recipients property available")
                     except Exception as e:
+                        print(f"    DEBUG: Error accessing recipients: {e}")
                         email_info['recipients_error'] = str(e)
                     
-                    # Get attachments
+                    # Get attachments with detailed debugging
+                    print(f"    DEBUG: Attempting to get attachments...")
                     try:
                         if hasattr(item, 'Attachments'):
-                            for j in range(1, min(item.Attachments.Count + 1, 11)):  # Max 10 attachments
-                                attachment = item.Attachments.Item(j)
-                                attachment_info = {
-                                    'filename': self._safe_get_property(attachment, 'FileName', 'Unknown'),
-                                    'size': self._safe_get_property(attachment, 'Size', 0),
-                                    'type': self._safe_get_property(attachment, 'Type', 'Unknown')
-                                }
-                                email_info['attachments'].append(attachment_info)
+                            attachments_obj = getattr(item, 'Attachments')
+                            attachments_count = getattr(attachments_obj, 'Count', 0)
+                            print(f"    DEBUG: Found {attachments_count} attachments")
+                            
+                            for j in range(1, min(attachments_count + 1, 11)):  # Max 10 attachments
+                                try:
+                                    attachment = attachments_obj.Item(j)
+                                    attachment_info = {
+                                        'filename': self._safe_get_property(attachment, 'FileName', 'Unknown', f"{debug_context} Attachment {j}"),
+                                        'size': self._safe_get_property(attachment, 'Size', 0, f"{debug_context} Attachment {j}"),
+                                        'type': self._safe_get_property(attachment, 'Type', 'Unknown', f"{debug_context} Attachment {j}")
+                                    }
+                                    email_info['attachments'].append(attachment_info)
+                                    print(f"    DEBUG: Got attachment {j}: {attachment_info['filename']}")
+                                except Exception as e:
+                                    print(f"    DEBUG: Error getting attachment {j}: {e}")
+                                    email_info['attachments'].append({'error': str(e), 'index': j})
+                        else:
+                            print(f"    DEBUG: No Attachments property available")
                     except Exception as e:
+                        print(f"    DEBUG: Error accessing attachments: {e}")
                         email_info['attachments_error'] = str(e)
-                    
-                    # Truncate body if too long (for JSON storage)
-                    if len(email_info['body']) > 2000:
-                        email_info['body'] = email_info['body'][:2000] + "... [TRUNCATED]"
-                    if len(email_info['html_body']) > 3000:
-                        email_info['html_body'] = email_info['html_body'][:3000] + "... [TRUNCATED]"
                     
                     emails.append(email_info)
                     
@@ -307,11 +445,20 @@ class OutlookAnalyzer:
         
         return emails
     
-    def _safe_get_property(self, obj, property_name, default_value):
-        """Safely get a property from an Outlook object."""
+    def _safe_get_property(self, obj, property_name, default_value, debug_context=""):
+        """Safely get a property from an Outlook object with detailed error logging."""
         try:
-            return getattr(obj, property_name, default_value)
-        except:
+            if hasattr(obj, property_name):
+                value = getattr(obj, property_name)
+                return value
+            else:
+                if debug_context and self.debug:
+                    print(f"    DEBUG: {debug_context} - Property '{property_name}' not found on object")
+                return default_value
+        except Exception as e:
+            error_msg = f"Error accessing {property_name}: {str(e)} (Type: {type(e).__name__})"
+            if debug_context and self.debug:
+                print(f"    DEBUG: {debug_context} - {error_msg}")
             return default_value
     
     def analyze_calendar(self):
@@ -407,7 +554,7 @@ class OutlookAnalyzer:
             print(f"✗ {error_msg}")
             self.results['errors'].append(error_msg)
     
-    def save_results(self, output_file="outlook_analysis.json"):
+    def save_results(self, output_file="debug\outlook_analysis.json"):
         """Save analysis results to a JSON file."""
         try:
             output_path = Path(__file__).parent / output_file
@@ -473,9 +620,17 @@ def main():
     print("Outlook COM Application Analyzer")
     print("================================")
     
-    analyzer = OutlookAnalyzer()
+    # Enable debug mode if requested
+    debug_mode = len(sys.argv) > 1 and sys.argv[1] == '--debug'
+    if debug_mode:
+        print("DEBUG MODE ENABLED")
+    
+    analyzer = OutlookAnalyzer(debug=debug_mode)
     
     try:
+        # Clear win32com cache first to prevent COM errors
+        analyzer.clear_win32com_cache()
+        
         # Connect to Outlook
         if not analyzer.connect_to_outlook():
             return 1

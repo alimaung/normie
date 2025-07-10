@@ -86,7 +86,7 @@ Public Sub StartEmailPolling()
     
     ' Start timer for recurring extractions (interval in milliseconds)
     Dim intervalMS As Long
-    intervalMS = POLL_INTERVAL_MINUTES * 60 * 1000
+    intervalMS = CLng(POLL_INTERVAL_MINUTES) * 60 * 1000
     
     PollTimerID = SetTimer(0, 0, intervalMS, AddressOf TimerCallback)
     IsPolling = True
@@ -120,13 +120,13 @@ Public Sub ExtractAllEmails()
     Debug.Print "=== Email Extraction Started: " & Now & " ==="
     
     Dim olApp As Outlook.Application
-    Dim olNamespace As Outlook.Namespace
+    Dim olNamespace As Outlook.NameSpace
     
     Set olApp = Application
     Set olNamespace = olApp.GetNamespace("MAPI")
     
     ' Extract from target account only
-    Dim store As Outlook.Store
+    Dim store As Outlook.store
     Dim hasChanges As Boolean
     hasChanges = False
     
@@ -155,10 +155,10 @@ ErrorHandler:
 End Sub
 
 ' Extract emails from a specific store
-Private Function ExtractEmailsFromStore(store As Outlook.Store) As Boolean
+Private Function ExtractEmailsFromStore(store As Outlook.store) As Boolean
     On Error GoTo ErrorHandler
     
-    Dim rootFolder As Outlook.Folder
+    Dim rootFolder As Outlook.folder
     Set rootFolder = store.GetRootFolder
     
     ' Clean store name for filename
@@ -166,11 +166,11 @@ Private Function ExtractEmailsFromStore(store As Outlook.Store) As Boolean
     storeName = CleanFileName(store.DisplayName)
     
     ' Extract from Inbox
-    Dim inboxFolder As Outlook.Folder
+    Dim inboxFolder As Outlook.folder
     Set inboxFolder = FindFolderByName(rootFolder, "Inbox")
     
     If Not inboxFolder Is Nothing Then
-        Debug.Print "  Extracting from Inbox: " & inboxFolder.Items.Count & " items"
+        Debug.Print "  Extracting from Inbox: " & inboxFolder.items.Count & " items"
         ExtractEmailsFromStore = ExtractEmailsFromFolder(inboxFolder, "emails")
     Else
         ExtractEmailsFromStore = False
@@ -184,7 +184,7 @@ ErrorHandler:
 End Function
 
 ' Extract emails from a specific folder
-Private Function ExtractEmailsFromFolder(folder As Outlook.Folder, filePrefix As String) As Boolean
+Private Function ExtractEmailsFromFolder(folder As Outlook.folder, filePrefix As String) As Boolean
     On Error GoTo ErrorHandler
     
     Dim jsonContent As String
@@ -195,7 +195,7 @@ Private Function ExtractEmailsFromFolder(folder As Outlook.Folder, filePrefix As
     jsonContent = jsonContent & "  ""timestamp"": """ & Format(Now, "yyyy-mm-dd hh:nn:ss") & """," & vbCrLf
     jsonContent = jsonContent & "  ""folder_name"": """ & folder.Name & """," & vbCrLf
     jsonContent = jsonContent & "  ""folder_path"": """ & EscapeJson(folder.FolderPath) & """," & vbCrLf
-    jsonContent = jsonContent & "  ""total_items"": " & folder.Items.Count & "," & vbCrLf
+    jsonContent = jsonContent & "  ""total_items"": " & folder.items.Count & "," & vbCrLf
     jsonContent = jsonContent & "  ""emails"": [" & vbCrLf
     
     ' Sort items by received time (most recent first)
@@ -210,8 +210,8 @@ Private Function ExtractEmailsFromFolder(folder As Outlook.Folder, filePrefix As
     
     If currentCount > 0 Then
         Dim firstItem As Object
-        Set firstItem = items.Item(1)
-        If TypeOf firstItem Is Outlook.MailItem Then
+        Set firstItem = items.item(1)
+        If TypeOf firstItem Is Outlook.mailItem Then
             latestEmailTime = firstItem.ReceivedTime
         End If
     End If
@@ -234,8 +234,8 @@ Private Function ExtractEmailsFromFolder(folder As Outlook.Folder, filePrefix As
     For Each item In items
         If emailCount >= MAX_EMAILS_PER_ACCOUNT Then Exit For
         
-        If TypeOf item Is Outlook.MailItem Then
-            Dim mailItem As Outlook.MailItem
+        If TypeOf item Is Outlook.mailItem Then
+            Dim mailItem As Outlook.mailItem
             Set mailItem = item
             
             If emailCount > 0 Then jsonContent = jsonContent & "," & vbCrLf
@@ -251,7 +251,17 @@ Private Function ExtractEmailsFromFolder(folder As Outlook.Folder, filePrefix As
             jsonContent = jsonContent & "      ""importance"": " & mailItem.Importance & "," & vbCrLf
             jsonContent = jsonContent & "      ""unread"": " & LCase(CStr(mailItem.UnRead)) & "," & vbCrLf
             jsonContent = jsonContent & "      ""categories"": """ & EscapeJson(mailItem.Categories) & """," & vbCrLf
-            jsonContent = jsonContent & "      ""msg_file"": ""data\" & subjectFolderName & "\" & CleanFileName(mailItem.Subject) & ".msg""," & vbCrLf
+            ' Define folder variables early (needed for msg_file path)
+            Dim subjectFolderName As String
+            Dim subjectAttachmentFolder As String
+            Dim msgFileName As String
+            Dim msgFilePath As String
+            
+            subjectFolderName = CleanFileName(mailItem.Subject)
+            subjectAttachmentFolder = GetAttachmentsFolder() & subjectFolderName & "\"
+            msgFileName = CleanFileName(mailItem.Subject) & ".msg"
+            
+            jsonContent = jsonContent & "      ""msg_file"": ""data\" & subjectFolderName & "\" & msgFileName & """," & vbCrLf
             
             ' Extract body (truncate if too long)
             Dim bodyText As String
@@ -261,8 +271,8 @@ Private Function ExtractEmailsFromFolder(folder As Outlook.Folder, filePrefix As
             
             ' Extract HTML body (truncate if too long)
             Dim htmlBody As String
-            htmlBody = Left(mailItem.HTMLBody, 3000)
-            If Len(mailItem.HTMLBody) > 3000 Then htmlBody = htmlBody & "... [TRUNCATED]"
+            htmlBody = Left(mailItem.htmlBody, 3000)
+            If Len(mailItem.htmlBody) > 3000 Then htmlBody = htmlBody & "... [TRUNCATED]"
             jsonContent = jsonContent & "      ""html_body"": """ & EscapeJson(htmlBody) & """," & vbCrLf
             
             ' Extract recipients
@@ -287,14 +297,10 @@ Private Function ExtractEmailsFromFolder(folder As Outlook.Folder, filePrefix As
             ' Extract attachments
             jsonContent = jsonContent & "      ""attachments"": [" & vbCrLf
             Dim attachmentIndex As Integer
-            Dim subjectFolderName As String
-            Dim subjectAttachmentFolder As String
             Dim attachmentPath As String
             Dim relativeAttachmentPath As String
             Dim hasRealAttachments As Boolean
             Dim folderCreated As Boolean
-            Dim msgFileName As String
-            Dim msgFilePath As String
             
             attachmentIndex = 0
             hasRealAttachments = False
@@ -303,22 +309,18 @@ Private Function ExtractEmailsFromFolder(folder As Outlook.Folder, filePrefix As
             ' Pre-check if there are any real attachments (not embedded images)
             Dim attachment As Outlook.attachment
             For Each attachment In mailItem.Attachments
-                If Not IsEmbeddedImage(attachment.FileName) Then
+                If Not IsEmbeddedImage(attachment.fileName) Then
                     hasRealAttachments = True
                     Exit For
                 End If
             Next attachment
             
             ' Always create folder for emails (for .msg file and attachments)
-            subjectFolderName = CleanFileName(mailItem.Subject)
-            subjectAttachmentFolder = GetAttachmentsFolder() & subjectFolderName & "\"
-            
             Debug.Print "      Creating folder for email: " & subjectAttachmentFolder
             CreateDirectoryPath subjectAttachmentFolder
             folderCreated = True
             
             ' Save the actual .msg email file
-            msgFileName = CleanFileName(mailItem.Subject) & ".msg"
             msgFilePath = subjectAttachmentFolder & "\" & msgFileName
             
             On Error Resume Next
@@ -333,13 +335,13 @@ Private Function ExtractEmailsFromFolder(folder As Outlook.Folder, filePrefix As
             ' Process attachments
             For Each attachment In mailItem.Attachments
                 ' Skip embedded/filler images
-                If Not IsEmbeddedImage(attachment.FileName) Then
+                If Not IsEmbeddedImage(attachment.fileName) Then
                     If attachmentIndex > 0 Then jsonContent = jsonContent & "," & vbCrLf
                     
                     ' Download attachment (keep original filename) - only if folder was created
                     If folderCreated Then
-                        relativeAttachmentPath = "data\" & subjectFolderName & "\" & attachment.FileName
-                        attachmentPath = subjectAttachmentFolder & "\" & attachment.FileName
+                        relativeAttachmentPath = "data\" & subjectFolderName & "\" & attachment.fileName
+                        attachmentPath = subjectAttachmentFolder & "\" & attachment.fileName
                         
                         Debug.Print "      Attachment path: " & attachmentPath
                         Debug.Print "      Relative path: " & relativeAttachmentPath
@@ -349,27 +351,27 @@ Private Function ExtractEmailsFromFolder(folder As Outlook.Folder, filePrefix As
                     If folderCreated Then
                         On Error Resume Next
                         If Dir(attachmentPath) = "" Then
-                            Debug.Print "      Saving attachment: " & attachment.FileName & " to " & attachmentPath
+                            Debug.Print "      Saving attachment: " & attachment.fileName & " to " & attachmentPath
                             attachment.SaveAsFile attachmentPath
                             If Err.Number = 0 Then
-                                Debug.Print "      Downloaded successfully: " & attachment.FileName
+                                Debug.Print "      Downloaded successfully: " & attachment.fileName
                                 attachmentPath = relativeAttachmentPath
                             Else
-                                Debug.Print "      Failed to download: " & attachment.FileName & " (Error: " & Err.Description & ")"
+                                Debug.Print "      Failed to download: " & attachment.fileName & " (Error: " & Err.Description & ")"
                                 attachmentPath = "" ' Failed to save
                             End If
                         Else
-                            Debug.Print "      Already exists: " & attachment.FileName
+                            Debug.Print "      Already exists: " & attachment.fileName
                             attachmentPath = relativeAttachmentPath
                         End If
                         On Error GoTo ErrorHandler
                     Else
                         ' No folder created, just record the filename
-                        attachmentPath = attachment.FileName
+                        attachmentPath = attachment.fileName
                     End If
                     
                     jsonContent = jsonContent & "        {" & vbCrLf
-                    jsonContent = jsonContent & "          ""filename"": """ & EscapeJson(attachment.FileName) & """," & vbCrLf
+                    jsonContent = jsonContent & "          ""filename"": """ & EscapeJson(attachment.fileName) & """," & vbCrLf
                     jsonContent = jsonContent & "          ""size"": " & attachment.Size & "," & vbCrLf
                     jsonContent = jsonContent & "          ""type"": " & attachment.Type & "," & vbCrLf
                     jsonContent = jsonContent & "          ""filepath"": """ & EscapeJson(attachmentPath) & """" & vbCrLf
@@ -412,10 +414,10 @@ ErrorHandler:
 End Function
 
 ' Helper function to find folder by name
-Private Function FindFolderByName(parentFolder As Outlook.Folder, folderName As String) As Outlook.Folder
+Private Function FindFolderByName(parentFolder As Outlook.folder, folderName As String) As Outlook.folder
     On Error GoTo ErrorHandler
     
-    Dim folder As Outlook.Folder
+    Dim folder As Outlook.folder
     For Each folder In parentFolder.Folders
         If LCase(folder.Name) = LCase(folderName) Then
             Set FindFolderByName = folder
@@ -527,4 +529,5 @@ Public Sub ExtractEmailsOnce()
     Debug.Print "Starting one-time email extraction..."
     ExtractAllEmails
     Debug.Print "One-time extraction completed."
-End Sub 
+End Sub
+
