@@ -24,13 +24,17 @@ Private Const TARGET_ACCOUNT As String = "IRM-Standardisation-Office"
 Private LastEmailCount As Integer
 Private LastModifiedTime As Date
 
+' Timer variables
+Private PollTimerID As Long
+Private IsPolling As Boolean
+
 ' Dynamic paths
 Private Function GetOutputFolder() As String
-    GetOutputFolder = "C:\Users\" & Environ("USERNAME") & "\Desktop\normie\outlook\analyze\outlook_extract\"
+    GetOutputFolder = "C:\Users\" & Environ("USERNAME") & "\Desktop\normie\outlook\analyze\mail\"
 End Function
 
 Private Function GetAttachmentsFolder() As String
-    GetAttachmentsFolder = "C:\Users\" & Environ("USERNAME") & "\Desktop\normie\outlook\analyze\outlook_extract\attachments\"
+    GetAttachmentsFolder = "C:\Users\" & Environ("USERNAME") & "\Desktop\normie\outlook\analyze\mail\data\"
 End Function
 
 ' Helper function to create directory path recursively
@@ -62,21 +66,20 @@ Private Sub CreateDirectoryPath(fullPath As String)
     On Error GoTo 0
 End Sub
 
-' Timer variables
-Private PollTimerID As Long
-Private IsPolling As Boolean
-
 ' Main entry point - call this to start polling
 Public Sub StartEmailPolling()
     Debug.Print "Starting email polling every " & POLL_INTERVAL_MINUTES & " minutes..."
     Debug.Print "Output folder: " & GetOutputFolder()
+    Debug.Print "Data folder: " & GetAttachmentsFolder()
     Debug.Print "Target account: " & TARGET_ACCOUNT
     
-    ' Create output folder if it doesn't exist
+    ' Create main output folder if it doesn't exist
     CreateDirectoryPath GetOutputFolder()
+    Debug.Print "Created/verified main folder: " & GetOutputFolder()
     
-    ' Create attachments subfolder
+    ' Create data subfolder for emails and attachments
     CreateDirectoryPath GetAttachmentsFolder()
+    Debug.Print "Created/verified data folder: " & GetAttachmentsFolder()
     
     ' Run extraction immediately
     ExtractAllEmails
@@ -248,6 +251,7 @@ Private Function ExtractEmailsFromFolder(folder As Outlook.Folder, filePrefix As
             jsonContent = jsonContent & "      ""importance"": " & mailItem.Importance & "," & vbCrLf
             jsonContent = jsonContent & "      ""unread"": " & LCase(CStr(mailItem.UnRead)) & "," & vbCrLf
             jsonContent = jsonContent & "      ""categories"": """ & EscapeJson(mailItem.Categories) & """," & vbCrLf
+            jsonContent = jsonContent & "      ""msg_file"": ""data\" & subjectFolderName & "\" & CleanFileName(mailItem.Subject) & ".msg""," & vbCrLf
             
             ' Extract body (truncate if too long)
             Dim bodyText As String
@@ -283,45 +287,96 @@ Private Function ExtractEmailsFromFolder(folder As Outlook.Folder, filePrefix As
             ' Extract attachments
             jsonContent = jsonContent & "      ""attachments"": [" & vbCrLf
             Dim attachmentIndex As Integer
-            attachmentIndex = 0
+            Dim subjectFolderName As String
+            Dim subjectAttachmentFolder As String
+            Dim attachmentPath As String
+            Dim relativeAttachmentPath As String
+            Dim hasRealAttachments As Boolean
+            Dim folderCreated As Boolean
+            Dim msgFileName As String
+            Dim msgFilePath As String
             
+            attachmentIndex = 0
+            hasRealAttachments = False
+            folderCreated = False
+            
+            ' Pre-check if there are any real attachments (not embedded images)
             Dim attachment As Outlook.attachment
             For Each attachment In mailItem.Attachments
-                If attachmentIndex > 0 Then jsonContent = jsonContent & "," & vbCrLf
-                
-                ' Download attachment
-                Dim attachmentPath As String
-                Dim safeFileName As String
-                Dim relativeAttachmentPath As String
-                safeFileName = CleanFileName(attachment.FileName)
-                relativeAttachmentPath = "attachments\" & safeFileName
-                attachmentPath = GetAttachmentsFolder() & safeFileName
-                
-                ' Save attachment to disk (only if it doesn't exist)
-                On Error Resume Next
-                If Dir(attachmentPath) = "" Then
-                    attachment.SaveAsFile attachmentPath
-                    If Err.Number = 0 Then
-                        Debug.Print "      Downloaded: " & safeFileName
-                        attachmentPath = relativeAttachmentPath
-                    Else
-                        Debug.Print "      Failed to download: " & safeFileName & " (Error: " & Err.Description & ")"
-                        attachmentPath = "" ' Failed to save
-                    End If
-                Else
-                    Debug.Print "      Already exists: " & safeFileName
-                    attachmentPath = relativeAttachmentPath
+                If Not IsEmbeddedImage(attachment.FileName) Then
+                    hasRealAttachments = True
+                    Exit For
                 End If
-                On Error GoTo ErrorHandler
-                
-                jsonContent = jsonContent & "        {" & vbCrLf
-                jsonContent = jsonContent & "          ""filename"": """ & EscapeJson(attachment.FileName) & """," & vbCrLf
-                jsonContent = jsonContent & "          ""size"": " & attachment.Size & "," & vbCrLf
-                jsonContent = jsonContent & "          ""type"": " & attachment.Type & "," & vbCrLf
-                jsonContent = jsonContent & "          ""filepath"": """ & EscapeJson(attachmentPath) & """" & vbCrLf
-                jsonContent = jsonContent & "        }"
-                attachmentIndex = attachmentIndex + 1
-                If attachmentIndex >= 10 Then Exit For ' Limit attachments
+            Next attachment
+            
+            ' Always create folder for emails (for .msg file and attachments)
+            subjectFolderName = CleanFileName(mailItem.Subject)
+            subjectAttachmentFolder = GetAttachmentsFolder() & subjectFolderName & "\"
+            
+            Debug.Print "      Creating folder for email: " & subjectAttachmentFolder
+            CreateDirectoryPath subjectAttachmentFolder
+            folderCreated = True
+            
+            ' Save the actual .msg email file
+            msgFileName = CleanFileName(mailItem.Subject) & ".msg"
+            msgFilePath = subjectAttachmentFolder & "\" & msgFileName
+            
+            On Error Resume Next
+            mailItem.SaveAs msgFilePath, olMSG
+            If Err.Number = 0 Then
+                Debug.Print "      Saved .msg email: " & msgFileName
+            Else
+                Debug.Print "      Failed to save .msg email: " & Err.Description
+            End If
+            On Error GoTo ErrorHandler
+            
+            ' Process attachments
+            For Each attachment In mailItem.Attachments
+                ' Skip embedded/filler images
+                If Not IsEmbeddedImage(attachment.FileName) Then
+                    If attachmentIndex > 0 Then jsonContent = jsonContent & "," & vbCrLf
+                    
+                    ' Download attachment (keep original filename) - only if folder was created
+                    If folderCreated Then
+                        relativeAttachmentPath = "data\" & subjectFolderName & "\" & attachment.FileName
+                        attachmentPath = subjectAttachmentFolder & "\" & attachment.FileName
+                        
+                        Debug.Print "      Attachment path: " & attachmentPath
+                        Debug.Print "      Relative path: " & relativeAttachmentPath
+                    End If
+                    
+                    ' Save attachment to disk (only if folder was created and it doesn't exist)
+                    If folderCreated Then
+                        On Error Resume Next
+                        If Dir(attachmentPath) = "" Then
+                            Debug.Print "      Saving attachment: " & attachment.FileName & " to " & attachmentPath
+                            attachment.SaveAsFile attachmentPath
+                            If Err.Number = 0 Then
+                                Debug.Print "      Downloaded successfully: " & attachment.FileName
+                                attachmentPath = relativeAttachmentPath
+                            Else
+                                Debug.Print "      Failed to download: " & attachment.FileName & " (Error: " & Err.Description & ")"
+                                attachmentPath = "" ' Failed to save
+                            End If
+                        Else
+                            Debug.Print "      Already exists: " & attachment.FileName
+                            attachmentPath = relativeAttachmentPath
+                        End If
+                        On Error GoTo ErrorHandler
+                    Else
+                        ' No folder created, just record the filename
+                        attachmentPath = attachment.FileName
+                    End If
+                    
+                    jsonContent = jsonContent & "        {" & vbCrLf
+                    jsonContent = jsonContent & "          ""filename"": """ & EscapeJson(attachment.FileName) & """," & vbCrLf
+                    jsonContent = jsonContent & "          ""size"": " & attachment.Size & "," & vbCrLf
+                    jsonContent = jsonContent & "          ""type"": " & attachment.Type & "," & vbCrLf
+                    jsonContent = jsonContent & "          ""filepath"": """ & EscapeJson(attachmentPath) & """" & vbCrLf
+                    jsonContent = jsonContent & "        }"
+                    attachmentIndex = attachmentIndex + 1
+                    If attachmentIndex >= 10 Then Exit For ' Limit attachments
+                End If
             Next attachment
             
             jsonContent = jsonContent & vbCrLf & "      ]" & vbCrLf
@@ -411,6 +466,47 @@ Private Function EscapeJson(text As String) As String
     
     EscapeJson = result
 End Function
+
+' Helper function to detect embedded/filler images
+Private Function IsEmbeddedImage(fileName As String) As Boolean
+    Dim upperFileName As String
+    upperFileName = UCase(fileName)
+    
+    ' Specific embedded image GUIDs/hashes
+    If upperFileName = "9B295F2F83534DC99F68C53110554C14.GIF" Or _
+       upperFileName = "72BCF599BF8B42FCA47C22168A12B83C.GIF" Or _
+       upperFileName = "AC023DD01F024F33B4EECFFDE3D5D52A.GIF" Or _
+       upperFileName = "BA0B320E1A97421AA114D0901B89EB04.JPG" Or _
+       upperFileName = "CD4ED6C73D8641B9B269ABC4C9553D69.JPG" Or _
+       upperFileName = "D72078099DD54DE490A7A035558F217F.GIF" Then
+        IsEmbeddedImage = True
+        Exit Function
+    End If
+    
+    ' Generic imageXXX patterns (like image001.png, image002.jpg, etc.)
+    If Left(upperFileName, 5) = "IMAGE" And Len(upperFileName) >= 9 Then
+        Dim numberPart As String
+        Dim extensionPart As String
+        
+        ' Extract the number part (should be 3 digits)
+        numberPart = Mid(upperFileName, 6, 3)
+        
+        ' Check if it's all digits
+        If IsNumeric(numberPart) Then
+            ' Extract extension part
+            extensionPart = Right(upperFileName, 4) ' .jpg, .png, .gif
+            
+            If extensionPart = ".JPG" Or extensionPart = ".PNG" Or extensionPart = ".GIF" Then
+                IsEmbeddedImage = True
+                Exit Function
+            End If
+        End If
+    End If
+    
+    IsEmbeddedImage = False
+End Function
+
+
 
 ' Create status file with current timestamp
 Private Sub CreateStatusFile()
