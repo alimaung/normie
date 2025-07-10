@@ -61,9 +61,7 @@ class OutlookService:
     """
     
     ALLOWED_ACCOUNTS = [
-        'irm-standardisation-office@rolls-royce.com',
-        'ali.maung@rolls-royce.com',  # Ali Maung's account (belongs to the IRM group)
-        'microfilm.rollsroyce@outlook.com'  # Only for testing
+        'irm-standardisation-office@rolls-royce.com'
     ]
     
     def __init__(self):

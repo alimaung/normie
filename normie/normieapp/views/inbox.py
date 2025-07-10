@@ -58,26 +58,8 @@ def inbox(request):
     context['available_categories'] = default_categories
     
     try:
-        # Connect to Outlook
+        # Connect to Outlook - VBA handles account targeting automatically
         outlook = OutlookService()
-        
-        # Try to get the account to check if we're using the fallback
-        using_fallback = False
-        original_email = email_address
-        
-        try:
-            account = outlook._get_account(email_address)
-            # If the account email is different from requested, we're using fallback
-            if account.SmtpAddress.lower() != email_address.lower():
-                using_fallback = True
-                context['email_address'] = account.SmtpAddress
-                context['using_fallback'] = True
-                context['original_email'] = original_email
-                email_address = account.SmtpAddress
-                messages.warning(request, _(f"Using fallback email account '{email_address}' because '{original_email}' was not found."))
-        except Exception as e:
-            messages.warning(request, _(f"Could not access email account: {str(e)}"))
-            context['connection_warning'] = True
         
         # Categories are disabled - using default categories
         context['available_categories'] = default_categories
@@ -144,26 +126,8 @@ def inbox_view_message(request, message_id):
     }
     
     try:
-        # Connect to Outlook
+        # Connect to Outlook - VBA handles account targeting automatically
         outlook = OutlookService()
-        
-        # Try to get the account to check if we're using the fallback
-        using_fallback = False
-        original_email = email_address
-        
-        try:
-            account = outlook._get_account(email_address)
-            # If the account email is different from requested, we're using fallback
-            if account.SmtpAddress.lower() != email_address.lower():
-                using_fallback = True
-                context['email_address'] = account.SmtpAddress
-                context['using_fallback'] = True
-                context['original_email'] = original_email
-                email_address = account.SmtpAddress
-                messages.warning(request, _(f"Using fallback email account '{email_address}' because '{original_email}' was not found."))
-        except Exception as e:
-            messages.warning(request, _(f"Could not access email account: {str(e)}"))
-            context['connection_warning'] = True
         
         try:
             # Get the email
@@ -213,91 +177,6 @@ def inbox_compose(request):
     # Get email address from query params
     email_address = request.GET.get('account', OutlookService.ALLOWED_ACCOUNTS[0])
     
-    # If this is a POST request, process the form data
-    if request.method == 'POST':
-        # Get form data
-        to = request.POST.get('to', '')
-        cc = request.POST.get('cc', '')
-        bcc = request.POST.get('bcc', '')
-        subject = request.POST.get('subject', '')
-        body = request.POST.get('body', '')
-        importance = int(request.POST.get('importance', 1))
-        
-        # Get attachments
-        attachments = []
-        for file in request.FILES.getlist('attachments'):
-            # Save attachment to temp directory
-            file_path = os.path.join(settings.MEDIA_ROOT, 'normieapp', 'temp_attachments', file.name)
-            os.makedirs(os.path.dirname(file_path), exist_ok=True)
-            
-            with open(file_path, 'wb+') as destination:
-                for chunk in file.chunks():
-                    destination.write(chunk)
-            
-            attachments.append(file_path)
-        
-        try:
-            # Connect to Outlook and send the email
-            outlook = OutlookService()
-            
-            # Try to get the account to check if we're using the fallback
-            try:
-                account = outlook._get_account(email_address)
-                # If the account email is different from requested, we're using fallback
-                if account.SmtpAddress.lower() != email_address.lower():
-                    email_address = account.SmtpAddress
-                    messages.warning(request, _(f"Using fallback email account '{email_address}'."))
-            except Exception:
-                # Will be handled in the main try-except block
-                pass
-            
-            # Check if we're saving as draft
-            if 'save_draft' in request.POST:
-                success = outlook.save_draft(
-                    email_address=email_address,
-                    to=to,
-                    cc=cc,
-                    bcc=bcc,
-                    subject=subject,
-                    body=body,
-                    attachments=attachments,
-                    importance=importance
-                )
-                
-                if success:
-                    messages.success(request, _('Email saved as draft.'))
-                    return redirect('inbox')
-                else:
-                    messages.error(request, _('Failed to save draft.'))
-            else:
-                # Send the email
-                success = outlook.send_email(
-                    email_address=email_address,
-                    to=to,
-                    cc=cc,
-                    bcc=bcc,
-                    subject=subject,
-                    body=body,
-                    attachments=attachments,
-                    importance=importance
-                )
-                
-                # Clean up temp attachments
-                for attachment in attachments:
-                    try:
-                        os.remove(attachment)
-                    except:
-                        pass
-                
-                if success:
-                    messages.success(request, _('Email sent successfully.'))
-                    return redirect('inbox')
-                else:
-                    messages.error(request, _('Failed to send email.'))
-        
-        except Exception as e:
-            messages.error(request, f"An error occurred: {str(e)}")
-    
     # Create the compose form
     context = {
         'page_title': _('Compose Email'),
@@ -305,28 +184,7 @@ def inbox_compose(request):
         'allowed_accounts': OutlookService.ALLOWED_ACCOUNTS,
     }
     
-    try:
-        # Try to get the account to check if we're using the fallback
-        outlook = OutlookService()
-        using_fallback = False
-        original_email = email_address
-        
-        try:
-            account = outlook._get_account(email_address)
-            # If the account email is different from requested, we're using fallback
-            if account.SmtpAddress.lower() != email_address.lower():
-                using_fallback = True
-                context['email_address'] = account.SmtpAddress
-                context['using_fallback'] = True
-                context['original_email'] = original_email
-                email_address = account.SmtpAddress
-                messages.warning(request, _(f"Using fallback email account '{email_address}' because '{original_email}' was not found."))
-        except Exception:
-            # Will be handled in the main try-except block
-            pass
-    except Exception as e:
-        messages.error(request, f"An error occurred: {str(e)}")
-    
+    # VBA handles account targeting automatically
     return render(request, 'normieapp/inbox_compose.html', context)
 
 
@@ -469,67 +327,6 @@ def inbox_reply(request, message_id):
     # Get email address from query params
     email_address = request.GET.get('account', OutlookService.ALLOWED_ACCOUNTS[0])
     
-    # If this is a POST request, process the form data
-    if request.method == 'POST':
-        # Get form data
-        to = request.POST.get('to', '')
-        cc = request.POST.get('cc', '')
-        subject = request.POST.get('subject', '')
-        body = request.POST.get('body', '')
-        
-        # Get attachments
-        attachments = []
-        for file in request.FILES.getlist('attachments'):
-            # Save attachment to temp directory
-            file_path = os.path.join(settings.MEDIA_ROOT, 'normieapp', 'temp_attachments', file.name)
-            os.makedirs(os.path.dirname(file_path), exist_ok=True)
-            
-            with open(file_path, 'wb+') as destination:
-                for chunk in file.chunks():
-                    destination.write(chunk)
-            
-            attachments.append(file_path)
-        
-        try:
-            # Connect to Outlook and send the email
-            outlook = OutlookService()
-            
-            # Try to get the account to check if we're using the fallback
-            try:
-                account = outlook._get_account(email_address)
-                # If the account email is different from requested, we're using fallback
-                if account.SmtpAddress.lower() != email_address.lower():
-                    email_address = account.SmtpAddress
-                    messages.warning(request, _(f"Using fallback email account '{email_address}'."))
-            except Exception:
-                # Will be handled in the main try-except block
-                pass
-            
-            success = outlook.send_email(
-                email_address=email_address,
-                to=to,
-                cc=cc,
-                subject=subject,
-                body=body,
-                attachments=attachments
-            )
-            
-            # Clean up temp attachments
-            for attachment in attachments:
-                try:
-                    os.remove(attachment)
-                except:
-                    pass
-            
-            if success:
-                messages.success(request, _('Email sent successfully.'))
-                return redirect('inbox')
-            else:
-                messages.error(request, _('Failed to send email.'))
-        
-        except Exception as e:
-            messages.error(request, f"An error occurred: {str(e)}")
-    
     # Create the reply form
     context = {
         'page_title': _('Reply to Email'),
@@ -538,28 +335,15 @@ def inbox_reply(request, message_id):
         'is_reply': True,
     }
     
+    # Only allow IRM account - no fallbacks
+    if email_address not in OutlookService.ALLOWED_ACCOUNTS:
+        messages.error(request, _(f"Access denied: Only {OutlookService.ALLOWED_ACCOUNTS[0]} is allowed."))
+        context['access_denied'] = True
+        return render(request, 'normieapp/inbox_compose.html', context)
+    
     try:
         # Connect to Outlook and get the original email
         outlook = OutlookService()
-        
-        # Try to get the account to check if we're using the fallback
-        using_fallback = False
-        original_email = email_address
-        
-        try:
-            account = outlook._get_account(email_address)
-            # If the account email is different from requested, we're using fallback
-            if account.SmtpAddress.lower() != email_address.lower():
-                using_fallback = True
-                context['email_address'] = account.SmtpAddress
-                context['using_fallback'] = True
-                context['original_email'] = original_email
-                email_address = account.SmtpAddress
-                messages.warning(request, _(f"Using fallback email account '{email_address}' because '{original_email}' was not found."))
-        except Exception:
-            # Will be handled in the main try-except block
-            pass
-        
         email = outlook.get_email(email_address, message_id)
         
         if not email:
@@ -567,163 +351,22 @@ def inbox_reply(request, message_id):
             return redirect('inbox')
         
         # Prepare reply fields
-        context['to'] = email.sender_email
-        context['subject'] = f"RE: {email.subject}"
+        context['to'] = email.get('sender_email', '')
+        context['subject'] = f"RE: {email.get('subject', '')}"
         
         # Prepare reply body with original message
         reply_body = f"\n\n\n-----Original Message-----\n"
-        reply_body += f"From: {email.sender}\n"
-        reply_body += f"Sent: {email.received_time}\n"
-        reply_body += f"To: {email.to}\n"
+        reply_body += f"From: {email.get('sender', '')}\n"
+        reply_body += f"Sent: {email.get('received_time', '')}\n"
+        reply_body += f"To: {email.get('to', '')}\n"
         
-        if email.cc:
-            reply_body += f"Cc: {email.cc}\n"
+        if email.get('cc'):
+            reply_body += f"Cc: {email.get('cc')}\n"
             
-        reply_body += f"Subject: {email.subject}\n\n"
-        reply_body += email.body
+        reply_body += f"Subject: {email.get('subject', '')}\n\n"
+        reply_body += email.get('body', '')
         
         context['body'] = reply_body
-        
-    except Exception as e:
-        messages.error(request, f"An error occurred: {str(e)}")
-        return redirect('inbox')
-    
-    return render(request, 'normieapp/inbox_compose.html', context)
-
-
-@login_required
-@restrict_read_only_users
-def inbox_forward(request, message_id):
-    """
-    Forward an email message.
-    """
-    from ..services.outlook_service import OutlookService
-    
-    # Get email address from query params
-    email_address = request.GET.get('account', OutlookService.ALLOWED_ACCOUNTS[0])
-    
-    # If this is a POST request, process the form data
-    if request.method == 'POST':
-        # Get form data
-        to = request.POST.get('to', '')
-        cc = request.POST.get('cc', '')
-        subject = request.POST.get('subject', '')
-        body = request.POST.get('body', '')
-        
-        # Get attachments
-        attachments = []
-        for file in request.FILES.getlist('attachments'):
-            # Save attachment to temp directory
-            file_path = os.path.join(settings.MEDIA_ROOT, 'normieapp', 'temp_attachments', file.name)
-            os.makedirs(os.path.dirname(file_path), exist_ok=True)
-            
-            with open(file_path, 'wb+') as destination:
-                for chunk in file.chunks():
-                    destination.write(chunk)
-            
-            attachments.append(file_path)
-        
-        # Get original attachments to forward
-        original_attachments = request.POST.getlist('original_attachments')
-        attachments.extend(original_attachments)
-        
-        try:
-            # Connect to Outlook and send the email
-            outlook = OutlookService()
-            
-            # Try to get the account to check if we're using the fallback
-            try:
-                account = outlook._get_account(email_address)
-                # If the account email is different from requested, we're using fallback
-                if account.SmtpAddress.lower() != email_address.lower():
-                    email_address = account.SmtpAddress
-                    messages.warning(request, _(f"Using fallback email account '{email_address}'."))
-            except Exception:
-                # Will be handled in the main try-except block
-                pass
-            
-            success = outlook.send_email(
-                email_address=email_address,
-                to=to,
-                cc=cc,
-                subject=subject,
-                body=body,
-                attachments=attachments
-            )
-            
-            # Clean up temp attachments (but not original attachments)
-            for attachment in attachments:
-                if attachment not in original_attachments:
-                    try:
-                        os.remove(attachment)
-                    except:
-                        pass
-            
-            if success:
-                messages.success(request, _('Email forwarded successfully.'))
-                return redirect('inbox')
-            else:
-                messages.error(request, _('Failed to forward email.'))
-        
-        except Exception as e:
-            messages.error(request, f"An error occurred: {str(e)}")
-    
-    # Create the forward form
-    context = {
-        'page_title': _('Forward Email'),
-        'email_address': email_address,
-        'allowed_accounts': OutlookService.ALLOWED_ACCOUNTS,
-        'is_forward': True,
-    }
-    
-    try:
-        # Connect to Outlook and get the original email
-        outlook = OutlookService()
-        
-        # Try to get the account to check if we're using the fallback
-        using_fallback = False
-        original_email = email_address
-        
-        try:
-            account = outlook._get_account(email_address)
-            # If the account email is different from requested, we're using fallback
-            if account.SmtpAddress.lower() != email_address.lower():
-                using_fallback = True
-                context['email_address'] = account.SmtpAddress
-                context['using_fallback'] = True
-                context['original_email'] = original_email
-                email_address = account.SmtpAddress
-                messages.warning(request, _(f"Using fallback email account '{email_address}' because '{original_email}' was not found."))
-        except Exception:
-            # Will be handled in the main try-except block
-            pass
-        
-        email = outlook.get_email(email_address, message_id)
-        
-        if not email:
-            messages.error(request, _('Original email not found.'))
-            return redirect('inbox')
-        
-        # Prepare forward fields
-        context['subject'] = f"FW: {email.subject}"
-        
-        # Prepare forward body with original message
-        forward_body = f"\n\n\n-----Original Message-----\n"
-        forward_body += f"From: {email.sender}\n"
-        forward_body += f"Sent: {email.received_time}\n"
-        forward_body += f"To: {email.to}\n"
-        
-        if email.cc:
-            forward_body += f"Cc: {email.cc}\n"
-            
-        forward_body += f"Subject: {email.subject}\n\n"
-        forward_body += email.body
-        
-        context['body'] = forward_body
-        
-        # Get original attachments
-        if email.attachments:
-            context['original_attachments'] = email.attachments
         
     except Exception as e:
         messages.error(request, f"An error occurred: {str(e)}")

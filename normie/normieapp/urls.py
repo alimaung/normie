@@ -37,7 +37,7 @@ urlpatterns = [
     path('inbox/view/<str:message_id>/', views.inbox_view_message, name='inbox_view_message'),
     path('inbox/compose/', views.inbox_compose, name='inbox_compose'),
     path('inbox/reply/<str:message_id>/', views.inbox_reply, name='inbox_reply'),
-    path('inbox/forward/<str:message_id>/', views.inbox_forward, name='inbox_forward'),
+
     path('inbox/delete/<str:message_id>/', views.inbox_delete_message, name='inbox_delete_message'),
     path('inbox/categorize/<str:message_id>/', views.inbox_categorize_message, name='inbox_categorize_message'),
     path('inbox/delete/', views.inbox_delete, name='inbox_delete'),
