@@ -22,7 +22,7 @@ Sub FetchUserEdits()
     Application.EnableEvents = False
 
     Set dict = CreateObject("Scripting.Dictionary")
-    fileList = Array("Verzeichnis_Ali.xlsm", "Verzeichnis_Andre.xlsm", "Verzeichnis_Jean-Michel.xlsm")
+    fileList = Array("Verzeichnis_Ali.xlsb", "Verzeichnis_Andre.xlsb", "Verzeichnis_Jean-Michel.xlsb")
 
     Set wsMain = ThisWorkbook.Sheets("Teile und Stoffe")
     Set wsStaging = ThisWorkbook.Sheets("Staging")
@@ -38,7 +38,7 @@ Sub FetchUserEdits()
         userPath = ThisWorkbook.Path & "\" & userFile
 
         userName = Trim(Mid(userFile, InStrRev(userFile, "_") + 1))
-        userName = Replace(userName, ".xlsm", "")
+        userName = Replace(userName, ".xlsb", "")
 
         If Dir(userPath) <> "" Then
             Set wbUser = Workbooks.Open(Filename:=userPath, ReadOnly:=True)
