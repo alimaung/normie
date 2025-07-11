@@ -4,116 +4,324 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'normieapp/css/inbox.css' %}">
+<style>
+.compose-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.compose-form {
+    background-color: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 24px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.compose-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    padding-bottom: 16px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.compose-title {
+    font-size: 24px;
+    font-weight: 500;
+    color: #202124;
+    margin: 0;
+}
+
+.compose-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.form-group {
+    margin-bottom: 16px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 500;
+    color: #202124;
+}
+
+.form-control {
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: border-color 0.2s ease;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.2);
+}
+
+.form-control-textarea {
+    min-height: 300px;
+    resize: vertical;
+    font-family: inherit;
+}
+
+.compose-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 24px;
+    padding-top: 16px;
+    border-top: 1px solid #e0e0e0;
+}
+
+.compose-send-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.compose-draft-info {
+    color: #5f6368;
+    font-size: 12px;
+}
+
+.original-message {
+    margin-top: 32px;
+    padding: 16px;
+    background-color: #f8f9fa;
+    border-left: 4px solid #1a73e8;
+    border-radius: 4px;
+}
+
+.original-message h4 {
+    margin: 0 0 8px 0;
+    color: #202124;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.original-message-content {
+    color: #5f6368;
+    font-size: 13px;
+    line-height: 1.4;
+}
+
+.not-implemented-notice {
+    background-color: #fef7e0;
+    border: 1px solid #fbbc04;
+    border-radius: 8px;
+    padding: 16px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.not-implemented-notice i {
+    color: #f57c00;
+    font-size: 20px;
+}
+
+.not-implemented-notice div {
+    flex: 1;
+}
+
+.not-implemented-notice h4 {
+    margin: 0 0 4px 0;
+    color: #e65100;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.not-implemented-notice p {
+    margin: 0;
+    color: #bf360c;
+    font-size: 13px;
+}
+
+@media (max-width: 768px) {
+    .compose-container {
+        padding: 10px;
+    }
+    
+    .compose-header {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .compose-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+    
+    .compose-footer {
+        flex-direction: column;
+        gap: 12px;
+        align-items: flex-start;
+    }
+    
+    .compose-send-actions {
+        width: 100%;
+        justify-content: flex-end;
+    }
+}
+</style>
 {% endblock %}
 
 {% block content %}
 <div class="compose-container">
-    <div class="compose-header">
-        <h2>{% trans "Compose Email" %}</h2>
-        <div class="account-info">
-            <span>{% trans "From:" %}</span>
-            <select id="account-selector" name="email_address" class="form-select form-select-sm">
-                {% for account in allowed_accounts %}
-                <option value="{{ account }}" {% if account == email_address %}selected{% endif %}>{{ account }}</option>
-                {% endfor %}
-            </select>
+    <!-- Back Button -->
+    <div class="mb-3">
+        <a href="{% url 'inbox' %}" class="btn btn-outline-secondary">
+            <i class="fas fa-arrow-left"></i>
+            {% trans "Back to Inbox" %}
+        </a>
+    </div>
+
+    <!-- Not Implemented Notice -->
+    <div class="not-implemented-notice">
+        <i class="fas fa-exclamation-triangle"></i>
+        <div>
+            <h4>{% trans "Email Composition Not Yet Implemented" %}</h4>
+            <p>{% trans "Email composition and sending will be implemented with COM integration for full Outlook compatibility." %}</p>
         </div>
     </div>
-    
-    {% if connection_error %}
-    <div class="alert alert-danger">
-        <i class="fas fa-exclamation-circle"></i> {% trans "Could not connect to Microsoft Outlook. Please ensure Outlook is installed and running." %}
-    </div>
-    {% elif value_error %}
-    <div class="alert alert-warning">
-        <i class="fas fa-exclamation-triangle"></i> {% trans "Access to the requested email account is not allowed or the account was not found." %}
-    </div>
-    {% elif error %}
-    <div class="alert alert-danger">
-        <i class="fas fa-exclamation-circle"></i> {% trans "An error occurred while preparing the email form." %}
-    </div>
-    {% endif %}
-    
-    <form method="post" action="{% url 'inbox_compose' %}" enctype="multipart/form-data" id="compose-form">
-        {% csrf_token %}
-        <input type="hidden" name="email_address" value="{{ email_address }}">
-        
-        <div class="form-group mb-3">
-            <label for="to">{% trans "To:" %}</label>
-            <input type="text" class="form-control" id="to" name="to" value="{{ to|default:'' }}" required>
+
+    <!-- Compose Form -->
+    <div class="compose-form">
+        <div class="compose-header">
+            <h1 class="compose-title">
+                {% if compose_mode == 'reply' %}
+                    {% trans "Reply to Email" %}
+                {% else %}
+                    {% trans "Compose Email" %}
+                {% endif %}
+            </h1>
+            <div class="compose-actions">
+                <button class="btn btn-outline-secondary" onclick="saveDraft()" disabled>
+                    <i class="fas fa-save"></i>
+                    {% trans "Save Draft" %}
+                </button>
+                <button class="btn btn-outline-secondary" onclick="discardDraft()">
+                    <i class="fas fa-times"></i>
+                    {% trans "Discard" %}
+                </button>
+            </div>
         </div>
-        
-        <div class="form-group mb-3">
-            <label for="cc">{% trans "CC:" %}</label>
-            <input type="text" class="form-control" id="cc" name="cc" value="{{ cc|default:'' }}">
-        </div>
-        
-        <div class="form-group mb-3">
-            <label for="bcc">{% trans "BCC:" %}</label>
-            <input type="text" class="form-control" id="bcc" name="bcc" value="{{ bcc|default:'' }}">
-        </div>
-        
-        <div class="form-group mb-3">
-            <label for="subject">{% trans "Subject:" %}</label>
-            <input type="text" class="form-control" id="subject" name="subject" value="{{ subject|default:'' }}" required>
-        </div>
-        
-        <div class="form-group mb-3">
-            <label for="importance">{% trans "Importance:" %}</label>
-            <select class="form-select" id="importance" name="importance">
-                <option value="0">{% trans "Low" %}</option>
-                <option value="1" selected>{% trans "Normal" %}</option>
-                <option value="2">{% trans "High" %}</option>
-            </select>
-        </div>
-        
-        <div class="form-group mb-3">
-            <label for="body">{% trans "Message:" %}</label>
-            <textarea class="form-control" id="body" name="body" rows="15">{{ body|default:'' }}</textarea>
-        </div>
-        
-        <div class="form-group mb-3">
-            <label for="attachments">{% trans "Attachments:" %}</label>
-            <input type="file" class="form-control" id="attachments" name="attachments" multiple>
+
+        <form id="compose-form" method="post">
+            {% csrf_token %}
             
-            {% if original_attachments %}
-            <div class="original-attachments mt-2">
-                <p>{% trans "Original attachments:" %}</p>
-                <ul class="list-group">
-                    {% for attachment in original_attachments %}
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
-                        <span>{{ attachment.filename }}</span>
-                        <span class="badge bg-secondary rounded-pill">{{ attachment.size|filesizeformat }}</span>
-                    </li>
-                    {% endfor %}
-                </ul>
-                <div class="form-check mt-2">
-                    <input class="form-check-input" type="checkbox" id="include_original_attachments" name="include_original_attachments" value="1" checked>
-                    <label class="form-check-label" for="include_original_attachments">
-                        {% trans "Include original attachments" %}
-                    </label>
+            <div class="form-group">
+                <label for="to" class="form-label">{% trans "To" %}</label>
+                <input type="email" class="form-control" id="to" name="to" 
+                       {% if compose_mode == 'reply' and original_email %}
+                       value="{{ original_email.sender_email }}"
+                       {% endif %}
+                       placeholder="{% trans 'Enter recipient email address' %}" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="cc" class="form-label">{% trans "CC" %}</label>
+                <input type="email" class="form-control" id="cc" name="cc" 
+                       placeholder="{% trans 'Enter CC email addresses (optional)' %}" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="subject" class="form-label">{% trans "Subject" %}</label>
+                <input type="text" class="form-control" id="subject" name="subject" 
+                       {% if compose_mode == 'reply' and original_email %}
+                       value="Re: {{ original_email.subject }}"
+                       {% endif %}
+                       placeholder="{% trans 'Enter email subject' %}" disabled>
+            </div>
+
+            <div class="form-group">
+                <label for="body" class="form-label">{% trans "Message" %}</label>
+                <textarea class="form-control form-control-textarea" id="body" name="body" 
+                          placeholder="{% trans 'Enter your message here...' %}" disabled>{% if compose_mode == 'reply' and original_email %}
+
+
+---
+{% trans "Original Message" %}
+{% trans "From" %}: {{ original_email.sender_name }} <{{ original_email.sender_email }}>
+{% trans "Date" %}: {{ original_email.received_time|date:"F d, Y \a\t g:i A" }}
+{% trans "Subject" %}: {{ original_email.subject }}
+
+{{ original_email.body }}{% endif %}</textarea>
+            </div>
+
+            <div class="compose-footer">
+                <div class="compose-draft-info">
+                    {% trans "Auto-save will be implemented with COM integration" %}
+                </div>
+                <div class="compose-send-actions">
+                    <button type="button" class="btn btn-outline-secondary" onclick="scheduleEmail()" disabled>
+                        <i class="fas fa-clock"></i>
+                        {% trans "Schedule Send" %}
+                    </button>
+                    <button type="submit" class="btn btn-primary" disabled>
+                        <i class="fas fa-paper-plane"></i>
+                        {% trans "Send" %}
+                    </button>
                 </div>
             </div>
+        </form>
+    </div>
+
+    <!-- Original Message (for replies) -->
+    {% if compose_mode == 'reply' and original_email %}
+    <div class="original-message">
+        <h4>{% trans "Original Message" %}</h4>
+        <div class="original-message-content">
+            <strong>{% trans "From" %}:</strong> {{ original_email.sender_name }} &lt;{{ original_email.sender_email }}&gt;<br>
+            <strong>{% trans "Date" %}:</strong> {{ original_email.received_time|date:"F d, Y \a\t g:i A" }}<br>
+            <strong>{% trans "Subject" %}:</strong> {{ original_email.subject }}<br>
+            {% if original_email.recipients %}
+            <strong>{% trans "To" %}:</strong> 
+            {% for recipient in original_email.recipients %}
+                {{ recipient.name }} &lt;{{ recipient.address }}&gt;{% if not forloop.last %}, {% endif %}
+            {% endfor %}<br>
             {% endif %}
+            <br>
+            {{ original_email.body|linebreaks }}
         </div>
-        
-        <div class="compose-actions">
-            <button type="submit" class="btn btn-primary">
-                <i class="fas fa-paper-plane"></i> {% trans "Send" %}
-            </button>
-            
-            <button type="submit" name="save_draft" value="1" class="btn btn-outline-secondary">
-                <i class="fas fa-save"></i> {% trans "Save as Draft" %}
-            </button>
-            
-            <a href="{% url 'inbox' %}?account={{ email_address }}" class="btn btn-outline-danger">
-                <i class="fas fa-times"></i> {% trans "Cancel" %}
-            </a>
-        </div>
-    </form>
+    </div>
+    {% endif %}
 </div>
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'normieapp/js/inbox.js' %}"></script>
+<script>
+function saveDraft() {
+    // Will be implemented with COM integration
+    alert('{% trans "Draft saving will be implemented with COM integration" %}');
+}
+
+function discardDraft() {
+    if (confirm('{% trans "Are you sure you want to discard this draft?" %}')) {
+        window.location.href = '{% url "inbox" %}';
+    }
+}
+
+function scheduleEmail() {
+    // Will be implemented with COM integration
+    alert('{% trans "Email scheduling will be implemented with COM integration" %}');
+}
+
+// Initialize form
+$(document).ready(function() {
+    $('#compose-form').on('submit', function(e) {
+        e.preventDefault();
+        alert('{% trans "Email sending will be implemented with COM integration" %}');
+    });
+});
+</script>
 {% endblock %} 

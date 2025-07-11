@@ -1,481 +1,310 @@
 import os
-import win32com.client
-import pythoncom
-import datetime
-import base64
-from django.conf import settings
-from pathlib import Path
 import json
-import uuid
+import datetime
 import logging
-import traceback
-import sys
-import time
+from pathlib import Path
+from django.conf import settings
+from typing import Dict, List, Optional, Tuple
+import hashlib
 
 # Define logger at module level
 logger = logging.getLogger(__name__)
 
-# Set up debug logging to file
-def setup_debug_logging():
-    """Set up a separate debug log file for the Outlook service."""
-    try:
-        # Create logs directory if it doesn't exist
-        log_dir = Path(settings.BASE_DIR) / 'logs'
-        os.makedirs(log_dir, exist_ok=True)
-        
-        # Set up a file handler for debug logging
-        debug_handler = logging.FileHandler(log_dir / 'outlook_debug.log')
-        debug_handler.setLevel(logging.DEBUG)
-        
-        # Add formatter
-        formatter = logging.Formatter('%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-        debug_handler.setFormatter(formatter)
-        
-        # Add handler to logger
-        outlook_logger = logging.getLogger(__name__)
-        outlook_logger.setLevel(logging.DEBUG)
-        
-        # Check if handler already exists to avoid duplicates
-        handler_exists = False
-        for handler in outlook_logger.handlers:
-            if isinstance(handler, logging.FileHandler) and handler.baseFilename.endswith('outlook_debug.log'):
-                handler_exists = True
-                break
-        
-        if not handler_exists:
-            outlook_logger.addHandler(debug_handler)
-            
-        return log_dir / 'outlook_debug.log'
-    except Exception as e:
-        print(f"Error setting up debug logging: {str(e)}")
-        return None
-
-# Set up debug logging
-debug_log_path = setup_debug_logging()
-
 class OutlookService:
     """
-    Service for interacting with Microsoft Outlook via win32com.
-    Provides email functionality for specific accounts.
-    Uses hybrid approach: VBA files for content, COM for actions.
+    Clean Outlook service for email management.
+    Reads VBA-extracted JSON data and provides email functionality.
     """
-    
-    ALLOWED_ACCOUNTS = [
-        'irm-standardisation-office@rolls-royce.com'
-    ]
     
     def __init__(self):
         """Initialize the Outlook service."""
         logger.debug("Initializing OutlookService")
-        # Initialize COM in the current thread
-        try:
-            pythoncom.CoInitialize()
-            logger.debug("COM initialized successfully")
-        except Exception as e:
-            logger.error(f"Failed to initialize COM: {str(e)}")
-            logger.debug(f"Stack trace: {traceback.format_exc()}")
         
-        # Store email cache directory
-        self.cache_dir = Path(settings.BASE_DIR) / 'normieapp' / 'static' / 'normieapp' / 'data' / 'email_cache'
-        os.makedirs(self.cache_dir, exist_ok=True)
-        logger.debug(f"Email cache directory: {self.cache_dir}")
+        # Dynamic path based on current user
+        self.base_path = Path(f"C:/Users/{os.environ.get('USERNAME', 'default')}/Desktop/normie/outlook/analyze/mail")
+        self.emails_file = self.base_path / "emails.json"
+        self.data_folder = self.base_path / "data"
         
-        # Log debug file location
-        if debug_log_path:
-            logger.info(f"Debug logs are being written to: {debug_log_path}")
-    
-    def _get_outlook_application(self):
-        """Get the Outlook application COM object."""
-        logger.debug("Getting Outlook application object")
-        try:
-            app = win32com.client.Dispatch("Outlook.Application")
-            logger.debug("Successfully got Outlook application")
-            return app
-        except Exception as e:
-            logger.error(f"Failed to connect to Outlook: {str(e)}")
-            logger.debug(f"Stack trace: {traceback.format_exc()}")
-            raise ConnectionError("Could not connect to Microsoft Outlook. Please ensure Outlook is installed and running.")
-    
-    def _get_namespace(self):
-        """Get the MAPI namespace from Outlook."""
-        logger.debug("Getting MAPI namespace")
-        try:
-            app = self._get_outlook_application()
-            namespace = app.GetNamespace("MAPI")
-            logger.debug("Successfully got MAPI namespace")
-            return namespace
-        except Exception as e:
-            logger.error(f"Failed to get MAPI namespace: {str(e)}")
-            logger.debug(f"Stack trace: {traceback.format_exc()}")
-            raise
-    
-    def get_emails(self, email_address, folder_type='inbox', limit=50, offset=0, search_term=None, category=None):
-        """
-        Get emails from the specified folder using hybrid approach.
-        
-        Args:
-            email_address: The email address of the account
-            folder_type: The type of folder to get emails from (inbox, drafts, sent)
-            limit: Maximum number of emails to return
-            offset: Number of emails to skip
-            search_term: Optional search term to filter emails
-            category: Optional category to filter emails
-            
-        Returns:
-            List of email dictionaries
-        """
-        logger.debug(f"Getting emails for {email_address}, folder: {folder_type}, limit: {limit}, offset: {offset}, search: {search_term}, category: {category}")
-        
-        # Try VBA data first if it's fresh and we're requesting inbox
-        if folder_type == 'inbox' and self._is_vba_data_fresh():
-            logger.info("Using VBA data for email content")
-            vba_emails = self._get_emails_from_vba(folder_type, limit, offset, search_term, category)
-            if vba_emails:
-                return vba_emails
-            else:
-                logger.warning("VBA data failed, falling back to COM")
-        else:
-            logger.debug(f"Using COM for emails (folder: {folder_type}, VBA fresh: {self._is_vba_data_fresh()})")
-        
-        # Fallback to COM (with restricted content)
-        return self._get_emails_from_com(email_address, folder_type, limit, offset, search_term, category)
-    
-    def get_email(self, email_address, message_id):
-        """
-        Get a specific email by ID using hybrid approach.
-        
-        Args:
-            email_address: The email address of the account
-            message_id: The EntryID of the email (or VBA format ID)
-            
-        Returns:
-            Dictionary with email details
-        """
-        logger.debug(f"Getting email: {message_id}")
-        
-        # Check if this is a VBA email ID
-        if message_id.startswith('vba_') and self._is_vba_data_fresh():
-            logger.info("Getting email from VBA data")
-            vba_email = self._get_email_from_vba(message_id)
-            if vba_email:
-                return vba_email
-            else:
-                logger.warning("Email not found in VBA data, trying COM")
-        
-        # Fallback to COM
-        return self._get_email_from_com(email_address, message_id)
-    
-    def delete_email(self, email_address, message_id):
-        """
-        Delete an email by its ID.
-        
-        Args:
-            email_address: The email address of the account
-            message_id: The EntryID of the email
-            
-        Returns:
-            True if successful
-        """
-        try:
-            namespace = self._get_namespace()
-            item = namespace.GetItemFromID(message_id)
-            item.Delete()
-            logger.debug(f"Successfully deleted email: {message_id}")
-            return True
-        except Exception as e:
-            logger.error(f"Error deleting email: {str(e)}")
-            raise
-    
-    def mark_as_read(self, email_address, message_id):
-        """
-        Mark an email as read.
-        
-        Args:
-            email_address: The email address of the account
-            message_id: The EntryID of the email
-            
-        Returns:
-            True if successful
-        """
-        try:
-            namespace = self._get_namespace()
-            item = namespace.GetItemFromID(message_id)
-            if hasattr(item, 'UnRead') and item.UnRead:
-                item.UnRead = False
-                item.Save()
-                logger.debug(f"Successfully marked email as read: {message_id}")
-            return True
-        except Exception as e:
-            logger.error(f"Error marking email as read: {str(e)}")
-            raise
+        logger.debug(f"Base path: {self.base_path}")
+        logger.debug(f"Emails file: {self.emails_file}")
 
-    # VBA Integration Methods
-    def _get_vba_data_path(self):
-        """Get path to VBA-exported emails.json file."""
-        username = os.environ.get('USERNAME', 'user')
-        vba_path = Path(f"C:/Users/{username}/Desktop/normie/outlook/analyze/mail/emails.json")
-        return vba_path
-    
-    def _is_vba_data_fresh(self, max_age_minutes=2):
-        """Check if VBA data is recent enough to use."""
-        vba_file = self._get_vba_data_path()
-        if not vba_file.exists():
-            logger.debug(f"VBA file does not exist: {vba_file}")
-            return False
-        
-        file_age = time.time() - vba_file.stat().st_mtime
-        is_fresh = file_age < (max_age_minutes * 60)
-        logger.debug(f"VBA file age: {file_age:.1f} seconds, fresh: {is_fresh}")
-        return is_fresh
-    
-    def _get_emails_from_vba(self, folder_type='inbox', limit=50, offset=0, search_term=None, category=None):
+    def get_emails_data(self) -> Dict:
         """
-        Get emails from VBA-exported JSON files.
+        Read and return emails data from VBA JSON file.
+        
+        Returns:
+            Dict: Email data structure or empty structure if file not found
         """
-        logger.debug(f"Getting emails from VBA files: folder={folder_type}, limit={limit}, offset={offset}")
-        
-        vba_file = self._get_vba_data_path()
-        
         try:
-            with open(vba_file, 'r', encoding='utf-8') as f:
-                vba_data = json.load(f)
+            if not self.emails_file.exists():
+                logger.warning(f"Emails file not found: {self.emails_file}")
+                return self._get_empty_data_structure()
             
-            logger.debug(f"Loaded VBA data: {len(vba_data.get('emails', []))} emails")
+            with open(self.emails_file, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+                
+            # Add unique IDs to emails if not present
+            for i, email in enumerate(data.get('emails', [])):
+                if 'id' not in email:
+                    # Generate unique ID based on index and content hash
+                    email_hash = hashlib.md5(
+                        f"{email.get('subject', '')}{email.get('sender_email', '')}{email.get('received_time', '')}".encode()
+                    ).hexdigest()[:8]
+                    email['id'] = f"vba_{i+1}_{email_hash}"
+                    
+            logger.debug(f"Loaded {len(data.get('emails', []))} emails from JSON")
+            return data
             
-            # Get emails from VBA data
-            emails = vba_data.get('emails', [])
+        except Exception as e:
+            logger.error(f"Error reading emails data: {str(e)}")
+            return self._get_empty_data_structure()
+
+    def get_emails_list(self, 
+                       page: int = 1, 
+                       per_page: int = 25,
+                       search: str = None,
+                       filter_unread: bool = None,
+                       filter_important: bool = None,
+                       filter_attachments: bool = None,
+                       sort_by: str = 'received_time',
+                       sort_order: str = 'desc') -> Tuple[List[Dict], Dict]:
+        """
+        Get paginated and filtered list of emails.
+        
+        Args:
+            page: Page number (1-based)
+            per_page: Number of emails per page
+            search: Search query for sender, subject, or body
+            filter_unread: Filter for unread emails only
+            filter_important: Filter for important emails only
+            filter_attachments: Filter for emails with attachments
+            sort_by: Field to sort by
+            sort_order: 'asc' or 'desc'
             
-            # Convert VBA format to our expected format
-            converted_emails = []
-            for email in emails:
-                try:
-                    converted_email = self._convert_vba_email_format(email)
-                    
-                    # Apply search filter
-                    if search_term:
-                        search_lower = search_term.lower()
-                        if not (search_lower in converted_email.get('subject', '').lower() or 
-                               search_lower in converted_email.get('sender', '').lower() or 
-                               search_lower in converted_email.get('body', '').lower()):
-                            continue
-                    
-                    # Apply category filter
-                    if category:
-                        email_categories = converted_email.get('categories', [])
-                        if isinstance(email_categories, str):
-                            email_categories = [cat.strip() for cat in email_categories.split(',') if cat.strip()]
-                        if category not in email_categories:
-                            continue
-                    
-                    converted_emails.append(converted_email)
-                    
-                except Exception as e:
-                    logger.warning(f"Error converting VBA email: {e}")
-                    continue
+        Returns:
+            Tuple[List[Dict], Dict]: (emails_list, pagination_info)
+        """
+        try:
+            data = self.get_emails_data()
+            emails = data.get('emails', [])
+            
+            # Apply filters
+            filtered_emails = self._apply_filters(
+                emails, search, filter_unread, filter_important, filter_attachments
+            )
+            
+            # Apply sorting
+            sorted_emails = self._apply_sorting(filtered_emails, sort_by, sort_order)
             
             # Apply pagination
-            total_emails = len(converted_emails)
-            paginated_emails = converted_emails[offset:offset + limit]
+            total_count = len(sorted_emails)
+            start_index = (page - 1) * per_page
+            end_index = start_index + per_page
+            paginated_emails = sorted_emails[start_index:end_index]
             
-            logger.debug(f"Returning {len(paginated_emails)} emails from VBA data (total: {total_emails})")
-            return paginated_emails
+            # Prepare pagination info
+            total_pages = (total_count + per_page - 1) // per_page
+            pagination_info = {
+                'current_page': page,
+                'per_page': per_page,
+                'total_count': total_count,
+                'total_pages': total_pages,
+                'has_previous': page > 1,
+                'has_next': page < total_pages,
+                'start_index': start_index + 1 if total_count > 0 else 0,
+                'end_index': min(end_index, total_count),
+                'page_range': range(max(1, page - 2), min(total_pages + 1, page + 3))
+            }
+            
+            logger.debug(f"Returning {len(paginated_emails)} emails (page {page}/{pagination_info['total_pages']})")
+            return paginated_emails, pagination_info
             
         except Exception as e:
-            logger.error(f"Error reading VBA emails: {e}")
-            logger.debug(f"Stack trace: {traceback.format_exc()}")
-            return []
-    
-    def _convert_vba_email_format(self, vba_email):
-        """Convert VBA email format to our expected format."""
-        # Extract attachment info
-        attachments = []
-        for attachment in vba_email.get('attachments', []):
-            # Fix filepath escaping and convert to forward slashes
-            filepath = attachment.get('filepath', '').replace('\\', '/')
+            logger.error(f"Error getting emails list: {str(e)}")
+            return [], {'current_page': 1, 'per_page': per_page, 'total_count': 0, 'total_pages': 0}
+
+    def get_email_by_id(self, email_id: str) -> Optional[Dict]:
+        """
+        Get a specific email by its ID.
+        
+        Args:
+            email_id: Email ID to retrieve
             
-            attachments.append({
-                'name': attachment.get('filename', 'Unknown'),
-                'filename': attachment.get('filename', 'Unknown'),  # Template expects this
-                'size': attachment.get('size', 0),
-                'id': len(attachments) + 1,
-                'filepath': filepath,
-                'path': filepath,  # Template expects this for download links
-                'content_type': self._guess_content_type(attachment.get('filename', ''))  # Template expects this
-            })
-        
-        # Parse recipients
-        recipients = vba_email.get('recipients', [])
-        to_list = []
-        cc_list = []
-        
-        for recipient in recipients:
-            if recipient.get('type') == 1:  # TO recipient
-                to_list.append(recipient.get('address', ''))
-            elif recipient.get('type') == 2:  # CC recipient
-                cc_list.append(recipient.get('address', ''))
-        
-        # Convert categories
-        categories = []
-        vba_categories = vba_email.get('categories', '')
-        if vba_categories:
-            categories = [cat.strip() for cat in vba_categories.split(';') if cat.strip()]
-        
-        # Generate unique ID from VBA data
-        email_id = f"vba_{vba_email.get('index', 0)}_{hash(vba_email.get('subject', '') + vba_email.get('received_time', ''))}"
-        
-        return {
-            'id': email_id,
-            'subject': vba_email.get('subject', '(No Subject)'),
-            'sender': vba_email.get('sender_name', ''),
-            'sender_email': vba_email.get('sender_email', ''),
-            'to': '; '.join(to_list),
-            'cc': '; '.join(cc_list),
-            'received_time': vba_email.get('received_time', ''),
-            'sent_time': vba_email.get('sent_on', ''),
-            'has_attachments': len(attachments) > 0,
-            'attachments': attachments,
-            'body': vba_email.get('body', ''),
-            'body_text': vba_email.get('body', ''),  # Template expects this
-            'html_body': vba_email.get('html_body', ''),
-            'body_html': vba_email.get('html_body', ''),  # Template expects this
-            'unread': vba_email.get('unread', False),
-            'importance': vba_email.get('importance', 1),
-            'categories': categories,
-            'preview': vba_email.get('body', '')[:200] + '...' if len(vba_email.get('body', '')) > 200 else vba_email.get('body', ''),
-            'msg_file': vba_email.get('msg_file', '').replace('\\', '/'),  # Fix escape characters
-            'source': 'vba'
-        }
-    
-    def _guess_content_type(self, filename):
-        """Guess content type from filename extension."""
-        if not filename:
-            return 'application/octet-stream'
-        
-        filename_lower = filename.lower()
-        
-        if filename_lower.endswith(('.jpg', '.jpeg', '.png', '.gif', '.bmp')):
-            return 'image/' + filename_lower.split('.')[-1]
-        elif filename_lower.endswith('.pdf'):
-            return 'application/pdf'
-        elif filename_lower.endswith(('.doc', '.docx')):
-            return 'application/msword'
-        elif filename_lower.endswith(('.xls', '.xlsx')):
-            return 'application/vnd.ms-excel'
-        elif filename_lower.endswith(('.ppt', '.pptx')):
-            return 'application/vnd.ms-powerpoint'
-        elif filename_lower.endswith(('.zip', '.rar', '.7z')):
-            return 'application/zip'
-        elif filename_lower.endswith('.txt'):
-            return 'text/plain'
-        else:
-            return 'application/octet-stream'
-    
-    def _get_email_from_vba(self, email_id):
-        """Get a specific email by ID from VBA files."""
-        logger.debug(f"Getting email from VBA files: {email_id}")
-        
-        vba_file = self._get_vba_data_path()
-        
+        Returns:
+            Dict or None: Email data if found, None otherwise
+        """
         try:
-            with open(vba_file, 'r', encoding='utf-8') as f:
-                vba_data = json.load(f)
-            
-            emails = vba_data.get('emails', [])
+            data = self.get_emails_data()
+            emails = data.get('emails', [])
             
             for email in emails:
-                converted_email = self._convert_vba_email_format(email)
-                if converted_email['id'] == email_id:
-                    logger.debug(f"Found email in VBA data: {converted_email['subject']}")
-                    return converted_email
-            
-            logger.warning(f"Email not found in VBA data: {email_id}")
+                if email.get('id') == email_id:
+                    return email
+                    
+            logger.warning(f"Email not found with ID: {email_id}")
             return None
             
         except Exception as e:
-            logger.error(f"Error reading VBA email: {e}")
+            logger.error(f"Error getting email by ID {email_id}: {str(e)}")
             return None
-    
-    # COM Fallback Methods (simplified)
-    def _get_emails_from_com(self, email_address, folder_type='inbox', limit=50, offset=0, search_term=None, category=None):
-        """Get emails from COM (fallback with restricted content)."""
-        logger.debug(f"Getting emails via COM fallback for folder: {folder_type}")
-        try:
-            namespace = self._get_namespace()
-            folder = namespace.GetDefaultFolder(6)  # Default to inbox
-            
-            items = folder.Items
-            items.Sort("[ReceivedTime]", True)
-            
-            emails = []
-            count = 0
-            skipped = 0
-            
-            for item in items:
-                if skipped < offset:
-                    skipped += 1
-                    continue
-                
-                if count >= limit:
-                    break
-                
-                try:
-                    email = self._extract_email_details(item)
-                    emails.append(email)
-                    count += 1
-                except Exception as e:
-                    logger.debug(f"Error processing email: {str(e)}")
-                    continue
-            
-            logger.debug(f"Retrieved {len(emails)} emails from COM")
-            return emails
-            
-        except Exception as e:
-            logger.error(f"Error getting emails from COM: {str(e)}")
-            return []
-    
-    def _extract_email_details(self, item):
-        """Extract email details from Outlook item (with restrictions)."""
-        try:
-            # Note: Many fields will be restricted, but we can get basic info
-            email = {
-                'id': item.EntryID if hasattr(item, 'EntryID') else "",
-                'subject': item.Subject if hasattr(item, 'Subject') else "(No Subject)",
-                'sender': "(Restricted)",  # Corporate restriction
-                'sender_email': "",
-                'received_time': item.ReceivedTime.strftime('%Y-%m-%d %H:%M:%S') if hasattr(item, 'ReceivedTime') else "",
-                'body': "(Restricted)",  # Corporate restriction
-                'html_body': "",
-                'unread': item.UnRead if hasattr(item, 'UnRead') else False,
-                'has_attachments': False,
-                'attachments': [],
-                'categories': [],
-                'preview': "Content restricted by corporate policy",
-                'source': 'com'
-            }
-            return email
-        except Exception as e:
-            logger.error(f"Error extracting email details: {str(e)}")
-            return {
-                'id': "",
-                'subject': "(Error)",
-                'sender': "",
-                'preview': "Error extracting email details",
-                'source': 'com'
-            }
-    
-    def _get_email_from_com(self, email_address, message_id):
-        """Get a specific email by ID from COM."""
-        try:
-            namespace = self._get_namespace()
-            item = namespace.GetItemFromID(message_id)
-            return self._extract_email_details(item)
-        except Exception as e:
-            logger.error(f"Error getting email from COM: {str(e)}")
-            raise
 
-    def __del__(self):
-        """Clean up COM resources."""
+    def get_folder_stats(self) -> Dict:
+        """
+        Get statistics about the email folder.
+        
+        Returns:
+            Dict: Folder statistics
+        """
         try:
-            pythoncom.CoUninitialize()
-        except:
-            pass
+            data = self.get_emails_data()
+            emails = data.get('emails', [])
+            
+            stats = {
+                'total_emails': len(emails),
+                'unread_emails': sum(1 for email in emails if email.get('unread', False)),
+                'important_emails': sum(1 for email in emails if email.get('importance', 0) > 1),
+                'emails_with_attachments': sum(1 for email in emails if email.get('attachments', [])),
+                'last_updated': data.get('timestamp', 'Never'),
+                'folder_name': data.get('folder_name', 'Inbox')
+            }
+            
+            return stats
+            
+        except Exception as e:
+            logger.error(f"Error getting folder stats: {str(e)}")
+            return {'total_emails': 0, 'unread_emails': 0, 'important_emails': 0, 'emails_with_attachments': 0}
+
+    def _apply_filters(self, emails: List[Dict], search: str, filter_unread: bool, 
+                      filter_important: bool, filter_attachments: bool) -> List[Dict]:
+        """Apply filters to email list."""
+        filtered_emails = emails.copy()
+        
+        # Search filter
+        if search:
+            search_lower = search.lower()
+            filtered_emails = [
+                email for email in filtered_emails
+                if (search_lower in email.get('subject', '').lower() or
+                    search_lower in email.get('sender_name', '').lower() or
+                    search_lower in email.get('sender_email', '').lower() or
+                    search_lower in email.get('body', '').lower())
+            ]
+        
+        # Unread filter
+        if filter_unread:
+            filtered_emails = [email for email in filtered_emails if email.get('unread', False)]
+        
+        # Important filter
+        if filter_important:
+            filtered_emails = [email for email in filtered_emails if email.get('importance', 0) > 1]
+        
+        # Attachments filter
+        if filter_attachments:
+            filtered_emails = [email for email in filtered_emails if email.get('attachments', [])]
+        
+        return filtered_emails
+
+    def _apply_sorting(self, emails: List[Dict], sort_by: str, sort_order: str) -> List[Dict]:
+        """Apply sorting to email list."""
+        reverse = sort_order == 'desc'
+        
+        if sort_by == 'received_time':
+            return sorted(emails, key=lambda x: x.get('received_time', ''), reverse=reverse)
+        elif sort_by == 'sender_name':
+            return sorted(emails, key=lambda x: x.get('sender_name', '').lower(), reverse=reverse)
+        elif sort_by == 'subject':
+            return sorted(emails, key=lambda x: x.get('subject', '').lower(), reverse=reverse)
+        elif sort_by == 'size':
+            return sorted(emails, key=lambda x: x.get('size', 0), reverse=reverse)
+        else:
+            return emails
+
+    def _get_empty_data_structure(self) -> Dict:
+        """Return empty data structure when no emails are available."""
+        return {
+            'timestamp': datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+            'folder_name': 'Inbox',
+            'folder_path': '/Inbox',
+            'total_items': 0,
+            'emails': [],
+            'extracted_count': 0
+        }
+
+    def get_attachment_path(self, email_id: str, filename: str) -> Optional[str]:
+        """
+        Get the full path to an email attachment.
+        
+        Args:
+            email_id: Email ID
+            filename: Attachment filename
+            
+        Returns:
+            str or None: Full path to attachment if it exists
+        """
+        try:
+            email = self.get_email_by_id(email_id)
+            if not email:
+                return None
+                
+            # Look for attachment in email data
+            for attachment in email.get('attachments', []):
+                if attachment.get('filename') == filename:
+                    filepath = attachment.get('filepath', '')
+                    if filepath.startswith('data/'):
+                        # Convert relative path to absolute
+                        full_path = self.base_path / filepath
+                        if full_path.exists():
+                            return str(full_path)
+                            
+            return None
+            
+        except Exception as e:
+            logger.error(f"Error getting attachment path: {str(e)}")
+            return None
+
+    def is_data_available(self) -> bool:
+        """
+        Check if VBA data is available.
+        
+        Returns:
+            bool: True if data file exists and is readable
+        """
+        try:
+            return self.emails_file.exists() and self.emails_file.is_file()
+        except Exception:
+            return False
+
+    def get_data_status(self) -> Dict:
+        """
+        Get status information about the data source.
+        
+        Returns:
+            Dict: Status information
+        """
+        try:
+            if not self.is_data_available():
+                return {
+                    'available': False,
+                    'message': 'VBA data file not found. Please ensure the VBA extractor is running.',
+                    'path': str(self.emails_file),
+                    'last_modified': None
+                }
+            
+            stat = self.emails_file.stat()
+            last_modified = datetime.datetime.fromtimestamp(stat.st_mtime)
+            
+            return {
+                'available': True,
+                'message': 'VBA data available',
+                'path': str(self.emails_file),
+                'last_modified': last_modified.strftime('%Y-%m-%d %H:%M:%S'),
+                'file_size': stat.st_size
+            }
+            
+        except Exception as e:
+            return {
+                'available': False,
+                'message': f'Error checking data status: {str(e)}',
+                'path': str(self.emails_file),
+                'last_modified': None
+            }
