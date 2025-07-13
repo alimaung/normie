@@ -1,0 +1,1 @@
+# This is an empty __init__.py file to make pdfdebug4 a package. 
