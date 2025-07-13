@@ -1,5 +1,14 @@
 
 document.addEventListener('DOMContentLoaded', function() {
+    // Check if window.pdfFormData exists
+    if (!window.pdfFormData) {
+        console.error('window.pdfFormData is not defined! This means the Django template data was not loaded properly.');
+        alert('Configuration error: PDF form data not loaded. Please refresh the page.');
+        return;
+    }
+    
+    console.log('PDF Form JavaScript loaded with data:', window.pdfFormData);
+    
     const saveButton = document.getElementById('save-form');
     const viewButton = document.getElementById('view-form');
     const downloadButton = document.getElementById('download-form');
@@ -103,11 +112,11 @@ document.addEventListener('DOMContentLoaded', function() {
             });
             
             // Send the data to the server
-            fetch('{% url "pdf_save" form_id=form_id %}', {
+            fetch(window.pdfFormData.urls.save, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'X-CSRFToken': '{{ csrf_token }}'
+                    'X-CSRFToken': window.pdfFormData.csrf
                 },
                 body: JSON.stringify(formData)
             })
@@ -116,14 +125,14 @@ document.addEventListener('DOMContentLoaded', function() {
                 if (data.success) {
                     formSaved = true;
                     updateDownloadButton();
-                    showAlert('success', data.message || '{% trans "Form saved successfully! You can now view or download the PDF." %}');
+                    showAlert('success', data.message || window.pdfFormData.messages.formSavedSuccess);
                 } else {
-                    showAlert('danger', data.message || '{% trans "An error occurred while saving the form." %}');
+                    showAlert('danger', data.message || window.pdfFormData.messages.formSaveError);
                 }
             })
             .catch(error => {
                 console.error('Error:', error);
-                showAlert('danger', '{% trans "An error occurred while saving the form." %}');
+                showAlert('danger', window.pdfFormData.messages.formSaveError);
             });
         });
     }
@@ -132,12 +141,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (viewButton) {
         viewButton.addEventListener('click', function() {
             if (!formSaved) {
-                showAlert('danger', '{% trans "Please save the form before viewing." %}');
+                showAlert('danger', window.pdfFormData.messages.saveBeforeViewing);
                 return;
             }
             
             // Open PDF in new tab/window for viewing (not downloading)
-            window.open('{% url "pdf_download" form_id=form_id %}?view=1', '_blank');
+            window.open(window.pdfFormData.urls.download + '?view=1', '_blank');
         });
     }
     
@@ -145,12 +154,12 @@ document.addEventListener('DOMContentLoaded', function() {
     if (downloadButton) {
         downloadButton.addEventListener('click', function() {
             if (!formSaved) {
-                showAlert('danger', '{% trans "Please save the form before downloading." %}');
+                showAlert('danger', window.pdfFormData.messages.saveBeforeDownloading);
                 return;
             }
             
             // Trigger download
-            window.location.href = '{% url "pdf_download" form_id=form_id %}';
+            window.location.href = window.pdfFormData.urls.download;
         });
     }
     

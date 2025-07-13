@@ -1,0 +1,44 @@
+{
+  "1": {
+    "field_name": "Antragsnummer",
+    "field_type": "text",
+    "test_value": "2025-TEST-001",
+    "result": false
+  },
+  "10": {
+    "field_name": "Verwendungszweck, Anforderungsgrund, Prozessbeschreibung, Anwendungsform",
+    "field_type": "text",
+    "test_value": "Verwendung für Prototypentwicklung und Testverfahren",
+    "result": true
+  },
+  "11": {
+    "field_name": "Triebwerksprogramm",
+    "field_type": "text",
+    "test_value": "Engine Program X",
+    "result": true
+  },
+  "12a": {
+    "field_name": "Einsatzort / Standort",
+    "field_type": "text",
+    "test_value": "Standort München",
+    "result": true
+  },
+  "12b": {
+    "field_name": "Bereich Teamleiter*innen",
+    "field_type": "text",
+    "test_value": "Team Engineering",
+    "result": true
+  },
+  "13": {
+    "field_name": "Erzeugnisrelevant, besteht Kontakt mit Luftfahrtteilen?",
+    "field_type": "btn",
+    "test_value": "Ja (Produktzulassung ist erforderlich)",
+    "result": true
+  },
+  "14": {
+    "field_name": "Nutzung",
+    "field_type": "btn",
+    "test_value": "kurzfristig",
+    "result": true
+  }
+}

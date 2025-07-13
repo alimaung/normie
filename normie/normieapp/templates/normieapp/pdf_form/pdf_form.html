@@ -88,5 +88,25 @@
 {% endblock %}
 
 {% block extra_js %}
-<script src="{% static 'normieapp/js/pdf_form.js' %}"></script>
+<script>
+// Pass Django data to JavaScript
+window.pdfFormData = {
+    urls: {
+        save: '{% url "pdf_save" form_id=form_id %}',
+        download: '{% url "pdf_download" form_id=form_id %}'
+    },
+    csrf: '{{ csrf_token }}',
+    formId: '{{ form_id }}',
+    messages: {
+        formSavedSuccess: '{% trans "Form saved successfully! You can now view or download the PDF." %}',
+        formSaveError: '{% trans "An error occurred while saving the form." %}',
+        saveBeforeViewing: '{% trans "Please save the form before viewing." %}',
+        saveBeforeDownloading: '{% trans "Please save the form before downloading." %}'
+    }
+};
+
+// Debug: Log the data to verify it's being set correctly
+console.log('PDF Form Data loaded:', window.pdfFormData);
+</script>
+<script src="{% static 'normieapp/js/pdf_form.js' %}?v=2024-01-19"></script>
 {% endblock %} 
