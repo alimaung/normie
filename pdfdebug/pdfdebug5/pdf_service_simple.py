@@ -1098,8 +1098,10 @@ def get_field_type(doc, field_name):
     if widget_count == 0:
         return "unknown"
     
-    # Button fields can be radio or checkbox
-    if "button" in widget_type_str:
+    # Handle different widget types
+    if "checkbox" in widget_type_str:
+        return "checkbox"
+    elif "button" in widget_type_str:
         # If multiple widgets exist, it's a radio button group
         if widget_count > 1:
             return "radio"
