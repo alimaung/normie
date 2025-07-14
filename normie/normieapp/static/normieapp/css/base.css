@@ -312,21 +312,6 @@
     pointer-events: none;
 }
 
-/* Products-style layout (Norms & CheMat) */
-.card-dropdown.products-style {
-    /* Full width handled by parent */
-}
-
-/* Solutions-style layout (Users, Partners) */
-.card-dropdown.solutions-style {
-    /* Full width handled by parent */
-}
-
-/* Developers-style layout (Resources) */
-.card-dropdown.developers-style {
-    /* Full width handled by parent */
-}
-
 .navbar-dropdown.active .card-dropdown {
     opacity: 1;
     visibility: visible;

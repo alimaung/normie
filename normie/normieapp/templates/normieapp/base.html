@@ -817,6 +817,106 @@
         {% block content %}{% endblock %}
     </div>
     
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>
+                        {% trans "Standards Management" %}
+                        <i class="fas fa-chevron-down"></i>
+                    </h3>
+                    <ul>
+                        <li><a href="{% url 'under_construction' %}">{% trans "Change Requests" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "CR Status Tracking" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "Specifications" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "Analytics" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "History" %}</a></li>
+                        <li><a href="https://nautos.de/" target="_blank">{% trans "Nautos Platform" %}</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>
+                        {% trans "CheMat Solutions" %}
+                        <i class="fas fa-chevron-down"></i>
+                    </h3>
+                    <ul>
+                        <li><a href="{% url 'open_request' %}">{% trans "Open Request" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "Request Status" %}</a></li>
+                        <li><a href="{% url 'directory' %}">{% trans "Material Directory" %}</a></li>
+                        <li><a href="{% url 'chemscan' %}">{% trans "ChemScan Analysis" %}</a></li>
+                        <li><a href="{% url 'tkz' %}">{% trans "TKZ Classification" %}</a></li>
+                        <li><a href="{% url 'inbox' %}">{% trans "Email Management" %}</a></li>
+                        <li><a href="{% url 'pdf_parser' %}">{% trans "PDF Parser" %}</a></li>
+                        <li><a href="{% url 'applicant_state_parser' %}">{% trans "Applicant Parser" %}</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>
+                        {% trans "Partners & Tools" %}
+                        <i class="fas fa-chevron-down"></i>
+                    </h3>
+                    <ul>
+                        <li><a href="https://app.chemscan.de/" target="_blank">{% trans "ChemScan Platform" %}</a></li>
+                        <li><a href="https://nautos.de/" target="_blank">{% trans "Nautos Standards" %}</a></li>
+                        <li><a href="https://rollsroyce.sharepoint.com/" target="_blank">{% trans "Engine Room" %}</a></li>
+                        <li><a href="https://rollsroyce.kanbanize.com/" target="_blank">{% trans "BusinessMap" %}</a></li>
+                        <li><a href="https://micro.film/" target="_blank">{% trans "Micro Platform" %}</a></li>
+                        <li><a href="https://findex.io/" target="_blank">{% trans "Findex Search" %}</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>
+                        {% trans "Resources & Support" %}
+                        <i class="fas fa-chevron-down"></i>
+                    </h3>
+                    <ul>
+                        <li><a href="{% url 'under_construction' %}">{% trans "User Guide" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "API Documentation" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "Standard Operating Procedures" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "Software Downloads" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "Excel Templates" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "PDF Forms" %}</a></li>
+                        {% if user.is_authenticated and user.profile.role == 'admin' %}
+                        <li><a href="{% url 'user_management' %}">{% trans "User Management" %}</a></li>
+                        <li><a href="{% url 'settings' %}">{% trans "System Settings" %}</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-logo">
+                    <img src="{% static 'normieapp/img/logo-light.png' %}" alt="Normie Logo">
+                    <span>normie</span>
+                </div>
+                
+                <div class="footer-legal">
+                    <a href="{% url 'under_construction' %}">{% trans "Privacy Policy" %}</a>
+                    <a href="{% url 'under_construction' %}">{% trans "Terms of Service" %}</a>
+                    <a href="{% url 'under_construction' %}">{% trans "License" %}</a>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'contact' %}">{% trans "Contact" %}</a>
+                    {% endif %}
+                </div>
+                
+                <div class="footer-extra">
+                    <a href="{% url 'under_construction' %}" class="footer-help">
+                        <i class="fas fa-question-circle"></i>
+                        {% trans "Help" %}
+                    </a>
+                    <select class="footer-lang-selector">
+                        <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+                        <option value="de" {% if LANGUAGE_CODE == 'de' %}selected{% endif %}>Deutsch</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
     <!-- jQuery -->
     <script src="{% static "normieapp/js/vendor/jquery-3.6.4.min.js" %}"></script>
     <!-- Main JavaScript file -->
@@ -1145,6 +1245,41 @@
                 });
             }
         });
+        
+        // Footer mobile toggle functionality
+        const footerColumns = document.querySelectorAll('.footer-column h3');
+        
+        function toggleFooterColumn(column) {
+            const parent = column.parentElement;
+            parent.classList.toggle('expanded');
+        }
+        
+        footerColumns.forEach(column => {
+            column.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    toggleFooterColumn(this);
+                }
+            });
+        });
+        
+        // Handle window resize for footer
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.querySelectorAll('.footer-column').forEach(col => {
+                    col.classList.remove('expanded');
+                });
+            }
+        });
+        
+        // Footer language selector change
+        const footerLangSelector = document.querySelector('.footer-lang-selector');
+        if (footerLangSelector) {
+            footerLangSelector.addEventListener('change', function() {
+                const selectedLang = this.value;
+                // You can implement language switching logic here
+                console.log('Footer language changed to:', selectedLang);
+            });
+        }
     </script>
     {% block extra_js %}{% endblock %}
 </body>

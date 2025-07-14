@@ -4,17 +4,6 @@ Option Explicit
 ' This macro runs continuously and extracts emails to JSON files every X minutes
 ' Place this in Outlook VBA (Alt+F11 -> Insert -> Module)
 
-' Windows API declarations (must be at module level)
-Private Declare PtrSafe Function SetTimer Lib "user32" ( _
-    ByVal hwnd As LongPtr, _
-    ByVal nIDEvent As LongPtr, _
-    ByVal uElapse As Long, _
-    ByVal lpTimerFunc As LongPtr) As LongPtr
-
-Private Declare PtrSafe Function KillTimer Lib "user32" ( _
-    ByVal hwnd As LongPtr, _
-    ByVal nIDEvent As LongPtr) As Long
-
 ' Global variables for polling
 Private Const POLL_INTERVAL_MINUTES As Integer = 1
 Private Const MAX_EMAILS_PER_ACCOUNT As Integer = 50
@@ -24,8 +13,8 @@ Private Const TARGET_ACCOUNT As String = "IRM-Standardisation-Office"
 Private LastEmailCount As Integer
 Private LastModifiedTime As Date
 
-' Timer variables
-Private PollTimerID As Long
+' Timer variables - using VBA Timer approach
+Private NextPollTime As Date
 Private IsPolling As Boolean
 
 ' Dynamic paths
@@ -84,22 +73,18 @@ Public Sub StartEmailPolling()
     ' Run extraction immediately
     ExtractAllEmails
     
-    ' Start timer for recurring extractions (interval in milliseconds)
-    Dim intervalMS As Long
-    intervalMS = CLng(POLL_INTERVAL_MINUTES) * 60 * 1000
-    
-    PollTimerID = SetTimer(0, 0, intervalMS, AddressOf TimerCallback)
+    ' Set next poll time
+    NextPollTime = Now + TimeValue("00:0" & Format(POLL_INTERVAL_MINUTES, "0") & ":00")
     IsPolling = True
     
-    WriteLog "Polling started with timer ID: " & PollTimerID
+    WriteLog "Polling started. Next extraction at: " & Format(NextPollTime, "yyyy-mm-dd hh:nn:ss")
     WriteLog "To stop, run StopEmailPolling"
+    WriteLog "To check for new emails manually, run CheckForPolling"
 End Sub
 
 ' Stop the polling
 Public Sub StopEmailPolling()
-    If IsPolling And PollTimerID <> 0 Then
-        KillTimer 0, PollTimerID
-        PollTimerID = 0
+    If IsPolling Then
         IsPolling = False
         WriteLog "Polling stopped."
     Else
@@ -107,10 +92,25 @@ Public Sub StopEmailPolling()
     End If
 End Sub
 
-' Timer callback function
-Private Sub TimerCallback()
-    On Error Resume Next
-    ExtractAllEmails
+' Check if it's time to poll and run extraction if needed
+Public Sub CheckForPolling()
+    If Not IsPolling Then
+        WriteLog "Polling is not active. Run StartEmailPolling first."
+        Exit Sub
+    End If
+    
+    If Now >= NextPollTime Then
+        WriteLog "Running scheduled extraction..."
+        ExtractAllEmails
+        
+        ' Set next poll time
+        NextPollTime = Now + TimeValue("00:0" & Format(POLL_INTERVAL_MINUTES, "0") & ":00")
+        WriteLog "Next extraction scheduled for: " & Format(NextPollTime, "yyyy-mm-dd hh:nn:ss")
+    Else
+        Dim timeLeft As Date
+        timeLeft = NextPollTime - Now
+        WriteLog "Next extraction in " & Format(timeLeft, "nn:ss") & " minutes"
+    End If
 End Sub
 
 ' Main extraction routine
@@ -502,6 +502,9 @@ End Function
 Private Sub WriteLog(message As String)
     On Error Resume Next
     
+    ' Always output to Immediate window for debugging
+    Debug.Print Format(Now, "yyyy-mm-dd hh:nn:ss") & " - " & message
+    
     Dim logFile As String
     Dim fileNum As Integer
     Dim timestamp As String
@@ -509,10 +512,18 @@ Private Sub WriteLog(message As String)
     logFile = GetOutputFolder() & "extractor_log.txt"
     timestamp = Format(Now, "yyyy-mm-dd hh:nn:ss")
     
+    ' Try to create output directory if it doesn't exist
+    CreateDirectoryPath GetOutputFolder()
+    
     fileNum = FreeFile
     Open logFile For Append As #fileNum
     Print #fileNum, timestamp & " - " & message
     Close #fileNum
+    
+    ' If there was an error writing to file, at least we have Debug.Print output
+    If Err.Number <> 0 Then
+        Debug.Print "ERROR writing to log file: " & Err.Description
+    End If
     
     On Error GoTo 0
 End Sub
@@ -567,7 +578,12 @@ Private Sub CreateStatusFile()
     fileNum = FreeFile
     Open statusFile For Output As #fileNum
     Print #fileNum, "Last extraction: " & Format(Now, "yyyy-mm-dd hh:nn:ss")
-    Print #fileNum, "Next extraction: " & Format(Now + TimeValue("00:0" & Format(POLL_INTERVAL_MINUTES, "0") & ":00"), "yyyy-mm-dd hh:nn:ss")
+    If IsPolling Then
+        Print #fileNum, "Next extraction: " & Format(NextPollTime, "yyyy-mm-dd hh:nn:ss")
+        Print #fileNum, "Polling status: ACTIVE"
+    Else
+        Print #fileNum, "Polling status: INACTIVE"
+    End If
     Print #fileNum, "Target account: " & TARGET_ACCOUNT
     Close #fileNum
 End Sub
@@ -577,5 +593,49 @@ Public Sub ExtractEmailsOnce()
     WriteLog "Starting one-time email extraction..."
     ExtractAllEmails
     WriteLog "One-time extraction completed."
+End Sub
+
+' Simple test function to verify macro is working
+Public Sub TestMacro()
+    Debug.Print "=== MACRO TEST STARTED ==="
+    WriteLog "Testing macro functionality..."
+    
+    ' Test path resolution
+    Debug.Print "Output folder: " & GetOutputFolder()
+    Debug.Print "Attachments folder: " & GetAttachmentsFolder()
+    Debug.Print "Target account: " & TARGET_ACCOUNT
+    
+    ' Test Outlook connection
+    On Error GoTo ErrorHandler
+    
+    Dim olApp As Outlook.Application
+    Dim olNamespace As Outlook.NameSpace
+    
+    Set olApp = Application
+    Set olNamespace = olApp.GetNamespace("MAPI")
+    
+    Debug.Print "Outlook connection: OK"
+    Debug.Print "Number of stores: " & olNamespace.Stores.Count
+    
+    ' List all stores
+    Dim store As Outlook.store
+    Dim storeIndex As Integer
+    storeIndex = 1
+    
+    For Each store In olNamespace.Stores
+        Debug.Print "Store " & storeIndex & ": " & store.DisplayName
+        If InStr(UCase(store.DisplayName), UCase(TARGET_ACCOUNT)) > 0 Then
+            Debug.Print "  --> TARGET ACCOUNT FOUND!"
+        End If
+        storeIndex = storeIndex + 1
+    Next store
+    
+    WriteLog "Test completed successfully"
+    Debug.Print "=== MACRO TEST COMPLETED ==="
+    Exit Sub
+    
+ErrorHandler:
+    Debug.Print "ERROR in TestMacro: " & Err.Description
+    WriteLog "ERROR in TestMacro: " & Err.Description
 End Sub
 
