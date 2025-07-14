@@ -1,0 +1,82 @@
+{
+  "timestamp": "2025-07-14 13:49:58",
+  "folder_name": "Inbox",
+  "folder_path": "\\\\IRM-Standardisation-Office\\Inbox",
+  "total_items": 288,
+  "file_info": {
+    "type": "current",
+    "max_emails_per_file": 500,
+    "archive_after_days": 90
+  },
+  "emails": [
+{
+      "index": 2,
+      "hash": "886398",
+      "subject": "TEST1445",
+      "sender_name": "Maung, Ali (Contractor)",
+      "sender_email": "/O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=MAUNG, ALIFDF",
+      "received_time": "2025-07-14 13:43:36",
+      "sent_on": "2025-07-14 13:43:34",
+      "size": 9190,
+      "importance": 1,
+      "unread": true,
+      "categories": "",
+      "msg_file": "data/886398/886398.msg",
+      "body": "TEST1445\n",
+      "html_body": "<html xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" xmlns:m=\"http://schemas.microsoft.com/office/2004/12/omml\" xmlns=\"http://www.w3.org/TR/REC-html40\"><head><meta name=Generator content=\"Microsoft Word 15 (filtered medium)\"><style><!--\n/* Font Definitions */\n@font-face\n\t{font-family:\"Cambria Math\";\n\tpanose-1:2 4 5 3 5 4 6 3 2 4;}\n@font-face\n\t{font-family:Aptos;}\n/* Style Definitions */\np.MsoNormal, li.MsoNormal, div.MsoNormal\n\t{margin:0cm;\n\tfont-size:11.0pt;\n\tfont-family:\"Aptos\",sans-serif;\n\tmso-ligatures:standardcontextual;\n\tmso-fareast-language:EN-US;}\n.MsoChpDefault\n\t{mso-style-type:export-only;\n\tfont-size:11.0pt;\n\tmso-fareast-language:EN-US;}\n@page WordSection1\n\t{size:612.0pt 792.0pt;\n\tmargin:70.85pt 70.85pt 2.0cm 70.85pt;}\ndiv.WordSection1\n\t{page:WordSection1;}\n--></style><!--[if gte mso 9]><xml>\n<o:shapedefaults v:ext=\"edit\" spidmax=\"1026\" />\n</xml><![endif]--><!--[if gte mso 9]><xml>\n<o:shapelayout v:ext=\"edit\">\n<o:idmap v:ext=\"edit\" data=\"1\" />\n</o:shapelayout></xml><![endif]--></head><body lang=DE link=\"#467886\" vlink=\"#96607D\" style='word-wrap:break-word'><div class=WordSection1><p class=MsoNormal>TEST1445<o:p></o:p></p></div></body></html>",
+      "recipients": [
+        {
+          "name": "IRM-Standardisation-Office",
+          "address": "/O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-Standardisation-Officedff",
+          "type": 1
+        }
+      ],
+      "attachments": [
+
+      ]
+    },
+    {
+      "index": 2,
+      "hash": "771351",
+      "subject": "AW: Ausgabe der Norm  DIN ISO 24394",
+      "sender_name": "Metzler, Dirk",
+      "sender_email": "/O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=DIRK.METZLER",
+      "received_time": "2025-07-14 13:49:51",
+      "sent_on": "2025-07-14 13:49:48",
+      "size": 143152,
+      "importance": 1,
+      "unread": true,
+      "categories": "",
+      "msg_file": "data/771351/771351.msg",
+      "body": "Vielen Dank und viele Grüße\n\n \n\nDirk Metzler\n\n \n\nVon: IRM-Standardisation-Office <IRM-Standardisation-Office@Rolls-Royce.com> \nGesendet: Montag, 14. Juli 2025 13:38\nAn: Metzler, Dirk <Dirk.Metzler@Rolls-Royce.com>\nCc: Perez, Laura (Contractor) <Laura.Perez@Rolls-Royce.com>; IRM-Standardisation-Office <IRM-Standardisation-Office@Rolls-Royce.com>; Gastmann, Matthias <Matthias.Gastmann@Rolls-Royce.com>; Gilles, Thomas <Thomas.Gilles@Rolls-Royce.com>\nBetreff: AW: Ausgabe der Norm DIN ISO 24394\n\n \n\nHallo Herr Metzler,\n\n \n\nanbei finden Sie die von Ihnen angeforderte Norm. Sie wird ebenfalls in ExDims hochgeladen.\n\n \n\nMit freundlichem Gruß,\n\n \n\nJean-Michel Guilbault | Normstelle – Standardization Department\n\nPronouns: (He/Him) \n\n \n\nIRON MOUNTAIN i. H. Rolls-Royce Deutschland\n\nHohemarkstraße 60-70, 61440 Oberursel, Germany\n\n \n\n+49 (0) 6171 90 6867  – office\n\njean-michel.guilbault@rolls-royce.com <mailto:jean-michel.guilbault@rolls-royce.com>  - email\n\n \n\nIronMountain.de <http://www.ironmountain.de/> \n\nIron Mountain (Deutschland) Service GmbH, Randstraße 11, 22525 Hamburg\n\n \n\nSitz der Gesellschaft: Hamburg \n\nRegistergericht Hamburg, HRB 127195 (Iron Mountain (Deutschland) Service GmbH) \n\nGeschäftsführer: Ralf Reich\n\n <https://www.facebook.com/ironmountain>  <https://www.linkedin.com/company/iron-mountain>  <https://twitter.com/ironmountain>  <https://www.youtube.com/user/ironmountain> \n\n \n\n\n\n \n\n \n\nNon-Confidential - Rolls-Royce Content Only - Not Subject to Export Control\n\n \n\n \n\nVon: Metzler, Dirk <Dirk.Metzler@Rolls-Royce.com <mailto:Dirk.Metzler@Rolls-Royce.com> > \nGesendet: Montag, 14. Juli 2025 11:32\nAn: IRM-Standardisation-Office <IRM-Standardisation-Office@Rolls-Royce.com <mailto:IRM-Standardisation-Office@Rolls-Royce.com> >\nCc: Perez, Laura (Contractor) <Laura.Perez@Rolls-Royce.com <mailto:Laura.Perez@Rolls-Royce.com> >; Gastmann, Matthias <Matthias.Gastmann@Rolls-Royce.com <mailto:Matthias.G... [TRUNCATED]",
+      "html_body": "<html xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" xmlns:m=\"http://schemas.microsoft.com/office/2004/12/omml\" xmlns=\"http://www.w3.org/TR/REC-html40\"><head><meta name=Generator content=\"Microsoft Word 15 (filtered medium)\"><!--[if !mso]><style>v\\:* {behavior:url(#default#VML);}\no\\:* {behavior:url(#default#VML);}\nw\\:* {behavior:url(#default#VML);}\n.shape {behavior:url(#default#VML);}\n</style><![endif]--><style><!--\n/* Font Definitions */\n@font-face\n\t{font-family:\"Cambria Math\";\n\tpanose-1:2 4 5 3 5 4 6 3 2 4;}\n@font-face\n\t{font-family:Calibri;\n\tpanose-1:2 15 5 2 2 2 4 3 2 4;}\n@font-face\n\t{font-family:Aptos;}\n/* Style Definitions */\np.MsoNormal, li.MsoNormal, div.MsoNormal\n\t{margin:0cm;\n\tfont-size:11.0pt;\n\tfont-family:\"Calibri\",sans-serif;\n\tmso-ligatures:standardcontextual;\n\tmso-fareast-language:EN-US;}\na:link, span.MsoHyperlink\n\t{mso-style-priority:99;\n\tcolor:blue;\n\ttext-decoration:underline;}\np.MsoPlainText, li.MsoPlainText, div.MsoPlainText\n\t{mso-style-priority:99;\n\tmso-style-link:\"Nur Text Zchn\";\n\tmargin:0cm;\n\tfont-size:11.0pt;\n\tfont-family:\"Calibri\",sans-serif;\n\tmso-ligatures:standardcontextual;\n\tmso-fareast-language:EN-US;}\nspan.NurTextZchn\n\t{mso-style-name:\"Nur Text Zchn\";\n\tmso-style-priority:99;\n\tmso-style-link:\"Nur Text\";\n\tfont-family:\"Calibri\",sans-serif;}\n.MsoChpDefault\n\t{mso-style-type:export-only;\n\tfont-size:10.0pt;\n\tmso-ligatures:none;}\n@page WordSection1\n\t{size:612.0pt 792.0pt;\n\tmargin:70.85pt 70.85pt 2.0cm 70.85pt;}\ndiv.WordSection1\n\t{page:WordSection1;}\n--></style><!--[if gte mso 9]><xml>\n<o:shapedefaults v:ext=\"edit\" spidmax=\"1026\" />\n</xml><![endif]--><!--[if gte mso 9]><xml>\n<o:shapelayout v:ext=\"edit\">\n<o:idmap v:ext=\"edit\" data=\"1\" />\n</o:shapelayout></xml><![endif]--></head><body lang=DE link=blue vlink=purple style='word-wrap:break-word'><div class=WordSection1><p class=MsoNormal>Vielen Dank und viele Grüße<o:p></o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>Dirk Metzler<o:p></o:p></p><p class=MsoNormal><o:p>&nbsp;</o:p></p><div><div style='border:none;border-top:solid #E1E1E1 1.0pt;padding:3.0pt 0cm 0cm 0cm'><p class=MsoNormal><b><span style='mso-ligatures:none;mso-fareast-language:DE'>Von:</span></b><span style='mso-ligatures:none;mso-fareast-language:DE'> IRM-Standardisation-Office &lt;IRM-Standardisation-Office@Rolls-Royce.com&gt; <br><b>Gesendet:</b> Montag, 14. Juli 2025 13:38<br><b>An:</b> Metzler, Dirk &lt;Dirk.Metzler@Rolls-Royce.com&gt;<br><b>Cc:</b> Perez, Laura (Contractor) &lt;Laura.Perez@Rolls-Royce.com&gt;; IRM-Standardisation-Office &lt;IRM-Standardisation-Office@Rolls-Royce.com&gt;; Gastmann, Matthias &lt;Matthias.Gastmann@Rolls-Royce.com&gt;; Gilles, Thomas &lt;Thomas.Gilles@Rolls-Royce.com&gt;<br><b>Betreff:</b> AW: Ausgabe der Norm DIN ISO 24394<o:p></o:p></span></p></div></div><p class=MsoNormal><o:p>&nbsp;</o:p></p><p class=MsoNormal>Hallo H... [TRUNCATED]",
+      "recipients": [
+        {
+          "name": "IRM-Standardisation-Office",
+          "address": "/O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-Standardisation-Officedff",
+          "type": 1
+        },
+        {
+          "name": "Perez, Laura (Contractor)",
+          "address": "/O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=Laura.Perez",
+          "type": 2
+        },
+        {
+          "name": "Gastmann, Matthias",
+          "address": "/O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=Matthias.Gastmann",
+          "type": 2
+        },
+        {
+          "name": "Gilles, Thomas",
+          "address": "/O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=Thomas.Gilles",
+          "type": 2
+        }
+      ],
+      "attachments": [
+
+      ]
+    }
+  ],
+  "extracted_count": 2
+}
+
