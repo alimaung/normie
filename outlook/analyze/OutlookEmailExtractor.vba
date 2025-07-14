@@ -30,7 +30,7 @@ Private Sub CreateDirectoryPath(fullPath As String)
     
     Dim pathParts() As String
     Dim currentPath As String
-    Dim i As Integer
+    Dim i As Long
     
     ' Remove trailing backslash if present
     If Right(fullPath, 1) = "\" Then
@@ -264,7 +264,7 @@ Private Sub SaveCompleteJsonFile(emailDict As Object, folder As Outlook.Folder)
     End If
     
     Dim jsonContent As String
-    Dim emailCount As Integer
+    Dim emailCount As Long
     
     ' Build complete JSON structure
     jsonContent = "{" & vbCrLf
@@ -401,7 +401,7 @@ Private Sub SaveJsonToFile(emailDict As Object, folder As Outlook.Folder, fileNa
     On Error GoTo ErrorHandler
     
     Dim jsonContent As String
-    Dim emailCount As Integer
+    Dim emailCount As Long
     
     ' Build JSON structure
     jsonContent = "{" & vbCrLf
@@ -562,9 +562,9 @@ End Function
 
 ' Helper function to generate a 6-digit hash
 Private Function ShortHash(text As String) As String
-    Dim i As Integer
+    Dim i As Long
     Dim hashValue As Long
-    Dim char As Integer
+    Dim char As Long
     
     hashValue = 0
     
@@ -751,8 +751,8 @@ Private Sub ManualProcessEmails(folder As Outlook.folder, maxEmails As Integer)
     
     ' Build new JSON content
     Dim jsonContent As String
-    Dim emailCount As Integer
-    Dim processedCount As Integer
+    Dim emailCount As Long
+    Dim processedCount As Long
     
     jsonContent = "{" & vbCrLf
     jsonContent = jsonContent & "  ""timestamp"": """ & Format(Now, "yyyy-mm-dd hh:nn:ss") & """," & vbCrLf
@@ -849,7 +849,7 @@ Private Sub ManualProcessEmails(folder As Outlook.folder, maxEmails As Integer)
             
             ' Extract recipients
             jsonContent = jsonContent & "      ""recipients"": [" & vbCrLf
-            Dim recipientIndex As Integer
+            Dim recipientIndex As Long
             recipientIndex = 0
             
             Dim recipient As Outlook.recipient
@@ -868,7 +868,7 @@ Private Sub ManualProcessEmails(folder As Outlook.folder, maxEmails As Integer)
             
             ' Process attachments
             jsonContent = jsonContent & "      ""attachments"": [" & vbCrLf
-            Dim attachmentIndex As Integer
+            Dim attachmentIndex As Long
             attachmentIndex = 0
             
             Dim attachment As Outlook.attachment
