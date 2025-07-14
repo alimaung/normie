@@ -87,6 +87,7 @@ class InboxManager {
         $('#refresh-btn').on('click', () => this.refreshInbox());
         $('#delete-selected').on('click', () => this.deleteSelected());
         $('#mark-read').on('click', () => this.markSelectedAsRead());
+        $('#mark-unread').on('click', () => this.markSelectedAsUnread());
         $('#retry-connection').on('click', () => this.retryConnection());
         
         // Email row clicks (for selection)
@@ -240,7 +241,7 @@ class InboxManager {
     
     updateToolbarState() {
         const hasSelection = this.selectedEmails.size > 0;
-        $('#delete-selected, #mark-read').prop('disabled', !hasSelection);
+        $('#delete-selected, #mark-read, #mark-unread').prop('disabled', !hasSelection);
     }
     
     loadEmails() {
@@ -336,11 +337,21 @@ class InboxManager {
     deleteSelected() {
         if (this.selectedEmails.size === 0) return;
         
-        if (!confirm(`Delete ${this.selectedEmails.size} selected email(s)?`)) {
+        const count = this.selectedEmails.size;
+        const confirmation = count === 1 ? 
+            'Are you sure you want to delete this email?' : 
+            `Are you sure you want to delete ${count} selected emails?`;
+            
+        if (!confirm(confirmation)) {
             return;
         }
         
         const emailIds = Array.from(this.selectedEmails);
+        const $deleteBtn = $('#delete-selected');
+        const originalText = $deleteBtn.text();
+        
+        // Show loading state
+        $deleteBtn.prop('disabled', true).text('Deleting...');
         
         $.ajax({
             url: window.inboxData?.urls?.delete || '/inbox/delete/',
@@ -354,20 +365,40 @@ class InboxManager {
             }),
             success: (response) => {
                 if (response.success) {
-                    this.showSuccess('Emails deleted successfully');
+                    const message = response.message || 'Emails deleted successfully';
+                    this.showSuccess(message);
                     this.selectedEmails.clear();
                     this.loadEmails();
                 } else {
                     this.showError(response.error || 'Failed to delete emails');
                 }
             },
-            error: () => {
-                this.showError('Failed to delete emails');
+            error: (xhr) => {
+                let errorMessage = 'Failed to delete emails';
+                try {
+                    const response = JSON.parse(xhr.responseText);
+                    errorMessage = response.error || response.message || errorMessage;
+                } catch (e) {
+                    // Use default error message
+                }
+                this.showError(errorMessage);
+            },
+            complete: () => {
+                // Restore button state
+                $deleteBtn.prop('disabled', false).text(originalText);
             }
         });
     }
     
     markSelectedAsRead() {
+        this.markSelectedAs(true, 'read');
+    }
+    
+    markSelectedAsUnread() {
+        this.markSelectedAs(false, 'unread');
+    }
+    
+    markSelectedAs(readStatus, statusText) {
         if (this.selectedEmails.size === 0) return;
         
         const emailIds = Array.from(this.selectedEmails);
@@ -381,19 +412,20 @@ class InboxManager {
             },
             data: JSON.stringify({
                 email_ids: emailIds,
-                read: true
+                read: readStatus
             }),
             success: (response) => {
                 if (response.success) {
-                    this.showSuccess('Emails marked as read');
+                    const message = response.message || `Emails marked as ${statusText}`;
+                    this.showSuccess(message);
                     this.selectedEmails.clear();
                     this.loadEmails();
                 } else {
-                    this.showError(response.error || 'Failed to mark emails as read');
+                    this.showError(response.error || `Failed to mark emails as ${statusText}`);
                 }
             },
             error: () => {
-                this.showError('Failed to mark emails as read');
+                this.showError(`Failed to mark emails as ${statusText}`);
             }
         });
     }
@@ -491,10 +523,12 @@ class InboxManager {
         });
     }
     
-    updateDataStatus(status) {
+    updateDataStatus(status, comStatus = null) {
         const $indicator = $('.status-indicator');
         const $lastUpdate = $('.last-update');
+        const $comIndicator = $('.com-status-indicator');
         
+        // Update VBA status
         if (status.available) {
             $indicator.removeClass('status-offline').addClass('status-online');
             $indicator.find('span').text('VBA Online');
@@ -504,6 +538,19 @@ class InboxManager {
         } else {
             $indicator.removeClass('status-online').addClass('status-offline');
             $indicator.find('span').text('VBA Offline');
+        }
+        
+        // Update COM status if provided
+        if (comStatus && $comIndicator.length) {
+            if (comStatus.available && comStatus.initialized) {
+                $comIndicator.removeClass('status-offline').addClass('status-online');
+                $comIndicator.find('span').text('COM Ready');
+                $comIndicator.attr('title', comStatus.message);
+            } else {
+                $comIndicator.removeClass('status-online').addClass('status-offline');
+                $comIndicator.find('span').text('COM Offline');
+                $comIndicator.attr('title', comStatus.message || 'COM interface not available');
+            }
         }
     }
     

@@ -42,6 +42,7 @@ urlpatterns = [
     path('inbox/status/', views.inbox_status, name='inbox_status'),
     path('inbox/attachment/<str:message_id>/<str:filename>/', views.inbox_get_attachment, name='inbox_get_attachment'),
     path('inbox/delete/<str:message_id>/', views.inbox_delete_message, name='inbox_delete_message'),
+    path('inbox/mark-read/<str:message_id>/', views.inbox_mark_message_read, name='inbox_mark_message_read'),
     path('inbox/categorize/<str:message_id>/', views.inbox_categorize_message, name='inbox_categorize_message'),
     path('inbox/delete/', views.inbox_delete, name='inbox_delete'),
     path('inbox/categorize/', views.inbox_categorize, name='inbox_categorize'),

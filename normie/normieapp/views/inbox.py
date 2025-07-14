@@ -54,6 +54,9 @@ def inbox(request):
         # Get data status
         data_status = outlook_service.get_data_status()
         
+        # Get COM status
+        com_status = outlook_service.get_com_status()
+        
         # Prepare context
         context = {
             'page_title': _('Email Inbox'),
@@ -61,6 +64,7 @@ def inbox(request):
             'pagination': pagination_info,
             'folder_stats': folder_stats,
             'data_status': data_status,
+            'com_status': com_status,
             'current_filters': {
                 'search': search,
                 'unread': filter_unread,
@@ -295,30 +299,100 @@ def inbox_get_attachment(request, message_id, filename):
 @restrict_read_only_users
 def inbox_delete_message(request, message_id):
     """
-    Delete a specific email message (placeholder for future COM implementation).
+    Delete a specific email message using COM interface.
     """
     if request.method != 'POST':
         return JsonResponse({'success': False, 'message': 'Invalid request method'})
     
-    return JsonResponse({
-        'success': False, 
-        'message': 'Email deletion will be implemented with COM integration.'
-    })
+    try:
+        outlook_service = OutlookService()
+        
+        # Check if COM is available
+        if not outlook_service.is_com_available():
+            return JsonResponse({
+                'success': False,
+                'message': 'COM interface not available. Please ensure Outlook is running.'
+            })
+        
+        # Delete the email
+        success = outlook_service.delete_email(message_id)
+        
+        if success:
+            return JsonResponse({
+                'success': True,
+                'message': 'Email deleted successfully'
+            })
+        else:
+            return JsonResponse({
+                'success': False,
+                'message': 'Failed to delete email. Email may not be found in Outlook.'
+            })
+            
+    except Exception as e:
+        logger.error(f"Error deleting email {message_id}: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'message': 'An error occurred while deleting the email'
+        })
 
 
 @csrf_exempt
 @restrict_read_only_users
 def inbox_delete(request):
     """
-    Delete multiple email messages (placeholder for future COM implementation).
+    Delete multiple email messages using COM interface.
     """
     if request.method != 'POST':
         return JsonResponse({'success': False, 'error': 'Invalid request method'})
     
-    return JsonResponse({
-        'success': False, 
-        'error': 'Bulk email deletion will be implemented with COM integration.'
-    })
+    try:
+        data = json.loads(request.body)
+        email_ids = data.get('email_ids', [])
+        
+        if not email_ids:
+            return JsonResponse({'success': False, 'error': 'No emails specified for deletion'})
+        
+        outlook_service = OutlookService()
+        
+        # Check if COM is available
+        if not outlook_service.is_com_available():
+            return JsonResponse({
+                'success': False,
+                'error': 'COM interface not available. Please ensure Outlook is running.'
+            })
+        
+        # Delete multiple emails
+        success_count, failed_ids = outlook_service.delete_multiple_emails(email_ids)
+        
+        if success_count == len(email_ids):
+            return JsonResponse({
+                'success': True,
+                'message': f'All {success_count} emails deleted successfully',
+                'deleted_count': success_count
+            })
+        elif success_count > 0:
+            return JsonResponse({
+                'success': True,
+                'message': f'{success_count} of {len(email_ids)} emails deleted successfully',
+                'deleted_count': success_count,
+                'failed_count': len(failed_ids),
+                'failed_ids': failed_ids
+            })
+        else:
+            return JsonResponse({
+                'success': False,
+                'error': 'Failed to delete any emails',
+                'failed_ids': failed_ids
+            })
+            
+    except json.JSONDecodeError:
+        return JsonResponse({'success': False, 'error': 'Invalid JSON data'})
+    except Exception as e:
+        logger.error(f"Error in bulk email deletion: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': 'An error occurred while deleting emails'
+        })
 
 
 @csrf_exempt
@@ -347,17 +421,112 @@ def inbox_categorize(request):
 
 @csrf_exempt
 @restrict_read_only_users
-def inbox_mark_read(request):
+def inbox_mark_message_read(request, message_id):
     """
-    Mark emails as read/unread (placeholder for future COM implementation).
+    Mark a single email as read or unread using COM interface.
     """
     if request.method != 'POST':
         return JsonResponse({'success': False, 'error': 'Invalid request method'})
     
-    return JsonResponse({
-        'success': False, 
-        'error': 'Mark as read/unread will be implemented with COM integration.'
-    })
+    try:
+        data = json.loads(request.body) if request.body else {}
+        read_status = data.get('read', True)  # Default to marking as read
+        
+        outlook_service = OutlookService()
+        
+        # Check if COM is available
+        if not outlook_service.is_com_available():
+            return JsonResponse({
+                'success': False,
+                'error': 'COM interface not available. Please ensure Outlook is running.'
+            })
+        
+        # Mark single email as read/unread
+        success = outlook_service.mark_email_read(message_id, read_status)
+        
+        status_text = "read" if read_status else "unread"
+        
+        if success:
+            return JsonResponse({
+                'success': True,
+                'message': f'Email marked as {status_text} successfully'
+            })
+        else:
+            return JsonResponse({
+                'success': False,
+                'error': f'Failed to mark email as {status_text}. Email may not be found in Outlook.'
+            })
+            
+    except json.JSONDecodeError:
+        return JsonResponse({'success': False, 'error': 'Invalid JSON data'})
+    except Exception as e:
+        logger.error(f"Error marking email {message_id} as read/unread: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': 'An error occurred while updating email status'
+        })
+
+
+@csrf_exempt
+@restrict_read_only_users
+def inbox_mark_read(request):
+    """
+    Mark emails as read/unread using COM interface.
+    """
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'error': 'Invalid request method'})
+    
+    try:
+        data = json.loads(request.body)
+        email_ids = data.get('email_ids', [])
+        read_status = data.get('read', True)  # Default to marking as read
+        
+        if not email_ids:
+            return JsonResponse({'success': False, 'error': 'No emails specified'})
+        
+        outlook_service = OutlookService()
+        
+        # Check if COM is available
+        if not outlook_service.is_com_available():
+            return JsonResponse({
+                'success': False,
+                'error': 'COM interface not available. Please ensure Outlook is running.'
+            })
+        
+        # Mark multiple emails as read/unread
+        success_count, failed_ids = outlook_service.mark_multiple_emails_read(email_ids, read_status)
+        
+        status_text = "read" if read_status else "unread"
+        
+        if success_count == len(email_ids):
+            return JsonResponse({
+                'success': True,
+                'message': f'All {success_count} emails marked as {status_text} successfully',
+                'updated_count': success_count
+            })
+        elif success_count > 0:
+            return JsonResponse({
+                'success': True,
+                'message': f'{success_count} of {len(email_ids)} emails marked as {status_text} successfully',
+                'updated_count': success_count,
+                'failed_count': len(failed_ids),
+                'failed_ids': failed_ids
+            })
+        else:
+            return JsonResponse({
+                'success': False,
+                'error': f'Failed to mark any emails as {status_text}',
+                'failed_ids': failed_ids
+            })
+            
+    except json.JSONDecodeError:
+        return JsonResponse({'success': False, 'error': 'Invalid JSON data'})
+    except Exception as e:
+        logger.error(f"Error marking emails as read/unread: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': 'An error occurred while updating email status'
+        })
 
 
 @restrict_read_only_users

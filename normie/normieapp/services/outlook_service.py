@@ -7,6 +7,14 @@ from django.conf import settings
 from typing import Dict, List, Optional, Tuple
 import hashlib
 
+# COM interface imports
+try:
+    import win32com.client
+    import pythoncom
+    COM_AVAILABLE = True
+except ImportError:
+    COM_AVAILABLE = False
+
 # Define logger at module level
 logger = logging.getLogger(__name__)
 
@@ -14,6 +22,7 @@ class OutlookService:
     """
     Clean Outlook service for email management.
     Reads VBA-extracted JSON data and provides email functionality.
+    Now includes COM interface for email operations like delete and mark read/unread.
     """
     
     def __init__(self):
@@ -25,8 +34,283 @@ class OutlookService:
         self.emails_file = self.base_path / "emails.json"
         self.data_folder = self.base_path / "data"
         
+        # COM interface attributes
+        self._outlook_app = None
+        self._namespace = None
+        self._com_initialized = False
+        
         logger.debug(f"Base path: {self.base_path}")
         logger.debug(f"Emails file: {self.emails_file}")
+        logger.debug(f"COM Available: {COM_AVAILABLE}")
+
+    def _initialize_com(self) -> bool:
+        """Initialize COM interface for Outlook operations."""
+        if not COM_AVAILABLE:
+            logger.warning("COM interface not available (pywin32 not installed)")
+            return False
+            
+        if self._com_initialized:
+            return True
+            
+        try:
+            logger.debug("Initializing COM interface...")
+            pythoncom.CoInitialize()
+            self._outlook_app = win32com.client.Dispatch("Outlook.Application")
+            self._namespace = self._outlook_app.GetNamespace("MAPI")
+            self._com_initialized = True
+            logger.debug("COM interface initialized successfully")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Failed to initialize COM interface: {str(e)}")
+            return False
+
+    def _cleanup_com(self):
+        """Cleanup COM interface resources."""
+        if self._com_initialized:
+            try:
+                if self._namespace:
+                    self._namespace = None
+                if self._outlook_app:
+                    self._outlook_app = None
+                pythoncom.CoUninitialize()
+                self._com_initialized = False
+                logger.debug("COM interface cleaned up")
+            except Exception as e:
+                logger.warning(f"Error during COM cleanup: {str(e)}")
+
+    def _find_email_by_id(self, email_id: str) -> Optional[object]:
+        """
+        Find an email in Outlook by its ID.
+        
+        Args:
+            email_id: The email ID to search for
+            
+        Returns:
+            Outlook mail item if found, None otherwise
+        """
+        if not self._initialize_com():
+            return None
+            
+        try:
+            # Get the email data to find additional identifiers
+            email_data = self.get_email_by_id(email_id)
+            if not email_data:
+                logger.warning(f"Email data not found for ID: {email_id}")
+                return None
+            
+            # Look for the email in the IRM-Standardisation-Office account
+            target_account = "IRM-Standardisation-Office"
+            stores = self._namespace.Stores
+            
+            target_store = None
+            for i in range(1, stores.Count + 1):
+                store = stores.Item(i)
+                if target_account.upper() in store.DisplayName.upper():
+                    target_store = store
+                    break
+            
+            if not target_store:
+                logger.error(f"Target account '{target_account}' not found")
+                return None
+                
+            # Get inbox folder
+            root_folder = target_store.GetRootFolder()
+            inbox = None
+            
+            for i in range(1, root_folder.Folders.Count + 1):
+                folder = root_folder.Folders.Item(i)
+                if folder.Name.lower() == "inbox":
+                    inbox = folder
+                    break
+                    
+            if not inbox:
+                logger.error("Inbox folder not found")
+                return None
+            
+            # Search for email by subject and sender
+            email_subject = email_data.get('subject', '')
+            email_sender = email_data.get('sender_email', '')
+            email_received_time = email_data.get('received_time', '')
+            
+            # Search through inbox items
+            items = inbox.Items
+            for i in range(1, min(items.Count + 1, 500)):  # Limit search to recent 500 emails
+                try:
+                    item = items.Item(i)
+                    
+                    # Match by subject and sender
+                    if (hasattr(item, 'Subject') and hasattr(item, 'SenderEmailAddress') and
+                        item.Subject == email_subject and 
+                        item.SenderEmailAddress == email_sender):
+                        
+                        # Additional verification by received time if available
+                        if hasattr(item, 'ReceivedTime'):
+                            item_time = item.ReceivedTime.strftime('%Y-%m-%d %H:%M:%S')
+                            if email_received_time and item_time == email_received_time:
+                                return item
+                        else:
+                            return item
+                            
+                except Exception as e:
+                    logger.debug(f"Error checking item {i}: {str(e)}")
+                    continue
+                    
+            logger.warning(f"Email not found in Outlook for ID: {email_id}")
+            return None
+            
+        except Exception as e:
+            logger.error(f"Error finding email by ID {email_id}: {str(e)}")
+            return None
+
+    def delete_email(self, email_id: str) -> bool:
+        """
+        Delete a specific email using COM interface.
+        
+        Args:
+            email_id: Email ID to delete
+            
+        Returns:
+            bool: True if successful, False otherwise
+        """
+        try:
+            email_item = self._find_email_by_id(email_id)
+            if not email_item:
+                logger.error(f"Cannot delete email - not found: {email_id}")
+                return False
+                
+            # Delete the email
+            email_item.Delete()
+            logger.info(f"Email deleted successfully: {email_id}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error deleting email {email_id}: {str(e)}")
+            return False
+
+    def mark_email_read(self, email_id: str, read: bool = True) -> bool:
+        """
+        Mark an email as read or unread using COM interface.
+        
+        Args:
+            email_id: Email ID to mark
+            read: True to mark as read, False to mark as unread
+            
+        Returns:
+            bool: True if successful, False otherwise
+        """
+        try:
+            email_item = self._find_email_by_id(email_id)
+            if not email_item:
+                logger.error(f"Cannot mark email - not found: {email_id}")
+                return False
+                
+            # Set unread status (UnRead=False means read, UnRead=True means unread)
+            email_item.UnRead = not read
+            email_item.Save()
+            
+            status = "read" if read else "unread"
+            logger.info(f"Email marked as {status} successfully: {email_id}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"Error marking email {email_id} as {'read' if read else 'unread'}: {str(e)}")
+            return False
+
+    def delete_multiple_emails(self, email_ids: List[str]) -> Tuple[int, List[str]]:
+        """
+        Delete multiple emails using COM interface.
+        
+        Args:
+            email_ids: List of email IDs to delete
+            
+        Returns:
+            Tuple[int, List[str]]: (success_count, failed_ids)
+        """
+        success_count = 0
+        failed_ids = []
+        
+        for email_id in email_ids:
+            if self.delete_email(email_id):
+                success_count += 1
+            else:
+                failed_ids.append(email_id)
+                
+        logger.info(f"Bulk delete completed: {success_count}/{len(email_ids)} successful")
+        return success_count, failed_ids
+
+    def mark_multiple_emails_read(self, email_ids: List[str], read: bool = True) -> Tuple[int, List[str]]:
+        """
+        Mark multiple emails as read or unread using COM interface.
+        
+        Args:
+            email_ids: List of email IDs to mark
+            read: True to mark as read, False to mark as unread
+            
+        Returns:
+            Tuple[int, List[str]]: (success_count, failed_ids)
+        """
+        success_count = 0
+        failed_ids = []
+        
+        for email_id in email_ids:
+            if self.mark_email_read(email_id, read):
+                success_count += 1
+            else:
+                failed_ids.append(email_id)
+                
+        status = "read" if read else "unread"
+        logger.info(f"Bulk mark as {status} completed: {success_count}/{len(email_ids)} successful")
+        return success_count, failed_ids
+
+    def is_com_available(self) -> bool:
+        """
+        Check if COM interface is available and functional.
+        
+        Returns:
+            bool: True if COM interface can be initialized
+        """
+        return COM_AVAILABLE and self._initialize_com()
+
+    def get_com_status(self) -> Dict:
+        """
+        Get COM interface status information.
+        
+        Returns:
+            Dict: Status information about COM interface
+        """
+        if not COM_AVAILABLE:
+            return {
+                'available': False,
+                'message': 'COM interface not available (pywin32 not installed)',
+                'initialized': False
+            }
+            
+        if self._initialize_com():
+            try:
+                version = getattr(self._outlook_app, 'Version', 'Unknown')
+                return {
+                    'available': True,
+                    'initialized': True,
+                    'message': f'COM interface ready (Outlook {version})',
+                    'outlook_version': version
+                }
+            except Exception as e:
+                return {
+                    'available': True,
+                    'initialized': False,
+                    'message': f'COM interface error: {str(e)}'
+                }
+        else:
+            return {
+                'available': True,
+                'initialized': False,
+                'message': 'Failed to initialize COM interface'
+            }
+
+    def __del__(self):
+        """Cleanup COM interface on object destruction."""
+        self._cleanup_com()
 
     def get_emails_data(self) -> Dict:
         """
