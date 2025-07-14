@@ -1047,34 +1047,11 @@ Private Sub ManualProcessEmails(folder As Outlook.folder, maxEmails As Long)
             
             ' Check if .msg file already exists (skip if folder/files exist)
             WriteLog "    DEBUG: Checking if MSG file exists..."
-            If Dir(msgFilePath) <> "" Then
-                WriteLog "    SKIP: .msg file already exists - " & msgFileName
-            Else
-                WriteLog "    Creating folder and saving .msg file..."
-                WriteLog "    DEBUG: About to create directory path: " & subjectAttachmentFolder
-                
-                On Error Resume Next
-                CreateDirectoryPath subjectAttachmentFolder
-                If Err.Number <> 0 Then
-                    WriteLog "    ERROR: Failed to create directory: " & Err.Description & " (Error " & Err.Number & ")"
-                    Err.Clear
-                    On Error GoTo ErrorHandler
-                    GoTo NextItem
-                End If
-                On Error GoTo ErrorHandler
-                WriteLog "    DEBUG: Directory creation successful"
-                
-                On Error Resume Next
+            If Dir(msgFilePath) = "" Then
+                ' Save MSG file if it doesn't exist
                 mailItem.SaveAs msgFilePath, olMSG
-                If Err.Number = 0 Then
-                    WriteLog "    Saved .msg file: " & msgFileName
-                Else
-                    WriteLog "    Failed to save .msg file: " & Err.Description
-                End If
-                ' Clear any error before continuing
-                Err.Clear
-                On Error GoTo ErrorHandler
             End If
+            ' ALWAYS process email for JSON (outside the IF block)
             
             ' Build JSON entry for this email
             WriteLog "    DEBUG: MSG file processing complete, starting JSON build..."
