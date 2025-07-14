@@ -1,13 +1,3 @@
-VERSION 1.0 CLASS
-BEGIN
-  MultiUse = -1  'True
-END
-Attribute VB_Name = "EmailEventHandler"
-Attribute VB_GlobalNameSpace = False
-Attribute VB_Creatable = False
-Attribute VB_PredeclaredId = False
-Attribute VB_Exposed = False
-
 Option Explicit
 
 ' Email Event Handler Class
@@ -19,10 +9,8 @@ Private WithEvents olInboxItems As Outlook.Items
 Private targetInboxFolder As Outlook.Folder
 Private isActive As Boolean
 
-' Get constants from main module via accessor functions
-Private Function GetTargetAccountName() As String
-    GetTargetAccountName = "IRM-Standardisation-Office"
-End Function
+' Constants from main module
+Private Const TARGET_ACCOUNT As String = "IRM-Standardisation-Office"
 
 ' Initialize the event handler
 Public Function StartMonitoring() As Boolean
@@ -42,7 +30,7 @@ Public Function StartMonitoring() As Boolean
     Set targetStore = Nothing
     
     For Each store In olNamespace.Stores
-        If InStr(UCase(store.DisplayName), UCase(GetTargetAccountName())) > 0 Then
+        If InStr(UCase(store.DisplayName), UCase(TARGET_ACCOUNT)) > 0 Then
             Set targetStore = store
             WriteLog "Found target store: " & store.DisplayName
             Exit For
@@ -50,7 +38,7 @@ Public Function StartMonitoring() As Boolean
     Next store
     
     If targetStore Is Nothing Then
-        WriteLog "ERROR: Target account '" & GetTargetAccountName() & "' not found"
+        WriteLog "ERROR: Target account '" & TARGET_ACCOUNT & "' not found"
         StartMonitoring = False
         Exit Function
     End If

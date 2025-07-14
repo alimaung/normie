@@ -40,8 +40,25 @@ class OutlookService:
                 logger.warning(f"Emails file not found: {self.emails_file}")
                 return self._get_empty_data_structure()
             
-            with open(self.emails_file, 'r', encoding='utf-8') as f:
-                data = json.load(f)
+            # Try multiple encodings to handle Windows-generated files
+            encodings = ['utf-8', 'utf-8-sig', 'cp1252', 'iso-8859-1', 'latin-1']
+            data = None
+            
+            for encoding in encodings:
+                try:
+                    with open(self.emails_file, 'r', encoding=encoding) as f:
+                        data = json.load(f)
+                    logger.debug(f"Successfully read file with encoding: {encoding}")
+                    break
+                except UnicodeDecodeError:
+                    continue
+                except json.JSONDecodeError as e:
+                    logger.error(f"JSON decode error with encoding {encoding}: {str(e)}")
+                    continue
+            
+            if data is None:
+                logger.error("Failed to read file with any encoding")
+                return self._get_empty_data_structure()
                 
             # Add unique IDs to emails if not present
             for i, email in enumerate(data.get('emails', [])):
@@ -113,7 +130,7 @@ class OutlookService:
                 'has_next': page < total_pages,
                 'start_index': start_index + 1 if total_count > 0 else 0,
                 'end_index': min(end_index, total_count),
-                'page_range': range(max(1, page - 2), min(total_pages + 1, page + 3))
+                'page_range': list(range(max(1, page - 2), min(total_pages + 1, page + 3)))
             }
             
             logger.debug(f"Returning {len(paginated_emails)} emails (page {page}/{pagination_info['total_pages']})")
@@ -121,7 +138,17 @@ class OutlookService:
             
         except Exception as e:
             logger.error(f"Error getting emails list: {str(e)}")
-            return [], {'current_page': 1, 'per_page': per_page, 'total_count': 0, 'total_pages': 0}
+            return [], {
+                'current_page': 1, 
+                'per_page': per_page, 
+                'total_count': 0, 
+                'total_pages': 0,
+                'has_previous': False,
+                'has_next': False,
+                'start_index': 0,
+                'end_index': 0,
+                'page_range': []
+            }
 
     def get_email_by_id(self, email_id: str) -> Optional[Dict]:
         """

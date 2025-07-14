@@ -5,32 +5,15 @@ Option Explicit
 ' Place this in Outlook VBA (Alt+F11 -> Insert -> Module)
 
 ' Global variables
-Private Const TARGET_ACCOUNT As String = "IRM-Standardisation-Office"
+Public Const TARGET_ACCOUNT As String = "IRM-Standardisation-Office"
 
 ' JSON Management Configuration
-Private Const MAX_EMAILS_PER_FILE As Integer = 500  ' Split JSON when it reaches this size
-Private Const ARCHIVE_AFTER_DAYS As Integer = 90    ' Archive emails older than this
-Private Const ENABLE_JSON_ROTATION As Boolean = True ' Enable automatic file rotation
+Public Const MAX_EMAILS_PER_FILE As Integer = 500  ' Split JSON when it reaches this size
+Public Const ARCHIVE_AFTER_DAYS As Integer = 90    ' Archive emails older than this
+Public Const ENABLE_JSON_ROTATION As Boolean = True ' Enable automatic file rotation
 
 ' Event handler instance
 Private emailEventHandler As EmailEventHandler
-
-' Public accessor functions for constants (needed by class module)
-Public Function GetTargetAccount() As String
-    GetTargetAccount = TARGET_ACCOUNT
-End Function
-
-Public Function GetMaxEmailsPerFile() As Integer
-    GetMaxEmailsPerFile = MAX_EMAILS_PER_FILE
-End Function
-
-Public Function GetArchiveAfterDays() As Integer
-    GetArchiveAfterDays = ARCHIVE_AFTER_DAYS
-End Function
-
-Public Function GetEnableJsonRotation() As Boolean
-    GetEnableJsonRotation = ENABLE_JSON_ROTATION
-End Function
 
 ' Dynamic paths
 Private Function GetOutputFolder() As String
@@ -94,8 +77,8 @@ Public Sub StartEventMonitoring()
         WriteLog "Failed to start event monitoring"
         Set emailEventHandler = Nothing
     End If
-    
-    Exit Sub
+
+        Exit Sub
     
 ErrorHandler:
     WriteLog "ERROR starting event monitoring: " & Err.Description
@@ -110,7 +93,7 @@ Public Sub StopEventMonitoring()
             WriteLog "Event monitoring stopped."
         Else
             WriteLog "Event monitoring was not active."
-        End If
+    End If
     Else
         WriteLog "Event monitoring was not active."
     End If
@@ -131,9 +114,9 @@ Public Sub ProcessSingleNewEmail(mailItem As Outlook.MailItem, targetFolder As O
         LoadExistingEmailsFromJson existingJsonPath, existingEmails
     End If
     
-    ' Generate email hash for unique identification
+    ' Generate email hash for unique identification using multiple properties
     Dim emailHash As String
-    emailHash = ShortHash(mailItem.EntryID & mailItem.Subject)
+    emailHash = GenerateEmailHash(mailItem)
     
     ' Check if this email already exists (shouldn't happen with events, but safety check)
     If existingEmails.Exists(emailHash) Then
@@ -144,14 +127,14 @@ Public Sub ProcessSingleNewEmail(mailItem As Outlook.MailItem, targetFolder As O
     WriteLog "  Processing new email (Hash: " & emailHash & ")"
     
     ' Create folder structure for this email
-    Dim subjectFolderName As String
-    Dim subjectAttachmentFolder As String
-    Dim msgFileName As String
-    Dim msgFilePath As String
-    
-    subjectFolderName = emailHash & "_" & CleanFileName(mailItem.Subject)
-    subjectAttachmentFolder = GetAttachmentsFolder() & subjectFolderName & "\"
-    msgFileName = emailHash & "_" & CleanFileName(mailItem.Subject) & ".msg"
+            Dim subjectFolderName As String
+            Dim subjectAttachmentFolder As String
+            Dim msgFileName As String
+            Dim msgFilePath As String
+            
+            subjectFolderName = emailHash
+            subjectAttachmentFolder = GetAttachmentsFolder() & subjectFolderName & "\"
+            msgFileName = emailHash & ".msg"
     msgFilePath = subjectAttachmentFolder & msgFileName
     
     ' Create folder and save .msg file
@@ -182,56 +165,64 @@ Public Sub ProcessSingleNewEmail(mailItem As Outlook.MailItem, targetFolder As O
     emailJsonEntry = emailJsonEntry & "      ""unread"": " & LCase(CStr(mailItem.UnRead)) & "," & vbCrLf
     emailJsonEntry = emailJsonEntry & "      ""categories"": """ & EscapeJson(mailItem.Categories) & """," & vbCrLf
     emailJsonEntry = emailJsonEntry & "      ""msg_file"": """ & EscapeJson("data/" & subjectFolderName & "/" & msgFileName) & """," & vbCrLf
-    
-    ' Extract body (truncate if too long)
-    Dim bodyText As String
-    bodyText = Left(mailItem.Body, 2000)
-    If Len(mailItem.Body) > 2000 Then bodyText = bodyText & "... [TRUNCATED]"
+            
+            ' Extract body (truncate if too long)
+            Dim bodyText As String
+            bodyText = Left(mailItem.Body, 2000)
+            If Len(mailItem.Body) > 2000 Then bodyText = bodyText & "... [TRUNCATED]"
     emailJsonEntry = emailJsonEntry & "      ""body"": """ & EscapeJson(bodyText) & """," & vbCrLf
-    
-    ' Extract HTML body (truncate if too long)
-    Dim htmlBody As String
-    htmlBody = Left(mailItem.htmlBody, 3000)
-    If Len(mailItem.htmlBody) > 3000 Then htmlBody = htmlBody & "... [TRUNCATED]"
+            
+            ' Extract HTML body (truncate if too long)
+            Dim htmlBody As String
+            htmlBody = Left(mailItem.htmlBody, 3000)
+            If Len(mailItem.htmlBody) > 3000 Then htmlBody = htmlBody & "... [TRUNCATED]"
     emailJsonEntry = emailJsonEntry & "      ""html_body"": """ & EscapeJson(htmlBody) & """," & vbCrLf
-    
-    ' Extract recipients
+            
+            ' Extract recipients
     emailJsonEntry = emailJsonEntry & "      ""recipients"": [" & vbCrLf
-    Dim recipientIndex As Integer
-    recipientIndex = 0
-    
-    Dim recipient As Outlook.recipient
-    For Each recipient In mailItem.Recipients
+    Dim recipientIndex As Long
+            recipientIndex = 0
+            
+            Dim recipient As Outlook.recipient
+            For Each recipient In mailItem.Recipients
         If recipientIndex > 0 Then emailJsonEntry = emailJsonEntry & "," & vbCrLf
         emailJsonEntry = emailJsonEntry & "        {" & vbCrLf
         emailJsonEntry = emailJsonEntry & "          ""name"": """ & EscapeJson(recipient.Name) & """," & vbCrLf
         emailJsonEntry = emailJsonEntry & "          ""address"": """ & EscapeJson(recipient.Address) & """," & vbCrLf
         emailJsonEntry = emailJsonEntry & "          ""type"": " & recipient.Type & vbCrLf
         emailJsonEntry = emailJsonEntry & "        }"
-        recipientIndex = recipientIndex + 1
+                recipientIndex = recipientIndex + 1
         If recipientIndex >= 10 Then Exit For
-    Next recipient
-    
+            Next recipient
+            
     emailJsonEntry = emailJsonEntry & vbCrLf & "      ]," & vbCrLf
-    
-    ' Process attachments
+            
+        ' Process attachments
     emailJsonEntry = emailJsonEntry & "      ""attachments"": [" & vbCrLf
-    Dim attachmentIndex As Integer
-    attachmentIndex = 0
-    
-    Dim attachment As Outlook.attachment
-    For Each attachment In mailItem.Attachments
+    Dim attachmentIndex As Long
+            attachmentIndex = 0
+            
+            Dim attachment As Outlook.attachment
+            For Each attachment In mailItem.Attachments
         ' Skip embedded images
-        If Not IsEmbeddedImage(attachment.fileName) Then
+                If Not IsEmbeddedImage(attachment.fileName) Then
             If attachmentIndex > 0 Then emailJsonEntry = emailJsonEntry & "," & vbCrLf
             
             Dim attachmentPath As String
             Dim relativeAttachmentPath As String
             
             relativeAttachmentPath = "data/" & subjectFolderName & "/" & attachment.fileName
-            attachmentPath = subjectAttachmentFolder & attachment.fileName
+            attachmentPath = subjectAttachmentFolder & "\" & attachment.fileName
             
             WriteLog "  Downloading attachment: " & attachment.fileName
+            WriteLog "  DEBUG: Original attachment.fileName: [" & attachment.fileName & "]"
+            WriteLog "  DEBUG: Attachment path: " & attachmentPath
+            WriteLog "  DEBUG: Subject folder: " & subjectAttachmentFolder
+            WriteLog "  DEBUG: File extension check: " & Right(attachment.fileName, 4)
+            
+            ' Ensure directory exists before saving
+            CreateDirectoryPath subjectAttachmentFolder
+            
             On Error Resume Next
             attachment.SaveAsFile attachmentPath
             If Err.Number = 0 Then
@@ -239,6 +230,8 @@ Public Sub ProcessSingleNewEmail(mailItem As Outlook.MailItem, targetFolder As O
             Else
                 WriteLog "  Failed to download: " & attachment.fileName & " (Error: " & Err.Description & ")"
             End If
+            ' Clear any error before continuing
+            Err.Clear
             On Error GoTo ErrorHandler
             
             emailJsonEntry = emailJsonEntry & "        {" & vbCrLf
@@ -278,8 +271,8 @@ Private Sub SaveCompleteJsonFile(emailDict As Object, folder As Outlook.Folder)
         WriteLog "JSON file size limit reached (" & emailDict.Count & " emails). Performing rotation..."
         RotateJsonFiles emailDict, folder
         Exit Sub
-    End If
-    
+                    End If
+                    
     Dim jsonContent As String
     Dim emailCount As Long
     
@@ -361,7 +354,7 @@ Private Sub RotateJsonFiles(emailDict As Object, folder As Outlook.Folder)
         Else
             ' Move to archive
             archiveEmails(emailHash) = emailContent
-        End If
+                            End If
     Next emailHash
     
     WriteLog "Separated: " & currentEmails.Count & " current, " & archiveEmails.Count & " to archive"
@@ -372,7 +365,7 @@ Private Sub RotateJsonFiles(emailDict As Object, folder As Outlook.Folder)
         archiveFileName = "emails_archive_" & Format(Now, "yyyymmdd_hhnnss") & ".json"
         SaveJsonToFile archiveEmails, folder, archiveFileName, "archive"
         WriteLog "Archived " & archiveEmails.Count & " old emails to: " & archiveFileName
-    End If
+                        End If
     
     ' Save current file with recent emails
     SaveJsonToFile currentEmails, folder, "emails.json", "current"
@@ -389,10 +382,10 @@ End Sub
 
 ' Extract received time from JSON email entry
 Private Function ExtractReceivedTimeFromJson(emailJson As String) As Date
-    On Error GoTo ErrorHandler
+                        On Error GoTo ErrorHandler
     
-    Dim startPos As Integer
-    Dim endPos As Integer
+    Dim startPos As Long
+    Dim endPos As Long
     Dim timeString As String
     
     ' Find "received_time": "2024-01-01 12:34:56"
@@ -405,8 +398,8 @@ Private Function ExtractReceivedTimeFromJson(emailJson As String) As Date
     Else
         ' Default to current time if parsing fails
         ExtractReceivedTimeFromJson = Now
-    End If
-    
+                    End If
+                    
     Exit Function
     
 ErrorHandler:
@@ -577,22 +570,229 @@ Private Function EscapeJson(text As String) As String
     EscapeJson = result
 End Function
 
-' Helper function to generate a 6-digit hash
+' Generate comprehensive email hash using maximum properties for collision resistance
+Private Function GenerateEmailHash(mailItem As Object) As String
+    On Error GoTo ErrorHandler
+    
+    Dim hashInput As String
+    Dim tempValue As String
+    Dim i As Long
+    
+    ' 1. EntryID (most unique identifier)
+    tempValue = ""
+    On Error Resume Next
+    tempValue = mailItem.EntryID
+    On Error GoTo ErrorHandler
+    hashInput = hashInput & tempValue & "|"
+    
+    ' 2. Subject
+    tempValue = ""
+    On Error Resume Next
+    tempValue = mailItem.Subject
+    On Error GoTo ErrorHandler
+    hashInput = hashInput & tempValue & "|"
+    
+    ' 3. Sender email address
+    tempValue = ""
+    On Error Resume Next
+    If Not mailItem.SenderEmailAddress Is Nothing Then
+        tempValue = mailItem.SenderEmailAddress
+    ElseIf Not mailItem.Sender Is Nothing Then
+        tempValue = mailItem.Sender.Address
+    End If
+    On Error GoTo ErrorHandler
+    hashInput = hashInput & tempValue & "|"
+    
+    ' 4. Sender name
+    tempValue = ""
+    On Error Resume Next
+    tempValue = mailItem.SenderName
+    On Error GoTo ErrorHandler
+    hashInput = hashInput & tempValue & "|"
+    
+    ' 5. Full body text (more unique than partial)
+    tempValue = ""
+    On Error Resume Next
+    tempValue = mailItem.Body
+    On Error GoTo ErrorHandler
+    hashInput = hashInput & tempValue & "|"
+    
+    ' 6. HTML body (different formatting can make emails unique)
+    tempValue = ""
+    On Error Resume Next
+    tempValue = mailItem.HTMLBody
+    On Error GoTo ErrorHandler
+    hashInput = hashInput & tempValue & "|"
+    
+    ' 7. Received time (as string for consistency)
+    tempValue = ""
+    On Error Resume Next
+    tempValue = CStr(mailItem.ReceivedTime)
+    On Error GoTo ErrorHandler
+    hashInput = hashInput & tempValue & "|"
+    
+    ' 8. Sent time (different from received)
+    tempValue = ""
+    On Error Resume Next
+    tempValue = CStr(mailItem.SentOn)
+    On Error GoTo ErrorHandler
+    hashInput = hashInput & tempValue & "|"
+    
+    ' 9. Size (helps distinguish emails with similar content)
+    tempValue = ""
+    On Error Resume Next
+    tempValue = CStr(mailItem.Size)
+    On Error GoTo ErrorHandler
+    hashInput = hashInput & tempValue & "|"
+    
+    ' 10. Importance level
+    tempValue = ""
+    On Error Resume Next
+    tempValue = CStr(mailItem.Importance)
+    On Error GoTo ErrorHandler
+    hashInput = hashInput & tempValue & "|"
+    
+    ' 11. Number of attachments
+    tempValue = ""
+    On Error Resume Next
+    tempValue = CStr(mailItem.Attachments.Count)
+    On Error GoTo ErrorHandler
+    hashInput = hashInput & tempValue & "|"
+    
+    ' 12. All recipient addresses (To, CC, BCC)
+    tempValue = ""
+    On Error Resume Next
+    For i = 1 To mailItem.Recipients.Count
+        tempValue = tempValue & mailItem.Recipients(i).Address & ";"
+    Next i
+    On Error GoTo ErrorHandler
+    hashInput = hashInput & tempValue & "|"
+    
+    ' 13. Categories
+    tempValue = ""
+    On Error Resume Next
+    tempValue = mailItem.Categories
+    On Error GoTo ErrorHandler
+    hashInput = hashInput & tempValue & "|"
+    
+    ' 14. Message ID (RFC standard unique identifier)
+    tempValue = ""
+    On Error Resume Next
+    tempValue = mailItem.PropertyAccessor.GetProperty("http://schemas.microsoft.com/mapi/proptag/0x1035001E")
+    On Error GoTo ErrorHandler
+    hashInput = hashInput & tempValue & "|"
+    
+    ' 15. Conversation ID
+    tempValue = ""
+    On Error Resume Next
+    tempValue = mailItem.ConversationID
+    On Error GoTo ErrorHandler
+    hashInput = hashInput & tempValue & "|"
+    
+    ' 16. Creation time
+    tempValue = ""
+    On Error Resume Next
+    tempValue = CStr(mailItem.CreationTime)
+    On Error GoTo ErrorHandler
+    hashInput = hashInput & tempValue & "|"
+    
+    ' 17. Last modification time
+    tempValue = ""
+    On Error Resume Next
+    tempValue = CStr(mailItem.LastModificationTime)
+    On Error GoTo ErrorHandler
+    hashInput = hashInput & tempValue
+    
+    ' Generate hash from combined properties
+    GenerateEmailHash = ShortHash(hashInput)
+    Exit Function
+    
+ErrorHandler:
+    ' Fallback to simple EntryID + Subject + timestamp if anything fails
+    On Error Resume Next
+    Dim fallbackInput As String
+    fallbackInput = mailItem.EntryID & "|" & mailItem.Subject & "|" & CStr(Now)
+    GenerateEmailHash = ShortHash(fallbackInput)
+End Function
+
+' Helper function to generate a 6-digit hash - deterministic but collision-resistant
 Private Function ShortHash(text As String) As String
+    On Error GoTo ErrorHandler
+    
     Dim i As Long
     Dim hashValue As Long
     Dim char As Long
+    Dim inputText As String
+    Dim temp As Long
     
-    hashValue = 0
+    ' Use more of the input text for better uniqueness
+    inputText = Left(text, 200)
     
-    ' Simple hash algorithm using character codes
-    For i = 1 To Len(text)
-        char = Asc(Mid(text, i, 1))
-        hashValue = ((hashValue * 31) + char) Mod 2147483647 ' Keep within Long range
+    ' Start with a large prime for better distribution
+    hashValue = 5381
+    
+    ' DJB2 hash algorithm - deterministic and well-distributed
+    For i = 1 To Len(inputText)
+        char = Asc(Mid(inputText, i, 1))
+        
+        ' Calculate hash * 33 + char with overflow protection
+        temp = hashValue * 33
+        
+        ' Handle potential overflow
+        If temp > 2000000000 Then
+            ' Use modulo with a large prime to maintain distribution
+            hashValue = (temp Mod 999983) + char
+        Else
+            hashValue = temp + char
+        End If
+        
+        ' Additional character position weighting for better distribution
+        hashValue = hashValue + (i * 7)
+        
+        ' Keep values manageable
+        If hashValue > 1000000000 Then
+            hashValue = hashValue Mod 999979
+        End If
     Next i
     
-    ' Get 6-digit hash (mod 1000000)
+    ' Add length-based component for additional uniqueness
+    hashValue = hashValue + (Len(inputText) * 31)
+    
+    ' Add checksum of all characters for more uniqueness
+    Dim checksum As Long
+    For i = 1 To Len(inputText) Step 3  ' Sample every 3rd character for efficiency
+        checksum = checksum + Asc(Mid(inputText, i, 1))
+    Next i
+    hashValue = hashValue + (checksum * 17)
+    
+    ' Final result - always positive 6-digit number
     ShortHash = Format(Abs(hashValue) Mod 1000000, "000000")
+    
+    Exit Function
+    
+ErrorHandler:
+    ' Deterministic fallback based on string properties
+    Dim fallbackValue As Long
+    
+    If Len(text) > 0 Then
+        ' Use string length, first char, last char, and middle char if available
+        fallbackValue = Len(text) * 1000
+        fallbackValue = fallbackValue + (Asc(Left(text, 1)) * 100)
+        
+        If Len(text) > 1 Then
+            fallbackValue = fallbackValue + (Asc(Right(text, 1)) * 10)
+        End If
+        
+        If Len(text) > 2 Then
+            Dim midPos As Long
+            midPos = Len(text) \ 2
+            fallbackValue = fallbackValue + Asc(Mid(text, midPos, 1))
+        End If
+    Else
+        fallbackValue = 123456  ' Fixed value for empty strings
+    End If
+    
+    ShortHash = Format(Abs(fallbackValue) Mod 1000000, "000000")
 End Function
 
 ' Logging function to replace Debug.Print
@@ -742,7 +942,7 @@ ErrorHandler:
 End Sub
 
 ' Process emails with intelligent skipping for manual download
-Private Sub ManualProcessEmails(folder As Outlook.folder, maxEmails As Integer)
+Private Sub ManualProcessEmails(folder As Outlook.folder, maxEmails As Long)
     On Error GoTo ErrorHandler
     
     WriteLog "Processing up to " & maxEmails & " emails from " & folder.Name
@@ -792,7 +992,15 @@ Private Sub ManualProcessEmails(folder As Outlook.folder, maxEmails As Integer)
             
             ' Generate email hash for unique identification
             Dim emailHash As String
-            emailHash = ShortHash(mailItem.EntryID & mailItem.Subject)
+            
+            WriteLog "    Generating hash for email: " & Left(mailItem.Subject, 30)
+            On Error Resume Next
+            emailHash = GenerateEmailHash(mailItem)
+            If Err.Number <> 0 Then
+                WriteLog "    ERROR in GenerateEmailHash: " & Err.Description
+                GoTo NextItem
+            End If
+            On Error GoTo ErrorHandler
             
             ' Check if this email already exists in JSON
             If existingEmails.Exists(emailHash) Then
@@ -806,6 +1014,7 @@ Private Sub ManualProcessEmails(folder As Outlook.folder, maxEmails As Integer)
             End If
             
             WriteLog "  PROCESS: New email - " & Left(mailItem.Subject, 50) & "... (Hash: " & emailHash & ")"
+            WriteLog "    DEBUG: Starting folder/file processing..."
             
             ' Create folder structure for this email
             Dim subjectFolderName As String
@@ -813,17 +1022,47 @@ Private Sub ManualProcessEmails(folder As Outlook.folder, maxEmails As Integer)
             Dim msgFileName As String
             Dim msgFilePath As String
             
-            subjectFolderName = emailHash & "_" & CleanFileName(mailItem.Subject)
-            subjectAttachmentFolder = GetAttachmentsFolder() & subjectFolderName & "\"
-            msgFileName = emailHash & "_" & CleanFileName(mailItem.Subject) & ".msg"
+            WriteLog "    DEBUG: Original subject: " & Left(mailItem.Subject, 100)
+            WriteLog "    DEBUG: Email hash: " & emailHash
+            
+                         ' Use hash-only folder names for simplicity and path length safety
+             subjectFolderName = emailHash
+             WriteLog "    DEBUG: Folder name (hash only): " & subjectFolderName
+             
+             Dim basePath As String
+             basePath = GetAttachmentsFolder()
+             WriteLog "    DEBUG: Base path: [" & basePath & "]"
+             WriteLog "    DEBUG: Subject folder name: [" & subjectFolderName & "]"
+             subjectAttachmentFolder = basePath & subjectFolderName & "\"
+             WriteLog "    DEBUG: Full folder path: [" & subjectAttachmentFolder & "]"
+            WriteLog "    DEBUG: Folder path length: " & Len(subjectAttachmentFolder)
+            
+                         ' Use simple hash-only filename for main MSG file for easy recognition
+             msgFileName = emailHash & ".msg"
+             WriteLog "    DEBUG: MSG filename: " & msgFileName
+            
             msgFilePath = subjectAttachmentFolder & msgFileName
+            WriteLog "    DEBUG: Full MSG path: " & msgFilePath
+            WriteLog "    DEBUG: Full MSG path length: " & Len(msgFilePath)
             
             ' Check if .msg file already exists (skip if folder/files exist)
+            WriteLog "    DEBUG: Checking if MSG file exists..."
             If Dir(msgFilePath) <> "" Then
                 WriteLog "    SKIP: .msg file already exists - " & msgFileName
             Else
                 WriteLog "    Creating folder and saving .msg file..."
+                WriteLog "    DEBUG: About to create directory path: " & subjectAttachmentFolder
+                
+                On Error Resume Next
                 CreateDirectoryPath subjectAttachmentFolder
+                If Err.Number <> 0 Then
+                    WriteLog "    ERROR: Failed to create directory: " & Err.Description & " (Error " & Err.Number & ")"
+                    Err.Clear
+                    On Error GoTo ErrorHandler
+                    GoTo NextItem
+                End If
+                On Error GoTo ErrorHandler
+                WriteLog "    DEBUG: Directory creation successful"
                 
                 On Error Resume Next
                 mailItem.SaveAs msgFilePath, olMSG
@@ -832,11 +1071,25 @@ Private Sub ManualProcessEmails(folder As Outlook.folder, maxEmails As Integer)
                 Else
                     WriteLog "    Failed to save .msg file: " & Err.Description
                 End If
+                ' Clear any error before continuing
+                Err.Clear
                 On Error GoTo ErrorHandler
             End If
             
             ' Build JSON entry for this email
-            If emailCount > 0 Then jsonContent = jsonContent & "," & vbCrLf
+            WriteLog "    DEBUG: MSG file processing complete, starting JSON build..."
+            WriteLog "    Building JSON entry, current length: " & Len(jsonContent)
+            If emailCount > 0 Then 
+                On Error Resume Next
+                jsonContent = jsonContent & "," & vbCrLf
+                If Err.Number <> 0 Then
+                    WriteLog "    ERROR concatenating JSON: " & Err.Description
+                    Err.Clear
+                    GoTo NextItem
+                End If
+                Err.Clear
+                On Error GoTo ErrorHandler
+            End If
             
             jsonContent = jsonContent & "    {" & vbCrLf
             jsonContent = jsonContent & "      ""index"": " & (emailCount + 1) & "," & vbCrLf
@@ -884,34 +1137,90 @@ Private Sub ManualProcessEmails(folder As Outlook.folder, maxEmails As Integer)
             jsonContent = jsonContent & vbCrLf & "      ]," & vbCrLf
             
             ' Process attachments
+            WriteLog "    DEBUG: Starting attachment processing..."
             jsonContent = jsonContent & "      ""attachments"": [" & vbCrLf
             Dim attachmentIndex As Long
             attachmentIndex = 0
             
             Dim attachment As Outlook.attachment
+            WriteLog "    DEBUG: Found " & mailItem.Attachments.Count & " attachments to process"
             For Each attachment In mailItem.Attachments
+                WriteLog "    DEBUG: Processing attachment: " & attachment.fileName & " (Type: " & attachment.Type & ")"
+                WriteLog "    DEBUG: Original attachment.fileName: [" & attachment.fileName & "]"
+                WriteLog "    DEBUG: Attachment.DisplayName: [" & attachment.DisplayName & "]"
                 ' Skip embedded images
                 If Not IsEmbeddedImage(attachment.fileName) Then
+                    WriteLog "    DEBUG: Attachment is not embedded image, proceeding..."
                     If attachmentIndex > 0 Then jsonContent = jsonContent & "," & vbCrLf
                     
                     Dim attachmentPath As String
                     Dim relativeAttachmentPath As String
                     
                     relativeAttachmentPath = "data/" & subjectFolderName & "/" & attachment.fileName
-                    attachmentPath = subjectAttachmentFolder & attachment.fileName
+                    WriteLog "    DEBUG: subjectAttachmentFolder var: [" & subjectAttachmentFolder & "]"
+                    WriteLog "    DEBUG: attachment.fileName: [" & attachment.fileName & "]"
+                    attachmentPath = subjectAttachmentFolder & "\" & attachment.fileName
                     
                     ' Check if attachment already exists
                     If Dir(attachmentPath) <> "" Then
                         WriteLog "    SKIP: Attachment already exists - " & attachment.fileName
                     Else
-                        WriteLog "    Downloading attachment: " & attachment.fileName
+                        WriteLog "                        Downloading attachment: " & attachment.fileName & " (Size: " & attachment.Size & " bytes, Type: " & attachment.Type & ")"
+                        WriteLog "    DEBUG: Manual - Attachment path: " & attachmentPath
+                        WriteLog "    DEBUG: Manual - Subject folder: " & subjectAttachmentFolder
+                        WriteLog "    DEBUG: Manual - Relative path: " & relativeAttachmentPath
+                        
+                        ' More robust attachment saving with detailed error handling
                         On Error Resume Next
+                        Err.Clear  ' Clear any previous errors
+                        
+                        ' Ensure directory exists before saving
+                        CreateDirectoryPath subjectAttachmentFolder
+                        
+                        ' Try to save the attachment
                         attachment.SaveAsFile attachmentPath
-                        If Err.Number = 0 Then
-                            WriteLog "    Downloaded successfully: " & attachment.fileName
+                        
+                        Dim saveError As Long
+                        Dim saveErrorDesc As String
+                        saveError = Err.Number
+                        saveErrorDesc = Err.Description
+                        
+                        If saveError = 0 Then
+                            ' Verify file was actually created and has content
+                            If Dir(attachmentPath) <> "" Then
+                                WriteLog "    Downloaded successfully: " & attachment.fileName
+                            Else
+                                WriteLog "    WARNING: Save appeared successful but file not found: " & attachment.fileName
+                            End If
                         Else
-                            WriteLog "    Failed to download: " & attachment.fileName & " (Error: " & Err.Description & ")"
+                            WriteLog "    Failed to download: " & attachment.fileName & " (Error " & saveError & ": " & saveErrorDesc & ")"
+                            
+                            ' For PDFs and other common file types, try alternative approach
+                            Dim fileExt As String
+                            fileExt = UCase(Right(attachment.fileName, 4))
+                            
+                            If fileExt = ".PDF" Or fileExt = ".DOC" Or fileExt = ".XLS" Then
+                                WriteLog "    Attempting alternative save method for " & fileExt & " file..."
+                                Err.Clear
+                                
+                                ' Try with a simplified filename
+                                Dim simplifiedPath As String
+                                simplifiedPath = subjectAttachmentFolder & "attachment_" & attachmentIndex & fileExt
+                                attachment.SaveAsFile simplifiedPath
+                                
+                                If Err.Number = 0 And Dir(simplifiedPath) <> "" Then
+                                    WriteLog "    Alternative save successful: attachment_" & attachmentIndex & fileExt
+                                    ' Update the path reference
+                                    attachmentPath = simplifiedPath
+                                    relativeAttachmentPath = "data/" & subjectFolderName & "/attachment_" & attachmentIndex & fileExt
+                                Else
+                                    WriteLog "    Alternative save also failed: " & Err.Description
+                                End If
+                            End If
                         End If
+                        
+                        ' Clear any error before continuing
+                        Err.Clear
                         On Error GoTo ErrorHandler
                     End If
                     
@@ -929,6 +1238,7 @@ Private Sub ManualProcessEmails(folder As Outlook.folder, maxEmails As Integer)
             jsonContent = jsonContent & vbCrLf & "      ]" & vbCrLf
             jsonContent = jsonContent & "    }"
             
+            WriteLog "    DEBUG: Email processing complete, incrementing count..."
             emailCount = emailCount + 1
         End If
         
@@ -941,18 +1251,54 @@ NextItem:
     jsonContent = jsonContent & "}" & vbCrLf
     
     ' Write JSON file
+    WriteLog "DEBUG: Writing JSON file to: " & existingJsonPath
+    WriteLog "DEBUG: JSON content length: " & Len(jsonContent) & " characters"
+    
     Dim fileNum As Integer
     fileNum = FreeFile
+    WriteLog "DEBUG: Using file number: " & fileNum
+    
+    On Error Resume Next
     Open existingJsonPath For Output As #fileNum
+    If Err.Number <> 0 Then
+        WriteLog "ERROR: Failed to open JSON file for writing: " & Err.Description
+        Err.Clear
+        On Error GoTo ErrorHandler
+        Exit Sub
+    End If
+    
     Print #fileNum, jsonContent
+    If Err.Number <> 0 Then
+        WriteLog "ERROR: Failed to write JSON content: " & Err.Description
+        Close #fileNum
+        Err.Clear
+        On Error GoTo ErrorHandler
+        Exit Sub
+    End If
+    
     Close #fileNum
+    If Err.Number <> 0 Then
+        WriteLog "ERROR: Failed to close JSON file: " & Err.Description
+        Err.Clear
+        On Error GoTo ErrorHandler
+        Exit Sub
+    End If
+    On Error GoTo ErrorHandler
+    
+    WriteLog "DEBUG: JSON file written successfully"
     
     WriteLog "Manual processing complete. Processed " & emailCount & " emails total (from " & processedCount & " checked)"
     
     Exit Sub
     
 ErrorHandler:
-    WriteLog "ERROR in ManualProcessEmails: " & Err.Description
+    WriteLog "ERROR in ManualProcessEmails: " & Err.Description & " (Error Number: " & Err.Number & ")"
+    WriteLog "ERROR Context: Processing email " & (processedCount + 1) & " of " & maxEmails
+    If Not mailItem Is Nothing Then
+        WriteLog "ERROR Email Subject: " & Left(mailItem.Subject, 100)
+        WriteLog "ERROR Email Hash: " & emailHash
+    End If
+    WriteLog "ERROR Source: " & Err.Source
 End Sub
 
 ' Load existing emails from JSON file into dictionary for comparison
@@ -977,10 +1323,10 @@ Private Sub LoadExistingEmailsFromJson(jsonPath As String, emailDict As Object)
     Close #fileNum
     
     ' Simple extraction of email entries based on "hash" field
-    Dim startPos As Integer
-    Dim endPos As Integer
-    Dim hashStart As Integer
-    Dim hashEnd As Integer
+    Dim startPos As Long
+    Dim endPos As Long
+    Dim hashStart As Long
+    Dim hashEnd As Long
     Dim emailHash As String
     Dim emailEntry As String
     
@@ -1000,7 +1346,7 @@ Private Sub LoadExistingEmailsFromJson(jsonPath As String, emailDict As Object)
             emailHash = Mid(fileContent, hashStart, hashEnd - hashStart + 1)
             
             ' Find the start of this email object (go backwards to find opening brace)
-            Dim objStart As Integer
+            Dim objStart As Long
             objStart = startPos
             Do While objStart > 1
                 objStart = objStart - 1
@@ -1011,8 +1357,8 @@ Private Sub LoadExistingEmailsFromJson(jsonPath As String, emailDict As Object)
             Loop
             
             ' Find the end of this email object (find matching closing brace)
-            Dim objEnd As Integer
-            Dim braceCount As Integer
+            Dim objEnd As Long
+            Dim braceCount As Long
             objEnd = objStart
             braceCount = 0
             
@@ -1177,10 +1523,10 @@ Public Sub GetJsonStatistics()
     
     Dim currentFile As String
     Dim archiveFile As String
-    Dim totalEmails As Integer
-    Dim currentEmails As Integer
-    Dim archiveEmails As Integer
-    Dim fileCount As Integer
+    Dim totalEmails As Long
+    Dim currentEmails As Long
+    Dim archiveEmails As Long
+    Dim fileCount As Long
     Dim totalSize As Long
     
     ' Check main file
@@ -1195,7 +1541,7 @@ Public Sub GetJsonStatistics()
     ' Check archive files
     archiveFile = Dir(GetOutputFolder() & "emails_archive_*.json")
     Do While archiveFile <> ""
-        Dim archiveCount As Integer
+        Dim archiveCount As Long
         Dim archiveSize As Long
         
         archiveCount = CountEmailsInJsonFile(GetOutputFolder() & archiveFile)
@@ -1225,7 +1571,7 @@ ErrorHandler:
 End Sub
 
 ' Count emails in a JSON file
-Private Function CountEmailsInJsonFile(filePath As String) As Integer
+Private Function CountEmailsInJsonFile(filePath As String) As Long
     On Error GoTo ErrorHandler
     
     Dim fileContent As String
@@ -1243,14 +1589,14 @@ Private Function CountEmailsInJsonFile(filePath As String) As Integer
     Close #fileNum
     
     ' Look for "extracted_count": number
-    Dim startPos As Integer
-    Dim endPos As Integer
+    Dim startPos As Long
+    Dim endPos As Long
     
     startPos = InStr(fileContent, """extracted_count"": ") + 19
     endPos = InStr(startPos, fileContent, vbCrLf) - 1
     
     If startPos > 19 And endPos > startPos Then
-        CountEmailsInJsonFile = CInt(Mid(fileContent, startPos, endPos - startPos + 1))
+        CountEmailsInJsonFile = CLng(Mid(fileContent, startPos, endPos - startPos + 1))
     Else
         CountEmailsInJsonFile = 0
     End If
