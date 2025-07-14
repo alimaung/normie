@@ -5,18 +5,15 @@ Option Explicit
 ' Place this in Outlook VBA (Alt+F11 -> Insert -> Module)
 
 ' Global variables
-Private Const TARGET_ACCOUNT As String = "IRM-Standardisation-Office"
+Public Const TARGET_ACCOUNT As String = "IRM-Standardisation-Office"
 
 ' JSON Management Configuration
-Private Const MAX_EMAILS_PER_FILE As Integer = 500  ' Split JSON when it reaches this size
-Private Const ARCHIVE_AFTER_DAYS As Integer = 90    ' Archive emails older than this
-Private Const ENABLE_JSON_ROTATION As Boolean = True ' Enable automatic file rotation
+Public Const MAX_EMAILS_PER_FILE As Integer = 500  ' Split JSON when it reaches this size
+Public Const ARCHIVE_AFTER_DAYS As Integer = 90    ' Archive emails older than this
+Public Const ENABLE_JSON_ROTATION As Boolean = True ' Enable automatic file rotation
 
-' Event-driven variables
-Private WithEvents olApp As Outlook.Application
-Private WithEvents olInboxItems As Outlook.Items
-Private targetInboxFolder As Outlook.Folder
-Private isEventMonitoringActive As Boolean
+' Event handler instance
+Private emailEventHandler As EmailEventHandler
 
 ' Dynamic paths
 Private Function GetOutputFolder() As String
@@ -69,47 +66,17 @@ Public Sub StartEventMonitoring()
     CreateDirectoryPath GetOutputFolder()
     CreateDirectoryPath GetAttachmentsFolder()
     
-    ' Initialize Outlook Application
-    Set olApp = Application
+    ' Create and start the event handler
+    Set emailEventHandler = New EmailEventHandler
     
-    ' Find target account and inbox
-    Dim olNamespace As Outlook.NameSpace
-    Set olNamespace = olApp.GetNamespace("MAPI")
-    
-    Dim store As Outlook.store
-    Dim targetStore As Outlook.store
-    Set targetStore = Nothing
-    
-    For Each store In olNamespace.Stores
-        If InStr(UCase(store.DisplayName), UCase(TARGET_ACCOUNT)) > 0 Then
-            Set targetStore = store
-            WriteLog "Found target store: " & store.DisplayName
-            Exit For
-        End If
-    Next store
-    
-    If targetStore Is Nothing Then
-        WriteLog "ERROR: Target account '" & TARGET_ACCOUNT & "' not found"
-        Exit Sub
+    If emailEventHandler.StartMonitoring() Then
+        WriteLog "Event monitoring started successfully!"
+        WriteLog "New emails will be automatically processed as they arrive"
+        WriteLog "To stop monitoring, run StopEventMonitoring"
+    Else
+        WriteLog "Failed to start event monitoring"
+        Set emailEventHandler = Nothing
     End If
-    
-    ' Get inbox folder
-    Dim rootFolder As Outlook.Folder
-    Set rootFolder = targetStore.GetRootFolder
-    Set targetInboxFolder = FindFolderByName(rootFolder, "Inbox")
-    
-    If targetInboxFolder Is Nothing Then
-        WriteLog "ERROR: Inbox folder not found"
-        Exit Sub
-    End If
-    
-    ' Set up event monitoring for the inbox
-    Set olInboxItems = targetInboxFolder.Items
-    isEventMonitoringActive = True
-    
-    WriteLog "Event monitoring started successfully!"
-    WriteLog "New emails will be automatically processed as they arrive"
-    WriteLog "To stop monitoring, run StopEventMonitoring"
     
     Exit Sub
     
@@ -119,43 +86,21 @@ End Sub
 
 ' Stop event monitoring
 Public Sub StopEventMonitoring()
-    If isEventMonitoringActive Then
-        Set olInboxItems = Nothing
-        Set olApp = Nothing
-        Set targetInboxFolder = Nothing
-        isEventMonitoringActive = False
-        WriteLog "Event monitoring stopped."
+    If Not emailEventHandler Is Nothing Then
+        If emailEventHandler.IsMonitoringActive() Then
+            emailEventHandler.StopMonitoring
+            Set emailEventHandler = Nothing
+            WriteLog "Event monitoring stopped."
+        Else
+            WriteLog "Event monitoring was not active."
+        End If
     Else
         WriteLog "Event monitoring was not active."
     End If
 End Sub
 
-' Event handler - automatically triggered when new email arrives
-Private Sub olInboxItems_ItemAdd(ByVal Item As Object)
-    On Error GoTo ErrorHandler
-    
-    ' Only process mail items
-    If TypeOf Item Is Outlook.MailItem Then
-        Dim mailItem As Outlook.MailItem
-        Set mailItem = Item
-        
-        WriteLog "=== NEW EMAIL DETECTED ==="
-        WriteLog "Subject: " & mailItem.Subject
-        WriteLog "From: " & mailItem.SenderName & " (" & mailItem.SenderEmailAddress & ")"
-        WriteLog "Received: " & Format(mailItem.ReceivedTime, "yyyy-mm-dd hh:nn:ss")
-        
-        ' Process this single new email
-        ProcessSingleNewEmail mailItem
-    End If
-    
-    Exit Sub
-    
-ErrorHandler:
-    WriteLog "ERROR in olInboxItems_ItemAdd: " & Err.Description
-End Sub
-
 ' Process a single new email (called by event handler)
-Private Sub ProcessSingleNewEmail(mailItem As Outlook.MailItem)
+Public Sub ProcessSingleNewEmail(mailItem As Outlook.MailItem, targetFolder As Outlook.Folder)
     On Error GoTo ErrorHandler
     
     ' Load existing JSON to append to it
@@ -297,7 +242,7 @@ Private Sub ProcessSingleNewEmail(mailItem As Outlook.MailItem)
     existingEmails(emailHash) = emailJsonEntry
     
     ' Rebuild and save the complete JSON file
-    SaveCompleteJsonFile existingEmails, targetInboxFolder
+    SaveCompleteJsonFile existingEmails, targetFolder
     
     WriteLog "  New email processed and JSON updated!"
     
@@ -634,7 +579,7 @@ Private Function ShortHash(text As String) As String
 End Function
 
 ' Logging function to replace Debug.Print
-Private Sub WriteLog(message As String)
+Public Sub WriteLog(message As String)
     On Error Resume Next
     
     ' Always output to Immediate window for debugging

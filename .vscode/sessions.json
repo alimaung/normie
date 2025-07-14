@@ -58,7 +58,7 @@
                     "icon": "tools",
                     "color": "terminal.ansiBrightBlue",
                     "commands": [
-                        "cd .\\.utils"
+                        "cd .\\.utils\\server_wake; py monitor.py"
                     ]
                 },
                 {
