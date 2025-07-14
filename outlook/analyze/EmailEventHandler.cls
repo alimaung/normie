@@ -19,8 +19,10 @@ Private WithEvents olInboxItems As Outlook.Items
 Private targetInboxFolder As Outlook.Folder
 Private isActive As Boolean
 
-' Constants from main module
-Private Const TARGET_ACCOUNT As String = "IRM-Standardisation-Office"
+' Get constants from main module via accessor functions
+Private Function GetTargetAccountName() As String
+    GetTargetAccountName = "IRM-Standardisation-Office"
+End Function
 
 ' Initialize the event handler
 Public Function StartMonitoring() As Boolean
@@ -40,7 +42,7 @@ Public Function StartMonitoring() As Boolean
     Set targetStore = Nothing
     
     For Each store In olNamespace.Stores
-        If InStr(UCase(store.DisplayName), UCase(TARGET_ACCOUNT)) > 0 Then
+        If InStr(UCase(store.DisplayName), UCase(GetTargetAccountName())) > 0 Then
             Set targetStore = store
             WriteLog "Found target store: " & store.DisplayName
             Exit For
@@ -48,7 +50,7 @@ Public Function StartMonitoring() As Boolean
     Next store
     
     If targetStore Is Nothing Then
-        WriteLog "ERROR: Target account '" & TARGET_ACCOUNT & "' not found"
+        WriteLog "ERROR: Target account '" & GetTargetAccountName() & "' not found"
         StartMonitoring = False
         Exit Function
     End If

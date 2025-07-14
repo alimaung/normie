@@ -5,15 +5,32 @@ Option Explicit
 ' Place this in Outlook VBA (Alt+F11 -> Insert -> Module)
 
 ' Global variables
-Public Const TARGET_ACCOUNT As String = "IRM-Standardisation-Office"
+Private Const TARGET_ACCOUNT As String = "IRM-Standardisation-Office"
 
 ' JSON Management Configuration
-Public Const MAX_EMAILS_PER_FILE As Integer = 500  ' Split JSON when it reaches this size
-Public Const ARCHIVE_AFTER_DAYS As Integer = 90    ' Archive emails older than this
-Public Const ENABLE_JSON_ROTATION As Boolean = True ' Enable automatic file rotation
+Private Const MAX_EMAILS_PER_FILE As Integer = 500  ' Split JSON when it reaches this size
+Private Const ARCHIVE_AFTER_DAYS As Integer = 90    ' Archive emails older than this
+Private Const ENABLE_JSON_ROTATION As Boolean = True ' Enable automatic file rotation
 
 ' Event handler instance
 Private emailEventHandler As EmailEventHandler
+
+' Public accessor functions for constants (needed by class module)
+Public Function GetTargetAccount() As String
+    GetTargetAccount = TARGET_ACCOUNT
+End Function
+
+Public Function GetMaxEmailsPerFile() As Integer
+    GetMaxEmailsPerFile = MAX_EMAILS_PER_FILE
+End Function
+
+Public Function GetArchiveAfterDays() As Integer
+    GetArchiveAfterDays = ARCHIVE_AFTER_DAYS
+End Function
+
+Public Function GetEnableJsonRotation() As Boolean
+    GetEnableJsonRotation = ENABLE_JSON_ROTATION
+End Function
 
 ' Dynamic paths
 Private Function GetOutputFolder() As String
