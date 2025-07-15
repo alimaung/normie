@@ -1,13 +1,106 @@
 {
-  "timestamp": "2025-07-15 05:56:59",
+  "timestamp": "2025-07-15 13:24:49",
   "folder_name": "Inbox",
   "folder_path": "\\\\microfilm.development@gmail.com\\Inbox",
-  "total_items": 6,
+  "total_items": 9,
   "emails": [
     {
       "index": 1,
-      "hash": "7298644901196167",
-      "entry_id": "00000000203B303B99A4FD419FA09BCB8C55E7FC0700C3B68E10F77511CEB4CD00AA00BBB6E600000000000C0000D9539C2261A6BB45B9DAB62C7081B3C10100060000000000",
+      "hash": "3052846697154029",
+      "entry_id": "00000000B800AE0BE923A449A7AE2D11CB7614360700C3B68E10F77511CEB4CD00AA00BBB6E600000000000C0000D9539C2261A6BB45B9DAB62C7081B3C10100080000000000",
+      "message_id": "<68762e15.170a0220.d4057.ac98@mx.google.com>",
+      "conversation_id": "01EE5ED030B8FDF54BBD103B968BFADD",
+      "folder": "Inbox",
+      "folder_path": "\\\\microfilm.development@gmail.com\\Inbox",
+      "subject": "Microsoft Outlook Test Message",
+      "sender_name": "Microsoft Outlook",
+      "sender_email": "microfilm.development@gmail.com",
+      "received_time": "2025-07-15 12:31:49",
+      "sent_on": "2025-07-15 12:31:49",
+      "size": 5268,
+      "importance": 1,
+      "unread": true,
+      "categories": "",
+      "msg_file": "data/3052846697154029/3052846697154029.msg",
+      "body": "This is an email message sent automatically by Microsoft Outlook while testing the settings for your account. \n",
+      "html_body": "<html><body><p>This is an email message sent automatically by Microsoft Outlook while testing the settings for your account.\n</p></body></html>",
+      "recipients": [
+        {
+          "name": "microfilm.development@gmail.com",
+          "address": "microfilm.development@gmail.com",
+          "type": 1
+        }
+      ],
+      "attachments": [
+
+      ]
+    },
+    {
+      "index": 2,
+      "hash": "1300371834578890",
+      "entry_id": "00000000B800AE0BE923A449A7AE2D11CB7614360700C3B68E10F77511CEB4CD00AA00BBB6E600000000000C0000D9539C2261A6BB45B9DAB62C7081B3C10100090000000000",
+      "message_id": "<-tBsvJSx3tjt8TZ9KxaYLw@notifications.google.com>",
+      "conversation_id": "DC8913E9E8991AEF0675354AFA4CBAE7",
+      "folder": "Inbox",
+      "folder_path": "\\\\microfilm.development@gmail.com\\Inbox",
+      "subject": "Security alert",
+      "sender_name": "Google",
+      "sender_email": "no-reply@accounts.google.com",
+      "received_time": "2025-07-15 12:31:49",
+      "sent_on": "2025-07-15 12:31:47",
+      "size": 22756,
+      "importance": 1,
+      "unread": false,
+      "categories": "",
+      "msg_file": "data/1300371834578890/1300371834578890.msg",
+      "body": "\t\n\t <https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_74x24dp.png> \nYou allowed Microsoft apps & services access to some of your Google Account data \n <https://lh3.googleusercontent.com/a/ACg8ocIsZwNx5KgnaZkFCa6yU5gd_FWEXJYTupFUSI_dJuHTta75nw=s96-c> \tmicrofilm.development@gmail.com\t\n\n\nIf you didn't allow Microsoft apps & services access to some of your Google Account data, someone else may be trying to access your Google Account data.\n\nTake a moment now to check your account activity and secure your account.\n\nCheck activity <https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&continue=https://myaccount.google.com/alert/nt/1752575507000?rfn%3D127%26rfnc%3D1%26eid%3D4861599231149599542%26et%3D0> \nTo make changes at any time to the access that Microsoft apps & services has to your data, go to your Google Account <https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&continue=https://myaccount.google.com/connections/overview/AXgE0HOjEFJntVtdW4NmFtrdrCPCtcbbbHpaO26RezmhkR20lI3yxwNXUFzRy-FV10hgmefyEvbHdEuGUIix7-a5VDU?utm_source%3Dsec_alert%26utm_medium%3Demail_notification%26force_all%3Dtrue> \nYou can also see security activity at\nhttps://myaccount.google.com/notifications\nYou received this email to let you know about important changes to your Google Account and services.\n© 2025 Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Ireland\n\t\n\t",
+      "html_body": "<!DOCTYPE html><html lang=\"en\"><head><meta name=\"format-detection\" content=\"email=no\"/><meta name=\"format-detection\" content=\"date=no\"/><style nonce=\"DRJmFrRjaccapqDr-OIAMQ\">.awl a {color: #FFFFFF; text-decoration: none;} .abml a {color: #000000; font-family: Roboto-Medium,Helvetica,Arial,sans-serif; font-weight: bold; text-decoration: none;} .adgl a {color: rgba(0, 0, 0, 0.87); text-decoration: none;} .afal a {color: #b0b0b0; text-decoration: none;} @media screen and (min-width: 600px) {.v2sp {padding: 6px 30px 0px;} .v2rsp {padding: 0px 10px;}} @media screen and (min-width: 600px) {.mdv2rw {padding: 40px 40px;}} </style><link href=\"//fonts.googleapis.com/css?family=Google+Sans\" rel=\"stylesheet\" type=\"text/css\" nonce=\"DRJmFrRjaccapqDr-OIAMQ\"/></head><body style=\"margin: 0; padding: 0;\" bgcolor=\"#FFFFFF\"><table width=\"100%\" height=\"100%\" style=\"min-width: 348px;\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" lang=\"en\"><tr height=\"32\" style=\"height: 32px;\"><td></td></tr><tr align=\"center\"><td><div itemscope itemtype=\"//schema.org/EmailMessage\"><div itemprop=\"action\" itemscope itemtype=\"//schema.org/ViewAction\"><link itemprop=\"url\" href=\"https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&amp;continue=https://myaccount.google.com/alert/nt/1752575507000?rfn%3D127%26rfnc%3D1%26eid%3D4861599231149599542%26et%3D0\"/><meta itemprop=\"name\" content=\"Review Activity\"/></div></div><table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"padding-bottom: 20px; max-width: 516px; min-width: 220px;\"><tr><td width=\"8\" style=\"width: 8px;\"></td><td><div style=\"border-style: solid; border-width: thin; border-color:#dadce0; border-radius: 8px; padding: 40px 20px;\" align=\"center\" class=\"mdv2rw\"><img src=\"https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_74x24dp.png\" width=\"74\" height=\"24\" aria-hidden=\"true\" style=\"margin-bottom: 16px;\" alt=\"Google\"><div style=\"font-family: &#39;Google Sans&#39;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;border-bottom: thin solid #dadce0; color: rgba(0,0,0,0.87); line-height: 32px; padding-bottom: 24px;text-align: center; word-break: break-word;\"><div style=\"font-size: 24px;\">You allowed Microsoft apps &amp; services access to some of your Google Account data </div><table align=\"center\" style=\"margin-top:8px;\"><tr style=\"line-height: normal;\"><td align=\"right\" style=\"padding-right:8px;\"><img width=\"20\" height=\"20\" style=\"width: 20px; height: 20px; vertical-align: sub; border-radius: 50%;;\" src=\"https://lh3.googleusercontent.com/a/ACg8ocIsZwNx5KgnaZkFCa6yU5gd_FWEXJYTupFUSI_dJuHTta75nw=s96-c\" alt=\"\"></td><td><a style=\"font-family: &#39;Google Sans&#39;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;color: rgba(0,0,0,0.87); font-size: 14px; line-height: 20px;\">microfilm.development@gmail.com</a></td></tr></table> </div><div style=\"font-family: Roboto-Regular,Helvetica,Arial,sans-serif; font-size: 14px; color: rgba(0,0,0,0.87); line-height: 20px;padding-top: 20px; text-align: left;\"><br><p>If... [TRUNCATED]",
+      "recipients": [
+        {
+          "name": "microfilm.development@gmail.com",
+          "address": "microfilm.development@gmail.com",
+          "type": 1
+        }
+      ],
+      "attachments": [
+
+      ]
+    },
+    {
+      "index": 3,
+      "hash": "4805321459729169",
+      "entry_id": "00000000B800AE0BE923A449A7AE2D11CB7614360700C3B68E10F77511CEB4CD00AA00BBB6E600000000000C0000D9539C2261A6BB45B9DAB62C7081B3C10100070000000000",
+      "message_id": "<sxtxzCRipLpb0k66cqNrpA@notifications.google.com>",
+      "conversation_id": "6931AB7732075C22ED0D3E22C98A47CD",
+      "folder": "Inbox",
+      "folder_path": "\\\\microfilm.development@gmail.com\\Inbox",
+      "subject": "Security alert",
+      "sender_name": "Google",
+      "sender_email": "no-reply@accounts.google.com",
+      "received_time": "2025-07-15 08:03:31",
+      "sent_on": "2025-07-15 08:03:29",
+      "size": 21996,
+      "importance": 1,
+      "unread": true,
+      "categories": "",
+      "msg_file": "data/4805321459729169/4805321459729169.msg",
+      "body": "\t\n\t <https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_74x24dp.png> \nYou allowed Microsoft apps & services access to some of your Google Account data \n <https://lh3.googleusercontent.com/a/ACg8ocIsZwNx5KgnaZkFCa6yU5gd_FWEXJYTupFUSI_dJuHTta75nw=s96-c> \tmicrofilm.development@gmail.com\t\n\n\nIf you didn't allow Microsoft apps & services access to some of your Google Account data, someone else may be trying to access your Google Account data.\n\nTake a moment now to check your account activity and secure your account.\n\nCheck activity <https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&continue=https://myaccount.google.com/alert/nt/1752559409000?rfn%3D127%26rfnc%3D1%26eid%3D3392212136732274134%26et%3D0> \nTo make changes at any time to the access that Microsoft apps & services has to your data, go to your Google Account <https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&continue=https://myaccount.google.com/connections/overview/AXgE0HNGtJijc5Wo6jxZt27EK9vFzMGKYatcja-tSRjTEMf3a3442a2EYKjXgZsGJQ6MoDvTOfPlwshi4j7KWfPaQQo?utm_source%3Dsec_alert%26utm_medium%3Demail_notification%26force_all%3Dtrue> \nYou can also see security activity at\nhttps://myaccount.google.com/notifications\nYou received this email to let you know about important changes to your Google Account and services.\n© 2025 Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Ireland\n\t\n\t",
+      "html_body": "<!DOCTYPE html><html lang=\"en\"><head><meta name=\"format-detection\" content=\"email=no\"/><meta name=\"format-detection\" content=\"date=no\"/><style nonce=\"KEV2DmCICFRMBgP4pIfCXw\">.awl a {color: #FFFFFF; text-decoration: none;} .abml a {color: #000000; font-family: Roboto-Medium,Helvetica,Arial,sans-serif; font-weight: bold; text-decoration: none;} .adgl a {color: rgba(0, 0, 0, 0.87); text-decoration: none;} .afal a {color: #b0b0b0; text-decoration: none;} @media screen and (min-width: 600px) {.v2sp {padding: 6px 30px 0px;} .v2rsp {padding: 0px 10px;}} @media screen and (min-width: 600px) {.mdv2rw {padding: 40px 40px;}} </style><link href=\"//fonts.googleapis.com/css?family=Google+Sans\" rel=\"stylesheet\" type=\"text/css\" nonce=\"KEV2DmCICFRMBgP4pIfCXw\"/></head><body style=\"margin: 0; padding: 0;\" bgcolor=\"#FFFFFF\"><table width=\"100%\" height=\"100%\" style=\"min-width: 348px;\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" lang=\"en\"><tr height=\"32\" style=\"height: 32px;\"><td></td></tr><tr align=\"center\"><td><div itemscope itemtype=\"//schema.org/EmailMessage\"><div itemprop=\"action\" itemscope itemtype=\"//schema.org/ViewAction\"><link itemprop=\"url\" href=\"https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&amp;continue=https://myaccount.google.com/alert/nt/1752559409000?rfn%3D127%26rfnc%3D1%26eid%3D3392212136732274134%26et%3D0\"/><meta itemprop=\"name\" content=\"Review Activity\"/></div></div><table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"padding-bottom: 20px; max-width: 516px; min-width: 220px;\"><tr><td width=\"8\" style=\"width: 8px;\"></td><td><div style=\"border-style: solid; border-width: thin; border-color:#dadce0; border-radius: 8px; padding: 40px 20px;\" align=\"center\" class=\"mdv2rw\"><img src=\"https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_74x24dp.png\" width=\"74\" height=\"24\" aria-hidden=\"true\" style=\"margin-bottom: 16px;\" alt=\"Google\"><div style=\"font-family: &#39;Google Sans&#39;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;border-bottom: thin solid #dadce0; color: rgba(0,0,0,0.87); line-height: 32px; padding-bottom: 24px;text-align: center; word-break: break-word;\"><div style=\"font-size: 24px;\">You allowed Microsoft apps &amp; services access to some of your Google Account data </div><table align=\"center\" style=\"margin-top:8px;\"><tr style=\"line-height: normal;\"><td align=\"right\" style=\"padding-right:8px;\"><img width=\"20\" height=\"20\" style=\"width: 20px; height: 20px; vertical-align: sub; border-radius: 50%;;\" src=\"https://lh3.googleusercontent.com/a/ACg8ocIsZwNx5KgnaZkFCa6yU5gd_FWEXJYTupFUSI_dJuHTta75nw=s96-c\" alt=\"\"></td><td><a style=\"font-family: &#39;Google Sans&#39;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;color: rgba(0,0,0,0.87); font-size: 14px; line-height: 20px;\">microfilm.development@gmail.com</a></td></tr></table> </div><div style=\"font-family: Roboto-Regular,Helvetica,Arial,sans-serif; font-size: 14px; color: rgba(0,0,0,0.87); line-height: 20px;padding-top: 20px; text-align: left;\"><br><p>If... [TRUNCATED]",
+      "recipients": [
+        {
+          "name": "microfilm.development@gmail.com",
+          "address": "microfilm.development@gmail.com",
+          "type": 1
+        }
+      ],
+      "attachments": [
+
+      ]
+    },
+    {
+      "index": 4,
+      "hash": "6557796222304309",
+      "entry_id": "00000000B800AE0BE923A449A7AE2D11CB7614360700C3B68E10F77511CEB4CD00AA00BBB6E600000000000C0000D9539C2261A6BB45B9DAB62C7081B3C10100060000000000",
       "message_id": "<2xOl4g8kwO9aNq1Rrt98Yw@notifications.google.com>",
       "conversation_id": "53FE890FA7DED6C5E3AD5D96FF4A3344",
       "folder": "Inbox",
@@ -21,7 +114,7 @@
       "importance": 1,
       "unread": true,
       "categories": "",
-      "msg_file": "data/7298644901196167/7298644901196167.msg",
+      "msg_file": "data/6557796222304309/6557796222304309.msg",
       "body": "\t\n\t <https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_74x24dp.png> \nA new sign-in on Windows \n <https://lh3.googleusercontent.com/a/ACg8ocIsZwNx5KgnaZkFCa6yU5gd_FWEXJYTupFUSI_dJuHTta75nw=s96-c> \tmicrofilm.development@gmail.com\t\nWe noticed a new sign-in to your Google Account on a Windows device. If this was you, you don’t need to do anything. If not, we’ll help you secure your account.\nCheck activity <https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&continue=https://myaccount.google.com/alert/nt/1752513031434?rfn%3D325%26rfnc%3D1%26eid%3D-8053283169402861142%26et%3D0> \nYou can also see security activity at\nhttps://myaccount.google.com/notifications\nYou received this email to let you know about important changes to your Google Account and services.\n© 2025 Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Ireland\n\t\n\t",
       "html_body": "<!DOCTYPE html><html lang=\"en\"><head><meta name=\"format-detection\" content=\"email=no\"/><meta name=\"format-detection\" content=\"date=no\"/><style nonce=\"bNoJm2oMKB-mU0XeDwZLxQ\">.awl a {color: #FFFFFF; text-decoration: none;} .abml a {color: #000000; font-family: Roboto-Medium,Helvetica,Arial,sans-serif; font-weight: bold; text-decoration: none;} .adgl a {color: rgba(0, 0, 0, 0.87); text-decoration: none;} .afal a {color: #b0b0b0; text-decoration: none;} @media screen and (min-width: 600px) {.v2sp {padding: 6px 30px 0px;} .v2rsp {padding: 0px 10px;}} @media screen and (min-width: 600px) {.mdv2rw {padding: 40px 40px;}} </style><link href=\"//fonts.googleapis.com/css?family=Google+Sans\" rel=\"stylesheet\" type=\"text/css\" nonce=\"bNoJm2oMKB-mU0XeDwZLxQ\"/></head><body style=\"margin: 0; padding: 0;\" bgcolor=\"#FFFFFF\"><table width=\"100%\" height=\"100%\" style=\"min-width: 348px;\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" lang=\"en\"><tr height=\"32\" style=\"height: 32px;\"><td></td></tr><tr align=\"center\"><td><div itemscope itemtype=\"//schema.org/EmailMessage\"><div itemprop=\"action\" itemscope itemtype=\"//schema.org/ViewAction\"><link itemprop=\"url\" href=\"https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&amp;continue=https://myaccount.google.com/alert/nt/1752513031434?rfn%3D325%26rfnc%3D1%26eid%3D-8053283169402861142%26et%3D0\"/><meta itemprop=\"name\" content=\"Review Activity\"/></div></div><table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"padding-bottom: 20px; max-width: 516px; min-width: 220px;\"><tr><td width=\"8\" style=\"width: 8px;\"></td><td><div style=\"border-style: solid; border-width: thin; border-color:#dadce0; border-radius: 8px; padding: 40px 20px;\" align=\"center\" class=\"mdv2rw\"><img src=\"https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_74x24dp.png\" width=\"74\" height=\"24\" aria-hidden=\"true\" style=\"margin-bottom: 16px;\" alt=\"Google\"><div style=\"font-family: &#39;Google Sans&#39;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;border-bottom: thin solid #dadce0; color: rgba(0,0,0,0.87); line-height: 32px; padding-bottom: 24px;text-align: center; word-break: break-word;\"><div style=\"font-size: 24px;\">A new sign-in on Windows </div><table align=\"center\" style=\"margin-top:8px;\"><tr style=\"line-height: normal;\"><td align=\"right\" style=\"padding-right:8px;\"><img width=\"20\" height=\"20\" style=\"width: 20px; height: 20px; vertical-align: sub; border-radius: 50%;;\" src=\"https://lh3.googleusercontent.com/a/ACg8ocIsZwNx5KgnaZkFCa6yU5gd_FWEXJYTupFUSI_dJuHTta75nw=s96-c\" alt=\"\"></td><td><a style=\"font-family: &#39;Google Sans&#39;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;color: rgba(0,0,0,0.87); font-size: 14px; line-height: 20px;\">microfilm.development@gmail.com</a></td></tr></table> </div><div style=\"font-family: Roboto-Regular,Helvetica,Arial,sans-serif; font-size: 14px; color: rgba(0,0,0,0.87); line-height: 20px;padding-top: 20px; text-align: center;\">We noticed a new sign-in to your Google Account on a Windows devic... [TRUNCATED]",
       "recipients": [
@@ -36,9 +129,9 @@
       ]
     },
     {
-      "index": 2,
-      "hash": "9051119763771306",
-      "entry_id": "00000000203B303B99A4FD419FA09BCB8C55E7FC0700C3B68E10F77511CEB4CD00AA00BBB6E600000000000C0000D9539C2261A6BB45B9DAB62C7081B3C10100050000000000",
+      "index": 5,
+      "hash": "8310271084879448",
+      "entry_id": "00000000B800AE0BE923A449A7AE2D11CB7614360700C3B68E10F77511CEB4CD00AA00BBB6E600000000000C0000D9539C2261A6BB45B9DAB62C7081B3C10100050000000000",
       "message_id": "<Ua1ZHt2_YRw1nJUWggeZKA@notifications.google.com>",
       "conversation_id": "FD113336D6DC4A3095187D71421CAC79",
       "folder": "Inbox",
@@ -48,11 +141,11 @@
       "sender_email": "no-reply@accounts.google.com",
       "received_time": "2025-07-14 09:02:31",
       "sent_on": "2025-07-14 09:02:29",
-      "size": 22764,
+      "size": 22002,
       "importance": 1,
       "unread": false,
       "categories": "",
-      "msg_file": "data/9051119763771306/9051119763771306.msg",
+      "msg_file": "data/8310271084879448/8310271084879448.msg",
       "body": "\t\n\t <https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_74x24dp.png> \nYou allowed Microsoft apps & services access to some of your Google Account data \n <https://lh3.googleusercontent.com/a/ACg8ocIsZwNx5KgnaZkFCa6yU5gd_FWEXJYTupFUSI_dJuHTta75nw=s96-c> \tmicrofilm.development@gmail.com\t\n\n\nIf you didn't allow Microsoft apps & services access to some of your Google Account data, someone else may be trying to access your Google Account data.\n\nTake a moment now to check your account activity and secure your account.\n\nCheck activity <https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&continue=https://myaccount.google.com/alert/nt/1752476549000?rfn%3D127%26rfnc%3D1%26eid%3D-1541328933998405853%26et%3D0> \nTo make changes at any time to the access that Microsoft apps & services has to your data, go to your Google Account <https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&continue=https://myaccount.google.com/connections/overview/AXgE0HOyVa3A6MBMxv6yhPCURZFAMaXcFGyGLzWlllH0n_BGYxdcKIwXMDjCTZEXBAEjkNnIEC7OCTKY9EUtTaCTQyE?utm_source%3Dsec_alert%26utm_medium%3Demail_notification%26force_all%3Dtrue> \nYou can also see security activity at\nhttps://myaccount.google.com/notifications\nYou received this email to let you know about important changes to your Google Account and services.\n© 2025 Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Ireland\n\t\n\t",
       "html_body": "<!DOCTYPE html><html lang=\"en\"><head><meta name=\"format-detection\" content=\"email=no\"/><meta name=\"format-detection\" content=\"date=no\"/><style nonce=\"mtB8AAS-0pbsljT805TXmQ\">.awl a {color: #FFFFFF; text-decoration: none;} .abml a {color: #000000; font-family: Roboto-Medium,Helvetica,Arial,sans-serif; font-weight: bold; text-decoration: none;} .adgl a {color: rgba(0, 0, 0, 0.87); text-decoration: none;} .afal a {color: #b0b0b0; text-decoration: none;} @media screen and (min-width: 600px) {.v2sp {padding: 6px 30px 0px;} .v2rsp {padding: 0px 10px;}} @media screen and (min-width: 600px) {.mdv2rw {padding: 40px 40px;}} </style><link href=\"//fonts.googleapis.com/css?family=Google+Sans\" rel=\"stylesheet\" type=\"text/css\" nonce=\"mtB8AAS-0pbsljT805TXmQ\"/></head><body style=\"margin: 0; padding: 0;\" bgcolor=\"#FFFFFF\"><table width=\"100%\" height=\"100%\" style=\"min-width: 348px;\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" lang=\"en\"><tr height=\"32\" style=\"height: 32px;\"><td></td></tr><tr align=\"center\"><td><div itemscope itemtype=\"//schema.org/EmailMessage\"><div itemprop=\"action\" itemscope itemtype=\"//schema.org/ViewAction\"><link itemprop=\"url\" href=\"https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&amp;continue=https://myaccount.google.com/alert/nt/1752476549000?rfn%3D127%26rfnc%3D1%26eid%3D-1541328933998405853%26et%3D0\"/><meta itemprop=\"name\" content=\"Review Activity\"/></div></div><table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"padding-bottom: 20px; max-width: 516px; min-width: 220px;\"><tr><td width=\"8\" style=\"width: 8px;\"></td><td><div style=\"border-style: solid; border-width: thin; border-color:#dadce0; border-radius: 8px; padding: 40px 20px;\" align=\"center\" class=\"mdv2rw\"><img src=\"https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_74x24dp.png\" width=\"74\" height=\"24\" aria-hidden=\"true\" style=\"margin-bottom: 16px;\" alt=\"Google\"><div style=\"font-family: &#39;Google Sans&#39;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;border-bottom: thin solid #dadce0; color: rgba(0,0,0,0.87); line-height: 32px; padding-bottom: 24px;text-align: center; word-break: break-word;\"><div style=\"font-size: 24px;\">You allowed Microsoft apps &amp; services access to some of your Google Account data </div><table align=\"center\" style=\"margin-top:8px;\"><tr style=\"line-height: normal;\"><td align=\"right\" style=\"padding-right:8px;\"><img width=\"20\" height=\"20\" style=\"width: 20px; height: 20px; vertical-align: sub; border-radius: 50%;;\" src=\"https://lh3.googleusercontent.com/a/ACg8ocIsZwNx5KgnaZkFCa6yU5gd_FWEXJYTupFUSI_dJuHTta75nw=s96-c\" alt=\"\"></td><td><a style=\"font-family: &#39;Google Sans&#39;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;color: rgba(0,0,0,0.87); font-size: 14px; line-height: 20px;\">microfilm.development@gmail.com</a></td></tr></table> </div><div style=\"font-family: Roboto-Regular,Helvetica,Arial,sans-serif; font-size: 14px; color: rgba(0,0,0,0.87); line-height: 20px;padding-top: 20px; text-align: left;\"><br><p>I... [TRUNCATED]",
       "recipients": [
@@ -67,9 +160,9 @@
       ]
     },
     {
-      "index": 3,
-      "hash": "4516472387719351",
-      "entry_id": "00000000203B303B99A4FD419FA09BCB8C55E7FC0700C3B68E10F77511CEB4CD00AA00BBB6E600000000000C0000D9539C2261A6BB45B9DAB62C7081B3C101000C0000000000",
+      "index": 6,
+      "hash": "2023148846252354",
+      "entry_id": "00000000B800AE0BE923A449A7AE2D11CB7614360700C3B68E10F77511CEB4CD00AA00BBB6E600000000000C0000D9539C2261A6BB45B9DAB62C7081B3C101000D0000000000",
       "message_id": "<aDH9EPYsnbpws5ZAsuC6yg@notifications.google.com>",
       "conversation_id": "889891D47CF0F8CF0E43BD49B74A278D",
       "folder": "Inbox",
@@ -83,7 +176,7 @@
       "importance": 1,
       "unread": true,
       "categories": "",
-      "msg_file": "data/4516472387719351/4516472387719351.msg",
+      "msg_file": "data/2023148846252354/2023148846252354.msg",
       "body": "\t\n\t <https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_74x24dp.png> \nYou allowed Microsoft apps & services access to some of your Google Account data \n <https://lh3.googleusercontent.com/a/ACg8ocIsZwNx5KgnaZkFCa6yU5gd_FWEXJYTupFUSI_dJuHTta75nw=s96-c> \tmicrofilm.development@gmail.com\t\n\n\nIf you didn't allow Microsoft apps & services access to some of your Google Account data, someone else may be trying to access your Google Account data.\n\nTake a moment now to check your account activity and secure your account.\n\nCheck activity <https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&continue=https://myaccount.google.com/alert/nt/1752148180000?rfn%3D127%26rfnc%3D1%26eid%3D-7834798944902699992%26et%3D0> \nTo make changes at any time to the access that Microsoft apps & services has to your data, go to your Google Account <https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&continue=https://myaccount.google.com/connections/overview/AXgE0HPaQNc2wLfWoaHZBroJdMyuOjpp2fi9SqT9P7FlUGAIgz8Gs9U7gFworZy1xFgn8KzlQHEIrf744fQwEDoWCew?utm_source%3Dsec_alert%26utm_medium%3Demail_notification%26force_all%3Dtrue> \nYou can also see security activity at\nhttps://myaccount.google.com/notifications\nYou received this email to let you know about important changes to your Google Account and services.\n© 2025 Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Ireland\n\t\n\t",
       "html_body": "<!DOCTYPE html><html lang=\"en\"><head><meta name=\"format-detection\" content=\"email=no\"/><meta name=\"format-detection\" content=\"date=no\"/><style nonce=\"I7ZKudYKpADCL6TBb_d2IA\">.awl a {color: #FFFFFF; text-decoration: none;} .abml a {color: #000000; font-family: Roboto-Medium,Helvetica,Arial,sans-serif; font-weight: bold; text-decoration: none;} .adgl a {color: rgba(0, 0, 0, 0.87); text-decoration: none;} .afal a {color: #b0b0b0; text-decoration: none;} @media screen and (min-width: 600px) {.v2sp {padding: 6px 30px 0px;} .v2rsp {padding: 0px 10px;}} @media screen and (min-width: 600px) {.mdv2rw {padding: 40px 40px;}} </style><link href=\"//fonts.googleapis.com/css?family=Google+Sans\" rel=\"stylesheet\" type=\"text/css\" nonce=\"I7ZKudYKpADCL6TBb_d2IA\"/></head><body style=\"margin: 0; padding: 0;\" bgcolor=\"#FFFFFF\"><table width=\"100%\" height=\"100%\" style=\"min-width: 348px;\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" lang=\"en\"><tr height=\"32\" style=\"height: 32px;\"><td></td></tr><tr align=\"center\"><td><div itemscope itemtype=\"//schema.org/EmailMessage\"><div itemprop=\"action\" itemscope itemtype=\"//schema.org/ViewAction\"><link itemprop=\"url\" href=\"https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&amp;continue=https://myaccount.google.com/alert/nt/1752148180000?rfn%3D127%26rfnc%3D1%26eid%3D-7834798944902699992%26et%3D0\"/><meta itemprop=\"name\" content=\"Review Activity\"/></div></div><table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"padding-bottom: 20px; max-width: 516px; min-width: 220px;\"><tr><td width=\"8\" style=\"width: 8px;\"></td><td><div style=\"border-style: solid; border-width: thin; border-color:#dadce0; border-radius: 8px; padding: 40px 20px;\" align=\"center\" class=\"mdv2rw\"><img src=\"https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_74x24dp.png\" width=\"74\" height=\"24\" aria-hidden=\"true\" style=\"margin-bottom: 16px;\" alt=\"Google\"><div style=\"font-family: &#39;Google Sans&#39;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;border-bottom: thin solid #dadce0; color: rgba(0,0,0,0.87); line-height: 32px; padding-bottom: 24px;text-align: center; word-break: break-word;\"><div style=\"font-size: 24px;\">You allowed Microsoft apps &amp; services access to some of your Google Account data </div><table align=\"center\" style=\"margin-top:8px;\"><tr style=\"line-height: normal;\"><td align=\"right\" style=\"padding-right:8px;\"><img width=\"20\" height=\"20\" style=\"width: 20px; height: 20px; vertical-align: sub; border-radius: 50%;;\" src=\"https://lh3.googleusercontent.com/a/ACg8ocIsZwNx5KgnaZkFCa6yU5gd_FWEXJYTupFUSI_dJuHTta75nw=s96-c\" alt=\"\"></td><td><a style=\"font-family: &#39;Google Sans&#39;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;color: rgba(0,0,0,0.87); font-size: 14px; line-height: 20px;\">microfilm.development@gmail.com</a></td></tr></table> </div><div style=\"font-family: Roboto-Regular,Helvetica,Arial,sans-serif; font-size: 14px; color: rgba(0,0,0,0.87); line-height: 20px;padding-top: 20px; text-align: left;\"><br><p>I... [TRUNCATED]",
       "recipients": [
@@ -98,9 +191,9 @@
       ]
     },
     {
-      "index": 4,
-      "hash": "6268947150294491",
-      "entry_id": "00000000203B303B99A4FD419FA09BCB8C55E7FC0700C3B68E10F77511CEB4CD00AA00BBB6E600000000000C0000D9539C2261A6BB45B9DAB62C7081B3C101000B0000000000",
+      "index": 7,
+      "hash": "3775623608827494",
+      "entry_id": "00000000B800AE0BE923A449A7AE2D11CB7614360700C3B68E10F77511CEB4CD00AA00BBB6E600000000000C0000D9539C2261A6BB45B9DAB62C7081B3C101000C0000000000",
       "message_id": "<2lQs2izuK4x8kE58qHrsiA@notifications.google.com>",
       "conversation_id": "71AC3EF7D75E9AACDDC8103837E4A7A1",
       "folder": "Inbox",
@@ -110,11 +203,11 @@
       "sender_email": "no-reply@accounts.google.com",
       "received_time": "2025-07-10 13:49:33",
       "sent_on": "2025-07-10 13:49:31",
-      "size": 21996,
+      "size": 21234,
       "importance": 1,
       "unread": false,
       "categories": "",
-      "msg_file": "data/6268947150294491/6268947150294491.msg",
+      "msg_file": "data/3775623608827494/3775623608827494.msg",
       "body": "\t\n\t <https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_74x24dp.png> \nA new sign-in on Windows \n <https://lh3.googleusercontent.com/a/ACg8ocIsZwNx5KgnaZkFCa6yU5gd_FWEXJYTupFUSI_dJuHTta75nw=s96-c> \tmicrofilm.development@gmail.com\t\nWe noticed a new sign-in to your Google Account on a Windows device. If this was you, you don’t need to do anything. If not, we’ll help you secure your account.\nCheck activity <https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&continue=https://myaccount.google.com/alert/nt/1752148171000?rfn%3D325%26rfnc%3D1%26eid%3D-6105477511624501077%26et%3D0> \nYou can also see security activity at\nhttps://myaccount.google.com/notifications\nYou received this email to let you know about important changes to your Google Account and services.\n© 2025 Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Ireland\n\t\n\t",
       "html_body": "<!DOCTYPE html><html lang=\"en\"><head><meta name=\"format-detection\" content=\"email=no\"/><meta name=\"format-detection\" content=\"date=no\"/><style nonce=\"qeoacJMKUtrGVv-Bo66a0w\">.awl a {color: #FFFFFF; text-decoration: none;} .abml a {color: #000000; font-family: Roboto-Medium,Helvetica,Arial,sans-serif; font-weight: bold; text-decoration: none;} .adgl a {color: rgba(0, 0, 0, 0.87); text-decoration: none;} .afal a {color: #b0b0b0; text-decoration: none;} @media screen and (min-width: 600px) {.v2sp {padding: 6px 30px 0px;} .v2rsp {padding: 0px 10px;}} @media screen and (min-width: 600px) {.mdv2rw {padding: 40px 40px;}} </style><link href=\"//fonts.googleapis.com/css?family=Google+Sans\" rel=\"stylesheet\" type=\"text/css\" nonce=\"qeoacJMKUtrGVv-Bo66a0w\"/></head><body style=\"margin: 0; padding: 0;\" bgcolor=\"#FFFFFF\"><table width=\"100%\" height=\"100%\" style=\"min-width: 348px;\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" lang=\"en\"><tr height=\"32\" style=\"height: 32px;\"><td></td></tr><tr align=\"center\"><td><div itemscope itemtype=\"//schema.org/EmailMessage\"><div itemprop=\"action\" itemscope itemtype=\"//schema.org/ViewAction\"><link itemprop=\"url\" href=\"https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&amp;continue=https://myaccount.google.com/alert/nt/1752148171000?rfn%3D325%26rfnc%3D1%26eid%3D-6105477511624501077%26et%3D0\"/><meta itemprop=\"name\" content=\"Review Activity\"/></div></div><table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"padding-bottom: 20px; max-width: 516px; min-width: 220px;\"><tr><td width=\"8\" style=\"width: 8px;\"></td><td><div style=\"border-style: solid; border-width: thin; border-color:#dadce0; border-radius: 8px; padding: 40px 20px;\" align=\"center\" class=\"mdv2rw\"><img src=\"https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_74x24dp.png\" width=\"74\" height=\"24\" aria-hidden=\"true\" style=\"margin-bottom: 16px;\" alt=\"Google\"><div style=\"font-family: &#39;Google Sans&#39;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;border-bottom: thin solid #dadce0; color: rgba(0,0,0,0.87); line-height: 32px; padding-bottom: 24px;text-align: center; word-break: break-word;\"><div style=\"font-size: 24px;\">A new sign-in on Windows </div><table align=\"center\" style=\"margin-top:8px;\"><tr style=\"line-height: normal;\"><td align=\"right\" style=\"padding-right:8px;\"><img width=\"20\" height=\"20\" style=\"width: 20px; height: 20px; vertical-align: sub; border-radius: 50%;;\" src=\"https://lh3.googleusercontent.com/a/ACg8ocIsZwNx5KgnaZkFCa6yU5gd_FWEXJYTupFUSI_dJuHTta75nw=s96-c\" alt=\"\"></td><td><a style=\"font-family: &#39;Google Sans&#39;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;color: rgba(0,0,0,0.87); font-size: 14px; line-height: 20px;\">microfilm.development@gmail.com</a></td></tr></table> </div><div style=\"font-family: Roboto-Regular,Helvetica,Arial,sans-serif; font-size: 14px; color: rgba(0,0,0,0.87); line-height: 20px;padding-top: 20px; text-align: center;\">We noticed a new sign-in to your Google Account on a Windows devic... [TRUNCATED]",
       "recipients": [
@@ -129,9 +222,9 @@
       ]
     },
     {
-      "index": 5,
-      "hash": "8021421912869631",
-      "entry_id": "00000000203B303B99A4FD419FA09BCB8C55E7FC0700C3B68E10F77511CEB4CD00AA00BBB6E600000000000C0000D9539C2261A6BB45B9DAB62C7081B3C101000A0000000000",
+      "index": 8,
+      "hash": "5528098471402633",
+      "entry_id": "00000000B800AE0BE923A449A7AE2D11CB7614360700C3B68E10F77511CEB4CD00AA00BBB6E600000000000C0000D9539C2261A6BB45B9DAB62C7081B3C101000B0000000000",
       "message_id": "<1313Cr6I-Y_LEMs8LKNIXA@notifications.google.com>",
       "conversation_id": "8E3488F115A7AB39CB9EF097EEF7BF94",
       "folder": "Inbox",
@@ -145,7 +238,7 @@
       "importance": 1,
       "unread": false,
       "categories": "",
-      "msg_file": "data/8021421912869631/8021421912869631.msg",
+      "msg_file": "data/5528098471402633/5528098471402633.msg",
       "body": "\t\n\t <https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_74x24dp.png> \n <https://www.gstatic.com/accountalerts/email/pc_shield_green_2x_180_180.png> \t\nSee and manage your privacy settings with the Privacy Checkup\t\nmicrofilm.development@gmail.com\t\nIt’s time to review the privacy settings in your Google Account. See and adjust what data Google uses to personalize your experience, as well as what information you share with friends or make public.\nTake a few minutes now <https://myaccount.google.com/privacycheckup/1?pc_email=microfilm.development%40gmail.com&hl=en-US&utm_source=ppr&utm_medium=email&utm_campaign=signup-fast-privacyreminder-start-link>  to update your settings.\n<https://myaccount.google.com/privacycheckup/1?pc_email=microfilm.development%40gmail.com&hl=en-US&utm_source=ppr&utm_medium=email&utm_campaign=signup-fast-privacyreminder-start-button> \nCheck your privacy settings <https://myaccount.google.com/privacycheckup/1?pc_email=microfilm.development%40gmail.com&hl=en-US&utm_source=ppr&utm_medium=email&utm_campaign=signup-fast-privacyreminder-start-button> \t\nPrivacy Checkup is available in your Google Account (https://account.google.com <https://account.google.com/smartlink/home?hl=en-US&utm_source=ppr&utm_medium=email&utm_campaign=ppr> )\t\nYou received this email to let you know about important changes to your Google Account and services.\n© 2025 Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Ireland\n\t\n\t",
       "html_body": "<!DOCTYPE html><html lang=\"en\"><head><meta name=\"format-detection\" content=\"email=no\"/><meta name=\"format-detection\" content=\"date=no\"/><style nonce=\"FYoTIVRWx058sPgym7D9Ow\">.awl a {color: #FFFFFF; text-decoration: none;} .abml a {color: #000000; font-family: Roboto-Medium,Helvetica,Arial,sans-serif; font-weight: bold; text-decoration: none;} .adgl a {color: rgba(0, 0, 0, 0.87); text-decoration: none;} .afal a {color: #b0b0b0; text-decoration: none;} @media screen and (min-width: 600px) {.v2sp {padding: 6px 30px 0px;} .v2rsp {padding: 0px 10px;}} @media screen and (min-width: 600px) {.mdv2rw {padding: 40px 40px;}} </style><link href=\"//fonts.googleapis.com/css?family=Google+Sans\" rel=\"stylesheet\" type=\"text/css\" nonce=\"FYoTIVRWx058sPgym7D9Ow\"/></head><body style=\"margin: 0; padding: 0;\" bgcolor=\"#FFFFFF\"><table width=\"100%\" height=\"100%\" style=\"min-width: 348px;\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" lang=\"en\"><tr height=\"32\" style=\"height: 32px;\"><td></td></tr><tr align=\"center\"><td><div itemscope itemtype=\"//schema.org/EmailMessage\"><div itemprop=\"action\" itemscope itemtype=\"//schema.org/ViewAction\"><link itemprop=\"url\" href=\"https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&amp;continue=https://myaccount.google.com/privacycheckup?utm_source%3Dgoogle%26utm_medium%3Demail%26utm_campaign%3Dppr%26aneid%3D9148946780892356357\"/><meta itemprop=\"name\" content=\"Review Activity\"/></div></div><table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"padding-bottom: 20px; max-width: 516px; min-width: 220px;\"><tr><td width=\"8\" style=\"width: 8px;\"></td><td><div style=\"border-style: solid; border-width: thin; border-color:#dadce0; border-radius: 8px; padding: 40px 20px;\" align=\"center\" class=\"mdv2rw\"><img src=\"https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_74x24dp.png\" width=\"74\" height=\"24\" aria-hidden=\"true\" style=\"margin-bottom: 16px;\" alt=\"Google\"><div style=\"font-family: &#39;Google Sans&#39;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;border-bottom: thin solid #dadce0; color: rgba(0,0,0,0.87); line-height: 32px; padding-bottom: 24px;padding-bottom: 32px;padding-top: 32px;text-align: center; word-break: break-word;\"><div style=\"font-size: 24px;\"><table style=\"font-size: 24px; line-height: 28px; text-align: center; width: 100%;\"><tr><td style=\"padding-bottom: 24px;\"><img width=\"90\" height=\"90\" src=\"https://www.gstatic.com/accountalerts/email/pc_shield_green_2x_180_180.png\" style=\"width: 90px; height: 90px;\"/></td></tr><tr><td>See and manage your privacy settings with the Privacy Checkup</td></tr><tr><td style=\"font-size: 16px;\"><a class=\"adgl\" style=\"color: inherit; text-decoration: none;\">microfilm.development@gmail.com</a></td></tr></table> </div></div><div style=\"font-family: Roboto-Regular,Helvetica,Arial,sans-serif; font-size: 14px; color: rgba(0,0,0,0.87); line-height: 20px;padding-top: 20px; text-align: left;\"><table style=\"font-size: 14px; letter-spacing: 0.2; line-height: 20px; text-al... [TRUNCATED]",
       "recipients": [
@@ -160,9 +253,9 @@
       ]
     },
     {
-      "index": 6,
-      "hash": "2041220513470748",
-      "entry_id": "00000000203B303B99A4FD419FA09BCB8C55E7FC0700C3B68E10F77511CEB4CD00AA00BBB6E600000000000C0000D9539C2261A6BB45B9DAB62C7081B3C10100090000000000",
+      "index": 9,
+      "hash": "7280573233977773",
+      "entry_id": "00000000B800AE0BE923A449A7AE2D11CB7614360700C3B68E10F77511CEB4CD00AA00BBB6E600000000000C0000D9539C2261A6BB45B9DAB62C7081B3C101000A0000000000",
       "message_id": "<NfZcpLcwfo8b3HfWw7sPog@notifications.google.com>",
       "conversation_id": "7456259E644BDF920E8BC7F0D76C9428",
       "folder": "Inbox",
@@ -176,7 +269,7 @@
       "importance": 1,
       "unread": true,
       "categories": "",
-      "msg_file": "data/2041220513470748/2041220513470748.msg",
+      "msg_file": "data/7280573233977773/7280573233977773.msg",
       "body": "\t\n\t <https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_74x24dp.png> \n <https://www.gstatic.com/accountalerts/email/Yellow_status_icon_160x160.png> \t\nAdd ways for us to make sure that it's you\t\n <https://lh3.googleusercontent.com/a/ACg8ocIsZwNx5KgnaZkFCa6yU5gd_FWEXJYTupFUSI_dJuHTta75nw=s96-c> \tmicrofilm.development@gmail.com\t\nUsers with extra ways to verify their identity are far less likely to be hacked or locked out.\nAdd additional ways to prove that it's really you and see other personalised security recommendations in the Security Checkup <https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&continue=https://myaccount.google.com/security-checkup?utm_source%3Dgoogle%26utm_medium%3Demail%26utm_campaign%3Dsap%26aneid%3D5328952919272172729%26sea%3D18%26rfn%3D1750541258843%26anexp%3Dsapef-a1--saprfsm-const--saprf-original> .\nTake action <https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&continue=https://myaccount.google.com/security-checkup?utm_source%3Dgoogle%26utm_medium%3Demail%26utm_campaign%3Dsap%26aneid%3D5328952919272172729%26sea%3D18%26rfn%3D1750541258843%26anexp%3Dsapef-a1--saprfsm-const--saprf-original> \t\nYou can also go directly to:\nhttps://myaccount.google.com/security-checkup\t\nYou received this email to let you know about important changes to your Google Account and services.\n© 2025 Google Ireland Ltd., Gordon House, Barrow Street, Dublin 4, Ireland\n\t\n\t",
       "html_body": "<!DOCTYPE html><html lang=\"en\"><head><meta name=\"format-detection\" content=\"email=no\"/><meta name=\"format-detection\" content=\"date=no\"/><style nonce=\"Rt2phu09_UXeCDCiyf63Ow\">.awl a {color: #FFFFFF; text-decoration: none;} .abml a {color: #000000; font-family: Roboto-Medium,Helvetica,Arial,sans-serif; font-weight: bold; text-decoration: none;} .adgl a {color: rgba(0, 0, 0, 0.87); text-decoration: none;} .afal a {color: #b0b0b0; text-decoration: none;} @media screen and (min-width: 600px) {.v2sp {padding: 6px 30px 0px;} .v2rsp {padding: 0px 10px;}} @media screen and (min-width: 600px) {.mdv2rw {padding: 40px 40px;}} </style><link href=\"//fonts.googleapis.com/css?family=Google+Sans\" rel=\"stylesheet\" type=\"text/css\" nonce=\"Rt2phu09_UXeCDCiyf63Ow\"/></head><body style=\"margin: 0; padding: 0;\" bgcolor=\"#FFFFFF\"><table width=\"100%\" height=\"100%\" style=\"min-width: 348px;\" border=\"0\" cellspacing=\"0\" cellpadding=\"0\" lang=\"en\"><tr height=\"32\" style=\"height: 32px;\"><td></td></tr><tr align=\"center\"><td><div itemscope itemtype=\"//schema.org/EmailMessage\"><div itemprop=\"action\" itemscope itemtype=\"//schema.org/ViewAction\"><link itemprop=\"url\" href=\"https://accounts.google.com/AccountChooser?Email=microfilm.development@gmail.com&amp;continue=https://myaccount.google.com/security-checkup?utm_source%3Dgoogle%26utm_medium%3Demail%26utm_campaign%3Dsap%26aneid%3D5328952919272172729%26sea%3D18%26rfn%3D1750541258843%26anexp%3Dsapef-a1--saprfsm-const--saprf-original\"/><meta itemprop=\"name\" content=\"Review Activity\"/></div></div><table border=\"0\" cellspacing=\"0\" cellpadding=\"0\" style=\"padding-bottom: 20px; max-width: 516px; min-width: 220px;\"><tr><td width=\"8\" style=\"width: 8px;\"></td><td><div style=\"border-style: solid; border-width: thin; border-color:#dadce0; border-radius: 8px; padding: 40px 20px;\" align=\"center\" class=\"mdv2rw\"><img src=\"https://www.gstatic.com/images/branding/googlelogo/2x/googlelogo_color_74x24dp.png\" width=\"74\" height=\"24\" aria-hidden=\"true\" style=\"margin-bottom: 16px;\" alt=\"Google\"><div style=\"font-family: &#39;Google Sans&#39;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;border-bottom: thin solid #dadce0; color: rgba(0,0,0,0.87); line-height: 32px; padding-bottom: 24px;padding-bottom: 32px;text-align: center; word-break: break-word;\"><div style=\"font-size: 24px;\"><table style=\"font-family: &#39;Google Sans&#39;,Roboto,RobotoDraft,Helvetica,Arial,sans-serif;font-size: 24px; line-height: 28px; text-align: center; width: 100%;\"><tr><td><a><img width=\"80\" height=\"80\" src=\"https://www.gstatic.com/accountalerts/email/Yellow_status_icon_160x160.png\" style=\"width: 80px; height: 80px; padding-bottom: 8px\" alt=\"\"/></a></td></tr><tr><td style=\"font-family: inherit;\">Add ways for us to make sure that it's you</td></tr></table> </div><table align=\"center\" style=\"margin-top:8px;\"><tr style=\"line-height: normal;\"><td align=\"right\" style=\"padding-right:8px;\"><img width=\"20\" height=\"20\" style=\"width: 20px; height: 20px; vertical-align: sub; border-radius: 50%;;\"... [TRUNCATED]",
       "recipients": [
@@ -191,6 +284,6 @@
       ]
     }
   ],
-  "extracted_count": 6
+  "extracted_count": 9
 }
 

@@ -10,66 +10,78 @@
 {% block content %}
 <div class="inbox-container">
     <!-- Sidebar -->
-    <div class="inbox-sidebar">
+    <div class="inbox-sidebar aeN" id="inbox-sidebar">
+        <!-- Sidebar Controls -->
+        <div class="sidebar-controls">
+            <button class="btn btn-link sidebar-toggle" id="sidebar-toggle" title="{% trans 'Collapse sidebar' %}">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="btn btn-link sidebar-pin" id="sidebar-pin" title="{% trans 'Pin sidebar open' %}" style="display: none;">
+                <i class="fas fa-thumbtack"></i>
+            </button>
+        </div>
+        
         <!-- Compose Button -->
         <div class="compose-section">
             <a href="{% url 'inbox_compose' %}" class="btn btn-primary btn-compose">
                 <i class="fas fa-pen"></i>
-                {% trans "Compose" %}
+                <span class="compose-text">{% trans "Compose" %}</span>
             </a>
         </div>
         
         <!-- Folder List -->
         <div class="folder-list">
-            <div class="folder-header">{% trans "Folders" %}</div>
+            <div class="folder-header">
+                <span class="folder-header-text">{% trans "Folders" %}</span>
+            </div>
             <ul>
                 <li class="folder-item {% if current_folder == 'Inbox' %}active{% endif %}">
-                    <a href="{% url 'inbox' %}">
-                        <i class="fas fa-inbox"></i>
-                        <span>{% trans "Inbox" %}</span>
-                        <span class="folder-count" id="inbox-count">
-                            {{ folder_stats.folder_counts.Inbox|default:"" }}
-                        </span>
+                    <a href="{% url 'inbox' %}" title="{% trans 'Inbox' %}">
+                        <i class="fas fa-inbox folder-icon"></i>
+                        <span class="folder-name">{% trans "Inbox" %}</span>
+                        {% if folder_stats.folder_counts.Inbox %}
+                        <span class="folder-count" id="inbox-count">{{ folder_stats.folder_counts.Inbox }}</span>
+                        {% endif %}
                     </a>
                 </li>
                 <li class="folder-item {% if current_folder == 'Sent Items' or current_folder == 'Sent Mail' %}active{% endif %}">
-                    <a href="{% url 'inbox_sent' %}">
-                        <i class="fas fa-paper-plane"></i>
-                        <span>{% trans "Sent" %}</span>
-                        <span class="folder-count" id="sent-count">
-                            {% with sent_outlook=folder_stats.folder_counts|dict_get:"Sent Items" sent_gmail=folder_stats.folder_counts|dict_get:"Sent Mail" %}
-                                {{ sent_outlook|default:sent_gmail|default:"" }}
-                            {% endwith %}
-                        </span>
+                    <a href="{% url 'inbox_sent' %}" title="{% trans 'Sent' %}">
+                        <i class="fas fa-paper-plane folder-icon"></i>
+                        <span class="folder-name">{% trans "Sent" %}</span>
+                        {% with sent_outlook=folder_stats.folder_counts|dict_get:"Sent Items" sent_gmail=folder_stats.folder_counts|dict_get:"Sent Mail" %}
+                            {% if sent_outlook or sent_gmail %}
+                            <span class="folder-count" id="sent-count">{{ sent_outlook|default:sent_gmail }}</span>
+                            {% endif %}
+                        {% endwith %}
                     </a>
                 </li>
                 <li class="folder-item {% if current_folder == 'Drafts' %}active{% endif %}">
-                    <a href="{% url 'inbox_drafts' %}">
-                        <i class="fas fa-file-alt"></i>
-                        <span>{% trans "Drafts" %}</span>
-                        <span class="folder-count" id="drafts-count">
-                            {{ folder_stats.folder_counts.Drafts|default:"" }}
-                        </span>
+                    <a href="{% url 'inbox_drafts' %}" title="{% trans 'Drafts' %}">
+                        <i class="fas fa-file-alt folder-icon"></i>
+                        <span class="folder-name">{% trans "Drafts" %}</span>
+                        {% if folder_stats.folder_counts.Drafts %}
+                        <span class="folder-count" id="drafts-count">{{ folder_stats.folder_counts.Drafts }}</span>
+                        {% endif %}
                     </a>
                 </li>
                 <li class="folder-item {% if current_folder == 'Deleted Items' or current_folder == 'Trash' %}active{% endif %}">
-                    <a href="{% url 'inbox_deleted' %}">
-                        <i class="fas fa-trash"></i>
-                        <span>{% trans "Deleted" %}</span>
-                        <span class="folder-count" id="deleted-count">
-                            {% with deleted_outlook=folder_stats.folder_counts|dict_get:"Deleted Items" deleted_gmail=folder_stats.folder_counts|dict_get:"Trash" %}
-                                {{ deleted_outlook|default:deleted_gmail|default:"" }}
-                            {% endwith %}
-                        </span>
+                    <a href="{% url 'inbox_deleted' %}" title="{% trans 'Deleted' %}">
+                        <i class="fas fa-trash folder-icon"></i>
+                        <span class="folder-name">{% trans "Deleted" %}</span>
+                        {% with deleted_outlook=folder_stats.folder_counts|dict_get:"Deleted Items" deleted_gmail=folder_stats.folder_counts|dict_get:"Trash" %}
+                            {% if deleted_outlook or deleted_gmail %}
+                            <span class="folder-count" id="deleted-count">{{ deleted_outlook|default:deleted_gmail }}</span>
+                            {% endif %}
+                        {% endwith %}
                     </a>
                 </li>
                 <li class="folder-item {% if current_folder == 'Outbox' %}active{% endif %}">
-                    <a href="{% url 'inbox_outbox' %}">
-                        <i class="fas fa-clock"></i>
-                        <span>{% trans "Outbox" %}</span>
-                        <span class="folder-count" id="outbox-count">
-                            {{ folder_stats.folder_counts.Outbox|default:"" }}
-                        </span>
+                    <a href="{% url 'inbox_outbox' %}" title="{% trans 'Outbox' %}">
+                        <i class="fas fa-clock folder-icon"></i>
+                        <span class="folder-name">{% trans "Outbox" %}</span>
+                        {% if folder_stats.folder_counts.Outbox %}
+                        <span class="folder-count" id="outbox-count">{{ folder_stats.folder_counts.Outbox }}</span>
+                        {% endif %}
                     </a>
                 </li>
             </ul>
@@ -77,27 +89,35 @@
         
         <!-- Quick Filters -->
         <div class="quick-filters">
-            <div class="folder-header">{% trans "Quick Filters" %}</div>
+            <div class="folder-header">
+                <span class="folder-header-text">{% trans "Quick Filters" %}</span>
+            </div>
             <ul>
                 <li class="filter-item">
-                    <a href="#" data-filter="unread">
-                        <i class="fas fa-envelope"></i>
-                        <span>{% trans "Unread" %}</span>
+                    <a href="#" data-filter="unread" title="{% trans 'Unread emails' %}">
+                        <i class="fas fa-envelope folder-icon"></i>
+                        <span class="folder-name">{% trans "Unread" %}</span>
+                        {% if folder_stats.unread_emails %}
                         <span class="filter-count">{{ folder_stats.unread_emails }}</span>
+                        {% endif %}
                     </a>
                 </li>
                 <li class="filter-item">
-                    <a href="#" data-filter="important">
-                        <i class="fas fa-star"></i>
-                        <span>{% trans "Important" %}</span>
+                    <a href="#" data-filter="important" title="{% trans 'Important emails' %}">
+                        <i class="fas fa-star folder-icon"></i>
+                        <span class="folder-name">{% trans "Important" %}</span>
+                        {% if folder_stats.important_emails %}
                         <span class="filter-count">{{ folder_stats.important_emails }}</span>
+                        {% endif %}
                     </a>
                 </li>
                 <li class="filter-item">
-                    <a href="#" data-filter="attachments">
-                        <i class="fas fa-paperclip"></i>
-                        <span>{% trans "Attachments" %}</span>
+                    <a href="#" data-filter="attachments" title="{% trans 'Emails with attachments' %}">
+                        <i class="fas fa-paperclip folder-icon"></i>
+                        <span class="folder-name">{% trans "Attachments" %}</span>
+                        {% if folder_stats.emails_with_attachments %}
                         <span class="filter-count">{{ folder_stats.emails_with_attachments }}</span>
+                        {% endif %}
                     </a>
                 </li>
             </ul>
@@ -119,24 +139,55 @@
     
     <!-- Main Content -->
     <div class="inbox-main">
-        <!-- Toolbar -->
+        <!-- Unified Toolbar -->
         <div class="inbox-toolbar">
             <div class="toolbar-left">
+                <!-- Selection Controls -->
                 <div class="select-actions">
                     <input type="checkbox" id="select-all" title="{% trans 'Select all' %}">
                     <label for="select-all" class="sr-only">{% trans "Select all emails" %}</label>
+                    <span class="selected-count" id="selected-count">0 selected</span>
                 </div>
                 
-                <div class="toolbar-actions">
+                <!-- Default Actions (no selection) -->
+                <div class="toolbar-actions default-actions" id="default-actions">
                     <button class="btn btn-outline-secondary" id="refresh-btn" title="{% trans 'Refresh' %}">
                         <i class="fas fa-sync-alt"></i>
                     </button>
-                    <button class="btn btn-outline-danger" id="delete-selected" disabled title="{% trans 'Delete selected' %}">
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" 
+                                id="more-dropdown" data-bs-toggle="dropdown" title="{% trans 'More actions' %}">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" id="refresh-action"><i class="fas fa-sync-alt"></i> {% trans "Refresh" %}</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="#" id="select-all-action"><i class="fas fa-check-square"></i> {% trans "Select all" %}</a></li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Selection Actions (when emails selected) -->
+                <div class="toolbar-actions selection-actions" id="selection-actions" style="display: none;">
+                    <button class="btn btn-outline-danger" id="delete-selected" title="{% trans 'Delete selected' %}">
                         <i class="fas fa-trash"></i>
                     </button>
-                    <button class="btn btn-outline-secondary" id="mark-read" disabled title="{% trans 'Mark as read' %}">
+                    <button class="btn btn-outline-primary" id="mark-read-selected" title="{% trans 'Mark as read' %}">
                         <i class="fas fa-envelope-open"></i>
                     </button>
+                    <button class="btn btn-outline-secondary" id="mark-unread-selected" title="{% trans 'Mark as unread' %}">
+                        <i class="fas fa-envelope"></i>
+                    </button>
+                    <div class="dropdown">
+                        <button class="btn btn-outline-secondary dropdown-toggle" type="button" 
+                                id="more-selected-dropdown" data-bs-toggle="dropdown" title="{% trans 'More actions' %}">
+                            <i class="fas fa-ellipsis-h"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="#" id="mark-important-action"><i class="fas fa-star"></i> {% trans "Mark important" %}</a></li>
+                            <li><a class="dropdown-item" href="#" id="move-to-folder-action"><i class="fas fa-folder"></i> {% trans "Move to folder" %}</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
             
@@ -228,41 +279,18 @@
                 {% endif %}
             </div>
             {% else %}
-            <!-- Email toolbar -->
-            <div class="email-toolbar">
-                <div class="toolbar-left">
-                    <label class="checkbox-container">
-                        <input type="checkbox" id="select-all-emails">
-                        <span class="checkmark"></span>
-                    </label>
-                    <span class="selected-count" id="selected-count">0 selected</span>
-                </div>
-                <div class="toolbar-actions" id="toolbar-actions" style="display: none;">
-                    <button class="btn btn-outline-primary btn-sm" id="mark-read-selected">
-                        <i class="fas fa-envelope-open"></i>
-                        {% trans "Mark Read" %}
-                    </button>
-                    <button class="btn btn-outline-secondary btn-sm" id="mark-unread-selected">
-                        <i class="fas fa-envelope"></i>
-                        {% trans "Mark Unread" %}
-                    </button>
-                    <button class="btn btn-outline-danger btn-sm" id="delete-selected">
-                        <i class="fas fa-trash"></i>
-                        {% trans "Delete" %}
-                    </button>
-                </div>
-                <div class="toolbar-right">
-                    <button class="btn btn-outline-secondary btn-sm" id="refresh-emails">
-                        <i class="fas fa-sync-alt"></i>
-                        {% trans "Refresh" %}
-                    </button>
-                </div>
-            </div>
+
             
             <!-- Email header -->
             <div class="email-header">
                 <div class="email-header-checkbox"></div>
                 <div class="email-header-flags"></div>
+                <div class="email-header-importance">
+                    <i class="fas fa-star" title="{% trans 'Importance' %}"></i>
+                </div>
+                <div class="email-header-categories">
+                    {% trans "Categories" %}
+                </div>
                 <div class="email-header-sender">
                     <a href="#" class="sort-link" data-sort="sender_name">
                         {% trans "Sender" %}
@@ -307,11 +335,24 @@
                             <i class="far fa-envelope text-muted" title="{% trans 'Read' %}"></i>
                             {% endif %}
                         </button>
-                        {% if email.importance > 1 %}
-                        <i class="fas fa-star text-warning" title="{% trans 'Important' %}"></i>
-                        {% endif %}
                         {% if email.attachments %}
                         <i class="fas fa-paperclip text-muted" title="{% trans 'Has attachments' %}"></i>
+                        {% endif %}
+                    </div>
+                    <div class="email-item-importance">
+                        {% if email.importance > 1 %}
+                        <i class="fas fa-star text-warning" title="{% trans 'Important' %}"></i>
+                        {% else %}
+                        <i class="far fa-star text-muted opacity-25" title="{% trans 'Normal Priority' %}"></i>
+                        {% endif %}
+                    </div>
+                    <div class="email-item-categories">
+                        {% if email.categories %}
+                        <span class="categories-text" title="{{ email.categories }}">
+                            {{ email.categories|truncatechars:15 }}
+                        </span>
+                        {% else %}
+                        <span class="text-muted">-</span>
                         {% endif %}
                     </div>
                     <div class="email-item-sender">
@@ -324,8 +365,12 @@
                         </a>
                     </div>
                     <div class="email-item-date">
-                        <span class="date-time" title="{{ email.received_time }}">
-                            {{ email.received_time|date:"M d, H:i" }}
+                        <span class="date-time" title="{{ email.received_time|parse_datetime|date:'Y-m-d H:i:s' }}">
+                            {% if email.received_time %}
+                                {{ email.received_time|parse_datetime|date:"M d, H:i" }}
+                            {% else %}
+                                <span class="text-muted">No date</span>
+                            {% endif %}
                         </span>
                     </div>
                 </div>

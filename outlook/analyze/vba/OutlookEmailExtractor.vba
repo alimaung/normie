@@ -197,7 +197,7 @@ End Sub
 Public Sub StartEventMonitoring()
     On Error GoTo ErrorHandler
     
-    WriteLog "Starting event-driven email monitoring..."
+    WriteLog "Starting enhanced event-driven email monitoring..."
     WriteLog "Output folder: " & GetOutputFolder()
     WriteLog "Data folder: " & GetAttachmentsFolder()
     WriteLog "Primary account: " & TARGET_ACCOUNT
@@ -207,22 +207,23 @@ Public Sub StartEventMonitoring()
     CreateDirectoryPath GetOutputFolder()
     CreateDirectoryPath GetAttachmentsFolder()
     
-    ' Create and start the event handler
+    ' Create and start the event handler with multi-folder support
     Set emailEventHandler = New EmailEventHandler
     
     If emailEventHandler.StartMonitoring() Then
-        WriteLog "Event monitoring started successfully!"
-        WriteLog "New emails will be automatically processed as they arrive"
+        WriteLog "Enhanced event monitoring started successfully!"
+        WriteLog "Monitoring multiple folders for new emails, moves, and deletions"
+        WriteLog "Creating multi-file JSON structure (emails_inbox.json, emails_sent_items.json, etc.)"
         WriteLog "To stop monitoring, run StopEventMonitoring"
     Else
-        WriteLog "Failed to start event monitoring"
+        WriteLog "Failed to start enhanced event monitoring"
         Set emailEventHandler = Nothing
     End If
 
-        Exit Sub
+    Exit Sub
     
 ErrorHandler:
-    WriteLog "ERROR starting event monitoring: " & Err.Description
+    WriteLog "ERROR starting enhanced event monitoring: " & Err.Description
 End Sub
 
 ' Stop event monitoring
@@ -240,42 +241,54 @@ Public Sub StopEventMonitoring()
     End If
 End Sub
 
-' Process a single new email (called by event handler)
+' Process a single new email (called by event handler) - UPDATED FOR MULTI-FILE STRUCTURE
 Public Sub ProcessSingleNewEmail(mailItem As Outlook.MailItem, targetFolder As Outlook.Folder)
     On Error GoTo ErrorHandler
     
-    ' Load existing JSON to append to it
+    WriteLog "=== EVENT: Processing new email in folder: " & targetFolder.Name & " ==="
+    
+    ' Use multi-file structure: create folder-specific JSON
+    Dim folderJsonName As String
     Dim existingJsonPath As String
     Dim existingEmails As Object
     Set existingEmails = CreateObject("Scripting.Dictionary")
     
-    existingJsonPath = GetOutputFolder() & "emails.json"
+    ' Get standardized folder name and JSON filename
+    Dim standardFolderName As String
+    standardFolderName = GetStandardFolderName(targetFolder.Name)
+    folderJsonName = GetFolderJsonName(standardFolderName)
+    existingJsonPath = GetOutputFolder() & folderJsonName
     
+    WriteLog "Event processing - JSON file: " & folderJsonName
+    WriteLog "Event processing - Standard folder: " & standardFolderName
+    
+    ' Load existing emails from folder-specific JSON if it exists
     If Dir(existingJsonPath) <> "" Then
+        WriteLog "Loading existing emails from: " & folderJsonName
         LoadExistingEmailsFromJson existingJsonPath, existingEmails
     End If
     
-    ' Generate email hash for unique identification using multiple properties
+    ' Generate email hash for unique identification
     Dim emailHash As String
     emailHash = GenerateEmailHash(mailItem)
     
-    ' Check if this email already exists (shouldn't happen with events, but safety check)
+    ' Check if this email already exists
     If existingEmails.Exists(emailHash) Then
-        WriteLog "  Email already exists in JSON - skipping (Hash: " & emailHash & ")"
+        WriteLog "  Event: Email already exists in JSON - skipping (Hash: " & emailHash & ")"
         Exit Sub
     End If
     
-    WriteLog "  Processing new email (Hash: " & emailHash & ")"
+    WriteLog "  Event: Processing new email (Hash: " & emailHash & ")"
     
     ' Create folder structure for this email
-            Dim subjectFolderName As String
-            Dim subjectAttachmentFolder As String
-            Dim msgFileName As String
-            Dim msgFilePath As String
-            
-            subjectFolderName = emailHash
-            subjectAttachmentFolder = GetAttachmentsFolder() & subjectFolderName & "\"
-            msgFileName = emailHash & ".msg"
+    Dim subjectFolderName As String
+    Dim subjectAttachmentFolder As String
+    Dim msgFileName As String
+    Dim msgFilePath As String
+    
+    subjectFolderName = emailHash
+    subjectAttachmentFolder = GetAttachmentsFolder() & subjectFolderName & "\"
+    msgFileName = emailHash & ".msg"
     msgFilePath = subjectAttachmentFolder & msgFileName
     
     ' Create folder and save .msg file
@@ -296,124 +309,15 @@ Public Sub ProcessSingleNewEmail(mailItem As Outlook.MailItem, targetFolder As O
     
     ' Build JSON entry for this email
     Dim emailJsonEntry As String
-    emailJsonEntry = "    {" & vbCrLf
-    emailJsonEntry = emailJsonEntry & "      ""index"": " & (existingEmails.Count + 1) & "," & vbCrLf
-    emailJsonEntry = emailJsonEntry & "      ""hash"": """ & emailHash & """," & vbCrLf
-    
-    ' Add Outlook identifiers for Python service
-    Dim rawEntryId As String, rawMessageId As String, rawConversationId As String
-    On Error Resume Next
-    rawEntryId = mailItem.EntryID
-    rawMessageId = mailItem.PropertyAccessor.GetProperty("http://schemas.microsoft.com/mapi/proptag/0x1035001E")
-    rawConversationId = mailItem.ConversationID
-    On Error GoTo ErrorHandler
-    
-    emailJsonEntry = emailJsonEntry & "      ""entry_id"": """ & EscapeJson(rawEntryId) & """," & vbCrLf
-    emailJsonEntry = emailJsonEntry & "      ""message_id"": """ & EscapeJson(rawMessageId) & """," & vbCrLf
-    emailJsonEntry = emailJsonEntry & "      ""conversation_id"": """ & EscapeJson(rawConversationId) & """," & vbCrLf
-    emailJsonEntry = emailJsonEntry & "      ""folder"": """ & EscapeJson(targetFolder.Name) & """," & vbCrLf
-    emailJsonEntry = emailJsonEntry & "      ""folder_path"": """ & EscapeJson(targetFolder.FolderPath) & """," & vbCrLf
-    
-    emailJsonEntry = emailJsonEntry & "      ""subject"": """ & EscapeJson(mailItem.Subject) & """," & vbCrLf
-    emailJsonEntry = emailJsonEntry & "      ""sender_name"": """ & EscapeJson(mailItem.SenderName) & """," & vbCrLf
-    emailJsonEntry = emailJsonEntry & "      ""sender_email"": """ & EscapeJson(mailItem.SenderEmailAddress) & """," & vbCrLf
-    emailJsonEntry = emailJsonEntry & "      ""received_time"": """ & Format(mailItem.ReceivedTime, "yyyy-mm-dd hh:nn:ss") & """," & vbCrLf
-    emailJsonEntry = emailJsonEntry & "      ""sent_on"": """ & Format(mailItem.SentOn, "yyyy-mm-dd hh:nn:ss") & """," & vbCrLf
-    emailJsonEntry = emailJsonEntry & "      ""size"": " & mailItem.Size & "," & vbCrLf
-    emailJsonEntry = emailJsonEntry & "      ""importance"": " & mailItem.Importance & "," & vbCrLf
-    emailJsonEntry = emailJsonEntry & "      ""unread"": " & LCase(CStr(mailItem.UnRead)) & "," & vbCrLf
-    emailJsonEntry = emailJsonEntry & "      ""categories"": """ & EscapeJson(mailItem.Categories) & """," & vbCrLf
-    emailJsonEntry = emailJsonEntry & "      ""msg_file"": """ & EscapeJson("data/" & subjectFolderName & "/" & msgFileName) & """," & vbCrLf
-            
-            ' Extract body (truncate if too long)
-            Dim bodyText As String
-            bodyText = Left(mailItem.Body, 2000)
-            If Len(mailItem.Body) > 2000 Then bodyText = bodyText & "... [TRUNCATED]"
-    emailJsonEntry = emailJsonEntry & "      ""body"": """ & EscapeJson(bodyText) & """," & vbCrLf
-            
-            ' Extract HTML body (truncate if too long)
-            Dim htmlBody As String
-            htmlBody = Left(mailItem.htmlBody, 3000)
-            If Len(mailItem.htmlBody) > 3000 Then htmlBody = htmlBody & "... [TRUNCATED]"
-    emailJsonEntry = emailJsonEntry & "      ""html_body"": """ & EscapeJson(htmlBody) & """," & vbCrLf
-            
-            ' Extract recipients
-    emailJsonEntry = emailJsonEntry & "      ""recipients"": [" & vbCrLf
-    Dim recipientIndex As Long
-            recipientIndex = 0
-            
-            Dim recipient As Outlook.recipient
-            For Each recipient In mailItem.Recipients
-        If recipientIndex > 0 Then emailJsonEntry = emailJsonEntry & "," & vbCrLf
-        emailJsonEntry = emailJsonEntry & "        {" & vbCrLf
-        emailJsonEntry = emailJsonEntry & "          ""name"": """ & EscapeJson(recipient.Name) & """," & vbCrLf
-        emailJsonEntry = emailJsonEntry & "          ""address"": """ & EscapeJson(recipient.Address) & """," & vbCrLf
-        emailJsonEntry = emailJsonEntry & "          ""type"": " & recipient.Type & vbCrLf
-        emailJsonEntry = emailJsonEntry & "        }"
-                recipientIndex = recipientIndex + 1
-        If recipientIndex >= 10 Then Exit For
-            Next recipient
-            
-    emailJsonEntry = emailJsonEntry & vbCrLf & "      ]," & vbCrLf
-            
-        ' Process attachments
-    emailJsonEntry = emailJsonEntry & "      ""attachments"": [" & vbCrLf
-    Dim attachmentIndex As Long
-            attachmentIndex = 0
-            
-            Dim attachment As Outlook.attachment
-            For Each attachment In mailItem.Attachments
-        ' Skip embedded images
-                If Not IsEmbeddedImage(attachment.fileName) Then
-            If attachmentIndex > 0 Then emailJsonEntry = emailJsonEntry & "," & vbCrLf
-            
-            Dim attachmentPath As String
-            Dim relativeAttachmentPath As String
-            
-            relativeAttachmentPath = "data/" & subjectFolderName & "/" & attachment.fileName
-            attachmentPath = subjectAttachmentFolder & "\" & attachment.fileName
-            
-            WriteLog "  Downloading attachment: " & attachment.fileName
-            WriteLog "  DEBUG: Original attachment.fileName: [" & attachment.fileName & "]"
-            WriteLog "  DEBUG: Attachment path: " & attachmentPath
-            WriteLog "  DEBUG: Subject folder: " & subjectAttachmentFolder
-            WriteLog "  DEBUG: File extension check: " & Right(attachment.fileName, 4)
-            
-            ' Ensure directory exists before saving
-            CreateDirectoryPath subjectAttachmentFolder
-            
-            On Error Resume Next
-            attachment.SaveAsFile attachmentPath
-            If Err.Number = 0 Then
-                WriteLog "  Downloaded successfully: " & attachment.fileName
-            Else
-                WriteLog "  Failed to download: " & attachment.fileName & " (Error: " & Err.Description & ")"
-            End If
-            ' Clear any error before continuing
-            Err.Clear
-            On Error GoTo ErrorHandler
-            
-            emailJsonEntry = emailJsonEntry & "        {" & vbCrLf
-            emailJsonEntry = emailJsonEntry & "          ""filename"": """ & EscapeJson(attachment.fileName) & """," & vbCrLf
-            emailJsonEntry = emailJsonEntry & "          ""size"": " & attachment.Size & "," & vbCrLf
-            emailJsonEntry = emailJsonEntry & "          ""type"": " & attachment.Type & "," & vbCrLf
-            emailJsonEntry = emailJsonEntry & "          ""filepath"": """ & EscapeJson(relativeAttachmentPath) & """" & vbCrLf
-            emailJsonEntry = emailJsonEntry & "        }"
-            attachmentIndex = attachmentIndex + 1
-            If attachmentIndex >= 10 Then Exit For
-        End If
-    Next attachment
-    
-    emailJsonEntry = emailJsonEntry & vbCrLf & "      ]" & vbCrLf
-    emailJsonEntry = emailJsonEntry & "    }"
+    emailJsonEntry = BuildEmailJsonEntry(mailItem, targetFolder, standardFolderName, emailHash, subjectFolderName, msgFileName, existingEmails.Count + 1)
     
     ' Add this email to the existing emails dictionary
     existingEmails(emailHash) = emailJsonEntry
     
-    ' Rebuild and save the complete JSON file
-    SaveCompleteJsonFile existingEmails, targetFolder
+    ' Save the updated folder-specific JSON file
+    SaveFolderSpecificJsonFile existingEmails, targetFolder, standardFolderName, folderJsonName
     
-    WriteLog "  New email processed and JSON updated!"
+    WriteLog "  Event: New email processed and JSON updated!"
     
     Exit Sub
     
@@ -2567,5 +2471,195 @@ Private Sub CreateEmptyFolderJson(standardName As String)
     
 ErrorHandler:
     WriteLog "ERROR in CreateEmptyFolderJson: " & Err.Description
+End Sub
+
+' Get standardized folder name for consistent JSON files
+Private Function GetStandardFolderName(actualFolderName As String) As String
+    Dim folderName As String
+    folderName = LCase(actualFolderName)
+    
+    ' Standardize folder names across Gmail and Outlook
+    If folderName = "inbox" Then
+        GetStandardFolderName = "Inbox"
+    ElseIf folderName = "sent items" Or folderName = "sent mail" Then
+        GetStandardFolderName = "Sent Items"
+    ElseIf folderName = "deleted items" Or folderName = "trash" Then
+        GetStandardFolderName = "Deleted Items"
+    ElseIf folderName = "drafts" Then
+        GetStandardFolderName = "Drafts"
+    ElseIf folderName = "outbox" Then
+        GetStandardFolderName = "Outbox"
+    Else
+        ' For other folders, use title case
+        GetStandardFolderName = StrConv(actualFolderName, vbProperCase)
+    End If
+End Function
+
+' Build JSON entry for an email
+Private Function BuildEmailJsonEntry(mailItem As Outlook.MailItem, targetFolder As Outlook.Folder, standardFolderName As String, emailHash As String, subjectFolderName As String, msgFileName As String, emailIndex As Long) As String
+    On Error GoTo ErrorHandler
+    
+    Dim emailJsonEntry As String
+    emailJsonEntry = "    {" & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""index"": " & emailIndex & "," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""hash"": """ & emailHash & """," & vbCrLf
+    
+    ' Add Outlook identifiers for Python service
+    Dim rawEntryId As String, rawMessageId As String, rawConversationId As String
+    On Error Resume Next
+    rawEntryId = mailItem.EntryID
+    rawMessageId = mailItem.PropertyAccessor.GetProperty("http://schemas.microsoft.com/mapi/proptag/0x1035001E")
+    rawConversationId = mailItem.ConversationID
+    On Error GoTo ErrorHandler
+    
+    emailJsonEntry = emailJsonEntry & "      ""entry_id"": """ & EscapeJson(rawEntryId) & """," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""message_id"": """ & EscapeJson(rawMessageId) & """," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""conversation_id"": """ & EscapeJson(rawConversationId) & """," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""folder"": """ & EscapeJson(standardFolderName) & """," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""folder_path"": """ & EscapeJson(targetFolder.FolderPath) & """," & vbCrLf
+    
+    emailJsonEntry = emailJsonEntry & "      ""subject"": """ & EscapeJson(mailItem.Subject) & """," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""sender_name"": """ & EscapeJson(mailItem.SenderName) & """," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""sender_email"": """ & EscapeJson(mailItem.SenderEmailAddress) & """," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""received_time"": """ & Format(mailItem.ReceivedTime, "yyyy-mm-dd hh:nn:ss") & """," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""sent_on"": """ & Format(mailItem.SentOn, "yyyy-mm-dd hh:nn:ss") & """," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""size"": " & mailItem.Size & "," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""importance"": " & mailItem.Importance & "," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""unread"": " & LCase(CStr(mailItem.UnRead)) & "," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""categories"": """ & EscapeJson(mailItem.Categories) & """," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""msg_file"": """ & EscapeJson("data/" & subjectFolderName & "/" & msgFileName) & """," & vbCrLf
+            
+    ' Extract body (truncate if too long)
+    Dim bodyText As String
+    bodyText = Left(mailItem.Body, 2000)
+    If Len(mailItem.Body) > 2000 Then bodyText = bodyText & "... [TRUNCATED]"
+    emailJsonEntry = emailJsonEntry & "      ""body"": """ & EscapeJson(bodyText) & """," & vbCrLf
+            
+    ' Extract HTML body (truncate if too long)
+    Dim htmlBody As String
+    htmlBody = Left(mailItem.htmlBody, 3000)
+    If Len(mailItem.htmlBody) > 3000 Then htmlBody = htmlBody & "... [TRUNCATED]"
+    emailJsonEntry = emailJsonEntry & "      ""html_body"": """ & EscapeJson(htmlBody) & """," & vbCrLf
+            
+    ' Extract recipients
+    emailJsonEntry = emailJsonEntry & "      ""recipients"": [" & vbCrLf
+    Dim recipientIndex As Long
+    recipientIndex = 0
+    
+    Dim recipient As Outlook.recipient
+    For Each recipient In mailItem.Recipients
+        If recipientIndex > 0 Then emailJsonEntry = emailJsonEntry & "," & vbCrLf
+        emailJsonEntry = emailJsonEntry & "        {" & vbCrLf
+        emailJsonEntry = emailJsonEntry & "          ""name"": """ & EscapeJson(recipient.Name) & """," & vbCrLf
+        emailJsonEntry = emailJsonEntry & "          ""address"": """ & EscapeJson(recipient.Address) & """," & vbCrLf
+        emailJsonEntry = emailJsonEntry & "          ""type"": " & recipient.Type & vbCrLf
+        emailJsonEntry = emailJsonEntry & "        }"
+        recipientIndex = recipientIndex + 1
+        If recipientIndex >= 10 Then Exit For
+    Next recipient
+    
+    emailJsonEntry = emailJsonEntry & vbCrLf & "      ]," & vbCrLf
+            
+    ' Process attachments
+    emailJsonEntry = emailJsonEntry & "      ""attachments"": [" & vbCrLf
+    Dim attachmentIndex As Long
+    attachmentIndex = 0
+    
+    Dim attachment As Outlook.attachment
+    For Each attachment In mailItem.Attachments
+        ' Skip embedded images
+        If Not IsEmbeddedImage(attachment.fileName) Then
+            If attachmentIndex > 0 Then emailJsonEntry = emailJsonEntry & "," & vbCrLf
+            
+            Dim attachmentPath As String
+            Dim relativeAttachmentPath As String
+            
+            relativeAttachmentPath = "data/" & subjectFolderName & "/" & attachment.fileName
+            attachmentPath = GetAttachmentsFolder() & subjectFolderName & "\" & attachment.fileName
+            
+            WriteLog "  Downloading attachment: " & attachment.fileName
+            
+            ' Ensure directory exists before saving
+            CreateDirectoryPath GetAttachmentsFolder() & subjectFolderName & "\"
+            
+            On Error Resume Next
+            attachment.SaveAsFile attachmentPath
+            If Err.Number = 0 Then
+                WriteLog "  Downloaded successfully: " & attachment.fileName
+            Else
+                WriteLog "  Failed to download: " & attachment.fileName & " (Error: " & Err.Description & ")"
+            End If
+            Err.Clear
+            On Error GoTo ErrorHandler
+            
+            emailJsonEntry = emailJsonEntry & "        {" & vbCrLf
+            emailJsonEntry = emailJsonEntry & "          ""filename"": """ & EscapeJson(attachment.fileName) & """," & vbCrLf
+            emailJsonEntry = emailJsonEntry & "          ""size"": " & attachment.Size & "," & vbCrLf
+            emailJsonEntry = emailJsonEntry & "          ""type"": " & attachment.Type & "," & vbCrLf
+            emailJsonEntry = emailJsonEntry & "          ""filepath"": """ & EscapeJson(relativeAttachmentPath) & """" & vbCrLf
+            emailJsonEntry = emailJsonEntry & "        }"
+            attachmentIndex = attachmentIndex + 1
+            If attachmentIndex >= 10 Then Exit For
+        End If
+    Next attachment
+    
+    emailJsonEntry = emailJsonEntry & vbCrLf & "      ]" & vbCrLf
+    emailJsonEntry = emailJsonEntry & "    }"
+    
+    BuildEmailJsonEntry = emailJsonEntry
+    Exit Function
+    
+ErrorHandler:
+    WriteLog "ERROR in BuildEmailJsonEntry: " & Err.Description
+    BuildEmailJsonEntry = ""
+End Function
+
+' Save folder-specific JSON file (replaces SaveCompleteJsonFile for multi-file structure)
+Private Sub SaveFolderSpecificJsonFile(emailDict As Object, folder As Outlook.Folder, standardFolderName As String, folderJsonName As String)
+    On Error GoTo ErrorHandler
+    
+    Dim jsonContent As String
+    Dim emailCount As Long
+    
+    ' Build complete JSON structure for this specific folder
+    jsonContent = "{" & vbCrLf
+    jsonContent = jsonContent & "  ""timestamp"": """ & Format(Now, "yyyy-mm-dd hh:nn:ss") & """," & vbCrLf
+    jsonContent = jsonContent & "  ""folder_name"": """ & standardFolderName & """," & vbCrLf
+    jsonContent = jsonContent & "  ""actual_folder_name"": """ & folder.Name & """," & vbCrLf
+    jsonContent = jsonContent & "  ""folder_path"": """ & EscapeJson(folder.FolderPath) & """," & vbCrLf
+    jsonContent = jsonContent & "  ""total_items"": " & folder.Items.Count & "," & vbCrLf
+    jsonContent = jsonContent & "  ""emails"": [" & vbCrLf
+    
+    emailCount = 0
+    
+    ' Add all emails from dictionary
+    Dim emailHash As Variant
+    For Each emailHash In emailDict.Keys
+        If emailCount > 0 Then jsonContent = jsonContent & "," & vbCrLf
+        jsonContent = jsonContent & emailDict(emailHash)
+        emailCount = emailCount + 1
+    Next emailHash
+    
+    ' Close JSON structure
+    jsonContent = jsonContent & vbCrLf & "  ]," & vbCrLf
+    jsonContent = jsonContent & "  ""extracted_count"": " & emailCount & vbCrLf
+    jsonContent = jsonContent & "}" & vbCrLf
+    
+    ' Write to folder-specific file
+    Dim fileName As String
+    Dim fileNum As Integer
+    
+    fileName = GetOutputFolder() & folderJsonName
+    fileNum = FreeFile
+    Open fileName For Output As #fileNum
+    Print #fileNum, jsonContent
+    Close #fileNum
+    
+    WriteLog "Folder-specific JSON updated: " & folderJsonName & " with " & emailCount & " total emails"
+    
+    Exit Sub
+    
+ErrorHandler:
+    WriteLog "ERROR in SaveFolderSpecificJsonFile: " & Err.Description
 End Sub
 

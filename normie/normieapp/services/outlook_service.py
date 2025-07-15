@@ -6,6 +6,7 @@ from pathlib import Path
 from django.conf import settings
 from typing import Dict, List, Optional, Tuple
 import hashlib
+from logging.handlers import RotatingFileHandler
 
 # COM interface imports
 try:
@@ -15,8 +16,106 @@ try:
 except ImportError:
     COM_AVAILABLE = False
 
-# Define logger at module level
-logger = logging.getLogger(__name__)
+# Configure file logging for OutlookService
+def setup_outlook_logging():
+    """
+    Configure file logging for the OutlookService with rotation and proper formatting.
+    Creates separate log files for different severity levels.
+    """
+    # Create logs directory if it doesn't exist
+    log_dir = Path(settings.BASE_DIR) / 'logs'
+    log_dir.mkdir(exist_ok=True)
+    
+    # Create outlook-specific log directory
+    outlook_log_dir = log_dir / 'outlook'
+    outlook_log_dir.mkdir(exist_ok=True)
+    
+    # Configure the logger
+    logger = logging.getLogger('outlook_service')
+    logger.setLevel(logging.DEBUG)
+    
+    # Remove existing handlers to avoid duplicates
+    for handler in logger.handlers[:]:
+        logger.removeHandler(handler)
+    
+    # Create formatters
+    detailed_formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(funcName)s:%(lineno)d - %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
+    )
+    
+    simple_formatter = logging.Formatter(
+        '%(asctime)s - %(levelname)s - %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
+    )
+    
+    # Main log file - all messages (with rotation)
+    main_handler = RotatingFileHandler(
+        outlook_log_dir / 'outlook_service.log',
+        maxBytes=10*1024*1024,  # 10MB
+        backupCount=5,
+        encoding='utf-8'
+    )
+    main_handler.setLevel(logging.DEBUG)
+    main_handler.setFormatter(detailed_formatter)
+    logger.addHandler(main_handler)
+    
+    # Error log file - only errors and critical messages
+    error_handler = RotatingFileHandler(
+        outlook_log_dir / 'outlook_errors.log',
+        maxBytes=5*1024*1024,  # 5MB
+        backupCount=3,
+        encoding='utf-8'
+    )
+    error_handler.setLevel(logging.ERROR)
+    error_handler.setFormatter(detailed_formatter)
+    logger.addHandler(error_handler)
+    
+    # COM operations log - specific to COM interface operations
+    com_handler = RotatingFileHandler(
+        outlook_log_dir / 'outlook_com.log',
+        maxBytes=5*1024*1024,  # 5MB
+        backupCount=3,
+        encoding='utf-8'
+    )
+    com_handler.setLevel(logging.INFO)
+    com_handler.setFormatter(simple_formatter)
+    
+    # Add a filter to only log COM-related messages to this handler
+    def com_filter(record):
+        return 'COM' in record.getMessage() or 'outlook' in record.funcName.lower()
+    
+    com_handler.addFilter(com_filter)
+    logger.addHandler(com_handler)
+    
+    # Email operations log - specific to email operations
+    email_handler = RotatingFileHandler(
+        outlook_log_dir / 'outlook_emails.log',
+        maxBytes=10*1024*1024,  # 10MB
+        backupCount=5,
+        encoding='utf-8'
+    )
+    email_handler.setLevel(logging.INFO)
+    email_handler.setFormatter(simple_formatter)
+    
+    # Add a filter to only log email-related messages
+    def email_filter(record):
+        email_keywords = ['email', 'delete', 'mark', 'read', 'unread', 'search', 'find']
+        return any(keyword in record.getMessage().lower() for keyword in email_keywords)
+    
+    email_handler.addFilter(email_filter)
+    logger.addHandler(email_handler)
+    
+    # Prevent propagation to root logger
+    logger.propagate = False
+    
+    return logger
+
+# Initialize the file logger
+file_logger = setup_outlook_logging()
+
+# Define logger at module level (for backward compatibility)
+logger = file_logger
 
 class OutlookService:
     """
@@ -32,42 +131,85 @@ class OutlookService:
     
     def __init__(self):
         """Initialize the Outlook service."""
-        logger.debug("Initializing OutlookService")
+        logger.info("=== Initializing OutlookService ===")
+        logger.debug(f"Service initialization started at {datetime.datetime.now()}")
         
-        # Dynamic path based on current user
-        self.base_path = Path(f"C:/Users/{os.environ.get('USERNAME', 'default')}/Desktop/normie/outlook/analyze/mail")
-        self.emails_file = self.base_path / "emails.json"
-        self.data_folder = self.base_path / "data"
-        
-        # COM interface attributes
-        self._outlook_app = None
-        self._namespace = None
-        self._com_initialized = False
-        
-        logger.debug(f"Base path: {self.base_path}")
-        logger.debug(f"Emails file: {self.emails_file}")
-        logger.debug(f"COM Available: {COM_AVAILABLE}")
+        try:
+            # Dynamic path based on current user
+            username = os.environ.get('USERNAME', 'default')
+            self.base_path = Path(f"C:/Users/{username}/Desktop/normie/outlook/analyze/mail")
+            self.emails_file = self.base_path / "emails.json"
+            self.data_folder = self.base_path / "data"
+            
+            logger.info(f"OutlookService configured for user: {username}")
+            logger.debug(f"Base path: {self.base_path}")
+            logger.debug(f"Emails file: {self.emails_file}")
+            logger.debug(f"Data folder: {self.data_folder}")
+            
+            # COM interface attributes
+            self._outlook_app = None
+            self._namespace = None
+            self._com_initialized = False
+            
+            logger.info(f"COM interface availability: {COM_AVAILABLE}")
+            
+            # Log path existence
+            if self.base_path.exists():
+                logger.info(f"Base path exists: {self.base_path}")
+            else:
+                logger.warning(f"Base path does not exist: {self.base_path}")
+                
+            if self.emails_file.exists():
+                logger.info(f"Emails file found: {self.emails_file}")
+                logger.debug(f"Emails file size: {self.emails_file.stat().st_size} bytes")
+            else:
+                logger.info(f"Emails file not found: {self.emails_file}")
+            
+            logger.info("OutlookService initialization completed successfully")
+            
+        except Exception as e:
+            logger.error(f"Error during OutlookService initialization: {str(e)}", exc_info=True)
+            raise
 
     def _initialize_com(self) -> bool:
         """Initialize COM interface for Outlook operations."""
+        logger.debug("=== COM Interface Initialization ===")
+        
         if not COM_AVAILABLE:
             logger.warning("COM interface not available (pywin32 not installed)")
+            logger.info("To enable COM functionality, install pywin32: pip install pywin32")
             return False
             
         if self._com_initialized:
+            logger.debug("COM interface already initialized")
             return True
             
         try:
-            logger.debug("Initializing COM interface...")
+            logger.info("Starting COM interface initialization...")
+            logger.debug("Calling pythoncom.CoInitialize()")
             pythoncom.CoInitialize()
+            
+            logger.debug("Dispatching Outlook.Application")
             self._outlook_app = win32com.client.Dispatch("Outlook.Application")
+            
+            logger.debug("Getting MAPI namespace")
             self._namespace = self._outlook_app.GetNamespace("MAPI")
+            
             self._com_initialized = True
-            logger.debug("COM interface initialized successfully")
+            logger.info("COM interface initialized successfully")
+            
+            # Log Outlook version if available
+            try:
+                version = getattr(self._outlook_app, 'Version', 'Unknown')
+                logger.info(f"Connected to Outlook version: {version}")
+            except Exception as ver_e:
+                logger.debug(f"Could not retrieve Outlook version: {ver_e}")
+            
             return True
             
         except Exception as e:
-            logger.error(f"Failed to initialize COM interface: {str(e)}")
+            logger.error(f"Failed to initialize COM interface: {str(e)}", exc_info=True)
+            logger.error("Make sure Outlook is installed and you have proper permissions")
             return False
 
     def _cleanup_com(self):
@@ -304,9 +446,297 @@ class OutlookService:
             logger.error(f"Error in content-based email search: {str(e)}")
             return None
 
+    def _update_json_files_read_status(self, email_id: str, read: bool) -> bool:
+        """
+        Update the read/unread status in JSON files for a specific email.
+        
+        Args:
+            email_id: Email ID to update
+            read: True to mark as read, False to mark as unread
+            
+        Returns:
+            bool: True if successful, False otherwise
+        """
+        try:
+            # Check if we have multi-file structure
+            folder_files = list(self.base_path.glob("emails_*.json"))
+            
+            if folder_files:
+                return self._update_multifile_read_status(email_id, read, folder_files)
+            else:
+                return self._update_singlefile_read_status(email_id, read)
+                
+        except Exception as e:
+            logger.error(f"Error updating JSON files read status for {email_id}: {str(e)}")
+            return False
+
+    def _update_multifile_read_status(self, email_id: str, read: bool, folder_files: List[Path]) -> bool:
+        """Update read status in multi-file JSON structure."""
+        updated_files = 0
+        status = "read" if read else "unread"
+        
+        for folder_file in folder_files:
+            try:
+                # Read the file
+                encodings = ['utf-8', 'utf-8-sig', 'cp1252', 'iso-8859-1', 'latin-1']
+                folder_data = None
+                
+                for encoding in encodings:
+                    try:
+                        with open(folder_file, 'r', encoding=encoding) as f:
+                            folder_data = json.load(f)
+                        break
+                    except UnicodeDecodeError:
+                        continue
+                    except json.JSONDecodeError:
+                        continue
+                
+                if folder_data is None:
+                    logger.warning(f"Could not read {folder_file.name}")
+                    continue
+                
+                # Look for the email in this file
+                emails = folder_data.get('emails', [])
+                email_found = False
+                
+                for email in emails:
+                    # Try multiple ways to match the email ID
+                    if (email.get('id') == email_id or 
+                        email.get('entry_id') == email_id or 
+                        email.get('hash') == email_id):
+                        # Update the read status
+                        email['unread'] = not read  # unread=True means unread, unread=False means read
+                        email_found = True
+                        logger.debug(f"Updated email {email_id} to {status} in {folder_file.name}")
+                        break
+                
+                if email_found:
+                    # Update timestamp
+                    folder_data['timestamp'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                    
+                    # Write back to file
+                    with open(folder_file, 'w', encoding='utf-8') as f:
+                        json.dump(folder_data, f, indent=2, ensure_ascii=False)
+                    
+                    updated_files += 1
+                    logger.info(f"📝 Updated {folder_file.name} - marked email as {status}")
+                    break  # Email found, no need to check other files
+                    
+            except Exception as e:
+                logger.error(f"Error updating {folder_file.name}: {str(e)}")
+                continue
+        
+        if updated_files > 0:
+            logger.info(f"✅ Successfully updated read status in {updated_files} JSON file(s)")
+            return True
+        else:
+            logger.warning(f"⚠️ Email {email_id} not found in any JSON files for read status update")
+            return False
+
+    def _update_singlefile_read_status(self, email_id: str, read: bool) -> bool:
+        """Update read status in single-file JSON structure."""
+        try:
+            if not self.emails_file.exists():
+                logger.warning(f"Emails file not found: {self.emails_file}")
+                return False
+            
+            # Read the file
+            encodings = ['utf-8', 'utf-8-sig', 'cp1252', 'iso-8859-1', 'latin-1']
+            data = None
+            
+            for encoding in encodings:
+                try:
+                    with open(self.emails_file, 'r', encoding=encoding) as f:
+                        data = json.load(f)
+                    break
+                except UnicodeDecodeError:
+                    continue
+                except json.JSONDecodeError:
+                    continue
+            
+            if data is None:
+                logger.error("Failed to read emails file")
+                return False
+            
+            # Look for the email
+            emails = data.get('emails', [])
+            email_found = False
+            status = "read" if read else "unread"
+            
+            for email in emails:
+                # Try multiple ways to match the email ID
+                if (email.get('id') == email_id or 
+                    email.get('entry_id') == email_id or 
+                    email.get('hash') == email_id):
+                    # Update the read status
+                    email['unread'] = not read  # unread=True means unread, unread=False means read
+                    email_found = True
+                    logger.debug(f"Updated email {email_id} to {status} in single file")
+                    break
+            
+            if email_found:
+                # Update timestamp
+                data['timestamp'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                
+                # Write back to file
+                with open(self.emails_file, 'w', encoding='utf-8') as f:
+                    json.dump(data, f, indent=2, ensure_ascii=False)
+                
+                logger.info(f"✅ Successfully updated single file - marked email as {status}")
+                return True
+            else:
+                logger.warning(f"⚠️ Email {email_id} not found in single file for read status update")
+                return False
+                
+        except Exception as e:
+            logger.error(f"Error updating single file read status: {str(e)}")
+            return False
+
+    def _remove_email_from_json_files(self, email_id: str) -> bool:
+        """
+        Remove an email from JSON files after successful deletion.
+        
+        Args:
+            email_id: Email ID to remove
+            
+        Returns:
+            bool: True if successful, False otherwise
+        """
+        try:
+            # Check if we have multi-file structure
+            folder_files = list(self.base_path.glob("emails_*.json"))
+            
+            if folder_files:
+                return self._remove_email_from_multifiles(email_id, folder_files)
+            else:
+                return self._remove_email_from_singlefile(email_id)
+                
+        except Exception as e:
+            logger.error(f"Error removing email from JSON files {email_id}: {str(e)}")
+            return False
+
+    def _remove_email_from_multifiles(self, email_id: str, folder_files: List[Path]) -> bool:
+        """Remove email from multi-file JSON structure."""
+        updated_files = 0
+        
+        for folder_file in folder_files:
+            try:
+                # Read the file
+                encodings = ['utf-8', 'utf-8-sig', 'cp1252', 'iso-8859-1', 'latin-1']
+                folder_data = None
+                
+                for encoding in encodings:
+                    try:
+                        with open(folder_file, 'r', encoding=encoding) as f:
+                            folder_data = json.load(f)
+                        break
+                    except UnicodeDecodeError:
+                        continue
+                    except json.JSONDecodeError:
+                        continue
+                
+                if folder_data is None:
+                    logger.warning(f"Could not read {folder_file.name}")
+                    continue
+                
+                # Look for the email in this file
+                emails = folder_data.get('emails', [])
+                original_count = len(emails)
+                
+                # Remove the email - try multiple ID fields
+                emails = [email for email in emails if not (
+                    email.get('id') == email_id or 
+                    email.get('entry_id') == email_id or 
+                    email.get('hash') == email_id
+                )]
+                new_count = len(emails)
+                
+                if new_count < original_count:
+                    # Email was found and removed
+                    folder_data['emails'] = emails
+                    folder_data['total_items'] = new_count
+                    folder_data['extracted_count'] = new_count
+                    folder_data['timestamp'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                    
+                    # Write back to file
+                    with open(folder_file, 'w', encoding='utf-8') as f:
+                        json.dump(folder_data, f, indent=2, ensure_ascii=False)
+                    
+                    updated_files += 1
+                    logger.info(f"📝 Removed email from {folder_file.name} (count: {original_count} → {new_count})")
+                    break  # Email found and removed, no need to check other files
+                    
+            except Exception as e:
+                logger.error(f"Error updating {folder_file.name}: {str(e)}")
+                continue
+        
+        if updated_files > 0:
+            logger.info(f"✅ Successfully removed email from {updated_files} JSON file(s)")
+            return True
+        else:
+            logger.warning(f"⚠️ Email {email_id} not found in any JSON files for removal")
+            return False
+
+    def _remove_email_from_singlefile(self, email_id: str) -> bool:
+        """Remove email from single-file JSON structure."""
+        try:
+            if not self.emails_file.exists():
+                logger.warning(f"Emails file not found: {self.emails_file}")
+                return False
+            
+            # Read the file
+            encodings = ['utf-8', 'utf-8-sig', 'cp1252', 'iso-8859-1', 'latin-1']
+            data = None
+            
+            for encoding in encodings:
+                try:
+                    with open(self.emails_file, 'r', encoding=encoding) as f:
+                        data = json.load(f)
+                    break
+                except UnicodeDecodeError:
+                    continue
+                except json.JSONDecodeError:
+                    continue
+            
+            if data is None:
+                logger.error("Failed to read emails file")
+                return False
+            
+            # Remove the email - try multiple ID fields  
+            emails = data.get('emails', [])
+            original_count = len(emails)
+            
+            emails = [email for email in emails if not (
+                email.get('id') == email_id or 
+                email.get('entry_id') == email_id or 
+                email.get('hash') == email_id
+            )]
+            new_count = len(emails)
+            
+            if new_count < original_count:
+                # Email was found and removed
+                data['emails'] = emails
+                data['total_items'] = new_count
+                data['extracted_count'] = new_count
+                data['timestamp'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                
+                # Write back to file
+                with open(self.emails_file, 'w', encoding='utf-8') as f:
+                    json.dump(data, f, indent=2, ensure_ascii=False)
+                
+                logger.info(f"✅ Successfully removed email from single file (count: {original_count} → {new_count})")
+                return True
+            else:
+                logger.warning(f"⚠️ Email {email_id} not found in single file for removal")
+                return False
+                
+        except Exception as e:
+            logger.error(f"Error removing email from single file: {str(e)}")
+            return False
+
     def delete_email(self, email_id: str) -> bool:
         """
-        Delete a specific email using COM interface.
+        Delete a specific email using COM interface and update JSON files.
         
         Args:
             email_id: Email ID to delete
@@ -314,24 +744,44 @@ class OutlookService:
         Returns:
             bool: True if successful, False otherwise
         """
+        logger.info(f"=== Attempting to delete email: {email_id} ===")
+        
         try:
+            # Get email data for logging
+            email_data = self.get_email_by_id(email_id)
+            if email_data:
+                logger.info(f"Email to delete: '{email_data.get('subject', 'N/A')[:50]}...' from {email_data.get('sender_email', 'N/A')}")
+            
+            logger.debug("Searching for email item in Outlook")
             email_item = self._find_email_by_id(email_id)
             if not email_item:
-                logger.error(f"Cannot delete email - not found: {email_id}")
+                logger.error(f"Cannot delete email - not found in Outlook: {email_id}")
+                logger.warning(f"Email exists in JSON data but not found in Outlook COM interface")
                 return False
                 
-            # Delete the email
+            # Delete the email from Outlook
+            logger.debug("Executing delete operation via COM interface")
             email_item.Delete()
-            logger.info(f"Email deleted successfully: {email_id}")
+            logger.info(f"✅ Email deleted from Outlook successfully: {email_id}")
+            
+            # Update JSON files to remove the deleted email
+            logger.debug("Updating JSON files to remove deleted email")
+            json_updated = self._remove_email_from_json_files(email_id)
+            
+            if json_updated:
+                logger.info(f"🔄 JSON files synchronized - email removed from data files")
+            else:
+                logger.warning(f"⚠️ JSON files not updated - email may still appear in listings until VBA refresh")
+            
             return True
             
         except Exception as e:
-            logger.error(f"Error deleting email {email_id}: {str(e)}")
+            logger.error(f"❌ Error deleting email {email_id}: {str(e)}", exc_info=True)
             return False
 
     def mark_email_read(self, email_id: str, read: bool = True) -> bool:
         """
-        Mark an email as read or unread using COM interface.
+        Mark an email as read or unread using COM interface and update JSON files.
         
         Args:
             email_id: Email ID to mark
@@ -340,22 +790,45 @@ class OutlookService:
         Returns:
             bool: True if successful, False otherwise
         """
+        status = "read" if read else "unread"
+        logger.info(f"=== Attempting to mark email as {status}: {email_id} ===")
+        
         try:
+            # Get email data for logging
+            email_data = self.get_email_by_id(email_id)
+            if email_data:
+                logger.info(f"Email to mark as {status}: '{email_data.get('subject', 'N/A')[:50]}...' from {email_data.get('sender_email', 'N/A')}")
+                current_status = "unread" if email_data.get('unread', False) else "read"
+                logger.debug(f"Current email status: {current_status}")
+            
+            logger.debug("Searching for email item in Outlook")
             email_item = self._find_email_by_id(email_id)
             if not email_item:
-                logger.error(f"Cannot mark email - not found: {email_id}")
+                logger.error(f"Cannot mark email - not found in Outlook: {email_id}")
+                logger.warning(f"Email exists in JSON data but not found in Outlook COM interface")
                 return False
                 
-            # Set unread status (UnRead=False means read, UnRead=True means unread)
+            # Set unread status in Outlook (UnRead=False means read, UnRead=True means unread)
+            logger.debug(f"Setting UnRead property to {not read}")
             email_item.UnRead = not read
+            logger.debug("Saving email changes")
             email_item.Save()
             
-            status = "read" if read else "unread"
-            logger.info(f"Email marked as {status} successfully: {email_id}")
+            logger.info(f"✅ Email marked as {status} in Outlook successfully: {email_id}")
+            
+            # Update JSON files to reflect the read status change
+            logger.debug("Updating JSON files to reflect read status change")
+            json_updated = self._update_json_files_read_status(email_id, read)
+            
+            if json_updated:
+                logger.info(f"🔄 JSON files synchronized - email status updated in data files")
+            else:
+                logger.warning(f"⚠️ JSON files not updated - email status may not reflect changes until VBA refresh")
+            
             return True
             
         except Exception as e:
-            logger.error(f"Error marking email {email_id} as {'read' if read else 'unread'}: {str(e)}")
+            logger.error(f"❌ Error marking email {email_id} as {status}: {str(e)}", exc_info=True)
             return False
 
     def delete_multiple_emails(self, email_ids: List[str]) -> Tuple[int, List[str]]:
@@ -460,18 +933,24 @@ class OutlookService:
         Returns:
             Dict: Consolidated email data structure from all folders
         """
+        logger.debug("=== Loading emails data ===")
+        
         try:
             # Check if we have the new multi-file structure (scan for emails_*.json files)
             folder_files = list(self.base_path.glob("emails_*.json"))
             
             if folder_files:
+                logger.info(f"Found {len(folder_files)} folder-specific email files")
+                logger.debug(f"Folder files: {[f.name for f in folder_files]}")
                 return self._get_emails_from_multiple_files()
             else:
                 # Fallback to single file (backward compatibility)
+                logger.info("Using single email file structure (backward compatibility)")
                 return self._get_emails_from_single_file()
                 
         except Exception as e:
-            logger.error(f"Error reading emails data: {str(e)}")
+            logger.error(f"Error reading emails data: {str(e)}", exc_info=True)
+            logger.warning("Returning empty data structure due to error")
             return self._get_empty_data_structure()
 
     def _get_emails_from_multiple_files(self) -> Dict:
@@ -524,14 +1003,19 @@ class OutlookService:
                 folder_emails = folder_data.get('emails', [])
                 folder_counts[json_folder_name] = len(folder_emails)
                 
-                # Add unique IDs to emails if not present
+                # Use entry_id as the unique identifier if available
                 for i, email in enumerate(folder_emails):
                     if 'id' not in email:
-                        # Generate unique ID based on index and content hash
-                        email_hash = hashlib.md5(
-                            f"{email.get('subject', '')}{email.get('sender_email', '')}{email.get('received_time', '')}".encode()
-                        ).hexdigest()[:8]
-                        email['id'] = f"vba_{len(all_emails)+i+1}_{email_hash}"
+                        # Use entry_id from JSON if available, otherwise fall back to hash
+                        entry_id = email.get('entry_id')
+                        if entry_id:
+                            email['id'] = entry_id
+                        else:
+                            # Fallback: generate hash-based ID if entry_id is missing
+                            email_hash = hashlib.md5(
+                                f"{email.get('subject', '')}{email.get('sender_email', '')}{email.get('received_time', '')}".encode()
+                            ).hexdigest()[:8]
+                            email['id'] = f"hash_{email_hash}"
                 
                 all_emails.extend(folder_emails)
                 
@@ -593,14 +1077,19 @@ class OutlookService:
                 logger.error("Failed to read file with any encoding")
                 return self._get_empty_data_structure()
                 
-            # Add unique IDs to emails if not present
+            # Use entry_id as the unique identifier if available
             for i, email in enumerate(data.get('emails', [])):
                 if 'id' not in email:
-                    # Generate unique ID based on index and content hash
-                    email_hash = hashlib.md5(
-                        f"{email.get('subject', '')}{email.get('sender_email', '')}{email.get('received_time', '')}".encode()
-                    ).hexdigest()[:8]
-                    email['id'] = f"vba_{i+1}_{email_hash}"
+                    # Use entry_id from JSON if available, otherwise fall back to hash
+                    entry_id = email.get('entry_id')
+                    if entry_id:
+                        email['id'] = entry_id
+                    else:
+                        # Fallback: generate hash-based ID if entry_id is missing
+                        email_hash = hashlib.md5(
+                            f"{email.get('subject', '')}{email.get('sender_email', '')}{email.get('received_time', '')}".encode()
+                        ).hexdigest()[:8]
+                        email['id'] = f"hash_{email_hash}"
             
             # Add source indicator
             data['source'] = 'single_file'

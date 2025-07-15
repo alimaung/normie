@@ -13,6 +13,8 @@ class InboxManager {
         this.selectedEmails = new Set();
         this.refreshInterval = null;
         this.searchTimeout = null;
+        this.sidebarPinned = false;
+        this.sidebarHoverTimeout = null;
         
         this.init();
     }
@@ -28,6 +30,7 @@ class InboxManager {
         
         this.bindEvents();
         this.initializeTooltips();
+        this.initializeSidebar();
         this.startAutoRefresh();
         
         console.log('Inbox system initialized successfully');
@@ -86,14 +89,18 @@ class InboxManager {
         // Read/Unread toggle buttons
         $(document).on('click', '.read-unread-btn', (e) => this.handleReadUnreadToggle(e));
         
+        // Sidebar controls
+        $('#sidebar-toggle').on('click', () => this.toggleSidebar());
+        $('#sidebar-pin').on('click', () => this.toggleSidebarPin());
+        
         // Toolbar actions
-        $('#refresh-btn').on('click', () => this.refreshInbox());
-        $('#refresh-emails').on('click', () => this.refreshInbox());
+        $('#refresh-btn, #refresh-action').on('click', () => this.refreshInbox());
+        $('#select-all-action').on('click', () => this.selectAllEmails());
+        
+        // Selection actions
         $('#delete-selected').on('click', () => this.deleteSelected());
         $('#mark-read-selected').on('click', () => this.markSelectedAsRead());
         $('#mark-unread-selected').on('click', () => this.markSelectedAsUnread());
-        $('#mark-read').on('click', () => this.markSelectedAsRead());
-        $('#mark-unread').on('click', () => this.markSelectedAsUnread());
         $('#retry-connection').on('click', () => this.retryConnection());
         
         // Email row clicks (for selection)
@@ -113,6 +120,94 @@ class InboxManager {
     initializeTooltips() {
         if (typeof $().tooltip === 'function') {
             $('[title]').tooltip();
+        }
+    }
+    
+    initializeSidebar() {
+        const $sidebar = $('#inbox-sidebar');
+        
+        // Handle hover behavior when not pinned
+        $sidebar.on('mouseenter', () => {
+            if (!this.sidebarPinned && $sidebar.hasClass('collapsed')) {
+                clearTimeout(this.sidebarHoverTimeout);
+                this.expandSidebar();
+            }
+        });
+        
+        $sidebar.on('mouseleave', () => {
+            if (!this.sidebarPinned && !$sidebar.hasClass('collapsed')) {
+                this.sidebarHoverTimeout = setTimeout(() => {
+                    this.collapseSidebar();
+                }, 300); // Delay before collapsing
+            }
+        });
+    }
+    
+    toggleSidebar() {
+        const $sidebar = $('#inbox-sidebar');
+        if ($sidebar.hasClass('collapsed')) {
+            this.expandSidebar();
+        } else {
+            this.collapseSidebar();
+        }
+    }
+    
+    expandSidebar() {
+        const $sidebar = $('#inbox-sidebar');
+        const $toggle = $('#sidebar-toggle');
+        const $pin = $('#sidebar-pin');
+        
+        $sidebar.removeClass('collapsed');
+        $toggle.find('i').removeClass('fa-chevron-right').addClass('fa-chevron-left');
+        $toggle.attr('title', 'Collapse sidebar');
+        
+        if (!this.sidebarPinned) {
+            $pin.show();
+        }
+    }
+    
+    collapseSidebar() {
+        const $sidebar = $('#inbox-sidebar');
+        const $toggle = $('#sidebar-toggle');
+        const $pin = $('#sidebar-pin');
+        
+        $sidebar.addClass('collapsed');
+        $toggle.find('i').removeClass('fa-chevron-left').addClass('fa-chevron-right');
+        $toggle.attr('title', 'Expand sidebar');
+        $pin.hide();
+    }
+    
+    toggleSidebarPin() {
+        const $pin = $('#sidebar-pin');
+        
+        this.sidebarPinned = !this.sidebarPinned;
+        
+        if (this.sidebarPinned) {
+            $pin.addClass('pinned');
+            $pin.attr('title', 'Unpin sidebar');
+        } else {
+            $pin.removeClass('pinned');
+            $pin.attr('title', 'Pin sidebar open');
+        }
+    }
+    
+    selectAllEmails() {
+        $('#select-all').prop('checked', true).trigger('change');
+    }
+    
+    updateSelectionState(checkedCount) {
+        const $selectedCount = $('#selected-count');
+        const $defaultActions = $('#default-actions');
+        const $selectionActions = $('#selection-actions');
+        
+        if (checkedCount > 0) {
+            $selectedCount.text(`${checkedCount} selected`);
+            $defaultActions.hide();
+            $selectionActions.show();
+        } else {
+            $selectedCount.text('0 selected');
+            $defaultActions.show();
+            $selectionActions.hide();
         }
     }
     
@@ -235,24 +330,15 @@ class InboxManager {
             this.selectedEmails.delete(emailId);
         }
         
-        // Update select all checkbox (handle both IDs)
+        // Update select all checkbox
         const totalCheckboxes = $('.email-checkbox').length;
         const checkedCheckboxes = $('.email-checkbox:checked').length;
         
-        $('#select-all, #select-all-emails').prop('indeterminate', checkedCheckboxes > 0 && checkedCheckboxes < totalCheckboxes);
-        $('#select-all, #select-all-emails').prop('checked', checkedCheckboxes === totalCheckboxes);
+        $('#select-all').prop('indeterminate', checkedCheckboxes > 0 && checkedCheckboxes < totalCheckboxes);
+        $('#select-all').prop('checked', checkedCheckboxes === totalCheckboxes);
         
-        // Update selection counter
-        $('#selected-count').text(`${checkedCheckboxes} selected`);
-        
-        // Show/hide toolbar actions
-        if (checkedCheckboxes > 0) {
-            $('#toolbar-actions').show();
-        } else {
-            $('#toolbar-actions').hide();
-        }
-        
-        this.updateToolbarState();
+        // Update selection counter and toolbar state
+        this.updateSelectionState(checkedCheckboxes);
     }
     
     handleReadUnreadToggle(e) {
@@ -269,7 +355,7 @@ class InboxManager {
     
     updateToolbarState() {
         const hasSelection = this.selectedEmails.size > 0;
-        $('#delete-selected, #mark-read, #mark-unread').prop('disabled', !hasSelection);
+        this.updateSelectionState(this.selectedEmails.size);
     }
     
     loadEmails() {
@@ -343,7 +429,8 @@ class InboxManager {
                 search: this.currentFilters.search || null,
                 unread: this.currentFilters.unread || null,
                 important: this.currentFilters.important || null,
-                attachments: this.currentFilters.attachments || null
+                attachments: this.currentFilters.attachments || null,
+                folder: this.currentFilters.folder || null  // ✅ Add missing folder filter
             }),
             success: (response) => {
                 if (response.success) {
@@ -482,9 +569,18 @@ class InboxManager {
             },
             success: (response) => {
                 if (response.success) {
+                    // Debug logging
+                    console.log('Read/unread response:', response);
+                    console.log('Original button state:', button.data('read'));
+                    
                     // Update button appearance
                     const newReadState = response.read;
+                    const newUnreadState = response.unread;
+                    
+                    // Update button data attribute
                     button.data('read', newReadState ? 'true' : 'false');
+                    
+                    console.log('New button state:', button.data('read'));
                     
                     if (newReadState) {
                         button.html('<i class="far fa-envelope text-muted" title="Read"></i>');
@@ -542,24 +638,86 @@ class InboxManager {
         // Clear selections
         this.selectedEmails.clear();
         $('#select-all').prop('checked', false).prop('indeterminate', false);
-        this.updateToolbarState();
+        this.updateSelectionState(0);
+    }
+    
+    escapeHtml(text) {
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
     }
     
     renderEmailItem(email) {
         const unreadClass = email.unread ? 'unread' : '';
-        const importantIcon = email.importance > 1 ? '<i class="fas fa-star text-warning" title="Important"></i>' : '';
-        const attachmentIcon = email.attachments && email.attachments.length > 0 ? '<i class="fas fa-paperclip text-muted" title="Has attachments"></i>' : '';
-        const unreadIndicator = email.unread ? '<i class="fas fa-circle text-primary unread-indicator" title="Unread"></i>' : '';
         
-        const senderName = email.sender_name || email.sender_email;
-        const subject = email.subject || '(No subject)';
-        const preview = email.body ? email.body.substring(0, 100) : '';
-        const receivedTime = new Date(email.received_time).toLocaleDateString('en-US', {
-            month: 'short',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit'
-        });
+        // Read/unread button
+        const readUnreadButton = email.unread 
+            ? `<button class="btn btn-sm btn-link read-unread-btn" data-email-id="${email.id}" data-read="false" title="Mark as read">
+                 <i class="fas fa-envelope text-primary" title="Unread"></i>
+               </button>`
+            : `<button class="btn btn-sm btn-link read-unread-btn" data-email-id="${email.id}" data-read="true" title="Mark as unread">
+                 <i class="far fa-envelope text-muted" title="Read"></i>
+               </button>`;
+        
+        // Attachment icon - check for both array and boolean formats
+        const hasAttachments = (Array.isArray(email.attachments) && email.attachments.length > 0) || 
+                              (email.attachments === true) ||
+                              (typeof email.attachments === 'string' && email.attachments.length > 0);
+        const attachmentIcon = hasAttachments ? '<i class="fas fa-paperclip text-muted" title="Has attachments"></i>' : '';
+        
+        // Importance icon
+        const importanceIcon = email.importance > 1 
+            ? '<i class="fas fa-star text-warning" title="Important"></i>'
+            : '<i class="far fa-star text-muted opacity-25" title="Normal Priority"></i>';
+        
+        // Categories - safely handle and escape
+        const categoriesHtml = email.categories && email.categories.trim()
+            ? `<span class="categories-text" title="${this.escapeHtml(email.categories)}">${this.escapeHtml(email.categories.length > 15 ? email.categories.substring(0, 12) + '...' : email.categories)}</span>`
+            : '<span class="text-muted">-</span>';
+        
+        const senderName = this.escapeHtml(email.sender_name || email.sender_email || '');
+        const subject = this.escapeHtml(email.subject || '(No subject)');
+        
+        // Clean and truncate email preview - mimic Django's truncatechars filter
+        let preview = '';
+        if (email.body) {
+            // First escape HTML entities like Django does
+            let cleanText = this.escapeHtml(email.body);
+            // Then remove remaining HTML tags and normalize text
+            cleanText = cleanText
+                .replace(/<[^>]*>/g, '') // Remove HTML tags
+                .replace(/&\w+;/g, ' ')  // Remove HTML entities that might remain
+                .replace(/\s+/g, ' ')    // Normalize whitespace  
+                .trim();                 // Remove leading/trailing spaces
+            
+            // Truncate like Django's truncatechars (97 chars + "...")
+            if (cleanText.length > 97) {
+                preview = cleanText.substring(0, 97) + '...';
+            } else {
+                preview = cleanText;
+            }
+        }
+        
+        // Format date to match Django template
+        let formattedDate = '<span class="text-muted">No date</span>';
+        if (email.received_time) {
+            try {
+                const date = new Date(email.received_time);
+                if (isNaN(date.getTime())) {
+                    formattedDate = '<span class="text-muted">Invalid date</span>';
+                } else {
+                    formattedDate = date.toLocaleDateString('en-US', {
+                        month: 'short',
+                        day: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit',
+                        hour12: false
+                    });
+                }
+            } catch (e) {
+                formattedDate = '<span class="text-muted">Invalid date</span>';
+            }
+        }
         
         return `
             <div class="email-item ${unreadClass}" data-email-id="${email.id}">
@@ -567,21 +725,26 @@ class InboxManager {
                     <input type="checkbox" class="email-checkbox" value="${email.id}">
                 </div>
                 <div class="email-item-flags">
-                    ${importantIcon}
+                    ${readUnreadButton}
                     ${attachmentIcon}
-                    ${unreadIndicator}
+                </div>
+                <div class="email-item-importance">
+                    ${importanceIcon}
+                </div>
+                <div class="email-item-categories">
+                    ${categoriesHtml}
                 </div>
                 <div class="email-item-sender">
-                    <span class="sender-name" title="${email.sender_email}">${senderName}</span>
+                    <span class="sender-name" title="${this.escapeHtml(email.sender_email || '')}">${senderName}</span>
                 </div>
                 <div class="email-item-subject">
-                    <a href="/inbox/view/${email.id}/" class="email-link">
+                    <a href="/inbox/view/${this.escapeHtml(email.id)}/" class="email-link">
                         <span class="subject">${subject}</span>
                         <span class="email-preview">${preview}</span>
                     </a>
                 </div>
                 <div class="email-item-date">
-                    <span class="date-time" title="${email.received_time}">${receivedTime}</span>
+                    <span class="date-time" title="${email.received_time || ''}">${formattedDate}</span>
                 </div>
             </div>
         `;
@@ -594,7 +757,14 @@ class InboxManager {
     }
     
     updateFolderStats(stats) {
-        $('#unread-count').text(stats.unread_emails > 0 ? stats.unread_emails : '');
+        // Update folder counts
+        $('#inbox-count').text(stats.folder_counts?.Inbox || '');
+        $('#sent-count').text(stats.folder_counts?.['Sent Items'] || stats.folder_counts?.['Sent Mail'] || '');
+        $('#drafts-count').text(stats.folder_counts?.Drafts || '');
+        $('#deleted-count').text(stats.folder_counts?.['Deleted Items'] || stats.folder_counts?.Trash || '');
+        $('#outbox-count').text(stats.folder_counts?.Outbox || '');
+        
+        // Update filter counts
         $('.filter-count').each((i, el) => {
             const $el = $(el);
             const filterType = $el.closest('a').data('filter');
@@ -604,6 +774,16 @@ class InboxManager {
                 $el.text(stats.important_emails || '');
             } else if (filterType === 'attachments') {
                 $el.text(stats.emails_with_attachments || '');
+            }
+        });
+        
+        // Hide empty counts
+        $('.folder-count, .filter-count').each((i, el) => {
+            const $el = $(el);
+            if (!$el.text() || $el.text() === '0') {
+                $el.hide();
+            } else {
+                $el.show();
             }
         });
     }
@@ -640,16 +820,23 @@ class InboxManager {
     }
     
     startAutoRefresh() {
-        // Auto-refresh every 2 minutes
+        // Auto-refresh every 20 seconds
         this.refreshInterval = setInterval(() => {
             this.refreshInbox();
-        }, 120000);
+        }, 20000);
     }
     
     stopAutoRefresh() {
         if (this.refreshInterval) {
             clearInterval(this.refreshInterval);
             this.refreshInterval = null;
+        }
+    }
+    
+    cleanup() {
+        this.stopAutoRefresh();
+        if (this.sidebarHoverTimeout) {
+            clearTimeout(this.sidebarHoverTimeout);
         }
     }
     

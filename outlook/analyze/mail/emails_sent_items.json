@@ -1,0 +1,29 @@
+{
+  "timestamp": "2025-07-15 13:24:46",
+  "folder_name": "Sent Items",
+  "actual_folder_name": "Sent Mail",
+  "folder_path": "\\\\microfilm.development@gmail.com\\[Gmail]\\Sent Mail",
+  "total_items": 2,
+  "emails": [
+    {
+      "index": 1,
+      "hash": "5382910463814041",
+      "folder": "Sent Items",
+      "subject": "Microsoft Outlook Test Message",
+      "sender_email": "microfilm.development@gmail.com",
+      "received_time": "2025-07-15 12:31:49",
+      "unread": true
+    },
+    {
+      "index": 2,
+      "hash": "9095788175487505",
+      "folder": "Sent Items",
+      "subject": "TEST444",
+      "sender_email": "microfilm.development@gmail.com",
+      "received_time": "2025-07-14 21:16:10",
+      "unread": false
+    }
+  ],
+  "extracted_count": 2
+}
+

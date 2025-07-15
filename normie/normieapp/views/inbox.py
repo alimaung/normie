@@ -230,13 +230,15 @@ def inbox_refresh(request):
         filter_unread = data.get('unread')
         filter_important = data.get('important')
         filter_attachments = data.get('attachments')
+        filter_folder = data.get('folder')  # ✅ Add missing folder filter
         
         emails, pagination_info = outlook_service.get_emails_list(
             page=page,
             search=search,
             filter_unread=filter_unread,
             filter_important=filter_important,
-            filter_attachments=filter_attachments
+            filter_attachments=filter_attachments,
+            filter_folder=filter_folder  # ✅ Pass folder filter to service
         )
         
         folder_stats = outlook_service.get_folder_stats()
@@ -381,7 +383,8 @@ def inbox_mark_single_read_unread(request, message_id):
                 'success': True,
                 'message': f'Email marked as {status}',
                 'email_id': message_id,
-                'read': mark_as_read
+                'read': mark_as_read,
+                'unread': not mark_as_read  # Add explicit unread state
             })
         else:
             return JsonResponse({
