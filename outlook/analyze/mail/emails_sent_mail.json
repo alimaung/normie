@@ -1,0 +1,41 @@
+{
+  "timestamp": "2025-07-15 05:56:59",
+  "folder_name": "Sent Mail",
+  "folder_path": "\\\\microfilm.development@gmail.com\\[Gmail]\\Sent Mail",
+  "total_items": 1,
+  "emails": [
+    {
+      "index": 1,
+      "hash": "9836636854379363",
+      "entry_id": "00000000203B303B99A4FD419FA09BCB8C55E7FC0700C3B68E10F77511CEB4CD00AA00BBB6E600000000000E0000D9539C2261A6BB45B9DAB62C7081B3C101000F0000000000",
+      "message_id": "<000001dbf4f3$c17ff3a0$447fdae0$@gmail.com>",
+      "conversation_id": "7DD5AAD98E362B80346BCEA71218C4E4",
+      "folder": "Sent Mail",
+      "folder_path": "\\\\microfilm.development@gmail.com\\[Gmail]\\Sent Mail",
+      "subject": "TEST444",
+      "sender_name": "microfilm.development@gmail.com",
+      "sender_email": "microfilm.development@gmail.com",
+      "received_time": "2025-07-14 21:16:10",
+      "sent_on": "2025-07-14 21:16:09",
+      "size": 6091,
+      "importance": 1,
+      "unread": false,
+      "categories": "",
+      "msg_file": "data/9836636854379363/9836636854379363.msg",
+      "body": "TEST444\n",
+      "html_body": "<html xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" xmlns:m=\"http://schemas.microsoft.com/office/2004/12/omml\" xmlns=\"http://www.w3.org/TR/REC-html40\"><head><meta name=Generator content=\"Microsoft Word 15 (filtered medium)\"><style><!--\n/* Font Definitions */\n@font-face\n\t{font-family:\"Cambria Math\";\n\tpanose-1:2 4 5 3 5 4 6 3 2 4;}\n@font-face\n\t{font-family:Aptos;}\n/* Style Definitions */\np.MsoNormal, li.MsoNormal, div.MsoNormal\n\t{margin:0cm;\n\tfont-size:12.0pt;\n\tfont-family:\"Aptos\",sans-serif;\n\tmso-ligatures:standardcontextual;\n\tmso-fareast-language:EN-US;}\nspan.EmailStyle17\n\t{mso-style-type:personal-compose;\n\tfont-family:\"Aptos\",sans-serif;\n\tcolor:windowtext;}\n.MsoChpDefault\n\t{mso-style-type:export-only;\n\tmso-fareast-language:EN-US;}\n@page WordSection1\n\t{size:612.0pt 792.0pt;\n\tmargin:72.0pt 72.0pt 72.0pt 72.0pt;}\ndiv.WordSection1\n\t{page:WordSection1;}\n--></style><!--[if gte mso 9]><xml>\n<o:shapedefaults v:ext=\"edit\" spidmax=\"1026\" />\n</xml><![endif]--><!--[if gte mso 9]><xml>\n<o:shapelayout v:ext=\"edit\">\n<o:idmap v:ext=\"edit\" data=\"1\" />\n</o:shapelayout></xml><![endif]--></head><body lang=DE link=\"#467886\" vlink=\"#96607D\" style='word-wrap:break-word'><div class=WordSection1><p class=MsoNormal><span lang=EN-US>TEST444<o:p></o:p></span></p></div></body></html>",
+      "recipients": [
+        {
+          "name": "'Ali Maung'",
+          "address": "ali.maung001@outlook.com",
+          "type": 1
+        }
+      ],
+      "attachments": [
+
+      ]
+    }
+  ],
+  "extracted_count": 1
+}
+

@@ -83,9 +83,15 @@ class InboxManager {
         // Individual email checkboxes
         $(document).on('change', '.email-checkbox', (e) => this.handleEmailSelect(e));
         
+        // Read/Unread toggle buttons
+        $(document).on('click', '.read-unread-btn', (e) => this.handleReadUnreadToggle(e));
+        
         // Toolbar actions
         $('#refresh-btn').on('click', () => this.refreshInbox());
+        $('#refresh-emails').on('click', () => this.refreshInbox());
         $('#delete-selected').on('click', () => this.deleteSelected());
+        $('#mark-read-selected').on('click', () => this.markSelectedAsRead());
+        $('#mark-unread-selected').on('click', () => this.markSelectedAsUnread());
         $('#mark-read').on('click', () => this.markSelectedAsRead());
         $('#mark-unread').on('click', () => this.markSelectedAsUnread());
         $('#retry-connection').on('click', () => this.retryConnection());
@@ -229,14 +235,36 @@ class InboxManager {
             this.selectedEmails.delete(emailId);
         }
         
-        // Update select all checkbox
+        // Update select all checkbox (handle both IDs)
         const totalCheckboxes = $('.email-checkbox').length;
         const checkedCheckboxes = $('.email-checkbox:checked').length;
         
-        $('#select-all').prop('indeterminate', checkedCheckboxes > 0 && checkedCheckboxes < totalCheckboxes);
-        $('#select-all').prop('checked', checkedCheckboxes === totalCheckboxes);
+        $('#select-all, #select-all-emails').prop('indeterminate', checkedCheckboxes > 0 && checkedCheckboxes < totalCheckboxes);
+        $('#select-all, #select-all-emails').prop('checked', checkedCheckboxes === totalCheckboxes);
+        
+        // Update selection counter
+        $('#selected-count').text(`${checkedCheckboxes} selected`);
+        
+        // Show/hide toolbar actions
+        if (checkedCheckboxes > 0) {
+            $('#toolbar-actions').show();
+        } else {
+            $('#toolbar-actions').hide();
+        }
         
         this.updateToolbarState();
+    }
+    
+    handleReadUnreadToggle(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const button = $(e.currentTarget);
+        const emailId = button.data('email-id');
+        const isCurrentlyRead = button.data('read') === 'true';
+        
+        // Toggle read status
+        this.toggleEmailReadStatus(emailId, !isCurrentlyRead, button);
     }
     
     updateToolbarState() {
@@ -266,6 +294,9 @@ class InboxManager {
         }
         if (this.currentFilters.attachments) {
             params.append('attachments', '1');
+        }
+        if (this.currentFilters.folder) {
+            params.append('folder', this.currentFilters.folder);
         }
         
         // Use AJAX for smooth loading
@@ -404,7 +435,7 @@ class InboxManager {
         const emailIds = Array.from(this.selectedEmails);
         
         $.ajax({
-            url: window.inboxData?.urls?.markRead || '/inbox/mark-read/',
+            url: window.inboxData?.urls?.markReadUnread || '/inbox/mark-read-unread/',
             method: 'POST',
             headers: {
                 'X-CSRFToken': window.inboxData?.csrf || $('[name=csrfmiddlewaretoken]').val(),
@@ -426,6 +457,60 @@ class InboxManager {
             },
             error: () => {
                 this.showError(`Failed to mark emails as ${statusText}`);
+            }
+        });
+    }
+    
+    toggleEmailReadStatus(emailId, markAsRead, button) {
+        console.log(`Toggling email ${emailId} to ${markAsRead ? 'read' : 'unread'}`);
+        
+        const data = {
+            read: markAsRead
+        };
+        
+        // Show loading state
+        const originalHtml = button.html();
+        button.html('<i class="fas fa-spinner fa-spin"></i>');
+        
+        $.ajax({
+            url: `/inbox/mark-read-unread/${emailId}/`,
+            method: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(data),
+            headers: {
+                'X-CSRFToken': window.inboxData?.csrf || ''
+            },
+            success: (response) => {
+                if (response.success) {
+                    // Update button appearance
+                    const newReadState = response.read;
+                    button.data('read', newReadState ? 'true' : 'false');
+                    
+                    if (newReadState) {
+                        button.html('<i class="far fa-envelope text-muted" title="Read"></i>');
+                        button.attr('title', 'Mark as unread');
+                    } else {
+                        button.html('<i class="fas fa-envelope text-primary" title="Unread"></i>');
+                        button.attr('title', 'Mark as read');
+                    }
+                    
+                    // Update email row appearance
+                    const emailRow = button.closest('.email-item');
+                    if (newReadState) {
+                        emailRow.removeClass('unread');
+                    } else {
+                        emailRow.addClass('unread');
+                    }
+                    
+                    this.showSuccess(`Email marked as ${newReadState ? 'read' : 'unread'}`);
+                } else {
+                    button.html(originalHtml);
+                    this.showError(response.error || 'Failed to update read status');
+                }
+            },
+            error: () => {
+                button.html(originalHtml);
+                this.showError('Failed to update read status');
             }
         });
     }

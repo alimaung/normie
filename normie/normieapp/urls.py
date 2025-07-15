@@ -34,13 +34,32 @@ urlpatterns = [
     
     # Email inbox routes
     path('inbox/', views.inbox, name='inbox'),
+    
+    # Folder-specific routes
+    path('inbox/folder/<str:folder_name>/', views.inbox_folder, name='inbox_folder'),
+    path('inbox/sent/', views.inbox_sent, name='inbox_sent'),
+    path('inbox/deleted/', views.inbox_deleted, name='inbox_deleted'), 
+    path('inbox/drafts/', views.inbox_drafts, name='inbox_drafts'),
+    path('inbox/outbox/', views.inbox_outbox, name='inbox_outbox'),
+    
+    # Email actions
     path('inbox/view/<str:message_id>/', views.inbox_view_message, name='inbox_view_message'),
     path('inbox/compose/', views.inbox_compose, name='inbox_compose'),
     path('inbox/reply/<str:message_id>/', views.inbox_reply, name='inbox_reply'),
     path('inbox/search/', views.inbox_search, name='inbox_search'),
     path('inbox/refresh/', views.inbox_refresh, name='inbox_refresh'),
     path('inbox/status/', views.inbox_status, name='inbox_status'),
+    
+    # Read/Unread functionality
+    path('inbox/mark-read-unread/', views.inbox_mark_read_unread, name='inbox_mark_read_unread'),
+    path('inbox/mark-read-unread/<str:message_id>/', views.inbox_mark_single_read_unread, name='inbox_mark_single_read_unread'),
+    
+    # Debug and utilities
+    path('inbox/test-accounts/', views.inbox_test_accounts, name='inbox_test_accounts'),
+    path('inbox/debug/<str:message_id>/', views.inbox_debug_email, name='inbox_debug_email'),
     path('inbox/attachment/<str:message_id>/<str:filename>/', views.inbox_get_attachment, name='inbox_get_attachment'),
+    
+    # Legacy routes (maintain compatibility)
     path('inbox/delete/<str:message_id>/', views.inbox_delete_message, name='inbox_delete_message'),
     path('inbox/mark-read/<str:message_id>/', views.inbox_mark_message_read, name='inbox_mark_message_read'),
     path('inbox/categorize/<str:message_id>/', views.inbox_categorize_message, name='inbox_categorize_message'),

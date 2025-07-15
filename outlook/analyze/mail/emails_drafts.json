@@ -1,0 +1,41 @@
+{
+  "timestamp": "2025-07-15 05:56:59",
+  "folder_name": "Drafts",
+  "folder_path": "\\\\microfilm.development@gmail.com\\[Gmail]\\Drafts",
+  "total_items": 1,
+  "emails": [
+    {
+      "index": 1,
+      "hash": "1592874558286288",
+      "entry_id": "00000000203B303B99A4FD419FA09BCB8C55E7FC070034AD76187591974DBF6C4F76951C873A010001000000000012829D17DD1C1842BE289A8EDEFD11EE0000000006010000",
+      "message_id": "",
+      "conversation_id": "E745DFE7155025C478CCD7A89EED1AB4",
+      "folder": "Drafts",
+      "folder_path": "\\\\microfilm.development@gmail.com\\[Gmail]\\Drafts",
+      "subject": "TEST DRAFT",
+      "sender_name": "",
+      "sender_email": "",
+      "received_time": "2025-07-14 21:16:20",
+      "sent_on": "4501-01-01 00:00:00",
+      "size": 44326,
+      "importance": 1,
+      "unread": false,
+      "categories": "",
+      "msg_file": "data/1592874558286288/1592874558286288.msg",
+      "body": "TEST DRAFT",
+      "html_body": "<html xmlns:v=\"urn:schemas-microsoft-com:vml\" xmlns:o=\"urn:schemas-microsoft-com:office:office\" xmlns:w=\"urn:schemas-microsoft-com:office:word\" xmlns:m=\"http://schemas.microsoft.com/office/2004/12/omml\" xmlns=\"http://www.w3.org/TR/REC-html40\"><head><meta name=ProgId content=Word.Document><meta name=Generator content=\"Microsoft Word 15\"><meta name=Originator content=\"Microsoft Word 15\"><link rel=File-List href=\"cid:filelist.xml@01DBF504.8AF49280\"><!--[if gte mso 9]><xml>\n<o:OfficeDocumentSettings>\n<o:AllowPNG/>\n</o:OfficeDocumentSettings>\n</xml><![endif]--><link rel=themeData href=\"~~themedata~~\"><link rel=colorSchemeMapping href=\"~~colorschememapping~~\"><!--[if gte mso 9]><xml>\n<w:WordDocument>\n<w:GrammarState>Clean</w:GrammarState>\n<w:TrackMoves/>\n<w:TrackFormatting/>\n<w:HyphenationZone>21</w:HyphenationZone>\n<w:EnvelopeVis/>\n<w:PunctuationKerning/>\n<w:ValidateAgainstSchemas/>\n<w:SaveIfXMLInvalid>false</w:SaveIfXMLInvalid>\n<w:IgnoreMixedContent>false</w:IgnoreMixedContent>\n<w:AlwaysShowPlaceholderText>false</w:AlwaysShowPlaceholderText>\n<w:DoNotPromoteQF/>\n<w:LidThemeOther>DE</w:LidThemeOther>\n<w:LidThemeAsian>X-NONE</w:LidThemeAsian>\n<w:LidThemeComplexScript>X-NONE</w:LidThemeComplexScript>\n<w:Compatibility>\n<w:BreakWrappedTables/>\n<w:SnapToGridInCell/>\n<w:WrapTextWithPunct/>\n<w:UseAsianBreakRules/>\n<w:DontGrowAutofit/>\n<w:SplitPgBreakAndParaMark/>\n<w:EnableOpenTypeKerning/>\n<w:DontFlipMirrorIndents/>\n<w:OverrideTableStyleHps/>\n</w:Compatibility>\n<m:mathPr>\n<m:mathFont m:val=\"Cambria Math\"/>\n<m:brkBin m:val=\"before\"/>\n<m:brkBinSub m:val=\"&#45;-\"/>\n<m:smallFrac m:val=\"off\"/>\n<m:dispDef/>\n<m:lMargin m:val=\"0\"/>\n<m:rMargin m:val=\"0\"/>\n<m:defJc m:val=\"centerGroup\"/>\n<m:wrapIndent m:val=\"1440\"/>\n<m:intLim m:val=\"subSup\"/>\n<m:naryLim m:val=\"undOvr\"/>\n</m:mathPr></w:WordDocument>\n</xml><![endif]--><!--[if gte mso 9]><xml>\n<w:LatentStyles DefLockedState=\"false\" DefUnhideWhenUsed=\"false\" DefSemiHidden=\"false\" DefQFormat=\"false\" DefPriority=\"99\" LatentStyleCount=\"376\">\n<w:LsdException Locked=\"false\" Priority=\"0\" QFormat=\"true\" Name=\"Normal\"/>\n<w:LsdException Locked=\"false\" Priority=\"9\" QFormat=\"true\" Name=\"heading 1\"/>\n<w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\" UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 2\"/>\n<w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\" UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 3\"/>\n<w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\" UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 4\"/>\n<w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\" UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 5\"/>\n<w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\" UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 6\"/>\n<w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\" UnhideWhenUsed=\"true\" QFormat=\"true\" Name=\"heading 7\"/>\n<w:LsdException Locked=\"false\" Priority=\"9\" SemiHidden=\"true\" UnhideWhenUsed=\"true\" QForm... [TRUNCATED]",
+      "recipients": [
+        {
+          "name": "Ali Maung",
+          "address": "ali.maung001@outlook.com",
+          "type": 1
+        }
+      ],
+      "attachments": [
+
+      ]
+    }
+  ],
+  "extracted_count": 1
+}
+

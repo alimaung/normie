@@ -4,16 +4,81 @@ Option Explicit
 ' This macro uses event-driven processing to automatically handle new emails
 ' Place this in Outlook VBA (Alt+F11 -> Insert -> Module)
 
-' Global variables
+' ===== MODULE-LEVEL CONSTANTS =====
+' Account configuration with fallback support
+' Will try TARGET_ACCOUNT first, then DEBUG_ACCOUNT if not found
 Public Const TARGET_ACCOUNT As String = "IRM-Standardisation-Office"
+Public Const DEBUG_ACCOUNT As String = "microfilm.development@gmail.com"
 
 ' JSON Management Configuration
 Public Const MAX_EMAILS_PER_FILE As Integer = 500  ' Split JSON when it reaches this size
 Public Const ARCHIVE_AFTER_DAYS As Integer = 90    ' Archive emails older than this
 Public Const ENABLE_JSON_ROTATION As Boolean = True ' Enable automatic file rotation
 
+' ===== MODULE-LEVEL VARIABLES =====
+
 ' Event handler instance
 Private emailEventHandler As EmailEventHandler
+
+' Folder tracking configuration
+Public Const TRACK_INBOX As Boolean = True
+Public Const TRACK_DELETED_ITEMS As Boolean = True
+Public Const TRACK_SENT_ITEMS As Boolean = True
+Public Const TRACK_DRAFTS As Boolean = True
+Public Const TRACK_OUTBOX As Boolean = True
+
+' ===== HELPER FUNCTIONS =====
+
+' Account priority list - will try in order
+Public Function GetAccountPriorityList() As String()
+    Dim accounts(1) As String
+    accounts(0) = TARGET_ACCOUNT
+    accounts(1) = DEBUG_ACCOUNT
+    GetAccountPriorityList = accounts
+End Function
+
+' Helper function to find target store with fallback accounts
+Private Function FindTargetStoreWithFallback() As Outlook.store
+    On Error GoTo ErrorHandler
+    
+    Dim olApp As Outlook.Application
+    Dim olNamespace As Outlook.NameSpace
+    Dim store As Outlook.store
+    Dim accounts() As String
+    Dim i As Integer
+    
+    Set olApp = Application
+    Set olNamespace = olApp.GetNamespace("MAPI")
+    accounts = GetAccountPriorityList()
+    
+    ' Try each account in priority order
+    For i = 0 To UBound(accounts)
+        WriteLog "Searching for account: " & accounts(i)
+        
+        For Each store In olNamespace.Stores
+            If InStr(UCase(store.DisplayName), UCase(accounts(i))) > 0 Then
+                Set FindTargetStoreWithFallback = store
+                WriteLog "Found target store: " & store.DisplayName & " (Account: " & accounts(i) & ")"
+                Exit Function
+            End If
+        Next store
+        
+        WriteLog "Account '" & accounts(i) & "' not found, trying next..."
+    Next i
+    
+    ' If we get here, no accounts were found
+    WriteLog "ERROR: No target accounts found. Available stores:"
+    For Each store In olNamespace.Stores
+        WriteLog "  - " & store.DisplayName
+    Next store
+    
+    Set FindTargetStoreWithFallback = Nothing
+    Exit Function
+    
+ErrorHandler:
+    WriteLog "ERROR in FindTargetStoreWithFallback: " & Err.Description
+    Set FindTargetStoreWithFallback = Nothing
+End Function
 
 ' Dynamic paths
 Private Function GetOutputFolder() As String
@@ -22,6 +87,81 @@ End Function
 
 Private Function GetAttachmentsFolder() As String
     GetAttachmentsFolder = "C:\Users\" & Environ("USERNAME") & "\Desktop\normie\outlook\analyze\mail\data\"
+End Function
+
+' Get list of folders to track based on configuration
+Public Function GetTrackedFolders() As Collection
+    On Error GoTo ErrorHandler
+    
+    Dim trackedFolders As New Collection
+    Dim targetStore As Outlook.Store
+    Dim rootFolder As Outlook.Folder
+    Dim folder As Outlook.Folder
+    
+    ' Get target store with fallback
+    Set targetStore = FindTargetStoreWithFallback()
+    If targetStore Is Nothing Then
+        WriteLog "ERROR: No target store found for folder tracking"
+        Set GetTrackedFolders = trackedFolders
+        Exit Function
+    End If
+    
+    Set rootFolder = targetStore.GetRootFolder()
+    
+    ' Add folders based on configuration
+    If TRACK_INBOX Then
+        Set folder = FindFolderByName(rootFolder, "Inbox")
+        If Not folder Is Nothing Then
+            trackedFolders.Add folder, "Inbox"
+            WriteLog "Added Inbox folder to tracking"
+        End If
+    End If
+    
+    If TRACK_DELETED_ITEMS Then
+        Set folder = FindFolderByName(rootFolder, "Deleted Items")
+        If folder Is Nothing Then
+            Set folder = FindFolderByName(rootFolder, "Trash")
+        End If
+        If Not folder Is Nothing Then
+            trackedFolders.Add folder, folder.Name
+            WriteLog "Added " & folder.Name & " folder to tracking"
+        End If
+    End If
+    
+    If TRACK_SENT_ITEMS Then
+        Set folder = FindFolderByName(rootFolder, "Sent Items")
+        If folder Is Nothing Then
+            Set folder = FindFolderByName(rootFolder, "Sent Mail")
+        End If
+        If Not folder Is Nothing Then
+            trackedFolders.Add folder, folder.Name
+            WriteLog "Added " & folder.Name & " folder to tracking"
+        End If
+    End If
+    
+    If TRACK_DRAFTS Then
+        Set folder = FindFolderByName(rootFolder, "Drafts")
+        If Not folder Is Nothing Then
+            trackedFolders.Add folder, "Drafts"
+            WriteLog "Added Drafts folder to tracking"
+        End If
+    End If
+    
+    If TRACK_OUTBOX Then
+        Set folder = FindFolderByName(rootFolder, "Outbox")
+        If Not folder Is Nothing Then
+            trackedFolders.Add folder, "Outbox"
+            WriteLog "Added Outbox folder to tracking"
+        End If
+    End If
+    
+    Set GetTrackedFolders = trackedFolders
+    WriteLog "Total folders being tracked: " & trackedFolders.Count
+    Exit Function
+    
+ErrorHandler:
+    WriteLog "ERROR in GetTrackedFolders: " & Err.Description
+    Set GetTrackedFolders = trackedFolders
 End Function
 
 ' Helper function to create directory path recursively
@@ -60,7 +200,8 @@ Public Sub StartEventMonitoring()
     WriteLog "Starting event-driven email monitoring..."
     WriteLog "Output folder: " & GetOutputFolder()
     WriteLog "Data folder: " & GetAttachmentsFolder()
-    WriteLog "Target account: " & TARGET_ACCOUNT
+    WriteLog "Primary account: " & TARGET_ACCOUNT
+    WriteLog "Debug account: " & DEBUG_ACCOUNT
     
     ' Create directories if they don't exist
     CreateDirectoryPath GetOutputFolder()
@@ -142,12 +283,15 @@ Public Sub ProcessSingleNewEmail(mailItem As Outlook.MailItem, targetFolder As O
     CreateDirectoryPath subjectAttachmentFolder
     
     On Error Resume Next
+    Err.Clear
     mailItem.SaveAs msgFilePath, olMSG
     If Err.Number = 0 Then
         WriteLog "  Saved .msg file: " & msgFileName
     Else
-        WriteLog "  Failed to save .msg file: " & Err.Description
+        WriteLog "  WARNING: Failed to save .msg file: " & Err.Description & " (Error: " & Err.Number & ")"
+        WriteLog "  Continuing with JSON processing despite MSG save failure"
     End If
+    Err.Clear
     On Error GoTo ErrorHandler
     
     ' Build JSON entry for this email
@@ -155,6 +299,21 @@ Public Sub ProcessSingleNewEmail(mailItem As Outlook.MailItem, targetFolder As O
     emailJsonEntry = "    {" & vbCrLf
     emailJsonEntry = emailJsonEntry & "      ""index"": " & (existingEmails.Count + 1) & "," & vbCrLf
     emailJsonEntry = emailJsonEntry & "      ""hash"": """ & emailHash & """," & vbCrLf
+    
+    ' Add Outlook identifiers for Python service
+    Dim rawEntryId As String, rawMessageId As String, rawConversationId As String
+    On Error Resume Next
+    rawEntryId = mailItem.EntryID
+    rawMessageId = mailItem.PropertyAccessor.GetProperty("http://schemas.microsoft.com/mapi/proptag/0x1035001E")
+    rawConversationId = mailItem.ConversationID
+    On Error GoTo ErrorHandler
+    
+    emailJsonEntry = emailJsonEntry & "      ""entry_id"": """ & EscapeJson(rawEntryId) & """," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""message_id"": """ & EscapeJson(rawMessageId) & """," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""conversation_id"": """ & EscapeJson(rawConversationId) & """," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""folder"": """ & EscapeJson(targetFolder.Name) & """," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""folder_path"": """ & EscapeJson(targetFolder.FolderPath) & """," & vbCrLf
+    
     emailJsonEntry = emailJsonEntry & "      ""subject"": """ & EscapeJson(mailItem.Subject) & """," & vbCrLf
     emailJsonEntry = emailJsonEntry & "      ""sender_name"": """ & EscapeJson(mailItem.SenderName) & """," & vbCrLf
     emailJsonEntry = emailJsonEntry & "      ""sender_email"": """ & EscapeJson(mailItem.SenderEmailAddress) & """," & vbCrLf
@@ -514,15 +673,29 @@ End Sub
 
 
 
-' Helper function to find folder by name
+' Helper function to find folder by name (improved for Gmail)
 Private Function FindFolderByName(parentFolder As Outlook.folder, folderName As String) As Outlook.folder
     On Error GoTo ErrorHandler
     
+    ' First try direct match
     Dim folder As Outlook.folder
     For Each folder In parentFolder.Folders
         If LCase(folder.Name) = LCase(folderName) Then
             Set FindFolderByName = folder
             Exit Function
+        End If
+    Next folder
+    
+    ' If not found, try searching in subfolders (Gmail often has nested structure)
+    For Each folder In parentFolder.Folders
+        If folder.Folders.Count > 0 Then
+            Dim subfolder As Outlook.folder
+            For Each subfolder In folder.Folders
+                If LCase(subfolder.Name) = LCase(folderName) Then
+                    Set FindFolderByName = subfolder
+                    Exit Function
+                End If
+            Next subfolder
         End If
     Next folder
     
@@ -574,145 +747,82 @@ End Function
 Private Function GenerateEmailHash(mailItem As Object) As String
     On Error GoTo ErrorHandler
     
-    Dim hashInput As String
-    Dim tempValue As String
-    Dim i As Long
-    
-    ' 1. EntryID (most unique identifier)
-    tempValue = ""
+    ' Primary: Use EntryID directly (Outlook's built-in unique identifier)
+    Dim entryId As String
+    entryId = ""
     On Error Resume Next
-    tempValue = mailItem.EntryID
+    entryId = mailItem.EntryID
     On Error GoTo ErrorHandler
-    hashInput = hashInput & tempValue & "|"
     
-    ' 2. Subject
-    tempValue = ""
-    On Error Resume Next
-    tempValue = mailItem.Subject
-    On Error GoTo ErrorHandler
-    hashInput = hashInput & tempValue & "|"
-    
-    ' 3. Sender email address
-    tempValue = ""
-    On Error Resume Next
-    If Not mailItem.SenderEmailAddress Is Nothing Then
-        tempValue = mailItem.SenderEmailAddress
-    ElseIf Not mailItem.Sender Is Nothing Then
-        tempValue = mailItem.Sender.Address
+    If Len(entryId) > 0 Then
+        ' EntryID is available - use a 16-digit hash for file paths
+        GenerateEmailHash = LongHash(entryId)
+        WriteLog "    Using EntryID as identifier: " & GenerateEmailHash & " (from " & Left(entryId, 30) & "...)"
+        Exit Function
     End If
-    On Error GoTo ErrorHandler
-    hashInput = hashInput & tempValue & "|"
     
-    ' 4. Sender name
-    tempValue = ""
+    ' Fallback 1: Use Message ID (RFC standard unique identifier)
+    Dim messageId As String
+    messageId = ""
     On Error Resume Next
-    tempValue = mailItem.SenderName
+    messageId = mailItem.PropertyAccessor.GetProperty("http://schemas.microsoft.com/mapi/proptag/0x1035001E")
     On Error GoTo ErrorHandler
-    hashInput = hashInput & tempValue & "|"
     
-    ' 5. Full body text (more unique than partial)
-    tempValue = ""
+    If Len(messageId) > 0 Then
+        ' Use a 16-digit hash of Message ID for consistent length
+        GenerateEmailHash = LongHash(messageId)
+        WriteLog "    Using MessageID as identifier: " & GenerateEmailHash & " (from " & Left(messageId, 30) & "...)"
+        Exit Function
+    End If
+    
+    ' Fallback 2: Use ConversationID
+    Dim conversationId As String
+    conversationId = ""
     On Error Resume Next
-    tempValue = mailItem.Body
+    conversationId = mailItem.ConversationID
     On Error GoTo ErrorHandler
-    hashInput = hashInput & tempValue & "|"
     
-    ' 6. HTML body (different formatting can make emails unique)
-    tempValue = ""
+    If Len(conversationId) > 0 Then
+        GenerateEmailHash = LongHash(conversationId)
+        WriteLog "    Using ConversationID as identifier: " & GenerateEmailHash & " (from " & Left(conversationId, 30) & "...)"
+        Exit Function
+    End If
+    
+    ' Final fallback: Create hash from essential properties (old method)
+    Dim hashInput As String
+    hashInput = ""
+    
+    ' Include subject
     On Error Resume Next
-    tempValue = mailItem.HTMLBody
+    hashInput = hashInput & mailItem.Subject & "|"
     On Error GoTo ErrorHandler
-    hashInput = hashInput & tempValue & "|"
     
-    ' 7. Received time (as string for consistency)
-    tempValue = ""
+    ' Include sender
     On Error Resume Next
-    tempValue = CStr(mailItem.ReceivedTime)
+    hashInput = hashInput & mailItem.SenderEmailAddress & "|"
     On Error GoTo ErrorHandler
-    hashInput = hashInput & tempValue & "|"
     
-    ' 8. Sent time (different from received)
-    tempValue = ""
+    ' Include received time
     On Error Resume Next
-    tempValue = CStr(mailItem.SentOn)
+    hashInput = hashInput & CStr(mailItem.ReceivedTime) & "|"
     On Error GoTo ErrorHandler
-    hashInput = hashInput & tempValue & "|"
     
-    ' 9. Size (helps distinguish emails with similar content)
-    tempValue = ""
+    ' Include size
     On Error Resume Next
-    tempValue = CStr(mailItem.Size)
+    hashInput = hashInput & CStr(mailItem.Size)
     On Error GoTo ErrorHandler
-    hashInput = hashInput & tempValue & "|"
     
-    ' 10. Importance level
-    tempValue = ""
-    On Error Resume Next
-    tempValue = CStr(mailItem.Importance)
-    On Error GoTo ErrorHandler
-    hashInput = hashInput & tempValue & "|"
-    
-    ' 11. Number of attachments
-    tempValue = ""
-    On Error Resume Next
-    tempValue = CStr(mailItem.Attachments.Count)
-    On Error GoTo ErrorHandler
-    hashInput = hashInput & tempValue & "|"
-    
-    ' 12. All recipient addresses (To, CC, BCC)
-    tempValue = ""
-    On Error Resume Next
-    For i = 1 To mailItem.Recipients.Count
-        tempValue = tempValue & mailItem.Recipients(i).Address & ";"
-    Next i
-    On Error GoTo ErrorHandler
-    hashInput = hashInput & tempValue & "|"
-    
-    ' 13. Categories
-    tempValue = ""
-    On Error Resume Next
-    tempValue = mailItem.Categories
-    On Error GoTo ErrorHandler
-    hashInput = hashInput & tempValue & "|"
-    
-    ' 14. Message ID (RFC standard unique identifier)
-    tempValue = ""
-    On Error Resume Next
-    tempValue = mailItem.PropertyAccessor.GetProperty("http://schemas.microsoft.com/mapi/proptag/0x1035001E")
-    On Error GoTo ErrorHandler
-    hashInput = hashInput & tempValue & "|"
-    
-    ' 15. Conversation ID
-    tempValue = ""
-    On Error Resume Next
-    tempValue = mailItem.ConversationID
-    On Error GoTo ErrorHandler
-    hashInput = hashInput & tempValue & "|"
-    
-    ' 16. Creation time
-    tempValue = ""
-    On Error Resume Next
-    tempValue = CStr(mailItem.CreationTime)
-    On Error GoTo ErrorHandler
-    hashInput = hashInput & tempValue & "|"
-    
-    ' 17. Last modification time
-    tempValue = ""
-    On Error Resume Next
-    tempValue = CStr(mailItem.LastModificationTime)
-    On Error GoTo ErrorHandler
-    hashInput = hashInput & tempValue
-    
-    ' Generate hash from combined properties
-    GenerateEmailHash = ShortHash(hashInput)
+    GenerateEmailHash = LongHash(hashInput)
+    WriteLog "    Using fallback hash as identifier: " & GenerateEmailHash
     Exit Function
     
 ErrorHandler:
-    ' Fallback to simple EntryID + Subject + timestamp if anything fails
+    ' Emergency fallback
     On Error Resume Next
-    Dim fallbackInput As String
-    fallbackInput = mailItem.EntryID & "|" & mailItem.Subject & "|" & CStr(Now)
-    GenerateEmailHash = ShortHash(fallbackInput)
+    Dim emergencyInput As String
+    emergencyInput = mailItem.Subject & "|" & CStr(Now)
+    GenerateEmailHash = LongHash(emergencyInput)
+    WriteLog "    Using emergency hash as identifier: " & GenerateEmailHash
 End Function
 
 ' Helper function to generate a 6-digit hash - deterministic but collision-resistant
@@ -793,6 +903,88 @@ ErrorHandler:
     End If
     
     ShortHash = Format(Abs(fallbackValue) Mod 1000000, "000000")
+End Function
+
+' Helper function to generate a 16-digit hash - deterministic but collision-resistant
+Private Function LongHash(text As String) As String
+    On Error GoTo ErrorHandler
+    
+    Dim i As Long
+    Dim hashValue1 As Long, hashValue2 As Long
+    Dim char As Long
+    Dim inputText As String
+    
+    ' Use more of the input text for better uniqueness
+    inputText = Left(text, 200)  ' Reduced to avoid overflow
+    
+    ' Generate two 8-digit hashes with safer arithmetic
+    hashValue1 = 1001  ' Smaller starting values
+    hashValue2 = 2003
+    
+    ' Safer hash algorithm to avoid overflow
+    For i = 1 To Len(inputText)
+        char = Asc(Mid(inputText, i, 1))
+        
+        ' First hash - safer multiplication
+        hashValue1 = (hashValue1 * 7 + char) Mod 99999999
+        
+        ' Second hash - different approach
+        hashValue2 = (hashValue2 * 11 + char + i) Mod 99999999
+        
+        ' Keep values in safe range
+        If hashValue1 < 0 Then hashValue1 = Abs(hashValue1)
+        If hashValue2 < 0 Then hashValue2 = Abs(hashValue2)
+    Next i
+    
+    ' Add length-based components safely
+    hashValue1 = (hashValue1 + Len(inputText) * 13) Mod 99999999
+    hashValue2 = (hashValue2 + Len(inputText) * 17) Mod 99999999
+    
+    ' Combine into 16-digit result
+    Dim part1 As String, part2 As String
+    part1 = Format(hashValue1 Mod 100000000, "00000000")
+    part2 = Format(hashValue2 Mod 100000000, "00000000")
+    
+    LongHash = part1 & part2
+    Exit Function
+    
+ErrorHandler:
+    ' Deterministic fallback based on string properties - safer arithmetic
+    Dim fallbackValue1 As Long, fallbackValue2 As Long
+    
+    If Len(text) > 0 Then
+        ' Generate two fallback values with safer math
+        fallbackValue1 = (Len(text) * 1000) Mod 50000000
+        fallbackValue2 = (Len(text) * 2000) Mod 50000000
+        
+        fallbackValue1 = (fallbackValue1 + Asc(Left(text, 1)) * 100) Mod 50000000
+        fallbackValue2 = (fallbackValue2 + Asc(Left(text, 1)) * 200) Mod 50000000
+        
+        If Len(text) > 1 Then
+            fallbackValue1 = (fallbackValue1 + Asc(Right(text, 1)) * 10) Mod 50000000
+            fallbackValue2 = (fallbackValue2 + Asc(Right(text, 1)) * 20) Mod 50000000
+        End If
+        
+        If Len(text) > 2 Then
+            Dim midPos As Long
+            midPos = Len(text) \ 2
+            fallbackValue1 = (fallbackValue1 + Asc(Mid(text, midPos, 1))) Mod 50000000
+            fallbackValue2 = (fallbackValue2 + Asc(Mid(text, midPos, 1)) * 2) Mod 50000000
+        End If
+    Else
+        fallbackValue1 = 12345678
+        fallbackValue2 = 87654321
+    End If
+    
+    ' Ensure positive values
+    If fallbackValue1 < 0 Then fallbackValue1 = Abs(fallbackValue1)
+    If fallbackValue2 < 0 Then fallbackValue2 = Abs(fallbackValue2)
+    
+    Dim fbPart1 As String, fbPart2 As String
+    fbPart1 = Format(fallbackValue1 Mod 100000000, "00000000")
+    fbPart2 = Format(fallbackValue2 Mod 100000000, "00000000")
+    
+    LongHash = fbPart1 & fbPart2
 End Function
 
 ' Logging function to replace Debug.Print
@@ -897,21 +1089,12 @@ Public Sub ManualDownloadLast100Emails()
     Set olApp = Application
     Set olNamespace = olApp.GetNamespace("MAPI")
     
-    ' Find target account
-    Dim store As Outlook.store
+    ' Find target account using fallback logic
     Dim targetStore As Outlook.store
-    Set targetStore = Nothing
-    
-    For Each store In olNamespace.Stores
-        If InStr(UCase(store.DisplayName), UCase(TARGET_ACCOUNT)) > 0 Then
-            Set targetStore = store
-            WriteLog "Found target store: " & store.DisplayName
-            Exit For
-        End If
-    Next store
+    Set targetStore = FindTargetStoreWithFallback()
     
     If targetStore Is Nothing Then
-        WriteLog "ERROR: Target account '" & TARGET_ACCOUNT & "' not found"
+        WriteLog "ERROR: No target accounts found"
         Exit Sub
     End If
     
@@ -941,6 +1124,65 @@ ErrorHandler:
     WriteLog "ERROR in ManualDownloadLast100Emails: " & Err.Description
 End Sub
 
+' Manual download from ALL folders (Gmail-compatible)
+Public Sub ManualDownloadAllFolders()
+    On Error GoTo ErrorHandler
+    
+    WriteLog "=== Manual Download from ALL Folders Started ==="
+    
+    Dim olApp As Outlook.Application
+    Dim olNamespace As Outlook.NameSpace
+    
+    Set olApp = Application
+    Set olNamespace = olApp.GetNamespace("MAPI")
+    
+    ' Find target account using fallback logic
+    Dim targetStore As Outlook.store
+    Set targetStore = FindTargetStoreWithFallback()
+    
+    If targetStore Is Nothing Then
+        WriteLog "ERROR: No target accounts found"
+        Exit Sub
+    End If
+    
+    ' Get root folder for all folder access
+    Dim rootFolder As Outlook.folder
+    Set rootFolder = targetStore.GetRootFolder
+    
+    ' Create directories if they don't exist
+    CreateDirectoryPath GetOutputFolder()
+    CreateDirectoryPath GetAttachmentsFolder()
+    
+    ' Get all tracked folders
+    Dim trackedFolders As Collection
+    Set trackedFolders = GetTrackedFolders()
+    
+    If trackedFolders.Count = 0 Then
+        WriteLog "ERROR: No folders found for tracking"
+        Exit Sub
+    End If
+    
+    ' Process emails from each folder
+    Dim folder As Outlook.folder
+    Dim i As Integer
+    
+    For i = 1 To trackedFolders.Count
+        Set folder = trackedFolders(i)
+        WriteLog "Processing folder: " & folder.Name & " (Path: " & folder.FolderPath & ")"
+        
+        ' Process up to 50 emails per folder to avoid overwhelming the system
+        ManualProcessEmails folder, 50
+        
+        WriteLog "Completed processing folder: " & folder.Name
+    Next i
+    
+    WriteLog "=== Manual Download from ALL Folders Completed ==="
+    Exit Sub
+    
+ErrorHandler:
+    WriteLog "ERROR in ManualDownloadAllFolders: " & Err.Description
+End Sub
+
 ' Process emails with intelligent skipping for manual download
 Private Sub ManualProcessEmails(folder As Outlook.folder, maxEmails As Long)
     On Error GoTo ErrorHandler
@@ -952,12 +1194,16 @@ Private Sub ManualProcessEmails(folder As Outlook.folder, maxEmails As Long)
     Set items = folder.items
     items.Sort "[ReceivedTime]", True
     
+    ' Create folder-specific JSON filename
+    Dim folderJsonName As String
+    folderJsonName = GetFolderJsonName(folder.Name)
+    
     ' Load existing JSON if it exists
     Dim existingJsonPath As String
     Dim existingEmails As Object
     Set existingEmails = CreateObject("Scripting.Dictionary")
     
-    existingJsonPath = GetOutputFolder() & "emails.json"
+    existingJsonPath = GetOutputFolder() & folderJsonName
     
     If Dir(existingJsonPath) <> "" Then
         WriteLog "Loading existing email JSON for comparison..."
@@ -1048,19 +1294,71 @@ Private Sub ManualProcessEmails(folder As Outlook.folder, maxEmails As Long)
             ' Check if .msg file already exists (skip if folder/files exist)
             WriteLog "    DEBUG: Checking if MSG file exists..."
             If Dir(msgFilePath) = "" Then
-                ' Save MSG file if it doesn't exist
+                ' Ensure directory exists before saving
+                WriteLog "    DEBUG: Ensuring directory exists: " & subjectAttachmentFolder
+                CreateDirectoryPath subjectAttachmentFolder
+                
+                ' Save MSG file if it doesn't exist with proper error handling
+                WriteLog "    DEBUG: Saving MSG file to: " & msgFilePath
+                WriteLog "    DEBUG: Folder exists after creation: " & (Dir(subjectAttachmentFolder, vbDirectory) <> "")
+                
+                On Error Resume Next
+                Err.Clear
                 mailItem.SaveAs msgFilePath, olMSG
+                If Err.Number = 0 Then
+                    WriteLog "    DEBUG: MSG file saved successfully"
+                    ' Verify file was actually created
+                    If Dir(msgFilePath) <> "" Then
+                        WriteLog "    DEBUG: MSG file verified on disk"
+                    Else
+                        WriteLog "    WARNING: MSG save reported success but file not found on disk"
+                    End If
+                Else
+                    WriteLog "    WARNING: Failed to save MSG file: " & Err.Description & " (Error: " & Err.Number & ")"
+                    
+                    ' Handle specific common errors
+                    Select Case Err.Number
+                        Case -2147287037  ' The operation failed
+                            WriteLog "    DEBUG: Common Outlook COM error - might be due to permissions or file locking"
+                            WriteLog "    DEBUG: Trying alternative save approach..."
+                            ' Try saving with a different filename
+                            Dim altPath As String
+                            altPath = subjectAttachmentFolder & "email_" & emailHash & "_alt.msg"
+                            Err.Clear
+                            mailItem.SaveAs altPath, olMSG
+                            If Err.Number = 0 Then
+                                WriteLog "    DEBUG: Alternative save successful: " & altPath
+                            Else
+                                WriteLog "    DEBUG: Alternative save also failed: " & Err.Description
+                            End If
+                        Case Else
+                            WriteLog "    DEBUG: Unhandled error type, skipping MSG save"
+                    End Select
+                    
+                    WriteLog "    DEBUG: Continuing with JSON processing despite MSG save failure"
+                End If
+                Err.Clear
+                On Error GoTo ErrorHandler
+            Else
+                WriteLog "    DEBUG: MSG file already exists, skipping save"
             End If
             ' ALWAYS process email for JSON (outside the IF block)
             
             ' Build JSON entry for this email
             WriteLog "    DEBUG: MSG file processing complete, starting JSON build..."
             WriteLog "    Building JSON entry, current length: " & Len(jsonContent)
+            
+            ' Check for potential string length issues
+            If Len(jsonContent) > 500000 Then  ' Approaching VBA string limits
+                WriteLog "    WARNING: JSON content getting very large (" & Len(jsonContent) & " chars), consider file rotation"
+            End If
+            
             If emailCount > 0 Then 
                 On Error Resume Next
                 jsonContent = jsonContent & "," & vbCrLf
                 If Err.Number <> 0 Then
-                    WriteLog "    ERROR concatenating JSON: " & Err.Description
+                    WriteLog "    ERROR concatenating JSON: " & Err.Description & " (Error: " & Err.Number & ")"
+                    WriteLog "    DEBUG: Current JSON length: " & Len(jsonContent) & ", Email count: " & emailCount
                     Err.Clear
                     GoTo NextItem
                 End If
@@ -1071,6 +1369,21 @@ Private Sub ManualProcessEmails(folder As Outlook.folder, maxEmails As Long)
             jsonContent = jsonContent & "    {" & vbCrLf
             jsonContent = jsonContent & "      ""index"": " & (emailCount + 1) & "," & vbCrLf
             jsonContent = jsonContent & "      ""hash"": """ & emailHash & """," & vbCrLf
+            
+            ' Add Outlook identifiers for Python service
+            Dim rawEntryId As String, rawMessageId As String, rawConversationId As String
+            On Error Resume Next
+            rawEntryId = mailItem.EntryID
+            rawMessageId = mailItem.PropertyAccessor.GetProperty("http://schemas.microsoft.com/mapi/proptag/0x1035001E")
+            rawConversationId = mailItem.ConversationID
+            On Error GoTo ErrorHandler
+            
+            jsonContent = jsonContent & "      ""entry_id"": """ & EscapeJson(rawEntryId) & """," & vbCrLf
+            jsonContent = jsonContent & "      ""message_id"": """ & EscapeJson(rawMessageId) & """," & vbCrLf
+            jsonContent = jsonContent & "      ""conversation_id"": """ & EscapeJson(rawConversationId) & """," & vbCrLf
+            jsonContent = jsonContent & "      ""folder"": """ & EscapeJson(folder.Name) & """," & vbCrLf
+            jsonContent = jsonContent & "      ""folder_path"": """ & EscapeJson(folder.FolderPath) & """," & vbCrLf
+            
             jsonContent = jsonContent & "      ""subject"": """ & EscapeJson(mailItem.Subject) & """," & vbCrLf
             jsonContent = jsonContent & "      ""sender_name"": """ & EscapeJson(mailItem.SenderName) & """," & vbCrLf
             jsonContent = jsonContent & "      ""sender_email"": """ & EscapeJson(mailItem.SenderEmailAddress) & """," & vbCrLf
@@ -1227,7 +1540,7 @@ NextItem:
     jsonContent = jsonContent & "  ""extracted_count"": " & emailCount & vbCrLf
     jsonContent = jsonContent & "}" & vbCrLf
     
-    ' Write JSON file
+    ' Write JSON file with folder-specific name
     WriteLog "DEBUG: Writing JSON file to: " & existingJsonPath
     WriteLog "DEBUG: JSON content length: " & Len(jsonContent) & " characters"
     
@@ -1277,6 +1590,30 @@ ErrorHandler:
     End If
     WriteLog "ERROR Source: " & Err.Source
 End Sub
+
+' Helper function to get folder-specific JSON filename
+Private Function GetFolderJsonName(folderName As String) As String
+    Dim cleanName As String
+    cleanName = folderName
+    
+    ' Clean folder name for filename
+    cleanName = Replace(cleanName, " ", "_")
+    cleanName = Replace(cleanName, "[", "")
+    cleanName = Replace(cleanName, "]", "")
+    cleanName = Replace(cleanName, "/", "_")
+    cleanName = Replace(cleanName, "\", "_")
+    cleanName = Replace(cleanName, ":", "_")
+    cleanName = Replace(cleanName, "*", "_")
+    cleanName = Replace(cleanName, "?", "_")
+    cleanName = Replace(cleanName, """", "_")
+    cleanName = Replace(cleanName, "<", "_")
+    cleanName = Replace(cleanName, ">", "_")
+    cleanName = Replace(cleanName, "|", "_")
+    
+    GetFolderJsonName = "emails_" & LCase(cleanName) & ".json"
+End Function
+
+
 
 ' Load existing emails from JSON file into dictionary for comparison
 Private Sub LoadExistingEmailsFromJson(jsonPath As String, emailDict As Object)
@@ -1378,7 +1715,8 @@ Public Sub TestMacro()
     ' Test path resolution
     Debug.Print "Output folder: " & GetOutputFolder()
     Debug.Print "Attachments folder: " & GetAttachmentsFolder()
-    Debug.Print "Target account: " & TARGET_ACCOUNT
+    Debug.Print "Primary account: " & TARGET_ACCOUNT
+    Debug.Print "Debug account: " & DEBUG_ACCOUNT
     
     ' Test Outlook connection
     On Error GoTo ErrorHandler
@@ -1392,18 +1730,36 @@ Public Sub TestMacro()
     Debug.Print "Outlook connection: OK"
     Debug.Print "Number of stores: " & olNamespace.Stores.Count
     
-    ' List all stores
+    ' List all stores and check for target accounts
     Dim store As Outlook.store
     Dim storeIndex As Integer
+    Dim accounts() As String
+    Dim i As Integer
+    
     storeIndex = 1
+    accounts = GetAccountPriorityList()
     
     For Each store In olNamespace.Stores
         Debug.Print "Store " & storeIndex & ": " & store.DisplayName
-        If InStr(UCase(store.DisplayName), UCase(TARGET_ACCOUNT)) > 0 Then
-            Debug.Print "  --> TARGET ACCOUNT FOUND!"
-        End If
+        
+        ' Check if this store matches any of our target accounts
+        For i = 0 To UBound(accounts)
+            If InStr(UCase(store.DisplayName), UCase(accounts(i))) > 0 Then
+                Debug.Print "  --> TARGET ACCOUNT FOUND: " & accounts(i)
+            End If
+        Next i
+        
         storeIndex = storeIndex + 1
     Next store
+    
+    ' Test the fallback logic
+    Dim testStore As Outlook.store
+    Set testStore = FindTargetStoreWithFallback()
+    If Not testStore Is Nothing Then
+        Debug.Print "Fallback logic test: SUCCESS - Found " & testStore.DisplayName
+    Else
+        Debug.Print "Fallback logic test: FAILED - No accounts found"
+    End If
     
     WriteLog "Test completed successfully"
     Debug.Print "=== MACRO TEST COMPLETED ==="
@@ -1594,4 +1950,622 @@ Private Function FormatBytes(bytes As Long) As String
         FormatBytes = Round(bytes / 1048576, 1) & " MB"
     End If
 End Function
+
+' Debug function to list all available folders
+Public Sub DebugListAllFolders()
+    On Error GoTo ErrorHandler
+    
+    WriteLog "=== DEBUG: Listing All Available Folders ==="
+    
+    Dim olApp As Outlook.Application
+    Dim olNamespace As Outlook.NameSpace
+    
+    Set olApp = Application
+    Set olNamespace = olApp.GetNamespace("MAPI")
+    
+    ' Find target account using fallback logic
+    Dim targetStore As Outlook.store
+    Set targetStore = FindTargetStoreWithFallback()
+    
+    If targetStore Is Nothing Then
+        WriteLog "ERROR: No target accounts found"
+        Exit Sub
+    End If
+    
+    WriteLog "Found target store: " & targetStore.DisplayName
+    
+    ' Get root folder for all folder access
+    Dim rootFolder As Outlook.folder
+    Set rootFolder = targetStore.GetRootFolder
+    
+    WriteLog "Root folder: " & rootFolder.Name & " (Path: " & rootFolder.FolderPath & ")"
+    WriteLog "Root folder has " & rootFolder.Folders.Count & " subfolders"
+    
+    ' List all subfolders
+    Dim folder As Outlook.folder
+    Dim i As Integer
+    i = 1
+    
+    For Each folder In rootFolder.Folders
+        WriteLog "Folder " & i & ": '" & folder.Name & "' (Path: " & folder.FolderPath & ", Items: " & folder.Items.Count & ")"
+        
+        ' Also check if this folder has subfolders
+        If folder.Folders.Count > 0 Then
+            WriteLog "  └─ Has " & folder.Folders.Count & " subfolders:"
+            Dim subfolder As Outlook.folder
+            Dim j As Integer
+            j = 1
+            For Each subfolder In folder.Folders
+                WriteLog "     " & j & ". '" & subfolder.Name & "' (Items: " & subfolder.Items.Count & ")"
+                j = j + 1
+                If j > 10 Then
+                    WriteLog "     ... (showing first 10 subfolders only)"
+                    Exit For
+                End If
+            Next subfolder
+        End If
+        
+        i = i + 1
+        If i > 20 Then
+            WriteLog "... (showing first 20 folders only)"
+            Exit For
+        End If
+    Next folder
+    
+    ' Test specific folder lookups
+    WriteLog ""
+    WriteLog "=== Testing Specific Folder Lookups ==="
+    
+    Dim testFolders() As String
+    ReDim testFolders(9)
+    testFolders(0) = "Inbox"
+    testFolders(1) = "Sent Items"
+    testFolders(2) = "Sent Mail"
+    testFolders(3) = "Deleted Items"
+    testFolders(4) = "Trash"
+    testFolders(5) = "Drafts"
+    testFolders(6) = "Outbox"
+    testFolders(7) = "Sent"
+    testFolders(8) = "[Gmail]"
+    testFolders(9) = "INBOX"
+    
+    Dim testFolder As Outlook.folder
+    Dim k As Integer
+    
+    For k = 0 To UBound(testFolders)
+        Set testFolder = FindFolderByName(rootFolder, testFolders(k))
+        If Not testFolder Is Nothing Then
+            WriteLog "✓ FOUND: '" & testFolders(k) & "' -> '" & testFolder.Name & "' (Items: " & testFolder.Items.Count & ")"
+        Else
+            WriteLog "✗ NOT FOUND: '" & testFolders(k) & "'"
+        End If
+    Next k
+    
+    WriteLog "=== Debug folder listing completed ==="
+    Exit Sub
+    
+ErrorHandler:
+    WriteLog "ERROR in DebugListAllFolders: " & Err.Description
+End Sub
+
+' Extract emails from ALL Gmail folders (including nested ones)
+Public Sub ExtractFromAllGmailFolders()
+    On Error GoTo ErrorHandler
+    
+    WriteLog "=== Extracting from ALL Gmail Folders ==="
+    
+    Dim olApp As Outlook.Application
+    Dim olNamespace As Outlook.NameSpace
+    
+    Set olApp = Application
+    Set olNamespace = olApp.GetNamespace("MAPI")
+    
+    ' Find target account using fallback logic
+    Dim targetStore As Outlook.store
+    Set targetStore = FindTargetStoreWithFallback()
+    
+    If targetStore Is Nothing Then
+        WriteLog "ERROR: No target accounts found"
+        Exit Sub
+    End If
+    
+    ' Get root folder for all folder access
+    Dim rootFolder As Outlook.folder
+    Set rootFolder = targetStore.GetRootFolder
+    
+    ' Create directories if they don't exist
+    CreateDirectoryPath GetOutputFolder()
+    CreateDirectoryPath GetAttachmentsFolder()
+    
+    ' Define the folders we want to extract from
+    Dim foldersToProcess As Collection
+    Set foldersToProcess = New Collection
+    
+    ' Add Inbox (direct child of root)
+    Dim inboxFolder As Outlook.folder
+    Set inboxFolder = FindFolderByName(rootFolder, "Inbox")
+    If Not inboxFolder Is Nothing Then
+        foldersToProcess.Add inboxFolder
+        WriteLog "Added Inbox folder for processing (" & inboxFolder.Items.Count & " items)"
+    End If
+    
+    ' Add Outbox (direct child of root)
+    Dim outboxFolder As Outlook.folder
+    Set outboxFolder = FindFolderByName(rootFolder, "Outbox")
+    If Not outboxFolder Is Nothing Then
+        foldersToProcess.Add outboxFolder
+        WriteLog "Added Outbox folder for processing (" & outboxFolder.Items.Count & " items)"
+    End If
+    
+    ' Add Gmail nested folders
+    Dim gmailFolder As Outlook.folder
+    Set gmailFolder = FindFolderByName(rootFolder, "[Gmail]")
+    If Not gmailFolder Is Nothing Then
+        WriteLog "Found [Gmail] parent folder with " & gmailFolder.Folders.Count & " subfolders"
+        
+        ' Add Trash
+        Dim trashFolder As Outlook.folder
+        Set trashFolder = FindFolderByName(gmailFolder, "Trash")
+        If Not trashFolder Is Nothing Then
+            foldersToProcess.Add trashFolder
+            WriteLog "Added Trash folder for processing (" & trashFolder.Items.Count & " items)"
+        End If
+        
+        ' Add Sent Mail
+        Dim sentFolder As Outlook.folder
+        Set sentFolder = FindFolderByName(gmailFolder, "Sent Mail")
+        If Not sentFolder Is Nothing Then
+            foldersToProcess.Add sentFolder
+            WriteLog "Added Sent Mail folder for processing (" & sentFolder.Items.Count & " items)"
+        End If
+        
+        ' Add Drafts
+        Dim draftsFolder As Outlook.folder
+        Set draftsFolder = FindFolderByName(gmailFolder, "Drafts")
+        If Not draftsFolder Is Nothing Then
+            foldersToProcess.Add draftsFolder
+            WriteLog "Added Drafts folder for processing (" & draftsFolder.Items.Count & " items)"
+        End If
+        
+        ' Add Important
+        Dim importantFolder As Outlook.folder
+        Set importantFolder = FindFolderByName(gmailFolder, "Important")
+        If Not importantFolder Is Nothing Then
+            foldersToProcess.Add importantFolder
+            WriteLog "Added Important folder for processing (" & importantFolder.Items.Count & " items)"
+        End If
+        
+        ' Add Starred
+        Dim starredFolder As Outlook.folder
+        Set starredFolder = FindFolderByName(gmailFolder, "Starred")
+        If Not starredFolder Is Nothing Then
+            foldersToProcess.Add starredFolder
+            WriteLog "Added Starred folder for processing (" & starredFolder.Items.Count & " items)"
+        End If
+    Else
+        WriteLog "WARNING: [Gmail] parent folder not found"
+    End If
+    
+    If foldersToProcess.Count = 0 Then
+        WriteLog "ERROR: No folders found for processing"
+        Exit Sub
+    End If
+    
+    WriteLog "Will process " & foldersToProcess.Count & " folders total"
+    
+    ' Process each folder
+    Dim folder As Outlook.folder
+    Dim folderIndex As Integer
+    
+    For folderIndex = 1 To foldersToProcess.Count
+        Set folder = foldersToProcess(folderIndex)
+        WriteLog "Processing folder " & folderIndex & "/" & foldersToProcess.Count & ": " & folder.Name & " (" & folder.Items.Count & " items)"
+        
+        If folder.Items.Count > 0 Then
+            ' Process up to 50 emails per folder to avoid overwhelming
+            ManualProcessEmails folder, 50
+        Else
+            WriteLog "  Skipping empty folder: " & folder.Name
+        End If
+        
+        WriteLog "Completed processing folder: " & folder.Name
+    Next folderIndex
+    
+    WriteLog "=== Extraction from ALL Gmail Folders Completed ==="
+    Exit Sub
+    
+ErrorHandler:
+    WriteLog "ERROR in ExtractFromAllGmailFolders: " & Err.Description
+End Sub
+
+' Universal extraction function - works with both Outlook and Gmail automatically
+Public Sub ExtractFromAllFoldersUniversal()
+    On Error GoTo ErrorHandler
+    
+    WriteLog "=== Universal Email Extraction Started ==="
+    
+    Dim olApp As Outlook.Application
+    Dim olNamespace As Outlook.NameSpace
+    
+    Set olApp = Application
+    Set olNamespace = olApp.GetNamespace("MAPI")
+    
+    ' Find target account using fallback logic
+    Dim targetStore As Outlook.store
+    Set targetStore = FindTargetStoreWithFallback()
+    
+    If targetStore Is Nothing Then
+        WriteLog "ERROR: No target accounts found"
+        Exit Sub
+    End If
+    
+    WriteLog "Processing account: " & targetStore.DisplayName
+    
+    ' Detect if this is Gmail or standard Outlook
+    Dim isGmail As Boolean
+    isGmail = (InStr(LCase(targetStore.DisplayName), "gmail") > 0)
+    
+    If isGmail Then
+        WriteLog "Detected Gmail account - using Gmail folder structure"
+    Else
+        WriteLog "Detected standard Outlook account - using Outlook folder structure"
+    End If
+    
+    ' Get root folder for all folder access
+    Dim rootFolder As Outlook.folder
+    Set rootFolder = targetStore.GetRootFolder
+    
+    ' Create directories if they don't exist
+    CreateDirectoryPath GetOutputFolder()
+    CreateDirectoryPath GetAttachmentsFolder()
+    
+    ' Collection to hold all folders we want to process
+    Dim foldersToProcess As Collection
+    Set foldersToProcess = New Collection
+    
+    ' === INBOX (same for both Gmail and Outlook) ===
+    Dim inboxFolder As Outlook.folder
+    Set inboxFolder = FindFolderByName(rootFolder, "Inbox")
+    If Not inboxFolder Is Nothing Then
+        foldersToProcess.Add inboxFolder
+        WriteLog "Added Inbox folder (" & inboxFolder.Items.Count & " items)"
+    End If
+    
+    If isGmail Then
+        ' === GMAIL STRUCTURE: Look in [Gmail] subfolder ===
+        Dim gmailFolder As Outlook.folder
+        Set gmailFolder = FindFolderByName(rootFolder, "[Gmail]")
+        If Not gmailFolder Is Nothing Then
+            WriteLog "Found [Gmail] parent folder with " & gmailFolder.Folders.Count & " subfolders"
+            
+            ' Gmail Trash -> Standardized as "Deleted Items"
+            Dim trashFolder As Outlook.folder
+            Set trashFolder = FindFolderByName(gmailFolder, "Trash")
+            If Not trashFolder Is Nothing Then
+                foldersToProcess.Add trashFolder
+                WriteLog "Added Gmail Trash folder (" & trashFolder.Items.Count & " items)"
+            End If
+            
+            ' Gmail Sent Mail -> Standardized as "Sent Items"
+            Dim sentMailFolder As Outlook.folder
+            Set sentMailFolder = FindFolderByName(gmailFolder, "Sent Mail")
+            If Not sentMailFolder Is Nothing Then
+                foldersToProcess.Add sentMailFolder
+                WriteLog "Added Gmail Sent Mail folder (" & sentMailFolder.Items.Count & " items)"
+            End If
+            
+            ' Gmail Drafts -> Standardized as "Drafts"
+            Dim gmailDraftsFolder As Outlook.folder
+            Set gmailDraftsFolder = FindFolderByName(gmailFolder, "Drafts")
+            If Not gmailDraftsFolder Is Nothing Then
+                foldersToProcess.Add gmailDraftsFolder
+                WriteLog "Added Gmail Drafts folder (" & gmailDraftsFolder.Items.Count & " items)"
+            End If
+        Else
+            WriteLog "WARNING: [Gmail] parent folder not found"
+        End If
+        
+    Else
+        ' === OUTLOOK STRUCTURE: Look at root level ===
+        
+        ' Outlook Deleted Items
+        Dim deletedItemsFolder As Outlook.folder
+        Set deletedItemsFolder = FindFolderByName(rootFolder, "Deleted Items")
+        If Not deletedItemsFolder Is Nothing Then
+            foldersToProcess.Add deletedItemsFolder
+            WriteLog "Added Outlook Deleted Items folder (" & deletedItemsFolder.Items.Count & " items)"
+        End If
+        
+        ' Outlook Sent Items
+        Dim sentItemsFolder As Outlook.folder
+        Set sentItemsFolder = FindFolderByName(rootFolder, "Sent Items")
+        If Not sentItemsFolder Is Nothing Then
+            foldersToProcess.Add sentItemsFolder
+            WriteLog "Added Outlook Sent Items folder (" & sentItemsFolder.Items.Count & " items)"
+        End If
+        
+        ' Outlook Drafts (check root level for Outlook)
+        Dim outlookDraftsFolder As Outlook.folder
+        Set outlookDraftsFolder = FindFolderByName(rootFolder, "Drafts")
+        If Not outlookDraftsFolder Is Nothing Then
+            foldersToProcess.Add outlookDraftsFolder
+            WriteLog "Added Outlook Drafts folder (" & outlookDraftsFolder.Items.Count & " items)"
+        End If
+    End If
+    
+    ' Process standard folders (create JSON files even if empty)
+    ProcessStandardFolders targetStore, isGmail
+    
+    WriteLog "=== Universal Email Extraction Completed ==="
+    Exit Sub
+    
+ErrorHandler:
+    WriteLog "ERROR in ExtractFromAllFoldersUniversal: " & Err.Description
+End Sub
+
+' Process standard folders with consistent naming
+Private Sub ProcessStandardFolders(targetStore As Outlook.Store, isGmail As Boolean)
+    On Error GoTo ErrorHandler
+    
+    WriteLog "Processing standard folders with consistent naming..."
+    
+    Dim rootFolder As Outlook.folder
+    Set rootFolder = targetStore.GetRootFolder
+    
+    ' Define standard folder structure
+    Dim standardFolders(3) As String
+    standardFolders(0) = "Inbox"
+    standardFolders(1) = "Drafts"
+    standardFolders(2) = "Sent Items"
+    standardFolders(3) = "Deleted Items"
+    
+    Dim i As Integer
+    For i = 0 To UBound(standardFolders)
+        Dim standardName As String
+        standardName = standardFolders(i)
+        
+        WriteLog "Processing standard folder: " & standardName
+        
+        ' Find the actual folder based on platform
+        Dim actualFolder As Outlook.folder
+        Set actualFolder = FindStandardFolder(rootFolder, standardName, isGmail)
+        
+        If Not actualFolder Is Nothing Then
+            WriteLog "  Found folder: " & actualFolder.Name & " (" & actualFolder.Items.Count & " items)"
+            ' Process emails and create JSON with standardized name
+            ProcessFolderWithStandardName actualFolder, standardName, 50
+        Else
+            WriteLog "  Folder not found: " & standardName
+            ' Create empty JSON file for missing folder
+            CreateEmptyFolderJson standardName
+        End If
+    Next i
+    
+    WriteLog "Standard folder processing completed"
+    Exit Sub
+    
+ErrorHandler:
+    WriteLog "ERROR in ProcessStandardFolders: " & Err.Description
+End Sub
+
+' Find standard folder based on platform
+Private Function FindStandardFolder(rootFolder As Outlook.folder, standardName As String, isGmail As Boolean) As Outlook.folder
+    On Error GoTo ErrorHandler
+    
+    Select Case standardName
+        Case "Inbox"
+            ' Same for both platforms
+            Set FindStandardFolder = FindFolderByName(rootFolder, "Inbox")
+            
+        Case "Drafts"
+            ' Same for both platforms
+            Set FindStandardFolder = FindFolderByName(rootFolder, "Drafts")
+            If FindStandardFolder Is Nothing And isGmail Then
+                ' Try Gmail nested structure
+                Dim gmailFolder As Outlook.folder
+                Set gmailFolder = FindFolderByName(rootFolder, "[Gmail]")
+                If Not gmailFolder Is Nothing Then
+                    Set FindStandardFolder = FindFolderByName(gmailFolder, "Drafts")
+                End If
+            End If
+            
+        Case "Sent Items"
+            If isGmail Then
+                ' Gmail: Look for "Sent Mail" in [Gmail] folder
+                Dim gmailFolder As Outlook.folder
+                Set gmailFolder = FindFolderByName(rootFolder, "[Gmail]")
+                If Not gmailFolder Is Nothing Then
+                    Set FindStandardFolder = FindFolderByName(gmailFolder, "Sent Mail")
+                End If
+            Else
+                ' Outlook: Look for "Sent Items" at root level
+                Set FindStandardFolder = FindFolderByName(rootFolder, "Sent Items")
+            End If
+            
+        Case "Deleted Items"
+            If isGmail Then
+                ' Gmail: Look for "Trash" in [Gmail] folder
+                Dim gmailFolder As Outlook.folder
+                Set gmailFolder = FindFolderByName(rootFolder, "[Gmail]")
+                If Not gmailFolder Is Nothing Then
+                    Set FindStandardFolder = FindFolderByName(gmailFolder, "Trash")
+                End If
+            Else
+                ' Outlook: Look for "Deleted Items" at root level
+                Set FindStandardFolder = FindFolderByName(rootFolder, "Deleted Items")
+            End If
+            
+        Case Else
+            Set FindStandardFolder = Nothing
+    End Select
+    
+    Exit Function
+    
+ErrorHandler:
+    WriteLog "ERROR in FindStandardFolder: " & Err.Description
+    Set FindStandardFolder = Nothing
+End Function
+
+' Process folder with standardized name for JSON file
+Private Sub ProcessFolderWithStandardName(folder As Outlook.folder, standardName As String, maxEmails As Long)
+    On Error GoTo ErrorHandler
+    
+    WriteLog "Processing folder '" & folder.Name & "' as '" & standardName & "'"
+    
+    ' Sort items by received time (most recent first)
+    Dim items As Outlook.items
+    Set items = folder.items
+    items.Sort "[ReceivedTime]", True
+    
+    ' Create folder-specific JSON filename using standard name
+    Dim folderJsonName As String
+    folderJsonName = GetFolderJsonName(standardName)
+    
+    ' Load existing JSON if it exists
+    Dim existingJsonPath As String
+    Dim existingEmails As Object
+    Set existingEmails = CreateObject("Scripting.Dictionary")
+    
+    existingJsonPath = GetOutputFolder() & folderJsonName
+    
+    If Dir(existingJsonPath) <> "" Then
+        WriteLog "Loading existing email JSON for comparison..."
+        LoadExistingEmailsFromJson existingJsonPath, existingEmails
+    Else
+        WriteLog "No existing email JSON found - will create new file"
+    End If
+    
+    ' Build new JSON content
+    Dim jsonContent As String
+    Dim emailCount As Long
+    Dim processedCount As Long
+    
+    jsonContent = "{" & vbCrLf
+    jsonContent = jsonContent & "  ""timestamp"": """ & Format(Now, "yyyy-mm-dd hh:nn:ss") & """," & vbCrLf
+    jsonContent = jsonContent & "  ""folder_name"": """ & standardName & """," & vbCrLf
+    jsonContent = jsonContent & "  ""actual_folder_name"": """ & folder.Name & """," & vbCrLf
+    jsonContent = jsonContent & "  ""folder_path"": """ & EscapeJson(folder.FolderPath) & """," & vbCrLf
+    jsonContent = jsonContent & "  ""total_items"": " & folder.items.Count & "," & vbCrLf
+    jsonContent = jsonContent & "  ""emails"": [" & vbCrLf
+    
+    emailCount = 0
+    processedCount = 0
+    
+    ' Process emails if any exist
+    If folder.items.Count > 0 Then
+        Dim item As Object
+        For Each item In items
+            If processedCount >= maxEmails Then Exit For
+            processedCount = processedCount + 1
+            
+            If TypeOf item Is Outlook.mailItem Then
+                Dim mailItem As Outlook.mailItem
+                Set mailItem = item
+                
+                ' Generate email hash for unique identification
+                Dim emailHash As String
+                
+                On Error Resume Next
+                emailHash = GenerateEmailHash(mailItem)
+                If Err.Number <> 0 Then
+                    WriteLog "    ERROR in GenerateEmailHash: " & Err.Description
+                    GoTo NextItem
+                End If
+                On Error GoTo ErrorHandler
+                
+                ' Check if this email already exists in JSON
+                If existingEmails.Exists(emailHash) Then
+                    WriteLog "  SKIP: Email already in JSON - " & Left(mailItem.Subject, 50) & "... (Hash: " & emailHash & ")"
+                    
+                    ' Still add to new JSON content (copy from existing)
+                    If emailCount > 0 Then jsonContent = jsonContent & "," & vbCrLf
+                    jsonContent = jsonContent & existingEmails(emailHash)
+                    emailCount = emailCount + 1
+                    GoTo NextItem
+                End If
+                
+                WriteLog "  PROCESS: New email - " & Left(mailItem.Subject, 50) & "... (Hash: " & emailHash & ")"
+                
+                ' Build JSON entry for this email (simplified version)
+                If emailCount > 0 Then jsonContent = jsonContent & "," & vbCrLf
+                
+                jsonContent = jsonContent & "    {" & vbCrLf
+                jsonContent = jsonContent & "      ""index"": " & (emailCount + 1) & "," & vbCrLf
+                jsonContent = jsonContent & "      ""hash"": """ & emailHash & """," & vbCrLf
+                jsonContent = jsonContent & "      ""folder"": """ & standardName & """," & vbCrLf
+                jsonContent = jsonContent & "      ""subject"": """ & EscapeJson(mailItem.Subject) & """," & vbCrLf
+                jsonContent = jsonContent & "      ""sender_email"": """ & EscapeJson(mailItem.SenderEmailAddress) & """," & vbCrLf
+                jsonContent = jsonContent & "      ""received_time"": """ & Format(mailItem.ReceivedTime, "yyyy-mm-dd hh:nn:ss") & """," & vbCrLf
+                jsonContent = jsonContent & "      ""unread"": " & LCase(CStr(mailItem.UnRead)) & vbCrLf
+                jsonContent = jsonContent & "    }"
+                
+                emailCount = emailCount + 1
+            End If
+            
+NextItem:
+        Next item
+    End If
+    
+    ' Close JSON structure
+    jsonContent = jsonContent & vbCrLf & "  ]," & vbCrLf
+    jsonContent = jsonContent & "  ""extracted_count"": " & emailCount & vbCrLf
+    jsonContent = jsonContent & "}" & vbCrLf
+    
+    ' Write JSON file
+    WriteLog "Writing JSON file: " & existingJsonPath
+    
+    Dim fileNum As Integer
+    fileNum = FreeFile
+    
+    Open existingJsonPath For Output As #fileNum
+    Print #fileNum, jsonContent
+    Close #fileNum
+    
+    WriteLog "Processed " & emailCount & " emails for " & standardName
+    
+    Exit Sub
+    
+ErrorHandler:
+    WriteLog "ERROR in ProcessFolderWithStandardName: " & Err.Description
+End Sub
+
+' Create empty JSON file for missing folder
+Private Sub CreateEmptyFolderJson(standardName As String)
+    On Error GoTo ErrorHandler
+    
+    WriteLog "Creating empty JSON file for: " & standardName
+    
+    Dim folderJsonName As String
+    folderJsonName = GetFolderJsonName(standardName)
+    
+    Dim jsonPath As String
+    jsonPath = GetOutputFolder() & folderJsonName
+    
+    ' Build empty JSON structure
+    Dim jsonContent As String
+    jsonContent = "{" & vbCrLf
+    jsonContent = jsonContent & "  ""timestamp"": """ & Format(Now, "yyyy-mm-dd hh:nn:ss") & """," & vbCrLf
+    jsonContent = jsonContent & "  ""folder_name"": """ & standardName & """," & vbCrLf
+    jsonContent = jsonContent & "  ""actual_folder_name"": ""(not found)""," & vbCrLf
+    jsonContent = jsonContent & "  ""folder_path"": ""/" & standardName & """," & vbCrLf
+    jsonContent = jsonContent & "  ""total_items"": 0," & vbCrLf
+    jsonContent = jsonContent & "  ""emails"": []," & vbCrLf
+    jsonContent = jsonContent & "  ""extracted_count"": 0" & vbCrLf
+    jsonContent = jsonContent & "}" & vbCrLf
+    
+    ' Write empty JSON file
+    Dim fileNum As Integer
+    fileNum = FreeFile
+    
+    Open jsonPath For Output As #fileNum
+    Print #fileNum, jsonContent
+    Close #fileNum
+    
+    WriteLog "Created empty JSON file: " & folderJsonName
+    
+    Exit Sub
+    
+ErrorHandler:
+    WriteLog "ERROR in CreateEmptyFolderJson: " & Err.Description
+End Sub
 

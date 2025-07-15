@@ -25,6 +25,11 @@ class OutlookService:
     Now includes COM interface for email operations like delete and mark read/unread.
     """
     
+    # Account configuration with fallback support
+    # Will try TARGET_ACCOUNT first, then DEBUG_ACCOUNT if not found
+    TARGET_ACCOUNT = "IRM-Standardisation-Office"
+    DEBUG_ACCOUNT = "microfilm.development@gmail.com"
+    
     def __init__(self):
         """Initialize the Outlook service."""
         logger.debug("Initializing OutlookService")
@@ -79,39 +84,150 @@ class OutlookService:
             except Exception as e:
                 logger.warning(f"Error during COM cleanup: {str(e)}")
 
-    def _find_email_by_id(self, email_id: str) -> Optional[object]:
+    def _get_account_priority_list(self) -> List[str]:
+        """Get list of accounts to try in priority order."""
+        return [self.TARGET_ACCOUNT, self.DEBUG_ACCOUNT]
+
+    def _find_target_store_with_fallback(self) -> Optional[object]:
         """
-        Find an email in Outlook by its ID.
+        Find target Outlook store with fallback accounts.
         
-        Args:
-            email_id: The email ID to search for
-            
         Returns:
-            Outlook mail item if found, None otherwise
+            Outlook store object if found, None otherwise
         """
         if not self._initialize_com():
             return None
             
         try:
-            # Get the email data to find additional identifiers
+            stores = self._namespace.Stores
+            accounts = self._get_account_priority_list()
+            
+            # Try each account in priority order
+            for account in accounts:
+                logger.debug(f"Searching for account: {account}")
+                
+                for i in range(1, stores.Count + 1):
+                    store = stores.Item(i)
+                    if account.upper() in store.DisplayName.upper():
+                        logger.info(f"Found target store: {store.DisplayName} (Account: {account})")
+                        return store
+                
+                logger.debug(f"Account '{account}' not found, trying next...")
+            
+            # If we get here, no accounts were found
+            logger.error("No target accounts found. Available stores:")
+            for i in range(1, stores.Count + 1):
+                store = stores.Item(i)
+                logger.error(f"  - {store.DisplayName}")
+            
+            return None
+            
+        except Exception as e:
+            logger.error(f"Error finding target store: {str(e)}")
+            return None
+
+    def _find_email_by_id(self, email_id: str) -> Optional[object]:
+        """
+        Find an email in Outlook by its ID using native Outlook identifiers.
+        
+        Args:
+            email_id: The email ID to search for (VBA-generated format)
+            
+        Returns:
+            Outlook mail item if found, None otherwise
+        """
+        if not self._initialize_com():
+            logger.warning("COM interface not available for email search")
+            return None
+            
+        try:
+            # Get the email data to extract Outlook identifiers
             email_data = self.get_email_by_id(email_id)
             if not email_data:
                 logger.warning(f"Email data not found for ID: {email_id}")
                 return None
             
-            # Look for the email in the IRM-Standardisation-Office account
-            target_account = "IRM-Standardisation-Office"
-            stores = self._namespace.Stores
+            # Extract Outlook native identifiers
+            entry_id = email_data.get('entry_id', '').strip()
+            message_id = email_data.get('message_id', '').strip()
+            conversation_id = email_data.get('conversation_id', '').strip()
             
-            target_store = None
-            for i in range(1, stores.Count + 1):
-                store = stores.Item(i)
-                if target_account.upper() in store.DisplayName.upper():
-                    target_store = store
-                    break
+            logger.debug(f"Searching for email using native identifiers:")
+            logger.debug(f"  EntryID: {entry_id[:50]}..." if entry_id else "  EntryID: (empty)")
+            logger.debug(f"  MessageID: {message_id[:50]}..." if message_id else "  MessageID: (empty)")
+            logger.debug(f"  ConversationID: {conversation_id[:20]}..." if conversation_id else "  ConversationID: (empty)")
+            
+            # Method 1: Try GetItemFromID with EntryID (most direct approach)
+            if entry_id:
+                try:
+                    logger.debug("Attempting direct EntryID lookup...")
+                    item = self._namespace.GetItemFromID(entry_id)
+                    if item:
+                        logger.info(f"Found email using EntryID: {email_data.get('subject', 'N/A')[:30]}...")
+                        return item
+                except Exception as e:
+                    logger.debug(f"EntryID lookup failed: {str(e)}")
+            
+            # Method 2: Search using AdvancedSearch with MessageID
+            if message_id:
+                try:
+                    logger.debug("Attempting MessageID search...")
+                    # Look for the email using fallback account logic
+                    target_store = self._find_target_store_with_fallback()
+                    
+                    if target_store:
+                        # Get inbox folder
+                        root_folder = target_store.GetRootFolder()
+                        inbox = None
+                        
+                        for i in range(1, root_folder.Folders.Count + 1):
+                            folder = root_folder.Folders.Item(i)
+                            if folder.Name.lower() == "inbox":
+                                inbox = folder
+                                break
+                        
+                        if inbox:
+                            # Search through recent emails by MessageID
+                            items = inbox.Items
+                            search_limit = min(items.Count, 500)
+                            
+                            for i in range(1, search_limit + 1):
+                                try:
+                                    item = items.Item(i)
+                                    if hasattr(item, 'PropertyAccessor'):
+                                        item_msg_id = item.PropertyAccessor.GetProperty("http://schemas.microsoft.com/mapi/proptag/0x1035001E")
+                                        if item_msg_id and item_msg_id.strip() == message_id:
+                                            logger.info(f"Found email using MessageID: {email_data.get('subject', 'N/A')[:30]}...")
+                                            return item
+                                except Exception:
+                                    continue
+                except Exception as e:
+                    logger.debug(f"MessageID search failed: {str(e)}")
+            
+            # Method 3: Fallback to content-based search
+            logger.debug("Falling back to content-based search...")
+            return self._find_email_by_content(email_data)
+            
+        except Exception as e:
+            logger.error(f"Error finding email by ID {email_id}: {str(e)}")
+            return None
+
+    def _find_email_by_content(self, email_data: Dict) -> Optional[object]:
+        """
+        Fallback method to find email by content when native identifiers fail.
+        
+        Args:
+            email_data: Email data dictionary with subject, sender, etc.
+            
+        Returns:
+            Outlook mail item if found, None otherwise
+        """
+        try:
+            # Look for the email using fallback account logic
+            target_store = self._find_target_store_with_fallback()
             
             if not target_store:
-                logger.error(f"Target account '{target_account}' not found")
+                logger.error("No target accounts found for content-based email search")
                 return None
                 
             # Get inbox folder
@@ -128,39 +244,64 @@ class OutlookService:
                 logger.error("Inbox folder not found")
                 return None
             
-            # Search for email by subject and sender
-            email_subject = email_data.get('subject', '')
-            email_sender = email_data.get('sender_email', '')
+            # Extract search criteria from email data
+            email_subject = email_data.get('subject', '').strip()
+            email_sender = email_data.get('sender_email', '').strip()
             email_received_time = email_data.get('received_time', '')
+            email_size = email_data.get('size', 0)
             
-            # Search through inbox items
+            logger.debug(f"Content search for subject: '{email_subject[:50]}...', sender: '{email_sender}'")
+            
+            # Search through inbox items with multiple criteria
             items = inbox.Items
-            for i in range(1, min(items.Count + 1, 500)):  # Limit search to recent 500 emails
+            found_candidates = []
+            
+            # Limit search to recent emails to improve performance
+            search_limit = min(items.Count, 200)  # Reduced limit for fallback
+            logger.debug(f"Searching through {search_limit} recent emails")
+            
+            for i in range(1, search_limit + 1):
                 try:
                     item = items.Item(i)
                     
-                    # Match by subject and sender
-                    if (hasattr(item, 'Subject') and hasattr(item, 'SenderEmailAddress') and
-                        item.Subject == email_subject and 
-                        item.SenderEmailAddress == email_sender):
-                        
-                        # Additional verification by received time if available
-                        if hasattr(item, 'ReceivedTime'):
-                            item_time = item.ReceivedTime.strftime('%Y-%m-%d %H:%M:%S')
-                            if email_received_time and item_time == email_received_time:
-                                return item
+                    # Skip non-mail items
+                    if not hasattr(item, 'Subject') or not hasattr(item, 'SenderEmailAddress'):
+                        continue
+                    
+                    # Primary match: subject and sender
+                    subject_match = item.Subject and item.Subject.strip() == email_subject
+                    sender_match = item.SenderEmailAddress and item.SenderEmailAddress.strip().lower() == email_sender.lower()
+                    
+                    if subject_match and sender_match:
+                        # Additional verification by size if available
+                        if email_size > 0 and hasattr(item, 'Size'):
+                            size_diff = abs(item.Size - email_size)
+                            size_match = size_diff <= (email_size * 0.1)
                         else:
+                            size_match = True
+                        
+                        if size_match:
+                            logger.debug(f"Found content match for email: {email_subject[:30]}...")
                             return item
+                        else:
+                            # Store as candidate if subject and sender match but size doesn't
+                            found_candidates.append((item, f"size_mismatch: {item.Size} vs {email_size}"))
                             
                 except Exception as e:
-                    logger.debug(f"Error checking item {i}: {str(e)}")
+                    logger.debug(f"Error checking email item {i}: {str(e)}")
                     continue
+            
+            # If no exact match, try the best candidate
+            if found_candidates:
+                best_candidate, match_info = found_candidates[0]
+                logger.warning(f"No exact match found, using best candidate: {match_info}")
+                return best_candidate
                     
-            logger.warning(f"Email not found in Outlook for ID: {email_id}")
+            logger.warning(f"Email not found using content search")
             return None
             
         except Exception as e:
-            logger.error(f"Error finding email by ID {email_id}: {str(e)}")
+            logger.error(f"Error in content-based email search: {str(e)}")
             return None
 
     def delete_email(self, email_id: str) -> bool:
@@ -314,10 +455,118 @@ class OutlookService:
 
     def get_emails_data(self) -> Dict:
         """
-        Read and return emails data from VBA JSON file.
+        Read and return emails data from VBA JSON files (multiple folder files).
         
         Returns:
-            Dict: Email data structure or empty structure if file not found
+            Dict: Consolidated email data structure from all folders
+        """
+        try:
+            # Check if we have the new multi-file structure (scan for emails_*.json files)
+            folder_files = list(self.base_path.glob("emails_*.json"))
+            
+            if folder_files:
+                return self._get_emails_from_multiple_files()
+            else:
+                # Fallback to single file (backward compatibility)
+                return self._get_emails_from_single_file()
+                
+        except Exception as e:
+            logger.error(f"Error reading emails data: {str(e)}")
+            return self._get_empty_data_structure()
+
+    def _get_emails_from_multiple_files(self) -> Dict:
+        """
+        Read emails from multiple folder-specific JSON files.
+        
+        Returns:
+            Dict: Consolidated email data structure
+        """
+        try:
+            # Scan for all emails_*.json files
+            folder_files = list(self.base_path.glob("emails_*.json"))
+            
+            # Consolidate emails from all folder files
+            all_emails = []
+            folder_counts = {}
+            latest_timestamp = None
+            
+            for folder_file in folder_files:
+                filename = folder_file.name
+                
+                # Extract folder name from filename (emails_inbox.json -> inbox)
+                folder_name = filename[7:-5]  # Remove "emails_" prefix and ".json" suffix
+                folder_name = folder_name.replace('_', ' ').title()  # Convert to readable name
+                
+                # Try multiple encodings to handle Windows-generated files
+                encodings = ['utf-8', 'utf-8-sig', 'cp1252', 'iso-8859-1', 'latin-1']
+                folder_data = None
+                
+                for encoding in encodings:
+                    try:
+                        with open(folder_file, 'r', encoding=encoding) as f:
+                            folder_data = json.load(f)
+                        logger.debug(f"Successfully read {filename} with encoding: {encoding}")
+                        break
+                    except UnicodeDecodeError:
+                        continue
+                    except json.JSONDecodeError as e:
+                        logger.error(f"JSON decode error in {filename} with encoding {encoding}: {str(e)}")
+                        continue
+                
+                if folder_data is None:
+                    logger.error(f"Failed to read {filename} with any encoding")
+                    continue
+                
+                # Use folder_name from JSON data if available, otherwise use extracted name
+                json_folder_name = folder_data.get('folder_name', folder_name)
+                
+                # Add emails from this folder
+                folder_emails = folder_data.get('emails', [])
+                folder_counts[json_folder_name] = len(folder_emails)
+                
+                # Add unique IDs to emails if not present
+                for i, email in enumerate(folder_emails):
+                    if 'id' not in email:
+                        # Generate unique ID based on index and content hash
+                        email_hash = hashlib.md5(
+                            f"{email.get('subject', '')}{email.get('sender_email', '')}{email.get('received_time', '')}".encode()
+                        ).hexdigest()[:8]
+                        email['id'] = f"vba_{len(all_emails)+i+1}_{email_hash}"
+                
+                all_emails.extend(folder_emails)
+                
+                # Track latest timestamp
+                file_timestamp = folder_data.get('timestamp', '')
+                if not latest_timestamp or file_timestamp > latest_timestamp:
+                    latest_timestamp = file_timestamp
+                
+                logger.debug(f"Loaded {len(folder_emails)} emails from {json_folder_name} folder")
+            
+            # Create consolidated data structure
+            consolidated_data = {
+                'timestamp': latest_timestamp or datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                'folder_name': 'All Folders',
+                'folder_path': '/All',
+                'total_items': len(all_emails),
+                'emails': all_emails,
+                'extracted_count': len(all_emails),
+                'folder_counts': folder_counts,
+                'source': 'multi_file'
+            }
+            
+            logger.debug(f"Consolidated {len(all_emails)} emails from {len(folder_counts)} folders")
+            return consolidated_data
+            
+        except Exception as e:
+            logger.error(f"Error reading emails from multiple files: {str(e)}")
+            return self._get_empty_data_structure()
+
+    def _get_emails_from_single_file(self) -> Dict:
+        """
+        Read emails from single JSON file (backward compatibility).
+        
+        Returns:
+            Dict: Email data structure from single file
         """
         try:
             if not self.emails_file.exists():
@@ -352,12 +601,15 @@ class OutlookService:
                         f"{email.get('subject', '')}{email.get('sender_email', '')}{email.get('received_time', '')}".encode()
                     ).hexdigest()[:8]
                     email['id'] = f"vba_{i+1}_{email_hash}"
-                    
-            logger.debug(f"Loaded {len(data.get('emails', []))} emails from JSON")
+            
+            # Add source indicator
+            data['source'] = 'single_file'
+            
+            logger.debug(f"Loaded {len(data.get('emails', []))} emails from single JSON file")
             return data
             
         except Exception as e:
-            logger.error(f"Error reading emails data: {str(e)}")
+            logger.error(f"Error reading single file emails data: {str(e)}")
             return self._get_empty_data_structure()
 
     def get_emails_list(self, 
@@ -367,6 +619,7 @@ class OutlookService:
                        filter_unread: bool = None,
                        filter_important: bool = None,
                        filter_attachments: bool = None,
+                       filter_folder: str = None,
                        sort_by: str = 'received_time',
                        sort_order: str = 'desc') -> Tuple[List[Dict], Dict]:
         """
@@ -391,7 +644,7 @@ class OutlookService:
             
             # Apply filters
             filtered_emails = self._apply_filters(
-                emails, search, filter_unread, filter_important, filter_attachments
+                emails, search, filter_unread, filter_important, filter_attachments, filter_folder
             )
             
             # Apply sorting
@@ -470,23 +723,34 @@ class OutlookService:
             data = self.get_emails_data()
             emails = data.get('emails', [])
             
+            # Use folder_counts from data if available (multi-file structure)
+            folder_counts = data.get('folder_counts', {})
+            
+            # If not available, calculate from emails (single-file structure)
+            if not folder_counts:
+                for email in emails:
+                    folder = email.get('folder', 'Inbox')
+                    folder_counts[folder] = folder_counts.get(folder, 0) + 1
+            
             stats = {
                 'total_emails': len(emails),
                 'unread_emails': sum(1 for email in emails if email.get('unread', False)),
                 'important_emails': sum(1 for email in emails if email.get('importance', 0) > 1),
                 'emails_with_attachments': sum(1 for email in emails if email.get('attachments', [])),
                 'last_updated': data.get('timestamp', 'Never'),
-                'folder_name': data.get('folder_name', 'Inbox')
+                'folder_name': data.get('folder_name', 'All Folders'),
+                'folder_counts': folder_counts,
+                'source': data.get('source', 'unknown')
             }
             
             return stats
             
         except Exception as e:
             logger.error(f"Error getting folder stats: {str(e)}")
-            return {'total_emails': 0, 'unread_emails': 0, 'important_emails': 0, 'emails_with_attachments': 0}
+            return {'total_emails': 0, 'unread_emails': 0, 'important_emails': 0, 'emails_with_attachments': 0, 'folder_counts': {}, 'source': 'error'}
 
     def _apply_filters(self, emails: List[Dict], search: str, filter_unread: bool, 
-                      filter_important: bool, filter_attachments: bool) -> List[Dict]:
+                      filter_important: bool, filter_attachments: bool, filter_folder: str) -> List[Dict]:
         """Apply filters to email list."""
         filtered_emails = emails.copy()
         
@@ -512,6 +776,24 @@ class OutlookService:
         # Attachments filter
         if filter_attachments:
             filtered_emails = [email for email in filtered_emails if email.get('attachments', [])]
+        
+        # Folder filter (handle both Outlook and Gmail folder names)
+        if filter_folder:
+            # Gmail folder name mapping
+            folder_alternatives = {
+                'sent items': ['sent items', 'sent mail'],
+                'sent mail': ['sent items', 'sent mail'],
+                'deleted items': ['deleted items', 'trash'],
+                'trash': ['deleted items', 'trash']
+            }
+            
+            filter_lower = filter_folder.lower()
+            possible_names = folder_alternatives.get(filter_lower, [filter_lower])
+            
+            filtered_emails = [
+                email for email in filtered_emails 
+                if email.get('folder', '').lower() in possible_names
+            ]
         
         return filtered_emails
 
@@ -578,9 +860,15 @@ class OutlookService:
         Check if VBA data is available.
         
         Returns:
-            bool: True if data file exists and is readable
+            bool: True if data files exist and are readable
         """
         try:
+            # Check for new multi-file structure first
+            folder_files = list(self.base_path.glob("emails_*.json"))
+            if folder_files:
+                return True
+                
+            # Fallback to single file check
             return self.emails_file.exists() and self.emails_file.is_file()
         except Exception:
             return False
@@ -593,29 +881,274 @@ class OutlookService:
             Dict: Status information
         """
         try:
-            if not self.is_data_available():
+            # Check for new multi-file structure first
+            folder_files = list(self.base_path.glob("emails_*.json"))
+            
+            if folder_files:
+                # Multi-file structure
+                try:
+                    total_files = len(folder_files)
+                    total_size = sum(f.stat().st_size for f in folder_files)
+                    
+                    # Get the most recent modification time
+                    latest_mtime = max(f.stat().st_mtime for f in folder_files)
+                    last_modified = datetime.datetime.fromtimestamp(latest_mtime)
+                    
+                    return {
+                        'available': True,
+                        'message': f'VBA multi-file data available ({total_files} folder files)',
+                        'path': str(self.base_path),
+                        'last_modified': last_modified.strftime('%Y-%m-%d %H:%M:%S'),
+                        'file_size': total_size,
+                        'structure': 'multi_file',
+                        'folder_files': total_files
+                    }
+                    
+                except Exception as e:
+                    return {
+                        'available': False,
+                        'message': f'Error reading multi-file structure: {str(e)}',
+                        'path': str(self.base_path),
+                        'last_modified': None,
+                        'structure': 'multi_file_error'
+                    }
+            
+            # Fallback to single file check
+            elif self.emails_file.exists():
+                stat = self.emails_file.stat()
+                last_modified = datetime.datetime.fromtimestamp(stat.st_mtime)
+                
                 return {
-                    'available': False,
-                    'message': 'VBA data file not found. Please ensure the VBA extractor is running.',
+                    'available': True,
+                    'message': 'VBA single-file data available',
                     'path': str(self.emails_file),
-                    'last_modified': None
+                    'last_modified': last_modified.strftime('%Y-%m-%d %H:%M:%S'),
+                    'file_size': stat.st_size,
+                    'structure': 'single_file'
                 }
             
-            stat = self.emails_file.stat()
-            last_modified = datetime.datetime.fromtimestamp(stat.st_mtime)
-            
-            return {
-                'available': True,
-                'message': 'VBA data available',
-                'path': str(self.emails_file),
-                'last_modified': last_modified.strftime('%Y-%m-%d %H:%M:%S'),
-                'file_size': stat.st_size
-            }
+            else:
+                return {
+                    'available': False,
+                    'message': 'VBA data files not found. Please ensure the VBA extractor is running.',
+                    'path': str(self.emails_file),
+                    'last_modified': None,
+                    'structure': 'none'
+                }
             
         except Exception as e:
             return {
                 'available': False,
                 'message': f'Error checking data status: {str(e)}',
                 'path': str(self.emails_file),
-                'last_modified': None
+                'last_modified': None,
+                'structure': 'error'
             }
+
+    def test_account_fallback(self) -> Dict:
+        """
+        Test the account fallback logic.
+        
+        Returns:
+            Dict: Test results showing which accounts were found
+        """
+        result = {
+            'com_available': COM_AVAILABLE,
+            'com_initialized': False,
+            'accounts_found': [],
+            'target_store': None,
+            'available_stores': [],
+            'test_successful': False
+        }
+        
+        if not self._initialize_com():
+            result['message'] = 'COM interface not available'
+            return result
+            
+        result['com_initialized'] = True
+        
+        try:
+            stores = self._namespace.Stores
+            accounts = self._get_account_priority_list()
+            
+            # List all available stores
+            for i in range(1, stores.Count + 1):
+                store = stores.Item(i)
+                result['available_stores'].append(store.DisplayName)
+            
+            # Check which target accounts are available
+            for account in accounts:
+                for i in range(1, stores.Count + 1):
+                    store = stores.Item(i)
+                    if account.upper() in store.DisplayName.upper():
+                        result['accounts_found'].append({
+                            'account': account,
+                            'store_name': store.DisplayName
+                        })
+                        break
+            
+            # Test the fallback logic
+            target_store = self._find_target_store_with_fallback()
+            if target_store:
+                result['target_store'] = target_store.DisplayName
+                result['test_successful'] = True
+                result['message'] = f'Fallback logic successful - found {target_store.DisplayName}'
+            else:
+                result['message'] = 'Fallback logic failed - no accounts found'
+                
+        except Exception as e:
+            result['message'] = f'Error testing fallback logic: {str(e)}'
+            
+        return result
+
+    def debug_email_data(self, email_id: str) -> Dict:
+        """
+        Debug method to show email data structure and COM search details.
+        
+        Args:
+            email_id: The VBA-generated email ID to debug
+            
+        Returns:
+            Dict: Debug information about the email and search process
+        """
+        debug_info = {
+            'email_id': email_id,
+            'json_email_found': False,
+            'json_email_data': None,
+            'com_available': COM_AVAILABLE,
+            'com_initialized': False,
+            'account_search': [],
+            'search_criteria': {},
+            'search_results': []
+        }
+        
+        try:
+            # Get email data from JSON
+            email_data = self.get_email_by_id(email_id)
+            if email_data:
+                debug_info['json_email_found'] = True
+                debug_info['json_email_data'] = {
+                    'subject': email_data.get('subject', ''),
+                    'sender_email': email_data.get('sender_email', ''),
+                    'sender_name': email_data.get('sender_name', ''),
+                    'received_time': email_data.get('received_time', ''),
+                    'size': email_data.get('size', 0),
+                    'hash': email_data.get('hash', ''),
+                    'index': email_data.get('index', 0),
+                    'entry_id': email_data.get('entry_id', ''),
+                    'message_id': email_data.get('message_id', ''),
+                    'conversation_id': email_data.get('conversation_id', ''),
+                    'folder': email_data.get('folder', ''),
+                    'folder_path': email_data.get('folder_path', '')
+                }
+                
+                debug_info['search_criteria'] = {
+                    'subject': email_data.get('subject', '').strip(),
+                    'sender_email': email_data.get('sender_email', '').strip(),
+                    'received_time': email_data.get('received_time', ''),
+                    'size': email_data.get('size', 0)
+                }
+            
+            # Test COM interface
+            if self._initialize_com():
+                debug_info['com_initialized'] = True
+                
+                # Test account finding
+                stores = self._namespace.Stores
+                accounts = self._get_account_priority_list()
+                
+                debug_info['available_stores'] = []
+                for i in range(1, stores.Count + 1):
+                    store = stores.Item(i)
+                    debug_info['available_stores'].append(store.DisplayName)
+                
+                # Test account search
+                for account in accounts:
+                    account_info = {'account': account, 'found': False, 'store_name': None}
+                    
+                    for i in range(1, stores.Count + 1):
+                        store = stores.Item(i)
+                        if account.upper() in store.DisplayName.upper():
+                            account_info['found'] = True
+                            account_info['store_name'] = store.DisplayName
+                            break
+                    
+                    debug_info['account_search'].append(account_info)
+                
+                # If we have email data, try searching for it
+                if email_data and debug_info['account_search']:
+                    target_store = self._find_target_store_with_fallback()
+                    if target_store:
+                        debug_info['target_store_found'] = target_store.DisplayName
+                        
+                        # Get inbox
+                        root_folder = target_store.GetRootFolder()
+                        inbox = None
+                        
+                        for i in range(1, root_folder.Folders.Count + 1):
+                            folder = root_folder.Folders.Item(i)
+                            if folder.Name.lower() == "inbox":
+                                inbox = folder
+                                break
+                        
+                        if inbox:
+                            debug_info['inbox_found'] = True
+                            debug_info['inbox_item_count'] = inbox.Items.Count
+                            
+                            # Search for matching emails (limited sample)
+                            items = inbox.Items
+                            search_limit = min(items.Count, 50)  # Small sample for debugging
+                            
+                            subject_to_find = email_data.get('subject', '').strip()
+                            sender_to_find = email_data.get('sender_email', '').strip()
+                            
+                            for i in range(1, search_limit + 1):
+                                try:
+                                    item = items.Item(i)
+                                    if hasattr(item, 'Subject') and hasattr(item, 'SenderEmailAddress'):
+                                        item_subject = item.Subject.strip() if item.Subject else ''
+                                        item_sender = item.SenderEmailAddress.strip() if item.SenderEmailAddress else ''
+                                        
+                                        match_info = {
+                                            'index': i,
+                                            'subject': item_subject[:50] + '...' if len(item_subject) > 50 else item_subject,
+                                            'sender': item_sender,
+                                            'subject_match': item_subject == subject_to_find,
+                                            'sender_match': item_sender.lower() == sender_to_find.lower(),
+                                            'both_match': item_subject == subject_to_find and item_sender.lower() == sender_to_find.lower()
+                                        }
+                                        
+                                        if match_info['subject_match'] or match_info['sender_match'] or match_info['both_match']:
+                                            debug_info['search_results'].append(match_info)
+                                            
+                                except Exception as e:
+                                    continue
+                        else:
+                            debug_info['inbox_found'] = False
+                    else:
+                        debug_info['target_store_found'] = False
+            
+        except Exception as e:
+            debug_info['error'] = str(e)
+        
+        return debug_info
+    
+    def get_inbox_emails(self, **kwargs) -> Tuple[List[Dict], Dict]:
+        """Get emails from Inbox folder."""
+        return self.get_emails_list(filter_folder='Inbox', **kwargs)
+    
+    def get_deleted_emails(self, **kwargs) -> Tuple[List[Dict], Dict]:
+        """Get emails from Deleted Items folder."""
+        return self.get_emails_list(filter_folder='Deleted Items', **kwargs)
+    
+    def get_sent_emails(self, **kwargs) -> Tuple[List[Dict], Dict]:
+        """Get emails from Sent Items folder."""
+        return self.get_emails_list(filter_folder='Sent Items', **kwargs)
+    
+    def get_draft_emails(self, **kwargs) -> Tuple[List[Dict], Dict]:
+        """Get emails from Drafts folder."""
+        return self.get_emails_list(filter_folder='Drafts', **kwargs)
+    
+    def get_outbox_emails(self, **kwargs) -> Tuple[List[Dict], Dict]:
+        """Get emails from Outbox folder."""
+        return self.get_emails_list(filter_folder='Outbox', **kwargs)

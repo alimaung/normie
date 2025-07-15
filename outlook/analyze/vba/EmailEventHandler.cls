@@ -6,11 +6,71 @@ Option Explicit
 ' Event-driven variables
 Private WithEvents olApp As Outlook.Application
 Private WithEvents olInboxItems As Outlook.Items
+Private WithEvents olDeletedItems As Outlook.Items
+Private WithEvents olSentItems As Outlook.Items
+Private WithEvents olDrafts As Outlook.Items
+Private WithEvents olOutbox As Outlook.Items
 Private targetInboxFolder As Outlook.Folder
+Private targetDeletedFolder As Outlook.Folder
+Private targetSentFolder As Outlook.Folder
+Private targetDraftsFolder As Outlook.Folder
+Private targetOutboxFolder As Outlook.Folder
 Private isActive As Boolean
 
 ' Constants from main module
 Private Const TARGET_ACCOUNT As String = "IRM-Standardisation-Office"
+Private Const DEBUG_ACCOUNT As String = "microfilm.development@gmail.com"
+
+' Account priority list - will try in order
+Private Function GetAccountPriorityList() As String()
+    Dim accounts(1) As String
+    accounts(0) = TARGET_ACCOUNT
+    accounts(1) = DEBUG_ACCOUNT
+    GetAccountPriorityList = accounts
+End Function
+
+' Helper function to find target store with fallback accounts
+Private Function FindTargetStoreWithFallback() As Outlook.store
+    On Error GoTo ErrorHandler
+    
+    Dim olApp As Outlook.Application
+    Dim olNamespace As Outlook.NameSpace
+    Dim store As Outlook.store
+    Dim accounts() As String
+    Dim i As Integer
+    
+    Set olApp = Application
+    Set olNamespace = olApp.GetNamespace("MAPI")
+    accounts = GetAccountPriorityList()
+    
+    ' Try each account in priority order
+    For i = 0 To UBound(accounts)
+        WriteLog "Searching for account: " & accounts(i)
+        
+        For Each store In olNamespace.Stores
+            If InStr(UCase(store.DisplayName), UCase(accounts(i))) > 0 Then
+                Set FindTargetStoreWithFallback = store
+                WriteLog "Found target store: " & store.DisplayName & " (Account: " & accounts(i) & ")"
+                Exit Function
+            End If
+        Next store
+        
+        WriteLog "Account '" & accounts(i) & "' not found, trying next..."
+    Next i
+    
+    ' If we get here, no accounts were found
+    WriteLog "ERROR: No target accounts found. Available stores:"
+    For Each store In olNamespace.Stores
+        WriteLog "  - " & store.DisplayName
+    Next store
+    
+    Set FindTargetStoreWithFallback = Nothing
+    Exit Function
+    
+ErrorHandler:
+    WriteLog "ERROR in FindTargetStoreWithFallback: " & Err.Description
+    Set FindTargetStoreWithFallback = Nothing
+End Function
 
 ' Initialize the event handler
 Public Function StartMonitoring() As Boolean
@@ -22,43 +82,77 @@ Public Function StartMonitoring() As Boolean
     Set olApp = Application
     
     ' Find target account and inbox
-    Dim olNamespace As Outlook.NameSpace
-    Set olNamespace = olApp.GetNamespace("MAPI")
-    
-    Dim store As Outlook.store
     Dim targetStore As Outlook.store
-    Set targetStore = Nothing
-    
-    For Each store In olNamespace.Stores
-        If InStr(UCase(store.DisplayName), UCase(TARGET_ACCOUNT)) > 0 Then
-            Set targetStore = store
-            WriteLog "Found target store: " & store.DisplayName
-            Exit For
-        End If
-    Next store
+    Set targetStore = FindTargetStoreWithFallback()
     
     If targetStore Is Nothing Then
-        WriteLog "ERROR: Target account '" & TARGET_ACCOUNT & "' not found"
+        WriteLog "ERROR: No target accounts found"
         StartMonitoring = False
         Exit Function
     End If
     
-    ' Get inbox folder
+    ' Get root folder for all folder access
     Dim rootFolder As Outlook.Folder
     Set rootFolder = targetStore.GetRootFolder
-    Set targetInboxFolder = FindFolderByName(rootFolder, "Inbox")
     
-    If targetInboxFolder Is Nothing Then
-        WriteLog "ERROR: Inbox folder not found"
+    ' Set up tracking for all configured folders
+    Dim foldersSetup As Integer
+    foldersSetup = 0
+    
+    ' Inbox folder
+    Set targetInboxFolder = FindFolderByName(rootFolder, "Inbox")
+    If Not targetInboxFolder Is Nothing Then
+        Set olInboxItems = targetInboxFolder.Items
+        foldersSetup = foldersSetup + 1
+        WriteLog "Event handler: Inbox folder tracking enabled"
+    End If
+    
+    ' Deleted Items folder (try both standard Outlook and Gmail names)
+    Set targetDeletedFolder = FindFolderByName(rootFolder, "Deleted Items")
+    If targetDeletedFolder Is Nothing Then
+        Set targetDeletedFolder = FindFolderByName(rootFolder, "Trash")
+    End If
+    If Not targetDeletedFolder Is Nothing Then
+        Set olDeletedItems = targetDeletedFolder.Items
+        foldersSetup = foldersSetup + 1
+        WriteLog "Event handler: " & targetDeletedFolder.Name & " folder tracking enabled"
+    End If
+    
+    ' Sent Items folder (try both standard Outlook and Gmail names)
+    Set targetSentFolder = FindFolderByName(rootFolder, "Sent Items")
+    If targetSentFolder Is Nothing Then
+        Set targetSentFolder = FindFolderByName(rootFolder, "Sent Mail")
+    End If
+    If Not targetSentFolder Is Nothing Then
+        Set olSentItems = targetSentFolder.Items
+        foldersSetup = foldersSetup + 1
+        WriteLog "Event handler: " & targetSentFolder.Name & " folder tracking enabled"
+    End If
+    
+    ' Drafts folder
+    Set targetDraftsFolder = FindFolderByName(rootFolder, "Drafts")
+    If Not targetDraftsFolder Is Nothing Then
+        Set olDrafts = targetDraftsFolder.Items
+        foldersSetup = foldersSetup + 1
+        WriteLog "Event handler: Drafts folder tracking enabled"
+    End If
+    
+    ' Outbox folder
+    Set targetOutboxFolder = FindFolderByName(rootFolder, "Outbox")
+    If Not targetOutboxFolder Is Nothing Then
+        Set olOutbox = targetOutboxFolder.Items
+        foldersSetup = foldersSetup + 1
+        WriteLog "Event handler: Outbox folder tracking enabled"
+    End If
+    
+    If foldersSetup = 0 Then
+        WriteLog "ERROR: No folders found for tracking"
         StartMonitoring = False
         Exit Function
     End If
     
-    ' Set up event monitoring for the inbox
-    Set olInboxItems = targetInboxFolder.Items
     isActive = True
-    
-    WriteLog "Event handler initialized successfully!"
+    WriteLog "Event handler initialized successfully! Tracking " & foldersSetup & " folders."
     StartMonitoring = True
     
     Exit Function
@@ -72,8 +166,16 @@ End Function
 Public Sub StopMonitoring()
     If isActive Then
         Set olInboxItems = Nothing
+        Set olDeletedItems = Nothing
+        Set olSentItems = Nothing
+        Set olDrafts = Nothing
+        Set olOutbox = Nothing
         Set olApp = Nothing
         Set targetInboxFolder = Nothing
+        Set targetDeletedFolder = Nothing
+        Set targetSentFolder = Nothing
+        Set targetDraftsFolder = Nothing
+        Set targetOutboxFolder = Nothing
         isActive = False
         WriteLog "Event handler stopped."
     End If
@@ -190,4 +292,91 @@ Private Sub CreateDirectoryPath(fullPath As String)
     Next i
     
     On Error GoTo 0
-End Sub 
+End Sub
+
+' Event handler for Deleted Items folder
+Private Sub olDeletedItems_ItemAdd(ByVal Item As Object)
+    On Error GoTo ErrorHandler
+    
+    If TypeOf Item Is Outlook.MailItem Then
+        Dim mailItem As Outlook.MailItem
+        Set mailItem = Item
+        
+        WriteLog "=== EMAIL MOVED TO " & UCase(targetDeletedFolder.Name) & " ==="
+        WriteLog "Subject: " & mailItem.Subject
+        WriteLog "From: " & mailItem.SenderName & " (" & mailItem.SenderEmailAddress & ")"
+        
+        ' Process email in Deleted Items folder
+        ProcessSingleNewEmail mailItem, targetDeletedFolder
+    End If
+    
+    Exit Sub
+    
+ErrorHandler:
+    WriteLog "ERROR in olDeletedItems_ItemAdd: " & Err.Description
+End Sub
+
+' Event handler for Sent Items folder
+Private Sub olSentItems_ItemAdd(ByVal Item As Object)
+    On Error GoTo ErrorHandler
+    
+    If TypeOf Item Is Outlook.MailItem Then
+        Dim mailItem As Outlook.MailItem
+        Set mailItem = Item
+        
+        WriteLog "=== EMAIL SENT ==="
+        WriteLog "Subject: " & mailItem.Subject
+        WriteLog "To: " & mailItem.To
+        
+        ' Process email in Sent Items folder
+        ProcessSingleNewEmail mailItem, targetSentFolder
+    End If
+    
+    Exit Sub
+    
+ErrorHandler:
+    WriteLog "ERROR in olSentItems_ItemAdd: " & Err.Description
+End Sub
+
+' Event handler for Drafts folder
+Private Sub olDrafts_ItemAdd(ByVal Item As Object)
+    On Error GoTo ErrorHandler
+    
+    If TypeOf Item Is Outlook.MailItem Then
+        Dim mailItem As Outlook.MailItem
+        Set mailItem = Item
+        
+        WriteLog "=== EMAIL SAVED TO DRAFTS ==="
+        WriteLog "Subject: " & mailItem.Subject
+        
+        ' Process email in Drafts folder
+        ProcessSingleNewEmail mailItem, targetDraftsFolder
+    End If
+    
+    Exit Sub
+    
+ErrorHandler:
+    WriteLog "ERROR in olDrafts_ItemAdd: " & Err.Description
+End Sub
+
+' Event handler for Outbox folder
+Private Sub olOutbox_ItemAdd(ByVal Item As Object)
+    On Error GoTo ErrorHandler
+    
+    If TypeOf Item Is Outlook.MailItem Then
+        Dim mailItem As Outlook.MailItem
+        Set mailItem = Item
+        
+        WriteLog "=== EMAIL IN OUTBOX ==="
+        WriteLog "Subject: " & mailItem.Subject
+        WriteLog "To: " & mailItem.To
+        
+        ' Process email in Outbox folder
+        ProcessSingleNewEmail mailItem, targetOutboxFolder
+    End If
+    
+    Exit Sub
+    
+ErrorHandler:
+    WriteLog "ERROR in olOutbox_ItemAdd: " & Err.Description
+End Sub

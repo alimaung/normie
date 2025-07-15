@@ -33,6 +33,7 @@ def inbox(request):
         filter_unread = request.GET.get('unread') == '1'
         filter_important = request.GET.get('important') == '1'
         filter_attachments = request.GET.get('attachments') == '1'
+        filter_folder = request.GET.get('folder', 'Inbox')  # Default to Inbox
         sort_by = request.GET.get('sort_by', 'received_time')
         sort_order = request.GET.get('sort_order', 'desc')
         
@@ -44,6 +45,7 @@ def inbox(request):
             filter_unread=filter_unread if filter_unread else None,
             filter_important=filter_important if filter_important else None,
             filter_attachments=filter_attachments if filter_attachments else None,
+            filter_folder=filter_folder,
             sort_by=sort_by,
             sort_order=sort_order
         )
@@ -70,9 +72,11 @@ def inbox(request):
                 'unread': filter_unread,
                 'important': filter_important,
                 'attachments': filter_attachments,
+                'folder': filter_folder,
                 'sort_by': sort_by,
                 'sort_order': sort_order
             },
+            'current_folder': filter_folder,
             'per_page_options': [10, 25, 50, 100]
         }
         
@@ -250,6 +254,144 @@ def inbox_refresh(request):
     except Exception as e:
         logger.error(f"Error refreshing inbox: {str(e)}")
         return JsonResponse({'success': False, 'error': 'Refresh failed'})
+
+
+@restrict_read_only_users
+def inbox_folder(request, folder_name):
+    """
+    View emails in a specific folder.
+    """
+    # Folder name mapping to handle URL-friendly names (supports both Outlook and Gmail)
+    folder_mapping = {
+        'inbox': 'Inbox',
+        'sent': ['Sent Items', 'Sent Mail'],  # Try both Outlook and Gmail names
+        'deleted': ['Deleted Items', 'Trash'],  # Try both Outlook and Gmail names
+        'drafts': 'Drafts',
+        'outbox': 'Outbox'
+    }
+    
+    mapped_folder = folder_mapping.get(folder_name.lower(), folder_name)
+    
+    # Handle both single folder names and lists of possible names
+    if isinstance(mapped_folder, list):
+        # For lists, we'll let the service try each name
+        actual_folder = mapped_folder[0]  # Use first as default, service will try others
+    else:
+        actual_folder = mapped_folder
+    
+    # Add folder parameter to request
+    request.GET = request.GET.copy()
+    request.GET['folder'] = actual_folder
+    
+    # Call the main inbox view with folder filter
+    return inbox(request)
+
+
+@restrict_read_only_users  
+def inbox_sent(request):
+    """View sent emails."""
+    request.GET = request.GET.copy()
+    request.GET['folder'] = 'Sent Items'
+    return inbox(request)
+
+
+@restrict_read_only_users
+def inbox_deleted(request):
+    """View deleted emails."""
+    request.GET = request.GET.copy()
+    request.GET['folder'] = 'Deleted Items'
+    return inbox(request)
+
+
+@restrict_read_only_users
+def inbox_drafts(request):
+    """View draft emails."""
+    request.GET = request.GET.copy()
+    request.GET['folder'] = 'Drafts'
+    return inbox(request)
+
+
+@restrict_read_only_users
+def inbox_outbox(request):
+    """View outbox emails."""
+    request.GET = request.GET.copy()
+    request.GET['folder'] = 'Outbox'
+    return inbox(request)
+
+
+@csrf_exempt
+@restrict_read_only_users
+def inbox_mark_read_unread(request):
+    """
+    AJAX endpoint to mark emails as read or unread.
+    """
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'error': 'Invalid request method'})
+    
+    try:
+        data = json.loads(request.body) if request.body else {}
+        email_ids = data.get('email_ids', [])
+        mark_as_read = data.get('read', True)  # True for read, False for unread
+        
+        if not email_ids:
+            return JsonResponse({'success': False, 'error': 'No email IDs provided'})
+        
+        outlook_service = OutlookService()
+        
+        if isinstance(email_ids, str):
+            email_ids = [email_ids]
+        
+        success_count, failed_ids = outlook_service.mark_multiple_emails_read(email_ids, mark_as_read)
+        
+        status = "read" if mark_as_read else "unread"
+        
+        return JsonResponse({
+            'success': True,
+            'message': f'Marked {success_count}/{len(email_ids)} emails as {status}',
+            'success_count': success_count,
+            'failed_count': len(failed_ids),
+            'failed_ids': failed_ids
+        })
+        
+    except Exception as e:
+        logger.error(f"Error marking emails as read/unread: {str(e)}")
+        return JsonResponse({'success': False, 'error': 'Failed to update read status'})
+
+
+@csrf_exempt
+@restrict_read_only_users  
+def inbox_mark_single_read_unread(request, message_id):
+    """
+    AJAX endpoint to mark a single email as read or unread.
+    """
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'error': 'Invalid request method'})
+    
+    try:
+        data = json.loads(request.body) if request.body else {}
+        mark_as_read = data.get('read', True)
+        
+        outlook_service = OutlookService()
+        success = outlook_service.mark_email_read(message_id, mark_as_read)
+        
+        status = "read" if mark_as_read else "unread"
+        
+        if success:
+            return JsonResponse({
+                'success': True,
+                'message': f'Email marked as {status}',
+                'email_id': message_id,
+                'read': mark_as_read
+            })
+        else:
+            return JsonResponse({
+                'success': False,
+                'error': f'Failed to mark email as {status}'
+            })
+        
+    except Exception as e:
+        logger.error(f"Error marking email {message_id} as read/unread: {str(e)}")
+        return JsonResponse({'success': False, 'error': 'Failed to update read status'})
 
 
 @csrf_exempt
@@ -550,4 +692,48 @@ def inbox_status(request):
         return JsonResponse({
             'success': False,
             'error': 'Failed to get inbox status'
+        })
+
+
+@restrict_read_only_users
+def inbox_test_accounts(request):
+    """
+    Test account fallback functionality.
+    """
+    try:
+        outlook_service = OutlookService()
+        test_results = outlook_service.test_account_fallback()
+        
+        return JsonResponse({
+            'success': True,
+            'test_results': test_results
+        })
+        
+    except Exception as e:
+        logger.error(f"Error testing account fallback: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': 'Failed to test account fallback'
+        })
+
+
+@restrict_read_only_users
+def inbox_debug_email(request, message_id):
+    """
+    Debug email data and search process.
+    """
+    try:
+        outlook_service = OutlookService()
+        debug_info = outlook_service.debug_email_data(message_id)
+        
+        return JsonResponse({
+            'success': True,
+            'debug_info': debug_info
+        })
+        
+    except Exception as e:
+        logger.error(f"Error debugging email {message_id}: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': f'Failed to debug email: {str(e)}'
         }) 

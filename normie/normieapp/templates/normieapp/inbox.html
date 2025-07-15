@@ -1,6 +1,7 @@
 {% extends 'normieapp/base.html' %}
 {% load static %}
 {% load i18n %}
+{% load pdf_extras %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'normieapp/css/inbox.css' %}">
@@ -22,31 +23,53 @@
         <div class="folder-list">
             <div class="folder-header">{% trans "Folders" %}</div>
             <ul>
-                <li class="folder-item active">
+                <li class="folder-item {% if current_folder == 'Inbox' %}active{% endif %}">
                     <a href="{% url 'inbox' %}">
                         <i class="fas fa-inbox"></i>
                         <span>{% trans "Inbox" %}</span>
-                        <span class="unread-count" id="unread-count">
-                            {% if folder_stats.unread_emails > 0 %}{{ folder_stats.unread_emails }}{% endif %}
+                        <span class="folder-count" id="inbox-count">
+                            {{ folder_stats.folder_counts.Inbox|default:"" }}
                         </span>
                     </a>
                 </li>
-                <li class="folder-item">
-                    <a href="#" class="disabled">
+                <li class="folder-item {% if current_folder == 'Sent Items' or current_folder == 'Sent Mail' %}active{% endif %}">
+                    <a href="{% url 'inbox_sent' %}">
                         <i class="fas fa-paper-plane"></i>
                         <span>{% trans "Sent" %}</span>
+                        <span class="folder-count" id="sent-count">
+                            {% with sent_outlook=folder_stats.folder_counts|dict_get:"Sent Items" sent_gmail=folder_stats.folder_counts|dict_get:"Sent Mail" %}
+                                {{ sent_outlook|default:sent_gmail|default:"" }}
+                            {% endwith %}
+                        </span>
                     </a>
                 </li>
-                <li class="folder-item">
-                    <a href="#" class="disabled">
+                <li class="folder-item {% if current_folder == 'Drafts' %}active{% endif %}">
+                    <a href="{% url 'inbox_drafts' %}">
                         <i class="fas fa-file-alt"></i>
                         <span>{% trans "Drafts" %}</span>
+                        <span class="folder-count" id="drafts-count">
+                            {{ folder_stats.folder_counts.Drafts|default:"" }}
+                        </span>
                     </a>
                 </li>
-                <li class="folder-item">
-                    <a href="#" class="disabled">
+                <li class="folder-item {% if current_folder == 'Deleted Items' or current_folder == 'Trash' %}active{% endif %}">
+                    <a href="{% url 'inbox_deleted' %}">
                         <i class="fas fa-trash"></i>
-                        <span>{% trans "Trash" %}</span>
+                        <span>{% trans "Deleted" %}</span>
+                        <span class="folder-count" id="deleted-count">
+                            {% with deleted_outlook=folder_stats.folder_counts|dict_get:"Deleted Items" deleted_gmail=folder_stats.folder_counts|dict_get:"Trash" %}
+                                {{ deleted_outlook|default:deleted_gmail|default:"" }}
+                            {% endwith %}
+                        </span>
+                    </a>
+                </li>
+                <li class="folder-item {% if current_folder == 'Outbox' %}active{% endif %}">
+                    <a href="{% url 'inbox_outbox' %}">
+                        <i class="fas fa-clock"></i>
+                        <span>{% trans "Outbox" %}</span>
+                        <span class="folder-count" id="outbox-count">
+                            {{ folder_stats.folder_counts.Outbox|default:"" }}
+                        </span>
                     </a>
                 </li>
             </ul>
@@ -205,6 +228,37 @@
                 {% endif %}
             </div>
             {% else %}
+            <!-- Email toolbar -->
+            <div class="email-toolbar">
+                <div class="toolbar-left">
+                    <label class="checkbox-container">
+                        <input type="checkbox" id="select-all-emails">
+                        <span class="checkmark"></span>
+                    </label>
+                    <span class="selected-count" id="selected-count">0 selected</span>
+                </div>
+                <div class="toolbar-actions" id="toolbar-actions" style="display: none;">
+                    <button class="btn btn-outline-primary btn-sm" id="mark-read-selected">
+                        <i class="fas fa-envelope-open"></i>
+                        {% trans "Mark Read" %}
+                    </button>
+                    <button class="btn btn-outline-secondary btn-sm" id="mark-unread-selected">
+                        <i class="fas fa-envelope"></i>
+                        {% trans "Mark Unread" %}
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm" id="delete-selected">
+                        <i class="fas fa-trash"></i>
+                        {% trans "Delete" %}
+                    </button>
+                </div>
+                <div class="toolbar-right">
+                    <button class="btn btn-outline-secondary btn-sm" id="refresh-emails">
+                        <i class="fas fa-sync-alt"></i>
+                        {% trans "Refresh" %}
+                    </button>
+                </div>
+            </div>
+            
             <!-- Email header -->
             <div class="email-header">
                 <div class="email-header-checkbox"></div>
@@ -243,14 +297,21 @@
                         <input type="checkbox" class="email-checkbox" value="{{ email.id }}">
                     </div>
                     <div class="email-item-flags">
+                        <button class="btn btn-sm btn-link read-unread-btn" 
+                                data-email-id="{{ email.id }}" 
+                                data-read="{% if email.unread %}false{% else %}true{% endif %}"
+                                title="{% if email.unread %}{% trans 'Mark as read' %}{% else %}{% trans 'Mark as unread' %}{% endif %}">
+                            {% if email.unread %}
+                            <i class="fas fa-envelope text-primary" title="{% trans 'Unread' %}"></i>
+                            {% else %}
+                            <i class="far fa-envelope text-muted" title="{% trans 'Read' %}"></i>
+                            {% endif %}
+                        </button>
                         {% if email.importance > 1 %}
                         <i class="fas fa-star text-warning" title="{% trans 'Important' %}"></i>
                         {% endif %}
                         {% if email.attachments %}
                         <i class="fas fa-paperclip text-muted" title="{% trans 'Has attachments' %}"></i>
-                        {% endif %}
-                        {% if email.unread %}
-                        <i class="fas fa-circle text-primary unread-indicator" title="{% trans 'Unread' %}"></i>
                         {% endif %}
                     </div>
                     <div class="email-item-sender">
@@ -341,7 +402,12 @@ window.inboxData = {
         status: '{% url "inbox_status" %}',
         delete: '{% url "inbox_delete" %}',
         markRead: '{% url "inbox_mark_read" %}',
-        inbox: '{% url "inbox" %}'
+        markReadUnread: '{% url "inbox_mark_read_unread" %}',
+        inbox: '{% url "inbox" %}',
+        sent: '{% url "inbox_sent" %}',
+        deleted: '{% url "inbox_deleted" %}',
+        drafts: '{% url "inbox_drafts" %}',
+        outbox: '{% url "inbox_outbox" %}'
     },
     csrf: '{{ csrf_token }}'
 };
