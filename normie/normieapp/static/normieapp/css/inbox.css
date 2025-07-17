@@ -3,12 +3,19 @@
 /* Base inbox container */
 .inbox-container {
     display: flex;
-    height: calc(100vh - 120px);
     background: #f8f9fa;
 }
 
 /* ===== COLLAPSIBLE SIDEBAR STYLES ===== */
 
+.footer {
+    margin-top: 0 !important;
+}
+
+/* Ensure sidebar goes full height */
+.inbox-container {
+    height: calc(100vh - 90px); /* Adjust for header without footer margin */
+}
 /* Gmail-inspired sidebar with animation */
 .inbox-sidebar.aeN {
     display: -webkit-box;
@@ -47,48 +54,120 @@
     height: 40px;
     margin-bottom: 8px;
     padding: 0 8px;
+    position: relative;
 }
 
-.sidebar-toggle,
+/* Pin button (default state - expanded and pinned) */
 .sidebar-pin {
+    border: none;
+    background: none;
+    color: #1a73e8;
+    background-color: #e8f0fe;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sidebar-pin:hover {
+    background-color: #d2e3fc;
+}
+
+/* Chevron (only shown when collapsed) */
+.sidebar-toggle {
     border: none;
     background: none;
     color: #5f6368;
     padding: 8px;
     border-radius: 50%;
-    transition: background-color 0.2s;
+    transition: all 0.2s;
+    width: 32px;
+    height: 32px;
+    display: none; /* Hidden by default */
+    align-items: center;
+    justify-content: center;
 }
 
-.sidebar-toggle:hover,
-.sidebar-pin:hover {
+.sidebar-toggle:hover {
     background-color: #f1f3f4;
 }
 
-.sidebar-pin.pinned {
-    color: #1a73e8;
-    background-color: #e8f0fe;
+/* When collapsed, hide pin and show chevron centered */
+.collapsed .sidebar-pin {
+    display: none;
+}
+
+.collapsed .sidebar-toggle {
+    display: flex;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* When collapsed and hovering, show pin on right, hide chevron */
+.collapsed.hover-expand .sidebar-pin {
+    display: flex;
+    color: #5f6368;
+    background-color: transparent;
+}
+
+.collapsed.hover-expand .sidebar-toggle {
+    display: none;
+}
+
+.collapsed.hover-expand .sidebar-controls {
+    justify-content: flex-end;
 }
 
 /* Compose button */
 .compose-section {
     margin-bottom: 16px;
+    /* padding: 0 8px; */
 }
 
 .btn-compose {
     width: 100%;
+    display: flex;
+    align-items: center;
     justify-content: flex-start;
     padding: 12px 16px;
     border-radius: 24px;
     font-weight: 500;
     transition: all 0.2s ease;
+    border: none;
+    background-color: #1a73e8;
+    color: white;
+    height: 48px;
+    min-width: 48px;
+}
+
+.btn-compose:hover {
+    background-color: #1557b0;
+    color: white;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.3), 0 1px 3px 1px rgba(60,64,67,.15);
+}
+.btn-compose i {
+    font-size: 18px;
+    margin-right: 12px;
+    flex-shrink: 0;
 }
 
 .collapsed .btn-compose {
-    width: 56px;
-    height: 56px;
+    width: 48px;
+    height: 48px;
     border-radius: 50%;
     padding: 0;
     justify-content: center;
+    margin: 0 auto;
+}
+
+.collapsed .btn-compose i {
+    margin: 0;
+    font-size: 18px;
 }
 
 .collapsed .compose-text {
@@ -109,6 +188,9 @@
     padding: 0 16px 8px 16px;
     text-transform: uppercase;
     letter-spacing: 0.5px;
+    height: 32px; /* Fixed height to prevent layout shift */
+    display: flex;
+    align-items: flex-end;
 }
 
 .collapsed .folder-header-text {
@@ -134,9 +216,12 @@
     padding: 8px 16px;
     color: #3c4043;
     text-decoration: none;
-    border-radius: 0 20px 20px 0;
-    transition: all 0.2s ease;
+    border-radius: 20px;
+    transition: background-color 0.2s ease, color 0.2s ease; /* Remove layout transitions */
     position: relative;
+    height: 40px;
+    margin: 2px 8px;
+    min-height: 40px; /* Ensure consistent height */
 }
 
 .folder-item a:hover,
@@ -152,11 +237,37 @@
     font-weight: 500;
 }
 
+.folder-item.loading a {
+    opacity: 0.6;
+    cursor: wait;
+}
+
+.folder-item.loading a::after {
+    content: '';
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    margin-left: 8px;
+    border: 2px solid #1a73e8;
+    border-top: 2px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 .folder-icon {
     width: 20px;
     height: 20px;
     margin-right: 12px;
     flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .folder-name {
@@ -175,10 +286,14 @@
     background: #f1f3f4;
     padding: 2px 8px;
     border-radius: 12px;
-    margin-left: 8px;
+    margin-left: auto; /* Push to right */
     min-width: 20px;
     text-align: center;
     flex-shrink: 0;
+    height: 20px; /* Fixed height */
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .folder-item.active .folder-count,
@@ -190,20 +305,78 @@
 /* Collapsed sidebar - hide text, show only icons */
 .collapsed .folder-name,
 .collapsed .filter-count,
-.collapsed .folder-count {
-    display: none;
+.collapsed .folder-count,
+.collapsed .folder-header-text {
+    display: none !important;
 }
 
 .collapsed .folder-item a,
 .collapsed .filter-item a {
     justify-content: center;
-    padding: 12px;
+    padding: 8px;
     border-radius: 50%;
-    margin: 4px 8px;
+    margin: 2px 8px; /* Keep same vertical margin as expanded */
+    width: 40px;
+    height: 40px;
+    min-width: 40px;
+    min-height: 40px;
+    transition: none; /* Remove transition to prevent flicker */
 }
 
 .collapsed .folder-icon {
     margin: 0;
+    font-size: 16px;
+    width: 20px;
+    height: 20px;
+    transition: none; /* Remove transition to prevent flicker */
+}
+
+/* Hover expansion for collapsed sidebar with delay */
+.collapsed.hover-expand {
+    max-width: 256px !important;
+    min-width: 256px !important;
+    -webkit-transition-duration: .3s;
+    transition-duration: .3s;
+    -webkit-transition-property: -webkit-box-flex, -webkit-flex, min-width, max-width;
+    transition-property: -webkit-box-flex, -webkit-flex, min-width, max-width;
+    transition-property: flex, min-width, max-width;
+    transition-property: flex, min-width, max-width, -webkit-box-flex, -webkit-flex;
+    -webkit-transition-timing-function: cubic-bezier(.4,0,.2,1);
+    transition-timing-function: cubic-bezier(.4,0,.2,1);
+}
+
+.collapsed.hover-expand .folder-name,
+.collapsed.hover-expand .filter-count,
+.collapsed.hover-expand .folder-count,
+.collapsed.hover-expand .compose-text,
+.collapsed.hover-expand .folder-header-text {
+    display: block !important;
+}
+
+.collapsed.hover-expand .folder-item a,
+.collapsed.hover-expand .filter-item a {
+    justify-content: flex-start;
+    padding: 8px 16px;
+    border-radius: 20px;
+    margin: 2px 8px;
+    width: auto;
+    height: 40px;
+}
+
+.collapsed.hover-expand .folder-icon {
+    margin-right: 12px;
+    font-size: 16px !important;
+}
+
+.collapsed.hover-expand .btn-compose {
+    width: 100%;
+    border-radius: 24px;
+    justify-content: flex-start;
+    padding: 12px 16px;
+}
+
+.collapsed.hover-expand .btn-compose i {
+    margin-right: 12px;
 }
 
 /* Data status */
@@ -243,15 +416,19 @@
     display: none;
 }
 
+.collapsed.hover-expand .status-indicator span,
+.collapsed.hover-expand .last-update {
+    display: block;
+}
+
+.collapsed.hover-expand .data-status {
+    text-align: left;
+    padding: 16px;
+}
+
 /* ===== MAIN CONTENT STYLES ===== */
 
-.inbox-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-    background: #ffffff;
-}
+
 
 /* ===== CONSOLIDATED TOOLBAR STYLES ===== */
 
@@ -296,46 +473,136 @@
 }
 
 .toolbar-actions .btn {
-    padding: 8px 12px;
-    border-radius: 4px;
-    font-size: 14px;
+    padding: 8px;
+    border: none;
+    background: transparent;
+    border-radius: 50%;
+    font-size: 16px;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5f6368;
+    transition: background-color 0.2s ease;
+}
+
+.toolbar-actions .btn:hover {
+    background-color: #f1f3f4;
+    color: #3c4043;
+}
+
+.toolbar-actions .btn:focus {
+    box-shadow: none;
+    background-color: #e8eaed;
 }
 
 .toolbar-actions .dropdown-toggle::after {
+    display: none;
+}
+
+.toolbar-actions .dropdown-toggle {
+    margin-left: 0 !important;
+}
+
+.toolbar-actions .dropdown .btn {
+    position: relative;
+}
+
+.toolbar-actions .dropdown .btn::after {
+    content: '\f107';
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+    position: absolute;
+    bottom: 2px;
+    right: 2px;
+    font-size: 8px;
+}
+
+/* Fix dropdown toggle icon centering - override base.css */
+.toolbar-actions .dropdown-toggle i {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    font-size: 16px !important;
+}
+
+/* Special styling for read/unread toggle button */
+#mark-read-unread-toggle {
+    width: auto !important;
+    padding: 8px 12px !important;
+    border-radius: 20px !important;
+    background-color: #1a73e8 !important;
+    color: white !important;
+}
+
+#mark-read-unread-toggle:hover {
+    background-color: #1557b0 !important;
+}
+
+#mark-read-unread-toggle .read-unread-text {
     margin-left: 8px;
+    font-size: 14px;
+}
+
+/* Delete button styling */
+#delete-selected {
+    color: #d93025 !important;
+}
+
+#delete-selected:hover {
+    background-color: #fce8e6 !important;
+    color: #d93025 !important;
 }
 
 /* Search container */
 .search-container {
     min-width: 300px;
+    position: relative;
 }
 
 .search-container .input-group {
     border-radius: 24px;
     overflow: hidden;
+    border: 1px solid #dadce0;
+    background: #ffffff;
 }
 
 .search-container .form-control {
-    border: 1px solid #dadce0;
-    border-right: none;
-    border-radius: 24px 0 0 24px;
-    padding: 8px 16px;
+    border: none;
+    border-radius: 24px;
+    padding: 8px 16px 8px 48px; /* Add left padding for search icon */
+    background: transparent;
 }
 
 .search-container .form-control:focus {
     box-shadow: 0 1px 6px rgba(32,33,36,.28);
+    outline: none;
+}
+
+.search-container .input-group:focus-within {
     border-color: #1a73e8;
 }
 
 .search-container .btn {
-    border: 1px solid #dadce0;
-    border-left: none;
-    background: #ffffff;
+    border: none;
+    background: transparent;
     color: #5f6368;
+    position: absolute;
+    z-index: 10;
 }
 
-.search-container .btn:last-child {
-    border-radius: 0 24px 24px 0;
+.search-container #search-btn {
+    left: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 4px;
+}
+
+.search-container #clear-search {
+    right: 12px;
+    top: 50%;
+    transform: translateY(-50%);
+    padding: 4px;
 }
 
 /* Filter dropdown */
@@ -350,11 +617,16 @@
     flex: 1;
     overflow-y: auto;
     background: #ffffff;
+    transition: opacity 0.2s ease;
+}
+
+.email-list.loading {
+    opacity: 0.7;
 }
 
 .email-header {
     display: grid;
-    grid-template-columns: 40px 60px 35px 70px 160px 1fr 100px;
+    grid-template-columns: 48px 80px 32px 160px 1fr 120px;
     gap: 8px;
     padding: 8px 16px;
     background: #f8f9fa;
@@ -365,6 +637,7 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     align-items: center;
+    min-height: 48px;
 }
 
 .email-header a {
@@ -381,17 +654,20 @@
 
 .email-items {
     min-height: 400px;
+    transition: opacity 0.15s ease;
 }
 
 .email-item {
     display: grid;
-    grid-template-columns: 40px 60px 35px 70px 160px 1fr 100px;
+    grid-template-columns: 48px 80px 32px 160px 1fr 120px;
     gap: 8px;
     padding: 8px 16px;
     border-bottom: 1px solid #f0f0f0;
     cursor: pointer;
-    transition: background-color 0.1s ease;
+    transition: all 0.15s ease;
     align-items: center;
+    position: relative;
+    min-height: 56px;
 }
 
 .email-item:hover {
@@ -406,6 +682,23 @@
 .email-item.unread {
     background-color: #ffffff;
     font-weight: 500;
+    border-left: 3px solid #1a73e8;
+    padding-left: 13px; /* Adjust for border */
+}
+
+.email-item.unread .subject {
+    font-weight: 600;
+    color: #1a73e8;
+}
+
+.email-item.unread .sender-name {
+    font-weight: 600;
+    color: #1a73e8;
+}
+
+.email-item.unread .date-time {
+    font-weight: 600;
+    color: #1a73e8;
 }
 
 .email-item.unread:hover {
@@ -414,9 +707,8 @@
 
 /* Email item components */
 .email-item-checkbox,
-.email-item-flags,
-.email-item-importance,
 .email-item-categories,
+.email-item-importance,
 .email-item-sender,
 .email-item-subject,
 .email-item-date {
@@ -424,6 +716,67 @@
     align-items: center;
     overflow: hidden;
 }
+
+/* Google-like checkbox styling */
+.email-item-checkbox {
+    justify-content: center;
+}
+
+.email-checkbox,
+#select-all {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #dadce0;
+    border-radius: 2px;
+    background: white;
+    cursor: pointer;
+    position: relative;
+    transition: all 0.2s ease;
+}
+
+.email-checkbox:hover,
+#select-all:hover {
+    border-color: #1a73e8;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.email-checkbox:checked,
+#select-all:checked {
+    background-color: #1a73e8;
+    border-color: #1a73e8;
+}
+
+.email-checkbox:checked::after,
+#select-all:checked::after {
+    content: '✓';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* Indeterminate state for select-all */
+#select-all:indeterminate {
+    background-color: #1a73e8;
+    border-color: #1a73e8;
+}
+
+#select-all:indeterminate::after {
+    content: '—';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+
 
 .email-item-flags {
     gap: 4px;
@@ -466,6 +819,8 @@
     overflow: hidden;
     text-overflow: ellipsis;
     margin-top: 2px;
+    max-height: 16px; /* Single line height */
+    line-height: 16px;
 }
 
 .categories-text {
@@ -488,14 +843,110 @@
     white-space: nowrap;
 }
 
-/* ===== NOTIFICATION STYLES - FIXED ===== */
+/* Hover actions */
+.email-item-actions {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    align-items: center;
+    gap: 4px;
+    background: linear-gradient(to right, transparent 0%, rgba(255,255,255,0.9) 30%, white 100%);
+    padding-left: 24px;
+    z-index: 10;
+}
+
+.email-item:hover .email-item-actions {
+    display: flex;
+}
+
+.email-item:hover .email-item-date {
+    opacity: 0;
+}
+
+.quick-action-btn {
+    border: none;
+    background: none;
+    padding: 8px;
+    border-radius: 50%;
+    transition: all 0.2s ease;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #5f6368;
+}
+
+.quick-action-btn:hover {
+    background-color: #f1f3f4;
+    color: #3c4043;
+}
+
+.quick-action-btn.delete-btn:hover {
+    background-color: #fce8e6;
+    color: #d93025;
+}
+
+/* Importance column styling */
+/* Flag column styling */
+.email-item-importance {
+    justify-content: center;
+}
+
+.importance-btn {
+    border: none;
+    background: none;
+    padding: 8px;
+    border-radius: 50%;
+    transition: background-color 0.2s ease;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.importance-btn:hover {
+    background-color: #f1f3f4;
+}
+
+.importance-btn:focus {
+    outline: none;
+    background-color: #f1f3f4;
+}
+
+/* Flag-specific styling */
+.importance-btn .fa-flag.text-danger {
+    color: #d93025 !important;
+    font-size: 14px;
+}
+
+.importance-btn .fa-flag.text-muted {
+    color: #9aa0a6 !important;
+    font-size: 14px;
+}
+
+.importance-btn:hover .fa-flag.text-muted {
+    color: #5f6368 !important;
+}
+
+/* Flag in header */
+.email-header-importance .fa-flag {
+    color: #5f6368;
+    font-size: 16px;
+}
+
+/* ===== NOTIFICATION STYLES - IMPROVED ===== */
 
 .messages {
     position: fixed;
-    top: 80px;
+    bottom: 20px;
     right: 20px;
     z-index: 1050;
-    max-width: 400px;
+    max-width: 350px;
 }
 
 .messages .alert {
@@ -585,7 +1036,7 @@
 /* ===== LOADING OVERLAY ===== */
 
 .loading-overlay {
-    position: fixed;
+    position: absolute;
     top: 0;
     left: 0;
     right: 0;
@@ -594,7 +1045,17 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    z-index: 9999;
+    z-index: 999;
+}
+
+/* Make inbox-main relative for absolute positioning of loading overlay */
+.inbox-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    background: #ffffff;
+    position: relative;
 }
 
 .loading-spinner {
@@ -630,11 +1091,11 @@
     }
     
     .email-item {
-        grid-template-columns: 30px 1fr 80px;
+        grid-template-columns: 48px 1fr 80px;
         gap: 8px;
+        min-height: 48px;
     }
     
-    .email-item-flags,
     .email-item-importance,
     .email-item-categories,
     .email-item-sender {
@@ -642,14 +1103,17 @@
     }
     
     .email-header {
-        grid-template-columns: 30px 1fr 80px;
+        grid-template-columns: 48px 1fr 80px;
     }
     
     .email-header > *:nth-child(2),
     .email-header > *:nth-child(3),
-    .email-header > *:nth-child(4),
-    .email-header > *:nth-child(5) {
+    .email-header > *:nth-child(4) {
         display: none;
+    }
+    
+    .email-item-actions {
+        padding-left: 12px;
     }
 }
 
@@ -673,4 +1137,33 @@
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+}
+
+/* ===== IMPROVED TOOLTIPS ===== */
+.tooltip {
+    font-size: 12px;
+}
+
+.tooltip-inner {
+    background-color: #333 !important;
+    color: white !important;
+    border-radius: 4px !important;
+    padding: 6px 8px !important;
+    max-width: 200px;
+}
+
+.tooltip.bs-tooltip-top .tooltip-arrow::before {
+    border-top-color: #333 !important;
+}
+
+.tooltip.bs-tooltip-bottom .tooltip-arrow::before {
+    border-bottom-color: #333 !important;
+}
+
+.tooltip.bs-tooltip-start .tooltip-arrow::before {
+    border-left-color: #333 !important;
+}
+
+.tooltip.bs-tooltip-end .tooltip-arrow::before {
+    border-right-color: #333 !important;
 } 

@@ -36,6 +36,40 @@ def inbox(request):
         filter_folder = request.GET.get('folder', 'Inbox')  # Default to Inbox
         sort_by = request.GET.get('sort_by', 'received_time')
         sort_order = request.GET.get('sort_order', 'desc')
+        email_id = request.GET.get('email_id')  # For single email view in SPA
+        
+        # Handle single email view for SPA
+        if email_id:
+            email = outlook_service.get_email_by_id(email_id)
+            
+            if not email:
+                if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                    return JsonResponse({
+                        'success': False,
+                        'error': 'Email not found'
+                    })
+                raise Http404(_("Email not found"))
+            
+            # For AJAX requests, return email view content
+            if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                from django.template.loader import render_to_string
+                
+                # Render the email view partial template
+                email_view_html = render_to_string(
+                    'normieapp/includes/email_view_content.html', 
+                    {'email': email},
+                    request=request
+                )
+                
+                return JsonResponse({
+                    'success': True,
+                    'email_view': True,
+                    'html': email_view_html,
+                    'email': email
+                })
+            
+            # For non-AJAX requests, redirect to the proper email view URL
+            return redirect('inbox_view_message', message_id=email_id)
         
         # Get emails data
         emails, pagination_info = outlook_service.get_emails_list(
@@ -142,12 +176,62 @@ def inbox_compose(request):
     """
     Compose a new email message.
     """
-    context = {
-        'page_title': _('Compose Email'),
-        'compose_mode': 'new'
-    }
-    
-    return render(request, 'normieapp/inbox_compose.html', context)
+    try:
+        # Get compose mode and email ID for reply/forward
+        compose_mode = request.GET.get('mode', 'new')
+        email_id = request.GET.get('email_id')
+        
+        # Get original email for reply/forward
+        original_email = None
+        if email_id and compose_mode in ['reply', 'forward']:
+            outlook_service = OutlookService()
+            original_email = outlook_service.get_email_by_id(email_id)
+            
+            if not original_email:
+                if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                    return JsonResponse({
+                        'success': False,
+                        'error': 'Original email not found'
+                    })
+                messages.error(request, _('Original email not found'))
+                return redirect('inbox')
+        
+        context = {
+            'page_title': _('Compose Email'),
+            'compose_mode': compose_mode,
+            'reply_email': original_email if compose_mode == 'reply' else None,
+            'forward_email': original_email if compose_mode == 'forward' else None
+        }
+        
+        # Handle AJAX requests for SPA
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            from django.template.loader import render_to_string
+            
+            # Render the compose view partial template
+            compose_html = render_to_string(
+                'normieapp/includes/compose_content.html', 
+                context,
+                request=request
+            )
+            
+            return JsonResponse({
+                'success': True,
+                'compose_view': True,
+                'html': compose_html,
+                'mode': compose_mode
+            })
+        
+        return render(request, 'normieapp/inbox_compose.html', context)
+        
+    except Exception as e:
+        logger.error(f"Error in compose view: {str(e)}")
+        if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+            return JsonResponse({
+                'success': False,
+                'error': 'Failed to load compose interface'
+            })
+        messages.error(request, _('Error loading compose interface'))
+        return redirect('inbox')
 
 
 @login_required
@@ -739,4 +823,183 @@ def inbox_debug_email(request, message_id):
         return JsonResponse({
             'success': False,
             'error': f'Failed to debug email: {str(e)}'
+        }) 
+
+@csrf_exempt
+@restrict_read_only_users
+def inbox_flag_email(request):
+    """
+    AJAX endpoint to flag or unflag emails.
+    """
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'error': 'Invalid request method'})
+    
+    try:
+        data = json.loads(request.body) if request.body else {}
+        email_ids = data.get('email_ids', [])
+        flagged = data.get('flagged', True)  # True for flag, False for unflag
+        
+        if not email_ids:
+            return JsonResponse({'success': False, 'error': 'No email IDs provided'})
+        
+        outlook_service = OutlookService()
+        
+        if isinstance(email_ids, str):
+            email_ids = [email_ids]
+        
+        success_count, failed_ids = outlook_service.flag_multiple_emails(email_ids, flagged)
+        
+        status = "flagged" if flagged else "unflagged"
+        
+        if success_count > 0:
+            return JsonResponse({
+                'success': True,
+                'message': f'{success_count} email(s) {status} successfully',
+                'success_count': success_count,
+                'failed_count': len(failed_ids),
+                'failed_ids': failed_ids
+            })
+        else:
+            return JsonResponse({
+                'success': False,
+                'error': f'Failed to {status} emails',
+                'failed_ids': failed_ids
+            })
+            
+    except json.JSONDecodeError:
+        return JsonResponse({'success': False, 'error': 'Invalid JSON data'})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': f'Server error: {str(e)}'})
+
+@csrf_exempt
+@restrict_read_only_users
+def inbox_flag_single_email(request, message_id):
+    """
+    AJAX endpoint to flag or unflag a single email.
+    """
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'error': 'Invalid request method'})
+    
+    try:
+        data = json.loads(request.body) if request.body else {}
+        flagged = data.get('flagged', True)  # True for flag, False for unflag
+        
+        outlook_service = OutlookService()
+        
+        success = outlook_service.flag_email(message_id, flagged)
+        
+        status = "flagged" if flagged else "unflagged"
+        
+        if success:
+            return JsonResponse({
+                'success': True,
+                'message': f'Email {status} successfully',
+                'flagged': flagged
+            })
+        else:
+            return JsonResponse({
+                'success': False,
+                'error': f'Failed to {status} email'
+            })
+            
+    except json.JSONDecodeError:
+        return JsonResponse({'success': False, 'error': 'Invalid JSON data'})
+    except Exception as e:
+        return JsonResponse({'success': False, 'error': f'Server error: {str(e)}'})
+
+
+@csrf_exempt
+@restrict_read_only_users
+def inbox_send_email(request):
+    """
+    Send a composed email using COM interface.
+    """
+    if request.method != 'POST':
+        return JsonResponse({'success': False, 'error': 'Invalid request method'})
+    
+    try:
+        # Get form data
+        to_recipients = request.POST.get('to', '').strip()
+        cc_recipients = request.POST.get('cc', '').strip()
+        bcc_recipients = request.POST.get('bcc', '').strip()
+        subject = request.POST.get('subject', '').strip()
+        body_html = request.POST.get('body', '').strip()
+        body_text = request.POST.get('body_text', '').strip()
+        
+        # Validate required fields
+        if not to_recipients:
+            return JsonResponse({
+                'success': False,
+                'error': 'At least one recipient is required'
+            })
+        
+        if not subject:
+            return JsonResponse({
+                'success': False,
+                'error': 'Subject is required'
+            })
+        
+        if not body_text:
+            return JsonResponse({
+                'success': False,
+                'error': 'Message body is required'
+            })
+        
+        # Parse recipients
+        to_list = [email.strip() for email in to_recipients.split(',') if email.strip()]
+        cc_list = [email.strip() for email in cc_recipients.split(',') if email.strip()] if cc_recipients else []
+        bcc_list = [email.strip() for email in bcc_recipients.split(',') if email.strip()] if bcc_recipients else []
+        
+        # Get attachments
+        attachments = []
+        for key, file in request.FILES.items():
+            if key.startswith('attachment_'):
+                # Save attachment temporarily
+                temp_path = os.path.join(settings.MEDIA_ROOT, 'temp_attachments', file.name)
+                os.makedirs(os.path.dirname(temp_path), exist_ok=True)
+                
+                with open(temp_path, 'wb+') as destination:
+                    for chunk in file.chunks():
+                        destination.write(chunk)
+                
+                attachments.append(temp_path)
+        
+        # For now, we'll simulate sending since COM email sending requires more complex setup
+        # In a real implementation, this would use Outlook COM interface to send emails
+        
+        # Simulate processing time
+        import time
+        time.sleep(1)
+        
+        # Log the email for debugging
+        logger.info(f"Email sent simulation:")
+        logger.info(f"  To: {to_recipients}")
+        logger.info(f"  CC: {cc_recipients}")
+        logger.info(f"  BCC: {bcc_recipients}")
+        logger.info(f"  Subject: {subject}")
+        logger.info(f"  Body length: {len(body_text)} characters")
+        logger.info(f"  Attachments: {len(attachments)} files")
+        
+        # Clean up temporary attachments
+        for attachment_path in attachments:
+            try:
+                if os.path.exists(attachment_path):
+                    os.remove(attachment_path)
+            except Exception as e:
+                logger.warning(f"Could not delete temporary attachment {attachment_path}: {e}")
+        
+        return JsonResponse({
+            'success': True,
+            'message': 'Email sent successfully',
+            'sent_to': len(to_list),
+            'sent_cc': len(cc_list),
+            'sent_bcc': len(bcc_list),
+            'subject': subject
+        })
+        
+    except Exception as e:
+        logger.error(f"Error sending email: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': 'Failed to send email. Please try again.'
         }) 

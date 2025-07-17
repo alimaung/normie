@@ -1296,8 +1296,30 @@ Private Sub ManualProcessEmails(folder As Outlook.folder, maxEmails As Long)
             jsonContent = jsonContent & "      ""size"": " & mailItem.Size & "," & vbCrLf
             jsonContent = jsonContent & "      ""importance"": " & mailItem.Importance & "," & vbCrLf
             jsonContent = jsonContent & "      ""unread"": " & LCase(CStr(mailItem.UnRead)) & "," & vbCrLf
+            
+            ' Extract flag information
+            Dim flagged As Boolean
+            Dim flagRequest As String
+            Dim flagDueBy As String
+            Dim flagStatus As Integer
+            
+            ' Get flag properties with error handling
+            On Error Resume Next
+            flagRequest = mailItem.FlagRequest
+            flagDueBy = Format(mailItem.FlagDueBy, "yyyy-mm-dd hh:nn:ss")
+            flagStatus = mailItem.FlagStatus
+            
+            ' Determine if email is flagged
+            flagged = (Len(flagRequest) > 0 And flagRequest <> "") Or (flagStatus = 2)
+            
+            On Error GoTo ErrorHandler
+            
+            jsonContent = jsonContent & "      ""flagged"": " & LCase(CStr(flagged)) & "," & vbCrLf
+            jsonContent = jsonContent & "      ""flag_request"": """ & EscapeJson(flagRequest) & """," & vbCrLf
+            jsonContent = jsonContent & "      ""flag_due_by"": """ & flagDueBy & """," & vbCrLf
+            jsonContent = jsonContent & "      ""flag_status"": " & flagStatus & "," & vbCrLf
+            
             jsonContent = jsonContent & "      ""categories"": """ & EscapeJson(mailItem.Categories) & """," & vbCrLf
-            jsonContent = jsonContent & "      ""msg_file"": """ & EscapeJson("data/" & subjectFolderName & "/" & msgFileName) & """," & vbCrLf
             
             ' Extract body (truncate if too long)
             Dim bodyText As String
@@ -2276,7 +2298,6 @@ Private Function FindStandardFolder(rootFolder As Outlook.folder, standardName A
         Case "Sent Items"
             If isGmail Then
                 ' Gmail: Look for "Sent Mail" in [Gmail] folder
-                Dim gmailFolder As Outlook.folder
                 Set gmailFolder = FindFolderByName(rootFolder, "[Gmail]")
                 If Not gmailFolder Is Nothing Then
                     Set FindStandardFolder = FindFolderByName(gmailFolder, "Sent Mail")
@@ -2289,7 +2310,6 @@ Private Function FindStandardFolder(rootFolder As Outlook.folder, standardName A
         Case "Deleted Items"
             If isGmail Then
                 ' Gmail: Look for "Trash" in [Gmail] folder
-                Dim gmailFolder As Outlook.folder
                 Set gmailFolder = FindFolderByName(rootFolder, "[Gmail]")
                 If Not gmailFolder Is Nothing Then
                     Set FindStandardFolder = FindFolderByName(gmailFolder, "Trash")
@@ -2400,9 +2420,95 @@ Private Sub ProcessFolderWithStandardName(folder As Outlook.folder, standardName
                 jsonContent = jsonContent & "      ""subject"": """ & EscapeJson(mailItem.Subject) & """," & vbCrLf
                 jsonContent = jsonContent & "      ""sender_email"": """ & EscapeJson(mailItem.SenderEmailAddress) & """," & vbCrLf
                 jsonContent = jsonContent & "      ""received_time"": """ & Format(mailItem.ReceivedTime, "yyyy-mm-dd hh:nn:ss") & """," & vbCrLf
-                jsonContent = jsonContent & "      ""unread"": " & LCase(CStr(mailItem.UnRead)) & vbCrLf
+                jsonContent = jsonContent & "      ""unread"": " & LCase(CStr(mailItem.UnRead)) & "," & vbCrLf
+                jsonContent = jsonContent & "      ""importance"": " & mailItem.Importance & "," & vbCrLf
+                jsonContent = jsonContent & "      ""flagged"": " & LCase(CStr(mailItem.FlagStatus = 2)) & "," & vbCrLf
+                jsonContent = jsonContent & "      ""flag_request"": """ & EscapeJson(mailItem.FlagRequest) & """," & vbCrLf
+                jsonContent = jsonContent & "      ""flag_due_by"": """ & Format(mailItem.FlagDueBy, "yyyy-mm-dd hh:nn:ss") & """," & vbCrLf
+                jsonContent = jsonContent & "      ""flag_status"": " & mailItem.FlagStatus & "," & vbCrLf
+                jsonContent = jsonContent & "      ""categories"": """ & EscapeJson(mailItem.Categories) & """," & vbCrLf
+                
+                ' Extract body (truncate if too long)
+                Dim bodyText As String
+                bodyText = Left(mailItem.Body, 2000)
+                If Len(mailItem.Body) > 2000 Then bodyText = bodyText & "... [TRUNCATED]"
+                jsonContent = jsonContent & "      ""body"": """ & EscapeJson(bodyText) & """," & vbCrLf
+                
+                ' Extract HTML body (truncate if too long)
+                Dim htmlBody As String
+                htmlBody = Left(mailItem.htmlBody, 3000)
+                If Len(mailItem.htmlBody) > 3000 Then htmlBody = htmlBody & "... [TRUNCATED]"
+                jsonContent = jsonContent & "      ""html_body"": """ & EscapeJson(htmlBody) & """," & vbCrLf
+                
+                ' Extract recipients
+                jsonContent = jsonContent & "      ""recipients"": [" & vbCrLf
+                Dim recipientIndex As Long
+                recipientIndex = 0
+                
+                Dim recipient As Outlook.recipient
+                For Each recipient In mailItem.Recipients
+                    If recipientIndex > 0 Then jsonContent = jsonContent & "," & vbCrLf
+                    jsonContent = jsonContent & "        {" & vbCrLf
+                    jsonContent = jsonContent & "          ""name"": """ & EscapeJson(recipient.Name) & """," & vbCrLf
+                    jsonContent = jsonContent & "          ""address"": """ & EscapeJson(recipient.Address) & """," & vbCrLf
+                    jsonContent = jsonContent & "          ""type"": " & recipient.Type & vbCrLf
+                    jsonContent = jsonContent & "        }"
+                    recipientIndex = recipientIndex + 1
+                    If recipientIndex >= 10 Then Exit For
+                Next recipient
+                
+                jsonContent = jsonContent & vbCrLf & "      ]," & vbCrLf
+                
+                ' Process attachments
+                WriteLog "    DEBUG: Starting attachment processing..."
+                jsonContent = jsonContent & "      ""attachments"": [" & vbCrLf
+                Dim attachmentIndex As Long
+                attachmentIndex = 0
+                
+                Dim attachment As Outlook.attachment
+                WriteLog "    DEBUG: Found " & mailItem.Attachments.Count & " attachments to process"
+                For Each attachment In mailItem.Attachments
+                    ' Skip embedded images
+                    If Not IsEmbeddedImage(attachment.fileName) Then
+                        If attachmentIndex > 0 Then jsonContent = jsonContent & "," & vbCrLf
+                        
+                        Dim attachmentPath As String
+                        Dim relativeAttachmentPath As String
+                        Dim subjectFolderName As String
+                        
+                        relativeAttachmentPath = "data/" & subjectFolderName & "/" & attachment.fileName
+                        attachmentPath = GetAttachmentsFolder() & subjectFolderName & "\" & attachment.fileName
+                        
+                        WriteLog "  Downloading attachment: " & attachment.fileName
+                        
+                        ' Ensure directory exists before saving
+                        CreateDirectoryPath GetAttachmentsFolder() & subjectFolderName & "\"
+                        
+                        On Error Resume Next
+                        attachment.SaveAsFile attachmentPath
+                        If Err.Number = 0 Then
+                            WriteLog "  Downloaded successfully: " & attachment.fileName
+                        Else
+                            WriteLog "  Failed to download: " & attachment.fileName & " (Error: " & Err.Description & ")"
+                        End If
+                        Err.Clear
+                        On Error GoTo ErrorHandler
+                        
+                        jsonContent = jsonContent & "        {" & vbCrLf
+                        jsonContent = jsonContent & "          ""filename"": """ & EscapeJson(attachment.fileName) & """," & vbCrLf
+                        jsonContent = jsonContent & "          ""size"": " & attachment.Size & "," & vbCrLf
+                        jsonContent = jsonContent & "          ""type"": " & attachment.Type & "," & vbCrLf
+                        jsonContent = jsonContent & "          ""filepath"": """ & EscapeJson(relativeAttachmentPath) & """" & vbCrLf
+                        jsonContent = jsonContent & "        }"
+                        attachmentIndex = attachmentIndex + 1
+                        If attachmentIndex >= 10 Then Exit For
+                    End If
+                Next attachment
+                
+                jsonContent = jsonContent & vbCrLf & "      ]" & vbCrLf
                 jsonContent = jsonContent & "    }"
                 
+                WriteLog "    DEBUG: Email processing complete, incrementing count..."
                 emailCount = emailCount + 1
             End If
             
@@ -2526,6 +2632,28 @@ Private Function BuildEmailJsonEntry(mailItem As Outlook.MailItem, targetFolder 
     emailJsonEntry = emailJsonEntry & "      ""size"": " & mailItem.Size & "," & vbCrLf
     emailJsonEntry = emailJsonEntry & "      ""importance"": " & mailItem.Importance & "," & vbCrLf
     emailJsonEntry = emailJsonEntry & "      ""unread"": " & LCase(CStr(mailItem.UnRead)) & "," & vbCrLf
+    
+    ' Extract flag information
+    Dim flagged As Boolean
+    Dim flagRequest As String
+    Dim flagDueBy As String
+    Dim flagStatus As Integer
+    
+    ' Get flag properties with error handling
+    On Error Resume Next
+    flagRequest = mailItem.FlagRequest
+    flagDueBy = Format(mailItem.FlagDueBy, "yyyy-mm-dd hh:nn:ss")
+    flagStatus = mailItem.FlagStatus
+    
+    ' Determine if email is flagged (FlagStatus = 2 means flagged)
+    flagged = (Len(flagRequest) > 0 And flagRequest <> "") Or (flagStatus = 2)
+    
+    On Error GoTo ErrorHandler
+    
+    emailJsonEntry = emailJsonEntry & "      ""flagged"": " & LCase(CStr(flagged)) & "," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""flag_request"": """ & EscapeJson(flagRequest) & """," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""flag_due_by"": """ & flagDueBy & """," & vbCrLf
+    emailJsonEntry = emailJsonEntry & "      ""flag_status"": " & flagStatus & "," & vbCrLf
     emailJsonEntry = emailJsonEntry & "      ""categories"": """ & EscapeJson(mailItem.Categories) & """," & vbCrLf
     emailJsonEntry = emailJsonEntry & "      ""msg_file"": """ & EscapeJson("data/" & subjectFolderName & "/" & msgFileName) & """," & vbCrLf
             

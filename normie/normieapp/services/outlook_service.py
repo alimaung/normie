@@ -7,6 +7,8 @@ from django.conf import settings
 from typing import Dict, List, Optional, Tuple
 import hashlib
 from logging.handlers import RotatingFileHandler
+from datetime import timedelta
+import re
 
 # COM interface imports
 try:
@@ -877,6 +879,341 @@ class OutlookService:
         logger.info(f"Bulk mark as {status} completed: {success_count}/{len(email_ids)} successful")
         return success_count, failed_ids
 
+    def flag_email(self, email_id: str, flagged: bool = True) -> bool:
+        """
+        Flag or unflag an email using COM interface and update JSON files.
+        
+        Args:
+            email_id: Email ID to flag/unflag
+            flagged: True to flag the email, False to unflag
+            
+        Returns:
+            bool: True if successful, False otherwise
+        """
+        status = "flagged" if flagged else "unflagged"
+        logger.info(f"=== Attempting to {status} email: {email_id} ===")
+        
+        try:
+            # Get email data for logging
+            email_data = self.get_email_by_id(email_id)
+            if email_data:
+                logger.info(f"Email subject: {email_data.get('subject', 'Unknown')[:50]}...")
+            
+            # Try COM interface first (if available)
+            com_success = False
+            com_error = None
+            
+            try:
+                com_success = self._flag_email_via_com(email_id, flagged)
+            except Exception as e:
+                com_error = str(e)
+                logger.warning(f"COM interface failed: {com_error}")
+            
+            # Update JSON files regardless of COM result
+            json_success = False
+            json_error = None
+            
+            try:
+                json_success = self._update_email_flag_in_json(email_id, flagged)
+            except Exception as e:
+                json_error = str(e)
+                logger.error(f"JSON update failed: {json_error}")
+            
+            # Only succeed if BOTH COM and JSON operations work (to keep them in sync)
+            if com_success and json_success:
+                logger.info(f"✓ Email {status} successfully (COM + JSON in sync)")
+                return True
+            elif com_success and not json_success:
+                logger.error(f"✗ COM succeeded but JSON failed - would cause sync issue! COM: ✓, JSON: {json_error}")
+                # TODO: Could attempt to revert COM operation here if needed
+                return False
+            elif not com_success and json_success:
+                logger.error(f"✗ JSON succeeded but COM failed - would cause sync issue! COM: {com_error}, JSON: ✓")
+                # TODO: Could attempt to revert JSON operation here if needed
+                return False
+            else:
+                logger.error(f"✗ Both COM and JSON failed - COM: {com_error}, JSON: {json_error}")
+                return False
+                
+        except Exception as e:
+            logger.error(f"Error in flag_email: {e}")
+            return False
+
+    def flag_multiple_emails(self, email_ids: list, flagged: bool = True) -> tuple:
+        """
+        Flag or unflag multiple emails.
+        
+        Args:
+            email_ids: List of email IDs to flag/unflag
+            flagged: True to flag the emails, False to unflag
+            
+        Returns:
+            tuple: (success_count, failed_ids)
+        """
+        status = "flagged" if flagged else "unflagged"
+        logger.info(f"=== Attempting to {status} {len(email_ids)} emails ===")
+        
+        success_count = 0
+        failed_ids = []
+        
+        for email_id in email_ids:
+            try:
+                if self.flag_email(email_id, flagged):
+                    success_count += 1
+                    logger.info(f"  ✓ Email {email_id} {status}")
+                else:
+                    failed_ids.append(email_id)
+                    logger.warning(f"  ✗ Failed to {status} email {email_id}")
+            except Exception as e:
+                failed_ids.append(email_id)
+                logger.error(f"  ✗ Error with email {email_id}: {e}")
+        
+        logger.info(f"Batch flag operation complete: {success_count} successful, {len(failed_ids)} failed")
+        return success_count, failed_ids
+
+    def _flag_email_via_com(self, email_id: str, flagged: bool) -> bool:
+        """
+        Flag or unflag email using COM interface.
+        
+        Args:
+            email_id: Email ID (EntryID)
+            flagged: True to flag, False to unflag
+            
+        Returns:
+            bool: True if successful, False otherwise
+        """
+        try:
+            import win32com.client
+            import pythoncom
+            
+            # Initialize COM for this thread
+            try:
+                pythoncom.CoInitialize()
+                logger.debug("COM initialized successfully")
+            except Exception as init_error:
+                logger.warning(f"COM already initialized or initialization failed: {init_error}")
+            
+            try:
+                outlook = win32com.client.Dispatch("Outlook.Application")
+                namespace = outlook.GetNamespace("MAPI")
+                
+                # Get the mail item by EntryID
+                mail_item = namespace.GetItemFromID(email_id)
+                
+                if flagged:
+                    # Flag the email (use only supported properties)
+                    mail_item.FlagStatus = 2  # olFlagMarked
+                    # Don't set FlagRequest - let Outlook handle it natively
+                    logger.info(f"COM: Flagged email using FlagStatus only")
+                else:
+                    # Unflag the email
+                    mail_item.FlagStatus = 0  # olNoFlag
+                    logger.info(f"COM: Unflagged email using FlagStatus")
+                
+                # Save the changes
+                mail_item.Save()
+                
+                return True
+                
+            finally:
+                # Cleanup COM
+                try:
+                    pythoncom.CoUninitialize()
+                    logger.debug("COM uninitialized successfully")
+                except Exception as cleanup_error:
+                    logger.debug(f"COM cleanup note: {cleanup_error}")
+            
+        except ImportError:
+            logger.warning("COM interface not available (win32com not installed)")
+            return False
+        except Exception as e:
+            logger.error(f"COM flag operation failed: {e}")
+            return False
+
+    def get_json_files(self) -> list:
+        """
+        Get list of all JSON email files.
+        
+        Returns:
+            list: List of JSON file paths
+        """
+        json_files = []
+        
+        # Check for folder-specific files first
+        folder_files = list(self.base_path.glob("emails_*.json"))
+        if folder_files:
+            json_files.extend([str(f) for f in folder_files])
+        
+        # Also check for single emails.json file
+        if self.emails_file.exists():
+            json_files.append(str(self.emails_file))
+        
+        return json_files
+
+    def _repair_json_file(self, json_file_path: str) -> bool:
+        """
+        Attempt to repair a corrupted JSON file by fixing common syntax issues.
+        
+        Args:
+            json_file_path: Path to the JSON file to repair
+            
+        Returns:
+            bool: True if repair was successful, False otherwise
+        """
+        try:
+            logger.info(f"Attempting to repair JSON file: {json_file_path}")
+            
+            # Read the raw content with encoding detection
+            content = None
+            encodings = ['utf-8', 'utf-8-sig', 'cp1252', 'iso-8859-1', 'latin-1']
+            
+            for encoding in encodings:
+                try:
+                    with open(json_file_path, 'r', encoding=encoding) as f:
+                        content = f.read()
+                    logger.info(f"Read file with encoding: {encoding}")
+                    break
+                except UnicodeDecodeError:
+                    continue
+            
+            if content is None:
+                # Last resort - read with errors='ignore'
+                with open(json_file_path, 'r', encoding='utf-8', errors='ignore') as f:
+                    content = f.read()
+                logger.warning(f"Read file with UTF-8 ignoring errors")
+            
+            # Common JSON repair operations
+            original_content = content
+            
+            # Fix trailing commas in arrays and objects
+            
+            # Remove trailing commas before closing brackets/braces
+            content = re.sub(r',(\s*[}\]])', r'\1', content)
+            
+            # Fix incomplete objects by adding closing braces
+            open_braces = content.count('{')
+            close_braces = content.count('}')
+            if open_braces > close_braces:
+                content += '}' * (open_braces - close_braces)
+            
+            # Fix incomplete arrays by adding closing brackets
+            open_brackets = content.count('[')
+            close_brackets = content.count(']')
+            if open_brackets > close_brackets:
+                content += ']' * (open_brackets - close_brackets)
+            
+            # Try to parse the repaired content
+            try:
+                json.loads(content)
+                logger.info(f"JSON repair successful for {json_file_path}")
+                
+                # Create backup of original
+                backup_path = json_file_path + '.corrupt_backup'
+                with open(backup_path, 'w', encoding='utf-8') as f:
+                    f.write(original_content)
+                
+                # Write repaired content
+                with open(json_file_path, 'w', encoding='utf-8') as f:
+                    f.write(content)
+                
+                return True
+                
+            except json.JSONDecodeError:
+                logger.warning(f"Could not repair JSON file: {json_file_path}")
+                return False
+                
+        except Exception as e:
+            logger.error(f"Error repairing JSON file {json_file_path}: {e}")
+            return False
+
+    def _update_email_flag_in_json(self, email_id: str, flagged: bool) -> bool:
+        """
+        Update email flag status in JSON files.
+        
+        Args:
+            email_id: Email ID (hash)
+            flagged: True if flagged, False if unflagged
+            
+        Returns:
+            bool: True if successful, False otherwise
+        """
+        try:
+            success = False
+            
+            # Check all JSON files for this email
+            for json_file in self.get_json_files():
+                try:
+                    # Try to read the JSON file with multiple encodings
+                    data = None
+                    encodings = ['utf-8', 'utf-8-sig', 'cp1252', 'iso-8859-1', 'latin-1']
+                    
+                    for encoding in encodings:
+                        try:
+                            with open(json_file, 'r', encoding=encoding) as f:
+                                data = json.load(f)
+                            logger.debug(f"Successfully read {json_file} with encoding: {encoding}")
+                            break
+                        except UnicodeDecodeError:
+                            continue
+                        except json.JSONDecodeError as e:
+                            if encoding == 'utf-8':  # Only try repair on first encoding
+                                logger.warning(f"JSON file corrupted, attempting repair: {json_file}")
+                                if self._repair_json_file(json_file):
+                                    # Try reading again after repair
+                                    try:
+                                        with open(json_file, 'r', encoding='utf-8') as f:
+                                            data = json.load(f)
+                                        break
+                                    except:
+                                        continue
+                            continue
+                    
+                    if data is None:
+                        logger.error(f"Could not read JSON file with any encoding: {json_file}")
+                        continue
+                    
+                    # Find and update the email
+                    emails_updated = False
+                    for email in data.get('emails', []):
+                        # Match by hash, entry_id, or message_id
+                        if (email.get('hash') == email_id or 
+                            email.get('entry_id') == email_id or 
+                            email.get('message_id') == email_id):
+                            
+                            # Update flag status (match Outlook native behavior)
+                            email['flagged'] = flagged
+                            email['flag_request'] = ""  # Always empty like Outlook native
+                            email['flag_status'] = 2 if flagged else 0
+                            
+                            if flagged:
+                                # Set due date to far future like Outlook native
+                                email['flag_due_by'] = "4501-01-01 00:00:00"
+                            else:
+                                email['flag_due_by'] = ""
+                            
+                            emails_updated = True
+                            logger.info(f"Updated flag status in {json_file}")
+                    
+                    # Save the updated JSON file
+                    if emails_updated:
+                        data['timestamp'] = datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+                        
+                        with open(json_file, 'w', encoding='utf-8') as f:
+                            json.dump(data, f, indent=2, ensure_ascii=False)
+                        
+                        success = True
+                        logger.info(f"Saved updated JSON file: {json_file}")
+                
+                except Exception as e:
+                    logger.error(f"Error updating JSON file {json_file}: {e}")
+                    continue
+            
+            return success
+            
+        except Exception as e:
+            logger.error(f"Error in _update_email_flag_in_json: {e}")
+            return False
+
     def is_com_available(self) -> bool:
         """
         Check if COM interface is available and functional.
@@ -1224,7 +1561,9 @@ class OutlookService:
             stats = {
                 'total_emails': len(emails),
                 'unread_emails': sum(1 for email in emails if email.get('unread', False)),
-                'important_emails': sum(1 for email in emails if email.get('importance', 0) > 1),
+                'important_emails': sum(1 for email in emails if 
+                                      email.get('importance', 0) > 1 or email.get('flagged', False)),
+                'flagged_emails': sum(1 for email in emails if email.get('flagged', False)),
                 'emails_with_attachments': sum(1 for email in emails if email.get('attachments', [])),
                 'last_updated': data.get('timestamp', 'Never'),
                 'folder_name': data.get('folder_name', 'All Folders'),
@@ -1236,7 +1575,7 @@ class OutlookService:
             
         except Exception as e:
             logger.error(f"Error getting folder stats: {str(e)}")
-            return {'total_emails': 0, 'unread_emails': 0, 'important_emails': 0, 'emails_with_attachments': 0, 'folder_counts': {}, 'source': 'error'}
+            return {'total_emails': 0, 'unread_emails': 0, 'important_emails': 0, 'flagged_emails': 0, 'emails_with_attachments': 0, 'folder_counts': {}, 'source': 'error'}
 
     def _apply_filters(self, emails: List[Dict], search: str, filter_unread: bool, 
                       filter_important: bool, filter_attachments: bool, filter_folder: str) -> List[Dict]:
@@ -1258,9 +1597,10 @@ class OutlookService:
         if filter_unread:
             filtered_emails = [email for email in filtered_emails if email.get('unread', False)]
         
-        # Important filter
+        # Important/Flagged filter - check both importance (legacy) and flagged (new)
         if filter_important:
-            filtered_emails = [email for email in filtered_emails if email.get('importance', 0) > 1]
+            filtered_emails = [email for email in filtered_emails if 
+                             email.get('importance', 0) > 1 or email.get('flagged', False)]
         
         # Attachments filter
         if filter_attachments:

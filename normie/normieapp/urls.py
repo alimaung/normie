@@ -46,6 +46,7 @@ urlpatterns = [
     path('inbox/view/<str:message_id>/', views.inbox_view_message, name='inbox_view_message'),
     path('inbox/compose/', views.inbox_compose, name='inbox_compose'),
     path('inbox/reply/<str:message_id>/', views.inbox_reply, name='inbox_reply'),
+    path('inbox/send/', views.inbox_send_email, name='inbox_send_email'),
     path('inbox/search/', views.inbox_search, name='inbox_search'),
     path('inbox/refresh/', views.inbox_refresh, name='inbox_refresh'),
     path('inbox/status/', views.inbox_status, name='inbox_status'),
@@ -66,6 +67,10 @@ urlpatterns = [
     path('inbox/delete/', views.inbox_delete, name='inbox_delete'),
     path('inbox/categorize/', views.inbox_categorize, name='inbox_categorize'),
     path('inbox/mark-read/', views.inbox_mark_read, name='inbox_mark_read'),
+    
+    # Flag functionality
+    path('inbox/flag/', views.inbox_flag_email, name='inbox_flag_email'),
+    path('inbox/flag/<str:message_id>/', views.inbox_flag_single_email, name='inbox_flag_single_email'),
     
     # Public pages for guests
     path('about/', views.about, name='about'),

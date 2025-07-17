@@ -286,10 +286,10 @@
             </div>
             {% endif %}
             
-            {% if email.importance > 1 %}
-            <div class="flag-item important">
-                <i class="fas fa-star"></i>
-                <span>{% trans "Important" %}</span>
+            {% if email.flagged or email.importance > 1 %}
+            <div class="flag-item flagged">
+                <i class="fas fa-flag"></i>
+                <span>{% trans "Flagged" %}</span>
             </div>
             {% endif %}
             

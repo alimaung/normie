@@ -1,0 +1,563 @@
+/* Compose Email Styles */
+
+.compose-container {
+    padding: 0;
+    max-width: none;
+    margin: 0;
+    background: #fff;
+    height: 100%;
+    overflow-y: auto;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Compose Header */
+.compose-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    border-bottom: 1px solid #e0e0e0;
+    flex-shrink: 0;
+}
+
+.compose-back {
+    display: flex;
+    align-items: center;
+}
+
+.back-arrow-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    color: #5f6368;
+    transition: all 0.2s ease;
+}
+
+.back-arrow-btn:hover {
+    background: #f1f3f4;
+    color: #1a73e8;
+}
+
+.compose-title {
+    font-size: 22px;
+    font-weight: 500;
+    color: #202124;
+    margin: 0;
+}
+
+.compose-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.compose-action-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    border-radius: 50%;
+    color: #5f6368;
+    transition: all 0.2s ease;
+}
+
+.compose-action-btn:hover {
+    background: #f1f3f4;
+    color: #1a73e8;
+}
+
+/* Compose Form */
+.compose-form {
+    background: #fff;
+    border-radius: 0;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Recipients Section */
+.compose-recipients {
+    margin-bottom: 1px;
+    padding: 0 24px;
+}
+
+.recipient-field {
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #e0e0e0;
+    padding: 12px 0;
+    transition: border-color 0.2s ease;
+}
+
+.recipient-field:hover,
+.recipient-field:focus-within {
+    border-color: #1a73e8;
+}
+
+.recipient-label {
+    min-width: 50px;
+    color: #5f6368;
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 16px;
+}
+
+.recipient-input {
+    flex: 1;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #202124;
+    background: transparent;
+}
+
+.recipient-input::placeholder {
+    color: #9aa0a6;
+}
+
+.recipient-toggles {
+    padding: 8px 0;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.recipient-toggle {
+    background: none;
+    border: none;
+    color: #1a73e8;
+    font-size: 12px;
+    cursor: pointer;
+    margin-right: 16px;
+    padding: 4px 8px;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.recipient-toggle:hover {
+    background: #f1f3f4;
+}
+
+/* Subject Field */
+.compose-subject {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 12px 24px;
+    transition: border-color 0.2s ease;
+}
+
+.compose-subject:hover,
+.compose-subject:focus-within {
+    border-color: #1a73e8;
+}
+
+.subject-input {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #202124;
+    background: transparent;
+    font-weight: 500;
+}
+
+.subject-input::placeholder {
+    color: #9aa0a6;
+    font-weight: normal;
+}
+
+/* Formatting Toolbar */
+.formatting-toolbar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 24px;
+    border-bottom: 1px solid #e0e0e0;
+    background: #f8f9fa;
+    flex-wrap: wrap;
+}
+
+.toolbar-group {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 0 8px;
+    border-right: 1px solid #e0e0e0;
+}
+
+.toolbar-group:last-child {
+    border-right: none;
+}
+
+.toolbar-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 6px;
+    border-radius: 4px;
+    color: #5f6368;
+    transition: all 0.2s ease;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.toolbar-btn:hover {
+    background: #e8f0fe;
+    color: #1a73e8;
+}
+
+.toolbar-btn.active {
+    background: #1a73e8;
+    color: #fff;
+}
+
+.toolbar-select {
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    padding: 4px 8px;
+    font-size: 12px;
+    color: #202124;
+    background: #fff;
+    cursor: pointer;
+}
+
+.toolbar-color {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    background: none;
+}
+
+/* Email Editor */
+.compose-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    min-height: 400px;
+    overflow-y: auto;
+}
+
+.email-editor {
+    flex: 1;
+    padding: 24px;
+    border: none;
+    outline: none;
+    font-family: 'Arial', sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    color: #202124;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    min-height: 300px;
+}
+
+.email-editor:empty::before {
+    content: attr(placeholder);
+    color: #9aa0a6;
+    pointer-events: none;
+}
+
+.email-editor:focus {
+    outline: none;
+}
+
+/* Original Message Styling */
+.original-message {
+    margin-top: 24px;
+    padding: 16px;
+    background: #f8f9fa;
+    border-left: 4px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+.original-message-header {
+    font-size: 12px;
+    color: #5f6368;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.original-message-body {
+    font-size: 14px;
+    color: #202124;
+    line-height: 1.6;
+}
+
+/* Attachments Section */
+.compose-attachments {
+    padding: 12px 24px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.attachment-btn {
+    background: none;
+    border: none;
+    color: #1a73e8;
+    cursor: pointer;
+    font-size: 14px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.attachment-btn:hover {
+    background: #f1f3f4;
+}
+
+.attachment-list {
+    margin-top: 12px;
+    padding: 8px;
+    background: #f8f9fa;
+    border-radius: 4px;
+}
+
+.attachment-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+    background: #fff;
+    border-radius: 4px;
+    margin-bottom: 4px;
+    border: 1px solid #e0e0e0;
+}
+
+.attachment-info {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.attachment-name {
+    font-size: 14px;
+    color: #202124;
+}
+
+.attachment-size {
+    font-size: 12px;
+    color: #5f6368;
+}
+
+.attachment-remove {
+    background: none;
+    border: none;
+    color: #ea4335;
+    cursor: pointer;
+    padding: 4px;
+    border-radius: 4px;
+    transition: background 0.2s ease;
+}
+
+.attachment-remove:hover {
+    background: #fce8e6;
+}
+
+/* Compose Footer */
+.compose-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 24px;
+    background: #f8f9fa;
+    border-top: 1px solid #e0e0e0;
+    border-radius: 0;
+    flex-shrink: 0;
+}
+
+.compose-footer-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.send-options {
+    display: flex;
+    position: relative;
+}
+
+.btn-send {
+    background: #1a73e8;
+    color: #fff;
+    border: none;
+    padding: 8px 24px;
+    border-radius: 4px 0 0 4px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-send:hover {
+    background: #1557b0;
+}
+
+.btn-send:disabled {
+    background: #9aa0a6;
+    cursor: not-allowed;
+}
+
+.btn-send-dropdown {
+    background: #1a73e8;
+    color: #fff;
+    border: none;
+    border-left: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 8px;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.btn-send-dropdown:hover {
+    background: #1557b0;
+}
+
+.send-options-menu {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    min-width: 150px;
+}
+
+.send-option {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    padding: 12px 16px;
+    background: none;
+    border: none;
+    color: #202124;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.send-option:hover {
+    background: #f1f3f4;
+}
+
+.compose-footer-right {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.compose-footer-btn {
+    background: none;
+    border: none;
+    color: #5f6368;
+    cursor: pointer;
+    padding: 8px 12px;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: all 0.2s ease;
+}
+
+.compose-footer-btn:hover {
+    background: #f1f3f4;
+    color: #1a73e8;
+}
+
+/* Send Status */
+.send-status {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    background: #1a73e8;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 24px;
+    box-shadow: 0 4px 12px rgba(26, 115, 232, 0.3);
+    z-index: 1000;
+}
+
+.send-status-content {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.send-status-icon {
+    animation: pulse 1.5s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .compose-container {
+        padding: 0;
+    }
+    
+    .compose-header {
+        flex-wrap: wrap;
+        gap: 12px;
+        padding: 16px 16px;
+    }
+    
+    .compose-recipients,
+    .compose-subject,
+    .formatting-toolbar,
+    .compose-attachments {
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    
+    .email-editor {
+        padding: 16px;
+    }
+    
+    .formatting-toolbar {
+        flex-wrap: wrap;
+        gap: 4px;
+    }
+    
+    .toolbar-group {
+        padding: 0 4px;
+        margin-bottom: 4px;
+    }
+    
+    .compose-footer {
+        flex-direction: column;
+        gap: 12px;
+        padding: 16px;
+    }
+    
+    .compose-footer-left,
+    .compose-footer-right {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+/* Animation Classes */
+.fade-in {
+    animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.slide-up {
+    animation: slideUp 0.3s ease-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+} 

@@ -1,0 +1,227 @@
+{% load static %}
+{% load i18n %}
+
+<!-- Compose Email Container -->
+<div class="compose-container">
+    <!-- Compose Header -->
+    <div class="compose-header">
+        <div class="compose-back">
+            <button class="back-arrow-btn" title="{% trans 'Back to inbox' %}">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+        </div>
+        
+        <div class="compose-title">
+            {% if compose_mode == 'reply' %}
+                {% trans "Reply" %}
+            {% elif compose_mode == 'forward' %}
+                {% trans "Forward" %}
+            {% else %}
+                {% trans "Compose" %}
+            {% endif %}
+        </div>
+        
+        <div class="compose-actions">
+            <button class="compose-action-btn minimize" title="{% trans 'Minimize' %}">
+                <i class="fas fa-minus"></i>
+            </button>
+            <button class="compose-action-btn close" title="{% trans 'Close' %}">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Compose Form -->
+    <div class="compose-form">
+        <form id="compose-email-form" novalidate>
+            <!-- Recipients Section -->
+            <div class="compose-recipients">
+                <div class="recipient-field">
+                    <label class="recipient-label">{% trans "To" %}</label>
+                    <input type="email" id="compose-to" name="to" class="recipient-input" 
+                           placeholder="{% trans 'Recipients' %}" multiple
+                           value="{% if reply_email %}{{ reply_email.sender_email }}{% endif %}">
+                </div>
+                
+                <div class="recipient-field cc-field" style="display: none;">
+                    <label class="recipient-label">{% trans "Cc" %}</label>
+                    <input type="email" id="compose-cc" name="cc" class="recipient-input" 
+                           placeholder="{% trans 'Cc recipients' %}" multiple>
+                </div>
+                
+                <div class="recipient-field bcc-field" style="display: none;">
+                    <label class="recipient-label">{% trans "Bcc" %}</label>
+                    <input type="email" id="compose-bcc" name="bcc" class="recipient-input" 
+                           placeholder="{% trans 'Bcc recipients' %}" multiple>
+                </div>
+                
+                <div class="recipient-toggles">
+                    <button type="button" class="recipient-toggle" id="toggle-cc">{% trans "Cc" %}</button>
+                    <button type="button" class="recipient-toggle" id="toggle-bcc">{% trans "Bcc" %}</button>
+                </div>
+            </div>
+            
+            <!-- Subject Field -->
+            <div class="compose-subject">
+                <input type="text" id="compose-subject" name="subject" class="subject-input" 
+                       placeholder="{% trans 'Subject' %}"
+                       value="{% if reply_email %}RE: {{ reply_email.subject }}{% elif forward_email %}FW: {{ forward_email.subject }}{% endif %}">
+            </div>
+            
+            <!-- Formatting Toolbar -->
+            <div class="formatting-toolbar">
+                <div class="toolbar-group">
+                    <button type="button" class="toolbar-btn" data-command="bold" title="{% trans 'Bold' %}">
+                        <i class="fas fa-bold"></i>
+                    </button>
+                    <button type="button" class="toolbar-btn" data-command="italic" title="{% trans 'Italic' %}">
+                        <i class="fas fa-italic"></i>
+                    </button>
+                    <button type="button" class="toolbar-btn" data-command="underline" title="{% trans 'Underline' %}">
+                        <i class="fas fa-underline"></i>
+                    </button>
+                </div>
+                
+                <div class="toolbar-group">
+                    <select class="toolbar-select" id="font-size" title="{% trans 'Font size' %}">
+                        <option value="1">{% trans "Small" %}</option>
+                        <option value="3" selected>{% trans "Normal" %}</option>
+                        <option value="4">{% trans "Large" %}</option>
+                        <option value="6">{% trans "Huge" %}</option>
+                    </select>
+                </div>
+                
+                <div class="toolbar-group">
+                    <input type="color" class="toolbar-color" id="text-color" value="#000000" title="{% trans 'Text color' %}">
+                    <button type="button" class="toolbar-btn" data-command="justifyLeft" title="{% trans 'Align left' %}">
+                        <i class="fas fa-align-left"></i>
+                    </button>
+                    <button type="button" class="toolbar-btn" data-command="justifyCenter" title="{% trans 'Align center' %}">
+                        <i class="fas fa-align-center"></i>
+                    </button>
+                    <button type="button" class="toolbar-btn" data-command="justifyRight" title="{% trans 'Align right' %}">
+                        <i class="fas fa-align-right"></i>
+                    </button>
+                </div>
+                
+                <div class="toolbar-group">
+                    <button type="button" class="toolbar-btn" data-command="insertUnorderedList" title="{% trans 'Bullet list' %}">
+                        <i class="fas fa-list-ul"></i>
+                    </button>
+                    <button type="button" class="toolbar-btn" data-command="insertOrderedList" title="{% trans 'Numbered list' %}">
+                        <i class="fas fa-list-ol"></i>
+                    </button>
+                </div>
+                
+                <div class="toolbar-group">
+                    <button type="button" class="toolbar-btn" data-command="undo" title="{% trans 'Undo' %}">
+                        <i class="fas fa-undo"></i>
+                    </button>
+                    <button type="button" class="toolbar-btn" data-command="redo" title="{% trans 'Redo' %}">
+                        <i class="fas fa-redo"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Email Body Editor -->
+            <div class="compose-body">
+                <div id="compose-editor" class="email-editor" contenteditable="true" 
+                     placeholder="{% trans 'Compose your message...' %}">
+                    {% if reply_email %}
+                        <br><br>
+                        <div class="original-message">
+                            <div class="original-message-header">
+                                -----{% trans "Original Message" %}-----<br>
+                                <strong>{% trans "From" %}:</strong> {{ reply_email.sender_name }} &lt;{{ reply_email.sender_email }}&gt;<br>
+                                <strong>{% trans "Date" %}:</strong> {{ reply_email.received_time|date:"F d, Y \a\t g:i A" }}<br>
+                                <strong>{% trans "Subject" %}:</strong> {{ reply_email.subject }}<br>
+                            </div>
+                            <div class="original-message-body">
+                                {{ reply_email.body|linebreaks }}
+                            </div>
+                        </div>
+                    {% elif forward_email %}
+                        <br><br>
+                        <div class="original-message">
+                            <div class="original-message-header">
+                                -----{% trans "Forwarded Message" %}-----<br>
+                                <strong>{% trans "From" %}:</strong> {{ forward_email.sender_name }} &lt;{{ forward_email.sender_email }}&gt;<br>
+                                <strong>{% trans "Date" %}:</strong> {{ forward_email.received_time|date:"F d, Y \a\t g:i A" }}<br>
+                                <strong>{% trans "Subject" %}:</strong> {{ forward_email.subject }}<br>
+                            </div>
+                            <div class="original-message-body">
+                                {{ forward_email.body|linebreaks }}
+                            </div>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+            
+            <!-- Attachments Section -->
+            <div class="compose-attachments">
+                <div class="attachment-input-wrapper">
+                    <input type="file" id="compose-attachments" name="attachments" multiple style="display: none;">
+                    <button type="button" class="attachment-btn" onclick="document.getElementById('compose-attachments').click()">
+                        <i class="fas fa-paperclip"></i>
+                        {% trans "Attach files" %}
+                    </button>
+                </div>
+                <div class="attachment-list" id="attachment-list" style="display: none;"></div>
+            </div>
+            
+            <!-- Compose Footer -->
+            <div class="compose-footer">
+                <div class="compose-footer-left">
+                    <div class="send-options">
+                        <button type="submit" class="btn-send" id="send-email">
+                            <i class="fas fa-paper-plane"></i>
+                            {% trans "Send" %}
+                        </button>
+                        <button type="button" class="btn-send-dropdown" onclick="toggleSendOptions()">
+                            <i class="fas fa-caret-down"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="send-options-menu" id="send-options-menu" style="display: none;">
+                        <button type="button" class="send-option" onclick="scheduleSend()">
+                            <i class="fas fa-clock"></i>
+                            {% trans "Schedule send" %}
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="compose-footer-right">
+                    <button type="button" class="compose-footer-btn" onclick="saveDraft()">
+                        <i class="fas fa-save"></i>
+                        {% trans "Save draft" %}
+                    </button>
+                    <button type="button" class="compose-footer-btn" onclick="discardDraft()">
+                        <i class="fas fa-trash"></i>
+                        {% trans "Discard" %}
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+    
+    <!-- Send Status -->
+    <div class="send-status" id="send-status" style="display: none;">
+        <div class="send-status-content">
+            <div class="send-status-icon">
+                <i class="fas fa-paper-plane"></i>
+            </div>
+            <div class="send-status-message">
+                {% trans "Sending email..." %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Initialize compose functionality
+document.addEventListener('DOMContentLoaded', function() {
+    if (typeof window.composeManager !== 'undefined') {
+        window.composeManager.initializeCompose();
+    }
+});
+</script> 

@@ -5,6 +5,8 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'normieapp/css/inbox.css' %}">
+<link rel="stylesheet" href="{% static 'normieapp/css/email_view.css' %}">
+<link rel="stylesheet" href="{% static 'normieapp/css/compose.css' %}">
 {% endblock %}
 
 {% block content %}
@@ -13,20 +15,20 @@
     <div class="inbox-sidebar aeN" id="inbox-sidebar">
         <!-- Sidebar Controls -->
         <div class="sidebar-controls">
-            <button class="btn btn-link sidebar-toggle" id="sidebar-toggle" title="{% trans 'Collapse sidebar' %}">
-                <i class="fas fa-chevron-left"></i>
+            <button class="btn btn-link sidebar-toggle" id="sidebar-toggle" title="{% trans 'Expand sidebar' %}">
+                <i class="fas fa-chevron-right"></i>
             </button>
-            <button class="btn btn-link sidebar-pin" id="sidebar-pin" title="{% trans 'Pin sidebar open' %}" style="display: none;">
+            <button class="btn btn-link sidebar-pin" id="sidebar-pin" title="{% trans 'Unpin sidebar' %}">
                 <i class="fas fa-thumbtack"></i>
             </button>
         </div>
         
         <!-- Compose Button -->
         <div class="compose-section">
-            <a href="{% url 'inbox_compose' %}" class="btn btn-primary btn-compose">
+            <button class="btn btn-primary btn-compose" id="compose-btn">
                 <i class="fas fa-pen"></i>
                 <span class="compose-text">{% trans "Compose" %}</span>
-            </a>
+            </button>
         </div>
         
         <!-- Folder List -->
@@ -35,7 +37,7 @@
                 <span class="folder-header-text">{% trans "Folders" %}</span>
             </div>
             <ul>
-                <li class="folder-item {% if current_folder == 'Inbox' %}active{% endif %}">
+                <li class="folder-item {% if current_folder == 'Inbox' or not current_folder %}active{% endif %}">
                     <a href="{% url 'inbox' %}" title="{% trans 'Inbox' %}">
                         <i class="fas fa-inbox folder-icon"></i>
                         <span class="folder-name">{% trans "Inbox" %}</span>
@@ -160,8 +162,6 @@
                             <i class="fas fa-ellipsis-h"></i>
                         </button>
                         <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#" id="refresh-action"><i class="fas fa-sync-alt"></i> {% trans "Refresh" %}</a></li>
-                            <li><hr class="dropdown-divider"></li>
                             <li><a class="dropdown-item" href="#" id="select-all-action"><i class="fas fa-check-square"></i> {% trans "Select all" %}</a></li>
                         </ul>
                     </div>
@@ -172,11 +172,9 @@
                     <button class="btn btn-outline-danger" id="delete-selected" title="{% trans 'Delete selected' %}">
                         <i class="fas fa-trash"></i>
                     </button>
-                    <button class="btn btn-outline-primary" id="mark-read-selected" title="{% trans 'Mark as read' %}">
+                    <button class="btn btn-outline-primary" id="mark-read-unread-toggle" title="{% trans 'Mark as read' %}">
                         <i class="fas fa-envelope-open"></i>
-                    </button>
-                    <button class="btn btn-outline-secondary" id="mark-unread-selected" title="{% trans 'Mark as unread' %}">
-                        <i class="fas fa-envelope"></i>
+                        <span class="read-unread-text">{% trans 'Mark as read' %}</span>
                     </button>
                     <div class="dropdown">
                         <button class="btn btn-outline-secondary dropdown-toggle" type="button" 
@@ -210,7 +208,7 @@
                 
                 <!-- Filters -->
                 <div class="filter-dropdown dropdown">
-                    <button class="btn btn-outline-secondary dropdown-toggle" type="button" 
+                    <button class="btn btn-outline-secondary" type="button" 
                             id="filter-dropdown" data-bs-toggle="dropdown">
                         <i class="fas fa-filter"></i>
                         {% trans "Filters" %}
@@ -284,12 +282,11 @@
             <!-- Email header -->
             <div class="email-header">
                 <div class="email-header-checkbox"></div>
-                <div class="email-header-flags"></div>
-                <div class="email-header-importance">
-                    <i class="fas fa-star" title="{% trans 'Importance' %}"></i>
-                </div>
                 <div class="email-header-categories">
                     {% trans "Categories" %}
+                </div>
+                <div class="email-header-importance">
+                    <i class="fas fa-flag" title="{% trans 'Flag' %}"></i>
                 </div>
                 <div class="email-header-sender">
                     <a href="#" class="sort-link" data-sort="sender_name">
@@ -324,44 +321,36 @@
                     <div class="email-item-checkbox">
                         <input type="checkbox" class="email-checkbox" value="{{ email.id }}">
                     </div>
-                    <div class="email-item-flags">
-                        <button class="btn btn-sm btn-link read-unread-btn" 
-                                data-email-id="{{ email.id }}" 
-                                data-read="{% if email.unread %}false{% else %}true{% endif %}"
-                                title="{% if email.unread %}{% trans 'Mark as read' %}{% else %}{% trans 'Mark as unread' %}{% endif %}">
-                            {% if email.unread %}
-                            <i class="fas fa-envelope text-primary" title="{% trans 'Unread' %}"></i>
-                            {% else %}
-                            <i class="far fa-envelope text-muted" title="{% trans 'Read' %}"></i>
-                            {% endif %}
-                        </button>
-                        {% if email.attachments %}
-                        <i class="fas fa-paperclip text-muted" title="{% trans 'Has attachments' %}"></i>
-                        {% endif %}
-                    </div>
-                    <div class="email-item-importance">
-                        {% if email.importance > 1 %}
-                        <i class="fas fa-star text-warning" title="{% trans 'Important' %}"></i>
-                        {% else %}
-                        <i class="far fa-star text-muted opacity-25" title="{% trans 'Normal Priority' %}"></i>
-                        {% endif %}
-                    </div>
                     <div class="email-item-categories">
                         {% if email.categories %}
                         <span class="categories-text" title="{{ email.categories }}">
-                            {{ email.categories|truncatechars:15 }}
+                            {{ email.categories|truncatechars:12 }}
                         </span>
                         {% else %}
                         <span class="text-muted">-</span>
                         {% endif %}
+                    </div>
+                    <div class="email-item-importance">
+                        <button class="importance-btn" data-email-id="{{ email.id }}" title="{% trans 'Toggle flag' %}">
+                            {% if email.flagged %}
+                            <i class="fas fa-flag text-danger" title="{% trans 'Flagged' %}"></i>
+                            {% else %}
+                            <i class="far fa-flag text-muted opacity-25" title="{% trans 'Not flagged' %}"></i>
+                            {% endif %}
+                        </button>
                     </div>
                     <div class="email-item-sender">
                         <span class="sender-name" title="{{ email.sender_email }}">{{ email.sender_name|default:email.sender_email }}</span>
                     </div>
                     <div class="email-item-subject">
                         <a href="{% url 'inbox_view_message' email.id %}" class="email-link">
-                            <span class="subject">{{ email.subject|default:"(No subject)" }}</span>
-                            <span class="email-preview">{{ email.body|truncatechars:100 }}</span>
+                            <span class="subject">
+                                {{ email.subject|default:"(No subject)" }}
+                                {% if email.attachments %}
+                                <i class="fas fa-paperclip text-muted" title="{% trans 'Has attachments' %}"></i>
+                                {% endif %}
+                            </span>
+                            <span class="email-preview">{{ email.body }}</span>
                         </a>
                     </div>
                     <div class="email-item-date">
@@ -372,6 +361,23 @@
                                 <span class="text-muted">No date</span>
                             {% endif %}
                         </span>
+                    </div>
+                    <!-- Quick Actions (shown on hover) -->
+                    <div class="email-item-actions">
+                        <button class="quick-action-btn read-unread-btn" 
+                                data-email-id="{{ email.id }}"
+                                title="{% if email.unread %}{% trans 'Mark as read' %}{% else %}{% trans 'Mark as unread' %}{% endif %}">
+                            {% if email.unread %}
+                            <i class="fas fa-envelope-open text-primary"></i>
+                            {% else %}
+                            <i class="fas fa-envelope text-muted"></i>
+                            {% endif %}
+                        </button>
+                        <button class="quick-action-btn delete-btn" 
+                                data-email-id="{{ email.id }}" 
+                                title="{% trans 'Delete' %}">
+                            <i class="fas fa-trash"></i>
+                        </button>
                     </div>
                 </div>
                 {% endfor %}
@@ -448,13 +454,18 @@ window.inboxData = {
         delete: '{% url "inbox_delete" %}',
         markRead: '{% url "inbox_mark_read" %}',
         markReadUnread: '{% url "inbox_mark_read_unread" %}',
+        markSingleReadUnread: '{% url "inbox_mark_single_read_unread" message_id="MESSAGE_ID" %}',
         inbox: '{% url "inbox" %}',
         sent: '{% url "inbox_sent" %}',
         deleted: '{% url "inbox_deleted" %}',
         drafts: '{% url "inbox_drafts" %}',
-        outbox: '{% url "inbox_outbox" %}'
+        outbox: '{% url "inbox_outbox" %}',
+        compose: '{% url "inbox_compose" %}',
+        send: '{% url "inbox_send_email" %}'
     },
     csrf: '{{ csrf_token }}'
 };
 </script>
+
+<script src="{% static 'normieapp/js/compose.js' %}"></script>
 {% endblock %} 
