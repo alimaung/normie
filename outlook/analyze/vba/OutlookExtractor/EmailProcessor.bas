@@ -131,14 +131,12 @@ Private Function BuildBodyContent(mailItem As Outlook.MailItem) As String
     Dim htmlBody As String
     Dim result As String
     
-    ' Extract body (truncate if too long)
-    bodyText = Left(mailItem.Body, 2000)
-    If Len(mailItem.Body) > 2000 Then bodyText = bodyText & "... [TRUNCATED]"
+    ' Extract full body content (no truncation)
+    bodyText = mailItem.Body
     result = "      ""body"": """ & EscapeJson(bodyText) & """," & vbCrLf
     
-    ' Extract HTML body (truncate if too long)
-    htmlBody = Left(mailItem.HTMLBody, 3000)
-    If Len(mailItem.HTMLBody) > 3000 Then htmlBody = htmlBody & "... [TRUNCATED]"
+    ' Extract full HTML body content (no truncation)
+    htmlBody = mailItem.HTMLBody
     result = result & "      ""html_body"": """ & EscapeJson(htmlBody) & """," & vbCrLf
     
     BuildBodyContent = result

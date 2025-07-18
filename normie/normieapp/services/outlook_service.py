@@ -2,6 +2,7 @@ import os
 import json
 import datetime
 import logging
+import time
 from pathlib import Path
 from django.conf import settings
 from typing import Dict, List, Optional, Tuple
@@ -983,49 +984,32 @@ class OutlookService:
             bool: True if successful, False otherwise
         """
         try:
-            import win32com.client
-            import pythoncom
+            # Use centralized COM initialization
+            if not self._initialize_com():
+                logger.error("COM interface not available for flagging")
+                return False
             
-            # Initialize COM for this thread
-            try:
-                pythoncom.CoInitialize()
-                logger.debug("COM initialized successfully")
-            except Exception as init_error:
-                logger.warning(f"COM already initialized or initialization failed: {init_error}")
+            # Get the mail item by EntryID
+            mail_item = self._namespace.GetItemFromID(email_id)
             
-            try:
-                outlook = win32com.client.Dispatch("Outlook.Application")
-                namespace = outlook.GetNamespace("MAPI")
-                
-                # Get the mail item by EntryID
-                mail_item = namespace.GetItemFromID(email_id)
-                
-                if flagged:
-                    # Flag the email (use only supported properties)
-                    mail_item.FlagStatus = 2  # olFlagMarked
-                    # Don't set FlagRequest - let Outlook handle it natively
-                    logger.info(f"COM: Flagged email using FlagStatus only")
-                else:
-                    # Unflag the email
-                    mail_item.FlagStatus = 0  # olNoFlag
-                    logger.info(f"COM: Unflagged email using FlagStatus")
-                
-                # Save the changes
-                mail_item.Save()
-                
-                return True
-                
-            finally:
-                # Cleanup COM
-                try:
-                    pythoncom.CoUninitialize()
-                    logger.debug("COM uninitialized successfully")
-                except Exception as cleanup_error:
-                    logger.debug(f"COM cleanup note: {cleanup_error}")
+            # Add a small delay to prevent COM timing issues
+            time.sleep(0.1)
             
-        except ImportError:
-            logger.warning("COM interface not available (win32com not installed)")
-            return False
+            if flagged:
+                # Flag the email (use only supported properties)
+                mail_item.FlagStatus = 2  # olFlagMarked
+                logger.debug(f"COM: Flagged email using FlagStatus only")
+            else:
+                # Unflag the email
+                mail_item.FlagStatus = 0  # olNoFlag
+                logger.debug(f"COM: Unflagged email using FlagStatus")
+            
+            # Save the changes
+            mail_item.Save()
+            
+            logger.info(f"✅ COM flag operation successful for email: {email_id[:20]}...")
+            return True
+            
         except Exception as e:
             logger.error(f"COM flag operation failed: {e}")
             return False
@@ -1981,3 +1965,264 @@ class OutlookService:
     def get_outbox_emails(self, **kwargs) -> Tuple[List[Dict], Dict]:
         """Get emails from Outbox folder."""
         return self.get_emails_list(filter_folder='Outbox', **kwargs)
+
+    def send_email(self, to_recipients: List[str], subject: str, body: str, 
+                   cc_recipients: List[str] = None, bcc_recipients: List[str] = None,
+                   attachments: List[str] = None, body_format: str = 'text') -> bool:
+        """
+        Send an email using COM interface.
+        
+        Args:
+            to_recipients: List of TO recipients
+            subject: Email subject
+            body: Email body content
+            cc_recipients: List of CC recipients (optional)
+            bcc_recipients: List of BCC recipients (optional)
+            attachments: List of attachment file paths (optional)
+            body_format: 'text' or 'html'
+            
+        Returns:
+            bool: True if successful, False otherwise
+        """
+        logger.info(f"=== Attempting to send email: '{subject[:50]}...' to {len(to_recipients)} recipients ===")
+        
+        if not self._initialize_com():
+            logger.error("COM interface not available for sending email")
+            return False
+            
+        try:
+            # Create a new mail item (0 = olMailItem)
+            mail_item = self._outlook_app.CreateItem(0)
+            
+            # Set recipients
+            mail_item.To = '; '.join(to_recipients)
+            
+            if cc_recipients:
+                mail_item.CC = '; '.join(cc_recipients)
+                
+            if bcc_recipients:
+                mail_item.BCC = '; '.join(bcc_recipients)
+            
+            # Set subject and body
+            mail_item.Subject = subject
+            
+            if body_format.lower() == 'html':
+                mail_item.HTMLBody = body
+            else:
+                mail_item.Body = body
+            
+            # Add attachments if provided - FAIL if ANY attachment fails
+            if attachments:
+                for attachment_path in attachments:
+                    try:
+                        # Normalize the path for Windows
+                        normalized_path = os.path.normpath(os.path.abspath(attachment_path))
+                        
+                        # Check if file exists and is accessible
+                        if os.path.exists(normalized_path) and os.path.isfile(normalized_path):
+                            # Ensure file is not locked by waiting a moment
+                            time.sleep(0.1)
+                            
+                            # Try to add the attachment
+                            mail_item.Attachments.Add(normalized_path)
+                            logger.debug(f"Added attachment: {normalized_path}")
+                        else:
+                            logger.error(f"❌ Attachment not found: {attachment_path}")
+                            logger.debug(f"Normalized path: {normalized_path}")
+                            logger.debug(f"Path exists: {os.path.exists(normalized_path)}")
+                            logger.debug(f"Is file: {os.path.isfile(normalized_path) if os.path.exists(normalized_path) else 'N/A'}")
+                            raise FileNotFoundError(f"Attachment not found: {os.path.basename(attachment_path)}")
+                    except Exception as attachment_error:
+                        logger.error(f"❌ Failed to add attachment {attachment_path}: {str(attachment_error)}")
+                        # Re-raise the error to fail the entire email send
+                        raise Exception(f"Failed to attach {os.path.basename(attachment_path)}: {str(attachment_error)}")
+            
+            # Send the email (only if all attachments were successful)
+            mail_item.Send()
+            
+            logger.info(f"✅ Email sent successfully: '{subject[:30]}...' to {len(to_recipients)} recipients" + 
+                       (f" with {len(attachments)} attachments" if attachments else ""))
+            return True
+            
+        except Exception as e:
+            logger.error(f"❌ Error sending email: {str(e)}", exc_info=True)
+            return False
+
+    def save_draft(self, to_recipients: List[str], subject: str, body: str,
+                   cc_recipients: List[str] = None, bcc_recipients: List[str] = None,
+                   attachments: List[str] = None, body_format: str = 'text') -> bool:
+        """
+        Save an email as draft using COM interface.
+        
+        Args:
+            to_recipients: List of TO recipients
+            subject: Email subject
+            body: Email body content
+            cc_recipients: List of CC recipients (optional)
+            bcc_recipients: List of BCC recipients (optional)
+            attachments: List of attachment file paths (optional)
+            body_format: 'text' or 'html'
+            
+        Returns:
+            bool: True if successful, False otherwise
+        """
+        logger.info(f"=== Attempting to save draft: '{subject[:50]}...' ===")
+        
+        if not self._initialize_com():
+            logger.error("COM interface not available for saving draft")
+            return False
+            
+        try:
+            # Create a new mail item (0 = olMailItem)
+            mail_item = self._outlook_app.CreateItem(0)
+            
+            # Set recipients
+            if to_recipients:
+                mail_item.To = '; '.join(to_recipients)
+            
+            if cc_recipients:
+                mail_item.CC = '; '.join(cc_recipients)
+                
+            if bcc_recipients:
+                mail_item.BCC = '; '.join(bcc_recipients)
+            
+            # Set subject and body
+            mail_item.Subject = subject
+            
+            if body_format.lower() == 'html':
+                mail_item.HTMLBody = body
+            else:
+                mail_item.Body = body
+            
+            # Add attachments if provided - FAIL if ANY attachment fails
+            if attachments:
+                for attachment_path in attachments:
+                    try:
+                        # Normalize the path for Windows
+                        normalized_path = os.path.normpath(os.path.abspath(attachment_path))
+                        
+                        # Check if file exists and is accessible
+                        if os.path.exists(normalized_path) and os.path.isfile(normalized_path):
+                            # Ensure file is not locked by waiting a moment
+                            time.sleep(0.1)
+                            
+                            # Try to add the attachment
+                            mail_item.Attachments.Add(normalized_path)
+                            logger.debug(f"Added attachment to draft: {normalized_path}")
+                        else:
+                            logger.error(f"❌ Attachment not found for draft: {attachment_path}")
+                            logger.debug(f"Normalized path: {normalized_path}")
+                            logger.debug(f"Path exists: {os.path.exists(normalized_path)}")
+                            logger.debug(f"Is file: {os.path.isfile(normalized_path) if os.path.exists(normalized_path) else 'N/A'}")
+                            raise FileNotFoundError(f"Attachment not found: {os.path.basename(attachment_path)}")
+                    except Exception as attachment_error:
+                        logger.error(f"❌ Failed to add attachment to draft {attachment_path}: {str(attachment_error)}")
+                        # Re-raise the error to fail the entire draft save
+                        raise Exception(f"Failed to attach {os.path.basename(attachment_path)}: {str(attachment_error)}")
+            
+            # Save as draft (don't send)
+            mail_item.Save()
+            
+            logger.info(f"✅ Draft saved successfully: '{subject[:30]}...'" + 
+                       (f" with {len(attachments)} attachments" if attachments else ""))
+            return True
+            
+        except Exception as e:
+            logger.error(f"❌ Error saving draft: {str(e)}", exc_info=True)
+            return False
+
+    def reply_to_email(self, email_id: str, body: str, reply_all: bool = False,
+                       body_format: str = 'text') -> bool:
+        """
+        Reply to an email using COM interface.
+        
+        Args:
+            email_id: ID of the email to reply to
+            body: Reply body content
+            reply_all: True to reply to all recipients, False for reply to sender only
+            body_format: 'text' or 'html'
+            
+        Returns:
+            bool: True if successful, False otherwise
+        """
+        action = "reply to all" if reply_all else "reply to"
+        logger.info(f"=== Attempting to {action} email: {email_id} ===")
+        
+        try:
+            # Find the original email
+            original_email_item = self._find_email_by_id(email_id)
+            if not original_email_item:
+                logger.error(f"Cannot reply - original email not found: {email_id}")
+                return False
+            
+            # Create reply
+            if reply_all:
+                reply_item = original_email_item.ReplyAll()
+            else:
+                reply_item = original_email_item.Reply()
+            
+            # Set body content
+            if body_format.lower() == 'html':
+                reply_item.HTMLBody = body + reply_item.HTMLBody  # Prepend new content
+            else:
+                reply_item.Body = body + "\n\n" + reply_item.Body  # Prepend new content
+            
+            # Send the reply
+            reply_item.Send()
+            
+            logger.info(f"✅ Reply sent successfully to email: {email_id}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"❌ Error sending reply to email {email_id}: {str(e)}", exc_info=True)
+            return False
+
+    def forward_email(self, email_id: str, to_recipients: List[str], body: str = "",
+                      cc_recipients: List[str] = None, body_format: str = 'text') -> bool:
+        """
+        Forward an email using COM interface.
+        
+        Args:
+            email_id: ID of the email to forward
+            to_recipients: List of recipients to forward to
+            body: Additional body content to add (optional)
+            cc_recipients: List of CC recipients (optional)
+            body_format: 'text' or 'html'
+            
+        Returns:
+            bool: True if successful, False otherwise
+        """
+        logger.info(f"=== Attempting to forward email: {email_id} to {len(to_recipients)} recipients ===")
+        
+        try:
+            # Find the original email
+            original_email_item = self._find_email_by_id(email_id)
+            if not original_email_item:
+                logger.error(f"Cannot forward - original email not found: {email_id}")
+                return False
+            
+            # Create forward
+            forward_item = original_email_item.Forward()
+            
+            # Set recipients
+            forward_item.To = '; '.join(to_recipients)
+            
+            if cc_recipients:
+                forward_item.CC = '; '.join(cc_recipients)
+            
+            # Add custom body content if provided
+            if body:
+                if body_format.lower() == 'html':
+                    forward_item.HTMLBody = body + "<br/><br/>" + forward_item.HTMLBody
+                else:
+                    forward_item.Body = body + "\n\n" + forward_item.Body
+            
+            # Send the forward
+            forward_item.Send()
+            
+            logger.info(f"✅ Email forwarded successfully: {email_id}")
+            return True
+            
+        except Exception as e:
+            logger.error(f"❌ Error forwarding email {email_id}: {str(e)}", exc_info=True)
+            return False

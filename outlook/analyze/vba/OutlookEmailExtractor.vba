@@ -1321,16 +1321,14 @@ Private Sub ManualProcessEmails(folder As Outlook.folder, maxEmails As Long)
             
             jsonContent = jsonContent & "      ""categories"": """ & EscapeJson(mailItem.Categories) & """," & vbCrLf
             
-            ' Extract body (truncate if too long)
+            ' Extract full body content (no truncation)
             Dim bodyText As String
-            bodyText = Left(mailItem.Body, 2000)
-            If Len(mailItem.Body) > 2000 Then bodyText = bodyText & "... [TRUNCATED]"
+            bodyText = mailItem.Body
             jsonContent = jsonContent & "      ""body"": """ & EscapeJson(bodyText) & """," & vbCrLf
             
-            ' Extract HTML body (truncate if too long)
+            ' Extract full HTML body content (no truncation)
             Dim htmlBody As String
-            htmlBody = Left(mailItem.htmlBody, 3000)
-            If Len(mailItem.htmlBody) > 3000 Then htmlBody = htmlBody & "... [TRUNCATED]"
+            htmlBody = mailItem.htmlBody
             jsonContent = jsonContent & "      ""html_body"": """ & EscapeJson(htmlBody) & """," & vbCrLf
             
             ' Extract recipients
@@ -2428,16 +2426,14 @@ Private Sub ProcessFolderWithStandardName(folder As Outlook.folder, standardName
                 jsonContent = jsonContent & "      ""flag_status"": " & mailItem.FlagStatus & "," & vbCrLf
                 jsonContent = jsonContent & "      ""categories"": """ & EscapeJson(mailItem.Categories) & """," & vbCrLf
                 
-                ' Extract body (truncate if too long)
+                ' Extract full body content (no truncation)
                 Dim bodyText As String
-                bodyText = Left(mailItem.Body, 2000)
-                If Len(mailItem.Body) > 2000 Then bodyText = bodyText & "... [TRUNCATED]"
+                bodyText = mailItem.Body
                 jsonContent = jsonContent & "      ""body"": """ & EscapeJson(bodyText) & """," & vbCrLf
                 
-                ' Extract HTML body (truncate if too long)
+                ' Extract full HTML body content (no truncation)
                 Dim htmlBody As String
-                htmlBody = Left(mailItem.htmlBody, 3000)
-                If Len(mailItem.htmlBody) > 3000 Then htmlBody = htmlBody & "... [TRUNCATED]"
+                htmlBody = mailItem.htmlBody
                 jsonContent = jsonContent & "      ""html_body"": """ & EscapeJson(htmlBody) & """," & vbCrLf
                 
                 ' Extract recipients
@@ -2657,16 +2653,14 @@ Private Function BuildEmailJsonEntry(mailItem As Outlook.MailItem, targetFolder 
     emailJsonEntry = emailJsonEntry & "      ""categories"": """ & EscapeJson(mailItem.Categories) & """," & vbCrLf
     emailJsonEntry = emailJsonEntry & "      ""msg_file"": """ & EscapeJson("data/" & subjectFolderName & "/" & msgFileName) & """," & vbCrLf
             
-    ' Extract body (truncate if too long)
+    ' Extract full body content (no truncation)
     Dim bodyText As String
-    bodyText = Left(mailItem.Body, 2000)
-    If Len(mailItem.Body) > 2000 Then bodyText = bodyText & "... [TRUNCATED]"
+    bodyText = mailItem.Body
     emailJsonEntry = emailJsonEntry & "      ""body"": """ & EscapeJson(bodyText) & """," & vbCrLf
             
-    ' Extract HTML body (truncate if too long)
+    ' Extract full HTML body content (no truncation)
     Dim htmlBody As String
-    htmlBody = Left(mailItem.htmlBody, 3000)
-    If Len(mailItem.htmlBody) > 3000 Then htmlBody = htmlBody & "... [TRUNCATED]"
+    htmlBody = mailItem.htmlBody
     emailJsonEntry = emailJsonEntry & "      ""html_body"": """ & EscapeJson(htmlBody) & """," & vbCrLf
             
     ' Extract recipients

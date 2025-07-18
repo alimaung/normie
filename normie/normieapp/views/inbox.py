@@ -9,8 +9,10 @@ from django.core.paginator import Paginator
 import os
 import json
 import logging
+import re
 from ..decorators import restrict_read_only_users
 from ..services.outlook_service import OutlookService
+import os
 
 # Configure logger
 logger = logging.getLogger(__name__)
@@ -68,8 +70,9 @@ def inbox(request):
                     'email': email
                 })
             
-            # For non-AJAX requests, redirect to the proper email view URL
-            return redirect('inbox_view_message', message_id=email_id)
+            # For non-AJAX requests, render the full inbox page with email view 
+            # The JavaScript will detect the email_id in the URL and show the email
+            pass  # Continue to render the normal inbox page
         
         # Get emails data
         emails, pagination_info = outlook_service.get_emails_list(
@@ -146,6 +149,7 @@ def inbox(request):
 def inbox_view_message(request, message_id):
     """
     View a specific email message.
+    Passes through to main inbox view with email_id parameter for SPA handling.
     """
     try:
         outlook_service = OutlookService()
@@ -154,13 +158,12 @@ def inbox_view_message(request, message_id):
         if not email:
             raise Http404(_("Email not found"))
         
-        context = {
-            'page_title': _('View Email'),
-            'email': email,
-            'message_id': message_id
-        }
+        # Set email_id in GET parameters and call main inbox view
+        request.GET = request.GET.copy()
+        request.GET['email_id'] = message_id
         
-        return render(request, 'normieapp/inbox_view.html', context)
+        # Call the main inbox view which will handle both AJAX and non-AJAX appropriately
+        return inbox(request)
         
     except Http404:
         raise
@@ -175,6 +178,7 @@ def inbox_view_message(request, message_id):
 def inbox_compose(request):
     """
     Compose a new email message.
+    For non-AJAX requests, redirects to main inbox with compose parameters for SPA handling.
     """
     try:
         # Get compose mode and email ID for reply/forward
@@ -221,7 +225,19 @@ def inbox_compose(request):
                 'mode': compose_mode
             })
         
-        return render(request, 'normieapp/inbox_compose.html', context)
+        # For non-AJAX requests, redirect to main inbox with compose parameters
+        # This lets the SPA JavaScript handle showing the compose interface
+        redirect_url = '/inbox/'
+        params = []
+        if compose_mode != 'new':
+            params.append(f'compose_mode={compose_mode}')
+        if email_id:
+            params.append(f'compose_email_id={email_id}')
+        
+        if params:
+            redirect_url += '?' + '&'.join(params)
+        
+        return redirect(redirect_url)
         
     except Exception as e:
         logger.error(f"Error in compose view: {str(e)}")
@@ -239,6 +255,7 @@ def inbox_compose(request):
 def inbox_reply(request, message_id):
     """
     Reply to an email message.
+    Redirects to main inbox compose with mode and email_id parameters for SPA handling.
     """
     try:
         outlook_service = OutlookService()
@@ -247,14 +264,13 @@ def inbox_reply(request, message_id):
         if not original_email:
             raise Http404(_("Original email not found"))
         
-        context = {
-            'page_title': _('Reply to Email'),
-            'original_email': original_email,
-            'message_id': message_id,
-            'compose_mode': 'reply'
-        }
+        # Set compose parameters and call main compose view
+        request.GET = request.GET.copy()
+        request.GET['mode'] = 'reply'
+        request.GET['email_id'] = message_id
         
-        return render(request, 'normieapp/inbox_compose.html', context)
+        # Call the main compose view which will handle both AJAX and non-AJAX appropriately
+        return inbox_compose(request)
         
     except Http404:
         raise
@@ -954,33 +970,123 @@ def inbox_send_email(request):
         attachments = []
         for key, file in request.FILES.items():
             if key.startswith('attachment_'):
-                # Save attachment temporarily
-                temp_path = os.path.join(settings.MEDIA_ROOT, 'temp_attachments', file.name)
-                os.makedirs(os.path.dirname(temp_path), exist_ok=True)
+                try:
+                    # Create safe filename (remove problematic characters)
+                    import re
+                    safe_filename = re.sub(r'[<>:"/\\|?*]', '_', file.name)
+                    
+                    # Save attachment temporarily with normalized path
+                    temp_dir = os.path.join(settings.MEDIA_ROOT, 'temp_attachments')
+                    os.makedirs(temp_dir, exist_ok=True)
+                    
+                    temp_path = os.path.normpath(os.path.join(temp_dir, safe_filename))
+                    
+                    # Write file with proper error handling
+                    with open(temp_path, 'wb') as destination:
+                        for chunk in file.chunks():
+                            destination.write(chunk)
+                    
+                    # Ensure file is fully written and accessible
+                    if os.path.exists(temp_path) and os.path.getsize(temp_path) > 0:
+                        attachments.append(temp_path)
+                        logger.debug(f"Attachment saved: {temp_path} (size: {os.path.getsize(temp_path)} bytes)")
+                    else:
+                        logger.error(f"Failed to save attachment: {safe_filename}")
+                        
+                except Exception as e:
+                    logger.error(f"Error processing attachment {file.name}: {str(e)}")
+                    continue
+        
+        # Check if this is a draft save or actual send
+        save_as_draft = 'save_draft' in request.POST or request.POST.get('action') == 'save_draft'
+        
+        # Initialize Outlook service
+        outlook_service = OutlookService()
+        
+        # Determine body format
+        body_format = 'html' if body_html and body_html.strip() else 'text'
+        final_body = body_html if body_format == 'html' else body_text
+        
+        if save_as_draft:
+            # Save as draft
+            try:
+                success = outlook_service.save_draft(
+                    to_recipients=to_list,
+                    subject=subject,
+                    body=final_body,
+                    cc_recipients=cc_list if cc_list else None,
+                    bcc_recipients=bcc_list if bcc_list else None,
+                    attachments=attachments if attachments else None,
+                    body_format=body_format
+                )
                 
-                with open(temp_path, 'wb+') as destination:
-                    for chunk in file.chunks():
-                        destination.write(chunk)
+                if success:
+                    message = 'Draft saved successfully'
+                    logger.info(f"Draft saved: '{subject[:30]}...' with {len(to_list)} recipients")
+                else:
+                    raise Exception('Draft save returned False')
+                    
+            except Exception as save_error:
+                # Clean up temporary attachments on failure
+                for attachment_path in attachments:
+                    try:
+                        if os.path.exists(attachment_path):
+                            os.remove(attachment_path)
+                    except Exception as cleanup_error:
+                        logger.warning(f"Could not delete temporary attachment {attachment_path}: {cleanup_error}")
                 
-                attachments.append(temp_path)
+                # Provide specific error message
+                error_message = 'Failed to save draft. Please check if Outlook is running and try again.'
+                if 'Failed to attach' in str(save_error):
+                    error_message = f'Failed to save draft: {str(save_error)}'
+                elif 'Attachment not found' in str(save_error):
+                    error_message = f'Failed to save draft: {str(save_error)}'
+                
+                return JsonResponse({
+                    'success': False,
+                    'error': error_message
+                })
+        else:
+            # Send the email
+            try:
+                success = outlook_service.send_email(
+                    to_recipients=to_list,
+                    subject=subject,
+                    body=final_body,
+                    cc_recipients=cc_list if cc_list else None,
+                    bcc_recipients=bcc_list if bcc_list else None,
+                    attachments=attachments if attachments else None,
+                    body_format=body_format
+                )
+                
+                if success:
+                    message = 'Email sent successfully'
+                    logger.info(f"Email sent: '{subject[:30]}...' to {len(to_list)} recipients")
+                else:
+                    raise Exception('Email send returned False')
+                    
+            except Exception as send_error:
+                # Clean up temporary attachments on failure
+                for attachment_path in attachments:
+                    try:
+                        if os.path.exists(attachment_path):
+                            os.remove(attachment_path)
+                    except Exception as cleanup_error:
+                        logger.warning(f"Could not delete temporary attachment {attachment_path}: {cleanup_error}")
+                
+                # Provide specific error message
+                error_message = 'Failed to send email. Please check if Outlook is running and try again.'
+                if 'Failed to attach' in str(send_error):
+                    error_message = f'Failed to send email: {str(send_error)}'
+                elif 'Attachment not found' in str(send_error):
+                    error_message = f'Failed to send email: {str(send_error)}'
+                
+                return JsonResponse({
+                    'success': False,
+                    'error': error_message
+                })
         
-        # For now, we'll simulate sending since COM email sending requires more complex setup
-        # In a real implementation, this would use Outlook COM interface to send emails
-        
-        # Simulate processing time
-        import time
-        time.sleep(1)
-        
-        # Log the email for debugging
-        logger.info(f"Email sent simulation:")
-        logger.info(f"  To: {to_recipients}")
-        logger.info(f"  CC: {cc_recipients}")
-        logger.info(f"  BCC: {bcc_recipients}")
-        logger.info(f"  Subject: {subject}")
-        logger.info(f"  Body length: {len(body_text)} characters")
-        logger.info(f"  Attachments: {len(attachments)} files")
-        
-        # Clean up temporary attachments
+        # Clean up temporary attachments after successful send/save
         for attachment_path in attachments:
             try:
                 if os.path.exists(attachment_path):
@@ -990,11 +1096,12 @@ def inbox_send_email(request):
         
         return JsonResponse({
             'success': True,
-            'message': 'Email sent successfully',
+            'message': message,
             'sent_to': len(to_list),
             'sent_cc': len(cc_list),
             'sent_bcc': len(bcc_list),
-            'subject': subject
+            'subject': subject,
+            'action': 'draft_saved' if save_as_draft else 'email_sent'
         })
         
     except Exception as e:

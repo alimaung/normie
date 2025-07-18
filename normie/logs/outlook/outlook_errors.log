@@ -1,0 +1,48 @@
+2025-07-17 16:48:54 - outlook_service - ERROR - send_email:2046 - ❌ Error sending email: (-2147352567, 'Exception occurred.', (4096, 'Microsoft Outlook', 'Path does not exist. Verify the path is correct.', None, 0, -2147024893), None)
+Traceback (most recent call last):
+  File "Y:\normie\normie\normieapp\services\outlook_service.py", line 2034, in send_email
+    mail_item.Attachments.Add(attachment_path)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "<COMObject <unknown>>", line 2, in Add
+pywintypes.com_error: (-2147352567, 'Exception occurred.', (4096, 'Microsoft Outlook', 'Path does not exist. Verify the path is correct.', None, 0, -2147024893), None)
+2025-07-17 17:59:39 - outlook_service - ERROR - send_email:2053 - ❌ Failed to add attachment temp_attachments\Filmnummernvergabe2.xlsx: (-2147352567, 'Exception occurred.', (4096, 'Microsoft Outlook', 'Cannot find this file. Verify the path and file name are correct.', None, 0, -2147024894), None)
+2025-07-17 17:59:39 - outlook_service - ERROR - send_email:2065 - ❌ Error sending email: Failed to attach Filmnummernvergabe2.xlsx: (-2147352567, 'Exception occurred.', (4096, 'Microsoft Outlook', 'Cannot find this file. Verify the path and file name are correct.', None, 0, -2147024894), None)
+Traceback (most recent call last):
+  File "Y:\normie\normie\normieapp\services\outlook_service.py", line 2044, in send_email
+    mail_item.Attachments.Add(normalized_path)
+    ~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "<COMObject <unknown>>", line 2, in Add
+pywintypes.com_error: (-2147352567, 'Exception occurred.', (4096, 'Microsoft Outlook', 'Cannot find this file. Verify the path and file name are correct.', None, 0, -2147024894), None)
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "Y:\normie\normie\normieapp\services\outlook_service.py", line 2055, in send_email
+    raise Exception(f"Failed to attach {os.path.basename(attachment_path)}: {str(attachment_error)}")
+Exception: Failed to attach Filmnummernvergabe2.xlsx: (-2147352567, 'Exception occurred.', (4096, 'Microsoft Outlook', 'Cannot find this file. Verify the path and file name are correct.', None, 0, -2147024894), None)
+2025-07-17 18:15:23 - outlook_service - ERROR - get_emails_data:1310 - Error reading emails data: name 'time' is not defined
+Traceback (most recent call last):
+  File "Y:\normie\normie\normieapp\services\outlook_service.py", line 1283, in get_emails_data
+    current_time = time.time()
+                   ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'?
+2025-07-17 18:15:23 - outlook_service - ERROR - get_emails_data:1310 - Error reading emails data: name 'time' is not defined
+Traceback (most recent call last):
+  File "Y:\normie\normie\normieapp\services\outlook_service.py", line 1283, in get_emails_data
+    current_time = time.time()
+                   ^^^^
+NameError: name 'time' is not defined. Did you forget to import 'time'?
+2025-07-17 18:40:11 - outlook_service - ERROR - _flag_email_via_com:1030 - COM flag operation failed: (-2147352567, 'Exception occurred.', (4096, 'Microsoft Outlook', 'Could not open the item. Try again.', None, 0, -2147352567), None)
+2025-07-17 18:40:11 - outlook_service - ERROR - flag_email:935 - ✗ Both COM and JSON failed - COM: None, JSON: None
+2025-07-17 18:40:14 - outlook_service - ERROR - _flag_email_via_com:1030 - COM flag operation failed: (-2147352567, 'Exception occurred.', (4096, 'Microsoft Outlook', 'Could not open the item. Try again.', None, 0, -2147352567), None)
+2025-07-17 18:40:14 - outlook_service - ERROR - flag_email:935 - ✗ Both COM and JSON failed - COM: None, JSON: None
+2025-07-17 18:41:11 - outlook_service - ERROR - _flag_email_via_com:1030 - COM flag operation failed: (-2147352567, 'Exception occurred.', (4096, 'Microsoft Outlook', 'Could not open the item. Try again.', None, 0, -2147352567), None)
+2025-07-17 18:41:11 - outlook_service - ERROR - flag_email:935 - ✗ Both COM and JSON failed - COM: None, JSON: None
+2025-07-17 18:42:05 - outlook_service - ERROR - _flag_email_via_com:1031 - COM flag operation failed: (-2147352567, 'Exception occurred.', (4096, 'Microsoft Outlook', 'Could not open the item. Try again.', None, 0, -2147352567), None)
+2025-07-17 18:42:05 - outlook_service - ERROR - flag_email:936 - ✗ Both COM and JSON failed - COM: None, JSON: None
+2025-07-17 18:48:03 - outlook_service - ERROR - _flag_email_via_com:1014 - COM flag operation failed: (-2147352567, 'Exception occurred.', (4096, 'Microsoft Outlook', 'Could not open the item. Try again.', None, 0, -2147352567), None)
+2025-07-17 18:48:03 - outlook_service - ERROR - flag_email:936 - ✗ Both COM and JSON failed - COM: None, JSON: None
+2025-07-17 18:48:04 - outlook_service - ERROR - _flag_email_via_com:1014 - COM flag operation failed: (-2147352567, 'Exception occurred.', (4096, 'Microsoft Outlook', 'Could not open the item. Try again.', None, 0, -2147352567), None)
+2025-07-17 18:48:04 - outlook_service - ERROR - flag_email:936 - ✗ Both COM and JSON failed - COM: None, JSON: None
+2025-07-17 18:48:05 - outlook_service - ERROR - _flag_email_via_com:1014 - COM flag operation failed: (-2147352567, 'Exception occurred.', (4096, 'Microsoft Outlook', 'Could not open the item. Try again.', None, 0, -2147352567), None)
+2025-07-17 18:48:05 - outlook_service - ERROR - flag_email:936 - ✗ Both COM and JSON failed - COM: None, JSON: None

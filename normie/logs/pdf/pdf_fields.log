@@ -1,0 +1,10 @@
+2025-07-17 18:32:32 - INFO - === Starting PDF field extraction from: Y:\normie\normie\normieapp\static\normieapp\temp_forms\b434a5d3-9308-4ab2-9e79-838d3d2afaa0.pdf ===
+2025-07-17 18:32:32 - INFO - Found 131 form fields in PDF
+2025-07-17 18:32:32 - INFO - Successfully extracted 131 fields from PDF
+2025-07-17 18:32:32 - INFO - Field extraction completed in 0.09 seconds
+2025-07-17 18:32:32 - INFO - === PDF field extraction finished ===
+2025-07-17 18:32:52 - INFO - === Starting PDF field extraction from: Y:\normie\normie\normieapp\static\normieapp\temp_forms\e255cdce-f6f1-403a-bbd2-2135510a82e7.pdf ===
+2025-07-17 18:32:52 - INFO - Found 131 form fields in PDF
+2025-07-17 18:32:52 - INFO - Successfully extracted 131 fields from PDF
+2025-07-17 18:32:52 - INFO - Field extraction completed in 0.07 seconds
+2025-07-17 18:32:52 - INFO - === PDF field extraction finished ===

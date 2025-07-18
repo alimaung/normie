@@ -291,39 +291,56 @@ class ComposeManager {
     }
     
     sendEmail() {
+        console.log('=== Attempting to send email ===');
+        
         // Validate form
         if (!this.validateForm()) {
+            console.log('Form validation failed');
             return;
         }
+        
+        console.log('Form validation passed');
         
         // Show sending status
         this.showSendingStatus();
         
         // Prepare form data
         const formData = this.prepareFormData();
+        console.log('Form data prepared:', formData);
+        
+        const sendUrl = window.inboxData?.urls?.send || '/inbox/send/';
+        const csrfToken = window.inboxData?.csrf || $('[name=csrfmiddlewaretoken]').val();
+        
+        console.log('Send URL:', sendUrl);
+        console.log('CSRF Token:', csrfToken);
         
         // Send email via AJAX
         $.ajax({
-            url: window.inboxData?.urls?.send || '/inbox/send/',
+            url: sendUrl,
             method: 'POST',
             data: formData,
             processData: false,
             contentType: false,
             headers: {
-                'X-CSRFToken': window.inboxData?.csrf || $('[name=csrfmiddlewaretoken]').val()
+                'X-CSRFToken': csrfToken
             },
             success: (response) => {
+                console.log('Send email response:', response);
+                
                 if (response.success) {
+                    console.log('Email sent successfully!');
                     this.showSuccess('Email sent successfully!');
                     // Navigate back to inbox after a brief delay
                     setTimeout(() => {
                         this.navigateBackToInbox();
                     }, 2000);
                 } else {
+                    console.error('Send email failed:', response.error);
                     this.showError(response.error || 'Failed to send email');
                 }
             },
-            error: () => {
+            error: (xhr, status, error) => {
+                console.error('Send email AJAX error:', { xhr, status, error, response: xhr.responseText });
                 this.showError('Failed to send email. Please try again.');
             },
             complete: () => {
@@ -337,24 +354,30 @@ class ComposeManager {
         const subject = $('#compose-subject').val().trim();
         const body = this.editor.textContent.trim();
         
+        console.log('Validating form:', { to, subject, body: body.substring(0, 50) + '...' });
+        
         if (!to) {
+            console.log('Validation failed: No recipients');
             this.showError('Please enter at least one recipient');
             $('#compose-to').focus();
             return false;
         }
         
         if (!subject) {
+            console.log('Validation failed: No subject');
             this.showError('Please enter a subject');
             $('#compose-subject').focus();
             return false;
         }
         
         if (!body) {
+            console.log('Validation failed: No message body');
             this.showError('Please enter a message');
             this.editor.focus();
             return false;
         }
         
+        console.log('Form validation successful');
         return true;
     }
     

@@ -360,11 +360,8 @@ class OutlookAnalyzer:
                                 body_content = getattr(item, prop_name)
                                 if body_content and len(str(body_content).strip()) > 0:
                                     if result_key == 'body' or result_key == 'html_body':
-                                        # Increased limit from 2000 to 50000 characters for full email content
-                                        if len(str(body_content)) > 50000:
-                                            email_info[result_key] = str(body_content)[:50000] + "... [TRUNCATED]"
-                                        else:
-                                            email_info[result_key] = str(body_content)
+                                        # Store full email content (no truncation)
+                                        email_info[result_key] = str(body_content)
                                     if self.debug:
                                         print(f"    DEBUG: Successfully got {prop_name} ({len(str(body_content))} chars)")
                                 else:

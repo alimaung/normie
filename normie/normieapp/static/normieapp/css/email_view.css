@@ -250,9 +250,61 @@
 
 .html-email-content {
     /* Contain HTML email content and make it safe */
-    overflow: hidden;
+    overflow: visible;
     word-wrap: break-word;
     line-height: 1.6;
+}
+
+/* Aggressive border reset for ALL elements except tables and forms */
+.html-email-content *,
+.html-email-content *:before,
+.html-email-content *:after {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+/* Remove any potential borders from common problematic elements */
+.html-email-content div[style*="border"],
+.html-email-content span[style*="border"],
+.html-email-content p[style*="border"] {
+    border: none !important;
+}
+
+/* Re-enable borders only for elements that should have them */
+.html-email-content table {
+    border-collapse: collapse;
+    border: none !important;
+}
+
+.html-email-content td,
+.html-email-content th {
+    border: 1px solid #e0e0e0 !important;
+    padding: 8px 12px;
+}
+
+.html-email-content hr {
+    border: none !important;
+    border-top: 1px solid #e0e0e0 !important;
+    height: 1px;
+    background: none;
+}
+
+.html-email-content img {
+    border: none !important;
+}
+
+/* Only allow borders on elements that commonly should have them */
+.html-email-content table,
+.html-email-content td,
+.html-email-content th,
+.html-email-content hr,
+.html-email-content fieldset,
+.html-email-content input,
+.html-email-content textarea,
+.html-email-content select,
+.html-email-content button {
+    /* These elements can keep their borders if defined */
 }
 
 /* Style HTML email content */
@@ -285,19 +337,7 @@
     max-width: 100%;
     height: auto;
     border-radius: 4px;
-    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
-}
-
-.html-email-content table {
-    border-collapse: collapse;
-    max-width: 100%;
-    margin: 12px 0;
-}
-
-.html-email-content td,
-.html-email-content th {
-    padding: 8px 12px;
-    border: 1px solid #e0e0e0;
+    /* box-shadow removed due to global reset, will be handled separately if needed */
 }
 
 .html-email-content blockquote {

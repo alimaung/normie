@@ -35,10 +35,21 @@ class InboxManager {
         // Set initial folder state from URL
         this.setInitialFolderState();
         
+        // Use initial server-side data immediately
+        this.useInitialServerData();
+        
+        // Check if we're on an email view URL and handle it
+        this.handleInitialEmailView();
+        
+        // Check if we're on a compose URL and handle it
+        this.handleInitialComposeView();
+        
         this.bindEvents();
         this.initializeTooltips();
         this.initializeSidebar();
-        this.startAutoRefresh();
+        
+        // Start background refresh after initial render
+        this.startBackgroundRefresh();
         
         console.log('Inbox system initialized successfully');
     }
@@ -122,6 +133,102 @@ class InboxManager {
         if (selector) {
             $(selector).closest('.folder-item').addClass('active');
         }
+    }
+    
+    useInitialServerData() {
+        console.log('Using initial server-side data for immediate rendering');
+        
+        // The emails are already rendered server-side in the template
+        // We just need to update the sidebar stats and data status
+        
+        if (window.inboxData) {
+            // Update folder stats immediately
+            if (window.inboxData.folderStats) {
+                this.updateFolderStats(window.inboxData.folderStats);
+            }
+            
+            // Update data status immediately  
+            if (window.inboxData.dataStatus) {
+                this.updateDataStatus(window.inboxData.dataStatus);
+            }
+            
+            // Initialize selection state
+            this.updateSelectionState(0);
+            
+            console.log('Initial server data applied to UI');
+        }
+    }
+    
+    handleInitialEmailView() {
+        const currentPath = window.location.pathname;
+        const emailIdMatch = currentPath.match(/\/inbox\/view\/([^\/]+)\//);
+        
+        if (emailIdMatch) {
+            const emailId = emailIdMatch[1];
+            console.log(`Initial email view detected for email ID: ${emailId}`);
+            
+            // Set up the URL state for the email view
+            window.history.replaceState({ 
+                folder: this.currentFilters.folder,
+                emailId: emailId,
+                view: 'email'
+            }, `Email - ${this.currentFilters.folder}`, currentPath);
+            
+            // Load the email view after a short delay to ensure DOM is ready
+            setTimeout(() => {
+                this.loadEmailById(emailId);
+            }, 100);
+        }
+    }
+    
+    handleInitialComposeView() {
+        const currentPath = window.location.pathname;
+        const urlParams = new URLSearchParams(window.location.search);
+        
+        // Check for compose URLs
+        if (currentPath.includes('/inbox/compose/')) {
+            console.log('Initial compose view detected');
+            this.handleComposeUrl('new', null, currentPath);
+        } else if (currentPath.match(/\/inbox\/reply\/([^\/]+)\//)) {
+            const emailIdMatch = currentPath.match(/\/inbox\/reply\/([^\/]+)\//);
+            const emailId = emailIdMatch[1];
+            console.log(`Initial reply view detected for email ID: ${emailId}`);
+            this.handleComposeUrl('reply', emailId, currentPath);
+        } else if (currentPath.match(/\/inbox\/forward\/([^\/]+)\//)) {
+            const emailIdMatch = currentPath.match(/\/inbox\/forward\/([^\/]+)\//);
+            const emailId = emailIdMatch[1];
+            console.log(`Initial forward view detected for email ID: ${emailId}`);
+            this.handleComposeUrl('forward', emailId, currentPath);
+        } else if (currentPath === '/inbox/' && (urlParams.has('compose_mode') || urlParams.has('compose_email_id'))) {
+            // Handle compose parameters redirected from separate compose URLs
+            const composeMode = urlParams.get('compose_mode') || 'new';
+            const emailId = urlParams.get('compose_email_id');
+            console.log(`Initial compose view detected via parameters: mode=${composeMode}, emailId=${emailId}`);
+            this.handleComposeUrl(composeMode, emailId, currentPath);
+        }
+    }
+    
+    handleComposeUrl(mode, emailId, currentPath) {
+        // Determine the proper URL based on compose mode
+        let composeUrl = '/inbox/compose/';
+        if (mode === 'reply' && emailId) {
+            composeUrl = `/inbox/reply/${emailId}/`;
+        } else if (mode === 'forward' && emailId) {
+            composeUrl = `/inbox/forward/${emailId}/`;
+        }
+        
+        // Set up the URL state for the compose view
+        window.history.replaceState({ 
+            folder: this.currentFilters.folder,
+            view: 'compose',
+            mode: mode,
+            emailId: emailId
+        }, `${mode === 'new' ? 'Compose' : mode === 'reply' ? 'Reply' : 'Forward'} - Email Inbox`, composeUrl);
+        
+        // Load the compose view after a short delay to ensure DOM is ready
+        setTimeout(() => {
+            this.loadComposeInterface(mode, emailId);
+        }, 100);
     }
     
     bindEvents() {
@@ -251,8 +358,11 @@ class InboxManager {
                 if (e.state.view === 'email' && e.state.emailId) {
                     // Navigate to email view
                     this.loadEmailById(e.state.emailId);
+                } else if (e.state.view === 'compose') {
+                    // Navigate to compose view
+                    this.loadComposeInterface(e.state.mode || 'new', e.state.emailId);
                 } else if (e.state.folder) {
-                    // Navigate to folder view - hide email view if open
+                    // Navigate to folder view - hide email/compose views if open
                     this.hideEmailView();
                     // Don't reload folder content if it's already the current folder
                     if (this.currentFilters.folder !== e.state.folder) {
@@ -424,7 +534,7 @@ class InboxManager {
             if (query !== this.currentFilters.search) {
                 this.currentFilters.search = query;
                 this.currentPage = 1;
-                this.loadEmails();
+                this.loadEmails(false); // Use subtle loading for search
             }
         }, 500);
     }
@@ -433,7 +543,7 @@ class InboxManager {
         const query = $('#search-input').val().trim();
         this.currentFilters.search = query;
         this.currentPage = 1;
-        this.loadEmails();
+        this.loadEmails(false); // Use subtle loading for search
     }
     
     clearSearch() {
@@ -441,13 +551,13 @@ class InboxManager {
         $('#clear-search').hide();
         this.currentFilters.search = '';
         this.currentPage = 1;
-        this.loadEmails();
+        this.loadEmails(false); // Use subtle loading for filter changes
     }
     
     handleFilterChange(filterType, checked) {
         this.currentFilters[filterType] = checked;
         this.currentPage = 1;
-        this.loadEmails();
+        this.loadEmails(false); // Use subtle loading for filter changes
     }
     
     toggleQuickFilter(filterType) {
@@ -458,7 +568,7 @@ class InboxManager {
         $(`#filter-${filterType}`).prop('checked', this.currentFilters[filterType]);
         
         this.currentPage = 1;
-        this.loadEmails();
+        this.loadEmails(false); // Use subtle loading for quick filters
     }
     
     clearAllFilters() {
@@ -477,7 +587,7 @@ class InboxManager {
         $('#clear-search').hide();
         $('#filter-unread, #filter-important, #filter-attachments').prop('checked', false);
         
-        this.loadEmails();
+        this.loadEmails(false); // Use subtle loading for filter clearing
     }
     
     handleSort(sortBy) {
@@ -491,12 +601,12 @@ class InboxManager {
         }
         
         this.currentPage = 1;
-        this.loadEmails();
+        this.loadEmails(false); // Use subtle loading for sorting
     }
     
     loadPage(page) {
         this.currentPage = page;
-        this.loadEmails();
+        this.loadEmails(false); // Use subtle loading for pagination
     }
     
     handleSelectAll(checked) {
@@ -558,8 +668,12 @@ class InboxManager {
         this.updateSelectionState(this.selectedEmails.size);
     }
     
-    loadEmails() {
-        this.showLoading();
+    loadEmails(showFullLoading = false) {
+        if (showFullLoading) {
+            this.showLoading();
+        } else {
+            this.showSubtleLoading();
+        }
         
         const params = new URLSearchParams({
             page: this.currentPage,
@@ -602,9 +716,11 @@ class InboxManager {
                     this.updatePagination(response.pagination);
                     this.updateFolderStats(response.folder_stats);
                     
-                    // Update page title
-                    const folderName = this.currentFilters.folder || 'Inbox';
-                    document.title = `${folderName} - Email Inbox`;
+                    // Only update page title if not viewing an individual email
+                    if (!$('.email-view-overlay').is(':visible')) {
+                        const folderName = this.currentFilters.folder || 'Inbox';
+                        document.title = `${folderName} - Email Inbox`;
+                    }
                 } else {
                     this.showError('Failed to load emails');
                 }
@@ -613,16 +729,23 @@ class InboxManager {
                 this.showError('Failed to load emails');
             },
             complete: () => {
-                this.hideLoading();
+                if (showFullLoading) {
+                    this.hideLoading();
+                } else {
+                    this.hideSubtleLoading();
+                }
             }
         });
     }
     
     refreshInbox() {
+        console.log('Manual inbox refresh triggered');
+        
         const $refreshBtn = $('#refresh-btn');
         const $icon = $refreshBtn.find('i');
         
         $icon.addClass('fa-spin');
+        this.showSubtleLoading();
         
         $.ajax({
             url: window.inboxData?.urls?.refresh || '/inbox/refresh/',
@@ -637,7 +760,7 @@ class InboxManager {
                 unread: this.currentFilters.unread || null,
                 important: this.currentFilters.important || null,
                 attachments: this.currentFilters.attachments || null,
-                folder: this.currentFilters.folder || null  // ✅ Add missing folder filter
+                folder: this.currentFilters.folder || null
             }),
             success: (response) => {
                 if (response.success) {
@@ -645,7 +768,7 @@ class InboxManager {
                     this.updatePagination(response.pagination);
                     this.updateFolderStats(response.folder_stats);
                     this.updateDataStatus(response.data_status);
-                    // this.showSuccess('Inbox refreshed successfully'); // Commented out - too noisy
+                    console.log('Manual refresh completed successfully');
                 } else {
                     this.showError('Failed to refresh inbox');
                 }
@@ -655,6 +778,7 @@ class InboxManager {
             },
             complete: () => {
                 $icon.removeClass('fa-spin');
+                this.hideSubtleLoading();
             }
         });
     }
@@ -1002,31 +1126,46 @@ class InboxManager {
         const senderName = this.escapeHtml(email.sender_name || email.sender_email || '');
         const subject = this.escapeHtml(email.subject || '(No subject)');
         
-        // Clean email preview - no truncation
+        // Clean email preview - mimic server-side email_preview filter
         let preview = '';
         if (email.body) {
-            preview = email.body.replace(/\s+/g, ' ').trim();
+            preview = email.body;
+            // Remove HTML tags for preview (like server-side filter)
+            preview = preview.replace(/<[^>]+>/g, '');
+            // Remove extra whitespace
+            preview = preview.replace(/\s+/g, ' ').trim();
+            
+            // Truncate at word boundary for display
+            if (preview.length > 150) {
+                let truncated = preview.substring(0, 150);
+                let lastSpace = truncated.lastIndexOf(' ');
+                if (lastSpace > 0) {
+                    truncated = truncated.substring(0, lastSpace);
+                }
+                preview = truncated + '...';
+            }
         }
         preview = this.escapeHtml(preview);
         
-        // Format date
+        // Format date - match server-side template format "M d, H:i"
         let formattedDate = 'Unknown';
         if (email.received_time) {
             try {
-                const date = new Date(email.received_time + ' UTC');
-                const now = new Date();
-                const diffTime = Math.abs(now - date);
-                const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+                // Parse as local time (no timezone conversion) to match server-side behavior
+                const date = new Date(email.received_time.replace(' ', 'T'));
                 
-                if (diffDays === 1) {
-                    formattedDate = date.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
-                } else if (diffDays <= 7) {
-                    formattedDate = date.toLocaleDateString([], {weekday: 'short'});
-                } else if (date.getFullYear() === now.getFullYear()) {
-                    formattedDate = date.toLocaleDateString([], {month: 'short', day: 'numeric'});
-                } else {
-                    formattedDate = date.toLocaleDateString([], {year: '2-digit', month: 'short', day: 'numeric'});
-                }
+                // Format to match Django template: "M d, H:i" (e.g. "Jan 15, 14:30")
+                const options = {
+                    month: 'short',
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit',
+                    hour12: false
+                };
+                formattedDate = date.toLocaleDateString('en-US', options);
+                
+                // Ensure format matches "Jan 15, 14:30" pattern
+                formattedDate = formattedDate.replace(/(\w+)\s+(\d+),\s+(\d+):(\d+)/, '$1 $2, $3:$4');
             } catch (e) {
                 formattedDate = email.received_time.split(' ')[0];
             }
@@ -1156,13 +1295,80 @@ class InboxManager {
         }
     }
     
-    startAutoRefresh() {
+    startBackgroundRefresh() {
+        // Initial background refresh after page load
+        setTimeout(() => {
+            this.backgroundRefresh();
+        }, 2000); // Wait 2 seconds after page load
+        
         // Auto-refresh every 20 seconds, but only if no emails are selected
         this.refreshInterval = setInterval(() => {
             if (this.selectedEmails.size === 0) {
-                this.refreshInbox();
+                this.backgroundRefresh();
             }
         }, 20000);
+    }
+    
+    backgroundRefresh() {
+        // Silent refresh without showing loading indicators
+        console.log('Performing background refresh');
+        
+        const params = new URLSearchParams({
+            page: this.currentPage,
+            per_page: 25,
+            sort_by: this.currentFilters.sort_by,
+            sort_order: this.currentFilters.sort_order
+        });
+        
+        // Add filters
+        if (this.currentFilters.search) {
+            params.append('search', this.currentFilters.search);
+        }
+        if (this.currentFilters.unread) {
+            params.append('unread', '1');
+        }
+        if (this.currentFilters.important) {
+            params.append('important', '1');
+        }
+        if (this.currentFilters.attachments) {
+            params.append('attachments', '1');
+        }
+        if (this.currentFilters.folder) {
+            params.append('folder', this.currentFilters.folder);
+        }
+        
+        const baseUrl = window.inboxData?.urls?.inbox || '/inbox/';
+        
+        // Use AJAX for background update
+        $.ajax({
+            url: baseUrl,
+            method: 'GET',
+            data: params.toString(),
+            headers: {
+                'X-Requested-With': 'XMLHttpRequest'
+            },
+            success: (response) => {
+                if (response.success) {
+                    // Update email list
+                    this.updateEmailList(response.emails);
+                    this.updatePagination(response.pagination);
+                    this.updateFolderStats(response.folder_stats);
+                    
+                    console.log('Background refresh completed');
+                } else {
+                    console.warn('Background refresh failed:', response);
+                }
+            },
+            error: (xhr, status, error) => {
+                console.warn('Background refresh error:', { status, error });
+                // Don't show error messages for background refresh failures
+            }
+        });
+    }
+    
+    startAutoRefresh() {
+        // Deprecated - use startBackgroundRefresh instead
+        this.startBackgroundRefresh();
     }
     
     stopAutoRefresh() {
@@ -1192,6 +1398,26 @@ class InboxManager {
         $('#loading-overlay').hide();
         // Also remove folder loading states when emails finish loading
         this.removeLoadingFromFolders();
+    }
+    
+    showSubtleLoading() {
+        // Add a subtle loading indicator to the refresh button
+        const $refreshBtn = $('#refresh-btn');
+        const $icon = $refreshBtn.find('i');
+        $icon.addClass('fa-spin');
+        
+        // Add subtle loading to email list
+        $('.email-list').addClass('subtle-loading');
+    }
+    
+    hideSubtleLoading() {
+        // Remove loading from refresh button
+        const $refreshBtn = $('#refresh-btn');
+        const $icon = $refreshBtn.find('i');
+        $icon.removeClass('fa-spin');
+        
+        // Remove subtle loading from email list
+        $('.email-list').removeClass('subtle-loading');
     }
     
     showSuccess(message) {
@@ -1305,7 +1531,7 @@ class InboxManager {
         this.updateFolderDisplay(folder);
         
         // Load emails for the new folder
-        this.loadEmails();
+        this.loadEmails(true); // Use full loading for folder changes
     }
     
     updateFolderDisplay(folder) {
@@ -1583,9 +1809,14 @@ class InboxManager {
                 'X-Requested-With': 'XMLHttpRequest'
             },
             success: (response) => {
+                console.log('Compose AJAX response:', response);
+                
                 if (response.success && response.compose_view) {
+                    console.log('Compose view loaded successfully');
+                    
                     // Replace the email list with the compose view
                     this.updateEmailView(response.html);
+                    console.log('Compose HTML inserted into page');
                     
                     // Initialize compose manager
                     this.initializeComposeManager();
@@ -1594,10 +1825,12 @@ class InboxManager {
                     const title = mode === 'new' ? 'Compose' : mode === 'reply' ? 'Reply' : 'Forward';
                     document.title = `${title} - Email Inbox`;
                 } else {
+                    console.error('Compose view failed to load:', response);
                     this.showError('Failed to load compose interface');
                 }
             },
-            error: () => {
+            error: (xhr, status, error) => {
+                console.error('Compose AJAX error:', { xhr, status, error });
                 this.showError('Failed to load compose interface');
             },
             complete: () => {
@@ -1607,11 +1840,26 @@ class InboxManager {
     }
     
     initializeComposeManager() {
+        console.log('=== Initializing ComposeManager ===');
+        
+        // Check if ComposeManager class is available
+        if (typeof ComposeManager === 'undefined') {
+            console.error('ComposeManager class not found! Make sure compose.js is loaded.');
+            return;
+        }
+        
         // Initialize the compose manager if it doesn't exist
         if (!window.composeManager) {
+            console.log('Creating new ComposeManager instance');
             window.composeManager = new ComposeManager();
+        } else {
+            console.log('Using existing ComposeManager instance');
         }
+        
+        // Initialize compose functionality
+        console.log('Calling initializeCompose()');
         window.composeManager.initializeCompose();
+        console.log('ComposeManager initialized successfully');
     }
 }
 

@@ -1166,4 +1166,52 @@
 
 .tooltip.bs-tooltip-end .tooltip-arrow::before {
     border-right-color: #333 !important;
+}
+
+/* ===== SUBTLE LOADING INDICATOR STYLES ===== */
+
+.email-list.subtle-loading {
+    position: relative;
+}
+
+.email-list.subtle-loading::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #1a73e8, transparent);
+    background-size: 200% 100%;
+    animation: subtleLoading 1.5s infinite;
+    z-index: 10;
+}
+
+@keyframes subtleLoading {
+    0% {
+        background-position: -200% 0;
+    }
+    100% {
+        background-position: 200% 0;
+    }
+}
+
+.email-list.subtle-loading .email-item {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+/* Refresh button loading state */
+#refresh-btn .fa-spin {
+    animation: fa-spin 1s infinite linear;
+}
+
+/* Initial page load optimization */
+.email-list {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
+.email-list.loading {
+    opacity: 0.5;
 } 

@@ -2,6 +2,7 @@
 {% load static %}
 {% load i18n %}
 {% load pdf_extras %}
+{% load email_extras %}
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'normieapp/css/inbox.css' %}">
@@ -343,14 +344,14 @@
                         <span class="sender-name" title="{{ email.sender_email }}">{{ email.sender_name|default:email.sender_email }}</span>
                     </div>
                     <div class="email-item-subject">
-                        <a href="{% url 'inbox_view_message' email.id %}" class="email-link">
+                        <a href="/inbox/view/{{ email.id }}/" class="email-link">
                             <span class="subject">
                                 {{ email.subject|default:"(No subject)" }}
                                 {% if email.attachments %}
                                 <i class="fas fa-paperclip text-muted" title="{% trans 'Has attachments' %}"></i>
                                 {% endif %}
                             </span>
-                            <span class="email-preview">{{ email.body }}</span>
+                            <span class="email-preview">{{ email.body|email_preview:150 }}</span>
                         </a>
                     </div>
                     <div class="email-item-date">
