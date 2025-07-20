@@ -121,6 +121,14 @@
                                 <div class="dropdown-item-description">Track processing status</div>
                             </div>
                         </a>
+                        
+                        <a href="{% url 'under_construction' %}" class="dropdown-item">
+                            <i class="fas fa-history"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Request History</div>
+                                <div class="dropdown-item-description">View past requests</div>
+                            </div>
+                        </a>
                     </div>
                     
                     <div class="dropdown-section">
@@ -153,6 +161,13 @@
                                 <div class="dropdown-item-description">Technical classification</div>
                             </div>
                         </a>
+                        <a href="{% url 'under_construction' %}" class="dropdown-item">
+                            <i class="fas fa-chart-bar"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Analytics</div>
+                                <div class="dropdown-item-description">Data insights & reports</div>
+                            </div>
+                        </a>
                     </div>
                     
                     <div class="dropdown-section">
@@ -169,6 +184,20 @@
                             <div class="dropdown-item-content">
                                 <div class="dropdown-item-title">Applicant State Parser</div>
                                 <div class="dropdown-item-description">Parse and analyze applicant status data</div>
+                            </div>
+                        </a>
+                        <a href="{% url 'under_construction' %}" class="dropdown-item">
+                            <i class="fas fa-cogs"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Batch Processing</div>
+                                <div class="dropdown-item-description">Automated workflow execution</div>
+                            </div>
+                        </a>
+                        <a href="{% url 'under_construction' %}" class="dropdown-item">
+                            <i class="fas fa-tasks"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Task Manager</div>
+                                <div class="dropdown-item-description">Manage workflow tasks</div>
                             </div>
                         </a>
                     </div>
@@ -353,18 +382,18 @@
                                 
                                 <div class="solutions-section">
                                     <div class="solutions-title">Collaboration</div>
-                                    <a href="https://rollsroyce.kanbanize.com/" class="dropdown-item" target="_blank">
+                                    <a href="https://rollsroyce.sharepoint.com/" class="dropdown-item" target="_blank">
                                         <i class="fas fa-cogs"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">Engine Room</div>
-                                            <div class="dropdown-item-description">Project management</div>
+                                            <div class="dropdown-item-description">Corporate intranet</div>
                                         </div>
                                     </a>
-                                    <a href="https://rollsroyce.sharepoint.com/" class="dropdown-item" target="_blank">
+                                    <a href="https://rollsroyce.kanbanize.com/" class="dropdown-item" target="_blank">
                                         <i class="fas fa-map"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">BusinessMap</div>
-                                            <div class="dropdown-item-description">Process mapping</div>
+                                            <div class="dropdown-item-description">Project management</div>
                                         </div>
                                     </a>
                                 </div>
@@ -593,18 +622,18 @@
                                 
                                 <div class="solutions-section">
                                     <div class="solutions-title">Collaboration</div>
-                                    <a href="https://rollsroyce.kanbanize.com/" class="dropdown-item" target="_blank">
+                                    <a href="https://rollsroyce.sharepoint.com/" class="dropdown-item" target="_blank">
                                         <i class="fas fa-cogs"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">Engine Room</div>
-                                            <div class="dropdown-item-description">Project management</div>
+                                            <div class="dropdown-item-description">Corporate intranet</div>
                                         </div>
                                     </a>
-                                    <a href="https://rollsroyce.sharepoint.com/" class="dropdown-item" target="_blank">
+                                    <a href="https://rollsroyce.kanbanize.com/" class="dropdown-item" target="_blank">
                                         <i class="fas fa-map"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">BusinessMap</div>
-                                            <div class="dropdown-item-description">Process mapping</div>
+                                            <div class="dropdown-item-description">Project management</div>
                                         </div>
                                     </a>
                                 </div>
@@ -688,18 +717,9 @@
                 
                 <!-- Profile Menu -->
                 <div class="user-profile-container">
-                    <div class="user-badge" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-label="{% trans 'User profile menu' %}">
-                        <div class="user-avatar">
-                            {{ user.username|first|upper }}
-                        </div>
-                        <div class="user-info">
-                            <span class="user-display-name">{{ user.get_full_name|default:user.username }}</span>
-                            {% if user.profile %}
-                                <span class="user-role">{{ user.profile.get_role_display }}</span>
-                            {% endif %}
-                        </div>
-                        <i class="fas fa-chevron-down dropdown-arrow" aria-hidden="true"></i>
-                    </div>
+                    <button class="user-avatar-icon" tabindex="0" role="button" aria-haspopup="true" aria-expanded="false" aria-label="{% trans 'User profile menu' %}" title="{{ user.get_full_name|default:user.username }}">
+                        {{ user.username|first|upper }}
+                    </button>
                     
                     <div class="profile-dropdown-menu">
                         <div class="dropdown-header">
@@ -796,6 +816,106 @@
         
         {% block content %}{% endblock %}
     </div>
+    
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-links">
+                <div class="footer-column">
+                    <h3>
+                        {% trans "Standards Management" %}
+                        <i class="fas fa-chevron-down"></i>
+                    </h3>
+                    <ul>
+                        <li><a href="{% url 'under_construction' %}">{% trans "Change Requests" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "CR Status Tracking" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "Specifications" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "Analytics" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "History" %}</a></li>
+                        <li><a href="https://nautos.de/" target="_blank">{% trans "Nautos Platform" %}</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>
+                        {% trans "CheMat Solutions" %}
+                        <i class="fas fa-chevron-down"></i>
+                    </h3>
+                    <ul>
+                        <li><a href="{% url 'open_request' %}">{% trans "Open Request" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "Request Status" %}</a></li>
+                        <li><a href="{% url 'directory' %}">{% trans "Material Directory" %}</a></li>
+                        <li><a href="{% url 'chemscan' %}">{% trans "ChemScan Analysis" %}</a></li>
+                        <li><a href="{% url 'tkz' %}">{% trans "TKZ Classification" %}</a></li>
+                        <li><a href="{% url 'inbox' %}">{% trans "Email Management" %}</a></li>
+                        <li><a href="{% url 'pdf_parser' %}">{% trans "PDF Parser" %}</a></li>
+                        <li><a href="{% url 'applicant_state_parser' %}">{% trans "Applicant Parser" %}</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>
+                        {% trans "Partners & Tools" %}
+                        <i class="fas fa-chevron-down"></i>
+                    </h3>
+                    <ul>
+                        <li><a href="https://app.chemscan.de/" target="_blank">{% trans "ChemScan Platform" %}</a></li>
+                        <li><a href="https://nautos.de/" target="_blank">{% trans "Nautos Standards" %}</a></li>
+                        <li><a href="https://rollsroyce.sharepoint.com/" target="_blank">{% trans "Engine Room" %}</a></li>
+                        <li><a href="https://rollsroyce.kanbanize.com/" target="_blank">{% trans "BusinessMap" %}</a></li>
+                        <li><a href="https://micro.film/" target="_blank">{% trans "Micro Platform" %}</a></li>
+                        <li><a href="https://findex.io/" target="_blank">{% trans "Findex Search" %}</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>
+                        {% trans "Resources & Support" %}
+                        <i class="fas fa-chevron-down"></i>
+                    </h3>
+                    <ul>
+                        <li><a href="{% url 'under_construction' %}">{% trans "User Guide" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "API Documentation" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "Standard Operating Procedures" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "Software Downloads" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "Excel Templates" %}</a></li>
+                        <li><a href="{% url 'under_construction' %}">{% trans "PDF Forms" %}</a></li>
+                        {% if user.is_authenticated and user.profile.role == 'admin' %}
+                        <li><a href="{% url 'user_management' %}">{% trans "User Management" %}</a></li>
+                        <li><a href="{% url 'settings' %}">{% trans "System Settings" %}</a></li>
+                        {% endif %}
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="footer-logo">
+                    <img src="{% static 'normieapp/img/logo-light.png' %}" alt="Normie Logo">
+                    <span>normie</span>
+                </div>
+                
+                <div class="footer-legal">
+                    <a href="{% url 'under_construction' %}">{% trans "Privacy Policy" %}</a>
+                    <a href="{% url 'under_construction' %}">{% trans "Terms of Service" %}</a>
+                    <a href="{% url 'under_construction' %}">{% trans "License" %}</a>
+                    {% if user.is_authenticated %}
+                    <a href="{% url 'contact' %}">{% trans "Contact" %}</a>
+                    {% endif %}
+                </div>
+                
+                <div class="footer-extra">
+                    <a href="{% url 'under_construction' %}" class="footer-help">
+                        <i class="fas fa-question-circle"></i>
+                        {% trans "Help" %}
+                    </a>
+                    <select class="footer-lang-selector">
+                        <option value="en" {% if LANGUAGE_CODE == 'en' %}selected{% endif %}>English</option>
+                        <option value="de" {% if LANGUAGE_CODE == 'de' %}selected{% endif %}>Deutsch</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </footer>
     
     <!-- jQuery -->
     <script src="{% static "normieapp/js/vendor/jquery-3.6.4.min.js" %}"></script>
@@ -912,7 +1032,7 @@
             // Click navbar to toggle visibility
             navbar.addEventListener('click', function(e) {
                 // Don't trigger if clicking on interactive elements
-                if (e.target.closest('.dropdown-toggle, .mobile-menu-button, #dark-mode-toggle, #lang-toggle, .user-badge')) {
+                if (e.target.closest('.dropdown-toggle, .mobile-menu-button, #dark-mode-toggle, #lang-toggle, .user-avatar-icon')) {
                     return;
                 }
                 
@@ -955,65 +1075,53 @@
                 });
             }
             
+            // Global state for dropdown management
+            let currentActiveDropdown = null;
+            
+            // Function to close all dropdowns
+            function closeAllDropdowns() {
+                navbarDropdowns.forEach(dropdown => {
+                    dropdown.classList.remove('active');
+                });
+                if (overlay) {
+                    overlay.classList.remove('active');
+                }
+                currentActiveDropdown = null;
+            }
+            
+            // Function to open a specific dropdown
+            function openDropdown(dropdown) {
+                // Close all other dropdowns first
+                closeAllDropdowns();
+                
+                // Open the selected dropdown
+                dropdown.classList.add('active');
+                
+                // Only show overlay on desktop
+                if (overlay && window.innerWidth > 768) {
+                    overlay.classList.add('active');
+                }
+                currentActiveDropdown = dropdown;
+            }
+            
             navbarDropdowns.forEach(dropdown => {
                 const toggle = dropdown.querySelector('.dropdown-toggle');
                 const menu = dropdown.querySelector('.card-dropdown');
                 
                 if (toggle && menu) {
-                    let isOpen = false;
-                    
-                    // Function to open dropdown
-                    function openDropdown() {
-                        // Close other dropdowns immediately
-                        navbarDropdowns.forEach(otherDropdown => {
-                            if (otherDropdown !== dropdown) {
-                                otherDropdown.classList.remove('active');
-                            }
-                        });
-                        
-                        isOpen = true;
-                        dropdown.classList.add('active');
-                        if (overlay) {
-                            overlay.classList.add('active');
-                        }
-                    }
-                    
-                    // Function to close dropdown
-                    function closeDropdown() {
-                        isOpen = false;
-                        dropdown.classList.remove('active');
-                        if (overlay) {
-                            overlay.classList.remove('active');
-                        }
-                    }
-                    
                     // Toggle dropdown on click only
                     toggle.addEventListener('click', function(e) {
                         e.preventDefault();
                         e.stopPropagation();
                         
-                        if (isOpen) {
-                            closeDropdown();
+                        if (currentActiveDropdown === dropdown) {
+                            // If this dropdown is already open, close it
+                            closeAllDropdowns();
                         } else {
-                            openDropdown();
+                            // Open this dropdown (will close others automatically)
+                            openDropdown(dropdown);
                         }
                     });
-                    
-                    // Close dropdown when clicking outside or on overlay
-                    document.addEventListener('click', function(e) {
-                        if (!dropdown.contains(e.target) && !menu.contains(e.target) && isOpen) {
-                            closeDropdown();
-                        }
-                    });
-                    
-                    // Close dropdown when clicking on overlay
-                    if (overlay) {
-                        overlay.addEventListener('click', function() {
-                            if (isOpen) {
-                                closeDropdown();
-                            }
-                        });
-                    }
                     
                     // Handle dropdown item clicks
                     const dropdownItems = menu.querySelectorAll('.dropdown-item');
@@ -1021,17 +1129,40 @@
                         item.addEventListener('click', function(e) {
                             // Close dropdown immediately after click
                             setTimeout(() => {
-                                closeDropdown();
+                                closeAllDropdowns();
                             }, 50);
                         });
                     });
-                    
-                    // Close on Escape key
-                    document.addEventListener('keydown', function(e) {
-                        if (e.key === 'Escape' && isOpen) {
-                            closeDropdown();
+                }
+            });
+            
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (currentActiveDropdown && !currentActiveDropdown.contains(e.target)) {
+                    // On mobile, only close if clicking outside the mobile menu
+                    if (window.innerWidth <= 768) {
+                        if (!navbarLinks.contains(e.target)) {
+                            closeAllDropdowns();
                         }
-                    });
+                    } else {
+                        closeAllDropdowns();
+                    }
+                }
+            });
+            
+            // Close dropdown when clicking on overlay
+            if (overlay) {
+                overlay.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    closeAllDropdowns();
+                });
+            }
+            
+            // Close on Escape key
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'Escape' && currentActiveDropdown) {
+                    closeAllDropdowns();
                 }
             });
         });
@@ -1040,13 +1171,13 @@
         document.addEventListener('DOMContentLoaded', function() {
             const profileContainer = document.querySelector('.user-profile-container');
             const dropdownMenu = document.querySelector('.profile-dropdown-menu');
-            const userBadge = document.querySelector('.user-badge');
+            const userAvatarIcon = document.querySelector('.user-avatar-icon');
             
-            if (profileContainer && dropdownMenu && userBadge) {
+            if (profileContainer && dropdownMenu && userAvatarIcon) {
                 let isOpen = false;
                 
                 // Toggle dropdown on click
-                userBadge.addEventListener('click', function(e) {
+                userAvatarIcon.addEventListener('click', function(e) {
                     e.preventDefault();
                     e.stopPropagation();
                     
@@ -1054,11 +1185,11 @@
                     if (isOpen) {
                         dropdownMenu.classList.add('show');
                         profileContainer.classList.add('active');
-                        userBadge.setAttribute('aria-expanded', 'true');
+                        userAvatarIcon.setAttribute('aria-expanded', 'true');
                     } else {
                         dropdownMenu.classList.remove('show');
                         profileContainer.classList.remove('active');
-                        userBadge.setAttribute('aria-expanded', 'false');
+                        userAvatarIcon.setAttribute('aria-expanded', 'false');
                     }
                 });
                 
@@ -1068,7 +1199,7 @@
                         isOpen = false;
                         dropdownMenu.classList.remove('show');
                         profileContainer.classList.remove('active');
-                        userBadge.setAttribute('aria-expanded', 'false');
+                        userAvatarIcon.setAttribute('aria-expanded', 'false');
                     }
                 });
                 
@@ -1088,17 +1219,17 @@
                             isOpen = false;
                             dropdownMenu.classList.remove('show');
                             profileContainer.classList.remove('active');
-                            userBadge.setAttribute('aria-expanded', 'false');
+                            userAvatarIcon.setAttribute('aria-expanded', 'false');
                         }, 100);
                     });
                 });
                 
                 // Add keyboard accessibility
-                userBadge.addEventListener('keydown', function(e) {
+                userAvatarIcon.addEventListener('keydown', function(e) {
                     // Open on Enter or Space
                     if (e.key === 'Enter' || e.key === ' ') {
                         e.preventDefault();
-                        userBadge.click();
+                        userAvatarIcon.click();
                     }
                 });
                 
@@ -1108,12 +1239,47 @@
                         isOpen = false;
                         dropdownMenu.classList.remove('show');
                         profileContainer.classList.remove('active');
-                        userBadge.setAttribute('aria-expanded', 'false');
-                        userBadge.focus(); // Return focus to the button
+                        userAvatarIcon.setAttribute('aria-expanded', 'false');
+                        userAvatarIcon.focus(); // Return focus to the button
                     }
                 });
             }
         });
+        
+        // Footer mobile toggle functionality
+        const footerColumns = document.querySelectorAll('.footer-column h3');
+        
+        function toggleFooterColumn(column) {
+            const parent = column.parentElement;
+            parent.classList.toggle('expanded');
+        }
+        
+        footerColumns.forEach(column => {
+            column.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    toggleFooterColumn(this);
+                }
+            });
+        });
+        
+        // Handle window resize for footer
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                document.querySelectorAll('.footer-column').forEach(col => {
+                    col.classList.remove('expanded');
+                });
+            }
+        });
+        
+        // Footer language selector change
+        const footerLangSelector = document.querySelector('.footer-lang-selector');
+        if (footerLangSelector) {
+            footerLangSelector.addEventListener('change', function() {
+                const selectedLang = this.value;
+                // You can implement language switching logic here
+                console.log('Footer language changed to:', selectedLang);
+            });
+        }
     </script>
     {% block extra_js %}{% endblock %}
 </body>

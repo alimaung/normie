@@ -1,6 +1,7 @@
 from django import template
 from django.utils.safestring import mark_safe
 import json
+from datetime import datetime
 
 register = template.Library()
 
@@ -28,6 +29,27 @@ def dict_get(dictionary, key):
 def get_item(dictionary, key):
     """Get an item from a dictionary using a key."""
     return dictionary.get(key)
+
+
+
+@register.filter
+def parse_datetime(date_string):
+    """
+    Parse datetime string to datetime object for Django date filters.
+    Usage: {{ email.received_time|parse_datetime|date:"M d, H:i" }}
+    """
+    if not date_string:
+        return None
+    
+    try:
+        # Handle the format from VBA/JSON: "2025-07-14 09:02:31"
+        if isinstance(date_string, str):
+            return datetime.strptime(date_string, '%Y-%m-%d %H:%M:%S')
+        # If it's already a datetime object, return as-is
+        return date_string
+    except (ValueError, TypeError):
+        # If parsing fails, return None so template can handle gracefully
+        return None
 
 @register.filter
 def field_type_class(field_type):

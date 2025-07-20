@@ -58,7 +58,7 @@
                     "icon": "tools",
                     "color": "terminal.ansiBrightBlue",
                     "commands": [
-                        "cd .\\.utils"
+                        "cd .\\.utils\\server_wake; py monitor.py"
                     ]
                 },
                 {
@@ -70,7 +70,16 @@
                         "cd .\\.launch"
                     ]
                 }
-            ]
+            ],
+            {
+                "name": "powershell",
+                "autoExecuteCommands": true,
+                "icon": "terminal-powershell",
+                "color": "terminal.ansiBrightBlue",
+                "commands": [
+                    "cd .\\.utils\\server_wake; py wake_lock.py"
+                ]
+            }
         ],
         "saved-session": [
             {

@@ -3,6 +3,7 @@ import json
 import PyPDF2
 import base64
 import re
+import logging
 from django.conf import settings
 from reportlab.pdfgen import canvas
 from reportlab.lib.pagesizes import A4
@@ -10,9 +11,11 @@ from io import BytesIO
 from datetime import datetime
 import tempfile
 import shutil
+from pathlib import Path
+from logging.handlers import RotatingFileHandler
 
 """
-PDF Service Module - Enhanced with German Field Mapping
+PDF Service Module - Enhanced with German Field Mapping and Comprehensive Logging
 
 This module has been updated to implement the functionality from:
 - pdf_fields.py: Proper field extraction and cleaning
@@ -24,6 +27,7 @@ Key Features:
 3. Proper signature field handling and formatting
 4. Natural field sorting (1, 2a, 2b, 3, ...)
 5. Field validation and type checking
+6. Comprehensive file logging with rotation and categorization
 
 Updated Functions:
 - extract_pdf_fields_pypdf2(): Now uses PDF_FIELD_DICT for field mapping
@@ -32,6 +36,123 @@ Updated Functions:
 
 TODO: Replace PDF_FIELD_DICT placeholder with actual mapping from pdf_decode.py
 """
+
+# Configure file logging for PDF Service
+def setup_pdf_logging():
+    """
+    Configure file logging for the PDF Service with rotation and proper formatting.
+    Creates separate log files for different PDF operations.
+    """
+    # Create logs directory if it doesn't exist
+    log_dir = Path(settings.BASE_DIR) / 'logs'
+    log_dir.mkdir(exist_ok=True)
+    
+    # Create pdf-specific log directory
+    pdf_log_dir = log_dir / 'pdf'
+    pdf_log_dir.mkdir(exist_ok=True)
+    
+    # Configure the logger
+    logger = logging.getLogger('pdf_service')
+    logger.setLevel(logging.DEBUG)
+    
+    # Remove existing handlers to avoid duplicates
+    for handler in logger.handlers[:]:
+        logger.removeHandler(handler)
+    
+    # Create formatters
+    detailed_formatter = logging.Formatter(
+        '%(asctime)s - %(name)s - %(levelname)s - %(funcName)s:%(lineno)d - %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
+    )
+    
+    simple_formatter = logging.Formatter(
+        '%(asctime)s - %(levelname)s - %(message)s',
+        datefmt='%Y-%m-%d %H:%M:%S'
+    )
+    
+    # Main log file - all PDF operations (with rotation)
+    main_handler = RotatingFileHandler(
+        pdf_log_dir / 'pdf_service.log',
+        maxBytes=10*1024*1024,  # 10MB
+        backupCount=5,
+        encoding='utf-8'
+    )
+    main_handler.setLevel(logging.DEBUG)
+    main_handler.setFormatter(detailed_formatter)
+    logger.addHandler(main_handler)
+    
+    # Error log file - only errors and critical messages
+    error_handler = RotatingFileHandler(
+        pdf_log_dir / 'pdf_errors.log',
+        maxBytes=5*1024*1024,  # 5MB
+        backupCount=3,
+        encoding='utf-8'
+    )
+    error_handler.setLevel(logging.ERROR)
+    error_handler.setFormatter(detailed_formatter)
+    logger.addHandler(error_handler)
+    
+    # Field operations log - specific to field extraction and manipulation
+    field_handler = RotatingFileHandler(
+        pdf_log_dir / 'pdf_fields.log',
+        maxBytes=5*1024*1024,  # 5MB
+        backupCount=3,
+        encoding='utf-8'
+    )
+    field_handler.setLevel(logging.INFO)
+    field_handler.setFormatter(simple_formatter)
+    
+    # Add a filter to only log field-related messages
+    def field_filter(record):
+        field_keywords = ['field', 'extract', 'form', 'button', 'signature', 'value', 'mapping']
+        return any(keyword in record.getMessage().lower() for keyword in field_keywords)
+    
+    field_handler.addFilter(field_filter)
+    logger.addHandler(field_handler)
+    
+    # Generation log - specific to PDF generation and saving operations
+    generation_handler = RotatingFileHandler(
+        pdf_log_dir / 'pdf_generation.log',
+        maxBytes=5*1024*1024,  # 5MB
+        backupCount=3,
+        encoding='utf-8'
+    )
+    generation_handler.setLevel(logging.INFO)
+    generation_handler.setFormatter(simple_formatter)
+    
+    # Add a filter to only log generation-related messages
+    def generation_filter(record):
+        gen_keywords = ['save', 'generate', 'fill', 'create', 'write', 'output', 'template']
+        return any(keyword in record.getMessage().lower() for keyword in gen_keywords)
+    
+    generation_handler.addFilter(generation_filter)
+    logger.addHandler(generation_handler)
+    
+    # Performance log - timing and performance metrics
+    performance_handler = RotatingFileHandler(
+        pdf_log_dir / 'pdf_performance.log',
+        maxBytes=3*1024*1024,  # 3MB
+        backupCount=2,
+        encoding='utf-8'
+    )
+    performance_handler.setLevel(logging.INFO)
+    performance_handler.setFormatter(simple_formatter)
+    
+    # Add a filter for performance-related messages
+    def performance_filter(record):
+        perf_keywords = ['time', 'performance', 'duration', 'speed', 'processing']
+        return any(keyword in record.getMessage().lower() for keyword in perf_keywords)
+    
+    performance_handler.addFilter(performance_filter)
+    logger.addHandler(performance_handler)
+    
+    # Prevent propagation to root logger
+    logger.propagate = False
+    
+    return logger
+
+# Initialize the file logger
+pdf_logger = setup_pdf_logging()
 
 try:
     import fitz  # PyMuPDF
@@ -1079,80 +1200,123 @@ def extract_pdf_fields_pypdf2(pdf_path):
     Extract form fields using PyPDF2 with proper German field mapping.
     Now uses PDF_FIELD_DICT for field names, types, and value translation.
     """
+    start_time = datetime.now()
+    pdf_logger.info(f"=== Starting PDF field extraction from: {pdf_path} ===")
+    pdf_logger.debug(f"Extraction started at: {start_time}")
+    
     fields = []
     
-    # Open the PDF file
-    with open(pdf_path, 'rb') as file:
-        reader = PyPDF2.PdfReader(file)
+    try:
+        # Check if file exists
+        if not os.path.exists(pdf_path):
+            pdf_logger.error(f"PDF file not found: {pdf_path}")
+            raise FileNotFoundError(f"PDF file not found: {pdf_path}")
         
-        # Check if the PDF has form fields
-        if reader.get_fields():
-            # Get all form fields
-            form_fields = reader.get_fields()
+        file_size = os.path.getsize(pdf_path)
+        pdf_logger.info(f"Processing PDF file - Size: {file_size} bytes")
+        
+        # Open the PDF file
+        with open(pdf_path, 'rb') as file:
+            pdf_logger.debug("Opening PDF file for reading")
+            reader = PyPDF2.PdfReader(file)
+        
+            pdf_logger.debug(f"PDF has {len(reader.pages)} pages")
             
-            # Process each field with natural sorting
-            field_ids = sorted(form_fields.keys(), key=natural_sort_key)
-            for field_id in field_ids:
-                field = form_fields[field_id]
+            # Check if the PDF has form fields
+            form_fields = reader.get_fields()
+            if form_fields:
+                pdf_logger.info(f"Found {len(form_fields)} form fields in PDF")
+                pdf_logger.debug(f"Field IDs: {list(form_fields.keys())}")
                 
-                # Remove /Kids entries that can cause issues
-                if '/Kids' in field:
-                    del field['/Kids']
+                # Process each field with natural sorting
+                field_ids = sorted(form_fields.keys(), key=natural_sort_key)
+                pdf_logger.debug(f"Processing fields in sorted order: {field_ids}")
                 
-                # Get basic field type from PDF
-                pdf_field_type = field.get('/FT', 'Unknown')
-                
-                # Get field value and clean it for JSON serialization
-                raw_value = field.get('/V', '')
-                field_value = clean_value(raw_value)
-                
-                # Use PDF_FIELD_DICT for field metadata
-                field_name = get_field_name_from_dict(field_id)
-                field_type = get_field_type_from_dict(field_id)
-                
-                # Handle different field types properly
-                if pdf_field_type == '/Tx':  # Text field
-                    # For text fields, just use the cleaned value
-                    processed_value = field_value
+                for field_id in field_ids:
+                    pdf_logger.debug(f"Processing field: {field_id}")
+                    field = form_fields[field_id]
                     
-                elif pdf_field_type == '/Btn':  # Button field
-                    # For button fields, translate PDF values to German display text
-                    if field_value:
-                        processed_value = translate_button_value_to_display(field_id, field_value)
-                    else:
-                        processed_value = ""
+                    # Remove /Kids entries that can cause issues
+                    if '/Kids' in field:
+                        del field['/Kids']
                     
-                elif pdf_field_type == '/Sig':  # Signature field
-                    # For signature fields, clean and format the data
-                    if field_value:
-                        cleaned_sig = clean_signature_field_data(field)
-                        if cleaned_sig != field:
-                            # If signature was cleaned, format it for display
-                            processed_value = format_signature_display(cleaned_sig)
-                        else:
-                            processed_value = "Digital Signature Present"
-                    else:
-                        processed_value = ""
+                    # Get basic field type from PDF
+                    pdf_field_type = field.get('/FT', 'Unknown')
+                    pdf_logger.debug(f"Field {field_id}: type={pdf_field_type}")
+                    
+                    # Get field value and clean it for JSON serialization
+                    raw_value = field.get('/V', '')
+                    field_value = clean_value(raw_value)
+                    pdf_logger.debug(f"Field {field_id}: raw_value={raw_value}, cleaned_value={field_value}")
+                    
+                    # Use PDF_FIELD_DICT for field metadata
+                    field_name = get_field_name_from_dict(field_id)
+                    field_type = get_field_type_from_dict(field_id)
+                    
+                    # Handle different field types properly
+                    if pdf_field_type == '/Tx':  # Text field
+                        # For text fields, just use the cleaned value
+                        processed_value = field_value
+                        pdf_logger.debug(f"Text field {field_id}: value='{processed_value}'")
                         
-                else:
-                    # Default handling for unknown field types
-                    processed_value = field_value
+                    elif pdf_field_type == '/Btn':  # Button field
+                        # For button fields, translate PDF values to German display text
+                        if field_value:
+                            processed_value = translate_button_value_to_display(field_id, field_value)
+                            pdf_logger.debug(f"Button field {field_id}: {field_value} -> {processed_value}")
+                        else:
+                            processed_value = ""
+                        
+                    elif pdf_field_type == '/Sig':  # Signature field
+                        # For signature fields, clean and format the data
+                        if field_value:
+                            cleaned_sig = clean_signature_field_data(field)
+                            if cleaned_sig != field:
+                                # If signature was cleaned, format it for display
+                                processed_value = format_signature_display(cleaned_sig)
+                                pdf_logger.info(f"Signature field {field_id}: formatted signature found")
+                            else:
+                                processed_value = "Digital Signature Present"
+                        else:
+                            processed_value = ""
+                            
+                    else:
+                        # Default handling for unknown field types
+                        processed_value = field_value
+                        pdf_logger.warning(f"Unknown field type {pdf_field_type} for field {field_id}")
+                    
+                    # Validate field exists in our dictionary
+                    if field_id not in PDF_FIELD_DICT:
+                        pdf_logger.warning(f"Field '{field_id}' not found in PDF_FIELD_DICT")
+                    
+                    # Add field to result with proper type mapping
+                    field_data = {
+                        'id': field_id,
+                        'name': field_name,
+                        'type': f"/{pdf_field_type[1:]}" if pdf_field_type.startswith('/') else f"/{pdf_field_type}",
+                        'value': processed_value,
+                        'dict_type': field_type,
+                        'raw_value': field_value,
+                    }
+                    fields.append(field_data)
+                    pdf_logger.debug(f"Added field to results: {field_id}")
                 
-                # Validate field exists in our dictionary
-                if field_id not in PDF_FIELD_DICT:
-                    print(f"Warning: Field '{field_id}' not found in PDF_FIELD_DICT")
-                
-                # Add field to result with proper type mapping
-                fields.append({
-                    'id': field_id,
-                    'name': field_name,
-                    'type': f"/{pdf_field_type[1:]}" if pdf_field_type.startswith('/') else f"/{pdf_field_type}",  # Keep PDF format for compatibility
-                    'value': processed_value,
-                    'dict_type': field_type,  # Add the dictionary type for reference
-                    'raw_value': field_value,  # Keep raw value for debugging
-                })
-    
-    return fields
+                pdf_logger.info(f"Successfully extracted {len(fields)} fields from PDF")
+            else:
+                pdf_logger.warning("No form fields found in PDF")
+        
+        # Log processing time
+        end_time = datetime.now()
+        processing_time = (end_time - start_time).total_seconds()
+        pdf_logger.info(f"Field extraction completed in {processing_time:.2f} seconds")
+        pdf_logger.info(f"=== PDF field extraction finished ===")
+        
+        return fields
+        
+    except Exception as e:
+        pdf_logger.error(f"Error extracting PDF fields: {str(e)}", exc_info=True)
+        pdf_logger.error(f"Failed to process PDF: {pdf_path}")
+        raise
 
 def set_need_appearances_flag(pdf_path):
     """
@@ -1288,24 +1452,43 @@ def save_pdf_changes(template_path, fields):
     Uses PyMuPDF for reliable form field updates and removes appearance streams to prevent clipping.
     Now properly converts German display values back to PDF values and handles combined fields.
     """
+    start_time = datetime.now()
+    pdf_logger.info(f"=== Starting PDF save operation: {template_path} ===")
+    pdf_logger.info(f"Processing {len(fields)} field updates")
+    pdf_logger.debug(f"Save operation started at: {start_time}")
+    
     # Use PyMuPDF approach directly - it's more reliable for preserving appearances
     if not FITZ_AVAILABLE:
+        pdf_logger.error("PyMuPDF (fitz) is not available - cannot save PDF changes")
         raise ImportError("PyMuPDF (fitz) is required as fallback for PDF form editing. Install with: pip install PyMuPDF")
     
     try:
+        pdf_logger.debug("Checking template file existence and permissions")
+        if not os.path.exists(template_path):
+            pdf_logger.error(f"Template PDF file not found: {template_path}")
+            raise FileNotFoundError(f"Template PDF file not found: {template_path}")
+        
+        file_size = os.path.getsize(template_path)
+        pdf_logger.info(f"Template file size: {file_size} bytes")
         # Open the PDF document with PyMuPDF
         doc = fitz.open(template_path)
         
         # Create a dictionary of field updates with proper value conversion
+        pdf_logger.info("Processing field values for PDF update")
         field_updates = {}
+        signature_fields_skipped = 0
+        
         for field in fields:
             field_id = field.get('id', '')
             field_value = field.get('value', '')
             dict_type = field.get('dict_type', 'text')
             
+            pdf_logger.debug(f"Processing field update: {field_id} = '{field_value}' (type: {dict_type})")
+            
             # CRITICAL FIX: Skip signature fields completely to prevent timestamp corruption
             if dict_type == 'sig':
-                print(f"🔒 Skipping signature field '{field_id}' completely - will not process")
+                pdf_logger.info(f"🔒 Skipping signature field '{field_id}' completely - preserving original signature")
+                signature_fields_skipped += 1
                 continue
             
             if field_id:
@@ -1425,11 +1608,21 @@ def save_pdf_changes(template_path, fields):
             doc.close()
             raise save_error
         
-        print(f"Successfully updated {updated_count} fields in {template_path}")
+        # Log final results
+        end_time = datetime.now()
+        processing_time = (end_time - start_time).total_seconds()
+        
+        pdf_logger.info(f"✅ Successfully updated {updated_count} fields in PDF")
+        if signature_fields_skipped > 0:
+            pdf_logger.info(f"🔒 Preserved {signature_fields_skipped} signature fields unchanged")
+        pdf_logger.info(f"Save operation completed in {processing_time:.2f} seconds")
+        pdf_logger.info(f"=== PDF save operation finished ===")
+        
         return template_path
         
     except Exception as e:
-        print(f"Error saving PDF changes: {str(e)}")
+        pdf_logger.error(f"Error saving PDF changes: {str(e)}", exc_info=True)
+        pdf_logger.error(f"Failed to save PDF: {template_path}")
         raise e
 
 def generate_filled_pdf(template_path, fields, output_path=None, overwrite_original=False):

@@ -1,0 +1,252 @@
+{% load static %}
+{% load i18n %}
+{% load email_extras %}
+
+<!-- Email View Container -->
+<div class="email-view-container">
+    {% if email %}
+    <!-- Email View Header -->
+    <div class="email-view-header">
+        <div class="email-view-back">
+            <button class="back-arrow-btn" title="{% trans 'Back to inbox' %}">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+        </div>
+        
+        <div class="email-view-actions">
+            <button class="email-action-btn reply" data-email-id="{{ email.id }}" title="{% trans 'Reply' %}">
+                <i class="fas fa-reply"></i>
+            </button>
+            <button class="email-action-btn forward" data-email-id="{{ email.id }}" title="{% trans 'Forward' %}">
+                <i class="fas fa-share"></i>
+            </button>
+            <button class="email-action-btn" data-email-id="{{ email.id }}" title="{% trans 'Print' %}" onclick="window.print()">
+                <i class="fas fa-print"></i>
+            </button>
+            <button class="email-action-btn delete" data-email-id="{{ email.id }}" title="{% trans 'Delete' %}">
+                <i class="fas fa-trash"></i>
+            </button>
+        </div>
+    </div>
+    
+    <!-- Email View Content -->
+    <div class="email-view-content">
+        <div class="email-message">
+            <!-- Email Header Section -->
+            <div class="email-header-section">
+                <h1 class="email-subject-line">{{ email.subject|default:"(No subject)" }}</h1>
+                
+                <div class="email-sender-info">
+                    <div class="sender-avatar">
+                        {{ email.sender_name|first|default:email.sender_email|first|upper }}
+                    </div>
+                    <div class="sender-details">
+                        <div class="sender-name-line">
+                            <span class="sender-name">{{ email.sender_name|default:email.sender_email }}</span>
+                            <span class="email-timestamp" title="{{ email.received_time }}">
+                                {% if email.received_time %}
+                                    {{ email.received_time|date:"M d, Y \a\t g:i A" }}
+                                {% else %}
+                                    {% trans "Unknown date" %}
+                                {% endif %}
+                            </span>
+                        </div>
+                        <div class="sender-email">&lt;{{ email.sender_email }}&gt;</div>
+                        
+                        {% if email.recipients %}
+                        <div class="recipient-info">
+                            {% for recipient in email.recipients %}
+                            <div class="recipient-line">
+                                <strong>
+                                    {% if recipient.type == 1 %}{% trans "to" %}:{% elif recipient.type == 2 %}{% trans "cc" %}:{% elif recipient.type == 3 %}{% trans "bcc" %}:{% else %}{% trans "to" %}:{% endif %}
+                                </strong>
+                                {{ recipient.name }} &lt;{{ recipient.address }}&gt;
+                            </div>
+                            {% endfor %}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Email Flags Section -->
+            {% if email.unread or email.flagged or email.attachments or email.size %}
+            <div class="email-flags-section">
+                {% if email.unread %}
+                <div class="email-flag unread">
+                    <i class="fas fa-circle"></i>
+                    <span>{% trans "Unread" %}</span>
+                </div>
+                {% endif %}
+                
+                {% if email.flagged %}
+                <div class="email-flag flagged">
+                    <i class="fas fa-flag"></i>
+                    <span>{% trans "Flagged" %}</span>
+                </div>
+                {% endif %}
+                
+                {% if email.attachments %}
+                <div class="email-flag attachments">
+                    <i class="fas fa-paperclip"></i>
+                    <span>{{ email.attachments|length }} {% trans "attachment(s)" %}</span>
+                </div>
+                {% endif %}
+                
+                {% if email.size %}
+                <div class="email-flag size">
+                    <i class="fas fa-envelope"></i>
+                    <span>{{ email.size|filesizeformat }}</span>
+                </div>
+                {% endif %}
+            </div>
+            {% endif %}
+            
+            <!-- Email Body Section -->
+            <div class="email-body-section">
+                {% if email.html_body and email.html_body != email.body %}
+                <div class="view-toggle-section">
+                    <button class="view-toggle-btn" onclick="toggleEmailView()" id="view-toggle">
+                        <i class="fas fa-code"></i>
+                        {% trans "View Plain Text" %}
+                    </button>
+                </div>
+                
+                <div class="email-body-content">
+                    <div id="html-content" class="email-body-html">
+                        <div class="html-email-content">
+                            {{ email.html_body|clean_html_email }}
+                        </div>
+                    </div>
+                    <div id="plain-content" class="email-body-plain" style="display: none;">
+                        <pre class="plain-text-content">{{ email.body }}</pre>
+                    </div>
+                </div>
+                {% else %}
+                <div class="email-body-content">
+                    <div class="email-body-plain">
+                        <pre class="plain-text-content">{{ email.body }}</pre>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        <!-- Attachments Section -->
+        {% if email.attachments %}
+        <div class="attachments-section">
+            <div class="attachments-header">
+                <i class="fas fa-paperclip"></i>
+                {% trans "Attachments" %} ({{ email.attachments|length }})
+            </div>
+            
+            <div class="attachment-list">
+                {% for attachment in email.attachments %}
+                <div class="attachment-item" onclick="downloadAttachment('{{ email.id }}', '{{ attachment.filename }}')">
+                    <div class="attachment-icon {% if attachment.filename|slice:'-4:' == '.pdf' %}pdf{% elif attachment.filename|slice:'-4:' == '.doc' or attachment.filename|slice:'-5:' == '.docx' %}word{% elif attachment.filename|slice:'-4:' == '.xls' or attachment.filename|slice:'-5:' == '.xlsx' %}excel{% elif attachment.filename|slice:'-4:' == '.jpg' or attachment.filename|slice:'-5:' == '.jpeg' or attachment.filename|slice:'-4:' == '.png' or attachment.filename|slice:'-4:' == '.gif' %}image{% elif attachment.filename|slice:'-4:' == '.zip' or attachment.filename|slice:'-4:' == '.rar' %}archive{% else %}default{% endif %}">
+                        {% if attachment.filename|slice:"-4:" == ".pdf" %}
+                            <i class="fas fa-file-pdf"></i>
+                        {% elif attachment.filename|slice:"-4:" == ".doc" or attachment.filename|slice:"-5:" == ".docx" %}
+                            <i class="fas fa-file-word"></i>
+                        {% elif attachment.filename|slice:"-4:" == ".xls" or attachment.filename|slice:"-5:" == ".xlsx" %}
+                            <i class="fas fa-file-excel"></i>
+                        {% elif attachment.filename|slice:"-4:" == ".jpg" or attachment.filename|slice:"-5:" == ".jpeg" or attachment.filename|slice:"-4:" == ".png" or attachment.filename|slice:"-4:" == ".gif" %}
+                            <i class="fas fa-file-image"></i>
+                        {% elif attachment.filename|slice:"-4:" == ".zip" or attachment.filename|slice:"-4:" == ".rar" %}
+                            <i class="fas fa-file-archive"></i>
+                        {% else %}
+                            <i class="fas fa-file"></i>
+                        {% endif %}
+                    </div>
+                    <div class="attachment-details">
+                        <div class="attachment-name">{{ attachment.filename }}</div>
+                        <div class="attachment-size">{{ attachment.size|filesizeformat }}</div>
+                    </div>
+                    <a href="{% url 'inbox_get_attachment' email.id attachment.filename %}" 
+                       class="attachment-download" onclick="event.stopPropagation()">
+                        <i class="fas fa-download"></i>
+                        {% trans "Download" %}
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endif %}
+    </div>
+    
+    {% else %}
+    <!-- Email Not Found -->
+    <div class="email-error-state">
+        <div class="email-error-icon">
+            <i class="fas fa-exclamation-triangle"></i>
+        </div>
+        <div class="email-error-title">{% trans "Email Not Found" %}</div>
+        <div class="email-error-message">
+            {% trans "The requested email could not be found or may have been deleted." %}
+        </div>
+        <button class="email-error-action back-arrow-btn">
+            <i class="fas fa-arrow-left"></i>
+            {% trans "Back to Inbox" %}
+        </button>
+    </div>
+    {% endif %}
+</div>
+
+<script>
+function toggleEmailView() {
+    const htmlContent = document.getElementById('html-content');
+    const plainContent = document.getElementById('plain-content');
+    const toggleBtn = document.getElementById('view-toggle');
+    
+    if (htmlContent.style.display === 'none') {
+        htmlContent.style.display = 'block';
+        plainContent.style.display = 'none';
+        toggleBtn.innerHTML = '<i class="fas fa-code"></i> {% trans "View Plain Text" %}';
+    } else {
+        htmlContent.style.display = 'none';
+        plainContent.style.display = 'block';
+        toggleBtn.innerHTML = '<i class="fas fa-eye"></i> {% trans "View HTML" %}';
+    }
+}
+
+function downloadAttachment(emailId, filename) {
+    // Handle attachment download
+    const url = `/inbox/attachment/${emailId}/${filename}/`;
+    window.open(url, '_blank');
+}
+
+// Handle email actions
+$(document).ready(function() {
+    $('.email-action-btn.delete').on('click', function() {
+        const emailId = $(this).data('email-id');
+        if (confirm('{% trans "Are you sure you want to delete this email?" %}')) {
+            // Use the inbox manager's delete functionality
+            if (window.inboxManager) {
+                window.inboxManager.deleteEmails([emailId]);
+                // Navigate back to inbox after delete
+                setTimeout(() => {
+                    window.inboxManager.navigateBackToInbox();
+                }, 1000);
+            }
+        }
+    });
+    
+    $('.email-action-btn.reply').on('click', function() {
+        const emailId = $(this).data('email-id');
+        if (window.inboxManager) {
+            window.inboxManager.navigateToCompose('reply', emailId);
+        } else {
+            window.location.href = `/inbox/reply/${emailId}/`;
+        }
+    });
+    
+    $('.email-action-btn.forward').on('click', function() {
+        const emailId = $(this).data('email-id');
+        if (window.inboxManager) {
+            window.inboxManager.navigateToCompose('forward', emailId);
+        } else {
+            window.location.href = `/inbox/forward/${emailId}/`;
+        }
+    });
+});
+</script> 

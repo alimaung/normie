@@ -1,0 +1,854 @@
+{
+  "timestamp": "2025-07-10T10:32:27.742499",
+  "folders": {
+    "inbox": {
+      "name": "Inbox",
+      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE5F0000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
+      "total_items": 173,
+      "unread_items": 2,
+      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Inbox",
+      "default_item_type": 0,
+      "subfolders": []
+    },
+    "sent_items": {
+      "name": "Sent Items",
+      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE610000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
+      "total_items": 171,
+      "unread_items": 0,
+      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Sent Items",
+      "default_item_type": 0,
+      "subfolders": []
+    },
+    "drafts": {
+      "name": "Drafts",
+      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE6A0000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
+      "total_items": 2,
+      "unread_items": 1,
+      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Drafts",
+      "default_item_type": 0,
+      "subfolders": []
+    },
+    "deleted_items": {
+      "name": "Deleted Items",
+      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE620000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
+      "total_items": 154,
+      "unread_items": 8,
+      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Deleted Items",
+      "default_item_type": 0,
+      "subfolders": []
+    },
+    "outbox": {
+      "name": "Outbox",
+      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE600000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
+      "total_items": 0,
+      "unread_items": 0,
+      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Outbox",
+      "default_item_type": 0,
+      "subfolders": [
+        {
+          "name": "DlpOutbox",
+          "total_items": 0,
+          "unread_items": 0
+        }
+      ]
+    },
+    "junk": {
+      "name": "Junk E-Mail",
+      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF0000007103060000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
+      "total_items": 0,
+      "unread_items": 0,
+      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Junk E-Mail",
+      "default_item_type": 0,
+      "subfolders": []
+    },
+    "calendar": {
+      "name": "Calendar",
+      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE680000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
+      "total_items": 17,
+      "unread_items": 0,
+      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Calendar",
+      "default_item_type": 1,
+      "subfolders": []
+    },
+    "contacts": {
+      "name": "Contacts",
+      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE690000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
+      "total_items": 44049,
+      "unread_items": 0,
+      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Contacts",
+      "default_item_type": 2,
+      "subfolders": []
+    },
+    "tasks": {
+      "name": "Tasks",
+      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE6D0000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
+      "total_items": 0,
+      "unread_items": 0,
+      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Tasks",
+      "default_item_type": 3,
+      "subfolders": []
+    },
+    "notes": {
+      "name": "Notes",
+      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE6C0000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
+      "total_items": 1,
+      "unread_items": 0,
+      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Notes",
+      "default_item_type": 5,
+      "subfolders": []
+    },
+    "journal": {
+      "name": "Journal",
+      "entry_id": "0000000048D7DD6010859A409B9D116500A36C300100114527125FBC9E42ADF0573703FD29EF00000070FE6B0000",
+      "store_id": "0000000038A1BB1005E5101AA1BB08002B2A56C20000454D534D44422E444C4C00000000000000001B55FA20AA6611CD9BC800AA002FC45A0C000000416C692E4D61756E6740526F6C6C732D526F7963652E636F6D002F6F3D526F6C6C732D526F7963652F6F753D45786368616E67652041646D696E6973747261746976652047726F7570202846594449424F484632335350444C54292F636E3D526563697069656E74732F636E3D4D61756E672C20416C6966646600E94632F446000000020000001000000041006C0069002E004D00610075006E006700400052006F006C006C0073002D0052006F007900630065002E0063006F006D0000000000",
+      "total_items": 0,
+      "unread_items": 0,
+      "folder_path": "\\\\Ali.Maung@Rolls-Royce.com\\Journal",
+      "default_item_type": 4,
+      "subfolders": []
+    },
+    "custom_folders": {
+      "Ali.Maung@Rolls-Royce.com": [
+        {
+          "name": "Deleted Items",
+          "total_items": 154,
+          "unread_items": 8,
+          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Deleted Items"
+        },
+        {
+          "name": "Inbox",
+          "total_items": 173,
+          "unread_items": 2,
+          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Inbox"
+        },
+        {
+          "name": "Outbox",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Outbox",
+          "subfolders": [
+            {
+              "name": "DlpOutbox",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\Ali.Maung@Rolls-Royce.com\\Outbox\\DlpOutbox"
+            }
+          ]
+        },
+        {
+          "name": "Sent Items",
+          "total_items": 171,
+          "unread_items": 0,
+          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Sent Items"
+        },
+        {
+          "name": "Calendar",
+          "total_items": 17,
+          "unread_items": 0,
+          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Calendar"
+        },
+        {
+          "name": "Contacts",
+          "total_items": 44049,
+          "unread_items": 0,
+          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Contacts"
+        },
+        {
+          "name": "Conversation Action Settings",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Conversation Action Settings"
+        },
+        {
+          "name": "Drafts",
+          "total_items": 2,
+          "unread_items": 1,
+          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Drafts"
+        },
+        {
+          "name": "Journal",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Journal"
+        },
+        {
+          "name": "Junk E-Mail",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Junk E-Mail"
+        },
+        {
+          "name": "Notes",
+          "total_items": 1,
+          "unread_items": 0,
+          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Notes"
+        },
+        {
+          "name": "Tasks",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Tasks"
+        },
+        {
+          "name": "Sync Issues",
+          "total_items": 12,
+          "unread_items": 12,
+          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Sync Issues",
+          "subfolders": [
+            {
+              "name": "Conflicts",
+              "total_items": 27,
+              "unread_items": 0,
+              "path": "\\\\Ali.Maung@Rolls-Royce.com\\Sync Issues\\Conflicts"
+            },
+            {
+              "name": "Local Failures",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\Ali.Maung@Rolls-Royce.com\\Sync Issues\\Local Failures"
+            },
+            {
+              "name": "Server Failures",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\Ali.Maung@Rolls-Royce.com\\Sync Issues\\Server Failures"
+            }
+          ]
+        },
+        {
+          "name": "Quick Step Settings",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Quick Step Settings"
+        },
+        {
+          "name": "RRD IT Hub",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\Ali.Maung@Rolls-Royce.com\\RRD IT Hub"
+        },
+        {
+          "name": "Private",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Private"
+        },
+        {
+          "name": "Iron Mountain",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Iron Mountain"
+        },
+        {
+          "name": "Archive",
+          "total_items": 1,
+          "unread_items": 0,
+          "path": "\\\\Ali.Maung@Rolls-Royce.com\\Archive"
+        }
+      ],
+      "IRM-Standardisation-Office": [
+        {
+          "name": "Vorgeschlagene Kontakte",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\IRM-Standardisation-Office\\Vorgeschlagene Kontakte"
+        },
+        {
+          "name": "Tasks",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\IRM-Standardisation-Office\\Tasks"
+        },
+        {
+          "name": "Synchronisierungsprobleme",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\IRM-Standardisation-Office\\Synchronisierungsprobleme",
+          "subfolders": [
+            {
+              "name": "Serverfehler",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\IRM-Standardisation-Office\\Synchronisierungsprobleme\\Serverfehler"
+            },
+            {
+              "name": "Lokale Fehler",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\IRM-Standardisation-Office\\Synchronisierungsprobleme\\Lokale Fehler"
+            },
+            {
+              "name": "Konflikte",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\IRM-Standardisation-Office\\Konflikte"
+            }
+          ]
+        },
+        {
+          "name": "Suggested Contacts",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\IRM-Standardisation-Office\\Suggested Contacts"
+        },
+        {
+          "name": "Sent Items",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\IRM-Standardisation-Office\\Sent Items"
+        },
+        {
+          "name": "RSS-Feeds",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\IRM-Standardisation-Office\\RSS-Feeds"
+        },
+        {
+          "name": "Outbox",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\IRM-Standardisation-Office\\Outbox"
+        },
+        {
+          "name": "Notes",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\IRM-Standardisation-Office\\Notes"
+        },
+        {
+          "name": "Newsfeed",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\IRM-Standardisation-Office\\Newsfeed"
+        },
+        {
+          "name": "Junk E-Mail",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\IRM-Standardisation-Office\\Junk E-Mail"
+        },
+        {
+          "name": "Journal",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\IRM-Standardisation-Office\\Journal"
+        },
+        {
+          "name": "Inbox",
+          "total_items": 262,
+          "unread_items": 9,
+          "path": "\\\\IRM-Standardisation-Office\\Inbox",
+          "subfolders": [
+            {
+              "name": "Zeichnungs",
+              "total_items": 1,
+              "unread_items": 0,
+              "path": "\\\\IRM-Standardisation-Office\\Inbox\\Zeichnungs"
+            },
+            {
+              "name": "T&S",
+              "total_items": 2899,
+              "unread_items": 0,
+              "path": "\\\\IRM-Standardisation-Office\\Inbox\\T&S"
+            },
+            {
+              "name": "Quality Info",
+              "total_items": 10,
+              "unread_items": 0,
+              "path": "\\\\IRM-Standardisation-Office\\Inbox\\Quality Info"
+            },
+            {
+              "name": "Normen",
+              "total_items": 312,
+              "unread_items": 0,
+              "path": "\\\\IRM-Standardisation-Office\\Inbox\\Normen"
+            },
+            {
+              "name": "Luxmessung",
+              "total_items": 14,
+              "unread_items": 0,
+              "path": "\\\\IRM-Standardisation-Office\\Inbox\\Luxmessung"
+            },
+            {
+              "name": "Intern Spezifikationen",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\IRM-Standardisation-Office\\Inbox\\Intern Spezifikationen"
+            },
+            {
+              "name": "gel\u00f6scht",
+              "total_items": 10,
+              "unread_items": 0,
+              "path": "\\\\IRM-Standardisation-Office\\Inbox\\gel\u00f6scht"
+            },
+            {
+              "name": "Bearbeitung_JM",
+              "total_items": 8,
+              "unread_items": 0,
+              "path": "\\\\IRM-Standardisation-Office\\Inbox\\Bearbeitung_JM"
+            }
+          ]
+        },
+        {
+          "name": "Einstellungen f\u00fcr QuickSteps",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\IRM-Standardisation-Office\\Einstellungen f\u00fcr QuickSteps"
+        },
+        {
+          "name": "Drafts",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\IRM-Standardisation-Office\\Drafts",
+          "subfolders": [
+            {
+              "name": "Werkstoff",
+              "total_items": 0,
+              "unread_items": 0,
+              "path": "\\\\IRM-Standardisation-Office\\Drafts\\Werkstoff"
+            }
+          ]
+        },
+        {
+          "name": "Deleted Items",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\IRM-Standardisation-Office\\Deleted Items"
+        },
+        {
+          "name": "Conversation Action Settings",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\IRM-Standardisation-Office\\Conversation Action Settings"
+        },
+        {
+          "name": "Contacts",
+          "total_items": 0,
+          "unread_items": 0,
+          "path": "\\\\IRM-Standardisation-Office\\Contacts"
+        },
+        {
+          "name": "Calendar",
+          "total_items": 31,
+          "unread_items": 0,
+          "path": "\\\\IRM-Standardisation-Office\\Calendar"
+        }
+      ]
+    }
+  },
+  "emails": {
+    "Ali.Maung@Rolls-Royce.com": [
+      {
+        "index": 1,
+        "subject": "Rolls-Royce Daily Digest",
+        "sender_name": "Unknown",
+        "sender_email": "Unknown",
+        "received_time": "2025-07-10 09:47:18.027000+00:00",
+        "sent_on": "2025-07-10 09:47:06+00:00",
+        "size": 133397,
+        "importance": 1,
+        "unread": true,
+        "categories": "",
+        "body": "",
+        "body_format": 2,
+        "html_body": "",
+        "recipients": [],
+        "attachments": [
+          {
+            "filename": "n_l",
+            "size": 2273,
+            "type": 1
+          }
+        ],
+        "recipients_error": "(-2147467260, 'Operation aborted', None, None)"
+      },
+      {
+        "index": 2,
+        "subject": "Rolls-Royce Weekly Digest",
+        "sender_name": "Unknown",
+        "sender_email": "Unknown",
+        "received_time": "2025-07-10 09:47:14.731000+00:00",
+        "sent_on": "2025-07-10 09:47:06+00:00",
+        "size": 105605,
+        "importance": 1,
+        "unread": true,
+        "categories": "",
+        "body": "",
+        "body_format": 2,
+        "html_body": "",
+        "recipients": [],
+        "attachments": [
+          {
+            "filename": "n_l",
+            "size": 2275,
+            "type": 1
+          }
+        ],
+        "recipients_error": "(-2147467260, 'Operation aborted', None, None)"
+      },
+      {
+        "index": 3,
+        "subject": "Qualit\u00e4tsziele f\u00fcr OU 2025",
+        "sender_name": "Unknown",
+        "sender_email": "Unknown",
+        "received_time": "2025-07-07 15:15:41.961000+00:00",
+        "sent_on": "2025-07-07 15:15:40+00:00",
+        "size": 139093,
+        "importance": 1,
+        "unread": false,
+        "categories": "",
+        "body": "",
+        "body_format": 2,
+        "html_body": "",
+        "recipients": [],
+        "attachments": [
+          {
+            "filename": "Qualit\u00e4tsziele 2025_IRM_RRD_V1.0.pdf",
+            "size": 123687,
+            "type": 1
+          }
+        ],
+        "recipients_error": "(-2147467260, 'Operation aborted', None, None)"
+      },
+      {
+        "index": 4,
+        "subject": "Abrechnung Juni",
+        "sender_name": "Unknown",
+        "sender_email": "Unknown",
+        "received_time": "2025-07-07 14:58:18.924000+00:00",
+        "sent_on": "2025-07-07 14:58:16+00:00",
+        "size": 14261,
+        "importance": 1,
+        "unread": false,
+        "categories": "",
+        "body": "",
+        "body_format": 2,
+        "html_body": "",
+        "recipients": [],
+        "attachments": [],
+        "recipients_error": "(-2147467260, 'Operation aborted', None, None)"
+      },
+      {
+        "index": 5,
+        "subject": "Your mailbox is almost full.",
+        "sender_name": "Unknown",
+        "sender_email": "Unknown",
+        "received_time": "2025-07-07 11:00:01.236000+00:00",
+        "sent_on": "2025-07-07 11:00:00+00:00",
+        "size": 8874,
+        "importance": 2,
+        "unread": false,
+        "categories": "",
+        "body": "",
+        "body_format": 2,
+        "html_body": "",
+        "recipients": [],
+        "attachments": [],
+        "recipients_error": "(-2147467260, 'Operation aborted', None, None)"
+      }
+    ],
+    "IRM-Standardisation-Office": [
+      {
+        "index": 1,
+        "subject": "Read: FREIGABE ZUR VERWENDUNG - Antrag 064/2025 _ TKZ 01044287 _ VERPACKUNG PATCO 1800 - 50mm x 3m (2in x 100 ft)",
+        "sender_name": "Unknown",
+        "sender_email": "Unknown",
+        "received_time": "Unknown",
+        "sent_on": "Unknown",
+        "size": 12420,
+        "importance": 1,
+        "unread": true,
+        "categories": "",
+        "body": "",
+        "body_format": "Unknown",
+        "html_body": "",
+        "recipients": [],
+        "attachments": []
+      },
+      {
+        "index": 2,
+        "subject": "AfT&S 103/2025 (TKZ 10002977) - VERDUENNUNG Rockhard Thinner (IP6-Thinner (665-550-025))",
+        "sender_name": "Unknown",
+        "sender_email": "Unknown",
+        "received_time": "2025-07-10 10:01:25.238000+00:00",
+        "sent_on": "2025-07-10 10:01:21+00:00",
+        "size": 2005347,
+        "importance": 1,
+        "unread": false,
+        "categories": "Wartet auf Antwort",
+        "body": "",
+        "body_format": 2,
+        "html_body": "",
+        "recipients": [],
+        "attachments": [
+          {
+            "filename": "image001.png",
+            "size": 1360,
+            "type": 1
+          },
+          {
+            "filename": "image002.png",
+            "size": 1399,
+            "type": 1
+          },
+          {
+            "filename": "image003.png",
+            "size": 1226,
+            "type": 1
+          },
+          {
+            "filename": "image004.png",
+            "size": 1391,
+            "type": 1
+          },
+          {
+            "filename": "image005.jpg",
+            "size": 11208,
+            "type": 1
+          },
+          {
+            "filename": "103-2025_10002977.pdf",
+            "size": 675505,
+            "type": 1
+          },
+          {
+            "filename": "103-2025_10002977_665-550-025-Rockhard-reducer-2-19.pdf",
+            "size": 87871,
+            "type": 1
+          },
+          {
+            "filename": "103-2025_10002977_665-550-025_DEU_DE.pdf",
+            "size": 219346,
+            "type": 1
+          },
+          {
+            "filename": "103-2025_10002977_Rockhard Thinner_ChemScan.pdf",
+            "size": 327232,
+            "type": 1
+          },
+          {
+            "filename": "103-2025_10002977_Historie.pdf",
+            "size": 648572,
+            "type": 1
+          }
+        ],
+        "recipients_error": "(-2147467260, 'Operation aborted', None, None)"
+      },
+      {
+        "index": 3,
+        "subject": "Automatische Antwort: FREIGABE ZUR VERWENDUNG - Antrag 064/2025 _ TKZ 01044287 _ VERPACKUNG PATCO 1800 - 50mm x 3m (2in x 100 ft)",
+        "sender_name": "Unknown",
+        "sender_email": "Unknown",
+        "received_time": "2025-07-10 08:40:08.933000+00:00",
+        "sent_on": "2025-07-10 08:40:06+00:00",
+        "size": 21418,
+        "importance": 1,
+        "unread": false,
+        "categories": "Jean-Michel gelesen; Info",
+        "body": "",
+        "body_format": 2,
+        "html_body": "",
+        "recipients": [],
+        "attachments": [],
+        "recipients_error": "(-2147467260, 'Operation aborted', None, None)"
+      },
+      {
+        "index": 4,
+        "subject": "FREIGABE ZUR VERWENDUNG - Antrag 064/2025 _ TKZ 01044287 _ VERPACKUNG PATCO 1800 - 50mm x 3m (2in x 100 ft)",
+        "sender_name": "Unknown",
+        "sender_email": "Unknown",
+        "received_time": "2025-07-10 08:39:57.492000+00:00",
+        "sent_on": "2025-07-10 08:39:51+00:00",
+        "size": 1187709,
+        "importance": 1,
+        "unread": false,
+        "categories": "Jean-Michel",
+        "body": "",
+        "body_format": 2,
+        "html_body": "",
+        "recipients": [],
+        "attachments": [
+          {
+            "filename": "image001.png",
+            "size": 1360,
+            "type": 1
+          },
+          {
+            "filename": "image002.png",
+            "size": 1399,
+            "type": 1
+          },
+          {
+            "filename": "image003.png",
+            "size": 1226,
+            "type": 1
+          },
+          {
+            "filename": "image004.png",
+            "size": 1391,
+            "type": 1
+          },
+          {
+            "filename": "image005.jpg",
+            "size": 11208,
+            "type": 1
+          },
+          {
+            "filename": "064-2025_01044287_Freigabe.pdf",
+            "size": 1009076,
+            "type": 1
+          },
+          {
+            "filename": "064-2025_01044287_Patco 1800 Flame Retardant Galley Tape13180088--13198871.pdf",
+            "size": 98926,
+            "type": 1
+          }
+        ],
+        "recipients_error": "(-2147467260, 'Operation aborted', None, None)"
+      },
+      {
+        "index": 5,
+        "subject": "VDI/VDE/DGQ 2618 Blatt 16.1 - Pr\u00fcfmittelueberwachung - Pr\u00fcfanweisung f\u00fcr vertikale L\u00e4ngenmessger\u00e4te\u201c Version 2025-07 wird ben\u00f6tigt",
+        "sender_name": "Unknown",
+        "sender_email": "Unknown",
+        "received_time": "2025-07-10 07:43:25.359000+00:00",
+        "sent_on": "2025-07-10 07:43:21+00:00",
+        "size": 34087,
+        "importance": 1,
+        "unread": false,
+        "categories": "Jean-Michel",
+        "body": "",
+        "body_format": 2,
+        "html_body": "",
+        "recipients": [],
+        "attachments": [
+          {
+            "filename": "image001.jpg",
+            "size": 2314,
+            "type": 1
+          }
+        ],
+        "recipients_error": "(-2147467260, 'Operation aborted', None, None)"
+      }
+    ]
+  },
+  "calendar_info": {
+    "total_appointments": 17,
+    "upcoming_appointments": [
+      {
+        "subject": "No Subject",
+        "start": "Unknown",
+        "end": "Unknown",
+        "location": "",
+        "organizer": "Unknown",
+        "is_recurring": false,
+        "body": ""
+      },
+      {
+        "subject": "No Subject",
+        "start": "Unknown",
+        "end": "Unknown",
+        "location": "",
+        "organizer": "Unknown",
+        "is_recurring": false,
+        "body": ""
+      },
+      {
+        "subject": "No Subject",
+        "start": "Unknown",
+        "end": "Unknown",
+        "location": "",
+        "organizer": "Unknown",
+        "is_recurring": false,
+        "body": ""
+      },
+      {
+        "subject": "No Subject",
+        "start": "Unknown",
+        "end": "Unknown",
+        "location": "",
+        "organizer": "Unknown",
+        "is_recurring": false,
+        "body": ""
+      },
+      {
+        "subject": "No Subject",
+        "start": "Unknown",
+        "end": "Unknown",
+        "location": "",
+        "organizer": "Unknown",
+        "is_recurring": false,
+        "body": ""
+      },
+      {
+        "subject": "No Subject",
+        "start": "Unknown",
+        "end": "Unknown",
+        "location": "",
+        "organizer": "Unknown",
+        "is_recurring": false,
+        "body": ""
+      },
+      {
+        "subject": "No Subject",
+        "start": "Unknown",
+        "end": "Unknown",
+        "location": "",
+        "organizer": "Unknown",
+        "is_recurring": false,
+        "body": ""
+      },
+      {
+        "subject": "No Subject",
+        "start": "Unknown",
+        "end": "Unknown",
+        "location": "",
+        "organizer": "Unknown",
+        "is_recurring": false,
+        "body": ""
+      },
+      {
+        "subject": "No Subject",
+        "start": "Unknown",
+        "end": "Unknown",
+        "location": "",
+        "organizer": "Unknown",
+        "is_recurring": false,
+        "body": ""
+      },
+      {
+        "subject": "No Subject",
+        "start": "Unknown",
+        "end": "Unknown",
+        "location": "",
+        "organizer": "Unknown",
+        "is_recurring": false,
+        "body": ""
+      }
+    ],
+    "calendar_name": "Calendar"
+  },
+  "statistics": {
+    "total_folders_analyzed": 12,
+    "total_accounts_with_emails": 2,
+    "inbox_stats": {
+      "total_items": 173,
+      "unread_items": 2,
+      "subfolders_count": 0
+    },
+    "overall_email_count": 44567,
+    "overall_unread_count": 11,
+    "emails_extracted": 10
+  },
+  "errors": []
+}
