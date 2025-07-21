@@ -1,0 +1,955 @@
+ATS EMAIL SCORING REPORT
+==================================================
+Total emails analyzed: 100
+HIGH probability: 45
+MEDIUM probability: 20
+LOW probability: 2
+NO probability: 33
+
+DETAILED RESULTS:
+------------------------------
+
+Subject: Antrag Teile und Stoffe - WD40...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=EFB6F70048634660A4EE4CD9AA2F5DBD
+Probability: HIGH (Score: 75.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 30.0
+  - body_score: 5.0
+  - attachment_score: 40.0
+Reasoning:
+  - Subject contains ATS keywords (score: 30.0)
+  - Body contains ATS keywords (score: 5.0)
+  - Attachments suggest ATS content (score: 40.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: Antrag Korrosionsschutzwachs E-COLL...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=EFB6F70048634660A4EE4CD9AA2F5DBD
+Probability: HIGH (Score: 55.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 5.0
+  - attachment_score: 40.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 5.0)
+  - Attachments suggest ATS content (score: 40.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: Antrag Dichtstoff HF 305-72...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=EFB6F70048634660A4EE4CD9AA2F5DBD
+Probability: HIGH (Score: 55.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 5.0
+  - attachment_score: 40.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 5.0)
+  - Attachments suggest ATS content (score: 40.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: Antrag Haftfliessfett Spray E-Coll...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=EFB6F70048634660A4EE4CD9AA2F5DBD
+Probability: HIGH (Score: 55.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 5.0
+  - attachment_score: 40.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 5.0)
+  - Attachments suggest ATS content (score: 40.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: Antrag Easy 1 Upol ...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=EFB6F70048634660A4EE4CD9AA2F5DBD
+Probability: HIGH (Score: 55.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 5.0
+  - attachment_score: 40.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 5.0)
+  - Attachments suggest ATS content (score: 40.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: Antrag Contact Treatment Grease 2GX...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=EFB6F70048634660A4EE4CD9AA2F5DBD
+Probability: HIGH (Score: 55.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 5.0
+  - attachment_score: 40.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 5.0)
+  - Attachments suggest ATS content (score: 40.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: Antrag Anti Seez E-Coll...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=EFB6F70048634660A4EE4CD9AA2F5DBD
+Probability: HIGH (Score: 55.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 5.0
+  - attachment_score: 40.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 5.0)
+  - Attachments suggest ATS content (score: 40.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: Antrag MOLYKOTE D-321 R ANTI-FR COATING LIQUID...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=EFB6F70048634660A4EE4CD9AA2F5DBD
+Probability: HIGH (Score: 50.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 5.0
+  - attachment_score: 35.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 5.0)
+  - Attachments suggest ATS content (score: 35.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: Antrag Rostio Epoxy-Rostschutzgrundierung weißgrau 400 ml...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=EFB6F70048634660A4EE4CD9AA2F5DBD
+Probability: HIGH (Score: 50.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - attachment_score: 40.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Attachments suggest ATS content (score: 40.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: Antrag Ardrox 6367 200l Gebinde (Fass) ...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=556D9B64C3CA436DAAF6B1F5F29788CD
+Probability: HIGH (Score: 50.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 5.0
+  - attachment_score: 35.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 5.0)
+  - Attachments suggest ATS content (score: 35.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: RE: Antrag Teile und Stoffe - WD40...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: MEDIUM (Score: 49.0)
+ATS Application: NO
+Score breakdown:
+  - subject_score: 30.0
+  - body_score: 19.0
+Reasoning:
+  - Subject contains ATS keywords (score: 30.0)
+  - Body contains ATS keywords (score: 19.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: ATS 118/2025 TKZ 01044348 Ardrox 6367...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=MAUNG, ALIFDF
+Probability: HIGH (Score: 47.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 22.0
+  - attachment_score: 15.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 22.0)
+  - Attachments suggest ATS content (score: 15.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: ATS 119-2025 TKZ 01044345 Haftfliessfett-Spray E-COLL...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=MAUNG, ALIFDF
+Probability: HIGH (Score: 47.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 22.0
+  - attachment_score: 15.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 22.0)
+  - Attachments suggest ATS content (score: 15.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: ATS 120/2025 TKZ 01044346 Kleb + Dichtstoff HF 305-72...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=MAUNG, ALIFDF
+Probability: HIGH (Score: 47.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 22.0
+  - attachment_score: 15.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 22.0)
+  - Attachments suggest ATS content (score: 15.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: ATS 115-2025 - TKZ 1044342 - EASY 1 BODY FILLER FOR DEEP REPAIRS...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=MAUNG, ALIFDF
+Probability: HIGH (Score: 47.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 22.0
+  - attachment_score: 15.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 22.0)
+  - Attachments suggest ATS content (score: 15.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: ATS 114-2025 - TKZ 1044341 - CONTACT TREATMENT GREASE 2GX...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=MAUNG, ALIFDF
+Probability: HIGH (Score: 47.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 22.0
+  - attachment_score: 15.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 22.0)
+  - Attachments suggest ATS content (score: 15.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: ATS 113/2025 - TKZ 1044340 - ANTI-SEEZ-GLEITMITTEL...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=MAUNG, ALIFDF
+Probability: HIGH (Score: 47.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 22.0
+  - attachment_score: 15.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 22.0)
+  - Attachments suggest ATS content (score: 15.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: ATS 112-2025 - TKZ 01044339 - WD-40 MULTIFUNKTIONELL - (AEROSOL)...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=MAUNG, ALIFDF
+Probability: HIGH (Score: 47.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 22.0
+  - attachment_score: 15.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 22.0)
+  - Attachments suggest ATS content (score: 15.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: FW: Antrag Teile & Stoffe - Doorset Marker...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=041C8D3A158F4DB388040F4E724BC99B
+Probability: HIGH (Score: 46.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 19.0
+  - attachment_score: 17.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 19.0)
+  - Attachments suggest ATS content (score: 17.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: RE: Antrag Teile & Stoffe - Doorset Marker...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=041C8D3A158F4DB388040F4E724BC99B
+Probability: HIGH (Score: 46.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 19.0
+  - attachment_score: 17.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 19.0)
+  - Attachments suggest ATS content (score: 17.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: Antrag Teile & Stoffe - Doorset Marker...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=041C8D3A158F4DB388040F4E724BC99B
+Probability: HIGH (Score: 42.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 15.0
+  - attachment_score: 17.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 15.0)
+  - Attachments suggest ATS content (score: 17.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: FW: ATS 098/2025 TKZ 01044327 Ultragel II...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=MAUNG, ALIFDF
+Probability: HIGH (Score: 39.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 27.0
+  - attachment_score: 2.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 27.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: SAP ANPASSUNG: AfT&S 103/2025 (TKZ 10002977) - VERDUENNUNG Rockhard Thinner (IP6...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: HIGH (Score: 35.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 23.0
+  - attachment_score: 2.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 23.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: RE: Antrag 050/2025 - 01044273  Rocol Aeropec 300 ...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: HIGH (Score: 34.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 7.0
+  - attachment_score: 17.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 7.0)
+  - Attachments suggest ATS content (score: 17.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: FW: ATS 098/2025 TKZ 01044327 Ultragel II...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=MAUNG, ALIFDF
+Probability: HIGH (Score: 34.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 22.0
+  - attachment_score: 2.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 22.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: AW: Antrag Teile Stoffe Never-Seez Pure Nickel...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: HIGH (Score: 34.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 7.0
+  - attachment_score: 17.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 7.0)
+  - Attachments suggest ATS content (score: 17.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: RE: Antrag Teile Stoffe Never-Seez Pure Nickel...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=F1C9FA002CD84A36A4411A7E110694CA
+Probability: HIGH (Score: 34.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 7.0
+  - attachment_score: 17.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 7.0)
+  - Attachments suggest ATS content (score: 17.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: Update Antrag Teile&Stoffe 10002255...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=FRANK.TORSTER
+Probability: HIGH (Score: 34.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 7.0
+  - attachment_score: 17.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 7.0)
+  - Attachments suggest ATS content (score: 17.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: AW: Antrag Teile Stoffe Never-Seez Pure Nickel...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: HIGH (Score: 34.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 7.0
+  - attachment_score: 17.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 7.0)
+  - Attachments suggest ATS content (score: 17.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: RE: AfT&S 103/2025 (TKZ 10002977) - VERDUENNUNG Rockhard Thinner (IP6-Thinner (6...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=FRIER, HARRIETACB
+Probability: HIGH (Score: 33.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 21.0
+  - attachment_score: 2.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 21.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: Antrag Rostio Rostumwandler...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=EFB6F70048634660A4EE4CD9AA2F5DBD
+Probability: HIGH (Score: 32.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 5.0
+  - attachment_score: 17.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 5.0)
+  - Attachments suggest ATS content (score: 17.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: Antrag Teile Stoffe Never-Seez Pure Nickel...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=F1C9FA002CD84A36A4411A7E110694CA
+Probability: HIGH (Score: 32.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 5.0
+  - attachment_score: 17.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 5.0)
+  - Attachments suggest ATS content (score: 17.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: RE: AfT&S 047/2024 (TKZ 01044136) - KLEBER Durapot 865 Part A (Resin) + Part B (...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=FRIER, HARRIETACB
+Probability: HIGH (Score: 31.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 19.0
+  - attachment_score: 2.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 19.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: FREIGABE - Antrag 101/2025 _ TKZ 01044328 _ HYDRAULIKOEL HANSA-FLEX OEL HLP 46...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: HIGH (Score: 31.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 13.0
+  - body_score: 16.0
+  - attachment_score: 2.0
+Reasoning:
+  - Subject contains ATS keywords (score: 13.0)
+  - Body contains ATS keywords (score: 16.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: AfT&S 103/2025 (TKZ 10002977) - VERDUENNUNG Rockhard Thinner (IP6-Thinner (665-5...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: HIGH (Score: 31.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 19.0
+  - attachment_score: 2.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 19.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: RE: Antrag Teile & Stoffe - Doorset Marker...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: HIGH (Score: 31.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 19.0
+  - attachment_score: 2.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 19.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: AW: AfT&S 098/2025 (TKZ 01044327) - KOPPELMITTEL Ultragel II...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=825AEED797F743DA8B91E68E5DE4D4E3
+Probability: MEDIUM (Score: 27.0)
+ATS Application: NO
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 17.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 17.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: WG: AfT&S 098/2025 (TKZ 01044327) - KOPPELMITTEL Ultragel II...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: MEDIUM (Score: 27.0)
+ATS Application: NO
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 17.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 17.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: FREIGABE - Antrag 102/2025 _ TKZ 01044329 _ HYDRAULIKOEL HANSA FLEX OEL HLP-D 46...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: HIGH (Score: 26.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 13.0
+  - body_score: 11.0
+  - attachment_score: 2.0
+Reasoning:
+  - Subject contains ATS keywords (score: 13.0)
+  - Body contains ATS keywords (score: 11.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: AfT&S 047/2024 (TKZ 01044136) - KLEBER Durapot 865 Part A (Resin) + Part B (Hard...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: HIGH (Score: 26.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 14.0
+  - attachment_score: 2.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 14.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: AfT&S 111/2025 (TKZ 01044338) - PRUEFMITTEL CARE Lecksuchspray...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: HIGH (Score: 25.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 5.0
+  - attachment_score: 10.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 5.0)
+  - Attachments suggest ATS content (score: 10.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: RE: SDS Dow-19 and Brush Alocrom AfTS...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=BBA5B14FA6034402A4BC24C4E6B9B99D
+Probability: HIGH (Score: 25.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 5.0
+  - attachment_score: 10.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 5.0)
+  - Attachments suggest ATS content (score: 10.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: AW: Antrag Teile & Stoffe RRT085065_NEU...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: HIGH (Score: 25.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 13.0
+  - attachment_score: 2.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 13.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: AW: [EXTERNAL] Bestellung 5005896475 für RRD Dahlewitz 10004231 DICHTUNGSMASSE R...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=825AEED797F743DA8B91E68E5DE4D4E3
+Probability: MEDIUM (Score: 24.0)
+ATS Application: NO
+Score breakdown:
+  - body_score: 24.0
+Reasoning:
+  - Body contains ATS keywords (score: 24.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: WG: TKZ 01043030 prüfen...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: HIGH (Score: 24.0)
+ATS Application: YES
+Score breakdown:
+  - body_score: 14.0
+  - attachment_score: 10.0
+Reasoning:
+  - Body contains ATS keywords (score: 14.0)
+  - Attachments suggest ATS content (score: 10.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: RE: Update Antrag Teile&Stoffe 10002255...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: HIGH (Score: 23.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 11.0
+  - attachment_score: 2.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 11.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: RE: AfTS 098/2025 TKZ 01044327...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=FRIER, HARRIETACB
+Probability: MEDIUM (Score: 22.0)
+ATS Application: NO
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 12.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 12.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: Antrag Thermal Sticker...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=MAUNG, ALIFDF
+Probability: HIGH (Score: 21.0)
+ATS Application: YES
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 9.0
+  - attachment_score: 2.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 9.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: WG: [EXTERNAL] Bestellung 5005987917 für RRD Dahlewitz / 01044242...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: HIGH (Score: 21.0)
+ATS Application: YES
+Score breakdown:
+  - body_score: 19.0
+  - attachment_score: 2.0
+Reasoning:
+  - Body contains ATS keywords (score: 19.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: AW: [EXTERNAL] Bestellung 5005987917 für RRD Dahlewitz / 01044242...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=825AEED797F743DA8B91E68E5DE4D4E3
+Probability: HIGH (Score: 21.0)
+ATS Application: YES
+Score breakdown:
+  - body_score: 19.0
+  - attachment_score: 2.0
+Reasoning:
+  - Body contains ATS keywords (score: 19.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - HIGH probability: Strong ATS indicators found
+--------------------------------------------------
+
+Subject: AW: Antrag 050/2025 - 01044273  Rocol Aeropec 300 ...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=RALPH.GROSS
+Probability: MEDIUM (Score: 19.0)
+ATS Application: NO
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 7.0
+  - attachment_score: 2.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 7.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: AW: Antrag Ardrox 6367 200l Gebinde (Fass) ...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=556D9B64C3CA436DAAF6B1F5F29788CD
+Probability: MEDIUM (Score: 19.0)
+ATS Application: NO
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 9.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 9.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: RE: Antrag Ardrox 6367 200l Gebinde (Fass) ...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: MEDIUM (Score: 19.0)
+ATS Application: NO
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 9.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 9.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: RE: 10004231 DICHTUNGSMASSE RTV 730 WHITE...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=3838F20726DE42B0A1034A7048087F89
+Probability: MEDIUM (Score: 19.0)
+ATS Application: NO
+Score breakdown:
+  - body_score: 19.0
+Reasoning:
+  - Body contains ATS keywords (score: 19.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: AW: 10004231 DICHTUNGSMASSE RTV 730 WHITE...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: MEDIUM (Score: 19.0)
+ATS Application: NO
+Score breakdown:
+  - body_score: 19.0
+Reasoning:
+  - Body contains ATS keywords (score: 19.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: WG: [EXTERNAL] Bestellung 5005896475 für RRD Dahlewitz 10004231 DICHTUNGSMASSE R...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: MEDIUM (Score: 19.0)
+ATS Application: NO
+Score breakdown:
+  - body_score: 19.0
+Reasoning:
+  - Body contains ATS keywords (score: 19.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: AW: Antrag Thermal Sticker...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=938EF93CF0454959AEDA62916CEA042F
+Probability: MEDIUM (Score: 19.0)
+ATS Application: NO
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 9.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 9.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: AW: Antrag Teile & Stoffe RRT085065_NEU...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=SIGURD.SCHRAGE
+Probability: MEDIUM (Score: 19.0)
+ATS Application: NO
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 7.0
+  - attachment_score: 2.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 7.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: AfTS 098/2025 TKZ 01044327...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=FRIER, HARRIETACB
+Probability: MEDIUM (Score: 17.0)
+ATS Application: NO
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 7.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 7.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: FW: SDS Dow-19 and Brush Alocrom AfTS...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=BBA5B14FA6034402A4BC24C4E6B9B99D
+Probability: MEDIUM (Score: 17.0)
+ATS Application: NO
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 5.0
+  - attachment_score: 2.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 5.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: RE: 01043585 Erstbestellung VC: 248802...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=3F92EF003E5341959FC76C2C02838E04
+Probability: MEDIUM (Score: 16.0)
+ATS Application: NO
+Score breakdown:
+  - body_score: 16.0
+Reasoning:
+  - Body contains ATS keywords (score: 16.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: 10004231 DICHTUNGSMASSE RTV 730 WHITE...
+Sender: /O=ROLLS-ROYCE/OU=EXTERNAL (FYDIBOHF25SPDLT)/CN=RECIPIENTS/CN=3838F20726DE42B0A1034A7048087F89
+Probability: MEDIUM (Score: 15.0)
+ATS Application: NO
+Score breakdown:
+  - body_score: 15.0
+Reasoning:
+  - Body contains ATS keywords (score: 15.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: Antrag 050/2025 - 01044273  Rocol Aeropec 300 ...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=OLIVER.HOELZINGER
+Probability: MEDIUM (Score: 15.0)
+ATS Application: NO
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 5.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 5.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: AW: SDS Dow-19 and Brush Alocrom AfTS...
+Sender: n.dibbert@uub-schwan.de
+Probability: MEDIUM (Score: 15.0)
+ATS Application: NO
+Score breakdown:
+  - subject_score: 10.0
+  - body_score: 5.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Body contains ATS keywords (score: 5.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: Antrag 104 bis 109/2025...
+Sender: i.eiser@uub-schwan.de
+Probability: MEDIUM (Score: 12.0)
+ATS Application: NO
+Score breakdown:
+  - subject_score: 10.0
+  - attachment_score: 2.0
+Reasoning:
+  - Subject contains ATS keywords (score: 10.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - MEDIUM probability: Some ATS indicators found
+--------------------------------------------------
+
+Subject: AW: Alte Anträge T&S...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=CBS-STANDARDISATION-OFFICEDFF
+Probability: LOW (Score: 7.0)
+ATS Application: NO
+Score breakdown:
+  - body_score: 7.0
+Reasoning:
+  - Body contains ATS keywords (score: 7.0)
+  - LOW probability: Few ATS indicators found
+--------------------------------------------------
+
+Subject: AW: Change Request LBR3079...
+Sender: /O=ROLLS-ROYCE/OU=EXCHANGE ADMINISTRATIVE GROUP (FYDIBOHF23SPDLT)/CN=RECIPIENTS/CN=RALPH.GROSS
+Probability: LOW (Score: 6.0)
+ATS Application: NO
+Score breakdown:
+  - body_score: 4.0
+  - attachment_score: 2.0
+Reasoning:
+  - Body contains ATS keywords (score: 4.0)
+  - Attachments suggest ATS content (score: 2.0)
+  - LOW probability: Few ATS indicators found
+--------------------------------------------------

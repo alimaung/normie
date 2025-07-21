@@ -46,3 +46,6 @@ NameError: name 'time' is not defined. Did you forget to import 'time'?
 2025-07-17 18:48:04 - outlook_service - ERROR - flag_email:936 - ✗ Both COM and JSON failed - COM: None, JSON: None
 2025-07-17 18:48:05 - outlook_service - ERROR - _flag_email_via_com:1014 - COM flag operation failed: (-2147352567, 'Exception occurred.', (4096, 'Microsoft Outlook', 'Could not open the item. Try again.', None, 0, -2147352567), None)
 2025-07-17 18:48:05 - outlook_service - ERROR - flag_email:936 - ✗ Both COM and JSON failed - COM: None, JSON: None
+2025-07-21 10:12:33 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 0000000037131A407E618D4D8533691FEF16F8410700837D288B2ABD74478135FFF495B683510000006EFE9D0000837D288B2ABD74478135FFF495B68351000100E48EBC0000
+2025-07-21 10:12:43 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 0000000037131A407E618D4D8533691FEF16F8410700837D288B2ABD74478135FFF495B683510000006EFE9D0000837D288B2ABD74478135FFF495B68351000100E48EB20000
+2025-07-21 10:13:07 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 0000000037131A407E618D4D8533691FEF16F8410700837D288B2ABD74478135FFF495B683510000006EFE9D0000837D288B2ABD74478135FFF495B68351000100E48EB00000

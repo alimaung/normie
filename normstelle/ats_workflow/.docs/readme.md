@@ -63,4 +63,6 @@ which returns to us the application, filled out with their fields, and we check 
 - Goal is to automate most of it as much as possible, especially management of application and its documents
 
 
+6. Example workflow:
+
 

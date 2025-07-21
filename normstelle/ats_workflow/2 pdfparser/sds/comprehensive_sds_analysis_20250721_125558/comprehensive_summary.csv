@@ -1,0 +1,11 @@
+Filename,SDS_Score,Is_SDS,SDS_Confidence,Issue_Date,Date_Valid,Days_Until_Expiry,Status
+"109-2022_01043210_SDB.pdf",93,True,"Very High","12.07.2024",True,355,"Valid (355 days remaining)"
+"111-2025_01044338_SDB_CARE_Lecksuchspray_CARELS04.pdf",122,True,"Very High","04.11.2024",True,470,"Valid (470 days remaining)"
+"114-2025_01044341_SDB.pdf",90,True,"Very High","24.10.2023",True,93,"Valid (93 days remaining)"
+"115-2022_10001790_IP9151_DEU_DE.pdf",95,True,"Very High","05.01.2024",True,166,"Valid (166 days remaining)"
+"115-2025_01044342_SDB.pdf",93,True,"Very High","24.06.2025",True,702,"Valid (702 days remaining)"
+"117-2022_10002356_345545_MSDS_ARALDITE-MY750-1KG_DE_2023.pdf",95,True,"Very High","11.01.2023",False,-193,"EXPIRED (193 days ago)"
+"119-2025_01044345_SDB.pdf",98,True,"Very High","10.03.2025",True,596,"Valid (596 days remaining)"
+"120-2022_10002371_SDB.pdf",93,True,"Very High","27.04.2024",True,279,"Valid (279 days remaining)"
+"121-2025_01044347_SDB.pdf",98,True,"Very High","07.12.2023",True,137,"Valid (137 days remaining)"
+"127-2022_10002785_SDB.pdf",95,True,"Very High","24.04.2024",True,276,"Valid (276 days remaining)"
