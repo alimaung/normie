@@ -62601,3 +62601,216 @@ NameError: name 'time' is not defined. Did you forget to import 'time'?
 2025-07-21 13:44:26 - outlook_service - INFO - _initialize_com:202 - COM interface initialized successfully
 2025-07-21 13:44:26 - outlook_service - INFO - _initialize_com:207 - Connected to Outlook version: 16.0.0.18925
 2025-07-21 13:44:26 - outlook_service - DEBUG - _cleanup_com:228 - COM interface cleaned up
+2025-07-21 20:03:41 - outlook_service - INFO - __init__:137 - === Initializing OutlookService ===
+2025-07-21 20:03:41 - outlook_service - DEBUG - __init__:138 - Service initialization started at 2025-07-21 20:03:41.400258
+2025-07-21 20:03:41 - outlook_service - INFO - __init__:147 - OutlookService configured for user: Ali
+2025-07-21 20:03:41 - outlook_service - DEBUG - __init__:148 - Base path: C:\Users\Ali\Desktop\normie\outlook\analyze\mail
+2025-07-21 20:03:41 - outlook_service - DEBUG - __init__:149 - Emails file: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\emails.json
+2025-07-21 20:03:41 - outlook_service - DEBUG - __init__:150 - Data folder: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\data
+2025-07-21 20:03:41 - outlook_service - INFO - __init__:157 - COM interface availability: True
+2025-07-21 20:03:41 - outlook_service - INFO - __init__:161 - Base path exists: C:\Users\Ali\Desktop\normie\outlook\analyze\mail
+2025-07-21 20:03:41 - outlook_service - INFO - __init__:169 - Emails file not found: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\emails.json
+2025-07-21 20:03:41 - outlook_service - INFO - __init__:171 - OutlookService initialization completed successfully
+2025-07-21 20:03:41 - outlook_service - DEBUG - get_emails_data:1257 - === Loading emails data ===
+2025-07-21 20:03:41 - outlook_service - INFO - get_emails_data:1264 - Found 4 folder-specific email files
+2025-07-21 20:03:41 - outlook_service - DEBUG - get_emails_data:1265 - Folder files: ['emails_deleted_items.json', 'emails_drafts.json', 'emails_inbox.json', 'emails_sent_items.json']
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_deleted_items.json with encoding: utf-8
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Deleted Items folder
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_drafts.json with encoding: utf-8
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Drafts folder
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_inbox.json with encoding: cp1252
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 100 emails from Inbox folder
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_sent_items.json with encoding: utf-8
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Sent Items folder
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1362 - Consolidated 100 emails from 4 folders
+2025-07-21 20:03:41 - outlook_service - INFO - __init__:137 - === Initializing OutlookService ===
+2025-07-21 20:03:41 - outlook_service - DEBUG - __init__:138 - Service initialization started at 2025-07-21 20:03:41.488852
+2025-07-21 20:03:41 - outlook_service - INFO - __init__:147 - OutlookService configured for user: Ali
+2025-07-21 20:03:41 - outlook_service - DEBUG - __init__:148 - Base path: C:\Users\Ali\Desktop\normie\outlook\analyze\mail
+2025-07-21 20:03:41 - outlook_service - DEBUG - __init__:149 - Emails file: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\emails.json
+2025-07-21 20:03:41 - outlook_service - DEBUG - __init__:150 - Data folder: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\data
+2025-07-21 20:03:41 - outlook_service - INFO - __init__:157 - COM interface availability: True
+2025-07-21 20:03:41 - outlook_service - INFO - __init__:161 - Base path exists: C:\Users\Ali\Desktop\normie\outlook\analyze\mail
+2025-07-21 20:03:41 - outlook_service - INFO - __init__:169 - Emails file not found: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\emails.json
+2025-07-21 20:03:41 - outlook_service - INFO - __init__:171 - OutlookService initialization completed successfully
+2025-07-21 20:03:41 - outlook_service - DEBUG - get_emails_data:1257 - === Loading emails data ===
+2025-07-21 20:03:41 - outlook_service - INFO - get_emails_data:1264 - Found 4 folder-specific email files
+2025-07-21 20:03:41 - outlook_service - DEBUG - get_emails_data:1265 - Folder files: ['emails_deleted_items.json', 'emails_drafts.json', 'emails_inbox.json', 'emails_sent_items.json']
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_deleted_items.json with encoding: utf-8
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Deleted Items folder
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_drafts.json with encoding: utf-8
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Drafts folder
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_inbox.json with encoding: cp1252
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 100 emails from Inbox folder
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_sent_items.json with encoding: utf-8
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Sent Items folder
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1362 - Consolidated 100 emails from 4 folders
+2025-07-21 20:03:41 - outlook_service - DEBUG - get_emails_data:1257 - === Loading emails data ===
+2025-07-21 20:03:41 - outlook_service - INFO - get_emails_data:1264 - Found 4 folder-specific email files
+2025-07-21 20:03:41 - outlook_service - DEBUG - get_emails_data:1265 - Folder files: ['emails_deleted_items.json', 'emails_drafts.json', 'emails_inbox.json', 'emails_sent_items.json']
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_deleted_items.json with encoding: utf-8
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Deleted Items folder
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_drafts.json with encoding: utf-8
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Drafts folder
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_inbox.json with encoding: cp1252
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 100 emails from Inbox folder
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_sent_items.json with encoding: utf-8
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Sent Items folder
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1362 - Consolidated 100 emails from 4 folders
+2025-07-21 20:03:41 - outlook_service - DEBUG - get_emails_list:1483 - Returning 25 emails (page 1/4)
+2025-07-21 20:03:41 - outlook_service - DEBUG - get_emails_data:1257 - === Loading emails data ===
+2025-07-21 20:03:41 - outlook_service - INFO - get_emails_data:1264 - Found 4 folder-specific email files
+2025-07-21 20:03:41 - outlook_service - DEBUG - get_emails_data:1265 - Folder files: ['emails_deleted_items.json', 'emails_drafts.json', 'emails_inbox.json', 'emails_sent_items.json']
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_deleted_items.json with encoding: utf-8
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Deleted Items folder
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_drafts.json with encoding: utf-8
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Drafts folder
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_inbox.json with encoding: cp1252
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 100 emails from Inbox folder
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_sent_items.json with encoding: utf-8
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Sent Items folder
+2025-07-21 20:03:41 - outlook_service - DEBUG - _get_emails_from_multiple_files:1362 - Consolidated 100 emails from 4 folders
+2025-07-21 20:03:41 - outlook_service - DEBUG - _initialize_com:179 - === COM Interface Initialization ===
+2025-07-21 20:03:41 - outlook_service - INFO - _initialize_com:191 - Starting COM interface initialization...
+2025-07-21 20:03:41 - outlook_service - DEBUG - _initialize_com:192 - Calling pythoncom.CoInitialize()
+2025-07-21 20:03:41 - outlook_service - DEBUG - _initialize_com:195 - Dispatching Outlook.Application
+2025-07-21 20:03:44 - outlook_service - DEBUG - _initialize_com:198 - Getting MAPI namespace
+2025-07-21 20:03:44 - outlook_service - INFO - _initialize_com:202 - COM interface initialized successfully
+2025-07-21 20:03:44 - outlook_service - INFO - _initialize_com:207 - Connected to Outlook version: 16.0.0.18925
+2025-07-21 20:03:44 - outlook_service - DEBUG - _cleanup_com:228 - COM interface cleaned up
+2025-07-21 20:03:45 - outlook_service - INFO - __init__:137 - === Initializing OutlookService ===
+2025-07-21 20:03:45 - outlook_service - DEBUG - __init__:138 - Service initialization started at 2025-07-21 20:03:45.209981
+2025-07-21 20:03:45 - outlook_service - INFO - __init__:147 - OutlookService configured for user: Ali
+2025-07-21 20:03:45 - outlook_service - DEBUG - __init__:148 - Base path: C:\Users\Ali\Desktop\normie\outlook\analyze\mail
+2025-07-21 20:03:45 - outlook_service - DEBUG - __init__:149 - Emails file: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\emails.json
+2025-07-21 20:03:45 - outlook_service - DEBUG - __init__:150 - Data folder: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\data
+2025-07-21 20:03:45 - outlook_service - INFO - __init__:157 - COM interface availability: True
+2025-07-21 20:03:45 - outlook_service - INFO - __init__:161 - Base path exists: C:\Users\Ali\Desktop\normie\outlook\analyze\mail
+2025-07-21 20:03:45 - outlook_service - INFO - __init__:169 - Emails file not found: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\emails.json
+2025-07-21 20:03:45 - outlook_service - INFO - __init__:171 - OutlookService initialization completed successfully
+2025-07-21 20:03:45 - outlook_service - DEBUG - get_emails_data:1257 - === Loading emails data ===
+2025-07-21 20:03:45 - outlook_service - INFO - get_emails_data:1264 - Found 4 folder-specific email files
+2025-07-21 20:03:45 - outlook_service - DEBUG - get_emails_data:1265 - Folder files: ['emails_deleted_items.json', 'emails_drafts.json', 'emails_inbox.json', 'emails_sent_items.json']
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_deleted_items.json with encoding: utf-8
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Deleted Items folder
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_drafts.json with encoding: utf-8
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Drafts folder
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_inbox.json with encoding: cp1252
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 100 emails from Inbox folder
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_sent_items.json with encoding: utf-8
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Sent Items folder
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1362 - Consolidated 100 emails from 4 folders
+2025-07-21 20:03:45 - outlook_service - INFO - __init__:137 - === Initializing OutlookService ===
+2025-07-21 20:03:45 - outlook_service - DEBUG - __init__:138 - Service initialization started at 2025-07-21 20:03:45.282891
+2025-07-21 20:03:45 - outlook_service - INFO - __init__:147 - OutlookService configured for user: Ali
+2025-07-21 20:03:45 - outlook_service - DEBUG - __init__:148 - Base path: C:\Users\Ali\Desktop\normie\outlook\analyze\mail
+2025-07-21 20:03:45 - outlook_service - DEBUG - __init__:149 - Emails file: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\emails.json
+2025-07-21 20:03:45 - outlook_service - DEBUG - __init__:150 - Data folder: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\data
+2025-07-21 20:03:45 - outlook_service - INFO - __init__:157 - COM interface availability: True
+2025-07-21 20:03:45 - outlook_service - INFO - __init__:161 - Base path exists: C:\Users\Ali\Desktop\normie\outlook\analyze\mail
+2025-07-21 20:03:45 - outlook_service - INFO - __init__:169 - Emails file not found: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\emails.json
+2025-07-21 20:03:45 - outlook_service - INFO - __init__:171 - OutlookService initialization completed successfully
+2025-07-21 20:03:45 - outlook_service - INFO - mark_email_read:797 - === Attempting to mark email as read: 0000000037131A407E618D4D8533691FEF16F8410700837D288B2ABD74478135FFF495B683510000006EFE9D0000837D288B2ABD74478135FFF495B68351000100E48EBC0000 ===
+2025-07-21 20:03:45 - outlook_service - DEBUG - get_emails_data:1257 - === Loading emails data ===
+2025-07-21 20:03:45 - outlook_service - INFO - get_emails_data:1264 - Found 4 folder-specific email files
+2025-07-21 20:03:45 - outlook_service - DEBUG - get_emails_data:1265 - Folder files: ['emails_deleted_items.json', 'emails_drafts.json', 'emails_inbox.json', 'emails_sent_items.json']
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_deleted_items.json with encoding: utf-8
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Deleted Items folder
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_drafts.json with encoding: utf-8
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Drafts folder
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_inbox.json with encoding: cp1252
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 100 emails from Inbox folder
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_sent_items.json with encoding: utf-8
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Sent Items folder
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1362 - Consolidated 100 emails from 4 folders
+2025-07-21 20:03:45 - outlook_service - INFO - mark_email_read:803 - Email to mark as read: 'ChemScan: Stellungnahmen 063, 111, 112, 113, 114 u...' from i.eiser@uub-schwan.de
+2025-07-21 20:03:45 - outlook_service - DEBUG - mark_email_read:805 - Current email status: unread
+2025-07-21 20:03:45 - outlook_service - DEBUG - mark_email_read:807 - Searching for email item in Outlook
+2025-07-21 20:03:45 - outlook_service - DEBUG - _initialize_com:179 - === COM Interface Initialization ===
+2025-07-21 20:03:45 - outlook_service - INFO - _initialize_com:191 - Starting COM interface initialization...
+2025-07-21 20:03:45 - outlook_service - DEBUG - _initialize_com:192 - Calling pythoncom.CoInitialize()
+2025-07-21 20:03:45 - outlook_service - DEBUG - _initialize_com:195 - Dispatching Outlook.Application
+2025-07-21 20:03:45 - outlook_service - DEBUG - _initialize_com:198 - Getting MAPI namespace
+2025-07-21 20:03:45 - outlook_service - INFO - _initialize_com:202 - COM interface initialized successfully
+2025-07-21 20:03:45 - outlook_service - INFO - _initialize_com:207 - Connected to Outlook version: 16.0.0.18925
+2025-07-21 20:03:45 - outlook_service - DEBUG - get_emails_data:1257 - === Loading emails data ===
+2025-07-21 20:03:45 - outlook_service - INFO - get_emails_data:1264 - Found 4 folder-specific email files
+2025-07-21 20:03:45 - outlook_service - DEBUG - get_emails_data:1265 - Folder files: ['emails_deleted_items.json', 'emails_drafts.json', 'emails_inbox.json', 'emails_sent_items.json']
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_deleted_items.json with encoding: utf-8
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Deleted Items folder
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_drafts.json with encoding: utf-8
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Drafts folder
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_inbox.json with encoding: cp1252
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 100 emails from Inbox folder
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_sent_items.json with encoding: utf-8
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Sent Items folder
+2025-07-21 20:03:45 - outlook_service - DEBUG - _get_emails_from_multiple_files:1362 - Consolidated 100 emails from 4 folders
+2025-07-21 20:03:45 - outlook_service - DEBUG - _find_email_by_id:300 - Searching for email using native identifiers:
+2025-07-21 20:03:45 - outlook_service - DEBUG - _find_email_by_id:301 -   EntryID: 0000000037131A407E618D4D8533691FEF16F8410700837D28...
+2025-07-21 20:03:45 - outlook_service - DEBUG - _find_email_by_id:302 -   MessageID: <FR3P281MB3037D09E0F07EAF2A1D2D7DCB550A@FR3P281MB3...
+2025-07-21 20:03:45 - outlook_service - DEBUG - _find_email_by_id:303 -   ConversationID: C3E67517A00F4CEDB2D2...
+2025-07-21 20:03:45 - outlook_service - DEBUG - _find_email_by_id:308 - Attempting direct EntryID lookup...
+2025-07-21 20:03:45 - outlook_service - DEBUG - _find_email_by_id:314 - EntryID lookup failed: (-2147352567, 'Exception occurred.', (4096, 'Microsoft Outlook', 'The operation failed.', None, 0, -2147220991), None)
+2025-07-21 20:03:45 - outlook_service - DEBUG - _find_email_by_id:319 - Attempting MessageID search...
+2025-07-21 20:03:45 - outlook_service - DEBUG - _initialize_com:179 - === COM Interface Initialization ===
+2025-07-21 20:03:45 - outlook_service - DEBUG - _initialize_com:187 - COM interface already initialized
+2025-07-21 20:03:45 - outlook_service - DEBUG - _find_target_store_with_fallback:252 - Searching for account: IRM-Standardisation-Office
+2025-07-21 20:03:45 - outlook_service - DEBUG - _find_target_store_with_fallback:260 - Account 'IRM-Standardisation-Office' not found, trying next...
+2025-07-21 20:03:45 - outlook_service - DEBUG - _find_target_store_with_fallback:252 - Searching for account: microfilm.development@gmail.com
+2025-07-21 20:03:45 - outlook_service - INFO - _find_target_store_with_fallback:257 - Found target store: microfilm.development@gmail.com (Account: microfilm.development@gmail.com)
+2025-07-21 20:03:45 - outlook_service - DEBUG - _find_email_by_id:353 - Falling back to content-based search...
+2025-07-21 20:03:45 - outlook_service - DEBUG - _initialize_com:179 - === COM Interface Initialization ===
+2025-07-21 20:03:45 - outlook_service - DEBUG - _initialize_com:187 - COM interface already initialized
+2025-07-21 20:03:45 - outlook_service - DEBUG - _find_target_store_with_fallback:252 - Searching for account: IRM-Standardisation-Office
+2025-07-21 20:03:45 - outlook_service - DEBUG - _find_target_store_with_fallback:260 - Account 'IRM-Standardisation-Office' not found, trying next...
+2025-07-21 20:03:45 - outlook_service - DEBUG - _find_target_store_with_fallback:252 - Searching for account: microfilm.development@gmail.com
+2025-07-21 20:03:45 - outlook_service - INFO - _find_target_store_with_fallback:257 - Found target store: microfilm.development@gmail.com (Account: microfilm.development@gmail.com)
+2025-07-21 20:03:45 - outlook_service - DEBUG - _find_email_by_content:398 - Content search for subject: 'ChemScan: Stellungnahmen 063, 111, 112, 113, 114 u...', sender: 'i.eiser@uub-schwan.de'
+2025-07-21 20:03:45 - outlook_service - DEBUG - _find_email_by_content:406 - Searching through 6 recent emails
+2025-07-21 20:03:45 - outlook_service - WARNING - _find_email_by_content:445 - Email not found using content search
+2025-07-21 20:03:45 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 0000000037131A407E618D4D8533691FEF16F8410700837D288B2ABD74478135FFF495B683510000006EFE9D0000837D288B2ABD74478135FFF495B68351000100E48EBC0000
+2025-07-21 20:03:45 - outlook_service - WARNING - mark_email_read:811 - Email exists in JSON data but not found in Outlook COM interface
+2025-07-21 20:03:45 - outlook_service - DEBUG - _cleanup_com:228 - COM interface cleaned up
+2025-07-21 20:03:47 - outlook_service - INFO - __init__:137 - === Initializing OutlookService ===
+2025-07-21 20:03:47 - outlook_service - DEBUG - __init__:138 - Service initialization started at 2025-07-21 20:03:47.145792
+2025-07-21 20:03:47 - outlook_service - INFO - __init__:147 - OutlookService configured for user: Ali
+2025-07-21 20:03:47 - outlook_service - DEBUG - __init__:148 - Base path: C:\Users\Ali\Desktop\normie\outlook\analyze\mail
+2025-07-21 20:03:47 - outlook_service - DEBUG - __init__:149 - Emails file: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\emails.json
+2025-07-21 20:03:47 - outlook_service - DEBUG - __init__:150 - Data folder: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\data
+2025-07-21 20:03:47 - outlook_service - INFO - __init__:157 - COM interface availability: True
+2025-07-21 20:03:47 - outlook_service - INFO - __init__:161 - Base path exists: C:\Users\Ali\Desktop\normie\outlook\analyze\mail
+2025-07-21 20:03:47 - outlook_service - INFO - __init__:169 - Emails file not found: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\emails.json
+2025-07-21 20:03:47 - outlook_service - INFO - __init__:171 - OutlookService initialization completed successfully
+2025-07-21 20:03:47 - outlook_service - DEBUG - get_emails_data:1257 - === Loading emails data ===
+2025-07-21 20:03:47 - outlook_service - INFO - get_emails_data:1264 - Found 4 folder-specific email files
+2025-07-21 20:03:47 - outlook_service - DEBUG - get_emails_data:1265 - Folder files: ['emails_deleted_items.json', 'emails_drafts.json', 'emails_inbox.json', 'emails_sent_items.json']
+2025-07-21 20:03:47 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_deleted_items.json with encoding: utf-8
+2025-07-21 20:03:47 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Deleted Items folder
+2025-07-21 20:03:47 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_drafts.json with encoding: utf-8
+2025-07-21 20:03:47 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Drafts folder
+2025-07-21 20:03:47 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_inbox.json with encoding: cp1252
+2025-07-21 20:03:47 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 100 emails from Inbox folder
+2025-07-21 20:03:47 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_sent_items.json with encoding: utf-8
+2025-07-21 20:03:47 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Sent Items folder
+2025-07-21 20:03:47 - outlook_service - DEBUG - _get_emails_from_multiple_files:1362 - Consolidated 100 emails from 4 folders
+2025-07-21 20:03:47 - outlook_service - DEBUG - get_emails_list:1483 - Returning 25 emails (page 1/4)
+2025-07-21 20:03:47 - outlook_service - DEBUG - get_emails_data:1257 - === Loading emails data ===
+2025-07-21 20:03:47 - outlook_service - INFO - get_emails_data:1264 - Found 4 folder-specific email files
+2025-07-21 20:03:47 - outlook_service - DEBUG - get_emails_data:1265 - Folder files: ['emails_deleted_items.json', 'emails_drafts.json', 'emails_inbox.json', 'emails_sent_items.json']
+2025-07-21 20:03:47 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_deleted_items.json with encoding: utf-8
+2025-07-21 20:03:47 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Deleted Items folder
+2025-07-21 20:03:47 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_drafts.json with encoding: utf-8
+2025-07-21 20:03:47 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Drafts folder
+2025-07-21 20:03:47 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_inbox.json with encoding: cp1252
+2025-07-21 20:03:47 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 100 emails from Inbox folder
+2025-07-21 20:03:47 - outlook_service - DEBUG - _get_emails_from_multiple_files:1308 - Successfully read emails_sent_items.json with encoding: utf-8
+2025-07-21 20:03:47 - outlook_service - DEBUG - _get_emails_from_multiple_files:1348 - Loaded 0 emails from Sent Items folder
+2025-07-21 20:03:47 - outlook_service - DEBUG - _get_emails_from_multiple_files:1362 - Consolidated 100 emails from 4 folders
+2025-07-21 20:03:47 - outlook_service - DEBUG - _initialize_com:179 - === COM Interface Initialization ===
+2025-07-21 20:03:47 - outlook_service - INFO - _initialize_com:191 - Starting COM interface initialization...
+2025-07-21 20:03:47 - outlook_service - DEBUG - _initialize_com:192 - Calling pythoncom.CoInitialize()
+2025-07-21 20:03:47 - outlook_service - DEBUG - _initialize_com:195 - Dispatching Outlook.Application
+2025-07-21 20:03:47 - outlook_service - DEBUG - _initialize_com:198 - Getting MAPI namespace
+2025-07-21 20:03:47 - outlook_service - INFO - _initialize_com:202 - COM interface initialized successfully
+2025-07-21 20:03:47 - outlook_service - INFO - _initialize_com:207 - Connected to Outlook version: 16.0.0.18925
+2025-07-21 20:03:47 - outlook_service - DEBUG - _cleanup_com:228 - COM interface cleaned up

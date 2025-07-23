@@ -6589,3 +6589,15 @@
 2025-07-21 14:45:25 - INFO - COM interface availability: True
 2025-07-21 14:45:25 - INFO - Starting COM interface initialization...
 2025-07-21 14:45:26 - INFO - COM interface initialized successfully
+2025-07-21 20:03:41 - INFO - COM interface availability: True
+2025-07-21 20:03:41 - INFO - COM interface availability: True
+2025-07-21 20:03:41 - INFO - Starting COM interface initialization...
+2025-07-21 20:03:44 - INFO - COM interface initialized successfully
+2025-07-21 20:03:45 - INFO - COM interface availability: True
+2025-07-21 20:03:45 - INFO - COM interface availability: True
+2025-07-21 20:03:45 - INFO - Starting COM interface initialization...
+2025-07-21 20:03:45 - INFO - COM interface initialized successfully
+2025-07-21 20:03:45 - WARNING - Email exists in JSON data but not found in Outlook COM interface
+2025-07-21 20:03:47 - INFO - COM interface availability: True
+2025-07-21 20:03:47 - INFO - Starting COM interface initialization...
+2025-07-21 20:03:47 - INFO - COM interface initialized successfully

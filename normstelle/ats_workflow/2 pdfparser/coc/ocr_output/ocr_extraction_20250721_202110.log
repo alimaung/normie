@@ -1,0 +1,8 @@
+2025-07-21 20:21:10,890 - WARNING - Tesseract not available: tesseract is not installed or it's not in your PATH. See README file for more information.
+2025-07-21 20:21:10,890 - WARNING - Neither CUDA nor MPS are available - defaulting to CPU. Note: This module is much faster with a GPU.
+2025-07-21 20:21:10,892 - WARNING - Downloading detection model, please wait. This may take several minutes depending upon your network connection.
+2025-07-21 20:21:16,277 - INFO - Download complete
+2025-07-21 20:21:16,277 - WARNING - EasyOCR not available: ({'eng'}, 'is not supported')
+2025-07-21 20:21:16,279 - WARNING - PaddleOCR not available: No models are available for the language 'eng' and OCR version None.
+2025-07-21 20:21:16,279 - INFO - Processing PDF: test_ocr.pdf
+2025-07-21 20:21:16,280 - ERROR - Failed to convert PDF to images: Unable to get page count. Is poppler installed and in PATH?

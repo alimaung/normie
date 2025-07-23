@@ -1,0 +1,1286 @@
+{
+  "001-2022_01043784_sds_rsp5064s_04822050641_de_de_20190401.pdf": {
+    "sds_detection": {
+      "score": 98,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 86,
+        "structure": 0,
+        "format": 12,
+        "total": 98
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2019-04-01T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -1574,
+      "validity_status": "EXPIRED (1574 days ago)",
+      "confidence_score": 0.8
+    }
+  },
+  "001-2023_01043948_kemstrip_015-sds-german-clp-europe.pdf": {
+    "sds_detection": {
+      "score": 89,
+      "is_sds": true,
+      "confidence": "High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 80,
+        "structure": 0,
+        "format": 9,
+        "total": 89
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2022-10-17T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -279,
+      "validity_status": "EXPIRED (279 days ago)",
+      "confidence_score": 0.95
+    }
+  },
+  "002-2020_01043566_IP9064-CAT-MAT - SDB.pdf": {
+    "sds_detection": {
+      "score": 83,
+      "is_sds": true,
+      "confidence": "High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 77,
+        "structure": 0,
+        "format": 6,
+        "total": 83
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2019-08-07T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -1446,
+      "validity_status": "EXPIRED (1446 days ago)",
+      "confidence_score": 0.75
+    }
+  },
+  "002-2020_01043566_SDB_IP9064-CAT - SDS10009 - 49.pdf": {
+    "sds_detection": {
+      "score": 84,
+      "is_sds": true,
+      "confidence": "High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 78,
+        "structure": 0,
+        "format": 6,
+        "total": 84
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2018-09-24T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -1763,
+      "validity_status": "EXPIRED (1763 days ago)",
+      "confidence_score": 0.75
+    }
+  },
+  "002-2021_01043694_Wasserstoffperoxid  35 10010014__MSDS__DE__DE__DE01.pdf": {
+    "sds_detection": {
+      "score": 97,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 85,
+        "structure": 0,
+        "format": 12,
+        "total": 97
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2018-02-09T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -1990,
+      "validity_status": "EXPIRED (1990 days ago)",
+      "confidence_score": 0.8
+    }
+  },
+  "002-2023_01043949_A 96 SDB.pdf": {
+    "sds_detection": {
+      "score": 89,
+      "is_sds": true,
+      "confidence": "High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 80,
+        "structure": 0,
+        "format": 9,
+        "total": 89
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2018-08-20T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -1798,
+      "validity_status": "EXPIRED (1798 days ago)",
+      "confidence_score": 0.95
+    }
+  },
+  "003-2020_01043567.pdf": {
+    "sds_detection": {
+      "score": 88,
+      "is_sds": true,
+      "confidence": "High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 76,
+        "structure": 0,
+        "format": 12,
+        "total": 88
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2019-04-10T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -1565,
+      "validity_status": "EXPIRED (1565 days ago)",
+      "confidence_score": 0.8
+    }
+  },
+  "003-2021_01040685_document.reader_ger.pdf": {
+    "sds_detection": {
+      "score": 101,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 86,
+        "structure": 0,
+        "format": 15,
+        "total": 101
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2017-12-05T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -2056,
+      "validity_status": "EXPIRED (2056 days ago)",
+      "confidence_score": 0.8
+    }
+  },
+  "003-2021_01040685_safety dowsil.pdf": {
+    "sds_detection": {
+      "score": 101,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 86,
+        "structure": 0,
+        "format": 15,
+        "total": 101
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2017-12-05T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -2056,
+      "validity_status": "EXPIRED (2056 days ago)",
+      "confidence_score": 0.8
+    }
+  },
+  "003-2023_01043950_addicap_2_SDS_english-CLP-EUR.pdf": {
+    "sds_detection": {
+      "score": 0,
+      "is_sds": null,
+      "confidence": "Unknown (Scanned)",
+      "language": "Unknown (Scanned)",
+      "breakdown": {
+        "scanned_detection": 0,
+        "char_count": 0
+      },
+      "is_scanned": true
+    },
+    "date_validation": {
+      "primary_issue_date": null,
+      "is_valid": false,
+      "days_until_expiry": null,
+      "validity_status": "No dates found",
+      "confidence_score": 0.0
+    }
+  },
+  "003-2024_01044094_Sicherheitsdatenblatt_PartA&B.pdf": {
+    "sds_detection": {
+      "score": 96,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 84,
+        "structure": 0,
+        "format": 12,
+        "total": 96
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2023-06-19T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -34,
+      "validity_status": "EXPIRED (34 days ago)",
+      "confidence_score": 0.8
+    }
+  },
+  "003-2024_01044094_Sicherheitsdatenblatt_PartB.pdf": {
+    "sds_detection": {
+      "score": 0,
+      "is_sds": null,
+      "confidence": "Unknown (Scanned)",
+      "language": "Unknown (Scanned)",
+      "breakdown": {
+        "scanned_detection": 0,
+        "char_count": 0
+      },
+      "is_scanned": true
+    },
+    "date_validation": {
+      "primary_issue_date": null,
+      "is_valid": false,
+      "days_until_expiry": null,
+      "validity_status": "No dates found",
+      "confidence_score": 0.0
+    }
+  },
+  "003-2025_10003196_1079863_Magnaflux a Divisio_Zyglo ZL-37_DE-de_v4_0.pdf": {
+    "sds_detection": {
+      "score": 98,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 88,
+        "structure": 0,
+        "format": 10,
+        "total": 98
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2024-04-02T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 254,
+      "validity_status": "Valid (254 days remaining)",
+      "confidence_score": 0.8
+    }
+  },
+  "004-1993_01016051_2124.PDF": {
+    "sds_detection": {
+      "score": 0,
+      "is_sds": null,
+      "confidence": "Unknown (Scanned)",
+      "language": "Unknown (Scanned)",
+      "breakdown": {
+        "scanned_detection": 0,
+        "char_count": 0
+      },
+      "is_scanned": true
+    },
+    "date_validation": {
+      "primary_issue_date": null,
+      "is_valid": false,
+      "days_until_expiry": null,
+      "validity_status": "No dates found",
+      "confidence_score": 0.0
+    }
+  },
+  "004-2020_01043568_SDB.pdf": {
+    "sds_detection": {
+      "score": 88,
+      "is_sds": true,
+      "confidence": "High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 76,
+        "structure": 0,
+        "format": 12,
+        "total": 88
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2019-04-18T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -1557,
+      "validity_status": "EXPIRED (1557 days ago)",
+      "confidence_score": 0.8
+    }
+  },
+  "004-2021_01043695_Sicherheitsdatenblatt.pdf": {
+    "sds_detection": {
+      "score": 0,
+      "is_sds": null,
+      "confidence": "Unknown (Scanned)",
+      "language": "Unknown (Scanned)",
+      "breakdown": {
+        "scanned_detection": 0,
+        "char_count": 0
+      },
+      "is_scanned": true
+    },
+    "date_validation": {
+      "primary_issue_date": null,
+      "is_valid": false,
+      "days_until_expiry": null,
+      "validity_status": "No dates found",
+      "confidence_score": 0.0
+    }
+  },
+  "004-2024_01044095_Sicherheitsdatenblatt_PartA&B.pdf": {
+    "sds_detection": {
+      "score": 96,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 84,
+        "structure": 0,
+        "format": 12,
+        "total": 96
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2023-08-03T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 11,
+      "validity_status": "Expires soon (in 11 days)",
+      "confidence_score": 0.8
+    }
+  },
+  "004-2025_10003867_1089074_Magnaflux, a Divisio_Zyglo ZL-27A_DE-de_v4_0.pdf": {
+    "sds_detection": {
+      "score": 98,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 88,
+        "structure": 0,
+        "format": 10,
+        "total": 98
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2024-04-10T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 262,
+      "validity_status": "Valid (262 days remaining)",
+      "confidence_score": 0.8
+    }
+  },
+  "004-2025_10003867_1320948_Magnaflux a Divisio_Zyglo ZL-27A Aerosol_CH-de_v4_0.pdf": {
+    "sds_detection": {
+      "score": 99,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 89,
+        "structure": 0,
+        "format": 10,
+        "total": 99
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2024-09-11T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 416,
+      "validity_status": "Valid (416 days remaining)",
+      "confidence_score": 0.8
+    }
+  },
+  "005-2020_01043569_SDB.pdf": {
+    "sds_detection": {
+      "score": 90,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 83,
+        "structure": 0,
+        "format": 7,
+        "total": 90
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": null,
+      "is_valid": false,
+      "days_until_expiry": null,
+      "validity_status": "No dates found",
+      "confidence_score": 0.0
+    }
+  },
+  "005-2021_01043696_SDB.pdf": {
+    "sds_detection": {
+      "score": 0,
+      "is_sds": null,
+      "confidence": "Unknown (Scanned)",
+      "language": "Unknown (Scanned)",
+      "breakdown": {
+        "scanned_detection": 0,
+        "char_count": 0
+      },
+      "is_scanned": true
+    },
+    "date_validation": {
+      "primary_issue_date": null,
+      "is_valid": false,
+      "days_until_expiry": null,
+      "validity_status": "No dates found",
+      "confidence_score": 0.0
+    }
+  },
+  "005-2024_01044096_SDS_Fastblock100_EN.pdf": {
+    "sds_detection": {
+      "score": 87,
+      "is_sds": true,
+      "confidence": "High",
+      "language": "English",
+      "breakdown": {
+        "keywords": 78,
+        "structure": 0,
+        "format": 9,
+        "total": 87
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": null,
+      "is_valid": false,
+      "days_until_expiry": null,
+      "validity_status": "No dates found",
+      "confidence_score": 0.0
+    }
+  },
+  "005-2025_10002843_1079831_Magnaflux a Divisio_Magnaglo 14A_DE-de_v4_0.pdf": {
+    "sds_detection": {
+      "score": 96,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 86,
+        "structure": 0,
+        "format": 10,
+        "total": 96
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2024-04-02T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 254,
+      "validity_status": "Valid (254 days remaining)",
+      "confidence_score": 0.8
+    }
+  },
+  "006-2020_01043570_DE-ZYGLOZL-2CCLPSDSVER17-2-22-08-2018.pdf": {
+    "sds_detection": {
+      "score": 99,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 85,
+        "structure": 0,
+        "format": 14,
+        "total": 99
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2018-08-22T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -1796,
+      "validity_status": "EXPIRED (1796 days ago)",
+      "confidence_score": 0.75
+    }
+  },
+  "006-2021_01043698_01 Sparvar Acrylharzlack 2021 CLP DE.pdf": {
+    "sds_detection": {
+      "score": 120,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 88,
+        "structure": 25,
+        "format": 7,
+        "total": 120
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2021-01-01T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -933,
+      "validity_status": "EXPIRED (933 days ago)",
+      "confidence_score": 0.8
+    }
+  },
+  "006-2022_01043729_MOBIL SHC 626 - SDB.pdf": {
+    "sds_detection": {
+      "score": 85,
+      "is_sds": true,
+      "confidence": "High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 73,
+        "structure": 0,
+        "format": 12,
+        "total": 85
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2020-12-18T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -947,
+      "validity_status": "EXPIRED (947 days ago)",
+      "confidence_score": 0.8
+    }
+  },
+  "006-2024_01044097_Loctite EA 9492 DC50ml_20231201.pdf": {
+    "sds_detection": {
+      "score": 93,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 81,
+        "structure": 0,
+        "format": 12,
+        "total": 93
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2023-12-01T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 131,
+      "validity_status": "Valid (131 days remaining)",
+      "confidence_score": 0.8
+    }
+  },
+  "006-2025_10002813_1079828_Magnaflux a Divisio_Carrier II_DE-de_v4_0 (1).pdf": {
+    "sds_detection": {
+      "score": 99,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 89,
+        "structure": 0,
+        "format": 10,
+        "total": 99
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2024-04-02T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 254,
+      "validity_status": "Valid (254 days remaining)",
+      "confidence_score": 0.8
+    }
+  },
+  "006_2016_10002977_Rockhard_Thinner.pdf": {
+    "sds_detection": {
+      "score": 0,
+      "is_sds": null,
+      "confidence": "Unknown (Scanned)",
+      "language": "Unknown (Scanned)",
+      "breakdown": {
+        "scanned_detection": 0,
+        "char_count": 0
+      },
+      "is_scanned": true
+    },
+    "date_validation": {
+      "primary_issue_date": null,
+      "is_valid": false,
+      "days_until_expiry": null,
+      "validity_status": "No dates found",
+      "confidence_score": 0.0
+    }
+  },
+  "007-2020_01043572_SDB-P077-DE-DE.pdf": {
+    "sds_detection": {
+      "score": 85,
+      "is_sds": true,
+      "confidence": "High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 73,
+        "structure": 0,
+        "format": 12,
+        "total": 85
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2015-10-12T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -2841,
+      "validity_status": "EXPIRED (2841 days ago)",
+      "confidence_score": 0.9
+    }
+  },
+  "007-2021_01043699_GSAP_msds_02217182.pdf": {
+    "sds_detection": {
+      "score": 98,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 86,
+        "structure": 0,
+        "format": 12,
+        "total": 98
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2021-01-20T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -914,
+      "validity_status": "EXPIRED (914 days ago)",
+      "confidence_score": 0.8
+    }
+  },
+  "007-2024_01044098_skyrestore_406-sds-german-clp-europe.pdf": {
+    "sds_detection": {
+      "score": 89,
+      "is_sds": true,
+      "confidence": "High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 80,
+        "structure": 0,
+        "format": 9,
+        "total": 89
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2023-10-10T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 79,
+      "validity_status": "Valid (79 days remaining)",
+      "confidence_score": 0.95
+    }
+  },
+  "007-2025_01044235_DE20583.pdf": {
+    "sds_detection": {
+      "score": 78,
+      "is_sds": true,
+      "confidence": "High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 72,
+        "structure": 0,
+        "format": 6,
+        "total": 78
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2022-01-21T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -548,
+      "validity_status": "EXPIRED (548 days ago)",
+      "confidence_score": 0.75
+    }
+  },
+  "007_016-2022_MSDS DACRYLATE QD-ANTI CORROSION PRIMER 98-Line de.pdf": {
+    "sds_detection": {
+      "score": 102,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 88,
+        "structure": 0,
+        "format": 14,
+        "total": 102
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2015-09-22T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -2861,
+      "validity_status": "EXPIRED (2861 days ago)",
+      "confidence_score": 0.2
+    }
+  },
+  "008-2021_01043700_Rustilo DWX 30 - Sicherheitsdatenblatt - GER.pdf": {
+    "sds_detection": {
+      "score": 94,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 87,
+        "structure": 0,
+        "format": 7,
+        "total": 94
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2020-10-08T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -1018,
+      "validity_status": "EXPIRED (1018 days ago)",
+      "confidence_score": 0.95
+    }
+  },
+  "008-2023_01043954_PR 812_Part A_2022_10_26.pdf": {
+    "sds_detection": {
+      "score": 93,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 86,
+        "structure": 0,
+        "format": 7,
+        "total": 93
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2022-10-26T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -270,
+      "validity_status": "EXPIRED (270 days ago)",
+      "confidence_score": 0.95
+    }
+  },
+  "008-2023_01043954_PR 812_Part B_2022_11_05.pdf": {
+    "sds_detection": {
+      "score": 93,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 86,
+        "structure": 0,
+        "format": 7,
+        "total": 93
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2022-11-05T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -260,
+      "validity_status": "EXPIRED (260 days ago)",
+      "confidence_score": 0.95
+    }
+  },
+  "008-2024_01044099_skyrestore_407_gel-sds-german-clp-europe.pdf": {
+    "sds_detection": {
+      "score": 89,
+      "is_sds": true,
+      "confidence": "High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 80,
+        "structure": 0,
+        "format": 9,
+        "total": 89
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2023-10-10T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 79,
+      "validity_status": "Valid (79 days remaining)",
+      "confidence_score": 0.95
+    }
+  },
+  "009-010-2020_01040590-1_SDB.pdf": {
+    "sds_detection": {
+      "score": 88,
+      "is_sds": true,
+      "confidence": "High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 81,
+        "structure": 0,
+        "format": 7,
+        "total": 88
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": null,
+      "is_valid": false,
+      "days_until_expiry": null,
+      "validity_status": "No dates found",
+      "confidence_score": 0.0
+    }
+  },
+  "009-2012_10004367_GP 109.pdf": {
+    "sds_detection": {
+      "score": 0,
+      "is_sds": null,
+      "confidence": "Unknown (Scanned)",
+      "language": "Unknown (Scanned)",
+      "breakdown": {
+        "scanned_detection": 0,
+        "char_count": 0
+      },
+      "is_scanned": true
+    },
+    "date_validation": {
+      "primary_issue_date": null,
+      "is_valid": false,
+      "days_until_expiry": null,
+      "validity_status": "No dates found",
+      "confidence_score": 0.0
+    }
+  },
+  "009-2021_01043701_SDS_10509_-_DUPLICOLOR_Lackstifte_alle_Farbtöne_DE-DE.pdf": {
+    "sds_detection": {
+      "score": 97,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 88,
+        "structure": 0,
+        "format": 9,
+        "total": 97
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2019-05-08T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -1537,
+      "validity_status": "EXPIRED (1537 days ago)",
+      "confidence_score": 0.8
+    }
+  },
+  "009-2025_01044238_000000000000406303_000000048736_MSDS_UT_DE_DE.PDF": {
+    "sds_detection": {
+      "score": 89,
+      "is_sds": true,
+      "confidence": "High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 77,
+        "structure": 0,
+        "format": 12,
+        "total": 89
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2024-07-03T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 346,
+      "validity_status": "Valid (346 days remaining)",
+      "confidence_score": 0.8
+    }
+  },
+  "009-2025_01044238_BONDERITE S-MA 522 SDS_20kg.pdf": {
+    "sds_detection": {
+      "score": 89,
+      "is_sds": true,
+      "confidence": "High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 77,
+        "structure": 0,
+        "format": 12,
+        "total": 89
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2024-07-03T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 346,
+      "validity_status": "Valid (346 days remaining)",
+      "confidence_score": 0.8
+    }
+  },
+  "010-2017_01041673_MSRR1029_Loctite510_SDS_062015.pdf": {
+    "sds_detection": {
+      "score": 95,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 81,
+        "structure": 0,
+        "format": 14,
+        "total": 95
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2015-06-22T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -2953,
+      "validity_status": "EXPIRED (2953 days ago)",
+      "confidence_score": 0.8
+    }
+  },
+  "010-2018_10001776_IP9064-9000 - SDS10007 - 44.pdf": {
+    "sds_detection": {
+      "score": 93,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "English",
+      "breakdown": {
+        "keywords": 84,
+        "structure": 0,
+        "format": 9,
+        "total": 93
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2017-04-05T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -2300,
+      "validity_status": "EXPIRED (2300 days ago)",
+      "confidence_score": 0.65
+    }
+  },
+  "010-2018_10001776_SDB_DE_Version5_2014.pdf": {
+    "sds_detection": {
+      "score": 91,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 82,
+        "structure": 0,
+        "format": 9,
+        "total": 91
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2014-01-02T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -3489,
+      "validity_status": "EXPIRED (3489 days ago)",
+      "confidence_score": 0.8
+    }
+  },
+  "010-2021_01043702_SDS_10509_-_DUPLICOLOR_Lackstifte_alle_Farbtöne_DE-DE (3).pdf": {
+    "sds_detection": {
+      "score": 97,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 88,
+        "structure": 0,
+        "format": 9,
+        "total": 97
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2019-05-08T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -1537,
+      "validity_status": "EXPIRED (1537 days ago)",
+      "confidence_score": 0.8
+    }
+  },
+  "010-2023_01043956_sdb_kem_50_uv_DE.pdf": {
+    "sds_detection": {
+      "score": 88,
+      "is_sds": true,
+      "confidence": "High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 81,
+        "structure": 0,
+        "format": 7,
+        "total": 88
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2022-07-09T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -379,
+      "validity_status": "EXPIRED (379 days ago)",
+      "confidence_score": 0.8
+    }
+  },
+  "010-2025_01044237_TOLUENE SDS.pdf": {
+    "sds_detection": {
+      "score": 94,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 83,
+        "structure": 0,
+        "format": 11,
+        "total": 94
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2024-10-23T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 458,
+      "validity_status": "Valid (458 days remaining)",
+      "confidence_score": 0.45
+    }
+  },
+  "109-2022_01043210_SDB.pdf": {
+    "sds_detection": {
+      "score": 93,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 82,
+        "structure": 0,
+        "format": 11,
+        "total": 93
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2024-07-12T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 355,
+      "validity_status": "Valid (355 days remaining)",
+      "confidence_score": 0.45
+    }
+  },
+  "111-2025_01044338_SDB_CARE_Lecksuchspray_CARELS04.pdf": {
+    "sds_detection": {
+      "score": 122,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 82,
+        "structure": 25,
+        "format": 15,
+        "total": 122
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2024-11-04T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 470,
+      "validity_status": "Valid (470 days remaining)",
+      "confidence_score": 0.8
+    }
+  },
+  "114-2025_01044341_SDB.pdf": {
+    "sds_detection": {
+      "score": 90,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 83,
+        "structure": 0,
+        "format": 7,
+        "total": 90
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2023-10-24T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 93,
+      "validity_status": "Valid (93 days remaining)",
+      "confidence_score": 0.8
+    }
+  },
+  "115-2022_10001790_IP9151_DEU_DE.pdf": {
+    "sds_detection": {
+      "score": 95,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 84,
+        "structure": 0,
+        "format": 11,
+        "total": 95
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2024-01-05T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 166,
+      "validity_status": "Valid (166 days remaining)",
+      "confidence_score": 0.45
+    }
+  },
+  "115-2025_01044342_SDB.pdf": {
+    "sds_detection": {
+      "score": 93,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 86,
+        "structure": 0,
+        "format": 7,
+        "total": 93
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2025-06-24T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 702,
+      "validity_status": "Valid (702 days remaining)",
+      "confidence_score": 0.95
+    }
+  },
+  "117-2022_10002356_345545_MSDS_ARALDITE-MY750-1KG_DE_2023.pdf": {
+    "sds_detection": {
+      "score": 95,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 83,
+        "structure": 0,
+        "format": 12,
+        "total": 95
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2023-01-11T00:00:00",
+      "is_valid": false,
+      "days_until_expiry": -193,
+      "validity_status": "EXPIRED (193 days ago)",
+      "confidence_score": 0.8
+    }
+  },
+  "119-2025_01044345_SDB.pdf": {
+    "sds_detection": {
+      "score": 98,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 88,
+        "structure": 0,
+        "format": 10,
+        "total": 98
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2025-03-10T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 596,
+      "validity_status": "Valid (596 days remaining)",
+      "confidence_score": 0.8
+    }
+  },
+  "120-2022_10002371_SDB.pdf": {
+    "sds_detection": {
+      "score": 93,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 82,
+        "structure": 0,
+        "format": 11,
+        "total": 93
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2024-04-27T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 279,
+      "validity_status": "Valid (279 days remaining)",
+      "confidence_score": 0.45
+    }
+  },
+  "121-2025_01044347_SDB.pdf": {
+    "sds_detection": {
+      "score": 98,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 88,
+        "structure": 0,
+        "format": 10,
+        "total": 98
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2023-12-07T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 137,
+      "validity_status": "Valid (137 days remaining)",
+      "confidence_score": 0.8
+    }
+  },
+  "127-2022_10002785_SDB.pdf": {
+    "sds_detection": {
+      "score": 95,
+      "is_sds": true,
+      "confidence": "Very High",
+      "language": "German",
+      "breakdown": {
+        "keywords": 84,
+        "structure": 0,
+        "format": 11,
+        "total": 95
+      },
+      "is_scanned": false
+    },
+    "date_validation": {
+      "primary_issue_date": "2024-04-24T00:00:00",
+      "is_valid": true,
+      "days_until_expiry": 276,
+      "validity_status": "Valid (276 days remaining)",
+      "confidence_score": 0.45
+    }
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "E": ["PROHIBITED SUBSTANCES", "RESTRICTED SUBSTANCES", "CONTROL SUBSTANCES"],
+  "F": [
+    "Shall not be used",
+    "Where unavoidable, existing uses are acceptable, provided all practical measures are taken to reduce risk to health or the environment, and in accordance with any legislative requirements. New uses shall be approved by the MSB in addition to any specific approval requirements stated under Policy Specific Requirements.",
+    "Where unavoidable, uses are acceptable provided all practical measures are taken to reduce risk to health or the environment, and in accordance with any legislative requirements. Introduction of new uses should be with the recognition that these substances may be subject to legislatively driven obsolescence in the future."
+  ],
+  "G": [
+    "Shall not be used in the external supply chain",
+    NaN,
+    "Where used as a biocide in anti-fouling applications \u2013 See International Convention on the Control of Harmful Anti-fouling Systems on Ships",
+    "Where used in hard chrome plating for decorative finish",
+    "Acceptable for existing uses. New parts require agreement from the Chief Engineer or their delegates. Copper-beryllium alloys with beryllium content < 3% are acceptable, where supplied within a finished article and requiring no further processing.",
+    "Acceptable for existing parts. New parts require agreement from the Chief Engineer or their delegates, in the context of a customer requirement only.",
+    "Acceptable for existing uses. New parts require agreement from the Chief Engineer or their delegates.",
+    "Where unavoidable, the following existing uses are acceptable: general cleaning, etching, descaling, stripping, aluminium/magnesium/steel protection, hard chrome plating, high temperature diffusion coatings, sacrificial coatings, passivation, water treatment, lab scale analysis, and scientific research and design. Except where substances are in table 2 or 3.",
+    "Unless the use is permitted for by an exemption under the Stockholm Convention annex A"
+  ],
+  "H": ["N", "Y"]
+}

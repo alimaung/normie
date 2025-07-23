@@ -1,0 +1,10 @@
+# Essential dependencies for simple OCR script
+pytesseract>=0.3.10
+Pillow>=10.0.0
+
+# PDF processing (choose one)
+PyMuPDF>=1.23.0  # Recommended - faster and better quality
+# PyPDF2>=3.0.0  # Alternative - basic text extraction only
+
+# Optional: for pdf2image method (requires poppler-utils system package)
+# pdf2image>=3.1.0 

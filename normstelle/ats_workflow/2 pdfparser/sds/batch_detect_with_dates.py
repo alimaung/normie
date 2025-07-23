@@ -3,11 +3,13 @@
 Comprehensive SDS Analysis Batch Script
 Runs both SDS detection and date validation on all PDFs in the sds folder
 Generates combined reports with both detection and validity information
+Includes detection for scanned documents with no extractable text
 """
 
 import os
 import sys
 import json
+import re
 from datetime import datetime
 from pathlib import Path
 
@@ -16,6 +18,108 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 from sds_detector import SDSDetector, SDSScore
 from sds_date_detector import SDSDateDetector, SDSDateResult
+
+try:
+    import fitz  # PyMuPDF
+    FITZ_AVAILABLE = True
+except ImportError:
+    FITZ_AVAILABLE = False
+    print("Warning: PyMuPDF not available. Text extraction will be limited.")
+
+
+def detect_scanned_document(pdf_path: str) -> tuple[bool, str, int]:
+    """
+    Detect if a PDF is likely a scanned document with no extractable text
+    
+    Returns:
+        tuple: (is_scanned, reason, char_count)
+            - is_scanned: True if document appears to be scanned
+            - reason: Description of why it's considered scanned
+            - char_count: Number of extractable characters found
+    """
+    if not os.path.exists(pdf_path):
+        return True, "File not found", 0
+    
+    text = ""
+    char_count = 0
+    
+    # Try to extract text using available methods
+    if FITZ_AVAILABLE:
+        try:
+            doc = fitz.open(pdf_path)
+            for page in doc:
+                page_text = page.get_text()
+                text += page_text
+            doc.close()
+        except Exception as e:
+            return True, f"Text extraction failed: {str(e)}", 0
+    else:
+        # Fallback to PyPDF2
+        try:
+            import PyPDF2
+            with open(pdf_path, 'rb') as file:
+                reader = PyPDF2.PdfReader(file)
+                for page in reader.pages:
+                    text += page.extract_text()
+        except Exception as e:
+            return True, f"Text extraction failed: {str(e)}", 0
+    
+    # Count actual characters (excluding whitespace)
+    char_count = len(re.sub(r'\s+', '', text))
+    
+    # Determine if it's likely scanned based on text content
+    if char_count == 0:
+        return True, "No extractable text found", 0
+    elif char_count < 50:
+        return True, f"Very little text found ({char_count} chars)", char_count
+    elif char_count < 200:
+        # Check if text looks like OCR artifacts or random characters
+        # Look for patterns that suggest poor OCR or scanning
+        clean_text = re.sub(r'[^\w\s]', '', text.lower())
+        words = clean_text.split()
+        
+        if len(words) < 20:
+            return True, f"Insufficient meaningful text ({len(words)} words, {char_count} chars)", char_count
+        
+        # Check for excessive single characters or very short "words"
+        single_chars = sum(1 for word in words if len(word) == 1)
+        if single_chars > len(words) * 0.5:  # More than 50% single characters
+            return True, f"Text appears to be OCR artifacts ({single_chars}/{len(words)} single chars)", char_count
+    
+    # If we have substantial text, it's probably not scanned
+    return False, f"Sufficient text content ({char_count} chars)", char_count
+
+
+def create_enhanced_sds_score(pdf_path: str, sds_detector: SDSDetector) -> SDSScore:
+    """
+    Create an SDS score with scanned document detection
+    """
+    # First check if it's a scanned document
+    is_scanned, scan_reason, char_count = detect_scanned_document(pdf_path)
+    
+    if is_scanned:
+        # Create a special result for scanned documents
+        return SDSScore(
+            total_score=0,
+            is_likely_sds=None,  # Use None to indicate "unknown" rather than False
+            confidence_level="Unknown (Scanned)",
+            breakdown={"scanned_detection": 0, "char_count": char_count},
+            detected_features=[f"Scanned document: {scan_reason}"],
+            language_detected="Unknown (Scanned)"
+        )
+    
+    # If not scanned, proceed with normal SDS detection
+    try:
+        return sds_detector.detect_sds(pdf_path)
+    except Exception as e:
+        return SDSScore(
+            total_score=0,
+            is_likely_sds=False,
+            confidence_level="Error",
+            breakdown={},
+            detected_features=[f"Processing error: {str(e)}"],
+            language_detected="Unknown"
+        )
 
 
 def create_combined_html_report(sds_results: dict, date_results: dict, output_dir: str) -> str:
@@ -88,6 +192,7 @@ def create_combined_html_report(sds_results: dict, date_results: dict, output_di
         .file-card.valid-sds-expired { border-left: 5px solid #fd7e14; }
         .file-card.valid-sds-no-date { border-left: 5px solid #ffc107; }
         .file-card.invalid-sds { border-left: 5px solid #dc3545; }
+        .file-card.scanned-document { border-left: 5px solid #6c757d; }
         .file-name {
             font-weight: bold;
             margin-bottom: 15px;
@@ -121,6 +226,7 @@ def create_combined_html_report(sds_results: dict, date_results: dict, output_di
         }
         .status-badge.sds-valid { background: #d4edda; color: #155724; }
         .status-badge.sds-invalid { background: #f8d7da; color: #721c24; }
+        .status-badge.sds-scanned { background: #e2e3e5; color: #495057; }
         .status-badge.date-valid { background: #d4edda; color: #155724; }
         .status-badge.date-expired { background: #f8d7da; color: #721c24; }
         .status-badge.date-expiring { background: #fff3cd; color: #856404; }
@@ -206,7 +312,8 @@ def create_combined_html_report(sds_results: dict, date_results: dict, output_di
 
     # Calculate combined statistics
     total_files = len(sds_results)
-    valid_sds = sum(1 for r in sds_results.values() if r.is_likely_sds)
+    valid_sds = sum(1 for r in sds_results.values() if r.is_likely_sds is True)
+    scanned_docs = sum(1 for r in sds_results.values() if r.is_likely_sds is None)
     valid_dates = sum(1 for r in date_results.values() if r.is_valid)
     expired_dates = sum(1 for r in date_results.values() if r.primary_issue_date and not r.is_valid)
     
@@ -219,7 +326,7 @@ def create_combined_html_report(sds_results: dict, date_results: dict, output_di
         sds_result = sds_results[filename]
         date_result = date_results.get(filename)
         
-        if sds_result.is_likely_sds:
+        if sds_result.is_likely_sds is True:  # Only count valid SDS files
             if date_result and date_result.primary_issue_date and not date_result.is_valid:
                 critical_issues += 1
             elif date_result and date_result.days_until_expiry and 0 < date_result.days_until_expiry <= 90:
@@ -245,6 +352,10 @@ def create_combined_html_report(sds_results: dict, date_results: dict, output_di
                 <h3>Critical Issues</h3>
                 <div class="number">{critical_issues}</div>
             </div>
+            <div class="summary-card info">
+                <h3>Scanned/Unknown</h3>
+                <div class="number">{scanned_docs}</div>
+            </div>
         </div>
         
         <div class="tabs">
@@ -258,7 +369,10 @@ def create_combined_html_report(sds_results: dict, date_results: dict, output_di
     # Create different views
     def create_file_card(filename, sds_result, date_result):
         # Determine overall status
-        if not sds_result.is_likely_sds:
+        if sds_result.is_likely_sds is None:  # Scanned document
+            card_class = "scanned-document"
+            priority_level = "unknown"
+        elif not sds_result.is_likely_sds:
             card_class = "invalid-sds"
             priority_level = "low"
         elif date_result and date_result.primary_issue_date and not date_result.is_valid:
@@ -283,8 +397,8 @@ def create_combined_html_report(sds_results: dict, date_results: dict, output_di
                 <div class="status-grid">
                     <div class="status-section">
                         <h4>SDS Detection</h4>
-                        <div class="status-badge {'sds-valid' if sds_result.is_likely_sds else 'sds-invalid'}">
-                            {'✅ Valid SDS' if sds_result.is_likely_sds else '❌ Not SDS'}
+                        <div class="status-badge {'sds-valid' if sds_result.is_likely_sds is True else 'sds-scanned' if sds_result.is_likely_sds is None else 'sds-invalid'}">
+                            {'✅ Valid SDS' if sds_result.is_likely_sds is True else '❓ Scanned/Unknown' if sds_result.is_likely_sds is None else '❌ Not SDS'}
                         </div>
                         <div class="score {score_class}">{sds_result.total_score}/100</div>
                         <div class="details">
@@ -357,8 +471,8 @@ def create_combined_html_report(sds_results: dict, date_results: dict, output_di
         card_html, priority = create_file_card(filename, sds_result, date_result)
         all_files.append((filename, card_html, priority, sds_result, date_result))
 
-    # Sort by priority (high -> medium -> low)
-    priority_order = {"high": 0, "medium": 1, "low": 2}
+    # Sort by priority (high -> medium -> low -> unknown)
+    priority_order = {"high": 0, "medium": 1, "low": 2, "unknown": 3}
     all_files.sort(key=lambda x: (priority_order[x[2]], x[0]))
 
     # Show first 10 files in overview
@@ -468,18 +582,27 @@ def main():
         
         try:
             # SDS Detection
-            sds_result = sds_detector.detect_sds(pdf_path)
+            sds_result = create_enhanced_sds_score(pdf_path, sds_detector)
             sds_results[filename] = sds_result
             
             # Date Detection
             date_result = date_detector.detect_dates(pdf_path)
             date_results[filename] = date_result
             
-            # Show quick summary
-            sds_status = "✅ SDS" if sds_result.is_likely_sds else "❌ Non-SDS"
+            # Show quick summary with language and scanned status
+            if sds_result.is_likely_sds is None:  # Scanned document
+                sds_status = "❓ Unknown (Scanned)"
+                lang_info = "🔍 Scanned"
+            elif sds_result.is_likely_sds:
+                sds_status = "✅ SDS"
+                lang_info = f"🌐 {sds_result.language_detected}"
+            else:
+                sds_status = "❌ Non-SDS"
+                lang_info = f"🌐 {sds_result.language_detected}"
+            
             date_status = date_result.validity_status if date_result.primary_issue_date else "No date"
             
-            print(f"    {sds_status} ({sds_result.total_score}/100) | 📅 {date_status}")
+            print(f"    {sds_status} ({sds_result.total_score}/100) | {lang_info} | 📅 {date_status}")
             
         except Exception as e:
             print(f"    ❌ Error: {str(e)}")
@@ -509,11 +632,19 @@ def main():
     print("-" * 60)
     
     # Generate combined statistics
-    valid_sds = [f for f, r in sds_results.items() if r.is_likely_sds]
+    valid_sds = [f for f, r in sds_results.items() if r.is_likely_sds is True]
+    invalid_sds = [f for f, r in sds_results.items() if r.is_likely_sds is False]
+    scanned_docs = [f for f, r in sds_results.items() if r.is_likely_sds is None]
     valid_dates = [f for f, r in date_results.items() if r.is_valid]
     expired_dates = [f for f, r in date_results.items() if r.primary_issue_date and not r.is_valid]
     
-    # Critical analysis
+    # Language breakdown
+    language_counts = {}
+    for filename, result in sds_results.items():
+        lang = result.language_detected
+        language_counts[lang] = language_counts.get(lang, 0) + 1
+    
+    # Critical analysis (only for valid SDS files)
     critical_issues = []
     action_needed = []
     
@@ -526,10 +657,17 @@ def main():
     
     print(f"📋 Analysis Summary:")
     print(f"   Total files: {len(pdf_files)}")
-    print(f"   Valid SDS: {len(valid_sds)}")
-    print(f"   Valid dates: {len(valid_dates)}")
+    print(f"   ✅ Valid SDS: {len(valid_sds)}")
+    print(f"   ❌ Non-SDS: {len(invalid_sds)}")
+    print(f"   ❓ Scanned/Unknown: {len(scanned_docs)}")
+    print(f"   📅 Valid dates: {len(valid_dates)}")
     print(f"   🚨 Critical issues (expired SDS): {len(critical_issues)}")
     print(f"   ⚠️  Action needed (expiring soon): {len(action_needed)}")
+    
+    if language_counts:
+        print(f"\n🌐 Language Breakdown:")
+        for lang, count in sorted(language_counts.items(), key=lambda x: x[1], reverse=True):
+            print(f"   {lang}: {count} files")
     
     if critical_issues:
         print(f"\n🚨 CRITICAL - Expired SDS files:")
@@ -557,10 +695,11 @@ def main():
         combined_data[filename] = {
             'sds_detection': {
                 'score': sds_result.total_score,
-                'is_sds': sds_result.is_likely_sds,
+                'is_sds': sds_result.is_likely_sds,  # Can be True, False, or None (scanned)
                 'confidence': sds_result.confidence_level,
                 'language': sds_result.language_detected,
-                'breakdown': sds_result.breakdown
+                'breakdown': sds_result.breakdown,
+                'is_scanned': sds_result.is_likely_sds is None
             },
             'date_validation': {
                 'primary_issue_date': date_result.primary_issue_date.isoformat() if date_result and date_result.primary_issue_date else None,
@@ -581,15 +720,16 @@ def main():
     # Create CSV summary
     csv_path = os.path.join(output_dir, "comprehensive_summary.csv")
     with open(csv_path, 'w', encoding='utf-8') as f:
-        f.write("Filename,SDS_Score,Is_SDS,SDS_Confidence,Issue_Date,Date_Valid,Days_Until_Expiry,Status\n")
+        f.write("Filename,SDS_Score,Is_SDS,Is_Scanned,Language,SDS_Confidence,Issue_Date,Date_Valid,Days_Until_Expiry,Status\n")
         for filename in sorted(sds_results.keys()):
             sds_result = sds_results[filename]
             date_result = date_results.get(filename)
             
             issue_date_str = date_result.primary_issue_date.strftime('%d.%m.%Y') if date_result and date_result.primary_issue_date else ""
+            is_scanned = sds_result.is_likely_sds is None
             
-            f.write(f'"{filename}",{sds_result.total_score},{sds_result.is_likely_sds},')
-            f.write(f'"{sds_result.confidence_level}","{issue_date_str}",')
+            f.write(f'"{filename}",{sds_result.total_score},{sds_result.is_likely_sds},{is_scanned},')
+            f.write(f'"{sds_result.language_detected}","{sds_result.confidence_level}","{issue_date_str}",')
             f.write(f'{date_result.is_valid if date_result else False},')
             f.write(f'{date_result.days_until_expiry if date_result else ""},')
             f.write(f'"{date_result.validity_status if date_result else "No analysis"}"\n')

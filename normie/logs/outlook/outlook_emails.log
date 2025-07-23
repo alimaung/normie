@@ -7374,3 +7374,22 @@ NameError: name 'time' is not defined. Did you forget to import 'time'?
 2025-07-21 14:45:25 - INFO - Emails file not found: C:\Users\user1\Desktop\normie\outlook\analyze\mail\emails.json
 2025-07-21 14:45:25 - INFO - Found 4 folder-specific email files
 2025-07-21 14:45:25 - INFO - Found 4 folder-specific email files
+2025-07-21 20:03:41 - INFO - Emails file not found: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\emails.json
+2025-07-21 20:03:41 - INFO - Found 4 folder-specific email files
+2025-07-21 20:03:41 - INFO - Emails file not found: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\emails.json
+2025-07-21 20:03:41 - INFO - Found 4 folder-specific email files
+2025-07-21 20:03:41 - INFO - Found 4 folder-specific email files
+2025-07-21 20:03:41 - INFO - Found 4 folder-specific email files
+2025-07-21 20:03:45 - INFO - Emails file not found: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\emails.json
+2025-07-21 20:03:45 - INFO - Found 4 folder-specific email files
+2025-07-21 20:03:45 - INFO - Emails file not found: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\emails.json
+2025-07-21 20:03:45 - INFO - === Attempting to mark email as read: 0000000037131A407E618D4D8533691FEF16F8410700837D288B2ABD74478135FFF495B683510000006EFE9D0000837D288B2ABD74478135FFF495B68351000100E48EBC0000 ===
+2025-07-21 20:03:45 - INFO - Found 4 folder-specific email files
+2025-07-21 20:03:45 - INFO - Email to mark as read: 'ChemScan: Stellungnahmen 063, 111, 112, 113, 114 u...' from i.eiser@uub-schwan.de
+2025-07-21 20:03:45 - INFO - Found 4 folder-specific email files
+2025-07-21 20:03:45 - WARNING - Email not found using content search
+2025-07-21 20:03:45 - ERROR - Cannot mark email - not found in Outlook: 0000000037131A407E618D4D8533691FEF16F8410700837D288B2ABD74478135FFF495B683510000006EFE9D0000837D288B2ABD74478135FFF495B68351000100E48EBC0000
+2025-07-21 20:03:45 - WARNING - Email exists in JSON data but not found in Outlook COM interface
+2025-07-21 20:03:47 - INFO - Emails file not found: C:\Users\Ali\Desktop\normie\outlook\analyze\mail\emails.json
+2025-07-21 20:03:47 - INFO - Found 4 folder-specific email files
+2025-07-21 20:03:47 - INFO - Found 4 folder-specific email files
