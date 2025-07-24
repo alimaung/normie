@@ -1,0 +1,32 @@
+{
+  "summary": {
+    "total_attempted": 2,
+    "successful": 2,
+    "failed": 0,
+    "start_time": "2025-07-24 10:53:41",
+    "end_time": "2025-07-24 10:53:46"
+  },
+  "created_users": [
+    {
+      "name": "Sebastian",
+      "surname": "Mann",
+      "email": "Sebastian.Mann@Rolls-Royce.com",
+      "success": true,
+      "return_code": 0,
+      "status_info": "HTTP 200 - Success",
+      "stdout": "User creation request sent for: Sebastian Mann (Sebastian.Mann@Rolls-Royce.com)\nStatus Code: 200\nResponse: {\"redirect\":true,\"fullRedirect\":false,\"location\":\"\\/user\\/view\\/373\"}\n\r\n\r\nStatusCode        : 200\r\nStatusDescription : OK\r\nContent           : {\"redirect\":true,\"fullRedirect\":false,\"location\":\"\\/user\\/view\\/373\"}\r\nRawContent        : HTTP/1.1 200 OK\r\n                    Transfer-Encoding: chunked\r\n                    Connection: keep-alive\r\n                    Pragma: no-cache\r\n            ...",
+      "stderr": ""
+    },
+    {
+      "name": "Ralph",
+      "surname": "Schmidt",
+      "email": "Ralph.Schmidt@Rolls-Royce.com",
+      "success": true,
+      "return_code": 0,
+      "status_info": "HTTP 200 - Success",
+      "stdout": "User creation request sent for: Ralph Schmidt (Ralph.Schmidt@Rolls-Royce.com)\nStatus Code: 200\nResponse:                     {\"currentRoute\":\"oro_user_create\",\"flashMessages\":{\"success\":[\"Benutzer gespeichert\"]},\"history\":\"    \\n                                    <ul     class=\\\"extra-list\\\">                                                    <li     class=\\\"first\\\">\\n                                \\n            <a href=\\\"\\/user?grid%5Busers-grid%5D=i%3D1%26p%3D25%26s%255BcreatedAt%255D%3D1%26...",
+      "stderr": ""
+    }
+  ],
+  "failed_users": []
+}

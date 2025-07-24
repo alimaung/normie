@@ -14,6 +14,7 @@ from .views.prototyping import *
 from .views.inbox import *
 from .views.ajax import *
 from .views.utils import *
+from .views.mlc import *
 
 # Import auth views except settings to avoid Django conflict
 from .views.auth import (

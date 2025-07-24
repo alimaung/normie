@@ -1,0 +1,1923 @@
+    <!DOCTYPE html>
+    <html lang="de"
+          class="desktop-version">
+    <head>
+                    <title>Wird geladen...</title>
+            <script id="page-title" type="text/html">Peter Hüttig - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen</script>
+            <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0">
+            <meta http-equiv="cache-control" content="max-age=0">
+            <meta http-equiv="cache-control" content="no-cache">
+            <meta http-equiv="expires" content="0">
+            <meta http-equiv="pragma" content="no-cache">
+                                                    <link rel="shortcut icon" href="/bundles/uubbase/themes/uub/images/favicon.png?v=893dd363">
+                               
+
+            <link rel="stylesheet" media="all" href="/build/admin/css/oro.css?v=893dd363">
+    
+            
+
+                                                <script id="widget-items-item-select-template" type="text/template">
+    <div class="pull-left items-selector-widget">
+        <select class="item-select filter-select-oro">
+            <option></option>
+            <% items.each(function (item) { %>
+                <option value="<%- item.get('id') %>"><%- item.get('label') %></option>
+            <% }); %>
+        </select>
+    </div>
+</script>
+
+<script id="widget-items-item-template" type="text/template">
+    <tr class="widget-items-item-row" data-cid="<%- cid %>">
+        <td><%- label %></td>
+        <td class="action-cell">
+            <input type="hidden" name="<%- namePrefix %>[id]" value="<%- id %>">
+            <input data-name="order" type="hidden" class="order" name="<%- namePrefix %>[order]" value="<%- order %>">
+            <input class="hide" data-name="show" type="checkbox" name="<%- namePrefix %>[show]" <%- show ? 'checked' : '' %>>
+            <% if (_.isMobile()) { %>
+            <span class="btn btn-icon delete-button" data-collection-action="delete" title="Spalte nach oben verschieben" aria-hidden="true">
+                <i class="fa-trash-o"></i>
+            </span>
+            <span class="btn btn-icon move-up<% if (isFirst) { %> disabled<% } %>" data-collection-action="moveUp" title="Spalte nach oben verschieben" aria-hidden="true">
+                <i class="fa-chevron-up"></i>
+            </span>
+            <span class="btn btn-icon move-down<% if (isLast) { %> disabled<% } %>" data-collection-action="moveDown" title="Spalte nach unten verschieben" aria-hidden="true">
+                <i class="fa-chevron-down"></i>
+            </span>
+            <% } else { %>
+            <a href="#" role="button" class="action btn-icon no-hash delete-button"
+               title="Spalte löschen"
+               data-collection-action="delete"
+               aria-hidden="true">
+                <i class="fa-trash-o hide-text"></i>
+            </a>
+            <span class="btn-icon" title="Spalte verschieben" aria-hidden="true">
+                <i class="fa-arrows-v handle"></i>
+            </span>
+            <% } %>
+        </td>
+    </tr>
+</script>
+<script type="text/template" id="multiselect-origin-folder-template">
+    <div class="filter-item oro-drop">
+        <div class="btn filter-select filter-criteria-selector <% if (isEmpty) { %>filter-default-value<% } %>">
+            <% if (showLabel) { %><%- label %><% } %><span class="filter-item-hint"></span>
+            <select multiple data-skip-input-widgets>
+                <% _.each(options, function (item, key) { %>
+                    <optgroup label="<%- key %>">
+                        <% _.each(item['choices']['folder']['choices'], function (option) { %>
+                            <option value="<%- option.value %>" title="<%- option.label %>"
+                            <% if (_.isArray(selected.value)) { %>
+                            <% if (_.indexOf(selected.value, option.value) !== -1) { %> selected="selected"<% } %>
+                            <% } else if (option.value == selected.value) { %> selected="selected"<% } %>>
+                            <%- option.label %>
+                            </option>
+                        <% }); %>
+                    </optgroup>
+                <% }); %>
+            </select>
+        </div>
+    </div>
+</script>
+<script type="text/template" id="none-filter-template-embedded">
+</script>
+<script type="text/template" id="text-filter-template-embedded">
+    <input type="text" name="value" value=""/>
+</script>
+<script type="text/template" id="choice-filter-template-embedded">
+    <% var togglerId = _.uniqueId('dropdown-') %>
+    <span> <%- _.__('oro.filter.embedded.choice.field_to_value') %> </span>
+    <div class="dropdown">
+        <a id="<%- togglerId %>" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+            aria-label="<%- _.__('Filter criteria') %>"
+            aria-haspopup="true" aria-expanded="false"><%- selectedChoiceLabel %></a>:
+        <ul class="dropdown-menu" role="menu" aria-labelledby="<%- togglerId %>">
+            <% _.each(choices, function (option) { %>
+                <li<% if (selectedChoice == option.value) { %> class="active"<% } %>>
+                    <a class="choice-value" href="#" data-value="<%- option.value %>"><%- option.label %></a>
+                </li>
+            <% }); %>
+        </ul>
+        <input type="text" name="value" value="<%- value %>">
+        <input class="name_input" type="hidden" name="<%- name %>" value="<%- selectedChoice %>"/>
+    </div>
+</script>
+
+<script type="text/template" id="select-field-template-embedded">
+    <div class="dropdown">
+        <% if (choices.length > 1) { %>
+            <a class="dropdown-toggle"
+               <% if (typeof selectedChoiceTooltip !== 'undefined') { %>
+                   title="<%- selectedChoiceTooltip %>"
+               <% } %>
+               data-toggle="dropdown" href="#">
+               <%- selectedChoiceLabel %>
+            </a>
+        <% } else { %>
+            <span><%- selectedChoiceLabel %></span>
+        <% } %>
+        <ul class="dropdown-menu">
+            <% _.each(choices, function (option) { %>
+            <li<% if (selectedChoice == option.value) { %> class="active"<% } %>>
+                <a class="choice-value"
+                   <% if (option.tooltip) { %> title="<%- option.tooltip %>"<% } %>
+                   href="#" data-value="<%- option.value %>">
+                   <%- option.label %>
+                </a>
+            </li>
+            <% }); %>
+        </ul>
+        <select name="<%- name %>" class="filter-select-oro name_input" style="display:none">
+            <% _.each(choices, function (option) { %>
+            <option value="<%- option.value %>"<% if (option.value == selectedChoice) { %> selected="selected"<% } %>><%- option.label %></option>
+            <% }); %>
+        </select>
+    </div>
+</script>
+
+<script type="text/template" id="date-filter-template-embedded">
+    <% if (obj.popoverContent) { %>
+    <div class="field-condition-date-popover">
+        <i class="fa-info-circle" data-content="<%- popoverContent %>" data-placement="bottom" data-toggle="popover"></i>
+    </div>
+    <% } %>
+    <span> <%- _.__('oro.filter.embedded.date.field_to_value') %> </span>
+    <%= parts.join('') %>:
+    <div></div>
+    <div class="filter-start-date">
+        <input type="text" class="<%- inputClass %>"
+               value="<%- value.value.start %>" name="start" placeholder="<%- _.__('from') %>">
+    </div>
+    <span class="filter-separator">-</span>
+    <div class="filter-end-date">
+        <input type="text" class="<%- inputClass %>"
+               value="<%- value.value.end %>" name="end" placeholder="<%- _.__('to') %>">
+    </div>
+</script>
+
+<script type="text/template" id="select-filter-template-embedded">
+    <div class="filter-item">
+        <span> <%- _.__('oro.filter.embedded.select.field_to_value') %> </span>
+        <div class="filter-select filter-criteria-selector">
+            <select data-skip-input-widgets>
+                <% _.each(options, function (option) { %>
+                <option value="<%- option.value %>" title="<%- option.label %>"
+                    <% if (option.value == selected.value) { %> selected="selected"<% } %>>
+                    <%- option.label %>
+                </option>
+                <% }); %>
+            </select>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="multiselect-filter-template-embedded">
+    <div class="filter-item">
+        <span> <%- _.__('oro.filter.embedded.select.field_to_value') %> </span>
+        <div class="filter-select filter-criteria-selector">
+            <select multiple data-skip-input-widgets>
+                <% _.each(options, function (option) { %>
+                <option value="<%- option.value %>" title="<%- option.label %>"
+                    <% if (_.isArray(selected.value)) { %><% if (_.indexOf(selected.value, option.value) !== -1) { %> selected="selected"<% } %>
+                    <% } else if (option.value == selected.value) { %> selected="selected"<% } %>>
+                    <%- option.label %>
+                </option>
+                <% }); %>
+            </select>
+        </div>
+    </div>
+</script>
+
+<script type="text/template" id="dictionary-filter-template-embedded">
+    <span> <%- _.__('oro.filter.embedded.choice.field_to_value') %></span><%= parts.join('') %>:
+    <input type="hidden" name="select-values-autocomplete" class="select-values-autocomplete hide" value="" />
+    <input class="name_input" type="hidden" name="<%- name %>" value="<%- selectedChoice %>"/>
+</script>
+<script type="text/template" id="date-filter-template-wo-actions">
+    <div class="control-group">
+        <%= parts.join('') %>
+    </div>
+    <div>
+        <div class="filter-start-date">
+            <input type="text" class="<%- inputClass %>"
+                   value="<%- value.value.start %>"
+                   name="<%- value.value.startEndPrefix %>[value][start]"
+                   placeholder="<%- _.__('from') %>"
+            />
+        </div>
+        <span class="filter-separator">-</span>
+        <div class="filter-end-date">
+            <input type="text" class="<%- inputClass %>"
+                   value="<%- value.value.end %>"
+                   name="<%- value.value.startEndPrefix %>[value][end]"
+                   placeholder="<%- _.__('to') %>"
+            />
+        </div>
+    </div>
+</script>
+<script type="text/html" class="datagrid_templates" data-identifier="template-datagrid-toolbar">
+    <div class="grid-toolbar">
+             <div class="grid-toolbar__part grid-toolbar__part--start">
+            <div class="pagination" data-grid-pagination></div>
+            <div data-grid-items-counter></div>
+        </div>
+        <div class="grid-toolbar__part grid-toolbar__part--center">
+            <div class="sorting" data-grid-sorting></div>
+            <div class="grid-toolbar-mass-actions">
+                <div class="extra-actions-panel" data-grid-extra-actions-panel></div>
+            </div>
+        </div>
+        <div class="grid-toolbar__part grid-toolbar__part--end">
+            <div class="grid-toolbar-tools">
+                <div class="page-size" data-grid-pagesize></div>
+                <div class="actions-panel" data-grid-actions-panel></div>
+            </div>
+        </div>
+        </div>
+</script>
+                                                            <script data-role="config" type="application/json">
+        {"oroui\/js\/app":{"baseUrl":"https:\/\/app.chemscan.de","headerId":"x-oro-hash-navigation","userName":"Ali.Maung@rolls-royce.com","root":"\/","startRouteName":"oro_user_view","debug":false,"skipRouting":"[data-nohash=true], .no-hash","controllerPath":"controllers\/","controllerSuffix":"-controller","trailing":null},"oroui\/js\/extend\/scriptjs":{"bundlesPath":"\/bundles\/"}}
+    </script>
+
+        <script data-role="config" type="application/json">
+        {"oroui\/js\/app":{"publicPath":"\/build\/admin\/"}}
+    </script>
+
+    <script data-role="config" type="application/json">
+        {"oroemail\/js\/app\/components\/new-email-message-component":{"wsChannel":"oro\/email_event\/303\/16"},"oroemail\/js\/app\/components\/sidebar-recent-emails-component":{"wsChannel":"oro\/email_event\/303\/16"},"oroemail\/js\/app\/unread-emails-state-holder":{"wsChannel":"oro\/email_event\/303\/16"},"oroemail\/js\/util\/unread-email-count-cache":{"unreadEmailsCount":[]}}
+    </script>
+
+        <script data-role="config" type="application/json">
+        {"orotranslation\/js\/translator":{"debugTranslator":false},"orotranslation\/js\/translation-loader":{"translationsResources":"\/media\/js\/translation\/de_DE.json?v=893dd363-2"}}
+    </script>
+
+                
+                        
+
+
+    <script data-role="config" type="application/json">
+        {"orolocale\/js\/locale-settings":{"defaults":{"locale":"en","language":"en","rtl_mode":false,"country":"US","currency":"USD"},"settings":{"locale":"de_DE","language":"de_DE","rtl_mode":false,"country":"US","currency":"USD","currencyViewType":"symbol","currencySymbolPrepend":false,"currency_data":{"USD":{"symbol":"$"}},"timezone":"Europe\/Berlin","timezone_offset":"+02:00","format_address_by_address_country":true,"apiKey":null,"unit":{"temperature":"fahrenheit","wind_speed":"miles_per_hour"},"format":{"datetime":{"jquery_ui":{"day":"dd.mm","date":"dd.mm.yy","time":"HH:mm","datetime":"dd.mm.yy, HH:mm"},"intl":{"day":"dd.MM","date":"dd.MM.y","time":"HH:mm","datetime":"dd.MM.y, HH:mm"},"moment":{"day":"DD.MM","date":"DD.MM.YYYY","time":"HH:mm","datetime":"DD.MM.YYYY, HH:mm"},"php":{"day":"d.m","date":"d.m.Y","time":"H:i","datetime":"d.m.Y, H:i"}},"number":{"decimal":{"grouping_size":3,"grouping_used":1,"min_fraction_digits":0,"max_fraction_digits":3,"negative_prefix":"-","negative_suffix":"","positive_prefix":"","positive_suffix":"","currency_code":"EUR","padding_character":" ","decimal_separator_symbol":",","grouping_separator_symbol":".","monetary_separator_symbol":",","monetary_grouping_separator_symbol":".","currency_symbol":"\u20ac","zero_digit_symbol":"0"},"percent":{"grouping_size":3,"grouping_used":1,"min_fraction_digits":0,"max_fraction_digits":3,"negative_prefix":"-","negative_suffix":"\u00a0%","positive_prefix":"","positive_suffix":"\u00a0%","currency_code":"EUR","padding_character":" ","decimal_separator_symbol":",","grouping_separator_symbol":".","monetary_separator_symbol":",","monetary_grouping_separator_symbol":".","currency_symbol":"\u20ac","zero_digit_symbol":"0"},"currency":{"grouping_size":3,"grouping_used":1,"min_fraction_digits":2,"max_fraction_digits":2,"negative_prefix":"-","negative_suffix":"\u00a0\u20ac","positive_prefix":"","positive_suffix":"\u00a0\u20ac","currency_code":"EUR","padding_character":" ","decimal_separator_symbol":",","grouping_separator_symbol":".","monetary_separator_symbol":",","monetary_grouping_separator_symbol":".","currency_symbol":"\u20ac","zero_digit_symbol":"0"}}},"calendar":{"dow":{"wide":{"1":"Sonntag","2":"Montag","3":"Dienstag","4":"Mittwoch","5":"Donnerstag","6":"Freitag","7":"Samstag"},"abbreviated":{"1":"So","2":"Mo","3":"Di","4":"Mi","5":"Do","6":"Fr","7":"Sa"},"short":{"1":"So.","2":"Mo.","3":"Di.","4":"Mi.","5":"Do.","6":"Fr.","7":"Sa."},"narrow":{"1":"S","2":"M","3":"D","4":"M","5":"D","6":"F","7":"S"},"mnemonic":{"1":"sunday","2":"monday","3":"tuesday","4":"wednesday","5":"thursday","6":"friday","7":"saturday"}},"months":{"wide":{"1":"Januar","2":"Februar","3":"M\u00e4rz","4":"April","5":"Mai","6":"Juni","7":"Juli","8":"August","9":"September","10":"Oktober","11":"November","12":"Dezember"},"abbreviated":{"1":"Jan","2":"Feb","3":"M\u00e4r","4":"Apr","5":"Mai","6":"Jun","7":"Jul","8":"Aug","9":"Sep","10":"Okt","11":"Nov","12":"Dez"},"narrow":{"1":"J","2":"F","3":"M","4":"A","5":"M","6":"J","7":"J","8":"A","9":"S","10":"O","11":"N","12":"D"}},"first_dow":2}}}}
+    </script>
+
+    <script data-role="config" type="application/json">
+        {"orofilter\/js\/filters-manager":{"filtersStateStorageKey":"management-console-filters-state"}}
+    </script>
+
+    <script data-role="config" type="application/json">
+        {"oroform\/js\/extend\/validate":{"useTopmostLabelMixin":true},"oroform\/js\/extend\/tinymce":{"baseURL":"\/build\/_static\/_\/node_modules\/tinymce"}}
+    </script>
+
+    <script data-role="config" type="application/json">
+        {"orowindows\/js\/dialog\/state\/model":{"urlRoot":"\/api\/rest\/latest\/windows"}}
+    </script>
+
+        <script data-role="config" type="application/json">
+        {"oronavigation\/js\/routes-loader":{"debug":false,"data":{"base_url":"","scheme":"https","host":"app.chemscan.de"},"routesResource":"\/media\/js\/routes.json?v=893dd363"}}
+    </script>
+
+
+    <script src="/build/admin/app.js?v=893dd363"></script>
+
+                                <script>
+                                </script>
+                <script>
+    loadModules(['orosync/js/sync', 'oroui/js/messenger'],
+        function (sync, messenger) {
+            sync.subscribe('oro/message_queue_heartbeat', function (response) {
+                messenger.notificationMessage(
+                    'error',
+                    
+                    'Die Anwendung ist nicht korrekt konfiguriert (Nachrichtenverbraucher sind nicht verfügbar). Bitte wenden Sie sich an den Systemadministrator.'
+                );
+            });
+        });
+</script>
+<script>
+    loadModules(['orosync/js/sync', 'oroui/js/messenger', 'orotranslation/js/translator'],
+        function (sync, messenger, __) {
+            sync.subscribe('oro/imap_sync_fail/303', function (response) {
+                messenger.notificationMessage(
+                    'error',
+                    __('oro.imap.sync.flash_message.user_box_failed', {username: response.username, host: response.host})
+                );
+            });
+                    });
+</script>
+                    <script>
+    loadModules(['orosync/js/sync', 'oroui/js/modal', 'oroui/js/mediator', 'oroui/js/messenger', 'orotranslation/js/translator'],
+    function(sync, Modal, mediator, messenger, __) {
+        var notifier = null;
+        var sendNotification = true;
+
+        mediator.on('page:beforeChange', function() {
+            if (notifier) {
+                notifier.close();
+            }
+            sendNotification = false;
+        });
+
+        sync.subscribe('oro/outdated_user_page', function (response) {
+            var roles = ["ROLE__64E30DBCB5FA7"];
+
+            if (roles.indexOf(response.role) != -1) {
+                if (notifier) {
+                    notifier.close();
+                }
+
+                if (sendNotification) {
+                    notifier = messenger.notificationMessage(
+                            'warning',
+                            __('oro.role.content_outdated')
+                    );
+                }
+            }
+        });
+    });
+</script>
+<script>
+    loadModules(['orosync/js/sync', 'oroui/js/modal', 'orotranslation/js/translator'],
+    function(sync, Modal, __) {
+        var dialog = null;
+
+        sync.subscribe('oro/maintenance', function (response) {
+            var userId = null;
+                            userId = 303;
+            
+            if (response.isOn && (!userId || parseInt(userId) != parseInt(response.userId))) {
+                var regExp = new RegExp('\n', 'g');
+                if (dialog) {
+                    dialog.close();
+                    dialog.remove();
+                }
+                dialog = new Modal({
+                    content: __('oro.platform.maintenance_mode_on_message').replace(regExp, '<br/>'),
+                    className: 'modal oro-modal-danger oro-modal-maintenance',
+                    allowCancel: false,
+                    title: __('oro.platform.maintenance_mode_on_title'),
+                    attributes: {
+                        role: 'alertdialog'
+                    }
+                });
+                dialog.open();
+            } else if (dialog) {
+                dialog.close();
+            }
+        });
+    });
+</script>
+
+<div                         data-page-component-module="orosync/js/app/components/ping-handler"
+             ></div>
+    <script>
+    loadModules(['jquery', 'orosync/js/sync', 'orosync/js/sync/wamp', 'routing'],
+    function($, sync, Wamp, routing){
+        $(document).on('click.action.data-api', '[data-action=sync-connect]', function (e) {
+            sync.reconnect();
+            $(e.target).closest('.alert').alert('close');
+            e.preventDefault();
+        });
+
+        sync(new Wamp({
+            secure: true,
+            host: 'app.chemscan.de',
+            port: 443,
+            path: 'ws',
+            retryDelay: 60000,
+            syncTicketUrl: routing.generate('oro_sync_ticket')
+        }));
+    });
+</script>
+                                    
+                        </head>
+    <body class="desktop-version lang-de ">
+    <noscript>
+    <div class="noscript-container">
+        <div class="alert alert-danger" role="alert">
+            <div class="text-center">JavaScript is disabled in your browser which limits the functionality of the website. Please enable it to view page content and work with all website features</div>
+        </div>
+    </div>
+</noscript>
+    <div                         data-page-component-module="oroui/js/app/components/app-loading-mask-component"
+                                data-page-component-options="{&quot;showOnStartup&quot;:true}"
+            ></div>
+    <div                         data-page-component-module="oroui/js/app/components/app-loading-bar-component"
+                                data-page-component-options="{&quot;viewOptions&quot;:{&quot;container&quot;:&quot;#oroplatform-header&quot;}}"
+            ></div>
+            <div                         data-page-component-module="ororeminder/js/app/components/reminder-handler-component"
+                                data-page-component-options="{&quot;userId&quot;:303,&quot;wampEnable&quot;:true}"
+            ></div>
+    <div id="progressbar" class="progress-bar-container">
+        <h3 class="progress-title">Loading...</h3>
+        <div class="progress infinite">
+            <progress class="progress-bar" aria-valuetext="Page loading..."></progress>
+        </div>
+    </div>
+    <div id="page" style="display:none;" class="app-page">
+                    <div class="app-page__content-side">
+                        
+    <div id="side-menu" class="main-menu-sided minimized"
+                                data-page-component-module="oroui/js/app/components/jquery-widget-component"
+                                data-page-component-options="{&quot;widgetModule&quot;:&quot;oroui\/js\/desktop\/side-menu&quot;,&quot;toggleSelector&quot;:&quot;#main-menu-toggler&quot;}"
+            >
+        <header class="main-menu__header">
+                                <a href="/" class="app-logo" title="Rolls-Royce Deutschland">Rolls-Royce Deutschland</a>
+
+        </header>
+
+        <nav class="scroller" id="main-menu"
+                                        data-page-component-view="oroui/js/app/views/page/main-menu-view"
+            >
+                        <ul     class="nav-multilevel main-menu"><li     class="dropdown dropdown-level-1 first"><a href="#"     class="unclickable"><span class="title title-level-1" title="Dashboards"><span class="fa-bar-chart-o menu-icon" aria-hidden="true"></span>
+    Dashboards</span></a><div class="dropdown-menu"><div class="dropdown-menu-wrapper dropdown-menu-wrapper__scrollable"><ul     class="menu menu-level-1"><li     data-routes="[&quot;oro_dashboard_update&quot;,&quot;oro_dashboard_create&quot;,&quot;oro_dashboard_view&quot;]" data-route="oro_dashboard_index" class="first last"><a href="/dashboard"    ><span class="title title-level-2" title="Dashboards verwalten">Dashboards verwalten</span></a></li></ul></div></div></li><li     class="dropdown dropdown-level-1"><a href="#"     class="unclickable"><span class="title title-level-1" title="Unternehmensstruktur"><span class="fa-th menu-icon" aria-hidden="true"></span>
+        Unternehmensstruktur</span></a><div class="dropdown-menu"><div class="dropdown-menu-wrapper dropdown-menu-wrapper__scrollable"><ul     class="menu menu-level-1"><li     class="dropdown dropdown-level-2 first"><a href="/bu/view/54"    ><span class="title title-level-2" title="Standort Dahlewitz">Standort Dahlewitz</span></a><div class="dropdown-menu-wrapper dropdown-menu-wrapper__child"><ul     class="dropdown-menu menu menu-level-2"><li     class="first"><a href="/bu/view/253"    ><span class="title title-level-3" title="Gebäude 13.0">Gebäude 13.0</span></a></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/254"    ><span class="title title-level-3" title="Gebäude 15.0">Gebäude 15.0</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first last"><a href="/bu/view/327"    ><span class="title title-level-4" title="DEV - Experimental Measurements &amp; Systems">DEV - Experimental Measurements &amp; Systems</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/238"    ><span class="title title-level-3" title="Gebäude 50.0">Gebäude 50.0</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first"><a href="/bu/view/329"    ><span class="title title-level-4" title="BA-MRO-LP Module-flexibler Arbeitsplatz">BA-MRO-LP Module-flexibler Arbeitsplatz</span></a></li><li    ><a href="/bu/view/265"    ><span class="title title-level-4" title="Calibration Lab">Calibration Lab</span></a></li><li    ><a href="/bu/view/298"    ><span class="title title-level-4" title="Cleaning">Cleaning</span></a></li><li    ><a href="/bu/view/258"    ><span class="title title-level-4" title="DEV Mechan. Fitter - Engine Build">DEV Mechan. Fitter - Engine Build</span></a></li><li    ><a href="/bu/view/445"    ><span class="title title-level-4" title="Flexibler Arbeitsplatz Inspection/Befund">Flexibler Arbeitsplatz Inspection/Befund</span></a></li><li    ><a href="/bu/view/299"    ><span class="title title-level-4" title="Flexibler Arbeitsplatz Rew./Cl./NDT">Flexibler Arbeitsplatz Rew./Cl./NDT</span></a></li><li    ><a href="/bu/view/259"    ><span class="title title-level-4" title="Inspection/ Befund">Inspection/ Befund</span></a></li><li     class="dropdown dropdown-level-4"><a href="/bu/view/257"    ><span class="title title-level-4" title="Instrumentation Fitter">Instrumentation Fitter</span></a><ul     class="dropdown-menu menu menu-level-4"><li     class="first"><a href="/bu/view/555"    ><span class="title title-level-5" title="GSS Düperthal SC104">GSS Düperthal SC104</span></a></li><li     class="last"><a href="/bu/view/573"    ><span class="title title-level-5" title="GSS Düperthal SC110 (Kühlschrank)">GSS Düperthal SC110 (Kühlschrank)</span></a></li></ul></li><li     class="dropdown dropdown-level-4"><a href="/bu/view/322"    ><span class="title title-level-4" title="Lagerorte 50.0">Lagerorte 50.0</span></a><ul     class="dropdown-menu menu menu-level-4"><li     class="first last"><a href="/bu/view/323"    ><span class="title title-level-5" title="GSS Fuchs">GSS Fuchs</span></a></li></ul></li><li    ><a href="/bu/view/331"    ><span class="title title-level-4" title="MRO - FB Strip &amp; Build - Flexibler Arbeitsplatz">MRO - FB Strip &amp; Build - Flexibler Arbeitsplatz</span></a></li><li    ><a href="/bu/view/261"    ><span class="title title-level-4" title="NDT">NDT</span></a></li><li     class="dropdown dropdown-level-4"><a href="/bu/view/260"    ><span class="title title-level-4" title="Rework">Rework</span></a><ul     class="dropdown-menu menu menu-level-4"><li     class="first last"><a href="/bu/view/855"    ><span class="title title-level-5" title="Sprühkabine">Sprühkabine</span></a></li></ul></li><li    ><a href="/bu/view/263"    ><span class="title title-level-4" title="Telemetry (Dev)">Telemetry (Dev)</span></a></li><li    ><a href="/bu/view/262"    ><span class="title title-level-4" title="Thermal Paint (Dev)">Thermal Paint (Dev)</span></a></li><li     class="last"><a href="/bu/view/264"    ><span class="title title-level-4" title="Training/ Education">Training/ Education</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/239"    ><span class="title title-level-3" title="Gebäude 50.1">Gebäude 50.1</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first"><a href="/bu/view/316"    ><span class="title title-level-4" title="BA-MRO-HP Module-Flexibler Arbeitsplatz-Altes Lager">BA-MRO-HP Module-Flexibler Arbeitsplatz-Altes Lager</span></a></li><li    ><a href="/bu/view/317"    ><span class="title title-level-4" title="BA-OEM-Final Build">BA-OEM-Final Build</span></a></li><li    ><a href="/bu/view/319"    ><span class="title title-level-4" title="BA-OEM-HP-Module">BA-OEM-HP-Module</span></a></li><li     class="dropdown dropdown-level-4"><a href="/bu/view/320"    ><span class="title title-level-4" title="BA-OEM-LP Module">BA-OEM-LP Module</span></a><ul     class="dropdown-menu menu menu-level-4"><li     class="first last"><a href="/bu/view/527"    ><span class="title title-level-5" title="GSS LP Düperthal FWF 90  , Pfeiler I 8">GSS LP Düperthal FWF 90  , Pfeiler I 8</span></a></li></ul></li><li    ><a href="/bu/view/770"    ><span class="title title-level-4" title="Entkonservierung O501">Entkonservierung O501</span></a></li><li     class="dropdown dropdown-level-4"><a href="/bu/view/341"    ><span class="title title-level-4" title="Lagerorte 50.1">Lagerorte 50.1</span></a><ul     class="dropdown-menu menu menu-level-4"><li     class="first last"><a href="/bu/view/769"    ><span class="title title-level-5" title="Entkonservierung O501">Entkonservierung O501</span></a></li></ul></li><li     class="dropdown dropdown-level-4"><a href="/bu/view/523"    ><span class="title title-level-4" title="MACHINING">MACHINING</span></a><ul     class="dropdown-menu menu menu-level-4"><li     class="first last"><a href="/bu/view/525"    ><span class="title title-level-5" title="GSS_VTL_Düperthal_Typ 90">GSS_VTL_Düperthal_Typ 90</span></a></li></ul></li><li    ><a href="/bu/view/572"    ><span class="title title-level-4" title="MKZ">MKZ</span></a></li><li     class="last"><a href="/bu/view/496"    ><span class="title title-level-4" title="Werkzeugausgabe">Werkzeugausgabe</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/314"    ><span class="title title-level-3" title="Gebäude 51.0">Gebäude 51.0</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first last"><a href="/bu/view/315"    ><span class="title title-level-4" title="BA-CDC/ Podding">BA-CDC/ Podding</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/237"    ><span class="title title-level-3" title="Gebäude 70.0">Gebäude 70.0</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first"><a href="/bu/view/450"    ><span class="title title-level-4" title="Elektrowerkstatt TB71/72">Elektrowerkstatt TB71/72</span></a></li><li    ><a href="/bu/view/283"    ><span class="title title-level-4" title="Flexibler Arbeitsplatz - TB71/72">Flexibler Arbeitsplatz - TB71/72</span></a></li><li    ><a href="/bu/view/282"    ><span class="title title-level-4" title="Fuel Lab TB71/72">Fuel Lab TB71/72</span></a></li><li    ><a href="/bu/view/277"    ><span class="title title-level-4" title="GSS Adam Kraftstoffraum TB71/72">GSS Adam Kraftstoffraum TB71/72</span></a></li><li    ><a href="/bu/view/278"    ><span class="title title-level-4" title="GSS SC105 - 70.0 - Werkbankbereich TB71/72">GSS SC105 - 70.0 - Werkbankbereich TB71/72</span></a></li><li    ><a href="/bu/view/279"    ><span class="title title-level-4" title="Lager - Ölraum TB71/72">Lager - Ölraum TB71/72</span></a></li><li     class="last"><a href="/bu/view/340"    ><span class="title title-level-4" title="Materiallabor">Materiallabor</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/57"    ><span class="title title-level-3" title="Gebäude 73.0">Gebäude 73.0</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first"><a href="/bu/view/284"    ><span class="title title-level-4" title="Flexibler Arbeitsplatz - TB61">Flexibler Arbeitsplatz - TB61</span></a></li><li    ><a href="/bu/view/273"    ><span class="title title-level-4" title="GSS SC109 - 73.0 - Prep Halle TB61">GSS SC109 - 73.0 - Prep Halle TB61</span></a></li><li    ><a href="/bu/view/747"    ><span class="title title-level-4" title="Lager - Augmentor TB61">Lager - Augmentor TB61</span></a></li><li    ><a href="/bu/view/276"    ><span class="title title-level-4" title="Lager - Fuel Farm/ Fuel Pump House TB61">Lager - Fuel Farm/ Fuel Pump House TB61</span></a></li><li    ><a href="/bu/view/274"    ><span class="title title-level-4" title="Lager - Hydraulic Room TB61">Lager - Hydraulic Room TB61</span></a></li><li    ><a href="/bu/view/275"    ><span class="title title-level-4" title="Lager - Oil Room TB61">Lager - Oil Room TB61</span></a></li><li    ><a href="/bu/view/332"    ><span class="title title-level-4" title="Trainingsinsel-FB">Trainingsinsel-FB</span></a></li><li    ><a href="/bu/view/524"    ><span class="title title-level-4" title="Trainingsinsel-HP Module">Trainingsinsel-HP Module</span></a></li><li    ><a href="/bu/view/641"    ><span class="title title-level-4" title="Trent 1000 MRO">Trent 1000 MRO</span></a></li><li     class="last"><a href="/bu/view/281"    ><span class="title title-level-4" title="Ölfilter Cabinet TB">Ölfilter Cabinet TB</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/241"    ><span class="title title-level-3" title="Gebäude 77.0">Gebäude 77.0</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first"><a href="/bu/view/334"    ><span class="title title-level-4" title="MTOC - Spinning/ Materials">MTOC - Spinning/ Materials</span></a></li><li    ><a href="/bu/view/335"    ><span class="title title-level-4" title="MTOC - Vibration &amp; HBK5">MTOC - Vibration &amp; HBK5</span></a></li><li     class="last"><a href="/bu/view/333"    ><span class="title title-level-4" title="Mechan. Fitter Dev. - Engine Build &amp; Rig Test">Mechan. Fitter Dev. - Engine Build &amp; Rig Test</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/242"    ><span class="title title-level-3" title="Gebäude 79.0">Gebäude 79.0</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first"><a href="/bu/view/336"    ><span class="title title-level-4" title="Mechan. Fitter Dev. - Engine Build &amp; Rig Test">Mechan. Fitter Dev. - Engine Build &amp; Rig Test</span></a></li><li     class="last"><a href="/bu/view/337"    ><span class="title title-level-4" title="PGB - Testing">PGB - Testing</span></a></li></ul></li><li    ><a href="/bu/view/246"    ><span class="title title-level-3" title="Gebäude 80.0">Gebäude 80.0</span></a></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/243"    ><span class="title title-level-3" title="Gebäude 81.0">Gebäude 81.0</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first"><a href="/bu/view/563"    ><span class="title title-level-4" title="GSC aktiv">GSC aktiv</span></a></li><li    ><a href="/bu/view/571"    ><span class="title title-level-4" title="GSC passiv">GSC passiv</span></a></li><li    ><a href="/bu/view/465"    ><span class="title title-level-4" title="ILC-flexibler Arbeitsplatz">ILC-flexibler Arbeitsplatz</span></a></li><li     class="last"><a href="/bu/view/472"    ><span class="title title-level-4" title="Wareneingangsprüfung">Wareneingangsprüfung</span></a></li></ul></li><li    ><a href="/bu/view/245"    ><span class="title title-level-3" title="Gebäude 82.0">Gebäude 82.0</span></a></li><li    ><a href="/bu/view/248"    ><span class="title title-level-3" title="Gebäude 90.0">Gebäude 90.0</span></a></li><li    ><a href="/bu/view/249"    ><span class="title title-level-3" title="Gebäude 90.1">Gebäude 90.1</span></a></li><li    ><a href="/bu/view/251"    ><span class="title title-level-3" title="Gebäude 91.0">Gebäude 91.0</span></a></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/324"    ><span class="title title-level-3" title="Gebäude 92.0">Gebäude 92.0</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first last"><a href="/bu/view/338"    ><span class="title title-level-4" title="Lager - Fuel Farm TB71/72">Lager - Fuel Farm TB71/72</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/252"    ><span class="title title-level-3" title="Gebäude 96.0">Gebäude 96.0</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first last"><a href="/bu/view/466"    ><span class="title title-level-4" title="Gefahrgutlager">Gefahrgutlager</span></a></li></ul></li><li    ><a href="/bu/view/240"    ><span class="title title-level-3" title="Gebäude 97.0">Gebäude 97.0</span></a></li><li    ><a href="/bu/view/250"    ><span class="title title-level-3" title="Gebäude 98.0">Gebäude 98.0</span></a></li><li     class="last"><a href="/bu/view/773"    ><span class="title title-level-3" title="On-Wing Services DW">On-Wing Services DW</span></a></li></ul></div></li><li     class="dropdown dropdown-level-2"><a href="/bu/view/55"    ><span class="title title-level-2" title="Standort Oberursel">Standort Oberursel</span></a><div class="dropdown-menu-wrapper dropdown-menu-wrapper__child"><ul     class="dropdown-menu menu menu-level-2"><li     class="first"><a href="/bu/view/342"    ><span class="title title-level-3" title="9001">9001</span></a></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/344"    ><span class="title title-level-3" title="9002">9002</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="dropdown dropdown-level-4 first"><a href="/bu/view/345"    ><span class="title title-level-4" title="9002.-1">9002.-1</span></a><ul     class="dropdown-menu menu menu-level-4"><li     class="first"><a href="/bu/view/395"    ><span class="title title-level-5" title="9002.-1 Abwasserbehandlung">9002.-1 Abwasserbehandlung</span></a></li><li    ><a href="/bu/view/691"    ><span class="title title-level-5" title="9002.-1 Befundung Bauteilprüfung">9002.-1 Befundung Bauteilprüfung</span></a></li><li     class="dropdown dropdown-level-5"><a href="/bu/view/396"    ><span class="title title-level-5" title="9002.-1 Labor">9002.-1 Labor</span></a><ul     class="dropdown-menu menu menu-level-5"><li     class="first"><a href="/bu/view/876"    ><span class="title title-level-6" title="Gefahrstoffschrank 1 (Raum 9002.-1.700)">Gefahrstoffschrank 1 (Raum 9002.-1.700)</span></a></li><li    ><a href="/bu/view/877"    ><span class="title title-level-6" title="Gefahrstoffschrank 2 (Raum 9002.-1.700)">Gefahrstoffschrank 2 (Raum 9002.-1.700)</span></a></li><li    ><a href="/bu/view/878"    ><span class="title title-level-6" title="Gefahrstoffschrank 3 (Raum 9002.-1.700)">Gefahrstoffschrank 3 (Raum 9002.-1.700)</span></a></li><li    ><a href="/bu/view/879"    ><span class="title title-level-6" title="Gefahrstoffschrank 4 (Raum 9002.-1.700)">Gefahrstoffschrank 4 (Raum 9002.-1.700)</span></a></li><li     class="last"><a href="/bu/view/880"    ><span class="title title-level-6" title="Gefahrstoffschrank mit Absaugkabine (Raum 9002.-1.710)">Gefahrstoffschrank mit Absaugkabine (Raum 9002.-1.710)</span></a></li></ul></li><li     class="dropdown dropdown-level-5"><a href="/bu/view/356"    ><span class="title title-level-5" title="9002.-1 Ver-/Entsorgung">9002.-1 Ver-/Entsorgung</span></a><ul     class="dropdown-menu menu menu-level-5"><li     class="first"><a href="/bu/view/358"    ><span class="title title-level-6" title="9002.-1.070 Galvanik Lager 2a">9002.-1.070 Galvanik Lager 2a</span></a></li><li    ><a href="/bu/view/359"    ><span class="title title-level-6" title="9002.-1.070 Galvanik Lager 2b">9002.-1.070 Galvanik Lager 2b</span></a></li><li     class="last"><a href="/bu/view/357"    ><span class="title title-level-6" title="9002.-1.080 Galvanik Lager 1">9002.-1.080 Galvanik Lager 1</span></a></li></ul></li><li    ><a href="/bu/view/821"    ><span class="title title-level-5" title="9002.-1 Wareneingang">9002.-1 Wareneingang</span></a></li><li     class="last"><a href="/bu/view/828"    ><span class="title title-level-5" title="9002.-1 Wareneingangsprüfung">9002.-1 Wareneingangsprüfung</span></a></li></ul></li><li     class="dropdown dropdown-level-4"><a href="/bu/view/346"    ><span class="title title-level-4" title="9002.00">9002.00</span></a><ul     class="dropdown-menu menu menu-level-4"><li     class="dropdown dropdown-level-5 first"><a href="/bu/view/354"    ><span class="title title-level-5" title="9002.00 Chemische Prozesse">9002.00 Chemische Prozesse</span></a><ul     class="dropdown-menu menu menu-level-5"><li     class="first"><a href="/bu/view/533"    ><span class="title title-level-6" title="Bühne 0">Bühne 0</span></a></li><li    ><a href="/bu/view/534"    ><span class="title title-level-6" title="Bühne 1">Bühne 1</span></a></li><li    ><a href="/bu/view/535"    ><span class="title title-level-6" title="Bühne 2">Bühne 2</span></a></li><li    ><a href="/bu/view/536"    ><span class="title title-level-6" title="Bühne 3">Bühne 3</span></a></li><li    ><a href="/bu/view/537"    ><span class="title title-level-6" title="Bühne 4">Bühne 4</span></a></li><li    ><a href="/bu/view/538"    ><span class="title title-level-6" title="Bühne 5">Bühne 5</span></a></li><li    ><a href="/bu/view/539"    ><span class="title title-level-6" title="Bühne 6">Bühne 6</span></a></li><li    ><a href="/bu/view/540"    ><span class="title title-level-6" title="Bühne 7">Bühne 7</span></a></li><li    ><a href="/bu/view/755"    ><span class="title title-level-6" title="Gefahrstoffschrank Galvanik">Gefahrstoffschrank Galvanik</span></a></li><li    ><a href="/bu/view/756"    ><span class="title title-level-6" title="Gefahrstoffschrank TWR">Gefahrstoffschrank TWR</span></a></li><li     class="last"><a href="/bu/view/355"    ><span class="title title-level-6" title="NC002 Bühne 2">NC002 Bühne 2</span></a></li></ul></li><li     class="dropdown dropdown-level-5"><a href="/bu/view/388"    ><span class="title title-level-5" title="9002.00 Elektronenstrahlschweißen">9002.00 Elektronenstrahlschweißen</span></a><ul     class="dropdown-menu menu menu-level-5"><li     class="first last"><a href="/bu/view/759"    ><span class="title title-level-6" title="Gefahrstoffschrank EBW">Gefahrstoffschrank EBW</span></a></li></ul></li><li     class="dropdown dropdown-level-5"><a href="/bu/view/400"    ><span class="title title-level-5" title="9002.00 Endkontrollen">9002.00 Endkontrollen</span></a><ul     class="dropdown-menu menu menu-level-5"><li     class="first"><a href="/bu/view/488"    ><span class="title title-level-6" title="Endkontrolle Ni &amp; Ti Disc">Endkontrolle Ni &amp; Ti Disc</span></a></li><li     class="last"><a href="/bu/view/487"    ><span class="title title-level-6" title="Endkontrolle Ni &amp; Ti Drum">Endkontrolle Ni &amp; Ti Drum</span></a></li></ul></li><li    ><a href="/bu/view/380"    ><span class="title title-level-5" title="9002.00 Feinmessraum">9002.00 Feinmessraum</span></a></li><li     class="dropdown dropdown-level-5"><a href="/bu/view/384"    ><span class="title title-level-5" title="9002.00 HPT/LPT">9002.00 HPT/LPT</span></a><ul     class="dropdown-menu menu menu-level-5"><li     class="first"><a href="/bu/view/848"    ><span class="title title-level-6" title="Gefahrstoffschrank Bohrwerksraum">Gefahrstoffschrank Bohrwerksraum</span></a></li><li     class="last"><a href="/bu/view/847"    ><span class="title title-level-6" title="Gefahrstoffschrank Fertigung">Gefahrstoffschrank Fertigung</span></a></li></ul></li><li     class="dropdown dropdown-level-5"><a href="/bu/view/817"    ><span class="title title-level-5" title="9002.00 Instandhaltung">9002.00 Instandhaltung</span></a><ul     class="dropdown-menu menu menu-level-5"><li     class="first last"><a href="/bu/view/818"    ><span class="title title-level-6" title="Umweltschrank">Umweltschrank</span></a></li></ul></li><li    ><a href="/bu/view/397"    ><span class="title title-level-5" title="9002.00 Kugelstrahlen">9002.00 Kugelstrahlen</span></a></li><li     class="dropdown dropdown-level-5"><a href="/bu/view/370"    ><span class="title title-level-5" title="9002.00 Lackieren">9002.00 Lackieren</span></a><ul     class="dropdown-menu menu menu-level-5"><li     class="first"><a href="/bu/view/774"    ><span class="title title-level-6" title="Gefahrstoffschrank 1">Gefahrstoffschrank 1</span></a></li><li     class="last"><a href="/bu/view/775"    ><span class="title title-level-6" title="Gefahrstoffschrank 2">Gefahrstoffschrank 2</span></a></li></ul></li><li     class="dropdown dropdown-level-5"><a href="/bu/view/479"    ><span class="title title-level-5" title="9002.00 Mechanische Fertigung Drum">9002.00 Mechanische Fertigung Drum</span></a><ul     class="dropdown-menu menu menu-level-5"><li     class="first"><a href="/bu/view/760"    ><span class="title title-level-6" title="Gefahrstoffschrank EKO (Ni &amp; Ti)">Gefahrstoffschrank EKO (Ni &amp; Ti)</span></a></li><li     class="last"><a href="/bu/view/519"    ><span class="title title-level-6" title="Gefahrstoffschrank Fertigung">Gefahrstoffschrank Fertigung</span></a></li></ul></li><li    ><a href="/bu/view/379"    ><span class="title title-level-5" title="9002.00 Module Build RIC">9002.00 Module Build RIC</span></a></li><li     class="dropdown dropdown-level-5"><a href="/bu/view/439"    ><span class="title title-level-5" title="9002.00 Rissprüfen/Struckturprüfen">9002.00 Rissprüfen/Struckturprüfen</span></a><ul     class="dropdown-menu menu menu-level-5"><li     class="first"><a href="/bu/view/757"    ><span class="title title-level-6" title="Gefahrstoffschrank 1 Rissprüfen">Gefahrstoffschrank 1 Rissprüfen</span></a></li><li    ><a href="/bu/view/758"    ><span class="title title-level-6" title="Gefahrstoffschrank 2 Rissprüfen + Abfüllstation">Gefahrstoffschrank 2 Rissprüfen + Abfüllstation</span></a></li><li    ><a href="/bu/view/762"    ><span class="title title-level-6" title="Gefahrstoffschrank 3 Rissprüfen">Gefahrstoffschrank 3 Rissprüfen</span></a></li><li     class="last"><a href="/bu/view/771"    ><span class="title title-level-6" title="Gefahrstoffschrank Struckturprüfung">Gefahrstoffschrank Struckturprüfung</span></a></li></ul></li><li    ><a href="/bu/view/387"    ><span class="title title-level-5" title="9002.00 Röntgen 1, 2, 3">9002.00 Röntgen 1, 2, 3</span></a></li><li    ><a href="/bu/view/389"    ><span class="title title-level-5" title="9002.00 Underbead Drehen">9002.00 Underbead Drehen</span></a></li><li     class="dropdown dropdown-level-5"><a href="/bu/view/385"    ><span class="title title-level-5" title="9002.00 Warmbehandlung">9002.00 Warmbehandlung</span></a><ul     class="dropdown-menu menu menu-level-5"><li     class="first last"><a href="/bu/view/866"    ><span class="title title-level-6" title="Argon Puffertank">Argon Puffertank</span></a></li></ul></li><li    ><a href="/bu/view/806"    ><span class="title title-level-5" title="9002.00 Werkzeugausgabe, Werkzeugeinstellung, Kalibrierung">9002.00 Werkzeugausgabe, Werkzeugeinstellung, Kalibrierung</span></a></li><li     class="dropdown dropdown-level-5"><a href="/bu/view/348"    ><span class="title title-level-5" title="9002.00.230">9002.00.230</span></a><ul     class="dropdown-menu menu menu-level-5"><li     class="first"><a href="/bu/view/352"    ><span class="title title-level-6" title="BA 1">BA 1</span></a></li><li     class="last"><a href="/bu/view/353"    ><span class="title title-level-6" title="BA 2">BA 2</span></a></li></ul></li><li     class="last"><a href="/bu/view/530"    ><span class="title title-level-5" title="9002.00.340 Small Parts">9002.00.340 Small Parts</span></a></li></ul></li><li    ><a href="/bu/view/347"    ><span class="title title-level-4" title="9002.01">9002.01</span></a></li><li     class="last"><a href="/bu/view/865"    ><span class="title title-level-4" title="Argontank 600086 Außenbereich">Argontank 600086 Außenbereich</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/372"    ><span class="title title-level-3" title="9005">9005</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="dropdown dropdown-level-4 first"><a href="/bu/view/374"    ><span class="title title-level-4" title="9005.00 Module Build - Rotor Montage">9005.00 Module Build - Rotor Montage</span></a><ul     class="dropdown-menu menu menu-level-4"><li     class="first last"><a href="/bu/view/868"    ><span class="title title-level-5" title="Mobiler Stickstoffbehälter">Mobiler Stickstoffbehälter</span></a></li></ul></li><li    ><a href="/bu/view/371"    ><span class="title title-level-4" title="9005.00 Plasma">9005.00 Plasma</span></a></li><li    ><a href="/bu/view/399"    ><span class="title title-level-4" title="9005.00 Schleifen, Drehen - Ti">9005.00 Schleifen, Drehen - Ti</span></a></li><li     class="dropdown dropdown-level-4"><a href="/bu/view/491"    ><span class="title title-level-4" title="9005.00 Small Parts">9005.00 Small Parts</span></a><ul     class="dropdown-menu menu menu-level-4"><li     class="first last"><a href="/bu/view/849"    ><span class="title title-level-5" title="Gefahrstoffschrank SMP">Gefahrstoffschrank SMP</span></a></li></ul></li><li    ><a href="/bu/view/864"    ><span class="title title-level-4" title="Argontank 600085 Außenbereich">Argontank 600085 Außenbereich</span></a></li><li     class="last"><a href="/bu/view/871"    ><span class="title title-level-4" title="Gaslager IH129">Gaslager IH129</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/375"    ><span class="title title-level-3" title="9006">9006</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first last"><a href="/bu/view/376"    ><span class="title title-level-4" title="9006.00 Gleitschleifen">9006.00 Gleitschleifen</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/377"    ><span class="title title-level-3" title="9007">9007</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first last"><a href="/bu/view/580"    ><span class="title title-level-4" title="9007.00 Small Parts">9007.00 Small Parts</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/381"    ><span class="title title-level-3" title="9014">9014</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first"><a href="/bu/view/670"    ><span class="title title-level-4" title="9014.00 Faßlager">9014.00 Faßlager</span></a></li><li    ><a href="/bu/view/669"    ><span class="title title-level-4" title="9014.00 Gefahrstoffschrank">9014.00 Gefahrstoffschrank</span></a></li><li    ><a href="/bu/view/668"    ><span class="title title-level-4" title="9014.00 Gnome Prüfstand">9014.00 Gnome Prüfstand</span></a></li><li     class="last"><a href="/bu/view/382"    ><span class="title title-level-4" title="9014.00 Messmaschine GOM">9014.00 Messmaschine GOM</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/671"    ><span class="title title-level-3" title="9017">9017</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first"><a href="/bu/view/673"    ><span class="title title-level-4" title="9017.00 Gearboxprüfstand">9017.00 Gearboxprüfstand</span></a></li><li     class="last"><a href="/bu/view/672"    ><span class="title title-level-4" title="9017.00 Ölkomponentenprüfstand">9017.00 Ölkomponentenprüfstand</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/674"    ><span class="title title-level-3" title="9018">9018</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first"><a href="/bu/view/676"    ><span class="title title-level-4" title="9018.00 Gefahrstoffschrank">9018.00 Gefahrstoffschrank</span></a></li><li    ><a href="/bu/view/732"    ><span class="title title-level-4" title="9018.00 Prüfstand 7">9018.00 Prüfstand 7</span></a></li><li    ><a href="/bu/view/733"    ><span class="title title-level-4" title="9018.00.Manuelle Kühlschrank">9018.00.Manuelle Kühlschrank</span></a></li><li    ><a href="/bu/view/675"    ><span class="title title-level-4" title="9018.00/01/02 MRO Test">9018.00/01/02 MRO Test</span></a></li><li    ><a href="/bu/view/677"    ><span class="title title-level-4" title="9018.02 Gefahrstoffschrank">9018.02 Gefahrstoffschrank</span></a></li><li    ><a href="/bu/view/678"    ><span class="title title-level-4" title="9018.02 Vorratsschrank">9018.02 Vorratsschrank</span></a></li><li     class="last"><a href="/bu/view/731"    ><span class="title title-level-4" title="Manuelle Instandsetzung">Manuelle Instandsetzung</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/679"    ><span class="title title-level-3" title="9019">9019</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first"><a href="/bu/view/680"    ><span class="title title-level-4" title="9019.00 Kraftstoffkomponentenprüfstand">9019.00 Kraftstoffkomponentenprüfstand</span></a></li><li    ><a href="/bu/view/862"    ><span class="title title-level-4" title="Kraftstofftank Diesel Außengelände">Kraftstofftank Diesel Außengelände</span></a></li><li     class="last"><a href="/bu/view/863"    ><span class="title title-level-4" title="Kraftstofftank JP8 &amp; 7024 Außengelände">Kraftstofftank JP8 &amp; 7024 Außengelände</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/681"    ><span class="title title-level-3" title="9020">9020</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first"><a href="/bu/view/683"    ><span class="title title-level-4" title="9020.00 Elektrowerkstatt">9020.00 Elektrowerkstatt</span></a></li><li     class="last"><a href="/bu/view/682"    ><span class="title title-level-4" title="9020.00 Kraftstoffkomponentenprüfstand">9020.00 Kraftstoffkomponentenprüfstand</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/684"    ><span class="title title-level-3" title="9021">9021</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first"><a href="/bu/view/686"    ><span class="title title-level-4" title="9021.00 Gefahrstoffschrank">9021.00 Gefahrstoffschrank</span></a></li><li     class="last"><a href="/bu/view/685"    ><span class="title title-level-4" title="9021.00 Pumpen und Regler Montage">9021.00 Pumpen und Regler Montage</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/829"    ><span class="title title-level-3" title="9022">9022</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="dropdown dropdown-level-4 first"><a href="/bu/view/765"    ><span class="title title-level-4" title="9022.00 Lager/Ausgabe">9022.00 Lager/Ausgabe</span></a><ul     class="dropdown-menu menu menu-level-4"><li     class="first"><a href="/bu/view/766"    ><span class="title title-level-5" title="9022.00 Gefahrstoffschrank 0700">9022.00 Gefahrstoffschrank 0700</span></a></li><li    ><a href="/bu/view/767"    ><span class="title title-level-5" title="9022.00 Gefahrstoffschrank 0800">9022.00 Gefahrstoffschrank 0800</span></a></li><li     class="last"><a href="/bu/view/768"    ><span class="title title-level-5" title="9022.00 Gefahrstoffschrank 0900">9022.00 Gefahrstoffschrank 0900</span></a></li></ul></li><li    ><a href="/bu/view/859"    ><span class="title title-level-4" title="Gaslager 1 Außengelände">Gaslager 1 Außengelände</span></a></li><li    ><a href="/bu/view/860"    ><span class="title title-level-4" title="Gaslager 2 Außengelände">Gaslager 2 Außengelände</span></a></li><li     class="last"><a href="/bu/view/861"    ><span class="title title-level-4" title="Gaslager 3 Außengelände">Gaslager 3 Außengelände</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/687"    ><span class="title title-level-3" title="9025">9025</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first last"><a href="/bu/view/688"    ><span class="title title-level-4" title="9025.00 Montage Demontage Heli">9025.00 Montage Demontage Heli</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/360"    ><span class="title title-level-3" title="9028">9028</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="dropdown dropdown-level-4 first"><a href="/bu/view/362"    ><span class="title title-level-4" title="9028.00 HPDM">9028.00 HPDM</span></a><ul     class="dropdown-menu menu menu-level-4"><li     class="first"><a href="/bu/view/852"    ><span class="title title-level-5" title="Gefahrstoffschrank HPDM">Gefahrstoffschrank HPDM</span></a></li><li     class="last"><a href="/bu/view/869"    ><span class="title title-level-5" title="Mobiler Stickstoffbehälter">Mobiler Stickstoffbehälter</span></a></li></ul></li><li    ><a href="/bu/view/378"    ><span class="title title-level-4" title="9028.00 HPT/LPT">9028.00 HPT/LPT</span></a></li><li     class="last"><a href="/bu/view/772"    ><span class="title title-level-4" title="9028.00 Ti Disc">9028.00 Ti Disc</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/689"    ><span class="title title-level-3" title="9031">9031</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first last"><a href="/bu/view/690"    ><span class="title title-level-4" title="9031.00 Tanklager">9031.00 Tanklager</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/808"    ><span class="title title-level-3" title="9032">9032</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first last"><a href="/bu/view/809"    ><span class="title title-level-4" title="9032.00 Werkzeugeinstellung">9032.00 Werkzeugeinstellung</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/814"    ><span class="title title-level-3" title="9033">9033</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first"><a href="/bu/view/815"    ><span class="title title-level-4" title="9033.00 Lehrwerkstatt">9033.00 Lehrwerkstatt</span></a></li><li     class="last"><a href="/bu/view/870"    ><span class="title title-level-4" title="Gaslager Außenbereich">Gaslager Außenbereich</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/781"    ><span class="title title-level-3" title="9034">9034</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first"><a href="/bu/view/915"    ><span class="title title-level-4" title="9034.00  /  9034.00 Lager  / Fasslager A-C">9034.00  /  9034.00 Lager  / Fasslager A-C</span></a></li><li    ><a href="/bu/view/916"    ><span class="title title-level-4" title="9034.00 / 9034.00 Lager / Fasslager D">9034.00 / 9034.00 Lager / Fasslager D</span></a></li><li    ><a href="/bu/view/918"    ><span class="title title-level-4" title="9034.00 / 9034.00 Lager / Fasslager E">9034.00 / 9034.00 Lager / Fasslager E</span></a></li><li    ><a href="/bu/view/919"    ><span class="title title-level-4" title="9034.00 / 9034.00 Lager / Fasslager F">9034.00 / 9034.00 Lager / Fasslager F</span></a></li><li    ><a href="/bu/view/920"    ><span class="title title-level-4" title="9034.00 / 9034.00 Lager / Fasslager G">9034.00 / 9034.00 Lager / Fasslager G</span></a></li><li    ><a href="/bu/view/921"    ><span class="title title-level-4" title="9034.00 / 9034.00 Lager / Fasslager H">9034.00 / 9034.00 Lager / Fasslager H</span></a></li><li     class="last"><a href="/bu/view/786"    ><span class="title title-level-4" title="9034.00 Lager">9034.00 Lager</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/819"    ><span class="title title-level-3" title="9036">9036</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first last"><a href="/bu/view/820"    ><span class="title title-level-4" title="9036.00 Versand">9036.00 Versand</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/386"    ><span class="title title-level-3" title="9038">9038</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="dropdown dropdown-level-4 first"><a href="/bu/view/816"    ><span class="title title-level-4" title="9038.00 Blisk">9038.00 Blisk</span></a><ul     class="dropdown-menu menu menu-level-4"><li     class="first last"><a href="/bu/view/761"    ><span class="title title-level-5" title="Gefahrstoffschrank Blisk">Gefahrstoffschrank Blisk</span></a></li></ul></li><li     class="last"><a href="/bu/view/807"    ><span class="title title-level-4" title="9038.00 Werkzeugeinstellung">9038.00 Werkzeugeinstellung</span></a></li></ul></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/823"    ><span class="title title-level-3" title="9044">9044</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first last"><a href="/bu/view/824"    ><span class="title title-level-4" title="9044.00 Kalthalle">9044.00 Kalthalle</span></a></li></ul></li><li     class="dropdown dropdown-level-3 last"><a href="/bu/view/499"    ><span class="title title-level-3" title="9045">9045</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="dropdown dropdown-level-4 first"><a href="/bu/view/812"    ><span class="title title-level-4" title="9045.-1">9045.-1</span></a><ul     class="dropdown-menu menu menu-level-4"><li     class="first last"><a href="/bu/view/813"    ><span class="title title-level-5" title="9045.-1 Öllager">9045.-1 Öllager</span></a></li></ul></li><li     class="dropdown dropdown-level-4 last"><a href="/bu/view/811"    ><span class="title title-level-4" title="9045.00">9045.00</span></a><ul     class="dropdown-menu menu menu-level-4"><li     class="dropdown dropdown-level-5 first"><a href="/bu/view/500"    ><span class="title title-level-5" title="9045.00 Inertia weld">9045.00 Inertia weld</span></a><ul     class="dropdown-menu menu menu-level-5"><li     class="first"><a href="/bu/view/851"    ><span class="title title-level-6" title="Gefahrstoffschrank IW">Gefahrstoffschrank IW</span></a></li><li     class="last"><a href="/bu/view/850"    ><span class="title title-level-6" title="Gefahrstoffschrank hinter Mazak">Gefahrstoffschrank hinter Mazak</span></a></li></ul></li><li    ><a href="/bu/view/509"    ><span class="title title-level-5" title="9045.00 Röntgen 4">9045.00 Röntgen 4</span></a></li><li     class="dropdown dropdown-level-5 last"><a href="/bu/view/510"    ><span class="title title-level-5" title="9045.00 Warmbehandlung">9045.00 Warmbehandlung</span></a><ul     class="dropdown-menu menu menu-level-5"><li     class="first last"><a href="/bu/view/867"    ><span class="title title-level-6" title="Argon Puffertank">Argon Puffertank</span></a></li></ul></li></ul></li></ul></li></ul></div></li><li     class="dropdown dropdown-level-2"><a href="/bu/view/373"    ><span class="title title-level-2" title="Standort Oberursel Defence">Standort Oberursel Defence</span></a><div class="dropdown-menu-wrapper dropdown-menu-wrapper__child"><ul     class="dropdown-menu menu menu-level-2"><li     class="dropdown dropdown-level-3 first"><a href="/bu/view/664"    ><span class="title title-level-3" title="9018">9018</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first"><a href="/bu/view/665"    ><span class="title title-level-4" title="GSS - 9018 2.OG">GSS - 9018 2.OG</span></a></li><li     class="last"><a href="/bu/view/666"    ><span class="title title-level-4" title="Montage 2. OG">Montage 2. OG</span></a></li></ul></li><li     class="last"><a href="/bu/view/364"    ><span class="title title-level-3" title="Standort Oberursel MRO/Test">Standort Oberursel MRO/Test</span></a></li></ul></div></li><li     class="dropdown dropdown-level-2 last"><a href="/bu/view/480"    ><span class="title title-level-2" title="Workshop Standort">Workshop Standort</span></a><div class="dropdown-menu-wrapper dropdown-menu-wrapper__child"><ul     class="dropdown-menu menu menu-level-2"><li     class="first"><a href="/bu/view/570"    ><span class="title title-level-3" title="96.6/96.5">96.6/96.5</span></a></li><li     class="dropdown dropdown-level-3"><a href="/bu/view/556"    ><span class="title title-level-3" title="Arbeitsplatz 1">Arbeitsplatz 1</span></a><ul     class="dropdown-menu menu menu-level-3"><li     class="first last"><a href="/bu/view/564"    ><span class="title title-level-4" title="Außenlagerschränke">Außenlagerschränke</span></a></li></ul></li><li    ><a href="/bu/view/568"    ><span class="title title-level-3" title="Fasslager 96.1">Fasslager 96.1</span></a></li><li    ><a href="/bu/view/569"    ><span class="title title-level-3" title="Fasslager 96.2">Fasslager 96.2</span></a></li><li    ><a href="/bu/view/566"    ><span class="title title-level-3" title="Kühlschrank 81.0">Kühlschrank 81.0</span></a></li><li     class="last"><a href="/bu/view/567"    ><span class="title title-level-3" title="Kühlschrank 81.0 (C7-KÜHL)">Kühlschrank 81.0 (C7-KÜHL)</span></a></li></ul></div></li></ul></div></div></li><li     data-route="uub_cadaster_*" class="dropdown dropdown-level-1"><a href="#"     class="unclickable"><span class="title title-level-1" title="Stoffregister"><span class="fa-folder-open menu-icon" aria-hidden="true"></span>
+    Stoffregister</span></a><div class="dropdown-menu"><div class="dropdown-menu-wrapper dropdown-menu-wrapper__scrollable"><ul     class="menu menu-level-1"><li     data-route="uub_cadaster_organization_index"><a href="/cadaster/organization/"    ><span class="title title-level-2" title="Organisation">Organisation</span></a></li><li     data-route="uub_assessment_index"><a href="/hazard-assessment/hazard-assessment/"    ><span class="title title-level-2" title="Gefährdungsbeurteilungen">Gefährdungsbeurteilungen</span></a></li><li     data-route="uub_instruction_index"><a href="/hazard-assessment/operating-instruction/"    ><span class="title title-level-2" title="Betriebsanweisungen">Betriebsanweisungen</span></a></li></ul></div></div></li><li     data-route="compliance_check_cadaster*" class="dropdown dropdown-level-1"><a href="#"     class="unclickable"><span class="title title-level-1" title="Rechtsprüfung"><span class="fa-gavel menu-icon" aria-hidden="true"></span>
+    Rechtsprüfung</span></a><div class="dropdown-menu"><div class="dropdown-menu-wrapper dropdown-menu-wrapper__scrollable"><ul     class="menu menu-level-1"><li     class="first"><a href="/compliance/compliance/catalog/agw"    ><span class="title title-level-2" title="AGW (TRGS900)">AGW (TRGS900)</span></a></li><li    ><a href="/compliance/compliance/catalog/arbmedvv"    ><span class="title title-level-2" title="ArbMedVV">ArbMedVV</span></a></li><li    ><a href="/compliance/compliance/catalog/bgw"    ><span class="title title-level-2" title="BGW (TRGS 903)">BGW (TRGS 903)</span></a></li><li    ><a href="/compliance/compliance/catalog/kmr"    ><span class="title title-level-2" title="KMR">KMR</span></a></li><li     class="divider"><a href="#"     class="unclickable" tabindex="-1"><span class="title title-level-2" title="---------------">---------------</span></a></li><li    ><a href="/compliance/compliance/catalog/muschg"    ><span class="title title-level-2" title="MuSchG">MuSchG</span></a></li><li    ><a href="/compliance/compliance/catalog/bimschv12"    ><span class="title title-level-2" title="12. BimSchV">12. BimSchV</span></a></li><li    ><a href="/compliance/compliance/catalog/trgs907"    ><span class="title title-level-2" title="TRGS 907">TRGS 907</span></a></li><li    ><a href="/compliance/compliance/catalog/trgs910"    ><span class="title title-level-2" title="TRGS 910">TRGS 910</span></a></li><li     class="divider"><a href="#"     class="unclickable" tabindex="-1"><span class="title title-level-2" title="---------------">---------------</span></a></li><li    ><a href="/compliance/compliance/catalog/svhc"    ><span class="title title-level-2" title="SVHC">SVHC</span></a></li><li    ><a href="/compliance/compliance/catalog/reach14"    ><span class="title title-level-2" title="REACH XIV">REACH XIV</span></a></li><li    ><a href="/compliance/compliance/catalog/reach17"    ><span class="title title-level-2" title="REACH XVII">REACH XVII</span></a></li><li    ><a href="/compliance/compliance/catalog/pop"    ><span class="title title-level-2" title="POP">POP</span></a></li><li    ><a href="/compliance/compliance/catalog/clp6"    ><span class="title title-level-2" title="CLP Anhang VI">CLP Anhang VI</span></a></li><li     class="last"><a href="/compliance/compliance/catalog/fgas"    ><span class="title title-level-2" title="F-Gas-Verordnung">F-Gas-Verordnung</span></a></li></ul></div></div></li><li     class="dropdown dropdown-level-1"><a href="#"     class="unclickable"><span class="title title-level-1" title="Berichte"><span class="fa-folder-open menu-icon" aria-hidden="true"></span>
+    Berichte</span></a><div class="dropdown-menu"><div class="dropdown-menu-wrapper dropdown-menu-wrapper__scrollable"><ul     class="menu menu-level-1"><li     data-route="uub_cadaster_reporting_organization"><a href="/cadaster/reporting/organization"    ><span class="title title-level-2" title="Bericht Stoffregister Organisation">Bericht Stoffregister Organisation</span></a></li></ul></div></div></li><li     class="mobile-hide dropdown dropdown-level-1 active last"><a href="#"     class="unclickable"><span class="title title-level-1" title="Einstellungen"><span class="fa-gear menu-icon" aria-hidden="true"></span>
+    Einstellungen</span></a><div class="dropdown-menu"><div class="dropdown-menu-wrapper dropdown-menu-wrapper__scrollable"><ul     class="menu menu-level-1"><li     class="dropdown dropdown-level-2 active"><a href="#"     class="unclickable" tabindex="-1"><span class="title title-level-2" title="Benutzerverwaltung">Benutzerverwaltung</span></a><div class="dropdown-menu-wrapper dropdown-menu-wrapper__child"><ul     class="dropdown-menu menu menu-level-2"><li     data-routes="[&quot;\/^oro_user_(?!role\\w+|group\\w+|security\\w+|reset\\w+)\\w+$\/&quot;]" data-route="oro_user_index" class="active first"><a href="/user"    ><span class="title title-level-3" title="Benutzer">Benutzer</span></a></li><li     data-routes="[&quot;oro_user_role_*&quot;]" data-route="oro_user_role_index"><a href="/user/role"    ><span class="title title-level-3" title="Rollen">Rollen</span></a></li><li     data-routes="[&quot;oro_user_group_*&quot;]" data-route="oro_user_group_index"><a href="/user/group"    ><span class="title title-level-3" title="Gruppen">Gruppen</span></a></li><li     data-routes="[&quot;oro_business_unit_*&quot;]" data-route="oro_business_unit_index"><a href="/organization/business_unit"    ><span class="title title-level-3" title="Unternehmenseinheiten">Unternehmenseinheiten</span></a></li></ul></div></li><li     data-routes="[&quot;\/^oro_workflow_definition\/&quot;]" data-route="oro_workflow_definition_index"><a href="/workflowdefinition"    ><span class="title title-level-2" title="Workflows">Workflows</span></a></li></ul></div></div></li></ul>
+
+        </nav>
+
+        <button id="main-menu-toggler" type="button" class="main-menu-toggler" aria-label="Maximize/minimize menu"></button>
+    </div>
+            </div>
+                <div class="app-page__content">
+                            <header class="app-header thick" id="oroplatform-header"
+                    >
+                                        <div class="app-header__inner">
+                        <div class="app-header__container">
+                            <div id="organization-switcher" class="organization-logo-wrapper"
+                            data-page-component-view="oroui/js/app/views/page/organization-switch-view"
+            
+    >
+
+
+            <div class="nav logo-wrapper">
+                    <a href="/" class="app-logo" title="Rolls-Royce Deutschland">Rolls-Royce Deutschland</a>
+
+                        <div class="logo logo-text">
+            <a href="/" title="Rolls-Royce Deutschland" class="organization-name">Rolls-Royce Deutschland</a>
+        </div>
+    
+        </div>
+    
+</div>
+                            <ul class="user-menu">
+                                    <li>
+    <a class="help no-hash" href="http://www.oroinc.com/doc" target="_blank" title="Hilfe">
+        <span class="fa-question-circle" aria-hidden="true"></span>
+        <span class="sr-only">Hilfe</span>
+    </a>
+</li>
+            <li class="dot-menu dropdown">
+        <a href="#" role="button" id="dropdown-6881ee01387dc" data-toggle="dropdown" class="dropdown-toggle dropdown-toggle--no-caret"
+           data-prevent-close-on-menu-click="true"
+           title="Recent pages"
+           aria-label="Recent pages" aria-haspopup="true" aria-expanded="false">
+            <span class="fa-bars" aria-hidden="true"></span>
+        </a>
+        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdown-6881ee01387dc"  tabindex="0">
+            <div class="tabbable tabs-left">
+                            
+                                        <ul     class="nav nav-tabs">
+                                            <li>
+                                                        <a      aria-selected="true" id="history-tab" href="#history-content" class=" active" role="tab" data-toggle="tab" aria-controls="history-content">        <span class="fa-clock-o menu-icon" aria-hidden="true"></span>
+    Verlauf</a>
+
+        </li>
+    
+                                <li>
+                                                <a      aria-selected="false" id="favorite-tab" href="#favorite-content" class="" role="tab" data-toggle="tab" aria-controls="favorite-content">        <span class="fa-star-o menu-icon" aria-hidden="true"></span>
+    Favoriten</a>
+
+        </li>
+    
+                                <li>
+                                                <a      aria-selected="false" id="mostviewed-tab" href="#mostviewed-content" class="" role="tab" data-toggle="tab" aria-controls="mostviewed-content">        <span class="fa-flag menu-icon" aria-hidden="true"></span>
+    Am meisten angesehen</a>
+
+        </li>
+    
+
+        </ul>
+    
+
+                                
+    <div class="tab-content">
+                                                                                <div class="tab-pane active"
+                     id="history-content"                         data-page-component-view="oronavigation/js/app/views/history-view"
+            
+                     role="tabpanel"
+                     aria-labelledby="history-tab"
+                     aria-orientation="vertical"
+                >
+                                                                                    
+                                    <ul     class="extra-list">                                                    <li     class="first">
+                                
+            <a href="/user/view/354"    >    Elke Hänel - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li    >
+                                
+            <a href="/user/view/353"    >    Marco Eichhorst - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li    >
+                                
+            <a href="/user/view/352"    >    Simon Berger - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li    >
+                                
+            <a href="/user/view/351"    >    Markus Weissmueller - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li    >
+                                
+            <a href="/user/view/349"    >    Stefanie Opper - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li    >
+                                
+            <a href="/user/view/339"    >    Sven Strzelczyk - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li    >
+                                
+            <a href="/user/view/335"    >    Franz Loebl - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li    >
+                                
+            <a href="/user/view/334"    >    Steven Wirth - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li    >
+                                
+            <a href="/user/view/330"    >    Pascal Meyer - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li    >
+                                
+            <a href="/user/view/323"    >    Monique Eichhorn - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li    >
+                                
+            <a href="/user/view/322"    >    Gregor Schmidt - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li    >
+                                
+            <a href="/user/view/321"    >    Oliver Nebelung - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li    >
+                                
+            <a href="/user/view/313"    >    A&amp;T_DW Inspection_Leads - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li    >
+                                
+            <a href="/user/view/312"    >    A&amp;T_DW Services_Lead - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li    >
+                                
+            <a href="/user/view/311"    >    Gordon Posnanski - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li    >
+                                
+            <a href="/user/view/310"    >    Stefan Schrepffer - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li    >
+                                
+            <a href="/user/view/309"    >    Lena Liefeld - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li    >
+                                
+            <a href="/user/view/308"    >    Ralf Nagelski - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li    >
+                                
+            <a href="/user/view/307"    >    Ralph Neuschild - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+                            <li     class="last">
+                                
+            <a href="/user/view/306"    >    Selina Mihalyi - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>
+    
+    
+        </li>
+
+        </ul>
+    
+                </div>
+                                                                                    <div class="tab-pane"
+                     id="favorite-content" 
+                     role="tabpanel"
+                     aria-labelledby="favorite-tab"
+                     aria-orientation="vertical"
+                >
+                                                                                    
+                            <div data-data="[]" data-options="[]"></div>
+    <ul class="extra-list"></ul>
+    <div class="no-data">Sie haben noch keine Elemente</div>
+
+                </div>
+                                                                                    <div class="tab-pane"
+                     id="mostviewed-content"                         data-page-component-view="oronavigation/js/app/views/most-viewed-view"
+            
+                     role="tabpanel"
+                     aria-labelledby="mostviewed-tab"
+                     aria-orientation="vertical"
+                >
+                                                                                    
+                                    <ul     class="extra-list">                                                    <li     class="first">
+                                    <a href="/media/cache/attachment/resize/7/32/32/62f60e5e0f735503574625-ghs07.png.webp"    >    Peter Hüttig - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>    
+        </li>
+                            <li    >
+                                    <a href="/cadaster/organization/"    >    Stoffregister
+</a>    
+        </li>
+                            <li    >
+                                    <a href="/media/cache/attachment/resize/8/32/32/62f60e5e1258d094288100-ghs08.png.webp"    >    Peter Hüttig - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>    
+        </li>
+                            <li    >
+                                    <a href="/media/cache/attachment/resize/2/32/32/62f60e5dd1069221390295-ghs02.png.webp"    >    Peter Hüttig - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>    
+        </li>
+                            <li    >
+                                    <a href="/media/cache/attachment/resize/5/32/32/62f60e5e045ae345336699-ghs05.png.webp"    >    Peter Hüttig - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>    
+        </li>
+                            <li    >
+                                    <a href="/media/cache/attachment/resize/9/32/32/62f60e5e1543b188012275-ghs09.png.webp"    >    Peter Hüttig - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>    
+        </li>
+                            <li    >
+                                    <a href="/user"    >    Benutzer - Benutzerverwaltung - Einstellungen
+</a>    
+        </li>
+                            <li    >
+                                    <a href="/cadaster/organization/?grid%5Buub-hazard-substance-organization-with-actions-grid%5D=i%3D1%26p%3D25%26f%255BinternalName%255D%255Bvalue%255D%3D01041457%26f%255BinternalName%255D%255Btype%255D%3D1%26c%3Dactive1.hsSds1.hsHa1.internalName1.name1.alternativeName1.manufacturerName1.symbolSigns1.catalogRRates1.substanceName1.hazardSubstanceAssessmentBU1.responsibleUserGroup1.hsNumber0.additionalInfo10.additionalInfo20.hsWaterHazardClass0.catalogWarehouseClass0.catalogUnNumber0.hsForm0.hsBoilingPoint0.hsFlamePoint0.sdsRequested0.sdsPrinted0.hsVocAmount0%26v%3D__all__%26a%3Dgrid%26g%255BoriginalRoute%255D%3Duub_cadaster_organization_index"    >    Stoffregister
+</a>    
+        </li>
+                            <li    >
+                                    <a href="/cadaster/organization/view/1864?grid[uub-hazard-substance-organization-with-actions-grid]=i%3D1%26p%3D25%26f%255BinternalName%255D%255Bvalue%255D%3D01041457%26f%255BinternalName%255D%255Btype%255D%3D1%26c%3Dactive1.hsSds1.hsHa1.internalName1.name1.alternativeName1.manufacturerName1.symbolSigns1.catalogRRates1.substanceName1.hazardSubstanceAssessmentBU1.responsibleUserGroup1.hsNumber0.additionalInfo10.additionalInfo20.hsWaterHazardClass0.catalogWarehouseClass0.catalogUnNumber0.hsForm0.hsBoilingPoint0.hsFlamePoint0.sdsRequested0.sdsPrinted0.hsVocAmount0%26v%3D__all__%26a%3Dgrid%26g%255BoriginalRoute%255D%3Duub_cadaster_organization_index"    >    Stoffregister
+</a>    
+        </li>
+                            <li    >
+                                    <a href="/media/cache/attachment/resize/4/32/32/62f60e5df24f0761135077-ghs04.png.webp"    >    Peter Hüttig - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>    
+        </li>
+                            <li    >
+                                    <a href="/user/group"    >    Gruppen - Benutzerverwaltung - Einstellungen
+</a>    
+        </li>
+                            <li    >
+                                    <a href="/media/cache/attachment/resize/3/32/32/62f60e5de96ee674901970-ghs03.png.webp"    >    Peter Hüttig - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>    
+        </li>
+                            <li    >
+                                    <a href="/cadaster/reporting/organization"    >    Stoffregister
+</a>    
+        </li>
+                            <li    >
+                                    <a href="/user/profile/view"    >    Ali Maung - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>    
+        </li>
+                            <li    >
+                                    <a href="/user/create"    >    Benutzer hinzufügen - Benutzer - Benutzerverwaltung - Einstellungen
+</a>    
+        </li>
+                            <li    >
+                                    <a href="/user/group/create"    >    Gruppe hinzufügen - Gruppen - Benutzerverwaltung - Einstellungen
+</a>    
+        </li>
+                            <li    >
+                                    <a href="/cadaster/organization/view/2282?grid[uub-hazard-substance-organization-with-actions-grid]=i%3D1%26p%3D25%26f%255BinternalName%255D%255Bvalue%255D%3D01043506%26f%255BinternalName%255D%255Btype%255D%3D1%26c%3Dactive1.hsSds1.hsHa1.hsWaterHazardClass1.internalName1.name1.alternativeName1.manufacturerName1.symbolSigns1.catalogRRates1.substanceName1.hazardSubstanceAssessmentBU1.responsibleUserGroup1.hsNumber0.additionalInfo10.additionalInfo20.catalogWarehouseClass0.catalogUnNumber0.hsForm0.hsBoilingPoint0.hsFlamePoint0.sdsRequested0.sdsPrinted0.hsVocAmount0%26v%3D__all__%26a%3Dgrid%26g%255BoriginalRoute%255D%3Duub_cadaster_organization_index"    >    Stoffregister
+</a>    
+        </li>
+                            <li    >
+                                    <a href="/user/role"    >    Rollen - Benutzerverwaltung - Einstellungen
+</a>    
+        </li>
+                            <li    >
+                                    <a href="/cadaster/organization/view/3525?grid[uub-hazard-substance-organization-with-actions-grid]=i%3D1%26p%3D25%26f%255BinternalName%255D%255Bvalue%255D%3D10002358%26f%255BinternalName%255D%255Btype%255D%3D1%26c%3Dactive1.hsSds1.hsHa1.internalName1.name1.alternativeName1.manufacturerName1.symbolSigns1.catalogRRates1.substanceName1.hazardSubstanceAssessmentBU1.responsibleUserGroup1.hsNumber0.additionalInfo10.additionalInfo20.hsWaterHazardClass0.catalogWarehouseClass0.catalogUnNumber0.hsForm0.hsBoilingPoint0.hsFlamePoint0.sdsRequested0.sdsPrinted0.hsVocAmount0%26v%3D__all__%26a%3Dgrid%26g%255BoriginalRoute%255D%3Duub_cadaster_organization_index"    >    Stoffregister
+</a>    
+        </li>
+                            <li     class="last">
+                                    <a href="/cadaster/organization/?grid%5Buub-hazard-substance-organization-with-actions-grid%5D=i%3D1%26p%3D25%26f%255BinternalName%255D%255Bvalue%255D%3D10002358%26f%255BinternalName%255D%255Btype%255D%3D1%26c%3Dactive1.hsSds1.hsHa1.internalName1.name1.alternativeName1.manufacturerName1.symbolSigns1.catalogRRates1.substanceName1.hazardSubstanceAssessmentBU1.responsibleUserGroup1.hsNumber0.additionalInfo10.additionalInfo20.hsWaterHazardClass0.catalogWarehouseClass0.catalogUnNumber0.hsForm0.hsBoilingPoint0.hsFlamePoint0.sdsRequested0.sdsPrinted0.hsVocAmount0%26v%3D__all__%26a%3Dgrid%26g%255BoriginalRoute%255D%3Duub_cadaster_organization_index"    >    Stoffregister
+</a>    
+        </li>
+
+        </ul>
+    
+                </div>
+                                </div>
+
+
+            </div>
+        </div>
+    </li>
+    
+<script type="text/template" id="email-notification-item-template">
+    <div class="info" data-id="<%- id %>">
+        <div class="body">
+            <% if (subject) { %>
+                <div class="title nowrap-ellipsis"><%- subject %></div>
+            <% } else { %>
+                <div class="empty-subject nowrap-ellipsis">(kein Betreff)</div>
+            <% } %>
+            <div class="description nowrap-ellipsis"><%= bodyContent %></div>
+        </div>
+        <% if (seen) {  %>
+        <i class="mail-icon" title="Als ungelesen markieren" data-role="toggle-read-status"></i>
+        <% } else { %>
+        <i class="mail-icon highlight" title="Als gelesen markieren" data-role="toggle-read-status"></i>
+        <% } %>
+    </div>
+    <div class="footer">
+        <span class="from-name">
+            <% if (linkFromName) { %>
+                <a href="<%- linkFromName %>" dir="ltr"><%- fromName %></a>
+            <% } else { %>
+                <%- fromName %>
+            <% } %>
+        </span>
+        <span class="forward-action-wrapper">
+            <span class="forward-action">            <a href="#"data-url="<%- forwardRoute %>"
+                            class=" no-hash"
+                                                                        
+                                    data-page-component-module="oroui/js/app/components/widget-component"
+                                data-page-component-options="{&quot;type&quot;:&quot;dialog&quot;,&quot;multiple&quot;:false,&quot;options&quot;:{&quot;alias&quot;:&quot;reply-dialog&quot;,&quot;dialogOptions&quot;:{&quot;title&quot;:&quot;Weiterleiten&quot;,&quot;allowMaximize&quot;:true,&quot;allowMinimize&quot;:true,&quot;dblclick&quot;:&quot;maximize&quot;,&quot;maximizedHeightDecreaseBy&quot;:&quot;minimize-bar&quot;,&quot;width&quot;:1000,&quot;minWidth&quot;:&quot;expanded&quot;}},&quot;createOnEvent&quot;:&quot;click&quot;}"
+            
+
+    >        Weiterleiten</a></span>
+            <span class="reply-action">            <a href="#"data-url="<%- replyRoute %>"
+                            class=" no-hash"
+                                                                        
+                                    data-page-component-module="oroui/js/app/components/widget-component"
+                                data-page-component-options="{&quot;type&quot;:&quot;dialog&quot;,&quot;multiple&quot;:false,&quot;options&quot;:{&quot;alias&quot;:&quot;reply-dialog&quot;,&quot;dialogOptions&quot;:{&quot;title&quot;:&quot;Allen antworten&quot;,&quot;allowMaximize&quot;:true,&quot;allowMinimize&quot;:true,&quot;dblclick&quot;:&quot;maximize&quot;,&quot;maximizedHeightDecreaseBy&quot;:&quot;minimize-bar&quot;,&quot;width&quot;:1000,&quot;minWidth&quot;:&quot;expanded&quot;}},&quot;createOnEvent&quot;:&quot;click&quot;}"
+            
+
+    >        Antworten</a></span>
+            <span class="reply-all-action">            <a href="#"data-url="<%- replyAllRoute %>"
+                            class=" no-hash"
+                                                                        
+                                    data-page-component-module="oroui/js/app/components/widget-component"
+                                data-page-component-options="{&quot;type&quot;:&quot;dialog&quot;,&quot;multiple&quot;:false,&quot;options&quot;:{&quot;alias&quot;:&quot;reply-dialog&quot;,&quot;dialogOptions&quot;:{&quot;title&quot;:&quot;Antworten&quot;,&quot;allowMaximize&quot;:true,&quot;allowMinimize&quot;:true,&quot;dblclick&quot;:&quot;maximize&quot;,&quot;maximizedHeightDecreaseBy&quot;:&quot;minimize-bar&quot;,&quot;width&quot;:1000,&quot;minWidth&quot;:&quot;expanded&quot;}},&quot;createOnEvent&quot;:&quot;click&quot;}"
+            
+
+    >        Allen antworten</a></span>
+        </span>
+    </div>
+</script>
+
+    <li class="hide"                         data-page-component-module="oroemail/js/app/components/new-email-flash-message-component"
+            ></li>
+
+    <li class="dropdown user-menu-dropdown" id="user-menu"
+                                data-page-component-view="oroui/js/app/views/page/user-menu-view"
+            >
+        <button id="dropdown-6881ee013f8b4"
+        type="button"
+        class="dropdown-toggle"
+        data-toggle="dropdown"
+        aria-label="User menu" aria-haspopup="true" aria-expanded="false"
+>
+                    Ali Maung
+                                </button>
+                                    <ul     class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="dropdown-6881ee013f8b4">
+                                            <li     class="first">
+                                
+            <a href="/user/profile/view"    >Mein Benutzer</a>
+    
+    
+
+        </li>
+                            <li     class="mobile-hide">
+                                
+            <a href="/config/user/profile"    >Meine Konfiguration</a>
+    
+    
+
+        </li>
+    
+                            <li     class="divider">
+                                <span    ></span>
+    
+
+        </li>
+                            <li     class="last">
+                                
+            <a href="/user/logout"     class="no-hash">Ausloggen</a>
+    
+    
+
+        </li>
+
+            </ul>
+    </li>
+
+                            </ul>
+                            <div class="app-header__search-and-shortcuts">
+                                        
+                                        <div class="dropdown header-dropdown-shortcut" data-layout="separate"
+                                        data-page-component-view="oronavigation/js/app/views/shortcuts-view"
+            >
+                <button class="dropdown-toggle dropdown-toggle--no-caret" type="button" data-toggle="dropdown" id="dropdown-6881ee013fe6d"
+                    aria-haspopup="true" aria-expanded="false" aria-label="Schnellnavigation"
+                    title="Schnellnavigation"
+                    data-prevent-close-on-menu-click="true">
+                    <span class="fa-share-square" aria-hidden="true"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdown-6881ee013fe6d">
+                    <li class="nav-header nav-header-title">Schnellnavigation
+                                        </li>
+                    <li class="nav-content">
+                        <div class="shortcut-container">
+                            <input type="text"
+                                   class="header-dropdown-shortcut__search"
+                                   placeholder="Bitte Geben Sie eine Schnellnavigation Aktion ein"
+                                   aria-label="Search shortcuts"
+                                   data-source-url="oro_api_get_shortcuts"
+                                   data-role="shortcut-search"
+                                   data-clearable
+                                   data-placeholder-icon="fa-search"
+                                   data-entity-class="Oro_Bundle_UserBundle_Entity_User"
+                                   data-entity-id="303"
+                            >
+                            <div class="clearfix">
+                                <div class="extra-small">Beispiel: Benutzer erstellen, Benutzerliste
+                                    <a href="/shortcutactionslist">Gesamte Liste ansehen</a>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="nav-header">Am häufigsten verwendete Aktionen</li>
+                                                            <li     class="dropdown-item">
+                                
+                                <a href="#"                data-url="/email/create?entityClass=Oro_Bundle_UserBundle_Entity_User&amp;entityId=303"                class=" no-hash"
+                                                                        
+                                    data-page-component-module="oroui/js/app/components/widget-component"
+                                data-page-component-options="{&quot;type&quot;:&quot;dialog&quot;,&quot;multiple&quot;:true,&quot;refresh-widget-alias&quot;:&quot;activity-list-widget&quot;,&quot;reload-grid-name&quot;:&quot;user-email-grid&quot;,&quot;options&quot;:{&quot;alias&quot;:&quot;email-dialog&quot;,&quot;dialogOptions&quot;:{&quot;title&quot;:&quot;E-Mail verfassen&quot;,&quot;allowMaximize&quot;:true,&quot;allowMinimize&quot;:true,&quot;dblclick&quot;:&quot;maximize&quot;,&quot;maximizedHeightDecreaseBy&quot;:&quot;minimize-bar&quot;,&quot;width&quot;:1000}},&quot;createOnEvent&quot;:&quot;click&quot;}"
+            
+
+    ><span class="" aria-hidden="true"><span class="sr-only">E-Mail verfassen</span></span>E-Mail verfassen</a>
+
+            
+
+        </li>
+                                            <li     class="dropdown-item">
+                                
+            <a href="/user/create"    >Neuen Benutzer erstellen</a>
+    
+            
+
+        </li>
+                                        <li     class="dropdown-item">
+                                
+            <a href="/user"    >Nutzerliste anzeigen</a>
+    
+            
+
+        </li>
+                    
+                </ul>
+            </div>
+    
+        <div class="dropdown header-dropdown-search">
+        <button id="dropdown-6881ee0140a72" class="dropdown-toggle dropdown-toggle--no-caret" data-toggle="dropdown" title="Suche"
+                type="button"
+                aria-haspopup="true" aria-expanded="false" aria-label="Suche"
+                data-prevent-close-on-menu-click="true">
+            <span class="fa-search" aria-hidden="true"></span>
+        </button>
+        <ul class="dropdown-menu" aria-labelledby="dropdown-6881ee0140a72"
+            data-page-component-view="orosearch/js/app/views/search-suggestion-view">
+                        <li class="nav-content">
+                <form method="get" action="/search/" class="search-form">
+                    <div class="header-search">
+                        <select data-page-component-module="oro/select2-component" name="from" aria-label="Search records by entity">
+                            <option value="">Alle</option>
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+                                                            <option value="oro_user" data-alias="oro_user">Benutzer</option>
+                                                            <option value="hazard_substance" data-alias="hazard_substance">Gefahrstoff</option>
+                                                            <option value="business_unit_hazard_substance" data-alias="business_unit_hazard_substance">Gefahrstoff Standort</option>
+                                                            <option value="uub_catalog_substance" data-alias="uub_catalog_substance">Inhaltsstoff</option>
+                                                            <option value="oro_access_role" data-alias="oro_access_role">Rolle</option>
+                                                            <option value="oro_organization" data-alias="oro_organization">Unternehmen</option>
+                                                            <option value="oro_business_unit" data-alias="oro_business_unit">Unternehmenseinheit</option>
+                                                            <option value="uub_fire_pictogram" data-alias="uub_fire_pictogram">uub.assessment.operatinginstruction.firepictogram.entity_label</option>
+                                                            <option value="uub_general_pictogram" data-alias="uub_general_pictogram">uub.assessment.operatinginstruction.generalpictogram.entity_label</option>
+                                                            <option value="uub_mandatory_pictogram" data-alias="uub_mandatory_pictogram">uub.assessment.operatinginstruction.mandatorypictogram.entity_label</option>
+                                                            <option value="uub_prohibition_pictogram" data-alias="uub_prohibition_pictogram">uub.assessment.operatinginstruction.prohibitionpictogram.entity_label</option>
+                                                            <option value="uub_warning_pictogram" data-alias="uub_warning_pictogram">uub.assessment.operatinginstruction.warningpictogram.entity_label</option>
+                                                    </select>
+                        <div class="search-field-container">
+                            <input type="text" class="span2 search" placeholder="" name="search" value="" autocomplete="off" data-autofocus aria-label="Search">
+                            <ul class="search-suggestion-list" data-role="search-suggestion-list">
+                                <li class="loading" data-role="loading">
+                                    <div class="loader-mask"><div class="loader-frame"></div></div>
+                                </li>
+                            </ul>
+                            <div class="no-data" data-role="fallback">No results found</div>
+                        </div>
+                                                <button type="submit" class="btn btn-primary btn-search">Suche</button>
+                                            </div>
+                </form>
+            </li>
+        </ul>
+    </div>
+
+                            </div>
+                            <div class="list-bar-wrapper" id="pinbar">
+    <div class="pin-bar-empty dropdown">
+        <a href="#" id="pin-help-dropdown-6881ee0140e55" role="button"
+           title="Learn how to use this space"
+           data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false"
+        >Learn how to use this space</a>
+        <div class="dropdown-menu" aria-labelledby="pin-help-dropdown-6881ee0140e55">
+            <button class="btn-link btn-close fa-close" type="button" data-role="close" aria-hidden="true"></button>
+            <div class="dropdown-content">Use the <span class="fa-thumb-tack"></span> icon in the top right corner of the page to create a pin, so that you can come back to it at any time in one click.</div>
+            <button class="btn btn-success no-hash" type="button" title="Ok, got it" ><span class="fa-check"></span>Ok, got it
+            </button>
+        </div>
+    </div>
+    <div class="list-bar">
+        <ul></ul>
+    </div>
+    <div class="show-more dropdown"><span role="button" id="show-more-dropdown-6881ee0140e56" class="dropdown-toggle dropdown-toggle--no-caret" data-toggle="dropdown"
+                                          aria-haspopup="true" aria-expanded="false" aria-label="More pintabs"
+        ><span class="fa-ellipsis-v" aria-hidden="true"></span></span><div class="dropdown-menu" role="menu" aria-labelledby="show-more-dropdown-6881ee0140e56"
+        ><ul class="dropdown-menu-items" data-role="pin-bar-dropdown-items"></ul></div></div>
+</div>
+                        </div>
+                    </div>
+                                                        </header>
+                        <main class="app-page__main">
+                                                            <div id="left-panel" class="app-page__left-panel">
+                            
+    
+    
+    
+    
+                        </div>
+                                                                            <div id="central-panel" class="app-page__central-panel">
+                                                <div id="flash-messages">
+                                                                                                                            <div class="flash-messages-frame">
+                                    <div class="flash-messages-holder"
+                                                                 data-page-component-view="oroui/js/app/views/page/messages-view"
+                                data-page-component-options="{&quot;autoRender&quot;:true,&quot;initializeMessenger&quot;:true,&quot;messages&quot;:[]}"
+            ></div>
+                                </div>
+                                                    </div>
+                        <div class="page-toolbar">
+                                                        <div id="breadcrumb"
+                                class="page-toolbar_breadcrumb"
+                                                         data-page-component-view="oroui/js/app/views/page/breadcrumb-view"
+            >
+                                                                                                                                </div>
+                            <div id="before-content-addition" class="page-toolbar_before-content-addition" data-layout="separate"
+                                                         data-page-component-view="oroui/js/app/views/page/before-content-addition-view"
+            >
+                                    
+        
+                                </div>
+                                                            <div class="page-toolbar_bookmark-buttons">
+                                    
+
+<div id="bookmark-buttons">
+    <div class="navigation clearfix">
+        <div class="top-action-box">
+            <button class="btn btn-icon btn-light-custom favorite-button"
+                    type="button"
+                    data-title="{&quot;template&quot;:&quot;%username% - oro.ui.view - oro.user.entity_plural_label - oro.user.menu.users_management.label - oro.user.menu.system_tab.label&quot;,&quot;short_template&quot;:&quot;%username% - oro.ui.view&quot;,&quot;params&quot;:{&quot;%username%&quot;:&quot;Peter Hüttig&quot;}}"
+                    data-title-rendered="Peter Hüttig - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen"
+                    data-title-rendered-short="Peter Hüttig - Anzeigen"
+                    title="Seite als Favorit wählen/abwählen"
+                                            data-page-component-module="oronavigation/js/app/components/favorite-component"
+                                data-page-component-options="{&quot;dataSource&quot;:&quot;#favorite-content [data-data]&quot;,&quot;buttonOptions&quot;:{&quot;navigationElementType&quot;:&quot;favoriteButton&quot;},&quot;tabOptions&quot;:{&quot;el&quot;:&quot;#favorite-content&quot;,&quot;listSelector&quot;:&quot;.extra-list&quot;,&quot;fallbackSelector&quot;:&quot;.no-data&quot;}}"
+            ><span class="fa-star-o"></span>Favoriten</button><button class="btn btn-icon btn-light-custom minimize-button"
+                    type="button"
+                    data-title="{&quot;template&quot;:&quot;%username% - oro.ui.view - oro.user.entity_plural_label - oro.user.menu.users_management.label - oro.user.menu.system_tab.label&quot;,&quot;short_template&quot;:&quot;%username% - oro.ui.view&quot;,&quot;params&quot;:{&quot;%username%&quot;:&quot;Peter Hüttig&quot;}}"
+                    data-title-rendered="Peter Hüttig - Anzeigen - Benutzer - Benutzerverwaltung - Einstellungen"
+                    data-title-rendered-short="Peter Hüttig - Anzeigen"
+                    title="Seite anpinnen/lösen"
+                                            data-page-component-module="oronavigation/js/app/components/pin-component"
+                                data-page-component-options="{&quot;dataSource&quot;:&quot;#pinbar [data-data]&quot;,&quot;buttonOptions&quot;:{&quot;navigationElementType&quot;:&quot;pinButton&quot;},&quot;dropdownOptions&quot;:{&quot;el&quot;:&quot;#pinbar .show-more&quot;,&quot;listSelector&quot;:&quot;[data-role=\&quot;pin-bar-dropdown-items\&quot;]&quot;},&quot;barOptions&quot;:{&quot;el&quot;:&quot;#pinbar&quot;,&quot;listSelector&quot;:&quot;.list-bar ul&quot;,&quot;fallbackSelector&quot;:&quot;.pin-bar-empty&quot;}}"
+            ><span class="fa-thumb-tack"></span>Minimieren</button>        </div>
+    </div>
+</div>
+
+<script                         data-page-component-view="oronavigation/js/app/views/page-state-view"
+                                data-page-component-name="page-state-component"
+                                data-page-component-options="{&quot;el&quot;:&quot;#container&quot;,&quot;keepElement&quot;:true}"
+            ></script>
+                                </div>
+                                                                                </div>
+                                                <div id="container" class="scrollable-container" data-layout="separate"
+                                                     data-page-component-view="oroui/js/app/views/page/content-view"
+            >
+                                                                
+    <div                         data-page-component-module="ororeminder/js/app/components/reminder-messages-publisher"
+                                data-page-component-options="{&quot;reminders&quot;:[]}"
+            ></div>
+                                
+
+<div    class="layout-content"
+                >
+    <div class="container-fluid page-title">
+                            
+        
+        
+        <div class="navigation navbar-extra navbar-extra-right">
+                                
+                    <div class="row">
+                    <div class="pull-left-extra">
+                            <div class="page-title__icon"></div>
+
+                        <div class="page-title__path">
+                            <div class="top-row">
+                                    
+                                                                                <div class="page-title__entity-title-wrapper">
+                                                                                            <div class="sub-title"><a href="/user">Benutzer</a></div>
+                                                <span class="separator">/</span>
+                                                                                                                                                                                    <h1 class="page-title__entity-title">Peter Hüttig</h1>
+                                                                                    </div>
+                                                                                                                                                
+    <span class="page-title__status">
+                        <span class="badge badge-pill badge-enabled status-enabled">
+        <i class="icon-status-enabled fa-circle" aria-hidden="true"></i>Aktiviert
+    </span>
+
+        
+                        <span class="badge badge-pill badge-enabled status-enabled">
+        <i class="icon-status-enabled fa-unlock" aria-hidden="true"></i>Active
+    </span>
+
+                    </span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="pull-right title-buttons-container"><div class="pull-left"><div id="widget-container-6881ee014340b7-88091958"     
+                                    data-page-component-module="oroui/js/app/components/widget-component"
+                                data-page-component-options="{&quot;type&quot;:&quot;block&quot;,&quot;options&quot;:{&quot;url&quot;:&quot;\/actionwidget\/buttons?route=oro_user_view&amp;fromUrl=%2Fuser%2Fview%2F355&amp;entityId%5Bid%5D=355&amp;entityClass=Oro%5CBundle%5CUserBundle%5CEntity%5CUser&amp;group=view_navButtons&amp;_widgetContainer=block&amp;_wid=6881ee014340b7-88091958&quot;,&quot;alias&quot;:&quot;action_buttons_widget&quot;,&quot;wid&quot;:&quot;6881ee014340b7-88091958&quot;,&quot;elementFirst&quot;:true,&quot;el&quot;:&quot;#widget-container-6881ee014340b7-88091958 .widget-content:first&quot;}}"
+            
+         data-layout="separate"    ><div class="widget-content"><div><div class="pull-left btn-group icons-holder"><a            href="#"
+           class="icons-holder-text operation-button btn-danger btn action-button "
+                                            data-operation-url="/ajax/operation/execute/user_disable?entityClass=Oro%5CBundle%5CUserBundle%5CEntity%5CUser&amp;entityId%5Bid%5D=355&amp;route=oro_user_view&amp;group=view_navButtons"
+           data-options="{&quot;hasDialog&quot;:false,&quot;showDialog&quot;:true,&quot;executionUrl&quot;:&quot;\/ajax\/operation\/execute\/user_disable?entityClass=Oro%5CBundle%5CUserBundle%5CEntity%5CUser&amp;entityId%5Bid%5D=355&amp;route=oro_user_view&amp;group=view_navButtons&quot;,&quot;url&quot;:&quot;\/ajax\/operation\/execute\/user_disable?entityClass=Oro%5CBundle%5CUserBundle%5CEntity%5CUser&amp;entityId%5Bid%5D=355&amp;route=oro_user_view&amp;group=view_navButtons&quot;,&quot;jsDialogWidget&quot;:&quot;oro\/dialog-widget&quot;,&quot;executionTokenData&quot;:{&quot;oro_action_operation_execution&quot;:{&quot;operation_execution_csrf_token&quot;:&quot;e6fe5448b5da14a893b54fe94039.O8fJfZhwbirBhYVM1Bvhh4mZ0T3XE8t3CEiWTCP3uX4.Q6iuNskeIX-AyesH-XCY4_z4u0mzaq05Xz7Hexu6lDUKpOQ3_hImaJX93A&quot;}}}"
+                                     data-page-component-module="oroaction/js/app/components/button-component"
+                      role="button"
+                                       data-action-name="user_disable"
+                    ><span class="fa-ban  hide-text" aria-hidden="true"></span>
+                        Benutzer deaktivieren
+        </a></div></div></div></div></div><div class="pull-left btn-group icons-holder"><a href="/user/update/355"
+                                                                                                    class=" btn back icons-holder-text edit-button main-group"
+                role="button"                title="Benutzer bearbeiten"><span class="fa-pencil-square-o" aria-hidden="true"><span class="sr-only">Bearbeiten</span></span>Bearbeiten
+    </a></div><div class="pull-left btn-group icons-holder"><a href="#"
+                                            data-message="Sind&#x20;Sie&#x20;sich&#x20;sicher,&#x20;dass&#x20;Sie&#x20;den&#x20;Benutzer-Eintrag&#x20;l&#x00F6;schen&#x20;m&#x00F6;chten&#x3F;"
+                            data-success-message="Benutzer&#x20;gel&#x00F6;scht"
+                            data-url="&#x2F;api&#x2F;rest&#x2F;latest&#x2F;users&#x2F;355"
+                            data-id="355"
+                            data-redirect="&#x2F;user"
+                                                                                    class=" btn icons-holder-text no-hash remove-button"
+                                title="Benutzer löschen"><span class="fa-trash-o" aria-hidden="true"><span class="sr-only">Löschen</span></span>Löschen
+    </a></div><div class="btn-group"><a href="#" role="button" id="dropdown-6881ee0146311" class="btn dropdown-toggle" data-toggle="dropdown"
+           aria-haspopup="true" aria-expanded="false" data-placement="bottom-end"
+           data-inherit-parent-width="loosely"
+        >
+                        Weitere Aktionen
+        </a><ul class="dropdown-menu " role="menu" aria-labelledby="dropdown-6881ee0146311"><li><a href="#"                data-url="/email/create?to=peter-michael.huettig@rolls-royce.com&amp;entityClass=Oro_Bundle_UserBundle_Entity_User&amp;entityId=355"                class=" dropdown-item no-hash"
+                        data-id="355"
+                            role=""
+                                            
+                                    data-page-component-module="oroui/js/app/components/widget-component"
+                                data-page-component-options="{&quot;type&quot;:&quot;dialog&quot;,&quot;multiple&quot;:true,&quot;refresh-widget-alias&quot;:&quot;activity-list-widget&quot;,&quot;options&quot;:{&quot;alias&quot;:&quot;email-dialog&quot;,&quot;method&quot;:&quot;POST&quot;,&quot;dialogOptions&quot;:{&quot;title&quot;:&quot;E-Mail senden&quot;,&quot;allowMaximize&quot;:true,&quot;allowMinimize&quot;:true,&quot;dblclick&quot;:&quot;maximize&quot;,&quot;maximizedHeightDecreaseBy&quot;:&quot;minimize-bar&quot;,&quot;width&quot;:1000,&quot;minWidth&quot;:&quot;expanded&quot;}},&quot;createOnEvent&quot;:&quot;click&quot;}"
+            
+
+    ><span class="fa-envelope" aria-hidden="true"><span class="sr-only">E-Mail senden</span></span>E-Mail senden</a></li><li><a href="#"                data-url="/user/set-password/355"                class=" dropdown-item no-hash"
+                        data-id="355"
+                                                            
+                                    data-page-component-module="oroui/js/app/components/widget-component"
+                                data-page-component-options="{&quot;type&quot;:&quot;dialog&quot;,&quot;multiple&quot;:false,&quot;options&quot;:{&quot;alias&quot;:&quot;set-password-dialog&quot;,&quot;dialogOptions&quot;:{&quot;title&quot;:&quot;Passwort \u00e4ndern&quot;,&quot;allowMaximize&quot;:true,&quot;allowMinimize&quot;:true,&quot;dblclick&quot;:&quot;maximize&quot;,&quot;maximizedHeightDecreaseBy&quot;:&quot;minimize-bar&quot;,&quot;width&quot;:550}},&quot;createOnEvent&quot;:&quot;click&quot;}"
+            
+
+    ><span class="fa-key" aria-hidden="true"><span class="sr-only">Passwort ändern</span></span>Passwort ändern</a></li><li><a href="#"                data-url="/user/send-forced-password-reset-email/355"                class=" dropdown-item no-hash"
+                        data-id="355"
+                                                            
+                                    data-page-component-module="oroui/js/app/components/widget-component"
+                                data-page-component-options="{&quot;type&quot;:&quot;dialog&quot;,&quot;multiple&quot;:false,&quot;options&quot;:{&quot;alias&quot;:&quot;force-password-reset-dialog&quot;,&quot;stateEnabled&quot;:true,&quot;dialogOptions&quot;:{&quot;title&quot;:&quot;Passwort zur\u00fccksetzen&quot;,&quot;allowMaximize&quot;:false,&quot;allowMinimize&quot;:false,&quot;autoResize&quot;:true}},&quot;createOnEvent&quot;:&quot;click&quot;}"
+            
+
+    ><span class="fa-unlock-alt" aria-hidden="true"><span class="sr-only">Passwort zurücksetzen</span></span>Passwort zurücksetzen</a></li></ul></div></div>                </div>
+                <div class="row inline-info">
+                    <div class="pull-left-extra">
+                        <ul class="inline">
+                                                                            <li>Erstellt am: 11.07.2025, 15:45</li>
+    <li>Aktualisiert am: 11.07.2025, 15:45</li>
+    <li>            Zuletzt angemeldet: Nicht verfügbar
+        </li>
+    <li>Anzahl Anmeldungen: 0</li>
+                            
+                                                    </ul>
+                    </div>
+                    <div class="pull-right page-title__entity-info-state">
+                        <div class="inline-decorate-container">
+                            <ul class="inline-decorate">
+                                                            
+                                        
+                                <li>
+    Besitzer:
+                                                                                        <a href="&#x2F;organization&#x2F;business_unit&#x2F;view&#x2F;54" title="Standort&#x20;Dahlewitz" class=""
+                                    >Standort Dahlewitz</a>                            </li>
+            
+                
+                                                                    
+                                    
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            
+        </div>
+            </div>
+
+        <div    class="layout-content scrollable-container">
+                    
+                                                                                            
+                                            
+    
+                
+    
+            <div id="userView" class="navbar navbar-static scrollspy-nav">
+            <nav class="nav">
+                                    <a class="nav-link active "
+                       href="#scroll-1"
+                    >Allgemeine Information</a>
+                                    <a class="nav-link"
+                       href="#scroll-2"
+                    >Aktivität</a>
+                            </nav>
+        </div>
+        <div class="scrollspy-main-container clearfix">
+                <div data-spy="scroll" data-target="#userView" data-offset="1" class="scrollspy scrollable-container">
+            <div class="container-fluid">
+                                
+        <div class="responsive-section">
+        <h4 class="scrollspy-title">Allgemeine Information</h4>
+        <div id="scroll-1" class="scrollspy-nav-target"></div>
+        <div class="section-content">
+            <div class="row-fluid row-fluid-divider"     >
+                                    <div class="form-horizontal">
+                                                                        <div class="responsive-cell clearfix">
+                                <div id="widget-container-6881ee01481ef0-40240125"     
+                                    data-page-component-module="oroui/js/app/components/widget-component"
+                                data-page-component-options="{&quot;type&quot;:&quot;block&quot;,&quot;options&quot;:{&quot;url&quot;:&quot;\/user\/widget\/info\/355?viewProfile=0&amp;_widgetContainer=block&amp;_wid=6881ee01481ef0-40240125&quot;,&quot;separateLayout&quot;:false,&quot;wid&quot;:&quot;6881ee01481ef0-40240125&quot;,&quot;elementFirst&quot;:true,&quot;el&quot;:&quot;#widget-container-6881ee01481ef0-40240125 .widget-content:first&quot;}}"
+            
+            >
+                    
+
+<div class="widget-content">
+    <div class="row-fluid form-horizontal">
+        <div class="responsive-block">
+                
+        
+                
+    <div class="attribute-item">
+        <label class="attribute-item__term">Benutzername</label>
+        <div class="attribute-item__description"
+                    >
+            <div class="control-label">peter-michael.huettig@rolls-royce.com</div>
+        </div>
+    </div>
+
+    
+
+                
+        
+                
+    <div class="attribute-item">
+        <label class="attribute-item__term">Geburtstag</label>
+        <div class="attribute-item__description"
+                    >
+            <div class="control-label">            Nicht verfügbar
+    </div>
+        </div>
+    </div>
+
+    
+
+
+                                        
+                
+    <div class="attribute-item">
+        <label class="attribute-item__term">E-Mails</label>
+        <div class="attribute-item__description"
+                    >
+            <div class="control-label">        <strong>        
+            <span class="inline-actions-element">
+            <span class="inline-actions-element_wrapper">                                            
+                            
+                    <a href="mailto:peter-michael.huettig&#x40;rolls-royce.com" aria-label="Opens a default email client to write an email to peter-michael.huettig@rolls-royce.com" title="peter-michael.huettig&#x40;rolls-royce.com" class="email"><bdo dir="ltr">peter-michael.huettig@rolls-royce.com</bdo></a>
+            </span>
+            <span class="inline-actions-element_actions email-actions"><a href="#"                data-url="/email/create?to=peter-michael.huettig@rolls-royce.com&amp;entityClass=Oro_Bundle_UserBundle_Entity_User&amp;entityId=355"                class="btn icons-holder-text dropdown-item no-hash"
+                        data-id="355"
+                            role="button"
+                                            
+                                    data-page-component-module="oroui/js/app/components/widget-component"
+                                data-page-component-options="{&quot;type&quot;:&quot;dialog&quot;,&quot;multiple&quot;:true,&quot;refresh-widget-alias&quot;:&quot;activity-list-widget&quot;,&quot;options&quot;:{&quot;alias&quot;:&quot;email-dialog&quot;,&quot;method&quot;:&quot;POST&quot;,&quot;dialogOptions&quot;:{&quot;title&quot;:&quot;E-Mail senden&quot;,&quot;allowMaximize&quot;:true,&quot;allowMinimize&quot;:true,&quot;dblclick&quot;:&quot;maximize&quot;,&quot;maximizedHeightDecreaseBy&quot;:&quot;minimize-bar&quot;,&quot;width&quot;:1000,&quot;minWidth&quot;:&quot;expanded&quot;}},&quot;createOnEvent&quot;:&quot;click&quot;}"
+            
+
+    ><span class="fa-envelope" aria-hidden="true"><span class="sr-only">E-Mail senden</span></span>E-Mail senden</a></span>        </span>
+    
+    </strong></div>
+        </div>
+    </div>
+
+    
+
+                
+                
+    <div class="attribute-item">
+        <label class="attribute-item__term">Telefon</label>
+        <div class="attribute-item__description"
+                    >
+            <div class="control-label">Nicht verfügbar</div>
+        </div>
+    </div>
+
+    
+
+                                                                                                    
+                
+    <div class="attribute-item">
+        <label class="attribute-item__term">Rollen</label>
+        <div class="attribute-item__description"
+                    >
+            <div class="control-label">Read Only Person</div>
+        </div>
+    </div>
+
+    
+            
+                                
+                
+    <div class="attribute-item">
+        <label class="attribute-item__term">Gruppen</label>
+        <div class="attribute-item__description"
+                    >
+            <div class="control-label">Nicht verfügbar</div>
+        </div>
+    </div>
+
+    
+            
+                                
+                
+    <div class="attribute-item">
+        <label class="attribute-item__term">Unternehmenseinheiten</label>
+        <div class="attribute-item__description"
+                    >
+            <div class="control-label">Nicht verfügbar</div>
+        </div>
+    </div>
+
+    
+            
+                                                                    
+                
+    <div class="attribute-item">
+        <label class="attribute-item__term">Titel</label>
+        <div class="attribute-item__description"
+                    >
+            <div class="control-label">    
+                                
+    
+            Nicht verfügbar
+    
+    </div>
+        </div>
+    </div>
+
+    
+                                                    
+                
+    <div class="attribute-item">
+        <label class="attribute-item__term">Unterschrift</label>
+        <div class="attribute-item__description"
+                    >
+            <div class="control-label">    
+                                    
+            
+
+    
+    Nicht verfügbar
+
+    
+            </div>
+        </div>
+    </div>
+
+    
+                        
+        </div>
+    </div>
+</div>
+
+
+            </div>
+    
+            
+        </div>
+    
+                                                        <div class="responsive-cell clearfix">
+                            
+        </div>
+    
+                                                        </div>
+                            </div>
+        </div>
+    </div>
+
+                                
+        <div class="responsive-section">
+        <h4 class="scrollspy-title">Aktivität</h4>
+        <div id="scroll-2" class="scrollspy-nav-target"></div>
+        <div class="section-content">
+            <div class="row-fluid"     >
+                                    <div class="form-horizontal">
+                                                                        <div class="empty activities-container clearfix">
+                            <div class="responsive-cell clearfix">
+                            <div id="widget-container-6881ee014b0961-04436027"     
+                                    data-page-component-module="oroui/js/app/components/widget-component"
+                                data-page-component-options="{&quot;type&quot;:&quot;block&quot;,&quot;options&quot;:{&quot;url&quot;:&quot;\/activity-list\/view\/widget\/Oro_Bundle_UserBundle_Entity_User\/355?_widgetContainer=block&amp;_wid=6881ee014b0961-04436027&quot;,&quot;title&quot;:&quot;&quot;,&quot;alias&quot;:&quot;activity-list-widget&quot;,&quot;cssClass&quot;:&quot;list-widget activity-list-widget standard-action-buttons&quot;,&quot;wid&quot;:&quot;6881ee014b0961-04436027&quot;,&quot;elementFirst&quot;:true,&quot;el&quot;:&quot;#widget-container-6881ee014b0961-04436027 .widget-content:first&quot;}}"
+            
+         data-layout="separate"    >
+                    <div class="widget-content activity-list ">
+        
+        
+                <div class="grid-toolbar">
+            <div class="filter-box">
+                <div class="filter-container"></div>
+            </div>
+            <div class="pagination">
+                                                
+                <button data-section="top"
+                        data-action-name="goto_previous"
+                        class="btn pagination-previous"
+                        title="Neuere"
+                        disabled                        type="button"
+                >
+                    <span class="fa-chevron-left" aria-hidden="true"></span>
+                    Neuere
+                </button>
+                <button data-section="top"
+                        data-action-name="goto_next"
+                        class="btn icon-end pagination-next"
+                        title="Ältere"
+                        type="button"
+                >
+                    Ältere
+                    <span class="fa-chevron-right" aria-hidden="true"></span>
+                </button>
+            </div>
+            <div class="actions-panel">
+                            <a href="#"                class=" action btn btn-icon"
+                                                                                data-action-name="refresh"
+                    data-section="top"
+    ><span class="fa-refresh" aria-hidden="true"><span class="sr-only"> Aktualisieren</span></span> Aktualisieren</a>
+            </div>
+        </div>
+                            
+            <div class="container-fluid accordion"
+                data-page-component-module="oroactivitylist/js/app/components/activity-list-component"
+                data-page-component-options="{&quot;widgetId&quot;:&quot;6881ee014b0961-04436027&quot;,&quot;ignoreHead&quot;:false,&quot;activityListData&quot;:&quot;{\&quot;count\&quot;:0,\&quot;data\&quot;:[]}&quot;,&quot;activityListOptions&quot;:{&quot;configuration&quot;:{&quot;Oro_Bundle_EmailBundle_Entity_Email&quot;:{&quot;icon&quot;:&quot;fa-envelope&quot;,&quot;label&quot;:&quot;E-Mail&quot;,&quot;template&quot;:&quot;@OroEmail\/Email\/js\/groupedActivityItemTemplate.html.twig&quot;,&quot;has_comments&quot;:false},&quot;Oro_Bundle_NoteBundle_Entity_Note&quot;:{&quot;icon&quot;:&quot;fa-comment-o&quot;,&quot;label&quot;:&quot;Notiz&quot;,&quot;template&quot;:&quot;@OroNote\/Note\/js\/activityItemTemplate.html.twig&quot;,&quot;has_comments&quot;:false}},&quot;template&quot;:&quot;#template-activity-list&quot;,&quot;itemTemplate&quot;:&quot;#template-activity-item&quot;,&quot;urls&quot;:{&quot;route&quot;:&quot;oro_activity_list_api_get_list&quot;,&quot;parameters&quot;:{&quot;entityClass&quot;:&quot;Oro_Bundle_UserBundle_Entity_User&quot;,&quot;entityId&quot;:355}},&quot;loadingContainerSelector&quot;:&quot;.activity-list&quot;,&quot;pager&quot;:{&quot;current&quot;:1,&quot;pagesize&quot;:10,&quot;total&quot;:1,&quot;count&quot;:1,&quot;sortingField&quot;:&quot;updatedAt&quot;},&quot;dateRangeFilterMetadata&quot;:{&quot;name&quot;:null,&quot;label&quot;:&quot;&quot;,&quot;choices&quot;:[{&quot;label&quot;:&quot;zwischen&quot;,&quot;value&quot;:&quot;1&quot;,&quot;data&quot;:1,&quot;attr&quot;:[],&quot;labelTranslationParameters&quot;:[]},{&quot;label&quot;:&quot;nicht zwischen&quot;,&quot;value&quot;:&quot;2&quot;,&quot;data&quot;:2,&quot;attr&quot;:[],&quot;labelTranslationParameters&quot;:[]},{&quot;label&quot;:&quot;sp\u00e4ter als&quot;,&quot;value&quot;:&quot;3&quot;,&quot;data&quot;:3,&quot;attr&quot;:[],&quot;labelTranslationParameters&quot;:[]},{&quot;label&quot;:&quot;fr\u00fcher als&quot;,&quot;value&quot;:&quot;4&quot;,&quot;data&quot;:4,&quot;attr&quot;:[],&quot;labelTranslationParameters&quot;:[]},{&quot;label&quot;:&quot;ist gleich&quot;,&quot;value&quot;:&quot;5&quot;,&quot;data&quot;:5,&quot;attr&quot;:[],&quot;labelTranslationParameters&quot;:[]},{&quot;label&quot;:&quot;ungleich&quot;,&quot;value&quot;:&quot;6&quot;,&quot;data&quot;:6,&quot;attr&quot;:[],&quot;labelTranslationParameters&quot;:[]}],&quot;lazy&quot;:false,&quot;typeValues&quot;:{&quot;between&quot;:1,&quot;notBetween&quot;:2,&quot;moreThan&quot;:3,&quot;lessThan&quot;:4,&quot;equal&quot;:5,&quot;notEqual&quot;:6},&quot;dateParts&quot;:{&quot;value&quot;:&quot;Wert&quot;,&quot;dayofweek&quot;:&quot;Tag der Woche&quot;,&quot;week&quot;:&quot;Woche&quot;,&quot;day&quot;:&quot;Tag des Monats&quot;,&quot;month&quot;:&quot;Monat&quot;,&quot;quarter&quot;:&quot;Quartal&quot;,&quot;dayofyear&quot;:&quot;Tag des Jahres&quot;,&quot;year&quot;:&quot;Jahr&quot;},&quot;externalWidgetOptions&quot;:{&quot;showDatevariables&quot;:true,&quot;showTime&quot;:true,&quot;showTimepicker&quot;:true,&quot;dateVars&quot;:{&quot;value&quot;:{&quot;1&quot;:&quot;jetzt&quot;,&quot;2&quot;:&quot;heute&quot;,&quot;29&quot;:&quot;aktueller Tag ohne Jahr&quot;,&quot;17&quot;:&quot;aktueller Monat ohne Jahr&quot;,&quot;3&quot;:&quot;Anfang der Woche&quot;,&quot;4&quot;:&quot;Anfang des Monats&quot;,&quot;5&quot;:&quot;Beginn des Quartals&quot;,&quot;6&quot;:&quot;Anfang des Jahres&quot;},&quot;dayofweek&quot;:{&quot;10&quot;:&quot;aktueller Tag&quot;},&quot;week&quot;:{&quot;11&quot;:&quot;aktuelle Woche&quot;},&quot;day&quot;:{&quot;10&quot;:&quot;aktueller Tag&quot;},&quot;month&quot;:{&quot;12&quot;:&quot;aktueller Monat&quot;,&quot;16&quot;:&quot;erster Monat des Quartals&quot;},&quot;quarter&quot;:{&quot;13&quot;:&quot;aktuelles Quartal&quot;},&quot;dayofyear&quot;:{&quot;10&quot;:&quot;aktueller Tag&quot;,&quot;15&quot;:&quot;erster Tag des Quartals&quot;},&quot;year&quot;:{&quot;14&quot;:&quot;aktuelles Jahr&quot;}}}},&quot;routes&quot;:[]},&quot;commentOptions&quot;:{&quot;listTemplate&quot;:&quot;#template-activity-item-comment&quot;,&quot;canCreate&quot;:true}}"></div>
+            <script type="text/html" id="template-activity-list">
+    <div class="items list-box list-shaped"></div>
+    <div class="no-data">
+        Keine Aktivitäten gefunden
+    </div>
+</script>
+            <script type="text/html" id="template-activity-item">
+    <% var labelId = _.uniqueId('label-') %>
+    <% var regionId = _.uniqueId('region-') %>
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a href="#<%- regionId %>" data-toggle="collapse" aria-expanded="<%- collapsed ? 'false' : 'true' %>"
+               aria-controls="<%- regionId %>"
+               class="btn btn-icon btn-light-custom accordion-icon<% if (collapsed) { %> collapsed<% } %>"
+               title="<%- _.__(collapsed ? 'Expand' : 'Collapse')%>"
+               role="button"
+            >
+                <span class="fa-icon"></span>
+            </a>
+            <div class="icon">
+                                            </div>
+            <div id="<%- labelId %>" class="details">
+                                            </div>
+            <div class="extra-info">
+                <div class="message-item message">
+                    <div class="message-description">
+                        <b class="message-subject"><%- _.unescape(subject) %></b>
+                        <% if (!_.isUndefined(description) && !_.isEmpty(description)) { %>
+                        - <%= description %>
+                        <% } %>
+                    </div>
+                                                        </div>
+                <div class="comment-count"<% if (!commentCount) { %> style="display:none"<% } %>
+                    title="<%- _.__('oro.activitylist.comment.quantity_label') %>">
+                    <span class="fa-comment" aria-hidden="true"></span><span class="count"><%- commentCount %></span>
+                </div>
+                            <div class="created-at">
+                    <span class="date"><%- updatedAt %></span>
+                </div>
+                        </div>
+            <div class="actions">
+                                            </div>
+        </div>
+        <div id="<%- regionId %>" role="region" aria-labelledby="<%- labelId %>" class="accordion-body collapse<% if (!collapsed) { %> show<% } %>"
+             data-collapsed-title="Expand" data-expanded-title="Collapse">
+            <div class="message">
+                                    <div class="activity-item-content">
+                                                <div class="info responsive-cell"></div>
+                        <% if (has_comments && commentable) { %>
+                        <div class="responsive-cell">
+                                                        <div class="comment"></div>
+                        </div>
+                    </div>
+                    <% } %>
+                            </div>
+        </div>
+    </div>
+</script>
+                            <script type="text/html" id="template-activity-item-Oro_Bundle_EmailBundle_Entity_Email">
+    <% var labelId = _.uniqueId('label-') %>
+    <% var regionId = _.uniqueId('region-') %>
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a href="#<%- regionId %>" data-toggle="collapse" aria-expanded="<%- collapsed ? 'false' : 'true' %>"
+               aria-controls="<%- regionId %>"
+               class="btn btn-icon btn-light-custom accordion-icon<% if (collapsed) { %> collapsed<% } %>"
+               title="<%- _.__(collapsed ? 'Expand' : 'Collapse')%>"
+               role="button"
+            >
+                <span class="fa-icon"></span>
+            </a>
+            <div class="icon">
+                    <% if(is_head && !ignoreHead) { %>
+        <span class="icon-email-thread" aria-hidden="true"></span>
+    <% } else { %>
+        <span class="fa-envelope" aria-hidden="true"></span>
+    <% } %>
+            </div>
+            <div id="<%- labelId %>" class="details">
+                    E-Mail
+    <%
+        var hasLink   = !!data.ownerLink;
+        var ownerLink = hasLink
+                ? '<a class="user" href="' + data.ownerLink + '">' +  _.escape(data.ownerName) + '</a>'
+                : '<span class="user">' + _.escape(data.ownerName) + '</span>';
+        var updatedAt = updatedAt;
+        var subject = subject;
+        if(is_head && !ignoreHead) {
+            ownerLink = hasLink
+                ? '<a class="user" href="' + data.ownerLink + '">' +  _.escape(data.headOwnerName) + '</a>'
+                : '<span class="user">' + _.escape(data.headOwnerName) + '</span>';
+            updatedAt = dateFormatter.formatSmartDateTime(data.headSentAt);
+            subject = data.headSubject;
+        }
+    %>
+    <%= _.template(
+        "gesendet von {{ user }}",
+        { interpolate: /\{\{(.+?)\}\}/g }
+    )({
+        user: ownerLink,
+        date: '<span class="date">' + updatedAt + '</span>'
+    }) %>
+            </div>
+            <div class="extra-info">
+                <div class="message-item message">
+                    <div class="message-description">
+                        <b class="message-subject"><%- _.unescape(subject) %></b>
+                        <% if (!_.isUndefined(description) && !_.isEmpty(description)) { %>
+                        - <%= description %>
+                        <% } %>
+                    </div>
+                                                        </div>
+                <div class="comment-count"<% if (!commentCount) { %> style="display:none"<% } %>
+                    title="<%- _.__('oro.activitylist.comment.quantity_label') %>">
+                    <span class="fa-comment" aria-hidden="true"></span><span class="count"><%- commentCount %></span>
+                </div>
+                            <div class="created-at">
+                    <span class="date"><%- updatedAt %></span>
+                </div>
+                        </div>
+            <div class="actions">
+                    
+        
+        
+        
+        
+        
+        <% var togglerId = _.uniqueId('dropdown-') %>
+    <div class="vertical-actions activity-actions">
+        <button id="<%- togglerId %>" data-placement="left-start" data-toggle="dropdown" class="btn btn-icon btn-light-custom dropdown-toggle dropdown-toggle--no-caret activity-item"
+           aria-haspopup="true" aria-expanded="false" aria-label="Activity actions">
+           <span class="fa-ellipsis-h"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-toggle--no-caret activity-item" role="menu" aria-labelledby="<%- togglerId %>">
+                            <li class="activity-action">                    <a href="#" title="Kontext&#x20;hinzuf&#x00FC;gen"
+               class="dropdown-item"
+               data-url="<%- routing.generate('oro_activity_context', {'id': relatedActivityId, 'activity': 'Oro_Bundle_EmailBundle_Entity_Email' }) %>"
+                        
+                                    data-page-component-module="oroui/js/app/components/widget-component"
+                                data-page-component-options="{&quot;type&quot;:&quot;dialog&quot;,&quot;multiple&quot;:true,&quot;refresh-widget-alias&quot;:&quot;activity-list-widget&quot;,&quot;createOnEvent&quot;:&quot;click&quot;,&quot;options&quot;:{&quot;alias&quot;:&quot;activity-context-dialog&quot;,&quot;dialogOptions&quot;:{&quot;title&quot;:&quot;Kontext-Entit\u00e4t hinzuf\u00fcgen&quot;,&quot;allowMaximize&quot;:true,&quot;allowMinimize&quot;:true,&quot;modal&quot;:true,&quot;dblclick&quot;:&quot;maximize&quot;,&quot;maximizedHeightDecreaseBy&quot;:&quot;minimize-bar&quot;,&quot;width&quot;:1000,&quot;minWidth&quot;:&quot;expanded&quot;,&quot;height&quot;:600}}}"
+            
+><span class="fa-link hide-text" aria-hidden="true">Kontext hinzufügen</span>
+                Kontext hinzufügen
+            </a>
+            </li>
+                            <li class="activity-action">                    <a href="#" title="Antworten"
+               class="dropdown-item"
+               data-url="<%- routing.generate('oro_email_email_reply', {'id': relatedActivityId, 'entityClass': targetEntityData.class, 'entityId': targetEntityData.id}) %>"
+                   
+                                    data-page-component-module="oroui/js/app/components/widget-component"
+                                data-page-component-options="{&quot;type&quot;:&quot;dialog&quot;,&quot;multiple&quot;:true,&quot;refresh-widget-alias&quot;:&quot;activity-list-widget&quot;,&quot;createOnEvent&quot;:&quot;click&quot;,&quot;options&quot;:{&quot;alias&quot;:&quot;email-dialog&quot;,&quot;dialogOptions&quot;:{&quot;title&quot;:&quot;E-Mail senden&quot;,&quot;allowMaximize&quot;:true,&quot;allowMinimize&quot;:true,&quot;dblclick&quot;:&quot;maximize&quot;,&quot;maximizedHeightDecreaseBy&quot;:&quot;minimize-bar&quot;,&quot;width&quot;:1000,&quot;minWidth&quot;:&quot;expanded&quot;}}}"
+            
+><span class="fa-reply hide-text" aria-hidden="true">Antworten</span>
+                Antworten
+            </a>
+            </li>
+                            <li class="activity-action">            <a href="#" title="Allen&#x20;antworten"
+           class="dropdown-item"
+           data-url="<%- routing.generate('oro_email_email_reply_all', {'id': relatedActivityId, 'entityClass': targetEntityData.class, 'entityId': targetEntityData.id}) %>"
+                    
+                                    data-page-component-module="oroui/js/app/components/widget-component"
+                                data-page-component-options="{&quot;type&quot;:&quot;dialog&quot;,&quot;multiple&quot;:true,&quot;refresh-widget-alias&quot;:&quot;activity-list-widget&quot;,&quot;createOnEvent&quot;:&quot;click&quot;,&quot;options&quot;:{&quot;alias&quot;:&quot;email-dialog&quot;,&quot;dialogOptions&quot;:{&quot;title&quot;:&quot;E-Mail senden&quot;,&quot;allowMaximize&quot;:true,&quot;allowMinimize&quot;:true,&quot;dblclick&quot;:&quot;maximize&quot;,&quot;maximizedHeightDecreaseBy&quot;:&quot;minimize-bar&quot;,&quot;width&quot;:1000,&quot;minWidth&quot;:&quot;expanded&quot;}}}"
+            
+><span class="fa-reply-all hide-text" aria-hidden="true">Allen antworten</span>
+            Allen antworten
+        </a>
+        </li>
+                            <li class="activity-action">                    <a href="#" title="Weiterleiten"
+               class="dropdown-item"
+               data-url="<%- routing.generate('oro_email_email_forward', {'id': relatedActivityId, 'entityClass': targetEntityData.class, 'entityId': targetEntityData.id}) %>"
+                   
+                                    data-page-component-module="oroui/js/app/components/widget-component"
+                                data-page-component-options="{&quot;type&quot;:&quot;dialog&quot;,&quot;multiple&quot;:true,&quot;refresh-widget-alias&quot;:&quot;activity-list-widget&quot;,&quot;createOnEvent&quot;:&quot;click&quot;,&quot;options&quot;:{&quot;alias&quot;:&quot;forward-dialog&quot;,&quot;dialogOptions&quot;:{&quot;title&quot;:&quot;E-Mail senden&quot;,&quot;allowMaximize&quot;:true,&quot;allowMinimize&quot;:true,&quot;dblclick&quot;:&quot;maximize&quot;,&quot;maximizedHeightDecreaseBy&quot;:&quot;minimize-bar&quot;,&quot;width&quot;:1000,&quot;minWidth&quot;:&quot;expanded&quot;}}}"
+            
+><span class="fa-mail-forward hide-text" aria-hidden="true">Weiterleiten</span>
+                Weiterleiten
+            </a>
+            </li>
+                            <li class="activity-action">        <a href="<%- routing.generate('oro_email_thread_view', {'id': relatedActivityId}) %>"
+           class="dropdown-item"
+           title="E-Mail&#x20;anzeigen"><span
+                class="fa-eye hide-text" aria-hidden="true">E-Mail anzeigen</span>
+            E-Mail anzeigen
+        </a>
+    </li>
+                        <% if (workflowsData && workflowsData.length > 0) { %>
+    <% _.each(workflowsData, function(workflow) { %>
+        <% if (workflow.transitionsData.length > 0) { %>
+            <li role="separator" class="dropdown-divider">&nbsp;</li>
+            <% _.each(workflow.transitionsData, function(transition) { %>
+                <li class="activity-action">
+                    <a href="<%- transition.transitionUrl %>" class="dropdown-item transition-item"
+                       id="transition-<%- workflow.name %>-<%- transition.name %>"
+                       data-transition-url="<%- transition.transitionUrl %>"
+                       data-transition-label="<%- transition.label %>"
+                       data-message="<%- transition.message %>"
+                       data-dialog-url="<%- transition.dialogUrl %>"
+                        <% if (transition.frontendOptions && transition.frontendOptions.dialog) { %>
+                            data-dialog-options="<%- JSON.stringify(transition.frontendOptions.dialog) %>"
+                        <% } %>
+                    >
+                        <i class="<%- transition.frontendOptions && transition.frontendOptions.icon
+                                ? transition.frontendOptions.icon
+                                : 'icon-empty'
+                            %> hide-text"><%- transition.label %></i>
+                        <%- transition.label %>
+                    </a>
+                </li>
+            <% }) %>
+        <% } %>
+    <% }) %>
+<% } %>
+        </ul>
+    </div>
+
+            </div>
+        </div>
+        <div id="<%- regionId %>" role="region" aria-labelledby="<%- labelId %>" class="accordion-body collapse<% if (!collapsed) { %> show<% } %>"
+             data-collapsed-title="Expand" data-expanded-title="Collapse">
+            <div class="message">
+                    <div class="activity-item-email-content">
+                <div class="info <% if (is_head && !ignoreHead) { %>thread<% } %>" id="grouped-entity-<%- data.entityId %>"></div>
+    </div>
+            </div>
+        </div>
+    </div>
+</script>
+                            <script type="text/html" id="template-activity-item-Oro_Bundle_NoteBundle_Entity_Note">
+    <% var labelId = _.uniqueId('label-') %>
+    <% var regionId = _.uniqueId('region-') %>
+    <div class="accordion-group">
+        <div class="accordion-heading">
+            <a href="#<%- regionId %>" data-toggle="collapse" aria-expanded="<%- collapsed ? 'false' : 'true' %>"
+               aria-controls="<%- regionId %>"
+               class="btn btn-icon btn-light-custom accordion-icon<% if (collapsed) { %> collapsed<% } %>"
+               title="<%- _.__(collapsed ? 'Expand' : 'Collapse')%>"
+               role="button"
+            >
+                <span class="fa-icon"></span>
+            </a>
+            <div class="icon">
+                    <span class="fa-comment-o" aria-hidden="true"></span>
+            </div>
+            <div id="<%- labelId %>" class="details">
+                    Notiz
+    <% var template = (verb == 'create')
+        ? "Hinzugef\u00fcgt von {{ user }}"
+        : "Hinzugef\u00fcgt von {{ user }}, von {{ editor }} aktualisiert";
+    %>
+    <%= _.template(template, { interpolate: /\{\{(.+?)\}\}/g })({
+        user: owner_url ? '<a class="user" href="' + owner_url + '">' +  _.escape(owner) + '</a>' :  '<span class="user">' + _.escape(owner) + '</span>',
+        date: '<i class="date">' + createdAt + '</i>',
+        editor: editor_url ? '<a class="user" href="' + editor_url + '">' +  _.escape(editor) + '</a>' : _.escape(editor),
+        editor_date: '<i class="date">' + updatedAt + '</i>'
+    }) %>
+            </div>
+            <div class="extra-info">
+                <div class="message-item message">
+                    <div class="message-description">
+                        <b class="message-subject"><%- _.unescape(subject) %></b>
+                        <% if (!_.isUndefined(description) && !_.isEmpty(description)) { %>
+                        - <%= description %>
+                        <% } %>
+                    </div>
+                                                        </div>
+                <div class="comment-count"<% if (!commentCount) { %> style="display:none"<% } %>
+                    title="<%- _.__('oro.activitylist.comment.quantity_label') %>">
+                    <span class="fa-comment" aria-hidden="true"></span><span class="count"><%- commentCount %></span>
+                </div>
+                            <div class="created-at">
+                    <span class="date"><%- updatedAt %></span>
+                </div>
+                        </div>
+            <div class="actions">
+                    
+        
+        
+        
+        <% var togglerId = _.uniqueId('dropdown-') %>
+    <div class="vertical-actions activity-actions">
+        <button id="<%- togglerId %>" data-placement="left-start" data-toggle="dropdown" class="btn btn-icon btn-light-custom dropdown-toggle dropdown-toggle--no-caret activity-item"
+           aria-haspopup="true" aria-expanded="false" aria-label="Activity actions">
+           <span class="fa-ellipsis-h"></span>
+        </button>
+        <ul class="dropdown-menu dropdown-toggle--no-caret activity-item" role="menu" aria-labelledby="<%- togglerId %>">
+                            <li class="activity-action">                <% if (editable) { %>
+                    <a href="#" role="button" title="Kontext&#x20;hinzuf&#x00FC;gen"
+       class="dropdown-item"
+       data-url="<%- routing.generate('oro_activity_context', {'id': relatedActivityId, 'activity': relatedActivityClass }) %>"
+            
+                                    data-page-component-module="oroui/js/app/components/widget-component"
+                                data-page-component-options="{&quot;type&quot;:&quot;dialog&quot;,&quot;multiple&quot;:true,&quot;refresh-widget-alias&quot;:&quot;activity-list-widget&quot;,&quot;createOnEvent&quot;:&quot;click&quot;,&quot;options&quot;:{&quot;alias&quot;:&quot;activity-context-dialog&quot;,&quot;dialogOptions&quot;:{&quot;title&quot;:&quot;Kontext-Entit\u00e4t hinzuf\u00fcgen&quot;,&quot;allowMaximize&quot;:true,&quot;allowMinimize&quot;:true,&quot;modal&quot;:true,&quot;dblclick&quot;:&quot;maximize&quot;,&quot;maximizedHeightDecreaseBy&quot;:&quot;minimize-bar&quot;,&quot;width&quot;:1000,&quot;minWidth&quot;:&quot;expanded&quot;,&quot;height&quot;:600}}}"
+            
+>
+        <span class="fa-link hide-text" aria-hidden="true">Kontext hinzufügen</span>
+        Kontext hinzufügen
+    </a>
+
+        <% } %>
+    </li>
+                            <li class="activity-action">        <% if (editable) { %>
+        <a href="#" class="dropdown-item action item-edit-button"
+           title="Notiz aktualisieren"
+           data-action-extra-options="{&quot;dialogOptions&quot;:{&quot;width&quot;:1000}}">
+            <span class="fa-pencil-square-o hide-text" aria-hidden="true">Notiz aktualisieren</span>
+            Notiz aktualisieren
+        </a>
+        <% } %>
+    </li>
+                            <li class="activity-action">        <% if (removable) { %>
+        <a href="#" class="dropdown-item action item-remove-button"
+           title="Notiz löschen">
+            <span class="fa-trash-o hide-text" aria-hidden="true">Notiz löschen</span>
+            Notiz löschen
+        </a>
+        <% } %>
+    </li>
+                        <% if (workflowsData && workflowsData.length > 0) { %>
+    <% _.each(workflowsData, function(workflow) { %>
+        <% if (workflow.transitionsData.length > 0) { %>
+            <li role="separator" class="dropdown-divider">&nbsp;</li>
+            <% _.each(workflow.transitionsData, function(transition) { %>
+                <li class="activity-action">
+                    <a href="<%- transition.transitionUrl %>" class="dropdown-item transition-item"
+                       id="transition-<%- workflow.name %>-<%- transition.name %>"
+                       data-transition-url="<%- transition.transitionUrl %>"
+                       data-transition-label="<%- transition.label %>"
+                       data-message="<%- transition.message %>"
+                       data-dialog-url="<%- transition.dialogUrl %>"
+                        <% if (transition.frontendOptions && transition.frontendOptions.dialog) { %>
+                            data-dialog-options="<%- JSON.stringify(transition.frontendOptions.dialog) %>"
+                        <% } %>
+                    >
+                        <i class="<%- transition.frontendOptions && transition.frontendOptions.icon
+                                ? transition.frontendOptions.icon
+                                : 'icon-empty'
+                            %> hide-text"><%- transition.label %></i>
+                        <%- transition.label %>
+                    </a>
+                </li>
+            <% }) %>
+        <% } %>
+    <% }) %>
+<% } %>
+        </ul>
+    </div>
+
+            </div>
+        </div>
+        <div id="<%- regionId %>" role="region" aria-labelledby="<%- labelId %>" class="accordion-body collapse<% if (!collapsed) { %> show<% } %>"
+             data-collapsed-title="Expand" data-expanded-title="Collapse">
+            <div class="message">
+                                    <div class="activity-item-content">
+                                                <div class="info responsive-cell"></div>
+                        <% if (has_comments && commentable) { %>
+                        <div class="responsive-cell">
+                                                        <div class="comment"></div>
+                        </div>
+                    </div>
+                    <% } %>
+                            </div>
+        </div>
+    </div>
+</script>
+                        <script type="text/html" id="template-activity-item-comment-form">
+    
+<form method="post" class="comment-form">
+    <fieldset class="form-horizontal">
+        <div class="control-group">
+            <label class="comment-message-label">
+                    
+    <div data-page-component-module="oroui/js/app/components/view-component"
+         data-page-component-name="wrap_message"
+         data-page-component-options="{&quot;view&quot;:&quot;oroform\/js\/app\/views\/wysiwig-editor\/wysiwyg-dialog-view&quot;,&quot;editorComponentName&quot;:&quot;message&quot;}"
+         data-layout="separate" >
+        <textarea         id="message-uid-6881ee014efe3" name="message" required="required" class="comment-text-field" placeholder="Kommentar eingeben..." data-page-component-module="oroui/js/app/components/view-component" data-page-component-options="{&quot;view&quot;:&quot;oroform\/js\/app\/views\/wysiwig-editor\/wysiwyg-editor-view&quot;,&quot;content_css&quot;:&quot;build\/admin\/tinymce\/wysiwyg-editor.css&quot;,&quot;plugins&quot;:[&quot;code&quot;,&quot;link&quot;,&quot;fullscreen&quot;,&quot;lists&quot;,&quot;image&quot;,&quot;advlist&quot;],&quot;valid_elements&quot;:&quot;@[id|style|class],iframe[allowfullscreen|frameborder|height|marginheight|marginwidth|name|scrolling|src|width|allow],table[cellspacing|cellpadding|border|align|width],thead[align|valign],tbody[align|valign],tr[align|valign],td[align|valign|rowspan|colspan|bgcolor|nowrap|width|height],th[align|valign|rowspan|colspan|bgcolor|nowrap|width|height],a[!href|target|title|data-action],dl,dt,div[data-title|data-type],ul[type],ol[type],li,em,strong,b,p,u,font[color],i,br,span[data-title|data-type],img[src|width|height|alt],h1,h2,h3,h4,h5,h6,hgroup,abbr,address,article,audio,bdo,blockquote[cite],caption,cite,code,col,colgroup,dd,del,details,dfn,figure,figcaption,picture,footer,header,hr,ins,kbd,mark,menu,nav,pre,q,samp,section,small,strike,source[srcset|type|media|sizes],sub,sup,time,tfoot,var,video[allowfullscreen|autoplay|loop|poster|src|controls],aside&quot;,&quot;menubar&quot;:false,&quot;elementpath&quot;:false,&quot;branding&quot;:false,&quot;relative_urls&quot;:false,&quot;remove_script_host&quot;:false,&quot;convert_urls&quot;:true,&quot;cache_suffix&quot;:&quot;?v=893dd363&quot;,&quot;document_base_url&quot;:&quot;\/?v=893dd363&quot;,&quot;paste_data_images&quot;:false,&quot;assets_base_url&quot;:&quot;&quot;,&quot;toolbar&quot;:[&quot;undo redo | blocks formatselect | bold italic underline | forecolor backcolor | bullist numlist | alignleft aligncenter alignright alignjustify | link image | fullscreen&quot;],&quot;enabled&quot;:true}" data-required="data-required" data-validation="{&quot;NotBlank&quot;:{&quot;payload&quot;:null,&quot;message&quot;:&quot;This value should not be blank.&quot;,&quot;allowNull&quot;:false,&quot;normalizer&quot;:null},&quot;Oro\\Bundle\\FormBundle\\Validator\\Constraints\\HtmlNotBlank&quot;:{&quot;payload&quot;:null,&quot;message&quot;:&quot;This value should not be blank.&quot;,&quot;allowNull&quot;:false,&quot;normalizer&quot;:null}}" data-ftid="message" data-name="field__message"
+></textarea>
+    </div>
+
+            </label>
+        </div>
+            <div class="control-group control-group--column image-widget"><div class="controls"><div class="attachment-file"><input type="file"         id="attachment_file-uid-6881ee014f147" name="attachment[file]" data-ftid="attachment_file" data-name="field__file" data-input-widget-options="{&quot;initializeOptions&quot;:{&quot;fileDefaultHtml&quot;:&quot;Datei anhängen:&quot; ,&quot;fileButtonHtml&quot;:&quot;Hochladen&quot;}}"
+ /></div></div></div>
+        <% if (attachmentURL) { %>
+        <div class="control-group">
+            <div class="attachment-item">
+                <span class="attachment-item__icon fa-paperclip" aria-hidden="true"></span>
+                <a href="<%- attachmentURL.url %>" class="no-hash attachment-item__filename" title="<%- attachmentFileName %>"><%- attachmentFileName %></a>
+                <span class="attachment-item__file-size">(<%- attachmentSize %>)</span>
+                <button class="btn btn-icon btn-square-lighter attachment-item__remove" type="button" data-role="remove">
+                    <span class="fa-close" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+        <% } %>
+        <div class="widget-actions">
+            <button class="btn cancel-comment-button" type="reset">
+                <%- _.__('oro.comment.from.button.cancel_comment.label')  %>
+            </button>
+            <% if (!isNew) { %>
+            <button class="btn btn-primary" type="submit">
+                <%- _.__('oro.comment.from.button.edit_comment.label') %>
+            </button>
+            <% } else { %>
+            <button class="btn btn-primary" type="submit">
+                <%- _.__('oro.comment.from.button.send_comment.label') %>
+            </button>
+            <% } %>
+        </div>
+    </fieldset>
+</form>
+
+</script>
+        
+        
+    </div>
+
+            </div>
+
+        </div>
+    
+
+        </div>
+    
+                                                        </div>
+                            </div>
+        </div>
+    </div>
+
+                                    </div>
+        </div>
+    </div>
+
+        
+    </div>
+
+                        
+    <div                         data-page-component-module="orosync/js/app/components/tag-content"
+                                data-page-component-options="{&quot;tags&quot;:[&quot;Oro_Bundle_UserBundle_Entity_User_355&quot;,&quot;Oro_Bundle_OrganizationBundle_Entity_BusinessUnit_54&quot;,&quot;Oro_Bundle_UserBundle_Entity_Role_2&quot;,&quot;Oro_Bundle_OrganizationBundle_Entity_Organization_16&quot;,&quot;Extend_Entity_EV_Auth_Status_active&quot;]}"
+             ></div>
+
+            </div>
+                                                                                    </div>
+                    </div>
+                
+    
+                                                            <div id="right-panel" class="app-page__right-panel">
+                            
+    
+    
+    
+    
+                        </div>
+                                                </main>
+                    <div id="dialog-extend-fixed-container" class="ui-dialog-minimize-container"></div>
+            <footer id="footer" class="footer">
+                <script>
+    loadModules(['jquery', 'oroui/js/error'], function ($, error) {
+        $(function () {
+            var options = {
+                dataType: 'script',
+                cache:     true,
+                url:       '//r.orocrm.com/a/p/5.1.2/f.js',
+                timeout:   2000,
+                errorHandlerMessage: false
+            };
+
+            $.ajax(options).then(function() {
+                new ORO.EmbedRequestForm(options);
+            }, function() {
+                error.showErrorInConsole('Unable to load external script.');
+            });
+        });
+    });
+</script>
+            </footer>
+                </div>
+    </div>
+        </body>
+    </html>

@@ -1,0 +1,248 @@
+{% extends "normieapp/base.html" %}
+{% load static %}
+
+{% block title %}MLC Check - Normie{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/mlc_check.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="page-header">
+        <div class="header-content">
+            <div class="header-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <div class="header-text">
+                <h1>MLC Check</h1>
+                <p class="subtitle">Maritime Labour Convention substance lookup tool</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="search-section">
+        <div class="search-card">
+            <div class="search-form">
+                <h3><i class="fas fa-keyboard"></i> Manual Search</h3>
+                <div class="search-input-container">
+                    <div class="search-field">
+                        <input type="text" 
+                               id="searchQuery" 
+                               placeholder="Enter CAS number, EC number, or substance name..." 
+                               class="search-input"
+                               autocomplete="off">
+                        <div class="search-suggestions" id="searchSuggestions"></div>
+                    </div>
+                    <button type="button" id="searchBtn" class="search-btn">
+                        <i class="fas fa-search"></i>
+                        Search
+                    </button>
+                </div>
+                
+                <div class="search-filters">
+                    <div class="filter-group">
+                        <label class="filter-label">Search in:</label>
+                        <div class="filter-options">
+                            <label class="filter-option">
+                                <input type="checkbox" name="searchFields" value="cas" checked>
+                                <span>CAS Number</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="searchFields" value="ec" checked>
+                                <span>EC Number</span>
+                            </label>
+                            <label class="filter-option">
+                                <input type="checkbox" name="searchFields" value="substance" checked>
+                                <span>Substance Name</span>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="search-help">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Search examples: "17068-78-9" (CAS), "Anthophyllite" (substance name), or partial matches</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="upload-section">
+        <div class="upload-card">
+            <div class="upload-form">
+                <h3><i class="fas fa-file-upload"></i> SDS/MSDS Document Upload</h3>
+                <p class="upload-description">
+                    Upload a Safety Data Sheet (SDS) or Material Safety Data Sheet (MSDS) to automatically extract 
+                    and search for CAS numbers, EC numbers, and substance names.
+                </p>
+                
+                <form action="{% url 'mlc_upload_sds' %}" method="post" enctype="multipart/form-data" id="sds-upload-form">
+                    {% csrf_token %}
+                    
+                    <div class="upload-area" id="sds-drop-area">
+                        <i class="fas fa-file-pdf upload-icon"></i>
+                        <div class="upload-text">Drag & Drop SDS/MSDS PDF here</div>
+                        <div class="upload-hint">or click to browse files</div>
+                    </div>
+                    
+                    <!-- File input outside upload area to avoid conflicts -->
+                    <input type="file" name="sds_file" id="sds-file" class="file-input-hidden" accept=".pdf" style="display: none;">
+                    
+                    <div class="file-info" id="sds-file-info" style="display: none;">
+                        <div class="file-details">
+                            <i class="fas fa-file-pdf"></i>
+                            <span class="file-name" id="sds-file-name"></span>
+                            <span class="file-size" id="sds-file-size"></span>
+                        </div>
+                        <button type="button" class="remove-file-btn" id="remove-sds-file">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="upload-settings">
+                        <div class="settings-header">
+                            <h4><i class="fas fa-cog"></i> Processing Options</h4>
+                        </div>
+                        <div class="upload-options">
+                            <div class="option-group">
+                                <label class="option-label">
+                                    <input type="checkbox" name="auto_search" id="auto-search" checked>
+                                    <span class="checkmark"></span>
+                                    <div class="option-content">
+                                        <div class="option-title">Automatically search extracted identifiers</div>
+                                        <div class="option-description">Search MLC database for all found CAS/EC numbers</div>
+                                    </div>
+                                </label>
+                            </div>
+                            <div class="option-group">
+                                <label class="option-label">
+                                    <input type="checkbox" name="include_substances" id="include-substances" checked>
+                                    <span class="checkmark"></span>
+                                    <div class="option-content">
+                                        <div class="option-title">Include substance names in search</div>
+                                        <div class="option-description">Also search for extracted substance names</div>
+                                    </div>
+                                </label>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="upload-actions">
+                        <button type="submit" class="btn-upload" id="sds-submit-btn" disabled>
+                            <i class="fas fa-upload"></i>
+                            Process SDS Document
+                        </button>
+                    </div>
+                </form>
+                
+                <div class="upload-help">
+                    <i class="fas fa-info-circle"></i>
+                    <span>Supported: PDF files containing Safety Data Sheets with CAS/EC numbers in Section 3 (Composition)</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sds-processing-section" id="sdsProcessingSection" style="display: none;">
+        <div class="processing-card">
+            <div class="processing-header">
+                <h4><i class="fas fa-cog fa-spin"></i> Processing SDS Document</h4>
+                <div class="processing-steps">
+                    <div class="step" id="step-detection">
+                        <i class="fas fa-search"></i>
+                        <span>Detecting SDS Document</span>
+                        <div class="step-status"></div>
+                    </div>
+                    <div class="step" id="step-extraction">
+                        <i class="fas fa-extract"></i>
+                        <span>Extracting Chemical Identifiers</span>
+                        <div class="step-status"></div>
+                    </div>
+                    <div class="step" id="step-search">
+                        <i class="fas fa-database"></i>
+                        <span>Searching MLC Database</span>
+                        <div class="step-status"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="sds-results-section" id="sdsResultsSection" style="display: none;">
+        <div class="sds-results-card">
+            <div class="sds-summary">
+                <h4><i class="fas fa-file-alt"></i> SDS Analysis Summary</h4>
+                <div class="summary-stats" id="sdsSummaryStats"></div>
+            </div>
+            
+            <div class="extracted-identifiers" id="extractedIdentifiers">
+                <!-- Extracted identifiers will be populated here -->
+            </div>
+        </div>
+    </div>
+
+    <div class="results-section" id="resultsSection" style="display: none;">
+        <div class="results-header">
+            <h3 id="resultsTitle">Search Results</h3>
+            <div class="results-count" id="resultsCount"></div>
+        </div>
+        
+        <div class="results-table-container">
+            <table class="results-table" id="resultsTable">
+                <thead>
+                    <tr>
+                        <th>CAS Number</th>
+                        <th>EC Number</th>
+                        <th>Substance Name</th>
+                        <th>MLC Entry</th>
+                        <th>Status</th>
+                        <th>Details</th>
+                        <th>Policy Requirements</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsBody">
+                </tbody>
+            </table>
+        </div>
+        
+        <div class="no-results" id="noResults" style="display: none;">
+            <div class="no-results-icon">
+                <i class="fas fa-search"></i>
+            </div>
+            <h4>No Results Found</h4>
+            <p>No substances found matching your search criteria. Try adjusting your search terms or filters.</p>
+        </div>
+    </div>
+
+    <div class="loading-section" id="loadingSection" style="display: none;">
+        <div class="loading-spinner">
+            <i class="fas fa-spinner fa-spin"></i>
+        </div>
+        <p>Searching MLC database...</p>
+    </div>
+
+    <div class="info-section">
+        <div class="info-card">
+            <h4><i class="fas fa-info-circle"></i> About MLC Check</h4>
+            <p>
+                The Maritime Labour Convention (MLC) Check tool allows you to search for substances 
+                and their status according to MLC 132 regulations. You can:
+            </p>
+            <ul>
+                <li><strong>Manual Search:</strong> Enter CAS numbers, EC numbers, or substance names directly</li>
+                <li><strong>SDS Upload:</strong> Upload a Safety Data Sheet to automatically extract and search chemical identifiers</li>
+                <li><strong>Automated Analysis:</strong> Uses SDS detection and CAS extraction to identify relevant substances</li>
+            </ul>
+            <p>
+                The results will show the substance's status (prohibited, restricted, etc.) 
+                and any specific requirements or details according to MLC regulations.
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'normieapp/js/mlc_check.js' %}"></script>
+{% endblock %} 

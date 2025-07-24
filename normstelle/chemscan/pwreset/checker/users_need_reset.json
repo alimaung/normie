@@ -1,0 +1,66 @@
+{
+  "user_ids": [
+    152,
+    149,
+    373,
+    148,
+    150,
+    151
+  ],
+  "users": [
+    {
+      "name": "Thomas",
+      "surname": "Dinnebier",
+      "email": "Thomas.Dinnebier2@Rolls-Royce.com",
+      "user_id": 152,
+      "status_active": true,
+      "last_login": "Nicht verfügbar",
+      "reason": "Active account, never logged in"
+    },
+    {
+      "name": "Andreas",
+      "surname": "Haun",
+      "email": "Andreas.Haun@Rolls-Royce.com",
+      "user_id": 149,
+      "status_active": true,
+      "last_login": "Nicht verfügbar",
+      "reason": "Active account, never logged in"
+    },
+    {
+      "name": "Sebastian",
+      "surname": "Mann",
+      "email": "Sebastian.Mann@Rolls-Royce.com",
+      "user_id": 373,
+      "status_active": true,
+      "last_login": "Nicht verfügbar",
+      "reason": "Active account, never logged in"
+    },
+    {
+      "name": "Ralph",
+      "surname": "Schmidt",
+      "email": "Ralph.Schmidt@Rolls-Royce.com",
+      "user_id": 148,
+      "status_active": true,
+      "last_login": "Nicht verfügbar",
+      "reason": "Active account, never logged in"
+    },
+    {
+      "name": "Mike",
+      "surname": "Szickora",
+      "email": "Mike.Szickora@Rolls-Royce.com",
+      "user_id": 150,
+      "status_active": true,
+      "last_login": "Nicht verfügbar",
+      "reason": "Active account, never logged in"
+    },
+    {
+      "name": "Jens",
+      "surname": "Thürmann",
+      "email": "Jens.Thuermann@Rolls-Royce.com",
+      "user_id": 151,
+      "status_active": true,
+      "last_login": "Nicht verfügbar",
+      "reason": "Active account, never logged in"
+    }
+  ]
+}

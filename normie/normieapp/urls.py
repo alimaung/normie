@@ -32,6 +32,12 @@ urlpatterns = [
     # Open request - accessible to all users
     path('open-request/', views.open_request, name='open_request'),
     
+    # MLC Check routes
+    path('mlc-check/', views.mlc_check, name='mlc_check'),
+    path('mlc-check/search/', views.mlc_search, name='mlc_search'),
+    path('mlc-check/process-sds/', views.mlc_process_sds, name='mlc_upload_sds'),
+    path('mlc-check/info/', views.mlc_database_info, name='mlc_database_info'),
+    
     # Email inbox routes
     path('inbox/', views.inbox, name='inbox'),
     

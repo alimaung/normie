@@ -1,0 +1,131 @@
+{
+  "summary": {
+    "total_processed": 20,
+    "existing_count": 6,
+    "nonexisting_count": 14
+  },
+  "existing_users": [
+    {
+      "name": "Christian",
+      "surname": "Anders",
+      "email": "Christian.Anders@Rolls-Royce.com",
+      "filename": "Anders.html"
+    },
+    {
+      "name": "Thomas",
+      "surname": "Dinnebier",
+      "email": "Thomas.Dinnebier2@Rolls-Royce.com",
+      "filename": "Dinnebier.html"
+    },
+    {
+      "name": "Andreas",
+      "surname": "Haun",
+      "email": "Andreas.Haun@Rolls-Royce.com",
+      "filename": "Haun.html"
+    },
+    {
+      "name": "Rene",
+      "surname": "Lottausch",
+      "email": "Rene.Lottausch@Rolls-Royce.com",
+      "filename": "Lottausch.html"
+    },
+    {
+      "name": "Mike",
+      "surname": "Szickora",
+      "email": "Mike.Szickora@Rolls-Royce.com",
+      "filename": "Szickora.html"
+    },
+    {
+      "name": "Jens",
+      "surname": "Thürmann",
+      "email": "Jens.Thuermann@Rolls-Royce.com",
+      "filename": "Thuermann.html"
+    }
+  ],
+  "nonexisting_users": [
+    {
+      "name": "Hendrik",
+      "surname": "Bürger",
+      "email": "Hendrick.Buerger@Rolls-Royce.com",
+      "filename": "Buerger.html"
+    },
+    {
+      "name": "Dennis",
+      "surname": "Furgol",
+      "email": "Dennis.Furgol@Rolls-Royce.com",
+      "filename": "Furgol.html"
+    },
+    {
+      "name": "Steffen",
+      "surname": "Görsch-Pötzsch",
+      "email": "Steffen.Goersch-Poetzsch@Rolls-Royce.com",
+      "filename": "Goersch-Poetzsch.html"
+    },
+    {
+      "name": "Daniel",
+      "surname": "Graß",
+      "email": "Daniel.Grass2@Rolls-Royce.com",
+      "filename": "Grass.html"
+    },
+    {
+      "name": "Robert",
+      "surname": "Langkabel",
+      "email": "Robert.Langkabel@Rolls-Royce.com",
+      "filename": "Langkabel.html"
+    },
+    {
+      "name": "Kai",
+      "surname": "Ludwig",
+      "email": "Kai.Ludwig@Rolls-Royce.com",
+      "filename": "Ludwig.html"
+    },
+    {
+      "name": "Sebastian",
+      "surname": "Mann",
+      "email": "Sebastian.Mann@Rolls-Royce.com",
+      "filename": "Mann.html"
+    },
+    {
+      "name": "Peter",
+      "surname": "Mücke",
+      "email": "Peter.Muecke@Rolls-Royce.com",
+      "filename": "Muecke.html"
+    },
+    {
+      "name": "Sebastian",
+      "surname": "Roitsch",
+      "email": "Sebastian.Roitsch@Rolls-royce.com",
+      "filename": "Roitsch.html"
+    },
+    {
+      "name": "Ralph",
+      "surname": "Schmidt",
+      "email": "Ralph.Schmidt@Rolls-Royce.com",
+      "filename": "Schmidt.html"
+    },
+    {
+      "name": "Heiko",
+      "surname": "Schuldt",
+      "email": "Heiko.Schuldt@Rolls-Royce.com",
+      "filename": "Schuldt.html"
+    },
+    {
+      "name": "Michael",
+      "surname": "Sehmisch",
+      "email": "Michael.Sehmisch@Rolls-Royce.com",
+      "filename": "Sehmisch.html"
+    },
+    {
+      "name": "Björn",
+      "surname": "Tormanski",
+      "email": "Bjoern.Tormanski@Rolls-Royce.com",
+      "filename": "Tormanski.html"
+    },
+    {
+      "name": "Felix",
+      "surname": "Wetzel",
+      "email": "Felix.Wetzel@Rolls-Royce.com",
+      "filename": "Wetzel.html"
+    }
+  ]
+}

@@ -905,7 +905,7 @@ class ChemScanManager {
             <td class="attachment-column">${this.createDocumentLink(item.hsSds, 'SDS')}</td>
             <td class="attachment-column">${this.createDocumentLink(item.hsHa, 'GBU')}</td>
             <td class="actions-cell">
-                <button class="action-btn" title="View" onclick="window.open('${item.view_link}', '_blank')">
+                <button class="action-btn" title="View" onclick="window.open('https://app.chemscan.de${item.view_link}', '_blank')">
                     <i class="fas fa-eye"></i>
                 </button>
             </td>
