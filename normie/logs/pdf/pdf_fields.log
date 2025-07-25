@@ -8,3 +8,11 @@
 2025-07-17 18:32:52 - INFO - Successfully extracted 131 fields from PDF
 2025-07-17 18:32:52 - INFO - Field extraction completed in 0.07 seconds
 2025-07-17 18:32:52 - INFO - === PDF field extraction finished ===
+2025-07-25 09:19:51 - INFO - === Starting PDF field extraction from: Y:\normie\normie\normieapp\static\normieapp\temp_forms\6f5179c6-bb82-447b-ab38-131bc284bc41.pdf ===
+2025-07-25 09:19:51 - INFO - Found 131 form fields in PDF
+2025-07-25 09:19:51 - INFO - Signature field 25b: formatted signature found
+2025-07-25 09:19:51 - INFO - Signature field 32b: formatted signature found
+2025-07-25 09:19:51 - INFO - Signature field 50b: formatted signature found
+2025-07-25 09:19:51 - INFO - Successfully extracted 131 fields from PDF
+2025-07-25 09:19:51 - INFO - Field extraction completed in 0.10 seconds
+2025-07-25 09:19:51 - INFO - === PDF field extraction finished ===
