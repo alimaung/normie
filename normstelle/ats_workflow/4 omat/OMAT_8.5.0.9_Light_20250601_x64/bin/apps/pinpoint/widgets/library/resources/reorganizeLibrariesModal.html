@@ -1,0 +1,22 @@
+<div id="reorganizeLibrariesModal">
+    <div class="dnd-scroll-area" id="dnd-scroll-area-top"></div>
+    <div class="scrollable-area">
+    <!-- The dnd-list directive allows to drop elements into it.
+         The dropped data will be added to the referenced list -->
+    <ul dnd-list="reorganizedLibraries">
+        <!-- The dnd-draggable directive makes an element draggable and will
+             transfer the object that was assigned to it. If an element was
+             dragged away, you have to remove it from the original list
+             yourself using the dnd-moved attribute -->
+        <li ng-repeat="library in reorganizedLibraries"
+            dnd-draggable="library"
+            dnd-moved="reorganizedLibraries.splice($index, 1)"
+            dnd-effect-allowed="move">
+            <i class="fa" ng-class="library.isParent ? 'fa-folder':'fa-book'"></i>
+            {{library.description}}
+        </li>
+    </ul>
+    </div>
+    <div class="dnd-scroll-area" id="dnd-scroll-area-bottom"></div>
+</div>
+

@@ -1,0 +1,19 @@
+{
+    "timeout" : 30000,
+    "menus": {
+        "leftMenus": [],
+        "rightMenus": [{
+            "name": "showReadAndSignList",
+            "titleKey": "library.title.showReadSignList",
+            "iconClass": "fa fa-check-square-o",
+            "isHidden" : false,
+            "action": "showReadAndSignList"
+        },{
+            "name": "showReorganizeLibrariesDialog",
+            "titleKey": "library.title.reorganizeLibraries",
+            "iconClass": "fa fa-sort",
+            "isHidden" : false,
+            "action": "showReorganizeLibrariesDialog"
+        }]
+    }
+}

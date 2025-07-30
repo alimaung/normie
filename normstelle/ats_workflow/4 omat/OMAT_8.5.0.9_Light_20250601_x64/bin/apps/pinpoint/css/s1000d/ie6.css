@@ -1,0 +1,4 @@
+/* IE 6 specific CSS*/
+.borderScroll table {
+  border-right: solid 16px white;
+}

@@ -1,0 +1,26 @@
+2025-05-21 00:28:30,012 - INFO - Start Extract a publication from : 1_Overhaul Material Manual (OMAT)_16.zip
+2025-05-21 00:28:30,049 - INFO - Extracting the Publication package from D:\apps\PinPoint_Standalone\OMAT_8.5.0.9_20250601_x64\data\pp\1_Overhaul Material Manual (OMAT)_16.zip to D:\apps\PinPoint_Standalone\OMAT_8.5.0.9_20250601_x64\data\pp\1_Overhaul Material Manual (OMAT)_16
+2025-05-21 00:28:30,203 - INFO - Publication package D:\apps\PinPoint_Standalone\OMAT_8.5.0.9_20250601_x64\data\pp\1_Overhaul Material Manual (OMAT)_16.zip is extracted at D:\apps\PinPoint_Standalone\OMAT_8.5.0.9_20250601_x64\data\pp\1_Overhaul Material Manual (OMAT)_16
+2025-05-21 00:28:30,220 - INFO - Complete Extract a publication from : 1_Overhaul Material Manual (OMAT)_16.zip
+2025-05-21 00:28:30,221 - INFO - Extract process completed
+2025-05-21 00:28:32,050 - INFO - Started Import of publication - Overhaul Material Manual (OMAT), revision - 16
+2025-05-21 00:28:32,071 - INFO - Begin import library publication 1_Overhaul Material Manual (OMAT)_16 Publication MetaData.
+2025-05-21 00:28:33,088 - INFO - Complete import library publication 1_Overhaul Material Manual (OMAT)_16 Publication MetaData.
+2025-05-21 00:28:33,090 - INFO - Begin import library publication 1_Overhaul Material Manual (OMAT)_16 product.
+2025-05-21 00:28:33,295 - INFO - Complete import library publication 1_Overhaul Material Manual (OMAT)_16 product.
+2025-05-21 00:28:33,296 - INFO - Begin import library publication 1_Overhaul Material Manual (OMAT)_16 product mapping.
+2025-05-21 00:28:33,326 - INFO - Complete import library publication 1_Overhaul Material Manual (OMAT)_16 product mapping.
+2025-05-21 00:28:33,328 - INFO - Begin import library publication 1_Overhaul Material Manual (OMAT)_16 product statements.
+2025-05-21 00:28:33,572 - INFO - Complete import library publication 1_Overhaul Material Manual (OMAT)_16 product statements.
+2025-05-21 00:28:33,573 - INFO - Begin import library publication 1_Overhaul Material Manual (OMAT)_16 SNS.
+2025-05-21 00:28:33,632 - INFO - Complete import library publication 1_Overhaul Material Manual (OMAT)_16 SNS.
+2025-05-21 00:28:33,634 - INFO - Begin import library publication 1_Overhaul Material Manual (OMAT)_16 TOC.
+2025-05-21 00:28:47,483 - INFO - Complete import library publication 1_Overhaul Material Manual (OMAT)_16 TOC.
+2025-05-21 00:28:47,484 - INFO - Begin import library publication 1_Overhaul Material Manual (OMAT)_16 MetaData.
+2025-05-21 00:28:47,486 - INFO - Complete import library publication 1_Overhaul Material Manual (OMAT)_16 MetaData.
+2025-05-21 00:28:47,487 - INFO - Begin import library publication 1_Overhaul Material Manual (OMAT)_16 MFR.
+2025-05-21 00:28:47,527 - INFO - Complete import library publication 1_Overhaul Material Manual (OMAT)_16 MFR.
+2025-05-21 00:28:47,649 - INFO - ACM resources are added for the publication.
+2025-05-21 00:28:47,652 - INFO - Successfully imported publication - Overhaul Material Manual (OMAT), revision - 16
+2025-05-21 00:28:47,657 - INFO - Reset EULA status for users completed.
+2025-05-21 00:28:47,659 - INFO - Import process completed

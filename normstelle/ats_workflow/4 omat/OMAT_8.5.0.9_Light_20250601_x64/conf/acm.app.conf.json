@@ -1,0 +1,18 @@
+{
+  "dataSources" : [{
+    "name": "acmDataSource",
+    "url": "http://localhost:8086/acmserver/api"
+  }],
+  
+  "acmServer": "http://localhost:8086/acmserver/api/",
+  "acmClient": "http://localhost:8086/acmclient/#/",
+  "ppClient": "http://localhost:8085/pinpoint",
+  "loginWidget": {
+    "defaultUrl" : "http://localhost:8086/acmclient/#/privileges",
+    "cookieDomain": "",
+    "cloud" : "assets/login/cloud.png",
+    "companyLogo" : "assets/login/slogo.jpg",
+    "background" : "assets/login/loginbg-2.jpg",
+    "productName" : "assets/login/loginlogo.png"
+  }
+}

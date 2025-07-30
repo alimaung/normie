@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	   xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+		http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+        http://www.springframework.org/schema/aop
+		http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+		http://www.springframework.org/schema/tx 
+		http://www.springframework.org/schema/tx/spring-tx-4.2.xsd
+		http://www.springframework.org/schema/task 
+		http://www.springframework.org/schema/task/spring-task-4.2.xsd">
+
+    <bean id="applicationContextProvder"
+                        class="com.flatirons.pinpoint.server.common.utils.ApplicationContextProvider"/>
+
+	<bean id="dataSource" primary="true" depends-on="dataSourceTarget" class="com.flatirons.pinpoint.server.hibernate.sql.jdbc.DataSourceWrapper">
+		<constructor-arg ref="dataSourceTarget" />
+	</bean>
+	
+	<bean id = "sequenceGenartorUtil" class="com.flatirons.pinpoint.server.hibernate.sql.utils.SequenceGeneratorUtil">
+		<property name="dataSource" ref="dataSource"></property>
+		<property name="tableNamesAndColumnMap">
+            <map>
+                <entry key="PINPOINT_ANNOTATION" value="ID"/>
+                <entry key="PINPOINT_BOOKMARK" value="ID"/>
+                <entry key="PINPOINT_DOCUMENT" value="DOCUMENT_ID"/>
+                <entry key="PINPOINT_SUPPLEMENT" value="SUPPLEMENT_ID"/>
+                <entry key="PINPOINT_GRAPHIC" value="GRAPHIC_ID"/>
+                <entry key="PINPOINT_ORG_REV_MERGE" value="MERGE_ID"/>
+            </map>
+		</property>
+		<property name="databaseInUse" value = "${jdbc.driverClassName}"></property>
+
+	</bean>
+
+	<bean id="dataSourceTarget" class="com.zaxxer.hikari.HikariDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+        <property name="maximumPoolSize" value="${jdbc.maxPoolSize:50}" />
+        <property name="minimumIdle" value="${jdbc.minIdle:20}" />
+        <property name="connectionTimeout" value="${jdbc.connectionTimeout:30000}" />
+        <property name="idleTimeout" value="${jdbc.idleTimeout:600000}" />
+        <property name="maxLifetime" value="${jdbc.maxLifetime:1800000}" />
+        <property name="readOnly" value="${jdbc.readOnly:false}" />
+    </bean>
+    
+    <bean id="databaseInit" class="com.flatirons.commons.utilities.DatabaseInitializingBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="hsqldbPath" value="${hsqldb.path:#{null}}"/>
+		<property name="hsqldbTemporary" value="${hsqldb.temppath:#{null}}"/>
+    </bean>
+
+    <bean id="liquibase" class="liquibase.integration.spring.SpringLiquibase" depends-on="databaseInit">
+        <property name="dataSource" ref="dataSource" />
+        <property name="changeLog" value="classpath:changelog/master-changelog.xml" />
+        <property name="shouldRun" value="${dbupgrade.auto:true}"/>
+        <property name="changeLogParameters">
+            <!--map from application.properties (pp_config.properties) to Liquibase changeLog parameters-->
+            <map>
+                <entry key="acm.db.hostname" value="${acm.db.hostname}"/>
+                <entry key="acm.db.port" value="${acm.db.port}"/>
+                <entry key="acm.db.name" value="${acm.db.name}"/>
+                <entry key="acm.db.schema" value="${acm.db.schema:PUBLIC}"/>    
+                <entry key="acm.db.username" value="${acm.db.username}"/>
+                <entry key="acm.db.password" value="${acm.db.password}"/>
+                <entry key="acm.db.permissionstablename" value="${acm.db.permissionstablename:ACM_USERGROUPRESOURCE}"/>
+
+                <entry key="app.db.username" value="${jdbc.username}"/>
+                <entry key="app.db.schema" value="${app.db.schema:PUBLIC}"/>
+                <entry key="app.db.permissionsviewname" value="${app.db.permissionsviewname:VIEW_USERGROUPRESOURCE}"/>
+				<entry key = "hsql.annotationSequenceCount" 
+                value="#{sequenceGenartorUtil.getTablesSequenceCount().containsKey('PINPOINT_ANNOTATION') ? sequenceGenartorUtil.getSequenceCountFromMap('PINPOINT_ANNOTATION'):0}" value-type="java.lang.Integer"/>
+                <entry key = "hsql.bookmarkSequenceCount" 
+                value="#{sequenceGenartorUtil.getTablesSequenceCount().containsKey('PINPOINT_BOOKMARK') ? sequenceGenartorUtil.getSequenceCountFromMap('PINPOINT_BOOKMARK'):0}" value-type="java.lang.Integer"/>
+				<entry key="default.organization.ncage" value="${default.organization.ncage}"/>
+  				<entry key = "hsql.documentSequenceCount"
+                value="#{sequenceGenartorUtil.getTablesSequenceCount().containsKey('PINPOINT_DOCUMENT') ? sequenceGenartorUtil.getSequenceCountFromMap('PINPOINT_DOCUMENT'):0}" value-type="java.lang.Integer"/>
+                <entry key = "hsql.supplementSequenceCount"
+                value="#{sequenceGenartorUtil.getTablesSequenceCount().containsKey('PINPOINT_SUPPLEMENT') ? sequenceGenartorUtil.getSequenceCountFromMap('PINPOINT_SUPPLEMENT'):0}" value-type="java.lang.Integer"/>
+                <entry key = "hsql.graphicSequenceCount"
+                value="#{sequenceGenartorUtil.getTablesSequenceCount().containsKey('PINPOINT_GRAPHIC') ? sequenceGenartorUtil.getSequenceCountFromMap('PINPOINT_GRAPHIC'):0}" value-type="java.lang.Integer"/>
+                <entry key = "hsql.orgRevMergeSequenceCount"
+                value="#{sequenceGenartorUtil.getTablesSequenceCount().containsKey('PINPOINT_ORG_REV_MERGE') ? sequenceGenartorUtil.getSequenceCountFromMap('PINPOINT_ORG_REV_MERGE'):0}" value-type="java.lang.Integer"/>
+				<entry key = "hsql.fragmentSequenceCount"
+					   value="#{sequenceGenartorUtil.getTablesSequenceCount().containsKey('PINPOINT_RESTRICTED_FRAGMENT') ? sequenceGenartorUtil.getSequenceCountFromMap('PINPOINT_RESTRICTED_FRAGMENT'):0}" value-type="java.lang.Integer"/>
+				<entry key = "hsql.fragUserIdSequenceCount"
+					   value="#{sequenceGenartorUtil.getTablesSequenceCount().containsKey('PINPOINT_USERACCESS_RESTRICTED_FRAGMENT') ? sequenceGenartorUtil.getSequenceCountFromMap('PINPOINT_USERACCESS_RESTRICTED_FRAGMENT'):0}" value-type="java.lang.Integer"/>
+            </map>
+        </property>
+    </bean>
+
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate5.LocalSessionFactoryBean" depends-on="liquibase">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mappingLocations">
+			<list>
+				<value>classpath*:hbm/*.hbm.xml</value>
+			</list>
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
+				<prop key="hibernate.hbm2ddl.auto">validate</prop>
+				<prop key="hibernate.format_sql">${hibernate.format_sql}</prop>
+				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
+
+				<!-- set the statement of JDBC. fetch_size means: fetch data from DB; batch size means: from client to DB -->
+				<prop key="hibernate.jdbc.fetch_size">100</prop>
+				<prop key="hibernate.jdbc.batch_size">50</prop>
+
+				<!-- set OID is null after deleting object, but other columns keep the original data -->
+				<prop key="use_identifier_rollback">true</prop>
+			</props>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+
+
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+
+			<!-- Relative method naming declarations -->
+			<tx:method name="add*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+			<tx:method name="create*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+			<tx:method name="del*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+			<tx:method name="exists*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="fetch*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="find*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="get*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="insert*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+			<tx:method name="init*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="isAutoRelease*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="rollback*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+			<tx:method name="remove*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+			<tx:method name="reset*" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="retrieve*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="reIndex*" propagation="REQUIRED" read-only="true" />
+			<tx:method name="save*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+			<tx:method name="update*" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+
+			<!-- Exact method naming declarations -->
+			<tx:method name="downloadAnnotationsForOfflineSync" propagation="REQUIRED" read-only="true" />
+			<tx:method name="downloadArchivePublication" propagation="REQUIRED" read-only="true" />
+			<tx:method name="downloadAsZipFile" propagation="REQUIRED" read-only="true" />
+			<tx:method name="hasOrganizationPreferredRevisions" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="isGraphicAvailable" propagation="REQUIRED" read-only="true" />
+			<tx:method name="isPinpointPublication" propagation="REQUIRED" read-only="true" />
+			<tx:method name="isKcaLibrary" propagation="REQUIRED" read-only="true" />
+			<tx:method name="isLatestRevision" propagation="REQUIRED" read-only="true" />
+			<tx:method name="isRemoteServer*Enabled" propagation="REQUIRED" read-only="true" />
+			<tx:method name="manageCurrentVersionsForUserGroups" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="moveFigurePosition" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="moveSheetPosition" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="printSelectedTable" propagation="REQUIRED" read-only="true" />
+			<tx:method name="processPublicationRevisionRelease" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="publicationOfflineScheduledTimeCheck" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="unlockLockedPublication" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="uploadPinpointNeutralPackage" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="validateSelectedFilters" propagation="REQUIRED" read-only="true" />
+			<tx:method name="validateForDraftDocument" propagation="REQUIRED" read-only="true" />
+			<tx:method name="validateProductIdValidation" propagation="REQUIRED" read-only="true" />
+			<tx:method name="isConflictInPreRev" propagation="REQUIRED" read-only="true" />
+			<tx:method name="uploadGraphic" propagation="REQUIRED" rollback-for="java.lang.Exception"/>
+			<tx:method name="checkForFailedPublication" propagation="REQUIRED" read-only="true" />
+			<tx:method name="autoRelease" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+			<tx:method name="noRollback*" propagation="REQUIRED" no-rollback-for="java.lang.Exception" />
+			<tx:method name="authorizeNextPublication" propagation="REQUIRED" no-rollback-for="java.lang.Exception" />
+			<tx:method name="importAnnotations" propagation="REQUIRED" rollback-for="java.lang.Exception" />
+			<tx:method name="processGraphicLinks" propagation="REQUIRED" read-only="true" />
+			<tx:method name="*" propagation="NOT_SUPPORTED"/>
+		</tx:attributes>
+	</tx:advice>
+
+	<tx:advice id="txImportAdvice" transaction-manager="transactionManager">
+		<tx:attributes>
+			<tx:method name="executeImport" propagation="REQUIRES_NEW" rollback-for="java.lang.Exception" />
+		</tx:attributes>
+	</tx:advice>
+
+	<!-- open the AOP Monitor, just use for current configuration file -->
+	<aop:aspectj-autoproxy expose-proxy="true" />
+
+	<aop:config expose-proxy="true" proxy-target-class="true">
+		<!-- excluding transaction rollback for deleteLibraryPublicationRevision - failure will be logged, but rollback should not happen-->
+		<aop:pointcut id="txPointcut"
+			expression="execution(* com.flatirons.pinpoint.server.service..*(..)) &amp;&amp; !execution(* com.flatirons.pinpoint.server.service.IDeletePublicationService.deleteLibraryPublicationRevision(..))" />
+
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="txPointcut" />
+	</aop:config>
+	
+	<aop:config>
+		<aop:pointcut id="importingValidatorPointcut" expression="execution(* com.flatirons.pinpoint.server.imports.service.impl.*.processImport*(..))" />
+		<aop:aspect id ="importingValidatorAspect" ref="importingValidator">
+			<aop:around method="around" pointcut-ref="importingValidatorPointcut"/>
+		</aop:aspect>
+	</aop:config>
+	
+</beans>

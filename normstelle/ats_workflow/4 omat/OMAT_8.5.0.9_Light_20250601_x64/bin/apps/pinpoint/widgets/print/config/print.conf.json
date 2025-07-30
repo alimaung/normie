@@ -1,0 +1,5 @@
+{
+    "timeout" : 600000,
+    "headerDateFormat" : "M/d/yyyy; hh:mm{a}.",
+    "sheetLimitation" : 40
+}

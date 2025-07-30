@@ -1,0 +1,13 @@
+<html>
+<head>
+    <script src="./html2pdf.bundle.js"></script>
+    <script>
+        function printPDF(opt) {
+            var element = document.getElementById('printPartPlaceholder');
+            html2pdf().set(opt).from(element.innerHTML).save();
+        }
+    </script>
+</head>
+<body>
+</body>
+</html>

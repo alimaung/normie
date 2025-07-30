@@ -1,0 +1,46 @@
+body {
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+ul.top-level-toc {
+  padding-left: 0px;
+}
+
+ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 20px;
+  font-size: 0.9rem;
+}
+
+li > span {
+  cursor: pointer;
+}
+
+span.selected {
+  background-color: #FFE6B0;
+  border: 1px #FFB951 solid;
+  opacity: 0.8;
+}
+
+.nested {
+  display: none;
+}
+
+.active {
+  display: block;
+}
+
+.icon-document,
+.icon-folder,
+.icon-folder-open {
+  font-size: 16pt;
+}
+
+.toc-item {
+  display: flex;
+}
+
+.toc-item-text {
+  padding-top: 3px;
+}

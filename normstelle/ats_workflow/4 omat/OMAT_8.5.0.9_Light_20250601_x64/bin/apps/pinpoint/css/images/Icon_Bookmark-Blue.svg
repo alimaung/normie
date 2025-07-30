@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="12px" height="14px" viewBox="0 0 12 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Icons / Bookmark / Filled Copy 4</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M9,0 L1.5,0 C0.675,0 0.0075,0.675 0.0075,1.5 L0,13.5 L5.25,11.25 L10.5,13.5 L10.5,1.5 C10.5,0.675 9.825,0 9,0 Z" id="path-1"></path>
+    </defs>
+    <g id="AA-Bookmarks-and-Bookmark-Manager-(InVision)" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="AA-Bookmark-Manager---4.4" transform="translate(-617.000000, -499.000000)">
+            <g id="Content" transform="translate(72.000000, 123.000000)">
+                <g id="Group-3" transform="translate(15.000000, -12.000000)">
+                    <g id="Group-2" transform="translate(1.000000, 178.000000)">
+                        <g id="Group" transform="translate(0.000000, 14.000000)">
+                            <g id="Icons-/-Bookmark-/-Filled" transform="translate(526.000000, 194.000000)">
+                                <g id="Colors-/-Other-/-Dark-Grey" transform="translate(3.750000, 2.250000)">
+                                    <mask id="mask-2" fill="white">
+                                        <use xlink:href="#path-1"></use>
+                                    </mask>
+                                    <g id="Mask" fill-rule="nonzero"></g>
+                                    <g id="Colors-/-Corena-/-Corena-Blue" mask="url(#mask-2)" fill="#5285B8">
+                                        <g transform="translate(-3.750000, -2.250000)" id="Corena-Blue">
+                                            <rect x="0" y="0" width="18" height="18"></rect>
+                                        </g>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

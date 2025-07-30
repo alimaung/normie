@@ -1,0 +1,104 @@
+#i-search-container {
+  font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+div#index-search-what-container {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+#search-field-container {
+  display: flex;
+  gap: 5px;
+}
+
+#search-input {
+  flex: 20;
+}
+
+#search-button {
+  flex: 2;
+  cursor: pointer;
+}
+
+#search-help-icon {
+  flex: 1;
+  cursor: pointer;
+  font-size: 24px;
+}
+
+.result-count {
+  color: #808080;
+}
+
+.result-query {
+  font-weight: bold;
+}
+
+.collapsible {
+  background-color: #999;
+  color: white;
+  cursor: pointer;
+  padding: 10px;
+  width: 100%;
+  border: none;
+  text-align: center;
+  outline: none;
+  font-size: 15px;
+}
+
+.active, .collapsible:hover {
+  background-color: #777;
+}
+
+.collapsible:after {
+  content: '\02795'; /* Unicode character for "plus" sign (+) */
+  font-size: 13px;
+  float: right;
+  margin-left: 5px;
+}
+
+.active:after {
+  content: "\2796"; /* Unicode character for "minus" sign (-) */
+}
+
+.collapsible-content {
+  padding: 0 18px;
+  display: none;
+  overflow: hidden;
+  background-color: #f1f1f1;
+}
+
+input {
+  margin-bottom: 10px;
+}
+
+table {
+  border-collapse: collapse;
+  border: 2px solid rgb(200,200,200);
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+  width: 100%
+}
+
+td, th {
+  border: 1px solid rgb(190,190,190);
+  padding: 10px 20px;
+}
+
+th {
+  background-color: rgb(235,235,235);
+  text-align: left;
+}
+
+tr {
+  cursor: pointer;
+}
+
+tr:nth-child(even) td {
+  background-color: rgb(250,250,250);
+}
+
+tr:nth-child(odd) td {
+  background-color: rgb(245,245,245);
+}

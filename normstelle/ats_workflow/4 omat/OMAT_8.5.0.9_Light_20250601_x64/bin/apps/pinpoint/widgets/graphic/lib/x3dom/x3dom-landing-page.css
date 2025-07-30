@@ -1,0 +1,210 @@
+#landingPageX3D {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+#x3d-size {
+    height: 100%;
+    width: 100%;
+}
+x3d, X3D {
+    height: inherit;
+    width: inherit;
+    display: block;
+    position: absolute;
+}
+div.landing-page-container {
+    z-index: 0;
+}
+
+div.maxsize {
+    position: absolute;
+    top: 50px;
+    bottom: 0;
+    width: 100%;
+}
+
+div.camera_buttons {
+    position: absolute;
+    height: 50px;
+    background-color: light-grey;
+    width: 100%;
+    display: block;
+}
+
+div.actionbar_slider {
+    display: inline-block;
+    height: 40px;
+    vertical-align: top;
+    text-align: center;
+    margin-left: 5px;
+    margin-right: 5px;
+}
+
+.actionbar_slider > .slider {
+    width: 100px !important;
+}
+
+.main-content-container > button {
+    display: none !important;
+}
+
+.viewPage {
+    touch-action: none;
+}
+
+.sidenav {
+    height: inherit;
+    width: 35px;
+    position: absolute;
+    z-index: 1;
+    right: 0;
+    background-color: #3c3c3c;
+    overflow-x: hidden;
+    padding-top: 5px;
+    transition: 0.5s;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 3px;
+    text-decoration: none;
+    color: #eee;
+    display: block;
+    transition: 0.3s;
+    word-break: break-all;
+}
+
+.sidenav .p {
+    font-size: 18px;
+}
+
+.tabs {
+    width: 100%;
+    display: inline-block;
+}
+
+.tab-links:after {
+    display: block;
+    clear: both;
+    content: '';
+}
+
+.tab-links li {
+    margin: 0px 5px;
+    float: left;
+    list-style: none;
+}
+
+.tab-links a {
+    padding: 9px;
+    display: inline-block;
+    border-radius: 3px 3px 0px 0px;
+    font-size: 16px;
+    font-weight: 600;
+    color: white;
+    transition: all linear 0.15s;
+}
+
+li.active a,
+li.active a:hover {
+    background: #fff;
+    color: #4c4c4c;
+}
+
+.tab-content-sidebar {
+    padding: 15px;
+    border-radius: 3px;
+    overflow: auto;
+    position: absolute;
+    bottom: 85px;
+    top: 50px;
+    right: 10px;
+    left: 10px;
+}
+
+.tab {
+    display: none;
+}
+
+.tab.active {
+    display: block;
+}
+
+.tab-links {
+    margin-bottom: 5px;
+}
+
+#hiddenElementTab a {
+    border-bottom-style: solid;
+    border-width: 1px;
+}
+
+.sidebar-footer {
+    float: left;
+    bottom: 0;
+    width: 100%;
+    position: absolute;
+    background-color: #3c3c3c;
+}
+
+.closebtn {
+    padding-left: 5px !important;
+    font-size: 40px;
+    width: 50px;
+    float: left;
+}
+
+.tabs-hide-content {
+    display: none;
+}
+
+.vertical-text {
+    width: 300px;
+    transform: rotate(90deg);
+    transform-origin: left;
+    margin-left: 15px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.sidebar-side-footer {
+    color: white;
+}
+
+.hide-sidebar-footer {
+    visibility: hidden;
+    display: none;
+}
+
+.tab-eye-icon {
+    font-size: 30px;
+    padding-left: 2px;
+}
+
+p.sidebar-footer-info {
+    color: white;
+    bottom: 0;
+    position: absolute;
+    right: 10px;
+}
+
+p.sidebar-footer-info-hide {
+    display: none;
+}
+div.alert-hidden-elements{
+    position:absolute;
+    z-index:10;
+}
+#loading-x3d .isloading-overlay {
+    top: unset;
+}
+
+#loading-x3d.isloading-overlay .isloading-wrapper {
+    top: 50% !important;
+    display: unset;
+}
+div#hiddenElementTab > a:hover {
+    background: #fff;
+    color: #4c4c4c;
+}

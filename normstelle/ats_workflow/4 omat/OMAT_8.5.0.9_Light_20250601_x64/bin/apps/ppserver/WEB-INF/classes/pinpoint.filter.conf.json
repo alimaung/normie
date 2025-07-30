@@ -1,0 +1,31 @@
+{
+    "default": {
+        "default": {
+            "displayTemplate": null,
+            "visibleColumns": null,
+            "customLabels": null
+        }
+    },
+    "all": {
+        "default": {
+            "displayTemplate": null,
+            "visibleColumns": null,
+            "customLabels": null
+        },
+        "90671294-17f5-4259-85d9-46acd156b6b9": {
+            "displayTemplate": "{ACN}=[{MODTYPE}]({CEC})",
+            "visibleColumns": "CEC,ACN,MODTYPE",
+            "customLabels": "Customer Effectivity Code,Serial Number,Model"
+        }
+    },
+    "sampleFilterCategory": {
+        "default": {
+            "displayTemplate": "CEC={CEC}"
+        },
+        "5b81922c-6ae3-46b5-90f7-ca7cee24ecd3": {
+            "displayTemplate": "ShipNbr={SHIPNRB}[CEC={CEC}]",
+            "visibleColumns": "CEC,SHIPNRB",
+            "customLabels": "Customer Effectivity Code, Ship Number"
+        }
+    }
+}

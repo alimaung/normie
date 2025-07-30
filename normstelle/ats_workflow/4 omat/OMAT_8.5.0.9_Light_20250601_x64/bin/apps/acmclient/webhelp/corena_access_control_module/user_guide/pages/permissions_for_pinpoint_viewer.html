@@ -1,0 +1,607 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="When the Pinpoint Repository is the back-end for Pinpoint Viewer , users need permissions in Access Control Manager to be able to see the publications that are available on the server. The Access ..."/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta http-equiv="Pragma" content="no-cache"/><meta http-equiv="Expires" content="0"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="reference"/>
+<meta name="DC.Title" content="Permissions for Pinpoint Viewer"/>
+<meta name="abstract" content=""/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="reference_qrf_rhn_tnb"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Pragma" content="no-cache"/><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Expires" content="0"/><link xmlns="http://www.w3.org/1999/xhtml" rel="icon" type="image/png" href="../../../oxygen-webhelp/resources/img/favicon.ico"/><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../../../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../../../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../../../oxygen-webhelp/resources/js/jquery.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../../../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../../../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script><link rel="stylesheet" type="text/css" href="../../../oxygen-webhelp/resources/css/commonltr.css"/>
+<title>Permissions for Pinpoint Viewer</title>
+</head>
+<body onload="highlightSearchTerm()" id="reference_qrf_rhn_tnb">
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#">Link to this page</a></div><div id="printlink"><a href="javascript:window.print();">Print this page</a></div></td></tr><tr><td><div class="navheader"/></td><td width="75%"/></tr></tbody></table>
+
+  <h1 class="title topictitle1">Permissions for Pinpoint Viewer</h1>
+
+  
+  <div class="body refbody"><p class="shortdesc"/>
+
+    <div class="section">
+      <p class="p">When the Pinpoint Repository is the back-end for <span class="ph">Pinpoint Viewer</span>, users need
+        permissions in <span class="ph">Access Control Manager</span> to be
+        able to see the publications that are available on the server. The <span class="ph">Access Control Manager</span> administrator grants
+        permissions to the different user roles and organizations that can access functions in the
+          <span class="ph">Pinpoint Viewer</span>. The
+        administrator grants permissions to user groups, which allows members of a group access to
+        the data. This data access includes libraries, their publications, and revisions.</p>
+
+      <p class="p">Typically the three permission checkboxes
+          (<span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span>/<span class="ph uicontrol">Delete</span>)
+        for each user role/organization should be either all activated to grant the function
+        privilege or all deactivated to deny the function privilege. However, <a class="xref" href="#reference_qrf_rhn_tnb__table_urf_rhn_tnb">Table 1</a> gives some examples where
+        it is possible to only give some permissions for a function privilege to certain user
+        roles/organizations (such as <strong class="ph b">Can create, modify or delete public Annotations</strong>). For
+        more details on how to grant permissions to user roles/organizations/user groups, refer to
+          <a class="xref" href="grant_permissions.html#task_rqz_c5v_y5">Manage Function Privileges and Data Access Permissions</a>.</p>
+
+      <div class="p">These screenshots show an example of the privilege tree for the Pinpoint viewer. The
+        numbers below the publication level represent the revisions.<div class="fig fignone" id="reference_qrf_rhn_tnb__fig_ayw_g2z_xnb">
+          
+          <br/><img class="image" id="reference_qrf_rhn_tnb__image_ybm_g3x_bpb" src="../graphics/pinpoint_privilege_tree.png" height="336"/><br/>
+        <p class="figcap">Pinpoint Privilege Tree (configuration)</p></div>
+<div class="fig fignone" id="reference_qrf_rhn_tnb__fig_bfs_x2z_xnb">
+          
+          <br/><img class="image" id="reference_qrf_rhn_tnb__image_trf_rhn_tnb" src="../graphics/pinpoint_privileges_data.png" height="192"/><br/>
+        <p class="figcap">Pinpoint Privilege Tree (data)</p></div>
+</div>
+
+      <div class="note note"><span class="notetitle">Note:</span> Be aware that it may take several minutes before new publications show up in the
+        privilege tree after they have been imported in Data Manager.</div>
+
+      <p class="p">Here are the main levels in the Pinpoint privilege tree:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="reference_qrf_rhn_tnb__table_urf_rhn_tnb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. Pinpoint Privilege Tree</span></caption>
+          
+          
+          <thead class="thead" align="left">
+            <tr class="row">
+              <th class="entry" valign="top" width="25%" id="d20741e93">Resource</th>
+
+              <th class="entry" valign="top" width="75%" id="d20741e96">Description</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody class="tbody"> <tr class="row">
+            <td class="entry" rowspan="2" valign="top" width="25%" headers="d20741e93 ">Archive (user roles / organizations)</td>
+
+            <td class="entry" valign="top" width="75%" headers="d20741e96 "><strong class="ph b">Can create archive</strong>: Grant <span class="ph uicontrol">Read</span> permission to
+              allow users to create an archive.</td>
+
+          </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><strong class="ph b">Can delete archive</strong>: Grant <span class="ph uicontrol">Read</span> permission to
+                allows users to delete an archive.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" rowspan="4" valign="top" width="25%" headers="d20741e93 ">Authoring (user roles / organizations</td>
+
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><strong class="ph b">Can author content</strong>: Grant <span class="ph uicontrol">Read</span> permission to
+                allow users access to the authoring mode.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><strong class="ph b">Can merge new revisions</strong>:Grant <span class="ph uicontrol">Read</span> permission to
+                allow users to create a merge report and do side by side merges.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><strong class="ph b">Can review authored changes</strong>: Grant <span class="ph uicontrol">Read</span>
+                permission to allow users to accept/reject authored changes.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><strong class="ph b">Can review change log</strong>: Grant <span class="ph uicontrol">Read</span> permissions to
+                allow users access to the log of authored changes.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" rowspan="26" valign="top" width="25%" headers="d20741e93 ">configuration (user roles / organizations)</td>
+
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can access</span>: Grant <span class="ph uicontrol">Read</span> permission
+                to allow users access to the application.<div class="note note"><span class="notetitle">Note:</span> This permission appears only when
+                  Audit Manager is installed in your environment.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can access conditional filters</span>: Grant
+                  <span class="ph uicontrol">Read</span> permission to access the <span class="keyword wintitle">Product</span>
+                and <span class="keyword wintitle">Condition</span> tabs for the S1000D builder.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can access current revisions only</span>: Grant
+                  <span class="ph uicontrol">Read</span> permission to restrict access to the currently active
+                  revision.<div class="p">For users with the <span class="ph uicontrol">Read</span> permission:<ul class="ul" id="reference_qrf_rhn_tnb__ul_vrf_rhn_tnb">
+                    <li class="li">In the <span class="keyword wintitle">Library</span> pane, they cannot see the revision
+                      selection drop-down menu.</li>
+
+                    <li class="li">When opening a publication, they can only see the latest available revision
+                      or the revision that was manually set as active with the <img class="image" id="reference_qrf_rhn_tnb__image_wrf_rhn_tnb" src="../graphics/icon_manage_publication.png" height="16"/>
+                      <span class="keyword wintitle">Manage Publication</span> icon on the <span class="keyword wintitle">Table of
+                        Content</span> pane.</li>
+
+                    <li class="li">If they open a GOTO link that specifies a revision that is not the current
+                      revision, they cannot access this revision. The latest revision available is
+                      displayed. The revision selection drop-down menu does not appear.</li>
+
+                  </ul>
+<span class="ph uicontrol">Write</span> permission is required for the revision
+                  selection drop-down menu to be visible to users.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can assign acknowledgement</span>: The administrator needs to
+                have <span class="ph uicontrol">Write</span> permission to this privilege in order to access
+                and operate the Read &amp; Sign <span class="keyword wintitle">Admin</span> tab. Refer to <span class="q">"Read
+                  &amp; Assign Admin Tab"</span> in the <cite class="cite">Flatirons Pinpoint Viewer User
+                  Guide</cite>.<div class="note note"><span class="notetitle">Note:</span> This is not applicable for Pinpoint Standalone or Pinpoint
+                  Standalone Light.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can assign group acknowledgement</span>: The administrator
+                needs to have <span class="ph uicontrol">Write</span> permission to assign group
+                acknowledgement. This privilege allows an administrator to assign permissions to a
+                group instead of to an individual. Refer to <span class="q">"Read &amp; Assign Admin Tab"</span> in
+                the <cite class="cite">Flatirons Pinpoint Viewer User Guide</cite>.<div class="note note"><span class="notetitle">Note:</span> This is not applicable
+                  for Pinpoint Standalone or Pinpoint Standalone Light.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can change the environment in Pinpoint Mobile</span>: The
+                administrator needs to have <span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span>
+                permissions to access and change the Pinpoint URL setting in Pinpoint Mobile.
+                  <div class="note note"><span class="notetitle">Note:</span> This is not applicable for Pinpoint Standalone or Pinpoint Standalone
+                  Light.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can configure incremental sync details</span>: Users with
+                  <span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span> permissions for this
+                privilege are allowed to enter the <img class="image" id="reference_qrf_rhn_tnb__image_fdw_q1d_npb" src="../graphics/configuration_icon.png" height="16"/>
+                <span class="keyword wintitle">Configuration</span> page in Pinpoint and view/save/edit the
+                incremental sync settings.<div class="note note"><span class="notetitle">Note:</span> This is not applicable for Pinpoint Standalone
+                  Light.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can configure proxy details for Data Manager server</span>:
+                Users with <span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span> permissions for
+                this privilege are allowed to enter the <img class="image" id="reference_qrf_rhn_tnb__image_znk_z1d_npb" src="../graphics/configuration_icon.png" height="16"/>
+                <span class="keyword wintitle">Configuration</span> page in Pinpoint and view/save/edit the proxy
+                server settings.<div class="note note"><span class="notetitle">Note:</span> This is not applicable for Pinpoint Standalone
+                Light.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can create, modify or delete public Annotations</span>:<div class="p">
+                  <ul class="ul" id="reference_qrf_rhn_tnb__ul_zrf_rhn_tnb">
+                    <li class="li"><span class="ph uicontrol">Write</span> permission is required for creating or editing
+                      public annotations. Users who do not have <span class="ph uicontrol">Write</span>
+                      permission can create a <span class="q">"Public Candidate"</span> annotation. This annotation
+                      must be approved by a user with <span class="ph uicontrol">Write</span> permission before
+                      it becomes a public annotation.</li>
+
+                    <li class="li"><span class="ph uicontrol">Delete</span> permission is required for deleting public
+                      annotations.</li>
+
+                  </ul>
+
+                </div>
+<div class="note note"><span class="notetitle">Note:</span> Private annotations can be managed without special
+                permissions.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can edit landing url</span>: Users with
+                  <span class="ph uicontrol">Read</span> permission for this privilege are allowed to enter the
+                  <img class="image" id="reference_qrf_rhn_tnb__image_iwq_z1d_npb" src="../graphics/configuration_icon.png" height="16"/>
+                <span class="keyword wintitle">Configuration</span> page in Pinpoint and add/edit/remove the landing
+                page URL. They can also edit the Landing URL for each publication in the Publication
+                Metadata dialog.<div class="note note"><span class="notetitle">Note:</span> This is not applicable for Pinpoint Standalone
+                Light.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can edit remote server details</span>: Users with
+                  <span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span> permissions for this
+                privilege can edit remote syncing details.<div class="note note"><span class="notetitle">Note:</span> This is not applicable for Pinpoint
+                  Standalone Light.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can enable or disable access to older revisions</span>: Users
+                with full
+                  (<span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span>/<span class="ph uicontrol">Delete</span>)
+                permissions for this privilege can select whether to save only the latest revisions
+                or all revisions.<div class="note note"><span class="notetitle">Note:</span> This feature is for Pinpoint Standalone only.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can enable or disable ATA view style for s1000d manuals</span>:
+                Users with full
+                  (<span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span>/<span class="ph uicontrol">Delete</span>)
+                permissions for this privilege can select to view S1000D publications in the ATA
+                style format.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can import and delete data packages</span>: Users with
+                  <span class="ph uicontrol">Read</span> permission for this privilege are allowed to upload
+                Pinpoint Neutral Packages and single PDF files. Users can also delete the packages
+                or PDF files that are uploaded in Pinpoint, <p class="p">Users with this privilege will see
+                  the <img class="image" id="reference_qrf_rhn_tnb__image_bsf_rhn_tnb" src="../graphics/import_pinpoint_neutral_package.png" height="16"/> button in the <span class="keyword wintitle">Action
+                  Bar</span>.</p>
+<div class="note note"><span class="notetitle">Note:</span> This is not applicable for Pinpoint Standalone
+                  Light.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 ">
+                <p class="p"><span class="ph uicontrol">Can release or rollback draft revisions</span>: The reviewer
+                  group needs to have <span class="ph uicontrol">Read</span> permission to this privilege to be
+                  able to see and use the <img class="image" id="reference_qrf_rhn_tnb__image_csf_rhn_tnb" src="../graphics/rollback_button.png" height="16"/>
+                  <span class="ph uicontrol">Rollback</span> and <img class="image" id="reference_qrf_rhn_tnb__image_dsf_rhn_tnb" src="../graphics/release_button.png" height="16"/>
+                  <span class="ph uicontrol">Release</span> menu options in the <img class="image" id="reference_qrf_rhn_tnb__image_esf_rhn_tnb" src="../graphics/publication_operations.png" height="16"/>
+                  <span class="ph uicontrol">Publication Operations</span> menu.</p>
+
+                <p class="p">Users with <strong class="ph b">Can release or rollback draft revisions</strong>
+                  <span class="ph uicontrol">Read</span> permission can select all revisions of a publication
+                  in the revisions drop-down list in the Library header.</p>
+
+                <p class="p">Users that do not have <strong class="ph b">Can release or rollback draft revisions</strong> privilege
+                  will only see the latest released revisions of the publications they have read
+                  permissions for.</p>
+
+                <div class="note note"><span class="notetitle">Note:</span> Currently there is one exception to this rule which occurs when a publication
+                  in <span class="q">"Resynch"</span> status (has failed to release in KCt). In this case, users that
+                  do not have the <strong class="ph b">Can release or rollback draft revisions</strong> privilege will be
+                  able to view the draft publication. </div>
+
+                <div class="note note"><span class="notetitle">Note:</span> This is not applicable for Pinpoint Standalone Light.</div>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 ">
+                
+                <p class="p"><span class="ph uicontrol">Can reorder library list</span>: Users with the <span class="ph uicontrol">Can
+                    reorder library list</span> privilege with all
+                    (<span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span>/<span class="ph uicontrol">Delete</span>)
+                  permission checkboxes activated see a <img class="image" id="reference_qrf_rhn_tnb__image_fsf_rhn_tnb" src="../graphics/icon_reorganize_libraries.png"/>
+                  <span class="ph uicontrol">Reorganize Libraries</span> or <span class="ph uicontrol">Reorganize &lt;selected
+                    library&gt;</span> icon in the <span class="ph uicontrol">Library</span> header. This
+                  icon opens the <span class="keyword wintitle">Reorganize Libraries</span> or <span class="keyword wintitle">Reorganize
+                    &lt;selected library&gt;</span> dialog, which allows such users to manually
+                  change the order of libraries or publications through a drag-and-drop interface.
+                  If you are using <span class="ph">Pinpoint Viewer</span> online, every other online user
+                  (including Pinpoint Mobile online) who refreshes or logs in after you have changed
+                  the order will also see the new library order. However, Pinpoint Standalone and
+                  Pinpoint Mobile offline users do not see the new order. These offline products
+                  store the library order using a local database, so users will only see the order
+                  that was set locally in their software instance.</p>
+
+                <p class="p">Libraries that are added later will first show up at the bottom of the list, but
+                  can be manually reordered by users with the <span class="ph uicontrol">Can reorder library
+                    list</span> privilege.</p>
+
+                <div class="note note"><span class="notetitle">Note:</span> This is not applicable for Pinpoint Standalone Light.</div>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can see all applicability and effectivity filters</span>: Users
+                with both <span class="ph uicontrol">Read</span> and <span class="ph uicontrol">Write</span> permissions
+                for this privilege can view all applicability and effectivity filters. Refer to
+                  <span class="q">"Filter Pane"</span> in the <cite class="cite">Flatirons Pinpoint Viewer User
+                  Guide</cite>.<div class="note note"><span class="notetitle">Note:</span> If users do not have permissions for this privilege, the <img class="image" id="reference_qrf_rhn_tnb__image_wbp_zyk_znb" src="../graphics/filter_button.png" height="16"/>
+                  <span class="ph uicontrol">Filter</span> icon does not appear in the <span class="ph uicontrol">Header
+                    Bar.</span></div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 ">
+                <p class="p"><span class="ph uicontrol">Can set privileges on revisions</span>: Users with
+                    <span class="ph uicontrol">Read</span> or <span class="ph uicontrol">Write</span> permission for this
+                  privilege will see a <img class="image" id="reference_qrf_rhn_tnb__image_v25_gvf_xzb" src="../graphics/manage_current_revision.png" height="16"/> manage current
+                  revision icon in the action bar when viewing a released publication in Pinpoint
+                  Viewer.</p>
+
+                <p class="p">When clicking the icon the user will get the option to set access permissions for
+                  the user groups in the system. The users belonging to the selected user groups
+                  will then get
+                    <span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span>/<span class="ph uicontrol">Delete</span>
+                  permissions for the publication in question. Users belonging to user groups that
+                  are not selected, will have their permissions for the publication removed. If no
+                  user group is selected when saving, the access to the revision is removed for all
+                  user groups.</p>
+
+                <div class="note important"><span class="importanttitle">Important:</span> The user setting access for other user groups in this dialog
+                  must also belong to the groups that shall be granted access, if not, the groups
+                  will not show up in the dialog.</div>
+
+                <div class="note note"><span class="notetitle">Note:</span> This is not applicable for Pinpoint Standalone or Pinpoint Standalone
+                  Light.</div>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can switch between original revision and temporary
+                  revision</span>: Users with <span class="ph uicontrol">Read</span> and
+                  <span class="ph uicontrol">Write</span> permissions for this privilege can switch between
+                temporary revision and original revision of a document when the temporary revision
+                is available. This privilege is only applicable for the temporary revisions added
+                from the Data Manager. Refer to <span class="q">"Temporary Revisions (Added in Data Manager)"</span>
+                in the <cite class="cite">Flatirons Pinpoint Viewer User Guide</cite>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can Upload Supplement</span>: To give users the ability to
+                upload and manage attachments, you must activate all
+                  (<span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span>/<span class="ph uicontrol">Delete</span>)
+                permission checkboxes for this privilege. Doing this will also show the <img class="image" id="reference_qrf_rhn_tnb__image_isf_rhn_tnb" src="../graphics/supplement_icon.png" height="16"/>
+                <span class="ph uicontrol">Upload Temporary Revision / Supplement</span> icon in the
+                  <span class="keyword wintitle">Content</span> header bar.<div class="note note"><span class="notetitle">Note:</span> All users are able to view or
+                  download supplements, regardless of this privilege. For users who should only be
+                  able to view attachments but not manage them, all
+                    (<span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span>/<span class="ph uicontrol">Delete</span>)
+                  permission checkboxes for this privilege should be deactivated. Giving users only
+                  the <span class="ph uicontrol">Read</span> permission has the same effect.</div>
+<div class="note note"><span class="notetitle">Note:</span> It is
+                  not possible to allow users to upload attachments but not also delete them, even
+                  when activating the <span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span>
+                  permission checkboxes and deactivating the <span class="ph uicontrol">Delete</span>
+                  permission checkbox, Users can either only view/download attachments or be able to
+                  do everything to them (view/download/upload/manage/delete them).</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can view all draft content</span>: Users with
+                  <span class="ph uicontrol">Read</span> permissions for this privilege can view all draft
+                  documents.<div class="note note"><span class="notetitle">Note:</span> Draft publications always show the Publication Operations <img class="image" id="reference_qrf_rhn_tnb__image_jsf_rhn_tnb" src="../graphics/publication_operations.png" height="16"/> icon. However, only users with the <strong class="ph b">Can release and
+                    rollback draft revisions</strong> privilege can perform the associated
+                  operations.</div>
+<div class="note note"><span class="notetitle">Note:</span> This is not applicable for Pinpoint Standalone or Pinpoint
+                  Standalone Light.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can view all released content</span>: Users with
+                  <span class="ph uicontrol">Read</span> permissions for this privilege can view all released
+                  documents.<div class="note note"><span class="notetitle">Note:</span> This is not applicable for Pinpoint Standalone
+                Light.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can view any permitted revisions</span>: Users with
+                  <span class="ph uicontrol">Read</span> permissions for this privilege can view all revisions
+                for permitted documents. With this permission, users can select revisions from the
+                drop-down menu in the <span class="keyword wintitle">Library</span> pane.<div class="note note"><span class="notetitle">Note:</span> This is not applicable
+                  for Pinpoint Standalone or Pinpoint Standalone Light.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can view draft content</span>: Users with
+                  <span class="ph uicontrol">Read</span> permissions for this privilege can view draft
+                revisions of the publication. <div class="note note"><span class="notetitle">Note:</span> The existing <span class="ph uicontrol">Can view all draft
+                    content</span> is an elevated privilege to provide access to all draft
+                  documents on the user organization level. For more details on this privilege,
+                  refer to the section on <span class="ph uicontrol">Can view all draft
+                content</span>.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can view publication import status</span>: Users with
+                  <span class="ph uicontrol">Read</span> or <span class="ph uicontrol">Write</span> permissions for this
+                privilege can view the import statuses for publications. Users with this privilege
+                will see the <img class="image" id="reference_qrf_rhn_tnb__image_ksf_rhn_tnb" src="../graphics/publication_import_overview_icon.png" height="16"/>
+                <span class="ph uicontrol">Publication Import Overview</span> icon in the <span class="keyword wintitle">Action
+                  Bar</span>.<div class="note note"><span class="notetitle">Note:</span> This is not applicable for Pinpoint Standalone
+                Light.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Must see EULA at every login</span>: If configured to be shown,
+                users with Read permission will see the EULA at every log in. If this option is not
+                configured, the EULA displays only for the first log in.<ul class="ul" id="reference_qrf_rhn_tnb__ul_lsf_rhn_tnb">
+                  <li class="li">If the user clicks the <span class="ph uicontrol">I Agree</span> button, the user can
+                    view the assigned content. </li>
+
+                  <li class="li">If the user clicks the <span class="ph uicontrol">I Do Not Agree</span> button, the user
+                    cannot access the application. This error message appears <span class="q">"You cannot access
+                      the application if you don't agree"</span>, and the user must select the
+                      <span class="ph uicontrol">I Agree</span> button to view the assigned content.</li>
+
+                </ul>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="25%" headers="d20741e93 ">data (user groups / organizations)</td>
+
+              <td class="entry" valign="top" width="75%" headers="d20741e96 ">
+                <p class="p">Contains Libraries, their publications and revisions. The publication revisions
+                  are indicated by numbers. <span class="ph uicontrol">Read</span> permission must be assigned
+                  to each of the publication revisions that the user group shall have access to.</p>
+
+                <p class="p">Acknowledge permission must be granted to users who can acknowledge a publication
+                  revision.</p>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="25%" headers="d20741e93 ">Content (user roles / organizations)</td>
+
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can see content anchors in ToC</span>: Users with
+                  <span class="ph uicontrol">Read</span> permissions for this privilege can see the expanded
+                content anchors and graphics under the document in the TOC. The content anchors and
+                graphics are not visible to users without the <span class="ph uicontrol">Read</span>
+                permission.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="25%" headers="d20741e93 ">Embedded Reference (user roles / organizations)</td>
+
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can view embedded reference</span>: Users with
+                  <span class="ph uicontrol">Read</span> permissions for this privilege can view embedded
+                references within a publication.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" rowspan="2" valign="top" width="25%" headers="d20741e93 ">Restricted links (user roles / organizations</td>
+
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can create or remove restricted links</span>: Users with
+                  <span class="ph uicontrol">Write</span> permissions for this privilege can create and manage
+                restricted links. They can also share the restricted links with users who have
+                access to view the links.<p class="p">You must provide <span class="ph uicontrol">Delete</span>
+                  permissions to end users to allow them to remove restricted
+                  links.</p>
+<div class="note note"><span class="notetitle">Note:</span> Restricted links are applicable to S1000D (Data Modules) and
+                  iSpec2200 (Tasks) only. These links can be created/viewed in Pinpoint Server and
+                  Pinpoint Server Light.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can view the content of restricted links</span>: Users with
+                  <span class="ph uicontrol">Read</span> permissions for this privilege can view restricted
+                links.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" rowspan="3" valign="top" width="25%" headers="d20741e93 ">Organizations</td>
+
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can edit organization landing url</span>: Users with
+                  <span class="ph uicontrol">Read</span> permission for this privilege are allowed to enter the
+                  <img class="image" id="reference_qrf_rhn_tnb__image_kvy_1bd_npb" src="../graphics/configuration_icon.png" height="16"/>
+                <span class="keyword wintitle">Configuration</span> page in Pinpoint and add/edit/remove the
+                organization landing page URL. They can also edit the organization landing page URL
+                for each publication in the Publication Metadata dialog.<div class="note note"><span class="notetitle">Note:</span> This is not applicable
+                  for Pinpoint Standalone Light.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can manage organization publications</span>: Administrators
+                with all
+                  (<span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span>/<span class="ph uicontrol">Delete</span>)
+                permissions activated for this privilege can set the default publication revision
+                that Pinpoint shows to all users in your organization. Refer to <span class="q">"Publication
+                  Management"</span> in the <cite class="cite">Flatirons Pinpoint Viewer User Guide</cite>.<p class="p">This
+                  privilege also allows seeing all data that the organization has been given access
+                  to by other organizations (even if they belong to a user group that has not been
+                  given access to all data nodes). Typically, all
+                    (<span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span>/<span class="ph uicontrol">Delete</span>)
+                  permissions for this privilege should be given to the <span class="q">"[NCAGE] Organization
+                    Administrators"</span> user role, but other roles can also be given this privilege
+                  as needed.</p>
+<div class="note note"><span class="notetitle">Note:</span> This is not applicable for Pinpoint Standalone
+                Light.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="75%" headers="d20741e96 "><span class="ph uicontrol">Can view all organization publications</span>: Users with this
+                privilege can access the organization default revision (or latest) of all
+                publications available to the organization without having specific data-access
+                permissions to those publications. <div class="note note"><span class="notetitle">Note:</span> This privilege does not allow users to set
+                  default revisions or switch to any other revision.</div>
+</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+</div>
+
+      <div class="note tip"><span class="tiptitle">Tip:</span> To quickly assign privileges to all revisions under a publication, use the
+          <span class="ph uicontrol">Apply to descendants</span> check box. This option appears when you select
+        the <img class="image" id="reference_qrf_rhn_tnb__image_msf_rhn_tnb" src="../graphics/edit_permissions.png"/> Edit button next
+        to <span class="ph uicontrol">Permissions</span> in the Privileges panel.</div>
+
+    </div>
+
+  </div>
+
+<div class="navfooter"><!----></div>
+</body>
+</html>

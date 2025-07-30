@@ -1,0 +1,16 @@
+<form>
+    <div style="text-align: left; margin-left: 30px;">
+        <div>
+            <input type="radio" class="annotation_Scope_radio_input"
+                id="annotationMyOrganization" value="organization"
+                name="annotationApprovalRadio" ng-model="vm.approve.visibility">
+            <label for="annotationMyOrganization" style="width:250px;max-width:250px;">{{'annotations.title.organization' | translate}}</label>
+        </div>
+        <div>
+            <input type="radio" class="annotation_Scope_radio_input"
+                id="annotationEveryone" value="public"
+                name="annotationApprovalRadio" ng-model="vm.approve.visibility">
+            <label for="annotationEveryone" style="width:250px;max-width:250px;">{{'annotations.title.public' | translate }}</label>
+        </div>
+    </div>
+</form>

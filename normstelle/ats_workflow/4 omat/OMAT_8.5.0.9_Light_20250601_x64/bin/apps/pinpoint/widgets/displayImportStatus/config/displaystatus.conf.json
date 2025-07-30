@@ -1,0 +1,253 @@
+{
+    "refreshInterval": "100000",
+    "codes": {
+        "status": [
+            {
+                "code": "2000",
+                "desc": "IMPORT_FINISHED",
+                "percent": "100",
+                "type": "success"
+            },
+            {
+                "code": "0299",
+                "desc": "ERROR_WHILE_DOWNLOADING",
+                "percent": "100",
+                "type": "failure"
+            },
+            {
+                "code": "0096",
+                "desc": "ADDED_TO_DOWNLOAD_QUEUE",
+                "percent": "0"
+            },
+            {
+                "code": "0097",
+                "desc": "READY_TO_DOWNLOAD",
+                "percent": "0"
+            },
+            {
+                "code": "0098",
+                "desc": "DOWNLOAD_PAUSE_REQUESTED",
+                "percent": "10"
+            },
+            {
+                "code": "0099",
+                "desc": "DOWNLOAD_PAUSED",
+                "percent": "10"
+            },
+            {
+                "code": "0100",
+                "desc": "WAITING_FOR_DOWNLOAD",
+                "percent": "0"
+            },
+            {
+                "code": "0200",
+                "desc": "DOWNLOAD_IN_PROGRESS",
+                "percent": "10"
+            },
+            {
+                "code": "0201",
+                "desc": "NO_SPACE_TO_DOWNLOAD",
+                "percent": "100",
+                "type": "failure"
+            },
+            {
+                "code": "0300",
+                "desc": "WAITING_FOR_UNZIP",
+                "percent": "15"
+            },
+            {
+                "code": "0400",
+                "desc": "UNZIP_IN_PROGRESS",
+                "percent": "20"
+            },
+            {
+                "code": "0499",
+                "desc": "ERROR_WHILE_UNZIPPING",
+                "percent": "100",
+                "type": "failure"
+            },
+            {
+                "code": "0500",
+                "desc": "WAITING_FOR_IMPORT",
+                "percent": "30"
+            },
+            {
+                "code": "0600",
+                "desc": "IMPORT_IN_PROGRESS",
+                "percent": "35"
+            },
+            {
+                "code": "0611",
+                "desc": "IMPORTING_METADATA_FILE",
+                "percent": "38"
+            },
+            {
+                "code": "0601",
+                "desc": "IMPORTING_PRODUCT",
+                "percent": "40"
+            },
+            {
+                "code": "0602",
+                "desc": "IMPORTING_PRODUCT_STATEMENT",
+                "percent": "45"
+            },
+            {
+                "code": "0603",
+                "desc": "IMPORTING_SNS",
+                "percent": "50"
+            },
+            {
+                "code": "0604",
+                "desc": "TOC_IMPORT_IN_PROGRESS",
+                "percent": "55"
+            },
+            {
+                "code": "0605",
+                "desc": "IMPORTING_CIR",
+                "percent": "60"
+            },
+            {
+                "code": "0606",
+                "desc": "IMPORTING_TSM",
+                "percent": "60"
+            },
+            {
+                "code": "0607",
+                "desc": "IMPORTING_HOOKUP",
+                "percent": "62"
+            },
+            {
+                "code": "0608",
+                "desc": "IMPORTING_EQUIP",
+                "percent": "64"
+            },
+            {
+                "code": "0609",
+                "desc": "IMPORTING_WIRE",
+                "percent": "66"
+            },
+            {
+                "code": "0610",
+                "desc": "IMPORTING_BUNDLE",
+                "percent": "68"
+            },
+            {
+                "code": "0612",
+                "desc": "IMPORTING_MFR",
+                "percent": "75"
+            },
+            {
+                "code": "0613",
+                "desc": "IMPORTING_FRMFIM",
+                "percent": "80"
+            },
+            {
+                "code": "0666",
+                "desc": "IMPORTING_ACM_RESOURCE",
+                "percent": "85"
+            },
+            {
+                "code": "0699",
+                "desc": "ERROR_WHILE_IMPORTING",
+                "percent": "100",
+                "type": "failure"
+            },
+            {
+                "code": "0700",
+                "desc": "WAITING_FOR_SYMLINK_TARGET",
+                "percent": "100",
+                "type": "waiting"
+            },
+            {
+                "code": "3099",
+                "desc": "ROLLBACK_FAILED",
+                "percent": "100",
+                "type": "failure"
+            },
+            {
+                "code": "1001",
+                "desc": "TOKEN_ERROR",
+                "percent": "100",
+                "type": "failure"
+            },
+            {
+                "code": "1002",
+                "desc": "RESOURCE_CREATION_ERROR",
+                "percent": "100",
+                "type": "failure"
+            },
+            {
+                "code": "3000",
+                "desc": "ROLLBACK_IN_PROGRESS",
+                "percent": "90",
+                "type": false
+            },
+            {
+                "code": "3001",
+                "desc": "ROLLBACK_SUCCESS",
+                "percent": "100",
+                "type": "success"
+            },
+            {
+                "code": "3100",
+                "desc": "DELETE_IN_PROGRESS",
+                "percent": "90"
+            },
+            {
+                "code": "3101",
+                "desc": "DELETE_SUCCESS",
+                "percent": "100",
+                "type": "success"
+            },
+            {
+                "code": "3199",
+                "desc": "DELETE_FAILED",
+                "percent": "100",
+                "type": "failure"
+            },
+            {
+                "code": "0999",
+                "desc": "AUTO_RELEASE_FAILED",
+                "percent": "100",
+                "type": "failure"
+            },
+            {
+                "code": "3200",
+                "desc": "WAIT_TO_DELETE",
+                "percent": "15"
+            },
+            {
+                "code": "3201",
+                "desc": "DELETING_IN_DATABASE",
+                "percent": "25"
+            },
+            {
+                "code": "3202",
+                "desc": "DELETING_FILE_SYSTEM",
+                "percent": "35"
+            },
+            {
+                "code": "3203",
+                "desc": "DELETING_SOLR",
+                "percent": "50"
+            },
+            {
+                "code": "3204",
+                "desc": "DELETING_ACM",
+                "percent": "75"
+            },
+            {
+                "code": "3210",
+                "desc": "DELETE_SUCCESS",
+                "percent": "100",
+                "type": "success"
+            },
+            {
+                "code": "3299",
+                "desc": "DELETE_FAIL ",
+                "percent": "100",
+                "type": "failure"
+            }
+        ]
+    }
+}

@@ -1,0 +1,190 @@
+/**
+  color-base is the style color to be used in Pills and tab and other areas.
+  Please note, when changing these colors - corresponding colors from stylesheet should be manually updated to be in sync.
+  So that - PDF print and feedback scenarios are consistent with viewer.
+  Also, ensure in pinpoint mobile - same is updated.
+ */
+.navbar-static-top {
+  background: #4f98ff !important;
+}
+.navbar-static-top a:hover {
+  color: #ffffff !important;
+}
+#html-content #tab-content .nav > li > a:focus,
+#html-content #tab-content .nav > li > a:hover {
+  background-color: #006dff !important;
+}
+#html-content #tab-content .nav-pills > li.active > a,
+#html-content #tab-content .nav-pills > li.active > a:focus,
+#html-content #tab-content .nav-pills > li.active > a:hover {
+  background-color: #271bcb !important;
+}
+#html-content #tab-content .nav-pills {
+  background-color: #4f98ff !important;
+}
+#html-content #tab-content .check-mark-styling {
+  color: #4f98ff !important;
+}
+#layout_layout_panel_left .pp-ui-widget-header:hover {
+  background: #271bcb !important;
+}
+#layout_layout_resizer_left:hover,
+#layout_layout_resizer_right:hover,
+#layout_innerLeftLayout_resizer_top:hover,
+#layout_innerRightLayout_resizer_top:hover {
+  background-color: #271bcb !important;
+}
+div #accordion .ui-state-active {
+  background: #006dff !important;
+}
+.nav-pills {
+  background-color: #4f98ff !important;
+}
+.nav-pills > li.active > a {
+  background-color: #4f98ff !important;
+}
+.nav-pills > li.active > a:focus {
+  background-color: #4f98ff !important;
+}
+#content #splash-content {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#content #splash-content img {
+  height: 65px !important;
+  width: 350px !important;
+  position: relative !important;
+  top: 50% !important;
+  text-align: center !important;
+  margin-top: auto !important;
+}
+#footer {
+  background: #10069f !important;
+}
+#header-menu {
+  background: #10069f !important;
+}
+#header-menu li {
+  background: #10069f !important;
+}
+#header-menu .menu-item-name,
+#header-menu #product-name a:hover {
+  background-image: url(../css/images/logo_name_rr.png) !important;
+  margin-left: -20px;
+  width: 121px !important;
+  height: 40px;
+  background-position: 0px 0px !important;
+}
+.btn-success,
+.btn-success:hover,
+.btn-primary,
+.btn-primary:hover,
+.btn-default,
+.btn-default:active,
+.btn-default:focus,
+.btn-default:hover {
+  background-color: #006dff !important;
+  background-image: none !important;
+  border-color: #10069f !important;
+  color: white !important;
+}
+.btn-secondary,
+.btn-secondary:hover {
+  color: #006dff;
+  background-color: white;
+}
+.btn-info,
+.btn-info:hover {
+  background-color: #4f98ff;
+  border-color: #10069f !important;
+}
+#content #splash-content img {
+  width: 0;
+  height: 0;
+  background-image: none;
+}
+#header-menu .menu-item-logo,
+#header-menu .menu-item-logo:hover {
+  background-image: none !important;
+  background-repeat: no-repeat !important;
+  padding-top: 3px !important;
+  background-position: 0px 0px !important;
+  width: 0px !important;
+  margin: 0px !important;
+}
+#header-menu #header-menu li:hover {
+  background-color: #10069f !important;
+}
+.nav-pills > li > a:hover {
+  background-color: #4f98ff !important;
+  height: 40px !important;
+}
+#header-menu .menu-item-logo:hover,
+#header-menu .menu-item-name:hover,
+#header-menu .menu-item-name:visited {
+  background-color: #10069f !important;
+  height: 44px;
+  min-height: 44px;
+}
+#header-menu .dropdown-menu a:hover {
+  color: #ffffff !important;
+  background-color: #10069f !important;
+}
+.fa-plus-square:before,
+.fa-minus-square:before {
+  color: #006dff;
+}
+#graphic .navbar.navbar-inverse.navbar-static-top {
+  background: #4f98ff !important;
+  border-color: #10069f !important;
+  color: white !important;
+}
+#filter .btn-normal {
+  background-color: #006dff !important;
+  background-image: none !important;
+  border-color: #10069f !important;
+}
+.alert-info {
+  color: white !important;
+  background-color: #006dff !important;
+  background-image: none !important;
+  border-color: #10069f !important;
+}
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+  background-color: #e6e6e6 !important;
+  opacity: 1 !important;
+}
+#viewAnnotations:hover {
+  background-color: #006dff !important;
+}
+#header-menu .v-separator {
+  background: #fcfafa !important;
+  display: inline-block !important;
+  height: 20px !important;
+  width: 2px !important;
+  margin-left: 0px !important;
+  margin-right: 10px !important;
+  margin-top: 12px !important;
+}
+#header-menu .history-item {
+  max-width: 250px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+}
+#header-menu li a {
+  color: #ffffff !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  background-color: transparent !important;
+  text-decoration: none !important;
+}
+#header-menu .menu-item-name, #header-menu #product-name a:hover {
+    background-position: 0px -3px !important;
+}
+#header-menu #menu-item-icons li {
+    padding-top:0px !important;
+}

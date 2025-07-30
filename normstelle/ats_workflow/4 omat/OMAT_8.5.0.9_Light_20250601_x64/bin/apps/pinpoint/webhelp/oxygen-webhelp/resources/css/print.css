@@ -1,0 +1,20 @@
+@media print{
+  /**
+   * Hide header and footer
+   */
+  .nav,
+  .navheader,
+  .footer,
+  .navfooter{
+    display:none;
+  }
+  
+  /**
+   * Remove shadows when printing.
+   */
+  *{
+    text-shadow:none !important;
+  }
+}
+
+

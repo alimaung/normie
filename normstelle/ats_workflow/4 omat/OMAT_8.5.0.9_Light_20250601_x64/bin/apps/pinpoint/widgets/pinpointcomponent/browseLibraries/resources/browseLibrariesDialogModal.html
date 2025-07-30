@@ -1,0 +1,45 @@
+<div id="browseLibrariesDialogModal">
+
+    <!-- Re-usable HTML stored in this SCRIPT element. Can be re-used by using "ng-include" -->
+    <script type="text/ng-template" id="browseLibrariesLibrary">
+        <div ng-click="vm.expandLibrary(child)">
+            <i class="fa fa-lg" ng-class="child.isExpanded? 'fa-minus-circle' : child.isLoadingChildren? 'fa-spinner fa-spin' : 'fa-plus-circle'"/>
+            <span class="panel-child">{{child.name}}</span>
+        </div>
+        <ul class="panel-remove-bullet panel-right-align" ng-if="child.children && child.children.length !== 0" ng-show="child.isExpanded" class="remove-bullet">
+            <li ng-repeat="child in child.children" class="panel-left-border" ng-if="child.type === null" ng-include="'browseLibrariesLibrary'">
+                <!--RECURSIVE: Re-use browseLibrariesLibrary -->
+            </li>
+            <li class="panel-left-border" ng-repeat="child in child.children"  ng-if="child.type !== null">
+                <div uib-tooltip="{{child.id === vm.$rootScope.selectedPublication.id? translations.currentPublicationUnselectable: ''}}">
+                    <div ng-click="child.isExpanded = !child.isExpanded" ng-class="child.id === vm.$rootScope.selectedPublication.id? 'disabled  reduce-opacity' : ''">
+                        <i class="fa fa-lg" ng-class="child.isExpanded? 'fa-minus-circle' : child.isLoadingChildren? 'fa-spin' : 'fa-plus-circle'"/>
+                        <span class="panel-child">{{child.description}}</span>
+                    </div>
+                </div>
+
+                <ul class="panel-remove-bullet panel-right-align" ng-show="child.isExpanded" >
+                    <li class="panel-left-border" ng-if="child.metadata.release !== null" ng-click="vm.selectLibraryPublicationRevision(child,null)">
+                        <i class="fa fa-lg fa-file-text"/>
+                        <a class="panel-child">{{translations.defaultRevision}}</a>
+                    </li>
+                    <li class="panel-left-border" ng-repeat="revision in child.revisions" ng-if="child.type !== 'ATA' && revision.versionType !=='draft'"
+                        ng-click="vm.selectLibraryPublicationRevision(child,revision)">
+                        <i class="fa fa-lg fa-file-text"/>
+                        <a class="panel-child">{{translations.revisionLabel}}:{{revision.release}} - {{revision.revdate}}</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    </script>
+
+
+    <div class="panel-library-list">
+        <ul class="panel-remove-bullet">
+            <li class="panel-list-spacing-border" ng-repeat="child in libraries" ng-include="'browseLibrariesLibrary'">
+                <!--RECURSIVE: Re-use browseLibrariesLibrary -->
+            </li>
+        </ul>
+    </div>
+
+</div>

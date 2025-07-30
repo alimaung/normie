@@ -1,0 +1,273 @@
+{
+    "timeout": 30000,
+    "logo": {
+        "name": "Pinpoint",
+        "titleKey": "header.title.logo",
+        "icon": "none",
+        "color": "none"
+    },
+    "counter": {
+        "name": "counter",
+        "icon": "fa-stack-1x",
+        "titleKey": "header.title.counter",
+        "isResponsive": true
+    },
+    "icons": [
+        {
+            "name": "ManageRestrictedFragment",
+            "titleKey": "header.title.manageRestrictedFragment",
+            "icon": "icon-key",
+            "isHidden": true,
+            "isResponsive": true
+        },
+        {
+            "name": "ImportStatus",
+            "titleKey": "header.title.importStatus",
+            "icon": "icon-dots-cloud",
+            "isHidden": true,
+            "customStyle": "customImportStatus",
+            "isResponsive": true,
+            "counterSettings": {
+                "isEnabled": true,
+                "counterVariable": "publicationStatusCount",
+                "count": 0
+            }
+        },
+        {
+            "name": "PublicationOperations",
+            "titleKey": "header.title.publicationOperations",
+            "icon": "icon-document-gear",
+            "customStyle": "customPublicationOperation",
+            "isHidden": true,
+            "type": "dropdown",
+    
+            "li_dropdown_items": [
+                {
+                    "name": "Release",
+                    "titleKey": "header.title.release",
+                    "displayTextKey": "header.displayText.release",
+                    "icon": "icon-download",
+                    "customStyle": "rotate-270",
+                    "isHidden": true
+                   
+                },
+                {
+                    "name": "Rollback",
+                    "titleKey": "header.title.rollback",
+                    "displayTextKey": "header.displayText.rollback",
+                    "icon": "icon-history",
+                    "isHidden": true
+                   
+                },
+                {
+                    "name": "RetryRollback",
+                    "titleKey": "header.title.retryRollback",
+                    "displayTextKey": "header.displayText.retryRollback",
+                    "icon": "icon-retry",
+                    "isHidden": true
+                },
+                {
+                    "name": "Resync",
+                    "titleKey": "header.title.resync",
+                    "displayTextKey": "header.displayText.resync",
+                    "icon": "icon-retry",
+                    "isHidden": true
+
+                },
+                {
+                    "name": "Reload",
+                    "titleKey": "header.title.reload",
+                    "displayTextKey": "header.displayText.reload",
+                    "icon": "icon-reset",
+                    "customStyle": "rotate-180",
+                    "isHidden": true
+                },
+                {
+                    "name": "ReleaseLog",
+                    "titleKey": "header.title.releaseLog",
+                    "displayTextKey": "header.displayText.releaseLog",
+                    "icon": "icon-list",
+                    "isHidden": true
+                },
+                {
+                    "name": "Delete",
+                    "titleKey": "header.title.delete",
+                    "displayTextKey": "header.displayText.delete",
+                    "icon": "icon-trash",
+                    "isHidden": true
+                },
+                {
+                    "name": "CRDMResync",
+                    "titleKey": "header.title.resync",
+                    "displayTextKey": "header.displayText.resync",
+                    "icon": "icon-retry",
+                    "isHidden": true
+                },
+                {
+                    "name": "CRDMReleaseLog",
+                    "titleKey": "header.title.releaseLog",
+                    "displayTextKey": "header.displayText.releaseLog",
+                    "icon": "icon-list",
+                    "isHidden": true
+
+                },
+                {
+                    "name": "MigrateAttachments",
+                    "titleKey": "header.title.migrateAttachments",
+                    "displayTextKey": "header.displayText.migrateAttachments",
+                    "icon": "icon-exit",
+                    "isHidden": true
+                }
+            ]
+        },
+        {
+            "name": "ManageCurrentRevision",
+            "titleKey": "header.title.manageCurrentRevision",
+            "icon": "icon-person-group",
+            "isHidden": true,
+            "isResponsive": true
+        },
+        {
+            "name": "ImportPinpointNeutralPackages",
+            "titleKey": "header.title.importPinpointNeutralPackages",
+            "icon": "icon-download",
+            "customStyle": "rotate-180",
+            "isHidden": true,
+            "isResponsive": true
+        },
+        {
+            "name": "ShoppingBasket",
+            "icon": "icon-shopping-cart",
+            "titleKey": "header.title.shoppingBasket",
+            "isResponsive": true,
+            "isHidden": true,
+            "counterSettings": {
+                "isEnabled": true,
+                "counterVariable": "shoppingCartCount",
+                "count": 0
+            }
+        },
+        {
+            "name": "Filter",
+            "titleKey": "header.title.filter",
+            "icon": "icon-filter",
+            "isResponsive": true
+        },
+        {
+            "name": "BookmarkList",
+            "titleKey": "header.title.bookmarkList",
+            "icon": "icon-bookmark-group",
+            "isResponsive": true
+        },
+        {
+            "name": "Refresh",
+            "titleKey": "header.title.refresh",
+            "icon": "icon-reset",
+            "isHidden": true,
+            "isResponsive": true
+        },
+        {
+            "name": "Print",
+            "titleKey": "header.title.print",
+            "icon": "icon-print", 
+            "isResponsive": true
+        },
+       
+        {
+            "name": "Pinpoint",
+            "titleKey": "header.title.pinpoint",
+            "icon": "icon-globe",
+            "isProduct": true,
+            "isActive": true,
+            "color": "#006EEE"
+        },
+        {
+            "name": "ACM",
+            "titleKey": "header.title.acm",
+            "icon": "icon-lock",
+            "isProduct": true,
+            "isHidden": true
+        },
+        {
+            "name": "Tools",
+            "titleKey": "header.title.tools",
+            "icon": "icon-tool",
+            "type": "dropdown",
+            "isHidden": true,
+            "li_dropdown_items": []
+        },
+        {
+            "name": "AnnotationExport",
+            "icon": "icon-download",
+            "titleKey": "header.title.annotation.exportAnnotations",
+            "isAdditionalItem": true
+        },
+        {
+            "name": "AnnotationImport",
+            "icon": "icon-download",
+            "customStyle": "rotate-180",
+            "titleKey": "header.title.annotation.importAnnotations",
+            "isAdditionalItem": true
+        },
+       
+        {
+            "name": "Configuration",
+            "titleKey": "header.title.configuration",
+            "icon": "icon-gear",
+            "isGreyout": false,
+            "isResponsive": true
+        },
+        {
+            "titleKey": "header.title.language.selector",
+            "icon": "icon-language",
+            "type": "dropdown",
+            "li_dropdown_items": [
+                {
+                    "name": "header.title.language.en",
+                    "titleKey": "header.title.language.en",
+                    "locale": "en"
+                },
+                {
+                    "name": "header.title.language.fr",
+                    "titleKey": "header.title.language.fr",
+                    "locale": "fr"
+
+                }
+            ]
+        },
+        {
+            "id": "brightness-controller",
+            "name": "Brightness",
+            "icon": "icon-brightness",
+            "titleKey": "header.title.brightness",
+            "inputType": "range",
+            "isAdditionalItem": true
+        },
+        {
+            "name": "Help",
+            "titleKey": "header.title.help",
+            "icon": "icon-book",
+            "isAdditionalItem": true
+        },
+        {
+            "name": "License",
+            "icon": "icon-license",
+            "titleKey": "header.title.license",
+            "isAdditionalItem": true,
+            "isHidden": true
+        },
+        {
+            "name": "Logout",
+            "titleKey": "header.title.logout",
+            "icon": "icon-exit",
+            "isAdditionalItem": true
+        },
+        {
+            "name": "AdditionalItems",
+            "titleKey": "header.title.more",
+            "icon": "icon-more",
+            "type": "dropdown",
+            "li_dropdown_items": []
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+{
+    "monospace" : ["OCRBClose","CourierNewPSMT"],
+    "fantasy" : ["TimesNewRomanPSMT","TimesNewRomanPS-BoldMT","TimesNewRomanPS-ItalicMT"],
+    "san-serif" : ["ArialMT", "Arial", "Arial-BoldMT"]
+  }

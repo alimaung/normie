@@ -1,0 +1,18 @@
+{
+  "categories": {
+    "SUPPLEMENT": {
+      "title": "Supplement",
+      "icon": "Supplement.png",
+      "color": "#FFB507",
+      "icon-priority": 1,
+      "alert-type": "IMPORTANT"
+    },
+    "TEMPORARY-REVISION": {
+      "title": "Temporary Revision",
+      "icon": "TR.png",
+      "color": "#FA6400",
+      "icon-priority": 100,
+      "alert-type": "NORMAL"
+    }
+  }
+}

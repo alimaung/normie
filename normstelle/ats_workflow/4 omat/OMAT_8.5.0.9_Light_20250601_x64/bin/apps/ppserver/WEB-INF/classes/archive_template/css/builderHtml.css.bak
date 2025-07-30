@@ -1,0 +1,3584 @@
+.deleted
+{
+  background-position: 0px 0px;
+}
+
+body,table,th,td,div,span,p,a
+{
+  font-family:arial,helvetica,sans-serif;font-size:10pt;margin:0pt;
+  line-height:20pt;
+  color:inherit;
+}
+
+div {
+overflow:hidden;
+}
+
+.applic-nowrap{
+    word-break:break-all;word-wrap:break-word
+}
+
+.area-start
+{
+  width:12%;
+}
+
+.area-end
+{
+  width:7%;
+}
+
+.image-area
+{
+    width:100%;
+    
+}
+.page-footer
+{
+  width:100%;
+  border-top:solid 1px black;
+}
+
+.centerhead1-h
+{font-size:14pt;font-weight:bold;text-align:center;padding-bottom:15pt;}
+
+.centerhead1-t
+{font-size:14pt;font-weight:bold;text-align:center;padding-bottom:10pt;}
+
+.centerhead2-h
+{font-size:14pt;font-weight:bold;font-style:italic;text-align:center;padding-bottom:15pt;}
+
+.centerhead2-t
+{font-size:14pt;font-weight:bold;font-style:italic;text-align:center;padding-bottom:10pt;}
+
+.centerhead2-r
+{font-size:14pt;font-weight:bold;text-align:center;padding-bottom:5pt;}
+
+.centerhead-text-to-heading
+{padding-top:27pt;}
+
+.centerhead-table-to-heading
+{padding-top:35pt;}
+
+.sidehead0-h
+{font-size:14pt;font-weight:bold;}
+
+.sidehead0-t
+{font-size:14pt;font-weight:bold;}
+
+.sidehead1
+{
+ font-size:14pt;font-weight:bold;text-align:left;
+}
+
+.sidehead2
+{font-size:12pt;font-weight:bold;text-align:left;}
+
+.sidehead3
+{font-size:11pt;font-weight:bold;text-align:left;}
+
+.sidehead4
+{font-size:11pt;text-align:left;}
+
+.sidehead5
+{font-size:11pt;text-align:left;}
+
+.tab-pg-area
+{width:210mm}
+
+.tab-img-area
+{width:25mm}
+
+.tab-type-area
+{width:30mm}
+
+table#containerTable td {padding-top: 0.5em;}
+
+.tocEntry
+{background: transparent url(dots.gif) center left repeat-x; width:87% ;text-align: left;}
+/*10% left for page number*/
+
+.item
+{background-color: white;  padding-right: 0.5em;}
+
+.pageNum
+{text-align: right; vertical-align: bottom; width:10%;align:right;}
+
+.sidehead1Num
+{width:3%;}
+
+.simpleNum
+{width:12%
+ text-align:left
+}
+.randListTitle
+{
+ text-align:left;font-weight:bold;padding-bottom:4;
+}
+
+.figureTitle
+{
+ text-align:center;font-weight:bold;font-style:italic;
+}
+
+.ndash
+{
+ margin: 0;padding-left: 15;padding-top:4pt;list-style: url(ndash.jpg) square;
+}
+
+.randListSimple
+{
+ margin: 0;padding-left: 15;padding-top:4pt;list-style: none;
+}
+
+.type-area-content
+{
+  font-size:10pt;width:
+  79%;
+}
+
+.caution-warning-spec 
+{
+	padding: 10px;
+	background:white;
+	border: 3px solid black;
+	border-radius: 10px;
+}
+
+.caution-warning-spec .title
+{
+	vertical-align: top;
+	text-decoration: underline;
+	font-weight: bold;
+}
+
+.caution-warning-spec .content
+{
+	padding-left: 50px;
+}
+
+.caution-warning-outer-border 
+{
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-khtml-border-radius: 7px;
+	border-radius: 7px;
+
+	border: 1px solid black;
+	margin-top: 14px;
+	margin-bottom: 14px;
+}
+
+.warning, .warningSpec
+{
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -khtml-border-radius: 7px;
+  border-radius: 7px;
+  padding:15px;
+  page-break-inside: avoid;
+  border:1pt solid black;
+  background-image:url(data:image/gif;base64,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
+}
+
+.caution, .cautionSpec{
+  -moz-border-radius: 7px;
+  -webkit-border-radius: 7px;
+  -khtml-border-radius: 7px;
+   border-radius: 7px;
+   padding:15px;
+   page-break-inside: avoid;
+   border:1pt solid black;
+   background-image:url(data:image/gif;base64,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
+}
+
+.wc-text-area {
+-moz-border-radius: 7px;
+-webkit-border-radius: 7px;
+-khtml-border-radius: 7px;
+border-radius: 7px;
+background:white;
+border:1pt solid black;
+}
+
+.warning-caution-caption
+{
+  font-size:14;
+  font-weight:bold;
+  text-align:center;
+}
+
+.warning-caution-label{
+text-decoration:underline;font-weight:bold;
+font-size:14pt
+}
+
+.warning-caution-content{
+text-align:left;font-weight:bold;text-transform: uppercase;
+}
+
+.tableTitle
+{
+  font-weight:bold;
+  text-align:center;
+}
+.italic
+{
+  font-style:italic;
+}
+
+.bordercell, .spectable td
+{
+  border-style:solid;
+  border-color: black;
+  border-width: 1px;
+  width : 200px;
+  /*border-top:solid 1px black;
+  border-bottom:solid 1px black;*/
+}
+
+.indent
+{
+  margin-left: 20px;
+}
+
+.spectable
+{
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.table-header
+{
+   background-color:#eeeeee;
+}
+
+/* wire data */
+.wire-table-header
+{
+   background-color:#e4e4e4;
+   font-weight:bold;
+}
+.wire-table-header-level1{
+  background-color:#f1f1f1;
+}
+.wire-table-header-level2
+{
+background-color:#f8f8f8;
+font-weight:bold;
+}
+.wire-table-header-big
+{
+   font-weight:bold;
+   font-size:18px;
+   background-color:#d4d4d4;
+}
+.wire-table
+{
+  margin-bottom:30px;
+  border-style: solid;
+  border-color:black;
+  border-width:2px;
+  width:100%;
+  border-collapse: collapse;
+  border-spacing:0;
+}
+.wire-table td
+{
+  border-style:solid;
+  border-color: black;
+  border-width: 1px;
+}
+.pgwide
+{
+    position: relative;
+    overflow: visible;
+    margin: 0;
+    padding: 0;
+    right: 0;
+    left: -112pt;
+    width:100%;
+
+}
+.paramNumberTitle {
+    padding-top:0pt;
+}
+	.changeMark_fontColor_COC { color: #6633FF; }
+	.changeMark_fontColor_COC_Delete {  display: none; }
+	.changeMark_fontColor_OEM { color: #FF00FF; }
+	.changeMark_fontColor_OEM_Delete { text-decoration: line-through; color: #FF00FF; }
+
+.add     { background-color: #99FF99; }
+.delete  { text-decoration: line-through;
+            background-color: #FF7F7F; }
+.modify  { background-color: #FFFF99; }
+.COC        { background-color: #87ceea; }
+.commercialClassification  { background-color: #32CD32; }
+  .coc_changeMark { background-color: #006000; }
+.delete_coc_changemark { text-decoration: line-through;
+                 background-color: #006000; }
+.addCOC       { border-style:solid; border-width:4px; border-color: #87ceea;
+              background-color: #006400; }
+.deleteCOC    { border-style:solid; border-width:4px; border-color: #87ceea;
+              text-decoration: line-through;
+              background-color: #FF7F7F; }
+.modifyCOC    { border-style:solid; border-width:4px; border-color: #87ceea;  
+              background-color: #F7FC62; }
+tr.addCOC    td { border-style:solid; border-width:4px; border-color: #87ceea;
+              background-color: #006400; }
+tr.deleteCOC td { border-style:solid; border-width:4px; border-color: #87ceea;
+              text-decoration: line-through;
+              background-color: #FF7F7F; }
+tr.modifyCOC td { border-style:solid; border-width:4px; border-color: #87ceea;  
+              background-color: #F7FC62; }
+
+.warning-message-style {
+color:#c4c4c4; font-style: italic;
+}    
+.airbus-title {
+}
+.underline{
+text-decoration: underline;
+}
+.bold{
+font-weight:bold;
+}
+.airbus-number{
+
+}
+.line-margin-top{
+  margin-top:5pt;
+}
+.line-margin-bottom{
+  margin-bottom:5pt;
+}
+.blue{
+  color:blue;
+}
+.steps-table{
+width:100%;border:0px;padding:0px;margin-bottom:0pt;border-collapse:collapse;table-layout: fixed
+}
+.number-col-width{
+  width:34px;
+}
+.airbus-table{
+  width:100%;border:1px solid black;padding:0px;border-collapse:collapse;border-spacing:0;
+}
+.content-padding-left{
+  padding-left:34px;
+}
+.airbus-table th,.airbus-table td{
+  padding:2pt;border:1px solid black;
+}
+.airbus-table th, #csnTableHeader th{
+  background-color:#c4c4c4; text-align:center;
+}
+.gra-align{
+text-align:center;
+}
+.note{
+  width:100%;vertical-align: top;
+}
+.note-label{
+  width:12mm; 
+  vertical-align:top;
+}
+
+#wireTable ul {
+  margin:0px;
+}
+    
+#wireInfoContent .wireinfo-item{
+float:left
+}
+
+#wireInfoContent .item-width25{
+width:25%;
+}
+
+#wireInfoContent .item-width100{
+width:100%;
+}
+
+#wireInfoContent .item-header{
+}
+
+#wireInfoContent .item-content{
+min-height:55px;overflow:auto;border-right:1px solid white; border-bottom:1px solid white;display: table;width:100%;
+}
+
+#wireInfoContent .item-content-cell{
+display:table-cell;vertical-align: middle;
+border-top:1px solid black;border-right:1px solid black;padding:0px;
+}
+
+span.documentLink{
+color:blue; text-decoration: underline; cursor:pointer;
+}
+
+span.graphicSheetLink{
+  color:blue;
+  text-decoration: underline; 
+  cursor:pointer;
+  font-size:12pt;
+  font-weight:bold;
+  text-align:center;
+  margin-bottom:10pt;
+  display:block;
+}
+
+.graphicSheetLink  .figureTitle {
+  color:blue;
+}
+
+span.multimediaLink{
+  color:blue;
+  text-decoration: underline; 
+  cursor:pointer;
+  font-size:12pt;
+  font-weight:bold;
+  text-align:center;
+  margin-bottom:10pt;
+  display:block;
+}
+
+.multimediaLink  .figureTitle {
+  color:blue;
+}
+
+span.partCirLink{
+color:blue; text-decoration: underline; cursor:pointer;
+}
+
+span.circuitBreakerCirLink{
+color:blue; text-decoration: underline; cursor:pointer;
+}
+
+span.externalPubRefLink{
+color:blue; text-decoration: underline; cursor:pointer;
+}
+.externalPubRefLink-RII{
+color: rgb(255, 0, 255); display: block; font-size: 12pt; font-weight: bold; text-decoration: underline; cursor: pointer; text-align: center;
+}	
+
+.applicText{
+color:#2E2E2E;font-weight:normal;font-style:normal;background-color:#66FF66
+}
+
+span.warningCirHtml, span.cautionCirHtml {
+  color:blue; text-decoration: underline; cursor:pointer;
+}
+
+span.zoneCirHtml{
+  color:blue; text-decoration: underline; cursor:pointer;
+}
+
+span.cirImageLink{
+	color:blue; text-decoration: underline; cursor:pointer;
+}
+span.link{
+    color:blue; text-decoration: underline; cursor:pointer;
+}
+
+span.breakdownCirLink{
+  color:blue; text-decoration: underline; cursor:pointer;
+}
+span.accessPointCirHtml{
+color:blue; text-decoration: underline; cursor:pointer;
+}
+span.toolCirLink{
+color:blue; text-decoration: underline; cursor:pointer;
+}
+span.supplyCirLink{
+color:blue; text-decoration: underline; cursor:pointer;
+}
+span.supplyRequirementCirLink{
+color:blue; text-decoration: underline; cursor:pointer;
+}
+span.FINCirLink{
+color:blue; text-decoration: underline; cursor:pointer;
+}
+span.enterpriseCirLink
+{color:blue; text-decoration: underline; cursor:pointer;}
+.AttachmentCirLink{color:blue; text-decoration: underline; cursor:pointer;}
+
+.oversizedundersizedindicator,.proprietorycode,.leadtimenegotiableindicator {
+    display:none;
+}
+.marginBottom0{
+  margin-bottom:0px;
+}
+.textLeft{
+  text-align:left;
+}
+.specDocument{
+	display:none;
+}
+.graphic-inter-link-mixed{text-align:left;font-weight:normal;font-size:10pt;display:inline;}
+
+span.graphic-inter-link-mixed{text-align:left;font-weight:normal;font-size:10pt;display:inline;}
+
+.non-isn{text-align:center;margin-top:10pt;margin-bottom:10pt;font-weight:bold}
+
+/*KCT-5352 TODO: As an Architect, I want to wrapp up css changes in 7.4 release, so we keep the same styling as last releasse*/
+/*common class name*/
+.debug{text-align:center;color:red}
+
+.itemSeqNumber .label{color:blue;font-weight:bold}
+
+.display-esn-msg{text-align:center;color:Red;padding:2mm}
+
+.hand{cursor: pointer;}
+
+.height100 {height:100%}
+
+.padding0 {padding: 0px;}
+
+.build-page-div {border: none; width: 100%; height: 700px;}
+
+/*elements mode type*/
+.graphic-inter-link-mixed{text-align:left;font-weight:normal;font-size:10pt;display:inline;}
+
+span.graphic-inter-link-mixed{text-align:left;font-weight:normal;font-size:10pt;display:inline;}
+
+.ata-ident-show{font-size:13pt;font-weight:bold;color:#6666aa}
+
+.externalPubCode-refs-table-row{color:blue;text-decoration:underline}
+
+.pmCode-refs-table-row{color:blue;text-decoration:underline}
+
+/*Call templates class name and element child class name*/
+.generateTOC-td{
+    padding-left:14mm;
+}
+
+.generateLOT-div{
+    padding-top:24pt
+}
+
+.generateLOT-div .generateLOT-td {padding-left:14mm;}
+
+.generateLOF-div {padding-top:24pt;padding-bottom:35pt;}
+
+.generateLOF-div .generateLOF-td {padding-left:14mm;}
+
+.dmodule-layout-td {padding-left:2%;padding-right:5%}
+
+.layout-top-middle-div {font-size:11pt ; font-weight:bold;}
+
+.dml-layout-table {border-bottom:2px solid black;}
+
+.dml-layout-td {text-align:right}
+
+.comment-layout-table {border-bottom:2px solid black;}
+
+.insert-iframe-tooltip-div {display:none;}
+
+.empty-list-p {text-align: center; color: #AAAAAA; font-weight: bold; font-size: small; font-family: Verdana,Arial,Geneva,sans-serif;}
+
+.html-footer-td1 {text-align:right}
+
+.html-footer-td2 {text-align:center}
+
+.html-footer-td3 {text-align:right}
+
+.generate.content-div {padding-top:0pt}
+
+.generate.content-div .font {font-size:12pt}
+
+.showDmTitle-div {padding-top:5mm}
+
+.generateNoRefTable-table {border-bottom:solid 1px black;border-top:solid 2px black;margin-bottom:9pt;border-collapse: collapse;border-left: solid 1px;}
+  
+.generateNoRefTable-table .generateNoRefTable-td1{font-weight:bold;border: 1px solid;}
+
+.generateNoRefTable-table .generateNoRefTable-td2{font-weight:bold;border: 1px solid;}
+
+.generateNoRefTable-table .generateNoRefTable-td3{border-top:solid 1px black;border: 1px solid;}
+
+.insert-multimedia-template-img {border: none; cursor: pointer;}
+
+.insert-graphic-template-img{border: none; cursor: pointer;}
+
+.insert-graphic-template-img1 {border: medium outset grey;}
+
+.insert-graphic-template-img2 {border: none; cursor: pointer; visibility: hidden;}
+
+.make-para-title-td{padding-bottom:0}
+
+.show-uom{font-style:italic}
+
+.show-ref-span1{color:blue; text-decoration: underline;}
+
+.show-ref-span2{color:blue}
+
+.identNumber-span,.zoneRef-span,.accessPointRef-span,.circuitBreakerRef-span,.functionalItemRef-span,.controlIndicatorRef-span,.toolRef-span,.supplyRqmtRef-span,.materialSetRef-span,.partRef-span,.supplyRef-span{font-weight:bold;color:#880088}
+
+.dmRef-span,.externalPubRef-span,.pmRef-span{font-weight:bold}
+
+.refs-table-table{border-collapse:collapse;
+                  border-bottom:solid 1px black;
+                  border-top:solid 2px black}
+                  
+.refs-table-with-title{
+    margin-top:8pt;
+}
+
+.reqSafety-div, .reqPersons-table-div, .reqSupportEquips-div,.reqSupplies-div,.reqSpares-div,.reqCondGroup-table-div{clear:left}
+
+.table-cell{padding:2pt}
+
+.preliminaryRqmts-table-name-div {float:left}
+
+.preliminaryRqmts-table-name-overflow{overflow:hidden}
+
+.reqCondCircuitBreaker-td {padding-right:5mm}
+
+.proceduralStep-table,.commonInfoDescrPara-table{border-collapse: collapse;}
+
+.listItem .para, .listItem .copyrightPara, .listItem .notePara {line-height:19pt;}
+
+.taskDuration-table {margin-left:30pt}
+
+.taskDuration-div2 {margin-left:2pt}
+
+.taskDuration-div1 {margin-left:50pt}
+
+.avehcfg-table {border-collapse:collapse;
+                  border-bottom:solid 1px black;
+                  border-top:solid 1px black}
+                  
+.avehcfg-top-cell-td{border-collapse:collapse;
+               border-bottom:solid 1px black}
+
+.generateACTReferenceTable {text-align:left;font-weight:bold;font-size:14pt;color:red}
+.generateACTReferenceTable-div {height:40px;}
+.generateACTReferenceTable-table {border-collapse:collapse;border:none;}
+
+.showApplic-i1 { color:magenta;font-weight:bold;color:magenta; }
+.showApplic-i2 { color:magenta; }
+
+/*	fault.table.cell
+		border-color:black;border-width:1px;margin:2pt;
+*/
+.doDetectionInfoTable-td ,.doContextAndIsolationInfoTable-td,.doLocateAndRepairTable-td,.doIsolateDetectedFaultTable-td,.doFaultIsolationTestRow-td ,.doRemarksRow-td,.doRepairRow-td {border-color:black;border-width:1px;margin:2pt;}
+.doDetectionInfoTable-lru-label,.doDetectionInfoTable-sru-label {font-weight:bold;}
+.doContextAndIsolationInfoTable-faultContext-label,.doContextAndIsolationInfoTable-faultIsolationRef-label,.doContextAndIsolationInfoTable-diagnosticsReason-label,.doContextAndIsolationInfoTable-locateAndRepairLruItem-label,.doContextAndIsolationInfoTable-locateAndRepairSruItem-label,.doContextAndIsolationInfoTable-lruItem-label,.doContextAndIsolationInfoTable-sruItem-label  {font-weight:bold;}
+.doContextAndIsolationInfoTable-diagnosticsReason-refs {font-style:italic}
+.doLocateAndRepairTable-locateAndRepairLruItem-label {font-weight:bold;}
+.doIsolateDetectedFaultTable-faultIsolationRef-div,.doIsolateDetectedFaultTable-lru-label{margin-bottom:4pt}
+.doIsolateDetectedFaultTable-faultIsolationRef-label,.doFaultIsolationTestRow-testDescr-refs,.doFaultIsolationTestRow-testParameters,.doFaultIsolationTestRow-testParameters-refs,.doFaultIsolationTestRow-testProcedure,.doFaultLine-label {font-style:italic}
+.doFaultIsolationTestRow-testDescr-testName ,.doRemarksRow-label,.doRepairRow-label {font-weight:bold;}
+
+.doLruSruTable-td1,.doLruSruTable-td2,.doLruSruTable-td3{font-style:italic;}
+
+.genIssueInfo-div {font-weight:bold;font-size:14pt;}
+.genPubAuth-div {font-size:8pt;margin-top:40pt;}
+
+.genManuInfo-div {font-size:8pt;}
+.genManuInfo-span {float:right;}
+
+.genTOC-caption,.genDefaultTable-caption,.genLOEPTable-caption,.genLOEDMTable-caption,.genHighlightsWithReasonsTable-caption {margin-bottom:20px;}
+.genTOC-span,.genDefaultTable-span,.genLOEPTable-span,.genLOEDMTable-span,.genHighlightsWithReasonsTable-span,.genHighlightsWithInstructionsTable-span {font-size:20pt;}
+
+.genDefaultTable-table {margin-top:20pt;}
+
+.genHighlightsWithReasonsTable-div {font-size:20pt;margin-bottom:20px;}
+
+.genHighlightsWithInstructionsTable-table {margin-bottom:15px;}
+
+.frontmatter-genTH {border-top:solid;border-bottom:solid;}
+
+/*elements and attributes class name*/
+.dmodule { }
+    
+.identAndStatusSection { }
+    
+.dmAddress { }
+    
+.dmIdent { }
+    
+.identExtension { }
+    
+.dmCode { }
+    
+.language { }
+    
+.issueInfo { }
+    
+.dmAddressItems { }
+    
+.issueDate { }
+    
+.dmTitle { }
+    
+.techName { }
+    
+.infoName { }
+    
+.dmStatus { }
+    
+.sourceDmIdent { }
+    
+.repositorySourceDmIdent { }
+    
+.security { }
+    
+.derivativeClassification { }
+    
+.classificationActionGroup { }
+    
+.classificationAction { }
+    
+.valueAfterAction { }
+    
+.businessUnit { }
+
+.businessUnit-div2{padding-left:10pt;}
+
+.businessUnit-div1{border-bottom:solid 1pt black;}
+    
+.businessUnitName { }
+    
+.businessUnitAddress { }
+    
+.department { }
+    
+.street { }
+    
+.postOfficeBox { }
+    
+.postalZipCode { }
+    
+.city { }
+    
+.country { }
+    
+.state { }
+    
+.province { }
+    
+.building { }
+    
+.room { }
+    
+.phoneNumber { }
+    
+.faxNumber { }
+    
+.email { }
+    
+.internet { }
+    
+.SITA { }
+    
+.contactPerson { }
+
+.contactPerson-label{font-weight:bold}
+
+.contactPerson-span{padding-left:5pt}
+    
+.lastName { }
+    
+.middleName { }
+    
+.firstName { }
+    
+.jobTitle { }
+
+.jobTitle-span {font-weight:bold}
+    
+.contactPersonAddress { }
+
+.contactPersonAddress-label{font-weight:bold}
+    
+.derivativeSource { }
+    
+.dataRestrictions { }
+    
+.restrictionInstructions { }
+    
+.dataDistribution { }
+.dataDistribution-div,.exportRegistrationStmt-div,.dataHandling-div,.dataDestruction-div,.dataDisclosure-div,.supersedure-div,.copyright-div,.policyStatement-div,.dataConds-div{font-size:8pt;margin-bottom:4pt;} 
+   
+.exportControl { }
+    
+.exportRegistrationStmt { }
+    
+.simplePara { }
+    
+.subScript { }
+    
+.superScript { }
+    
+.dmRef {border:1px solid !important; border-collapse: collapse; }
+    
+.dmRefIdent { }
+    
+.dmRefAddressItems { }
+    
+.behavior { }
+    
+.exportRegistrationCode { }
+    
+.dataHandling { }
+    
+.dataDestruction { }
+    
+.dataDisclosure { }
+    
+.supersedure {color:red; font-weight:bold }
+
+.supersedure .warning-span {text-decoration:underline}
+    
+.restrictionInfo { }
+    
+.copyright { }
+    
+.copyrightPara { }
+    
+.emphasis { }
+    
+.functionalItemRef { }
+    
+.name { }
+    
+.shortName { }
+    
+.refs { }
+    
+.pmRef { }
+    
+.pmRefIdent { }
+    
+.pmCode { }
+    
+.pmRefAddressItems { }
+    
+.pmTitle { }
+    
+.responsiblePartnerCompany { }
+    
+.enterpriseName { }
+    
+.pubMedia { }
+    
+.shortPmTitle {font-weight:bold;text-decoration:underline }
+    
+.externalPubRef {border:1px solid !important; border-collapse: collapse;  }
+    
+.externalPubRefIdent { }
+    
+.externalPubCode { }
+    
+.indexFlag { }
+    
+.acronym { }
+    
+.acronymTerm {color:blue }
+    
+.acronymDefinition { }
+    
+.verbatimText { }
+
+.externalPubTitle{}
+    
+.externalPubTitle-refs-table-row {color:blue;text-decoration:underline }
+    
+.externalPubIssueInfo { }
+    
+.externalPubIssue { }
+    
+.externalPubRefAddressItems { }
+    
+.externalPubIssueDate { }
+    
+.shortExternalPubTitle {font-weight:bold;text-decoration:underline }
+    
+.circuitBreakerRef { }
+
+.circuitBreakerRef-span {font-weight:bold;color:#880088}
+    
+.controlIndicatorRef { }
+    
+.inlineSignificantData { }
+    
+.quantity { }
+
+.quantity-label{color:gray}
+    
+.quantityGroup { }
+    
+.quantityValue { }
+    
+.quantityTolerance { }
+    
+.zoneRef { }
+
+.zoneRef-td{border-right:solid 1px black}
+    
+.accessPointRef { }
+
+.accessPointRef-span {font-weight:bold;color:#880088}
+
+.accessPointRef-td{border:solid 1px black}
+    
+.identNumber { }
+    
+.manufacturerCode { }
+    
+.partAndSerialNumber { }
+    
+.partNumber { }
+    
+.serialNumber { }
+    
+.internalRef { }
+    
+.changeInline { }
+    
+.symbol { }
+    
+.footnote {margin-top:10px;margin-bottom:10px }
+
+.footnote-td{vertical-align:top;width:12mm}
+
+.circuitBreakerDescrGroup .footnote-td{clear:both}
+
+.circuitBreakerDescrGroup .footnote-div1{float:left;width:20pt}
+
+.circuitBreakerDescrGroup .footnote-div2{vertical-align:top;width:12mm}
+    
+.para { }
+    
+.sequentialList { }
+    
+.title { }
+    
+.listItem { }
+    
+.note { }
+    
+.notePara { }
+    
+.caption { }
+    
+.captionLine { }
+    
+.attentionSequentialList { }
+    
+.attentionSequentialListItem { }
+    
+.attentionListItemPara { }
+    
+.attentionRandomList { }
+    
+.attentionRandomListItem { }
+    
+.randomList { }
+
+.randomList .listItem{overflow: visible}
+
+.randomList .listItem-div1{width:7mm; float:left;line-height:19pt}
+
+.randomList .listItem-div2{margin-left:7mm;overflow: visible}
+
+.randomList .listItem-first{margin-bottom:8pt}
+    
+.definitionList { }
+
+.definitionList .title{font-style:italic;margin-top:5px;margin-bootom:5px}
+    
+.definitionListHeader { }
+    
+.termTitle {font-weight:bold;text-decoration:underline }
+    
+.definitionTitle {font-weight:bold;text-decoration:underline;margin:0px }
+    
+.definitionListItem { }
+    
+.listItemTerm {width:40%;vertical-align:top }
+    
+.listItemDefinition {width:60%;vertical-align:top }
+    
+.footnoteRef { }
+    
+.captionGroup { }
+    
+.colspec { }
+    
+.spanspec { }
+    
+.captionBody { }
+    
+.captionRow { }
+    
+.captionEntry { }
+    
+.captionText { }
+    
+.policyStatement { }
+    
+.dataConds { }
+    
+.logo { }
+    
+.originator { }
+    
+.applicCrossRefTableRef { }
+    
+.applic { }
+    
+.displayText { }
+    
+.assert { }
+    
+.evaluate { }
+    
+.applicRef { }
+    
+.techStandard { }
+    
+.authorityInfoAndTp { }
+    
+.authorityInfo { }
+    
+.techPubBase { }
+    
+.authorityExceptions { }
+    
+.productConfiguration { }
+    
+.excludedModification { }
+    
+.additionalModification { }
+    
+.retrofit { }
+    
+.modification { }
+    
+.modificationTitle { }
+    
+.authorityNotes { }
+    
+.brexDmRef { }
+    
+.qualityAssurance { }
+    
+.unverified { }
+    
+.firstVerification { }
+    
+.secondVerification { }
+    
+.systemBreakdownCode { }
+    
+.functionalItemCode { }
+    
+.skillLevel { }
+    
+.reasonForUpdate { }
+    
+.simpleRefPara { }
+    
+.productSafety { }
+    
+.remarks { }
+    
+.content { }
+.content-fault-div1,.content-fault-span1,.content-fault-span2 { font-size:12pt }
+    
+.referencedApplicGroup { }
+    
+.referencedApplicGroupRef { }
+    
+.applicCrossRefTable {text-align:center;font-weight:bold;font-size:14pt;}
+    
+.applicCrossRefTableCatalog { }
+    
+.productDefinitionRelationship { }
+    
+.externalAssert { }
+    
+.associate { }
+    
+.productAttributeList { }
+.productAttributeList-table {border-collapse:collapse;border:solid 1px black}
+.productAttributeList-th,.productAttributeList-td { border:solid 1px black }
+    
+.productAttribute {border:solid #000 1px;padding:5px 5px 5px 5px;text-align:left;}
+    
+.displayName { }
+    
+.descr { }
+    
+.prompt { }
+    
+.paraBasic { }
+    
+.enumeration { }
+    
+.externalProductAttribute { }
+.externalProductAttribute-td  {border:solid 1px black}
+    
+.condCrossRefTableRef { }
+    
+.productCrossRefTableRef { }
+    
+.brex { }
+.brex-div { margin-top:8pt;}
+    
+.commonInfo {border-collapse: collapse; }
+    
+.figure { }
+    
+.graphic { }
+
+.graphic-div {text-align:center}
+    
+.hotspot { }
+    
+.catalogSeqNumberRef { }
+    
+.reasonForAmendment { }
+    
+.legend {margin-bottom:8pt }
+    
+.figureAlts { }
+    
+.commonInfoDescrPara { }
+    
+/*.warning { }*/
+    
+.warningAndCautionPara {text-transform: uppercase; font-weight: bold }
+    
+/*.caution { }*/
+    
+.multimedia { }
+    
+.multimediaObject { }
+    
+.parameter { }
+    
+.multimediaAlts { }
+    
+.foldout {text-align:center;border-bottom-style:solid;border-bottom-color:transparent;border-bottom-width:10pt }
+
+.foldout span {color:gray}
+
+.table { }
+
+.table-div{width:90%}
+    
+.tgroup { }
+    
+.thead { }
+    
+.row { }
+.row:before,
+.row:after{
+  content:none;
+}
+    
+.entry { }
+    
+.tfoot { }
+    
+.tbody { }
+    
+.commonInfoDescrParaAlts { }
+    
+.snsRules { }
+    
+.brDecisionRef { }
+    
+.snsDescr { }
+.snsDescr-div { font-weight:bold;text-align:center;font-size:14pt }
+    
+.snsSystem { }
+    
+.snsCode { }
+.snsCode-span,.snsTitle-span{ font-weight:bold}
+    
+.snsTitle { }
+    
+.snsSubSystem { }
+.snsSubSystem-div,.snsSubSubSystem-div,.snsAssy-div { margin-left:15pt }    
+    
+.snsSubSubSystem { }
+    
+.snsAssy { }
+.snsAssy-title { font-weight:bold }
+    
+.contextRules { }
+.contextRules-table { margin-bottom:5pt; }
+.contextRules-title { font-weight:bold; }
+    
+.structureObjectRuleGroup { }
+    
+.structureObjectRule { }
+.structureObjectRule-table { margin-bottom:15pt; }
+.structureObjectRule-table .objectValueTable { border-collapse:collapse;border-bottom:solid 1px black;border-top:solid 1px black;margin-bottom:8pt;}
+.structureObjectRule-table .objectValueTh { border-bottom:solid 1px black; }
+    
+.objectPath { }
+    
+.objectUse { }
+    
+.objectValue { }
+    
+.notationRuleList { }
+    
+.notationRule { }
+.notationRule-table { margin-bottom:15pt;}
+    
+.notationName { }
+    
+.nonContextRules { }
+    
+.nonContextRule { }
+    
+.expression { }
+    
+.booleanOperator { }
+    
+.numberOperator { }
+    
+.setOperator { }
+    
+.stringOperator { }
+    
+.booleanFunction { }
+    
+.numberFunction { }
+    
+.setFunction { }
+    
+.stringFunction { }
+    
+.subStringFunction { }
+    
+.subStringPosition { }
+    
+.subStringLength { }
+    
+.variableRef { }
+    
+.globalPropertyRef { }
+    
+.booleanValue { }
+    
+.trueValue { }
+    
+.falseValue { }
+    
+.stringValue { }
+    
+.realValue { }
+    
+.integerValue { }
+    
+.setValue { }
+    
+.noValue { }
+    
+.commonRepository { }
+    
+.functionalItemRepository { }
+    
+.functionalItemSpec { }
+    
+.functionalItemIdent { }
+    
+.functionalPhysicalAreaRef { }
+    
+.softwareClassification { }
+    
+.softwareCustomizationStatus { }
+    
+.functionalItemRefGroup { }
+    
+.functionalItemAlts { }
+    
+.functionalItem { }
+    
+.location { }
+    
+.installationLocation { }
+    
+.accessFrom { }
+    
+.reqQuantity { }
+    
+.functionalItemFamily { }
+    
+.groundingType { }
+    
+.circuitBreakerRepository { }
+    
+.circuitBreakerSpec { }
+    
+.circuitBreakerIdent { }
+    
+.circuitBreakerRefGroup { }
+    
+.circuitBreakerAlts { }
+    
+.circuitBreaker { }
+    
+.circuitBreakerClass { }
+    
+.amperage { }
+    
+.partRepository { }
+    
+.partSpec { }
+    
+.partIdent { }
+    
+.itemIdentData { }
+    
+.descrForPart { }
+    
+.partKeyword { }
+    
+.overLengthPartNumber { }
+    
+.limitedPartNumber { }
+    
+.customerStockNumber { }
+    
+.natoStockNumber { }
+    
+.fullNatoStockNumber { }
+    
+.procurementData { }
+    
+.enterpriseRef { }
+    
+.buyerFurnishedEquipFlag { }
+    
+.sourcingType { }
+    
+.techData { }
+    
+.sparePartClass { }
+    
+.partUsage { }
+    
+.specDocument { }
+    
+.physicalSecurityPilferageCode { }
+    
+.fitmentCode { }
+    
+.unitOfIssue { }
+    
+.unitOfIssueQualificationSegment { }
+    
+.quantityPerUnit { }
+    
+.specialStorage { }
+    
+.calibrationMarker { }
+    
+.placardText { }
+    
+.hazardousClass { }
+    
+.partRefGroup { }
+
+.partRefGroup-label, .refs-label{border-bottom:solid 1pt black;}
+    
+.replacedBy { }
+
+.replacedBy-span, .optionalPart-span, .preferredSparePart-span, .alteredFromPart-span, .localFabricationMaterial-span, .replacementCond-span, .alteredFromPartDescr-span {
+    color:gray
+}
+    
+.partRef { }
+    
+.replacementCond { }
+    
+.optionalPart { }
+    
+.preferredSparePart { }
+    
+.alteredFromPart { }
+    
+.alteredFromPartDescr { }
+    
+.localFabricationMaterial { }
+    
+.zoneRepository { }
+    
+.zoneSpec { }
+    
+.zoneIdent { }
+    
+.zoneRefGroup { }
+    
+.zoneAlts { }
+    
+.zone { }
+    
+.itemDescr { }
+    
+.zoneSide { }
+    
+.boundaryFrom { }
+    
+.boundary { }
+    
+.boundaryTo { }
+    
+.accessPointRepository { }
+    
+.accessPointSpec { }
+    
+.accessPointIdent { }
+    
+.accessPointRefGroup { }
+    
+.accessPointAlts { }
+    
+.accessPoint { }
+    
+.accessPointType { }
+    
+.accessTo { }
+    
+.otherItems { }
+    
+.fastener { }
+    
+.fastenerType { }
+    
+.fastenerQuantity { }
+    
+.hoursToClose { }
+    
+.hoursToOpen { }
+    
+.toolRepository { }
+    
+.toolSpec { }
+    
+.toolIdent { }
+    
+.toolRefGroup { }
+    
+.toolRef { }
+    
+.toolAlts { }
+    
+.tool { }
+    
+.rcmdQuantity { }
+    
+.packaging { }
+    
+.taskCategory { }
+    
+.simpleRemark { }
+    
+.enterpriseRepository { }
+    
+.enterpriseSpec { }
+    
+.enterpriseIdent { }
+    
+.enterpriseIdentAlt { }
+    
+.supplyRepository { }
+    
+.supplySpec { }
+    
+.supplyIdent { }
+    
+.supplySetGroup { }
+    
+.supplySet { }
+    
+.supplyRef { }
+    
+.supplyClassification { }
+    
+.specGroup { }
+    
+.enterpriseGroup { }
+    
+.enterpriseInfo { }
+    
+.shippingInfo { }
+    
+.transport { }
+    
+.shelfLife { }
+    
+.rcmd { }
+    
+.lowestAuthorizedLevelGroup { }
+    
+.lowestAuthorizedLevel { }
+    
+.supplyRqmtRepository { }
+    
+.supplyRqmtSpec { }
+    
+.supplyRqmtIdent { }
+    
+.physicalChemicalDescr { }
+    
+.usage { }
+    
+.complianceCategory { }
+    
+.processCategory { }
+    
+.supplyRqmtStatus { }
+    
+.supplyRqmtRef { }
+    
+.supplyRqmtAlts { }
+    
+.supplyRqmt { }
+    
+.supplyRqmtAltIdent { }
+    
+.supplyRqmtAltStatus { }
+    
+.authorizationStatus { }
+    
+.safetyCategory { }
+    
+.functionalPhysicalAreaRepository { }
+    
+.functionalPhysicalAreaSpec { }
+    
+.functionalPhysicalAreaIdent { }
+    
+.functionalPhysicalAreaRefGroup { }
+    
+.controlIndicatorRepository { }
+    
+.controlIndicatorGroup { }
+    
+.controlIndicatorSpec { }
+    
+.controlIndicatorKey { }
+    
+.controlIndicatorName { }
+    
+.controlIndicatorDescr { }
+    
+.controlIndicatorFunction { }
+    
+.applicRepository { }
+    
+.applicSpec { }
+    
+.applicSpecIdent { }
+    
+.warningRepository { }
+    
+.warningIdent { }
+    
+.cautionRepository { }
+    
+.cautionIdent { }
+    
+.condCrossRefTable { }
+    
+.condTypeList { }
+.condTypeList-table { border-collapse:collapse;border:solid 1px black }
+.condTypeList-table th,.condTypeList-table td{ border:solid 1px black }
+    
+.condType { }
+    
+.condList { }
+.condList-table { border-collapse:collapse;border:solid 1px black }
+.condList-table th,.condList-table td{ border:solid 1px black }
+    
+.cond { }
+    
+.condRefGroup { }
+    
+.condRef { }
+    
+.condDescr { }
+    
+.dependency { }
+.dependency-div { white-space: nowrap } 
+    
+.externalCond { }
+    
+.incorporation { }
+.incorporation-table { border-collapse:collapse;border:solid 1px black }
+.incorporation-table th,.incorporation-table td{ border:solid 1px black }  
+    
+.condIncorporation { }
+    
+.documentIncorporation { }
+    
+.incorporationStatus { }
+    
+.container { }
+.container-div { padding-top:5mm; text-indent=-20mm; }
+    
+.creator { }
+    
+.subject { }
+    
+.publisher { }
+    
+.contributor { }
+    
+.date { }
+    
+.type { }
+    
+.format { }
+    
+.identifier { }
+    
+.rights { }
+    
+.ddn { }
+    
+.ddnAddress { }
+    
+.ddnIdent { }
+    
+.ddnCode { }
+    
+.ddnAddressItems { }
+    
+.dispatchTo { }
+    
+.dispatchAddress { }
+    
+.enterprise { }
+    
+.division { }
+    
+.enterpriseUnit { }
+    
+.dispatchPerson { }
+    
+.address { }
+    
+.dispatchFrom { }
+    
+.ddnStatus { }
+    
+.authorization { }
+    
+.ddnContent { }
+.ddnContent-div { font-weight:bold;font-style:italic;padding-bottom:10pt; font-size:16pt}
+    
+.mediaIdent { }
+    
+.deliveryList { }
+    
+.deliveryListItem { }
+.deliveryListItem-div { font-size:8pt }
+    
+.dispatchFileName { }
+    
+.entityControlNumber { }
+    
+.warningsAndCautions { }
+    
+.warningsAndCautionsRef { }
+    
+.warningRef { }
+    
+.cautionRef { }
+    
+.description { }
+    
+.levelledPara { }
+    
+.circuitBreakerDescrGroup { }
+
+.circuitBreakerDescrGroup-div {padding-right:5mm }
+        
+.circuitBreakerDescrSubGroup { }
+
+.circuitBreakerDescrSubGroup-td {padding:2pt}
+
+.circuitBreakerDescrSubGroup-span {font-weight:bold }
+
+.circuitBreakerDescr { }
+
+.circuitBreakerDescr-td {padding:2pt;text-align:left}
+
+.circuitBreakerDescr-td1 {padding:2pt;text-align:center;vertical-align:top}
+
+.circuitBreakerDescr-td2{padding:2pt}
+    
+.circuitBreakerLocation { }
+    
+.footnoteRemarks { }
+    
+.levelledParaAlts { }
+    
+.dml { }
+    
+.dmlAddress { }
+    
+.dmlIdent { }
+    
+.dmlCode { }
+    
+.dmlAddressItems { }
+    
+.dmlStatus { }
+    
+.dmlRef { }
+    
+.dmlRefIdent { }
+    
+.dmlContent { }
+    
+.dmlEntry { }
+    
+.infoEntityRef { }
+    
+.commentRef { }
+    
+.commentRefIdent { }
+    
+.commentCode { }
+    
+.answer { }
+    
+.faultReporting { }
+.faultReporting-label {margin-top:8pt;}
+.faultReporting-div2 {font-size:10pt;font-family:arial,helvetica,sans-serif;}
+.faultReporting-div3 {margin-top:10pt;margin-botton:10pt;}
+    
+.preliminaryRqmts { }
+    
+.productionMaintData { }
+    
+.thresholdInterval {margin-left:50pt }
+    
+.workAreaLocationGroup { }
+
+.workAreaLocationGroup .zoneRef-table,.workAreaLocationGroup .accessPointRef-table,.workAreaLocationGroup .workLocation-table {margin-left:50pt}
+
+.zoneRef-div , .accessPointRef-div , .workLocation-div{margin-left:34px}
+    
+.workLocation { }
+    
+.workArea { }
+    
+.productItem { }
+    
+.taskDuration { }
+    
+.reqCondGroup { }
+    
+.noConds { }
+    
+.reqCondNoRef { }
+    
+.reqCond { }
+    
+.reqCondDm { }
+    
+.reqCondCircuitBreaker { }
+    
+.reqCondPm { }
+    
+.reqCondExternalPub { }
+    
+.reqPersons { }
+    
+.personnel { }
+    
+.personCategory { }
+    
+.personSkill { }
+    
+.trade { }
+    
+.estimatedTime { }
+    
+.person { }
+    
+.reqTechInfoGroup { }
+    
+.reqTechInfo { }
+    
+.reqSupportEquips { }
+    
+.noSupportEquips { }
+    
+.supportEquipDescrGroup { }
+    
+.supportEquipDescr { }
+    
+.materialSetRef { }
+    
+.embeddedSupportEquipDescr { }
+    
+.reqSupplies { }
+    
+.noSupplies { }
+    
+.supplyDescrGroup { }
+    
+.supplyDescr { }
+    
+.embeddedSupplyDescr { }
+    
+.reqSpares { }
+    
+.noSpares { }
+    
+.spareDescrGroup { }
+    
+.spareDescr { }
+    
+.embeddedSpareDescr { }
+    
+.reqSafety { }
+    
+.noSafety { }
+    
+.safetyRqmts { }
+    
+.isolatedFault { }
+    
+.faultDescr { }
+.faultDescr-refs-div {font-weight:bold}
+    
+.detailedFaultDescr { }
+.detailedFaultDescr-ul {list-style-type: none;}
+.detailedFaultDescr-children-li {margin-left: -15px;}
+    
+.viewLocation { }
+    
+.systemLocation { }
+    
+.systemName { }
+    
+.faultySubSystem { }
+    
+.systemIdent { }
+    
+.systemPosition { }
+    
+.faultEquip { }
+    
+.faultMessageIndication { }
+    
+.faultMessageBody { }
+    
+.faultCond { }
+    
+.detectionInfo { }
+    
+.detectedLruItem { }
+    
+.lru { }
+.lru-div1,.lru-div2,.sru-div1,.sru-div2,.otherPossibleCause-div1,.otherPossibleCause-div2 { float:left}
+
+.lru-empty-applicdiv,.sru-empty-applicdiv,.otherPossibleCause-empty-applicdiv { display:block;min-height:10px;}
+
+.possible-causes{
+  padding-left:34px;
+  margin-bottom:20pt;
+}
+
+.wiring-possible-causes{
+  padding-left:34px;
+}
+    
+.detectedSruItem { }
+    
+.sru { }
+    
+.locateAndRepair { }
+    
+.locateAndRepairLruItem { }
+    
+.repair { }
+    
+.locateAndRepairSruItem { }
+    
+.isolatedFaultAlts { }
+    
+.detectedFault { }
+.detectedFault-div1,.isolatedFault-div1,.observedFault-div1,.warningMalfunction-div1,.assocWarningMalfunction-div1,.bitMessage-div1 {padding-bottom:10px;padding-top:10px;}
+.detectedFault-div2,.isolatedFault-div2,.observedFault-div2,.warningMalfunction-div2,.assocWarningMalfunction-div2,.bitMessage-div2 {padding-bottom:10px;padding-top:5px;}
+
+/* 	fault.subtitle1	
+		font-size:16pt;margin-top:2pt;margin-bottom:2pt;	*/
+.detectedFault-faultCode,.isolatedFault-faultCode,.observedFault-faultCode,.warningMalfunction-faultCode,.assocWarningMalfunction-faultCode,.bitMessage-faultCode {font-size:16pt;margin-top:2pt;margin-bottom:2pt}
+.detectedFault-faultDescr,.isolatedFault-faultDescr,.observedFault-faultDescr,.warningMalfunction-faultDescr,.assocWarningMalfunction-faultDescr,.bitMessage-faultDescr {font-size:16pt;margin-top:2pt;margin-bottom:2pt}
+.detectedFault-faultType,.isolatedFault-faultType,.observedFault-faultType,.warningMalfunction-faultType,.assocWarningMalfunction-faultType,.bitMessage-faultType {font-size:16pt;margin-top:2pt;margin-bottom:2pt}
+.detectedFault-category,.isolatedFault-category,.observedFault-category,.warningMalfunction-category,.assocWarningMalfunction-category,.bitMessage-category {font-size:16pt;margin-top:2pt;margin-bottom:2pt}
+.detectedFault-subCategory,.isolatedFault-subCategory,.observedFault-subCategory,.warningMalfunction-subCategory,.assocWarningMalfunction-subCategory,.bitMessage-subCategory {font-size:16pt;margin-top:2pt;margin-bottom:2pt}
+.detectedFault-dmRef,.isolatedFault-dmRef,.observedFault-dmRef,.warningMalfunction-dmRef,.assocWarningMalfunction-dmRef,.bitMessage-dmRef {font-size:16pt;margin-top:2pt;margin-bottom:2pt}
+
+.faultCode-label,.faultDescr-label,.faultType-label,.category-label,.subCategory-label,
+
+/*	fault.subtitle2
+		font-size:16pt;font-style:italic;margin-top:2pt;margin-bottom:2pt;
+*/
+..doFaultTableTitle-label{font-size:16pt;font-style:italic;margin-top:2pt;margin-bottom:2pt;}
+
+/*	fault.subtitle3
+		font-size:16pt;margin-top:2pt;margin-bottom:2pt;
+*/		
+.detectedFault-div3,.isolatedFault-div3,.observedFault-div3,.warningMalfunction-div3,.assocWarningMalfunction-div3,.bitMessage-div3 {font-size:16pt;margin-top:2pt;margin-bottom:2pt;}
+.doFaultTableTitle-otherTitle {font-size:16pt;margin-top:2pt;margin-bottom:2pt;}
+
+.isolateDetectedFault { }
+    
+.faultIsolationRef { }
+    
+.lruItem { }
+    
+.faultIsolationTest { }
+    
+.testDescr { }
+    
+.testName { }
+    
+.testParameters { }
+    
+.testProcedure { }
+    
+.sruItem { }
+    
+.detectedFaultAlts { }
+    
+.observedFault { }
+    
+.contextAndIsolationInfo { }
+    
+.faultContext { }
+    
+.isolationInfo { }
+    
+.diagnosticProcess { }
+    
+.diagnosticsReason { }
+    
+.observedFaultAlts { }
+    
+.correlatedFault { }
+.correlatedFault-div {font-size:16pt;margin-top:2pt;margin-bottom:2pt;}
+    
+.basicCorrelatedFaults { }
+.basicCorrelatedFaults-div {margin-top:10pt;margin-botton:10pt;}
+    
+.warningMalfunction { }
+    
+.fault { }
+.fault-code-header{ font-weight:bold;border-collapse:collapse;border-bottom:solid 1px black;text-align:left}    
+.fault-code-body{ vertical-align:text-top; }
+
+.warningMalfunctionAlts { }
+    
+.assocWarningMalfunction { }
+    
+.assocWarningMalfunctionAlts { }
+    
+.bitMessage { }
+    
+.bitMessageAlts { }
+    
+.correlatedFaultAlts { }
+    
+.faultIsolation { }
+    
+.faultIsolationProcedure {width:100%;border:0px;padding:0px;margin-bottom:0pt}
+.faultIsolationProcedure-fault-table {border-collapse:collapse;border-bottom:solid 1px black;border-top:solid 2px black;margin-bottom:5px;}
+.faultIsolationProcedure-fault-tr {border-top:solid 1px #CCCCCC;}
+    
+.possibleCauseGroup { }
+.possibleCauseGroup-div { font-weight:bold }
+.possibleCauseGroup-children-div1, .possibleCauseGroup-children-div2 { float:left; }  
+ 
+.wiringPossibleCause { }
+    
+.wiringPossibleCauseFrom { }
+    
+.contactIdentification { }
+    
+.wiringPossibleCauseTo { }
+    
+.otherPossibleCause { }
+    
+.isolationProcedure { }
+    
+.isolationMainProcedure { }
+    
+.isolationStep { }
+.isolationStep-div { font-weight:bold; }
+    
+.action { }
+.action-div { font-weight:bold }    
+
+.actionAlts { }
+    
+.isolationStepQuestion { }
+    
+.isolationStepAnswer { }
+    
+.yesNoAnswer { }
+    
+.yesAnswer { }
+    
+.noAnswer { }
+    
+.listOfChoices { }
+    
+.choice { }
+    
+.isolationStepAlts { }
+    
+.isolationProcedureEnd { }
+    
+.isolationProcedureEndAlts { }
+    
+.closeRqmts { }
+    
+.illustratedPartsCatalog { }
+    
+.initialProvisioningProject { }
+    
+.subjectVariantSegment { }
+    
+.subjectIdent { }
+    
+.zoneGroup { }
+    
+.catalogSeqNumber { }
+    
+.referTo {margin-bottom:5pt;color:blue;}
+    
+.initialProvisioningProjectRef { }
+    
+.itemSeqNumber { }
+    
+.reasonForSelection { }
+    
+.quantityPerNextHigherAssy { }
+    
+.totalQuantity { }
+    
+.removalOrInstallationQuantity { }
+    
+.partSegment { }
+    
+.partLocationSegment { }
+    
+.attachStoreShipPart { }
+    
+.notIllustrated { }
+    
+.selectOrManufactureFromIdent { }
+    
+.selectOrManufacture { }
+    
+.descrForLocation { }
+    
+.applicabilitySegment { }
+    
+.usableOnCodeEquip { }
+    
+.usableOnCodeAssy { }
+    
+.interchangeability { }
+    
+.restrictedOperationNote { }
+    
+.categoryOneContainerLocation { }
+    
+.locationRcmdSegment { }
+    
+.locationRcmd { }
+    
+.service { }
+    
+.sourceMaintRecoverability { }
+    
+.modelVersion { }
+    
+.effectivity { }
+    
+.ilsNumber { }
+    
+.changeAuthorityData { }
+    
+.changeAuthority { }
+    
+.genericPartDataGroup { }
+    
+.genericPartData { }
+    
+.genericPartDataValue { }
+    
+.pm { }
+    
+.pmAddress { }
+    
+.pmIdent { }
+    
+.pmAddressItems { }
+    
+.pmStatus { }
+    
+.sourcePmIdent { }
+    
+.pmEntry { }
+    
+.pmEntryTitle { }
+    
+.productCrossRefTable { }
+    
+.product { }
+    
+.assign { }
+    
+.procedure { }
+    
+.mainProcedure { }
+    
+.proceduralStep { }
+    
+.proceduralStepAlts { }
+    
+.Description { }
+    
+.sb { }
+    
+.sbMaterialInfoContent { }
+    
+.sbMaterialSetList { }
+    
+.noInfo { }
+    
+.sbMaterialSet { }
+    
+.sbProcurementInfo { }
+    
+.sbPriceInfo { }
+    
+.sbAvailability { }
+    
+.sbProcurementAddress { }
+    
+.sbIndustrySupport { }
+    
+.sbMaterialDescr { }
+    
+.sbMaterialSetRef { }
+    
+.sbSupportEquipsList { }
+    
+.sbSupportEquipSet { }
+    
+.sbInstructionRef { }
+    
+.sbIndividualSupportEquip { }
+    
+.sbDrawingRef { }
+    
+.sbExternalSupportEquipSet { }
+    
+.sbSuppliesList { }
+    
+.sbSupplySet { }
+    
+.sbIndividualSupply { }
+    
+.sbExternalSupplySet { }
+    
+.sbSparesList { }
+    
+.sbSpareSet { }
+    
+.sbIndividualSpare { }
+    
+.sbExternalSpareSet { }
+    
+.sbRemovedSparesList { }
+    
+.sbRemovedSpareSet { }
+    
+.sbIndividualRemovedSpare { }
+    
+.sbRemovedSpareDescr { }
+    
+.genericPropertyGroup { }
+    
+.genericProperty { }
+    
+.sbInterchange { }
+    
+.sbReplacement { }
+    
+.sbCondition { }
+    
+.sbAlteredToPart { }
+    
+.sbAlteredToPartDescr { }
+    
+.sbManagementInfo { }
+    
+.sbCompliance { }
+    
+.sbTaskType { }
+    
+.sbProductModificationList { }
+    
+.sbProductModification { }
+    
+.sbImpactList { }
+    
+.sbImpact { }
+    
+.sbConcurrentSbList { }
+    
+.sbConcurrentSbInfo { }
+    
+.sbAccomplishmentLimit { }
+    
+.sbLimit { }
+    
+.sbTimeCompliance { }
+    
+.limit { }
+
+.limit-table{margin-bottom:12pt;}
+
+.limit-td{margin-bottom:12pt;}
+    
+.sampling { }
+    
+.threshold { }
+    
+.thresholdValue { }
+    
+.tolerance { }
+    
+.inspectionType { }
+    
+.trigger { }
+    
+.limitRange {padding-top:1pt;padding-left:1em}
+    
+.limitRangeFrom { }
+    
+.limitRangeTo { }
+    
+.sbTimeAssessment { }
+    
+.sbTimeInfo { }
+    
+.sbDuration { }
+    
+.sbEstimatedTime { }
+    
+.sbOriginalIssueDate { }
+    
+.sbApproval { }
+    
+.sbApprovedDm { }
+    
+.sbReplacementSb { }
+    
+.sbRevisionInfo { }
+    
+.sbTopic { }
+    
+.sbTopicContent { }
+    
+.sbSummary { }
+    
+.sbPlanningInfo { }
+    
+.sbMaterialInfo { }
+    
+.sbAccomplishmentInstructions { }
+    
+.sbAdditionalInfo { }
+    
+.maintPlanning { }
+    
+.inspectionDefinition { }
+    
+.inspection { }
+    
+.taskGroup { }
+    
+.taskItem { }
+    
+.task { }
+    
+.taskTitle { }
+    
+.taskDescr { }
+    
+.taskMarker { }
+    
+.taskDefinition { }
+    
+.rqmtSource { }
+    
+.sourceType { }
+    
+.equipGroup { }
+    
+.equip { }
+    
+.supervisorLevel { }
+    
+.relatedTask { }
+    
+.taskDefinitionAlts { }
+    
+.timeLimitInfo { }
+    
+.timeLimitCategory { }
+    
+.timeLimit { }
+    
+.limitType { }
+    
+.maintAllocation { }
+    
+.maintAllocationGroup { }
+    
+.groupNumber { }
+    
+.componentAssy { }
+    
+.typeDesignation { }
+    
+.maintQualifier { }
+    
+.maintFunction { }
+    
+.maintLevelGroup { }
+    
+.maintLevel { }
+    
+.toolsRefs { }
+    
+.remarksRefs { }
+    
+.componentAssyGroup { }
+    
+.toolsList { }
+    
+.toolsListGroup { }
+    
+.toolsListCode { }
+    
+.remarksList { }
+    
+.remarksGroup { }
+    
+.remarkCode { }
+    
+.dataUpdateFile { }
+    
+.updateIdentAndStatusSection { }
+    
+.updateAddress { }
+    
+.updateIdent { }
+    
+.updateCode { }
+    
+.updateStatus { }
+    
+.targetDmIssueInfo { }
+    
+.targetDmStatus { }
+    
+.update { }
+    
+.insertObjectGroup { }
+    
+.insertObject { }
+    
+.replaceObjectGroup { }
+    
+.replaceObject { }
+    
+.deleteObjectGroup { }
+    
+.deleteObject { }
+    
+.controlIndicatorIdent { }
+    
+.multimediaIdent { }
+    
+.multimediaAltsIdent { }
+    
+.figureIdent { }
+    
+.figureAltsIdent { }
+    
+.applicIdent { }
+    
+.applicRefIdent { }
+    
+.reinstateObjectGroup { }
+    
+.reinstateObject { }
+    
+.wiringData { }
+    
+.wireGroup { }
+    
+.wire { }
+    
+.wireIdent { }
+    
+.circuitIdent { }
+    
+.wireNumber { }
+    
+.sectionIdent { }
+    
+.wireConnection { }
+    
+.fromEquip { }
+    
+.contactInfo { }
+    
+.contact { }
+    
+.wireConnectionCode { }
+    
+.screenOrder { }
+    
+.specialConnection { }
+    
+.electricalPotential { }
+    
+.terminationModuleGroupingValue { }
+    
+.blockGroupingValue { }
+    
+.shuntGroupingValue { }
+    
+.contactOrderValue { }
+    
+.potentialConnectionsOrder { }
+    
+.networkAnalysisCode { }
+    
+.groupCode { }
+    
+.screenGroup { }
+    
+.screen { }
+    
+.twistGroup { }
+    
+.twist { }
+    
+.wireInstallationCode { }
+    
+.preparationInfo { }
+    
+.instructionIdent { }
+    
+.finishingInfo { }
+    
+.toEquip { }
+    
+.wireInfo { }
+    
+.wireCode { }
+    
+.wireType { }
+    
+.wireGauge { }
+    
+.harnessIdent { }
+    
+.wireSeqNumber { }
+    
+.coaxialCableFlag { }
+    
+.triaxialCableFlag { }
+    
+.emcCode { }
+    
+.length { }
+    
+.wireColor { }
+    
+.signalInfo { }
+    
+.routing { }
+    
+.clippingPoint { }
+    
+.feedThru { }
+    
+.wireRoute { }
+    
+.restriction { }
+    
+.nextHigherAssy { }
+    
+.functionalDescrRef { }
+    
+.illustrationRef { }
+    
+.changeAuthorityDataGroup { }
+    
+.wireAlts { }
+    
+.harnessGroup { }
+    
+.harness { }
+    
+.harnessInfo { }
+    
+.altIdentGroup { }
+    
+.altIdent { }
+    
+.harnessVariantIdent { }
+    
+.harnessVariantIssue { }
+    
+.harnessName { }
+    
+.temperature { }
+    
+.minTemperature { }
+    
+.maxTemperature { }
+    
+.harnessEnvironment { }
+    
+.sleeveGroup { }
+    
+.sleeve { }
+    
+.harnessAlts { }
+    
+.electricalEquipGroup { }
+    
+.electricalEquip { }
+    
+.assyInstruction { }
+    
+.assy { }
+    
+.maxMountingPositions { }
+    
+.transverseLink { }
+    
+.electricalEquipConnection { }
+    
+.connectionListClass { }
+    
+.electricalLogic { }
+    
+.electricalEquipState { }
+    
+.electricalStateDescr { }
+    
+.equipName { }
+    
+.installationInfo { }
+    
+.siblingPlugIdent { }
+    
+.accessDoorOrPanel { }
+    
+.positionOnNextHigherAssy { }
+    
+.equipDescrRef { }
+    
+.electricalEquipAlts { }
+    
+.standardPartGroup { }
+    
+.connectorGroup { }
+    
+.connector { }
+    
+.mass { }
+    
+.orientation { }
+    
+.rack { }
+    
+.contactCount { }
+    
+.contactDescrGroup { }
+    
+.contactDescr { }
+    
+.contactDiameter { }
+    
+.thermoCouplePlus { }
+    
+.thermoCoupleMinus { }
+    
+.specialTerminal { }
+    
+.connectorAccessories { }
+    
+.distributionPartGroup { }
+    
+.distributionPart { }
+    
+.contactSize { }
+    
+.material { }
+    
+.surfaceProtection { }
+    
+.accessoryGroup { }
+    
+.accessory { }
+    
+.solderSleeveGroup { }
+    
+.solderSleeve { }
+    
+.sleeveDiameter { }
+    
+.minDiameter { }
+    
+.maxDiameter { }
+    
+.shrinkSleeveGroup { }
+    
+.shrinkSleeve { }
+    
+.size { }
+    
+.harnessSize { }
+    
+.minHarnessSize { }
+    
+.maxHarnessSize { }
+    
+.identSleeveGroup { }
+    
+.identSleeve { }
+    
+.conduitGroup { }
+    
+.conduit { }
+    
+.wallThickness { }
+    
+.wireMaterialGroup { }
+    
+.wireMaterial { }
+    
+.numberOfCores { }
+    
+.outerJacketColor { }
+    
+.outerDiameter { }
+    
+.resistance { }
+    
+.voltage { }
+    
+.screenCount { }
+    
+.frequencyCharacteristics { }
+    
+.impedance { }
+    
+.frequencyAttenuation { }
+    
+.frequency { }
+    
+.attenuation { }
+    
+.webcgm { }
+    
+.grobject { }
+    
+.linkuri { }
+    
+.bindById { }
+    
+.bindByName { }
+    
+.arc { }
+    
+.locator { }
+    
+.resource { }
+
+.crewDrill{ }
+.crewDrill-div { margin-bottom:15pt; }
+
+.productIntroName-div,.productName-div {font-weight:bold;font-size:18pt;padding-bottom:10pt;margin-top:24pt;}
+
+.frontMatterTitlePage-pmTitle-div {font-weight:bold;font-size:24pt;margin-top:20pt;}
+.frontMatterTitlePage-shortPmTitle-div {font-weight:bold;font-size:14pt;}
+.frontMatterTitlePage-pmCode-div {font-weight:bold;font-size:14pt;margin-top:24pt}
+.frontMatterInfo-div {font-size:8pt}
+
+.attr-extensionProducer { }
+    
+.attr-extensionCode { }
+    
+.attr-modelIdentCode { }
+    
+.attr-systemDiffCode { }
+    
+.attr-systemCode { }
+    
+.attr-subSystemCode { }
+    
+.attr-subSubSystemCode { }
+    
+.attr-assyCode { }
+    
+.attr-disassyCode { }
+    
+.attr-disassyCodeVariant { }
+    
+.attr-infoCode { }
+    
+.attr-infoCodeVariant { }
+    
+.attr-itemLocationCode { }
+    
+.attr-learnCode { }
+    
+.attr-learnEventCode { }
+    
+.attr-languageIsoCode { }
+    
+.attr-countryIsoCode { }
+    
+.attr-issueNumber { }
+    
+.attr-inWork { }
+    
+.attr-year { }
+    
+.attr-month { }
+    
+.attr-day { }
+    
+.attr-securityClassification { }
+    
+.attr-commercialClassification { }
+    
+.attr-caveat { }
+    
+.attr-derivativeClassificationRefId { }
+    
+.attr-actionIdentType { }
+    
+.attr-contactRole { }
+    
+.attr-id { }
+    
+.attr-changeType { }
+    
+.attr-changeMark { }
+    
+.attr-reasonForUpdateRefIds { }
+    
+.attr-personPrefix { }
+    
+.attr-authorityName { }
+    
+.attr-authorityDocument { }
+    
+.attr-linkShow { }
+    
+.attr-linkActuate { }
+    
+.attr-referredFragment { }
+    
+.attr-applicRefId { }
+    
+.attr-exportRole { }
+    
+.attr-exportRegulationCodeType { }
+    
+.attr-exportRegulationType { }
+    
+.attr-governmentAuthority { }
+    
+.attr-pmIssuer { }
+    
+.attr-pmNumber { }
+    
+.attr-pmVolume { }
+    
+.attr-enterpriseCode { }
+    
+.attr-pubMediaType { }
+    
+.attr-pubMediaCode { }
+    
+.attr-volumeNumber { }
+    
+.attr-mediaLocation { }
+    
+.attr-indexLevelOne { }
+    
+.attr-indexLevelTwo { }
+    
+.attr-indexLevelThree { }
+    
+.attr-indexLevelFour { }
+    
+.attr-internalRefId { }
+    
+.attr-acronymType {color:white;background-color:gray }
+    
+.attr-verbatimStyle { }
+    
+.attr-pubCodingScheme { }
+    
+.attr-functionalItemNumber { }
+    
+.attr-functionalItemType { }
+    
+.attr-installationIdent { }
+    
+.attr-contextIdent { }
+    
+.attr-manufacturerCodeValue { }
+    
+.attr-itemOriginator { }
+    
+.attr-circuitBreakerNumber { }
+    
+.attr-circuitBreakerType { }
+    
+.attr-circuitBreakerAction {font-weight: normal; font-size: 9pt }
+    
+.attr-checkSum { }
+    
+.attr-controlIndicatorNumber { }
+    
+.attr-significantParaDataType { }
+    
+.attr-quantityUnitOfMeasure { }
+    
+.attr-quantityToleranceType { }
+    
+.attr-quantityGroupType { }
+    
+.attr-quantityType { }
+    
+.attr-quantityTypeSpecifics { }
+    
+.attr-zoneNumber { }
+    
+.attr-lsarData { }
+    
+.attr-accessPointNumber { }
+    
+.attr-accessPointTypeValue { }
+    
+.attr-serialNumberForm { }
+    
+.attr-serialNumberValue { }
+    
+.attr-internalRefTargetType { }
+    
+.attr-targetTitle { }
+    
+.attr-infoEntityIdent { }
+    
+.attr-reproductionWidth { }
+    
+.attr-reproductionHeight { }
+    
+.attr-reproductionScale { }
+    
+.attr-color { }
+    
+.attr-captionWidth { }
+    
+.attr-captionHeight { }
+    
+.attr-systemIdentCode { }
+    
+.attr-alignCaption { }
+    
+.attr-tableOfContentType { }
+    
+.attr-captionType { }
+    
+.attr-listItemPrefix { }
+    
+.attr-noteType { }
+    
+.attr-footnoteMark { }
+    
+.attr-colnum { }
+    
+.attr-colname { }
+    
+.attr-align { }
+    
+.attr-charoff { }
+    
+.attr-char { }
+    
+.attr-colwidth { }
+    
+.attr-colsep { }
+    
+.attr-rowsep { }
+    
+.attr-namest { }
+    
+.attr-nameend { }
+    
+.attr-spanname { }
+    
+.attr-morerows { }
+    
+.attr-valign { }
+    
+.attr-alignCaptionEntry { }
+    
+.attr-cols { }
+    
+.attr-emphasisType { }
+    
+.attr-applicPropertyIdent { }
+    
+.attr-applicPropertyType { }
+    
+.attr-applicPropertyValues { }
+    
+.attr-applicDisplayClass { }
+    
+.attr-andOr { }
+    
+.attr-applicConfiguration { }
+    
+.attr-applicIdentValue { }
+    
+.attr-authorizationIdent { }
+    
+.attr-modificationType { }
+    
+.attr-verificationType { }
+    
+.attr-skillLevelCode { }
+    
+.attr-updateReasonType { }
+    
+.attr-updateHighlight { }
+    
+.attr-safetyLabel { }
+    
+.attr-issueType { }
+    
+.attr-associationType { }
+    
+.attr-textDisplayPosition { }
+    
+.attr-enumerationLabel { }
+    
+.attr-aliasFlag { }
+    
+.attr-valueDataType { }
+    
+.attr-valuePattern { }
+    
+.attr-productIdentifier { }
+    
+.attr-figureNumber { }
+    
+.attr-figureNumberVariant { }
+    
+.attr-item { }
+    
+.attr-itemVariant { }
+    
+.attr-itemSeqNumberValue { }
+    
+.attr-initialProvisioningProjectNumber { }
+    
+.attr-responsiblePartnerCompanyCode { }
+    
+.attr-applicationStructureIdent { }
+    
+.attr-applicationStructureName { }
+    
+.attr-hotspotType { }
+    
+.attr-hotspotTitle { }
+    
+.attr-objectDescr { }
+    
+.attr-objectCoordinates { }
+    
+.attr-visibility { }
+    
+.attr-warningType { }
+    
+.attr-vitalWarningFlag { }
+    
+.attr-cautionType { }
+    
+.attr-parameterIdent { }
+    
+.attr-parameterValue { }
+    
+.attr-parameterName { }
+    
+.attr-autoPlay { }
+    
+.attr-fullScreen { }
+    
+.attr-multimediaObjectHeight { }
+    
+.attr-multimediaObjectWidth { }
+    
+.attr-multimediaType { }
+    
+.attr-runTimeDuration { }
+    
+.attr-showPluginControls { }
+    
+.attr-rotate { }
+    
+.attr-warningRefs { }
+    
+.attr-cautionRefs { }
+    
+.attr-tgstyle { }
+    
+.attr-tabstyle { }
+    
+.attr-tocentry { }
+    
+.attr-frame { }
+    
+.attr-orient { }
+    
+.attr-pgwide { }
+    
+.attr-brDecisionIdentNumber { }
+    
+.attr-brSeverityLevel { }
+    
+.attr-allowedObjectFlag { }
+    
+.attr-valueTailoring { }
+    
+.attr-valueForm { }
+    
+.attr-valueAllowed { }
+    
+.attr-allowedNotationFlag { }
+    
+.attr-rulesContext { }
+    
+.attr-defaultBrSeverityLevel { }
+    
+.attr-booleanOperation { }
+    
+.attr-numberOperation { }
+    
+.attr-setOperation { }
+    
+.attr-stringOperation { }
+    
+.attr-booleanAction { }
+    
+.attr-numberAction { }
+    
+.attr-setAction { }
+    
+.attr-stringAction { }
+    
+.attr-variableName { }
+    
+.attr-humanReadableForm { }
+    
+.attr-softwareClassificationValue { }
+    
+.attr-softwareCustomizationStatusValue { }
+    
+.attr-functionalItemRefType { }
+    
+.attr-unitOfMeasure { }
+    
+.attr-installationLocationType { }
+    
+.attr-altNumber { }
+    
+.attr-normativeComponentFlag { }
+    
+.attr-sealedFlag { }
+    
+.attr-circuitBreakerRefType { }
+    
+.attr-monitoredFlag { }
+    
+.attr-collaredCircuitBreakerFlag { }
+    
+.attr-provisionedFlag { }
+    
+.attr-partNumberValue { }
+    
+.attr-natoSupplyClass { }
+    
+.attr-natoCodificationBureau { }
+    
+.attr-natoItemIdentNumberCore { }
+    
+.attr-enterpriseType { }
+    
+.attr-enterpriseRefType { }
+    
+.attr-qualifiedSiteFlag { }
+    
+.attr-sourcingTypeValue { }
+    
+.attr-sparePartClassCode { }
+    
+.attr-partUsageCode { }
+    
+.attr-specDocumentNumber { }
+    
+.attr-specDocumentType { }
+    
+.attr-fitmentCodeValue { }
+    
+.attr-hazardousClassValue { }
+    
+.attr-etopsFlag { }
+    
+.attr-replacementCode { }
+    
+.attr-partNumberUnavailableFlag { }
+    
+.attr-zoneRefType { }
+    
+.attr-zoneSideValue { }
+    
+.attr-zoneType { }
+    
+.attr-accessPointRefType { }
+    
+.attr-hingedFastenerFlag { }
+    
+.attr-toolNumber { }
+    
+.attr-specific { }
+    
+.attr-toolAltFlag { }
+    
+.attr-toolRefType { }
+    
+.attr-taskCategoryCode { }
+    
+.attr-deliveredSpecificationFlag { }
+    
+.attr-altCode { }
+    
+.attr-altCodeType { }
+    
+.attr-supplyNumber { }
+    
+.attr-supplyNumberType { }
+    
+.attr-vendorFlag { }
+    
+.attr-locallySuppliedFlag { }
+    
+.attr-lowestLevel { }
+    
+.attr-manufacturedFlag { }
+    
+.attr-obsoleteFlag { }
+    
+.attr-specialLabelFlag { }
+    
+.attr-materialCategory { }
+    
+.attr-supplyRqmtNumber { }
+    
+.attr-complianceCategoryValue { }
+    
+.attr-supplyRqmtStatusValue { }
+    
+.attr-authorizationStatusDate { }
+    
+.attr-safetyCategoryValue { }
+    
+.attr-productCategory { }
+    
+.attr-supplyRqmtType { }
+    
+.attr-applicMapRefId { }
+    
+.attr-warningIdentNumber { }
+    
+.attr-cautionIdentNumber { }
+    
+.attr-condRefId { }
+    
+.attr-condRefGroupType { }
+    
+.attr-forCondValues { }
+    
+.attr-dependencyTest { }
+    
+.attr-condTypeRefId { }
+    
+.attr-incorporationStatus { }
+    
+.attr-condIssueNumber { }
+    
+.attr-senderIdent { }
+    
+.attr-receiverIdent { }
+    
+.attr-yearOfDataIssue { }
+    
+.attr-seqNumber { }
+    
+.attr-label { }
+    
+.attr-dmlType { }
+    
+.attr-infoEntityRefIdent { }
+    
+.attr-commentType { }
+    
+.attr-answerToEntry { }
+    
+.attr-dmlEntryType { }
+    
+.attr-listDirection { }
+    
+.attr-thresholdUnitOfMeasure { }
+    
+.attr-productItemName { }
+    
+.attr-productItemType { }
+    
+.attr-startupDuration { }
+    
+.attr-procedureDuration { }
+    
+.attr-closeupDuration { }
+    
+.attr-reqCondCategory { }
+    
+.attr-personCategoryCode { }
+    
+.attr-numRequired { }
+    
+.attr-man { }
+    
+.attr-reqTechInfoCategory { }
+    
+.attr-materialSetIdent { }
+    
+.attr-materialSetIssue { }
+    
+.attr-materialUsage { }
+    
+.attr-faultProbability { }
+    
+.attr-detectionType { }
+    
+.attr-faultCode { }
+    
+.attr-from { }
+    
+.attr-to { }
+    
+.attr-testType { }
+    
+.attr-testCode { }
+    
+.attr-faultType { }
+    
+.attr-faultPartCategory { }
+    
+.attr-subCategory { }
+    
+.attr-contactIdent { }
+    
+.attr-nextActionRefId { }
+    
+.attr-keepWithNext { }
+    
+.attr-independentCheck { }
+    
+.attr-initialProvisioningProjectNumberSubject { }
+    
+.attr-fileIdent { }
+    
+.attr-languageCode { }
+    
+.attr-refType { }
+    
+.attr-reasonForSelectionValue { }
+    
+.attr-attachStoreShipPartCode { }
+    
+.attr-selectOrManufactureValue { }
+    
+.attr-operationType { }
+    
+.attr-modelVersionValue { }
+    
+.attr-condNumber { }
+    
+.attr-condTypeName { }
+    
+.attr-condValue { }
+    
+.attr-genericPartDataName { }
+    
+.attr-applicRefIds { }
+    
+.attr-partCharacteristic { }
+    
+.attr-partStatus { }
+    
+.attr-indenture { }
+    
+.attr-pmEntryType { }
+    
+.attr-pmType { }
+    
+.attr-applicPropertyValue { }
+    
+.attr-altsName { }
+    
+.attr-itemCharacteristic { }
+    
+.attr-sbMaterialType { }
+    
+.attr-sbMaterialIdent { }
+    
+.attr-sbMaterialIssue { }
+    
+.attr-sbProcurableFlag { }
+    
+.attr-sbSupplierValue { }
+    
+.attr-sbItem { }
+    
+.attr-genericPropertyType { }
+    
+.attr-genericPropertyFlag { }
+    
+.attr-sbReplacementType { }
+    
+.attr-sbComplianceCategory { }
+    
+.attr-sbTaskCategory { }
+    
+.attr-sbModificationIdent { }
+    
+.attr-sbModificationClassification { }
+    
+.attr-sbImpactType { }
+    
+.attr-sbConcurrentStatus { }
+    
+.attr-samplingValue { }
+    
+.attr-samplingUnit { }
+    
+.attr-samplingRatio { }
+    
+.attr-toleranceValue { }
+    
+.attr-toleranceType { }
+    
+.attr-thresholdType { }
+    
+.attr-inspectionTypeCategory { }
+    
+.attr-occurrenceTrigger { }
+    
+.attr-releaseEvent { }
+    
+.attr-limitTypeValue { }
+    
+.attr-limitCond { }
+    
+.attr-sbTimeComplianceType { }
+    
+.attr-sbAggregationLevelFlag { }
+    
+.attr-sbApprovalIdent { }
+    
+.attr-sbTopicType { }
+    
+.attr-markerType { }
+    
+.attr-taskSeqNumber { }
+    
+.attr-taskName { }
+    
+.attr-sourceCriticality { }
+    
+.attr-sourceTypeCode { }
+    
+.attr-sourceOfRqmt { }
+    
+.attr-approval { }
+    
+.attr-supervisorLevelCode { }
+    
+.attr-taskIdent { }
+    
+.attr-relatedTaskDescr { }
+    
+.attr-taskCode { }
+    
+.attr-worthinessLimit { }
+    
+.attr-reducedMaint { }
+    
+.attr-skillType { }
+    
+.attr-timeLimitCategoryValue { }
+    
+.attr-limitUnitType { }
+    
+.attr-timeLimitIdent { }
+    
+.attr-function { }
+    
+.attr-maintLevelCode { }
+    
+.attr-maintPlanningType { }
+    
+.attr-objectIdentCode { }
+    
+.attr-insertionOrder { }
+    
+.attr-targetPath { }
+    
+.attr-contactFunction { }
+    
+.attr-contactType { }
+    
+.attr-connectedFlag { }
+    
+.attr-contactPartNumber { }
+    
+.attr-wireInstallationDirection { }
+    
+.attr-screenLevel { }
+    
+.attr-screenType { }
+    
+.attr-screenStyle { }
+    
+.attr-twistingType { }
+    
+.attr-wireGaugeType { }
+    
+.attr-wireLengthType { }
+    
+.attr-holeIdent { }
+    
+.attr-wireState { }
+    
+.attr-changeInfo { }
+    
+.attr-highVibrationFlag { }
+    
+.attr-hydraulicFlag { }
+    
+.attr-sleeveMaterial { }
+    
+.attr-connectionType { }
+    
+.attr-initialStateFlag { }
+    
+.attr-mountPosition { }
+    
+.attr-mountRow { }
+    
+.attr-mountColumn { }
+    
+.attr-equipState { }
+    
+.attr-uri { }
+    
+.attr-behavior { }
+    
+.attr-desc { }
+    
+.attr-apsid { }
+    
+.attr-screentip { }
+    
+.attr-region { }
+    
+.attr-viewcontext { }
+    
+.attr-interactivity { }
+    
+.attr-text-size { }
+    
+.attr-fill-color { }
+    
+.attr-intensity { }
+    
+.attr-stroke-color { }
+    
+.attr-stroke-weight { }
+    
+.attr-text-color { }
+    
+.attr-text-font { }
+    
+.attr-raster-intensity { }
+    
+.attr-apstargetname { }
+    
+.attr-version { }
+    
+.attr-filename { }
+    
+.attr-background-color { }
+    
+.attr-pictureVisibility { }
+    
+.attr-actuate { }
+    
+.attr-type { }
+    
+.attr-href { }
+    
+.attr-show { }
+    
+.attr-title { }
+
+.csnLink
+    { color: blue; text-decoration: underline; cursor: pointer; }

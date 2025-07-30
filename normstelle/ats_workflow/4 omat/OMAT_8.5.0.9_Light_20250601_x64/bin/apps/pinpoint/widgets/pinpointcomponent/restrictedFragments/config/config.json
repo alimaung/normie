@@ -1,0 +1,5 @@
+{
+  "templateCreate": "widgets/pinpointcomponent/restrictedFragments/template/createRestrictedFragment",
+  "templateManage": "widgets/pinpointcomponent/restrictedFragments/template/manageRestrictedFragment",
+  "templateView": "widgets/pinpointcomponent/restrictedFragments/template/viewRestrictedFragment"
+}

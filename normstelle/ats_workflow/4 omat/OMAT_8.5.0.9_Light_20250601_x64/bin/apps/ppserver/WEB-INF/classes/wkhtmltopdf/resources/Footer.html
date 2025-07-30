@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style type="text/css">
+
+        body {
+            font-size: 10pt !important;
+            font-family: Sans-Serif, serif !important;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        #main {
+            position: absolute;
+            left: 220px;
+            right: 220px;
+            text-align: center;
+            word-wrap: break-word;
+        }
+
+        #right {
+            width: 230px;
+			float: right;
+        }
+
+        #left {
+		    width: 280px;
+            float: left;
+            padding-top: 1px;
+        }
+
+    </style>
+    <script>
+        function init() {
+            pdfPluginVars();
+            documentVars();
+            displayMetadata();
+        }
+
+        function pdfPluginVars() {
+            var vars = {};
+            var x = window.location.search.substring(1).split('&');
+            for (var i in x) {
+                var z = x[i].split('=', 2);
+                vars[z[0]] = unescape(z[1]);
+            }
+            var x = ['frompage', 'topage', 'page', 'webpage', 'section', 'subsection', 'subsubsection'];
+            for (var i in x) {
+                var y = document.getElementsByClassName(x[i]);
+                for (var j = 0; j < y.length; ++j) y[j].textContent = vars[x[i]];
+            }
+        }
+
+        function documentVars() {
+            var vars = {};
+            var params = document.location.search.substring(1).split('&');
+            for (var i in params) {
+                var paramArr = new Array();
+                var splitLen = params[i].indexOf('=');
+                paramArr[0] = params[i].substring(0, splitLen);
+                paramArr[1] = params[i].substring(splitLen + 1);
+                vars[paramArr[0]] = paramArr[1];
+            }
+
+            var tagValues = ['delimiter', 'break'];
+            if (vars['pp-printing-footer-footerLabel'] != 'null'){
+               tagValues.push('footerLabel-delimiter');
+            } else {
+               vars['pp-printing-footer-effect'] = 'null';
+            }
+            tagValues.forEach(processData, 'tags');
+
+            var customValues = ['pp-printing-footer-effect', 'pp-printing-footer-code', 'pp-printing-footer-export-control',
+                'pp-printing-footer-footerLabel', 'pp-printing-footer-footerWarningContent', 'pp-printing-footer-printDateTime',
+                'pp-printing-footer-printedLabel', 'pp-printing-footer-revisionLabel', 'pp-printing-footer-revNum',
+                'pp-printing-footer-releaseDateLabel', 'pp-printing-footer-revdate', 'pp-printing-footer-firstName', 'pp-printing-footer-lastName'];
+            customValues.forEach(processData, 'body');
+
+            function processData(value, index, array) {
+                var x = document.getElementsByClassName(value);
+                if (x && x.length > 0) {
+                    if (this == 'tags') {
+                        for (var i = 0; i < x.length; i++) {
+                            x[i].innerHTML = value && value == 'break' ? '<br/>' : ' : ';
+                        }
+                    } else if (this == 'body') {
+                        if (vars[value] != 'null'){
+                           x[0].innerHTML = decodeURI(vars[value]);
+                        }
+                    } else if (this == 'style') {
+                        x[0].style.display = 'none';
+                    }
+                }
+            }
+
+            document.getElementById('bodyFontsize').style.fontSize = decodeURI(vars['bodyFontsize']);
+        }
+
+        function displayMetadata() {
+            var vars = {};
+            var params = document.location.search.substring(1).split('&');
+            for (var i in params) {
+                var paramArr = new Array();
+                var splitLen = params[i].indexOf('=');
+                paramArr[0] = params[i].substring(0, splitLen).toLowerCase();
+                paramArr[1] = params[i].substring(splitLen + 1);
+                vars[paramArr[0]] = paramArr[1];
+            }
+
+            displayProprietaryMessage(vars);
+        }
+
+        function displayProprietaryMessage(vars) {
+            if(vars['proprietary'] !== undefined) {
+                var proprietaryElement = document.getElementsByClassName(vars['proprietary'].toLowerCase());
+                if (proprietaryElement && proprietaryElement.length > 0) {
+                    proprietaryElement[0].style.removeProperty("display");
+                }
+            }
+        }
+    </script>
+</head>
+
+<body id="bodyFontsize" onload="init()" pp-footer-height="10mm">
+
+<div id="pp-printing-footer" style="border-top:1px solid;">
+
+    <div id="main">
+        <p class="pp-printing-footer-code"></p>
+        <!-- By default proprietary messages are hidden, it will be added in pdf footer based on metadata value -->
+        <div id="proprietary" style="text-align:center; color: #ff0000;">
+            <span class="boeing" style="display: none"> BOEING PROPRIETARY - Copyright &copy; Unpublished Work </span>
+            <span class="airbus" style="display: none"> AIRBUS PROPRIETARY - Copyright &copy; Unpublished Work </span>
+        </div>
+    </div>
+
+    <div id="left" style="text-align:left;word-wrap:break-word;font-size: 90%">
+        <span class="pp-printing-footer-footerLabel"></span> <span class="footerLabel-delimiter"></span> <span
+            class="pp-printing-footer-effect"></span>
+        <br/>
+        <span class="pp-printing-footer-export-control"></span>
+    </div>
+
+    <div id="right" style="text-align:right">
+        <div class= "chromePrint">Page &nbsp;<span class="page pageNumber"></span>&nbsp;of &nbsp;<span class="topage totalPages"></span></div>
+        <div id="warning" style="text-align:right;clear:both;">
+            <span class="pp-printing-footer-footerWarningContent"></span>
+        </div>
+    </div>
+</div>
+</body>
+</html>
+
+
+<!--<body id="bodyFontsize" onload="init()" style="border-top:1px solid;" pp-footer-height="10mm">-->
+
+<!--<div id="pp-printing-footer">-->
+
+<!--&lt;!&ndash;Upto 3 lines can be given here...&ndash;&gt;-->
+
+<!--    <div id="main">-->
+<!--        <p class="pp-printing-footer-code"></p>-->
+<!--    </div>-->
+
+<!--    <div id="left" style="text-align:left;word-wrap:break-word;font-size: 90%">-->
+<!--        <span class="pp-printing-footer-footerLabel"></span> <span class="delimiter"></span> <span-->
+<!--            class="pp-printing-footer-effect"></span>-->
+<!--    </div>-->
+
+<!--    <div id="right" style="text-align:right">-->
+<!--        Page &nbsp;<span class="page"></span>&nbsp;-->
+<!--    </div>-->
+
+<!--    <div id="warning" style="text-align:right;clear:both;">-->
+<!--        <span class="pp-printing-footer-footerWarningContent"></span>-->
+<!--    </div>-->
+
+<!--	<div id="proprietary" style="text-align:center;clear:both;color: red;"> -->
+<!--		<span class="proprietary"></span> -->
+<!--	</div> -->
+
+<!--	<div id="classification" style="text-align:center;clear:both;color: blue;"> -->
+<!--		<span class="classification"></span> -->
+<!--	</div> -->
+
+<!--<div>-->
+
+<!--&lt;!&ndash;	It supports max of 180 chars per line&ndash;&gt;-->
+<!--	<p style="color: blue;">This document contains material protected by copyright and may not be reproduced in whole or part without the prior written authorisation of Rolls-Royce plc.</p>-->
+
+<!--	<p style="font-size: normal;">-->
+
+<!--    <span style="color: blue;"><span class="pp-printing-footer-revisionLabel"></span><span class="delimiter"></span><span class="pp-printing-footer-revNum"></span> &nbsp;-->
+<!--    <span class="pp-printing-footer-releaseDateLabel"></span><span class="delimiter"></span><span class="pp-printing-footer-revdate"></span></span>-->
+
+<!--	<span style="float: right; ">-->
+
+<!--    <span class="pp-printing-footer-printedLabel"></span><span class="delimiter"></span><span class="pp-printing-footer-printDateTime"></span>&nbsp;-->
+
+<!--	<span>Printer: </span> <span class="pp-printing-footer-firstName" style="text-transform: uppercase"></span>&nbsp;<span class="pp-printing-footer-lastName" style="text-transform: uppercase"></span></span>-->
+
+<!--	</p>-->
+
+<!--</div>-->
+
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->

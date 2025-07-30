@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>HTML Archive Search</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="template/css/search.css" type="text/css" />
+        <link rel="stylesheet" href="template/flatironsstyles/style.css" type="text/css">
+        <script src="template/lunr/lunr.min.js"></script>
+        <script src="template/lunr/lunrclient.js"></script>
+        <script src="lunr_stop_words.js"></script>
+    </head>
+    <body>
+        <div id="i-search-container">
+            <div id="index-search-what-container">
+                <form id="lunrSearchForm" name="lunrSearchForm" action="javascript:void(0);">
+                    <div id="search-field-container">
+                        <input
+                            id="search-input"
+                            name="q"
+                            placeholder="Enter keyword"
+                            type="text"
+                        />
+                        <input id="search-button" onclick="searchLunr()" type="submit" value="Search" />
+                        <span id="search-help-icon" onclick="showDialog()" class="tooltip icon-info" title="Search Information"></span>
+                        <dialog id="search-help-dialog">
+                            <p id="first-help-item">
+                                <b>Single Search Term:</b> safety<br>
+                                Finds documents with the word "safety"<br>
+                                Matches the entire word, a search for "safe" will not return matches for "safety"
+                            </p>
+                            <p>
+                                <b>Multiple Search Terms OR:</b> safety varnish<br>
+                                Finds documents with the word "safety" OR "varnish"
+                            </p>
+                            <p>
+                                <b>Multiple Search Terms AND:</b> +safety +varnish<br>
+                                Finds documents with the word "safety" AND "varnish"
+                            </p>
+                            <p>
+                                <b>Multiple Search Terms NOT:</b> +safety -varnish<br>
+                                Finds documents with the word "safety" AND NOT "varnish"
+                            </p>
+                            <p>
+                                <b>Wildcards:</b> var*<br>
+                                Finds documents with a word starting with "var"<br>
+                                The "*" represents one or more characters<br>
+                                A search for "var*" would return a match for "varnish", but not for "var"
+                            </p>
+                            <p>
+                                <b>Fuzzy Matches:</b> varnash~1<br>
+                                Finds documents with a word within one letter of "varnash"
+                            </p>
+                            <p>
+                                <b>Stop Words:</b><br>
+                                Generic words, such as "the", will be discarded from the search<br>
+                                A warning will display if you attempt to search on a stop word<br>
+                            </p>
+                            <button id="toggle-stop-words" type="button" class="collapsible" onclick="toggleStopWords(this)">List of Stop Words</button>
+                            <p id="stop-word-content" class="collapsible-content"></p>
+                            <p>
+                                <button onclick="closeDialog()">OK</button>
+                            </p>
+                        </div>
+                    </div>
+                </form>
+                <div id="i-searching" style="display: none">
+                    <p>Searching...</p>
+                </div>
+                <div id="i-results" style="display: none">
+                    <div class="result-count" id="result-count"></div>
+                    <div id="searchResults"></div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

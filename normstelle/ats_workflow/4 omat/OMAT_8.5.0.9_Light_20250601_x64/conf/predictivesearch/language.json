@@ -1,0 +1,27 @@
+[
+  {
+    "displayName": "English (US)",
+    "code": "us",
+    "priority": 0
+  },
+  {
+    "displayName": "French",
+    "code": "fr",
+    "priority": 2
+  },
+  {
+    "displayName": "English (UK)",
+    "code": "gb",
+    "priority": 1
+  },
+  {
+    "displayName": "Swedish",
+    "code": "se",
+    "priority": 3
+  },
+  {
+    "displayName": "Norwegian",
+    "code": "no",
+    "priority": 4
+  }
+]

@@ -1,0 +1,26 @@
+{
+  "app" : {
+    "login" : {
+      "username": "Username",
+      "password": "Password",
+      "showPassword": "Show Password",
+      "loginBtn": "LOG IN",
+      "pleaselogin": "Please"
+      },
+    "alert" : {
+      "invalidCredentials": "Invalid username or password",
+      "serverError": "Server error: Unable to validate credentials",
+	  "invalidLicense": "Valid Application License is not available. Please contact the Administrator.",
+	  "kerberosLoginError": "Unable to do Kerberos Login, Please provide your credentials and try login",
+	  "guestUserError": "Server unable to allow Guest user.",
+	  "guestUserNotAvailable": "Guest Login: Not available",
+	  "redirectURLNotAllowed": "Redirect URL not allowed: "
+	  
+    },
+     "language": {
+        "selector": "Choose Language",
+        "en": "English",
+        "fr": "Français"
+      }
+  }
+}

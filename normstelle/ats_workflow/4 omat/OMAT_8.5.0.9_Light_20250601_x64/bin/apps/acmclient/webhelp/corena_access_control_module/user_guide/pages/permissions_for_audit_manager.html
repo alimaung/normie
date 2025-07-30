@@ -1,0 +1,94 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The control of permissions (who can do what) in Audit Manager is managed in Access Control Manager ( ). The Access Control Manager administrator grants permissions to the different user ..."/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta http-equiv="Pragma" content="no-cache"/><meta http-equiv="Expires" content="0"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="reference"/>
+<meta name="DC.Title" content="Permissions for Audit Manager"/>
+<meta name="abstract" content=""/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="manage_permissions_for_audit_manager"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Pragma" content="no-cache"/><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Expires" content="0"/><link xmlns="http://www.w3.org/1999/xhtml" rel="icon" type="image/png" href="../../../oxygen-webhelp/resources/img/favicon.ico"/><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../../../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../../../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../../../oxygen-webhelp/resources/js/jquery.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../../../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../../../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script><link rel="stylesheet" type="text/css" href="../../../oxygen-webhelp/resources/css/commonltr.css"/>
+<title>Permissions for Audit Manager</title>
+</head>
+<body onload="highlightSearchTerm()" id="manage_permissions_for_audit_manager">
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#">Link to this page</a></div><div id="printlink"><a href="javascript:window.print();">Print this page</a></div></td></tr><tr><td><div class="navheader"/></td><td width="75%"/></tr></tbody></table>
+
+  <h1 class="title topictitle1">Permissions for Audit Manager</h1>
+
+  
+  <div class="body refbody"><p class="shortdesc"/>
+
+    <div class="section">
+      <p class="p">The control of permissions (who can do what) in Audit Manager is managed in Access Control
+        Manager (<img class="image" id="manage_permissions_for_audit_manager__image_qx5_h2m_jz" src="../graphics/access_control_icon.png" height="20"/>). The Access Control Manager administrator grants permissions to the
+        different user roles/organizations that can access functions in Audit Manager.</p>
+
+      <p class="p">You grant permissions to a user role/organization for the application. For a description of
+        how to grant permissions to user roles/organizations, refer to <a class="xref" href="grant_permissions.html#task_rqz_c5v_y5">Manage Function Privileges and Data Access Permissions</a>.</p>
+
+      <p class="p">Read, Write, and Delete permissions must be granted for the nodes below the Audit Manager
+        privilege tree. </p>
+
+      <div class="fig fignone" id="manage_permissions_for_audit_manager__fig_pnc_z2m_jz">
+        
+        <br/><img class="image" id="manage_permissions_for_audit_manager__image_uht_rfz_xnb" src="../graphics/audit_manager_privilege_tree.png"/><br/>
+      <p class="figcap">Audit Manager Privilege Tree</p></div>
+
+      <p class="p">This table describes the privilege tree and effect of assigning
+        <span class="ph uicontrol">Read</span>, <span class="ph uicontrol">Write</span>, and <span class="ph uicontrol">Delete</span>
+        permission to each of the nodes.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="manage_permissions_for_audit_manager__table_gxt_s2m_jz" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. Audit Manager Privilege Tree</span></caption>
+          
+          
+          <thead class="thead" align="left">
+            <tr class="row">
+              <th class="entry" valign="top" width="33.33333333333333%" id="d13567e66">Panel (top level &gt; sub levels)</th>
+
+              <th class="entry" valign="top" width="66.66666666666666%" id="d13567e69">Description</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody class="tbody">
+            <tr class="row">
+              <td class="entry" valign="top" width="33.33333333333333%" headers="d13567e66 ">Application &gt; Can access</td>
+
+              <td class="entry" valign="top" width="66.66666666666666%" headers="d13567e69 ">Grant <span class="ph uicontrol">Read</span> permission to log into the Audit Manager
+                application. The user account must be a member of a role configured with READ
+                  access.<div class="note note"><span class="notetitle">Note:</span> If the user can access the Audit Manager application, they have
+                  access to all functionality. </div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="33.33333333333333%" headers="d13567e66 ">Application &gt; Can access (Admin)</td>
+
+              <td class="entry" valign="top" width="66.66666666666666%" headers="d13567e69 ">Not currently available.</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+</div>
+
+    </div>
+
+  </div>
+
+<div class="navfooter"><!----></div>
+</body>
+</html>

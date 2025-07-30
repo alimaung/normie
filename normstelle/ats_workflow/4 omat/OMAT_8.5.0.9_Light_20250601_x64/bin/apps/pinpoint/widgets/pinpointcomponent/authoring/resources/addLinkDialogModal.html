@@ -1,0 +1,19 @@
+<form id='link-form' action=''>
+    <div class='alert alert-info' ng-show="vm.gotoUrlIsCopied">
+        <p> {{vm.scope.translations.copiedToClipboard}}<strong> {{ vm.$rootScope.lastCopiedGotoUrl.title}}</strong>. <br>{{vm.scope.translations.useThisLink}}</p>
+        <div class="menu-list">
+           <span id="disregardUrl" style="color:grey; text-decoration: underline; font-weight: bold;" ng-click="vm.disregardUrl()">{{vm.scope.translations.disregard}}</span>
+           <span> | </span>
+           <span id="gotoUrlLink" style="color:blue; text-decoration: underline; font-weight: bold;" ng-click="vm.copyGotoUrl()"> {{vm.scope.translations.useLink}}</span>
+       </div>
+    </div>
+    <div class='form-group'>
+        <label for='link-form-text'>{{vm.scope.translations.displayText}}</label>
+        <input type='text' ng-change="vm.checkForValidURLAndNonEmptyTitle()" ng-model="addLinkInfo.gotoDisplayText" class='form-control' id='link-form-text' placeholder='{{vm.scope.translations.enterTextTodisplay}}'>
+    </div>
+    <div class='form-group'>
+        <label for='link-form-url'>{{vm.scope.translations.url}}</label>
+        <input type='text' ng-change="vm.checkForValidURLAndNonEmptyTitle()" ng-model="addLinkInfo.gotoUrl" class='form-control' id='link-form-url' placeholder='{{vm.scope.translations.enterURL}}'>
+        <span style="color:Red" ng-style="{'display': isValidURL ? 'none': 'block'}">{{translations.checkValidUrl}}</span>
+    </div>
+</form>

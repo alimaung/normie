@@ -1,0 +1,303 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Note: Some user administrator tasks (such as creating users) cannot be done within the Access Control Manager UI. Instead, other user administration tasks can be accomplished with ldapadmin and other ..."/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta http-equiv="Pragma" content="no-cache"/><meta http-equiv="Expires" content="0"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="reference"/>
+<meta name="DC.Title" content="Users"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="reference_jym_5pr_q5"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Pragma" content="no-cache"/><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Expires" content="0"/><link xmlns="http://www.w3.org/1999/xhtml" rel="icon" type="image/png" href="../../../oxygen-webhelp/resources/img/favicon.ico"/><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../../../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../../../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../../../oxygen-webhelp/resources/js/jquery.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../../../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../../../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script><link rel="stylesheet" type="text/css" href="../../../oxygen-webhelp/resources/css/commonltr.css"/>
+<title>Users</title>
+</head>
+<body onload="highlightSearchTerm()" id="reference_jym_5pr_q5">
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#">Link to this page</a></div><div id="printlink"><a href="javascript:window.print();">Print this page</a></div></td></tr><tr><td><div class="navheader"/></td><td width="75%"/></tr></tbody></table>
+
+  <h1 class="title topictitle1">Users</h1>
+
+  
+  <div class="body refbody">
+    <div class="section">
+      <div class="note note"><span class="notetitle">Note:</span> Some user administrator tasks (such as creating users) cannot be done within the <span class="ph">Access Control Manager</span> UI. Instead, other user
+        administration tasks can be accomplished with ldapadmin and other external methods. Refer to
+          <em class="ph i">Flatirons
+          Pinpoint Configuration Guide, <span class="q">"User Administration"</span></em>.</div>
+
+      
+      <p class="p">If your user role has <span class="ph uicontrol">Read</span> permission for the
+          <span class="ph uicontrol">Users</span> privilege, you can access the <span class="keyword wintitle">Users</span> page
+        by clicking the <img class="image" id="reference_jym_5pr_q5__image_adz_whl_gnb" src="../graphics/users_icon.png" height="16"/>
+        <span class="ph uicontrol">Users</span> icon on the header bar.</p>
+
+      
+      <div class="p">The <span class="keyword wintitle">Users</span> page is a tool for viewing users that have been synchronized
+        from the LDAP server. The operations you can do to a user in <span class="ph">Access Control Manager</span> are:<ul class="ul" id="reference_jym_5pr_q5__ul_znd_pnl_2nb">
+          <li class="li">set the user as synchronized with LDAP (refer to <a class="xref" href="#reference_jym_5pr_q5__table_uny_3k2_45">Table 2</a>)</li>
+
+          <li class="li">set the user as inactive (refer to <a class="xref" href="#reference_jym_5pr_q5__table_uny_3k2_45">Table 2</a>)</li>
+
+          <li class="li">delete the user (refer to <a class="xref" href="delete_user.html">Delete User</a>)</li>
+
+          <li class="li">set the user as absent (refer to <a class="xref" href="set_a_user_to_absent.html" title="You can set a user to absent and add information about the absence. This allows you to notify others of the absence, for example, a user marked as absent would show as absent on various reports created in Audit Manager.">Set a User to Absent</a>).</li>
+
+          <li class="li">change his or her organization (refer to <a class="xref" href="change_organization_for_a_user.html">Change Organization for a User</a>)</li>
+
+          <li class="li">for Pinpoint Standalone, manage his or
+            her access keys (refer to <a class="xref" href="managing_accesskeys.html">Managing User Access Keys</a>)</li>
+
+        </ul>
+</div>
+
+      
+      <div class="p">The page is split in two panes:<ul class="ul" id="reference_jym_5pr_q5__ul_ong_2b2_45">
+          <li class="li"><span class="keyword wintitle">Users</span> (left side): Lists all users available in the system and
+            allows you to search for users.</li>
+
+          <li class="li"><span class="keyword wintitle">User Details</span> (right side): Shows detailed information about a
+            selected user.</li>
+
+        </ul>
+</div>
+
+      <div class="fig fignone" id="reference_jym_5pr_q5__fig_k3w_yrr_q5">
+        
+        <br/><img class="image" id="reference_jym_5pr_q5__image_lnk_bkr_dbb" src="../graphics/users_panel.png" width="576"/><br/>
+      <p class="figcap">Users Page</p></div>
+
+      <p class="p">The table below describes the fields in the <span class="keyword wintitle">Users</span> section.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="reference_jym_5pr_q5__table_yps_xd2_45" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. Components in
+          Users
+          Page</span></caption>
+          
+          
+          <thead class="thead" align="left">
+            <tr class="row">
+              <th class="entry" valign="top" width="50%" id="d25640e169">Component</th>
+
+              <th class="entry" valign="top" width="50%" id="d25640e172">Description</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody class="tbody">
+            <tr class="row">
+              <td class="entry" valign="top" width="50%" headers="d25640e169 "><span class="ph uicontrol">Search</span> field and <img class="image" id="reference_jym_5pr_q5__image_s1x_f2b_dnb" src="../graphics/search_icon.png" height="16"/> search
+                icon</td>
+
+              <td class="entry" valign="top" width="50%" headers="d25640e172 ">
+                <p class="p">Type text in this field and click the <img class="image" id="reference_jym_5pr_q5__image_jgz_52b_dnb" src="../graphics/search_icon.png" height="16"/> search icon to search for a specific
+                  user. The search returns users that match the search text in either
+                    <span class="keyword wintitle">Name</span>, <span class="keyword wintitle">Username</span> or
+                    <span class="keyword wintitle">Organization</span>.</p>
+
+                <p class="p">The search is not case sensitive and has support for "*" and "%" wild cards. A
+                  hidden "%" wild card is automatically applied in front of and behind the entered
+                  text. This means that a search for "test" returns "tests" and "tester" in addition
+                  to the actual search word.</p>
+
+                <p class="p">You can also use the "*" or "%" wild card to replace characters in the search
+                  word. A search for "Lu*y" will return both "Lusy" and "Lucy".</p>
+
+                <p class="p">The number of users found in a search is displayed in footer.</p>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="50%" headers="d25640e169 "><span class="keyword wintitle">Users</span> list</td>
+
+              <td class="entry" valign="top" width="50%" headers="d25640e172 ">
+                <p class="p">The user list shows all users registered in the system. When you select a user in
+                  the list, you will see detailed information about him or her in the <span class="keyword wintitle">User
+                    Details</span> section on the right side.</p>
+
+                <p class="p">If the list contains more entries than can fit into one page, the list is paged
+                  and you can navigate between the pages using the navigation buttons below the
+                  list.</p>
+
+                <p class="p">The list is by default sorted by <span class="keyword wintitle">Name</span>, but you can change
+                  the sorting by clicking on the column headers.</p>
+
+                <p class="p"> This list cannot be modified in <span class="ph">Access Control Manager</span>.</p>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+</div>
+
+      <p class="p">The table below describes the fields in the <span class="keyword wintitle">User Details</span> section.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="reference_jym_5pr_q5__table_uny_3k2_45" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 2. Components in User Details</span></caption>
+          
+          
+          <thead class="thead" align="left">
+            <tr class="row">
+              <th class="entry" valign="top" width="50%" id="d25640e271">Component</th>
+
+              <th class="entry" valign="top" width="50%" id="d25640e274">Description</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody class="tbody">
+            <tr class="row">
+              <td class="entry" valign="top" width="50%" headers="d25640e271 "><img class="image" id="reference_jym_5pr_q5__image_y5x_lr2_45" src="../graphics/save_button.png" height="16"/>
+                <span class="ph uicontrol">Save</span> icon</td>
+
+              <td class="entry" valign="top" width="50%" headers="d25640e274 ">Click this icon to save changes in <span class="keyword wintitle">User Details</span>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="50%" headers="d25640e271 "><img class="image" id="reference_jym_5pr_q5__image_tsj_sr2_45" src="../graphics/edit_button.png" height="16"/>
+                <span class="ph uicontrol">Edit</span> icon / <img class="image" id="reference_jym_5pr_q5__image_azy_5r2_45" src="../graphics/cancel_operation.png" height="16"/>
+                <span class="ph uicontrol">Cancel</span> icon</td>
+
+              <td class="entry" valign="top" width="50%" headers="d25640e274 ">Click the <img class="image" id="reference_jym_5pr_q5__image_frn_thz_dnb" src="../graphics/edit_button.png" height="16"/>
+                <span class="ph uicontrol">Edit</span> icon to edit/modify <span class="keyword wintitle">User Details</span>.
+                When clicked, the <img class="image" id="reference_jym_5pr_q5__image_bvr_yhz_dnb" src="../graphics/edit_button.png" height="16"/>
+                <span class="ph uicontrol">Edit</span> icon changes to the <img class="image" id="reference_jym_5pr_q5__image_gqx_3s2_45" src="../graphics/cancel_operation.png" height="16"/>
+                <span class="ph uicontrol">Cancel</span> icon, which allows you to cancel the
+                  operation.<div class="note note"><span class="notetitle">Note:</span> It is only possible to change the Organization field. All other
+                  fields belongs to the LDAP server and must be updated there.</div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="50%" headers="d25640e271 "><img class="image" id="reference_jym_5pr_q5__image_hzt_svl_2nb" src="../graphics/delete_button.png" height="16"/>
+                <span class="ph uicontrol">Delete</span> icon</td>
+
+              <td class="entry" valign="top" width="50%" headers="d25640e274 ">Click this icon to delete the selected user. Refer to <a class="xref" href="delete_user.html">Delete User</a>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="50%" headers="d25640e271 "><span class="ph uicontrol">Synchronized with LDAP</span> checkbox</td>
+
+              <td class="entry" valign="top" width="50%" headers="d25640e274 ">Activate this
+                checkbox to set the selected user as synchronized with LDAP.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="50%" headers="d25640e271 "><span class="ph uicontrol">Inactive</span> checkbox</td>
+
+              <td class="entry" valign="top" width="50%" headers="d25640e274 ">Activate this
+                checkbox to set the selected user as inactive.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="50%" headers="d25640e271 "><span class="ph uicontrol">Absent</span> checkbox and field</td>
+
+              <td class="entry" valign="top" width="50%" headers="d25640e274 ">
+                <p class="p">Use this check box and field to set the selected user as absent. Refer to <a class="xref" href="set_a_user_to_absent.html" title="You can set a user to absent and add information about the absence. This allows you to notify others of the absence, for example, a user marked as absent would show as absent on various reports created in Audit Manager.">Set a User to Absent</a>. </p>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="50%" headers="d25640e271 "><span class="ph uicontrol">Username</span> field (Required)</td>
+
+              <td class="entry" valign="top" width="50%" headers="d25640e274 ">The username of the selected user. This field cannot be modified in <span class="ph">Access Control Manager</span>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="50%" headers="d25640e271 "><span class="ph uicontrol">First Name</span> field (Required)</td>
+
+              <td class="entry" valign="top" width="50%" headers="d25640e274 ">First name of the selected user. This field cannot be modified in <span class="ph">Access Control Manager</span>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="50%" headers="d25640e271 "><span class="ph uicontrol">Middle Name</span> field</td>
+
+              <td class="entry" valign="top" width="50%" headers="d25640e274 ">Middle name of the selected user. This field cannot be modified in <span class="ph">Access Control Manager</span>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="50%" headers="d25640e271 "><span class="ph uicontrol">Last Name</span> field (Required)</td>
+
+              <td class="entry" valign="top" width="50%" headers="d25640e274 ">Last name of the selected user. This field cannot be modified in <span class="ph">Access Control Manager</span>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="50%" headers="d25640e271 "><span class="ph uicontrol">Organization</span> field</td>
+
+              <td class="entry" valign="top" width="50%" headers="d25640e274 ">The organization registered for the selected user. Refer to <a class="xref" href="change_organization_for_a_user.html">Change Organization for a User</a>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="50%" headers="d25640e271 "><span class="ph uicontrol">Title</span> field</td>
+
+              <td class="entry" valign="top" width="50%" headers="d25640e274 ">Title of the selected user. This field cannot be modified in <span class="ph">Access Control Manager</span>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="50%" headers="d25640e271 "><span class="ph uicontrol">E-Mail</span> field</td>
+
+              <td class="entry" valign="top" width="50%" headers="d25640e274 ">E-Mail address to the selected user. This field cannot be modified in <span class="ph">Access Control Manager</span>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="50%" headers="d25640e271 "><span class="ph uicontrol">Phone</span> field</td>
+
+              <td class="entry" valign="top" width="50%" headers="d25640e274 ">Phone number to the selected user. This field cannot be modified in <span class="ph">Access Control Manager</span>..</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="50%" headers="d25640e271 "><span class="ph uicontrol">User role(s)</span> list</td>
+
+              <td class="entry" valign="top" width="50%" headers="d25640e274 ">The user roles that the selected user is a member of. The roles the user
+                belongs to can be modified with the <span class="keyword wintitle">User Roles</span> page. Refer to
+                  <a class="xref" href="edit_user_group.html">Edit User Group / User Role</a>.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="50%" headers="d25640e271 "><span class="ph uicontrol">User group(s)</span> list</td>
+
+              <td class="entry" valign="top" width="50%" headers="d25640e274 ">The user groups that the selected user is a member of. The groups the user
+                belongs to can be modified with the <span class="keyword wintitle">User Groups</span> page. Refer to
+                  <a class="xref" href="edit_user_group.html">Edit User Group / User Role</a>.</td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+</div>
+
+    </div>
+
+  </div>
+
+<div class="navfooter"><!----></div>
+</body>
+</html>

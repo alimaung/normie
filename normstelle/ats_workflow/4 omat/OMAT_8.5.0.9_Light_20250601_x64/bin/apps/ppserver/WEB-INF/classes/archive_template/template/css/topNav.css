@@ -1,0 +1,38 @@
+.topnav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #333333;
+    color: white;
+    height: 44px;
+}
+
+div.printIcon {
+    position: fixed;
+    right: 8px;
+    top: 4px;
+    padding: 4px;
+    padding-bottom: 0px;
+    background-color: #222222;
+    border: 1px solid grey;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#navBarData {
+    padding-right: 60px;
+    font-size: 17px;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    white-space: nowrap;
+}
+
+.topnav >img {
+    width: 255px;
+    height: 44px;
+    padding-top: 5px;
+}
+
+.printIcon >img {
+    width:25px;
+    height: 25px;
+}

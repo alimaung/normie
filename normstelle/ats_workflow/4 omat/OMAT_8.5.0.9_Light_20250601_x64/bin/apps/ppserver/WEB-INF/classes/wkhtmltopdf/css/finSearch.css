@@ -1,0 +1,288 @@
+/* CSS classes copied from PPClient */
+#results div.filterType {
+  position: relative;
+  top: -35px;
+  float: right;
+  text-indent: 5px;
+  float: left;
+}
+#finSearchID .function-title {
+  height: 70px;
+}
+#finCBTable .finTableWithMultipleTableDody {
+  width: 100%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+#finCBTable .finTableWithMultipleTableDody td {
+  padding: 5px;
+}
+#finCBTable .finTableWithMultipleTableDody tbody .resultHeader {
+  cursor: pointer;
+}
+#finCBTable .finTableWithMultipleTableDody tbody:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+#finCBTable .finTableWithMultipleTableDody tbody:hover {
+  background-color: #FCFCFC;
+}
+#wire-list-tab-content .clsText {
+  COLOR: black;
+  font-weight: bold;
+}
+#wire-list-tab-content .clsTextRed {
+  COLOR: white;
+  BACKGROUND-COLOR: red;
+  font-weight: bold;
+}
+#wire-list-tab-content .clsTextYellow {
+  COLOR: black;
+  BACKGROUND-COLOR: yellow;
+  font-weight: bold;
+}
+#wire-list-tab-content .clsTextBlue {
+  COLOR: white;
+  BACKGROUND-COLOR: blue;
+  font-weight: bold;
+}
+#wire-list-tab-content .clsTextGreen {
+  COLOR: black;
+  BACKGROUND-COLOR: #90EE90;
+  font-weight: bold;
+}
+#wire-list-tab-content .clsTextWhite {
+  COLOR: black;
+  BACKGROUND-COLOR: #fffacd;
+  font-weight: bold;
+}
+#wire-list-tab-content .clsTextBlack {
+  COLOR: #D3D3D3;
+  BACKGROUND-COLOR: black;
+  font-weight: bold;
+}
+#finSearchTab .category_item {
+  cursor: pointer;
+  text-decoration: underline;
+  color: #337ab7;
+}
+#finSearchID .highlight {
+  background-color: #FFFF78!important;
+}
+#finSearchID .highlight-bold {
+  font-weight: bold;
+}
+#results .linkItem {
+  text-decoration: underline;
+  cursor: pointer;
+  color: #337ab7;
+}
+#finSearchID #msg {
+  color: red;
+  margin: 20px;
+  font-size: 16pt;
+  text-align: center;
+}
+#zoneTable .category_item,
+#finListTab .category_item,
+#panelListTab .category_item,
+#wireListTab .category_item,
+#wireListTab a {
+  color: blue;
+  cursor: pointer;
+  text-decoration: underline;
+}
+#zoneTechnicalDataTab .zoneCirHtml,
+#panelTechnicalDataTab .zoneCirHtml {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+#zoneTechnicalDataTab .cirImageLink,
+#panelTechnicalDataTab .cirImageLink {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+#panelTechnicalDataTab .documentLink {
+  color: blue;
+  text-decoration: underline;
+  cursor: pointer;
+}
+#wireListTab .tableTbody {
+  border-bottom: 1px solid #ddd;
+}
+#wireListTab .wireTableWithMultipleTbodys {
+  width: 100%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+#wireListTab .wireTableWithMultipleTbodys td {
+  padding: 5px;
+}
+#wireListTab .wireTableWithMultipleTbodys tbody .resultHeader {
+  cursor: pointer;
+}
+#wireListTab .wireTableWithMultipleTbodys tbody:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+#wireListTab .wireTableWithMultipleTbodys tbody:hover {
+  background-color: #FCFCFC;
+}
+#wireListTab .clsTRSelected,
+#finEquipmentResults .clsTRSelected {
+  COLOR: black;
+  BACKGROUND-COLOR: #F0E68C;
+}
+#wireListTab .hideRow {
+  background-color: #F9FCFF;
+}
+#wireListTab .tdBorder {
+  border: 1px solid #EAEAEA;
+}
+#wireListTab .tdWidth {
+  width: 20%;
+}
+#wireListTab th {
+  height: 30px;
+  background-color: #f8f8f8;
+  padding: 2px;
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd;
+}
+#wireListTab .no1 td {
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+#wireListTab .v2-triangle {
+  border: 1px solid #ddd;
+  border-width: 1px 0 0 1px;
+  width: 8px;
+  height: 8px;
+  /* for IE11 firefox, safari, chrome, etc. */
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  z-index: 10000;
+  position: absolute;
+  background: #F9FCFF;
+  margin-left: 10px;
+  margin-top: 1px;
+}
+#finEquipmentResults a.nostyle {
+  text-decoration: none !important;
+  color: black !important;
+}
+#finEquipmentResults {
+  margin-top: 0px !important;
+}
+#finEquipmentResults .wireTableWithMultipleTbodys {
+  width: 100%;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+#finEquipmentResults td {
+  padding: 5px;
+}
+#finEquipmentResults .wireTableWithMultipleTbodys tbody .resultHeader {
+  cursor: pointer;
+}
+#finEquipmentResults .wireTable tr:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+#finEquipmentResults .wireTable tr:hover {
+  background-color: #FCFCFC;
+}
+#finEquipmentResults .wireTableWithMultipleTbodys tbody:nth-child(odd) {
+  background-color: #f9f9f9;
+}
+#finEquipmentResults .wireTableWithMultipleTbodys tbody:hover {
+  background-color: #FCFCFC;
+}
+#finEquipmentResults .pagination-ul a {
+  cursor: pointer;
+  text-decoration: none;
+}
+#finEquipmentResults .wireTableWithMultipleTbodys a {
+  cursor: pointer;
+  text-decoration: underline;
+}
+#finEquipmentResults #WDMSearchResults {
+  padding: 5px;
+}
+#finEquipmentResults #finEquipmentResultsResultTab li.active > a,
+#finEquipmentResults #finEquipmentResultsResultTab li.active > a:focus,
+#finEquipmentResults #finEquipmentResultsResultTab li.active > a:hover {
+  border-bottom-color: #ffffff;
+  font-weight: bold;
+  height: 29px;
+  margin: 0px;
+}
+#finEquipmentResults #finEquipmentResultsResultTab li > a {
+  height: 29px;
+  margin: 0px;
+}
+#finEquipmentResults #finEquipmentResultsResultTab {
+  height: 29px;
+}
+#finEquipmentResults th {
+  height: 30px;
+  background-color: #f8f8f8;
+  padding: 2px;
+  vertical-align: bottom;
+  border-bottom: 2px solid #ddd;
+}
+#finEquipmentResults .no1 td {
+  padding: 5px;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+#finEquipmentResults .wireTableWithMultipleTbodys a {
+  color: #0CA5F5;
+  cursor: pointer;
+}
+#finEquipmentResults .v2-triangle {
+  border: 1px solid #ddd;
+  border-width: 1px 0 0 1px;
+  width: 8px;
+  height: 8px;
+  /* for IE11 firefox, safari, chrome, etc. */
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  -moz-transform: rotate(45deg);
+  -o-transform: rotate(45deg);
+  z-index: 10000;
+  position: absolute;
+  background: #F9FCFF;
+  margin-left: 10px;
+  margin-top: 1px;
+}
+#finEquipmentResults .wireTableWithMultipleTbodys tbody:nth-child(odd) .v2-triangle {
+  background: #F9FCFF;
+}
+#finEquipmentResults .wireTable tr:hover .v2-triangle,
+#finEquipmentResults .wireTableWithMultipleTbodys tbody:hover .v2-triangle {
+  background: #F9FCFF;
+}
+#finEquipmentResults .hideRow {
+  background-color: #F9FCFF;
+}
+#finEquipmentResults .tableTbody {
+  border-bottom: 1px solid #ddd;
+}
+#finEquipmentResults .pagination-ul {
+  height: 30px;
+}
+#finEquipmentResults .tdBorder {
+  border: 1px solid #EAEAEA;
+}
+#finEquipmentResults .tdWidth {
+  width: 20%;
+}
+#finEquipmentResults table {
+  display: table;
+  width: 100%;
+}
+#finEquipmentResults .data {
+  white-space: pre;
+}

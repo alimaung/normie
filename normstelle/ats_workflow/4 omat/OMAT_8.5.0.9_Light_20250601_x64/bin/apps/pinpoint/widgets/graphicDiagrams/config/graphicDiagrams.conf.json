@@ -1,0 +1,13 @@
+{
+    "timeout" : 120000,
+    "menus": {
+        "leftMenus": [
+            {
+                "name": "findDiagrams",
+                "title": "Find graphic diagrams",
+                "iconClass": "fa fa-search",
+                "action": "findDiagrams"
+            }
+        ]
+    }
+}

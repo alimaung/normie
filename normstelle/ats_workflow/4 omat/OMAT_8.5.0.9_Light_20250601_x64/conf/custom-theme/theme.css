@@ -1,0 +1,249 @@
+/**
+  color-base is the style color to be used in Pills and tab and other areas.
+  Please note, when changing these colors - corresponding colors from stylesheet should be manually updated to be in sync.
+  So that - PDF print and feedback scenarios are consistent with viewer.
+  Also, ensure in pinpoint mobile - same is updated.
+ */
+.navbar-static-top {
+  background: #4F98FF !important;
+}
+.navbar-static-top a:hover {
+  color: #fff !important;
+}
+#html-content #tab-content .nav > li > a:focus,
+#html-content #tab-content .nav > li > a:hover {
+  background-color: #006DFF !important;
+}
+#html-content #tab-content .nav-pills > li.active > a,
+#html-content #tab-content .nav-pills > li.active > a:focus,
+#html-content #tab-content .nav-pills > li.active > a:hover {
+  background-color: #271BCB !important;
+}
+#html-content #tab-content .nav-pills {
+  background-color: #4F98FF !important;
+}
+#html-content #tab-content .check-mark-styling {
+  color: #4F98FF !important;
+}
+#layout_layout_panel_left .pp-ui-widget-header:hover {
+  background: #271BCB !important;
+}
+#layout_layout_resizer_left:hover,
+#layout_layout_resizer_right:hover,
+#layout_innerLeftLayout_resizer_top:hover,
+#layout_innerRightLayout_resizer_top:hover {
+  background-color: #271BCB !important;
+}
+div #accordion .ui-state-active {
+  background: #006DFF !important;
+}
+.nav-pills {
+  background-color: #4F98FF !important;
+}
+.nav-pills > li.active > a {
+  background-color: #4F98FF !important;
+}
+.nav-pills > li.active > a:focus {
+  background-color: #4F98FF !important;
+}
+#content #splash-content {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+}
+#content #splash-content img {
+  height: 440px !important;
+  width: 350px !important;
+  position: relative !important;
+  top: 50% !important;
+  text-align: center !important;
+  margin-top: auto !important;
+}
+#footer {
+  background: #10069F !important;
+}
+#header-menu {
+  background: #10069F !important;
+}
+#header-menu li {
+  background: #10069F !important;
+}
+#header-menu .menu-item-name,
+#header-menu #product-name a:hover {
+  margin-left: -20px;
+  width: 121px !important;
+  height: 40px;
+  background-position: 0px 0px !important;
+}
+.btn-success,
+.btn-success:hover,
+.btn-primary,
+.btn-primary:hover,
+.btn-default,
+.btn-default:active,
+.btn-default:focus,
+.btn-default:hover {
+  background-color: #006DFF !important;
+  background-image: none !important;
+  border-color: #10069F !important;
+  color: white !important;
+}
+.btn-secondary,
+.btn-secondary:hover {
+  color: #006DFF;
+  background-color: white;
+}
+.btn-info,
+.btn-info:hover {
+  background-color: #4F98FF;
+  border-color: #10069F !important;
+}
+.pubCategoryDropdown>.dropdown-custom>.multiselect-parent>.btn-default{
+  background-color: #e0e0e0 !important;
+  text-shadow: 0 1px 0 #fff !important;
+  background-image: -webkit-linear-gradient(top, #fff 0%, #e0e0e0 100%) !important;
+  background-image: -o-linear-gradient(top, #fff 0%, #e0e0e0 100%) !important;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e0e0e0)) !important;
+  background-image: linear-gradient(to bottom, #fff 0%, #e0e0e0 100%) !important;
+  background-repeat: repeat-x !important;
+  border-color: #dbdbdb !important;
+  border-color: #ccc !important;
+  color: #0a0a0a !important;
+}
+
+.pubDropdown>.dropdown-custom>.multiselect-parent>.btn-default
+{
+  background-color: #e0e0e0 !important;
+  text-shadow: 0 1px 0 #fff !important;
+  background-image: -webkit-linear-gradient(top, #fff 0%, #e0e0e0 100%) !important;
+  background-image: -o-linear-gradient(top, #fff 0%, #e0e0e0 100%) !important;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e0e0e0)) !important;
+  background-image: linear-gradient(to bottom, #fff 0%, #e0e0e0 100%) !important;
+  background-repeat: repeat-x !important;
+  border-color: #dbdbdb !important;
+  border-color: #ccc !important;
+  color: #0a0a0a !important;
+}
+
+#showFunctionList>.dropdown-custom>.multiselect-parent>.btn-default
+{
+  background-color: #e0e0e0 !important;
+  text-shadow: 0 1px 0 #fff !important;
+  background-image: -webkit-linear-gradient(top, #fff 0%, #e0e0e0 100%) !important;
+  background-image: -o-linear-gradient(top, #fff 0%, #e0e0e0 100%) !important;
+  background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#e0e0e0)) !important;
+  background-image: linear-gradient(to bottom, #fff 0%, #e0e0e0 100%) !important;
+  background-repeat: repeat-x !important;
+  border-color: #dbdbdb !important;
+  border-color: #ccc !important;
+  color: #0a0a0a !important;
+}
+#content #splash-content img {
+  width: 0;
+  height: 0;
+  background-image: none;
+}
+#header-menu .menu-item-logo,
+#header-menu .menu-item-logo:hover {
+  background-image: none !important;
+  background-repeat: no-repeat !important;
+  padding-top: 3px !important;
+  background-position: 0px 0px !important;
+  width: 0px !important;
+  margin: 0px !important;
+}
+#header-menu #header-menu li:hover {
+  background-color: #10069F !important;
+}
+.nav-pills > li > a:hover {
+  background-color: #4F98FF !important;
+}
+#header-menu .menu-item-logo:hover,
+#header-menu .menu-item-name:hover,
+#header-menu .menu-item-name:visited {
+  background-color: #10069F !important;
+  height: 44px;
+  min-height: 44px;
+}
+#header-menu .dropdown-menu a:hover {
+  color: #ffffff !important;
+  background-color: #10069F !important;
+}
+.fa-plus-square:before,
+.fa-minus-square:before {
+  color: #006DFF;
+}
+#graphic .navbar.navbar-inverse.navbar-static-top {
+  background: #4F98FF !important;
+  border-color: #10069F !important;
+  color: white !important;
+}
+#filter .btn-normal {
+  background-color: #006DFF !important;
+  background-image: none !important;
+  border-color: #10069F !important;
+}
+.alert-info {
+  color: white !important;
+  background-color: #006DFF !important;
+  background-image: none !important;
+  border-color: #10069F !important;
+}
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+  background-color: #E6E6E6 !important;
+  opacity: 1 !important;
+}
+#viewAnnotations:hover {
+  background-color: #006DFF !important;
+}
+#header-menu .v-separator {
+  background: #fcfafa !important;
+  display: inline-block !important;
+  height: 20px !important;
+  width: 2px !important;
+  margin-left: 0px !important;
+  margin-right: 10px !important;
+  margin-top: 12px !important;
+}
+#header-menu .history-item {
+  max-width: 350px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+  text-overflow: ellipsis !important;
+}
+#header-menu li a {
+  color: #ffffff !important;
+  height: 44px !important;
+  min-height: 44px !important;
+  background-color: transparent !important;
+  text-decoration: none !important;
+}
+.whole-word .hiddenInput:checked + .checkbox-label {
+  background: #006DFF !important;
+}
+#ftsSearch .dropdown-toggle {
+  padding: 5px !important;
+}
+.btn-search {
+  background-color: #006DFF !important;
+  border: 1px solid #006DFF !important;
+}
+.btn.simpleComplex.btn-default {
+  background-color: white !important;
+  color: #006dff !important;
+  border-color: #006dff !important;
+}
+#header-menu .menu-item-name,#header-menu #product-name a:hover {
+  background-position: 0px -3px !important;
+}
+#header-menu #menu-item-icons li {
+  padding-top: 0px !important;
+}
+#header-menu #navbar-customLogo {
+  width: 250px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+

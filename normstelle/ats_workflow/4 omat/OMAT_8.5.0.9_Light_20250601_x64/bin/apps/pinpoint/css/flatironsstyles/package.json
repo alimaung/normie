@@ -1,0 +1,34 @@
+{
+  "_from": "@flatirons/flatirons-styles@^3.1.0",
+  "_id": "@flatirons/flatirons-styles@3.1.7",
+  "_inBundle": false,
+  "_integrity": "sha512-4zt6f4gDkjRc7pB2p2JEpCvcpTnWRliQzglG8Hn8YM8IWtuYhnQnGSH8VoLxxhTOOX//wtVXixibuyXxaFcuLw==",
+  "_location": "/@flatirons/flatirons-styles",
+  "_phantomChildren": {},
+  "_requested": {
+    "type": "range",
+    "registry": true,
+    "raw": "@flatirons/flatirons-styles@^3.1.0",
+    "name": "@flatirons/flatirons-styles",
+    "escapedName": "@flatirons%2fflatirons-styles",
+    "scope": "@flatirons",
+    "rawSpec": "^3.1.0",
+    "saveSpec": null,
+    "fetchSpec": "^3.1.0"
+  },
+  "_requiredBy": [
+    "/"
+  ],
+  "_resolved": "https://hub.flatirons.cloud/artifactory/api/npm/npm/@flatirons/flatirons-styles/-/@flatirons/flatirons-styles-3.1.7.tgz",
+  "_shasum": "08af3c3124ed487d90d59847a86be216cda0e828",
+  "_spec": "@flatirons/flatirons-styles@^3.1.0",
+  "_where": "/home/jenkins/agent/workspace/rd_pinpoint-client_8.5.0.9",
+  "author": {
+    "name": "Flatirons Solutions"
+  },
+  "bundleDependencies": false,
+  "deprecated": false,
+  "description": "Flatirons Styling project which will have necessary css, logo, fonts and such.",
+  "name": "@flatirons/flatirons-styles",
+  "version": "3.1.7"
+}

@@ -1,0 +1,52 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Archive</title>
+        <link rel="icon" type="image/png" href="./template/images/favicon.ico">
+        <link rel="stylesheet" href="template/css/top.css" type="text/css" />
+        <link rel="stylesheet" href="template/css/jquery.layout.css" type="text/css" />
+        <link rel="stylesheet" href="template/css/topNav.css" type="text/css" />
+    </head>
+    <body>
+        <div class="topnav">
+            <img src="template/images/logo.png">
+            <div id="navBarData" style="display: flex; flex-direction: row">
+                <div data-attr="libraryName"></div> /
+                <div data-attr="publicationTitle"></div> &nbsp;
+                Rev: <div data-attr="revisionNumber"></div> &nbsp;
+                Date: <div data-attr="releaseDate"></div>
+            </div>
+        </div>
+        <div class="printIcon"  title="Print" onclick="handleClick()">
+            <img src="template/images/print.svg">
+        </div>
+        <div class="pp-main">
+            <div class="ui-layout-west" id="pp-nav" name="pp-nav">
+                <div id="i-accordion">
+                    <div style="height: 50%;">
+                        <div class="i-header" id="pp-toc-header">
+                            <img src="template/images/header-toc.png" /><span class="i-header-text" >Table of Contents</span>
+                        </div>
+                        <div class="i-frame-container">
+                            <iframe title="toc" id="pp-toc" class="fill-space" sandbox="allow-same-origin allow-popups allow-scripts allow-modals"  src="./toc.html"></iframe>
+                        </div>
+                    </div>
+
+                    <div style="height: 50%; border-top: 8px solid #333333;">
+                        <div class="i-header">
+                            <img src="template/images/header-search.png" /><span class="i-header-text">Search</span>
+                        </div>
+                        <div class="i-frame-container">
+                            <iframe title="search" id="i-search" class="fill-space"src="search.html"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <iframe title="content" class="ui-layout-center" id="pp-content" name="pp-content" src="./documents/coverpage.html"></iframe>
+        </div>
+        <script src="navigation.js" type="text/javascript"></script>
+        <script src="printing.js" type="text/javascript"></script>
+        <script src="metadata.js" type="text/javascript" defer></script>
+    </body>
+</html>

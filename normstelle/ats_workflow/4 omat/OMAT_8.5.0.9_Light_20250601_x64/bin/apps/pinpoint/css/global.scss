@@ -1,0 +1,676 @@
+//sass style
+//***********************global style***********************/
+
+//========Variables==========
+$font-family:'ProximaNova-Regular';
+$boeing787_background:url(images/loginbg787-1.jpg);
+$normal_background:url(images/loginbg.jpg);
+$loginform_background:url(images/loginformbg.jpg);
+$copyright_slogo:url(images/slogo.jpg);
+//--colors--
+$login_form_input_linkcolor1:#11CFFF;
+$login_form_input_linkcolor2:#0CA5F5;
+$linkcolor3:#ffffff;
+$linkcolor4:#7e7975;
+$linkcolor5:#bdb5aa;
+$linkcolor6:#EBE6E2;
+$linkcolor7:#6c6763;
+$linkcolor8:#0CA5F5;
+$linkcolor9:#CCC;
+$linkcolor10:#BBB;
+$linkcolor11:#0B83A4;
+$linkcolor12:#096F8B;
+$linkcolor13:#2a8ac4;
+
+@mixin background-size ($sizing) {
+    -webkit-background-size: $sizing;
+    -moz-background-size: $sizing;
+    background-size: $sizing;
+    }
+
+@mixin bg-effect ($time){
+	-webkit-transition: all $time linear 0.01s;
+	-moz-transition: all $time linear 0.01s;
+	-ms-transition: all $time linear 0.01s;
+	-o-transition: all $time linear 0.01s;
+	transition: all $time linear 0.01s;
+}
+
+@font-face {
+    font-family: 'ProximaNova-Regular';
+    src: url('../lib/fontawesome/font/proximanova-regular-webfont.eot');
+    src: url('../lib/fontawesome/font/proximanova-regular-webfont.eot?#iefix') format('embedded-opentype'),
+    url('../lib/fontawesome/font/proximanova-regular-webfont.woff') format('woff'),
+    url('../lib/fontawesome/font/proximanova-regular-webfont.ttf') format('truetype'),
+    url('../lib/fontawesome/font/proximanova-regular-webfont.svg#proxima_nova_rgregular') format('svg');
+}
+@-webkit-keyframes animate-cloud {
+    from {
+    background-position: 4100px 100%;
+    }
+    to {
+    background-position: 0px 100%;
+    }
+}
+@-moz-keyframes animate-cloud {
+    from {
+    background-position: 4100px 100%;
+    }
+    to {
+    background-position: 0px 100%;
+    }
+}
+@-ms-keyframes animate-cloud {
+    from {
+    background-position: 4100px 100%;
+    }
+    to {
+    background-position: 0px 100%;
+    }
+}
+@-o-keyframes animate-cloud {
+    from {
+    background-position: 4100px 100%;
+    }
+    to {
+    background-position: 0px 100%;
+    }
+}
+//==========webkit scrollbar=============
+::-webkit-scrollbar {
+    width: 10px;
+	height:10px;
+}
+::-webkit-scrollbar-button {
+    width: 10px;
+    height:5px;
+}
+::-webkit-scrollbar-track {
+    background:#eee;
+    border: thin solid lightgray;
+    box-shadow: 0px 0px 3px #dfdfdf inset;
+    border-radius:10px;
+}
+::-webkit-scrollbar-thumb {
+    background:#999;
+    border: thin solid gray;
+    border-radius:5px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background:#7d7d7d;
+}    
+
+html, body{
+font-family: $font-family
+}
+
+//======================main page======================
+.ui-layout-north-cover, .ui-layout-south-cover{
+	overflow:hidden;
+	margin:0px;
+	padding:0px;
+	background-color:#333333;
+}
+
+//======================login page=====================*/
+/*#login_page {
+    background-image:$boeing787_background;
+    background-position:center,top;
+    @include background-size (cover);
+    width:100%;
+    height:100%;
+    display:block;
+    position:absolute;      
+    }
+
+.bg-cloud{
+    background-image:url(images/cloud.png);
+    background-position:bottom;
+    width:100%;
+    height:100%;
+    display:block;
+    position:absolute;      
+  -webkit-animation: animate-cloud 100s linear infinite;
+  -moz-animation: animate-cloud 100s linear infinite;
+  -ms-animation: animate-cloud 100s linear infinite;
+  -o-animation: animate-cloud 100s linear infinite;
+  animation: animate-cloud 100s linear infinite;
+}    
+.login_form {
+    width: 500px;
+    margin: 17% 45% 30px;
+    padding: 15px;
+    position: relative;
+    background-image:$loginform_background;
+    background-color: $linkcolor3;
+    border-radius: 4px;
+    color: $linkcolor4;
+    box-shadow:
+        0 2px 2px rgba(0,0,0,0.2),        
+        0 1px 5px rgba(0,0,0,0.2),        
+        0 0 0 12px rgba(255,255,255,0.4); 
+}
+
+.login_form h1 {
+    font-size: 15px;
+    font-weight: bold;
+    color: $linkcolor5;
+    padding-bottom: 8px;
+    border-bottom: 1px solid $linkcolor6;
+    text-shadow: 0 2px 0 rgba(255,255,255,0.8);
+    box-shadow: 0 1px 0 rgba(255,255,255,0.8);
+}
+
+.login_form h1 .log-in,
+.login_form h1 .sign-up{
+    display: inline-block;
+    text-transform: uppercase;
+}
+
+.login-text-right{
+float:right;display:inline;margin-top:15px;
+}
+
+.login_form h1 .log-in {
+    color: $linkcolor7;
+}
+
+.login_form h1 .sign-up {
+    color: $linkcolor8;
+    padding-left: 2px;
+}
+
+.login_form h1 .product-name {
+    color: $linkcolor7;
+    font-size:28pt;
+    display: inline-block;
+    background-image:url(images/loginlogo.png);
+    height:35px;
+    width:241px;
+    background-position:-12px 2px;;
+}
+
+.login_form .float {
+    width: 50%;
+    float: left;
+    padding-top: 15px;
+    border-top: 1px solid rgba(255,255,255,1);
+}
+
+.login_form .float:first-of-type {
+    padding-right: 5px;
+}
+
+.login_form .float:last-of-type {
+    padding-left: 5px;
+}
+
+.login_form label {
+    display: block;
+    padding: 0 0 5px 2px;
+    cursor: pointer;
+    text-transform: uppercase;
+    font-weight: 400;
+    text-shadow: 0 1px 0 rgba(255,255,255,0.8);
+    font-size: 11px;
+    width:auto;
+}
+
+.login_form label i {
+    margin-right: 5px;
+    display: inline-block;
+    width: 10px;
+}
+
+.login_form input[type=text],
+.login_form input[type=password] {
+    font-family: $font-family;
+    font-size: 13px;
+    font-weight: 400;
+    display: block;
+    width: 100%;
+    padding: 5px;
+    margin-bottom: 5px;
+    border: 3px solid $linkcolor6;
+    border-radius: 5px;
+    -webkit-transition: all 0.3s ease-out;
+    -moz-transition: all 0.3s ease-out;
+    -ms-transition: all 0.3s ease-out;
+    -o-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.login_form input[type=text]:hover,
+.login_form input[type=password]:hover {
+    border-color: $linkcolor9;
+}
+
+.login_form label:hover ~ input {
+    border-color: $linkcolor9;
+}
+
+.login_form input[type=text]:focus,
+.login_form input[type=password]:focus {
+    border-color: $linkcolor10;
+    outline: none;
+}
+
+.login_form input[type=submit],
+.login_form .log-twitter {
+    width: 49%;
+    height: 38px;
+    float: right;
+    position: relative;
+    box-shadow: inset 0 1px rgba(255,255,255,0.3);
+    border-radius: 3px;
+    cursor: pointer;
+    padding:0px;
+
+    font-family: $font-family;
+    font-size: 14px;
+    line-height: 38px; 
+    text-align: center;
+    font-weight: bold;
+}
+
+
+.login_form input[type=submit] {
+    margin-left: 1%;
+    background: $login_form_input_linkcolor1; 
+    background: -moz-linear-gradient($login_form_input_linkcolor1, $login_form_input_linkcolor2);
+    background: -ms-linear-gradient($login_form_input_linkcolor1, $login_form_input_linkcolor2);
+    background: -o-linear-gradient($login_form_input_linkcolor1, $login_form_input_linkcolor2);
+    background: -webkit-gradient(linear, 0 0, 0 100%, from($login_form_input_linkcolor1), to($login_form_input_linkcolor2));
+    background: -webkit-linear-gradient($login_form_input_linkcolor1, $login_form_input_linkcolor2);
+    background: linear-gradient($login_form_input_linkcolor1, $login_form_input_linkcolor2);
+    border: 1px solid $linkcolor11;
+    color: $linkcolor12;
+    text-shadow: 0 1px rgba(255,255,255,0.3);
+}
+
+.login_form input[type=submit]:hover {
+    box-shadow: 
+        inset 0 1px rgba(255,255,255,0.3), 
+        inset 0 20px 40px rgba(255,255,255,0.15);
+}
+
+.login_form input[type=submit]:active,
+.login_form .log-twitter:active{
+    top: 1px;
+}
+
+.no-boxshadow .login_form input[type=submit]:hover {
+    background: $login_form_input_linkcolor2;
+}
+
+.no-boxshadow .login_form {
+    background: $linkcolor13;
+}
+
+.login_form p:last-of-type {
+    clear: both;    
+}
+
+.login_form .opt {
+    text-align: right;
+    margin-right: 3px;
+}
+
+.login_form label[for=showPassword] {
+    display: inline-block;
+    margin-bottom: 0px;
+    font-size: 11px;
+    font-weight: 400;
+    text-transform: capitalize;
+}
+
+.login_form input[type=checkbox] {
+    vertical-align: middle;
+    margin: -1px 5px 0 1px;
+    width:auto;
+}
+
+.login_form .copyright{
+    font-size:6pt;
+    text-align: right;
+    margin:0px;
+}
+
+.login_form .copyright_logo{
+    display: inline-block;
+    width:73px;
+    height:19px;
+    background-image:$copyright_slogo;
+}
+
+.login_form .project_label, .login_form .project_select{
+    display: inline-block;
+}
+
+.login_form .project_select {
+    font-family: $font-family;
+    font-size: 13px;
+    font-weight: 400;
+}*/
+
+//======================left menu======================
+.cbp-spmenu {
+	background: #333333;
+	position:fixed;
+}
+
+.cbp-spmenu h3 {
+               color: $linkcolor8;
+	font-size: 18pt;
+	padding-top: 30px;padding-left: 23px;
+	margin: 0;
+	font-weight: bold;
+	\\background-image: url(images/leftbarbg.png);
+}
+
+.cbp-spmenu a {
+	display: block;
+	color: #fff;
+	font-size: 12pt;
+	text-decoration:none;
+	margin:0px;
+	width:100%;
+	text-overflow:ellipsis; white-space:nowrap;overflow:hidden;
+}
+
+.cbp-spmenu a:hover {
+	background-color:#0CA5F5;
+	text-decoration:none;
+	text-algin:left;
+}
+
+.cbp-spmenu a:active {
+	background: #afdefa;
+	color: #47a3da;
+}
+
+/* Orientation-dependent styles for the content of the menu */
+
+.cbp-spmenu-vertical {
+	width: 240px;
+	height: 100%;
+	z-index: 1000;
+	top:45px;
+}
+
+.cbp-spmenu-vertical a {
+	border-bottom: 1px solid #808080;
+	padding: 20px;
+}
+
+
+
+/* Vertical menu that slides from the left or right */
+
+.cbp-spmenu-left {
+	left: -240px;
+}
+
+.cbp-spmenu-left.cbp-spmenu-open {
+	left: 0px;
+}
+
+/* Transitions */
+
+.cbp-spmenu,
+.cbp-spmenu-push {
+	-webkit-transition: all 0.3s ease;
+	-moz-transition: all 0.3s ease;
+	transition: all 0.3s ease;
+}
+
+
+/*left bar buttons*/
+.cbp-spmenu a,.cbp-spmenu a:hover, .tingico {
+	@include bg-effect (0.25s);
+}
+
+.db {
+	display: block;
+}
+
+.tingico {
+	background-image: url(images/tingicos.png);
+	background-repeat: no-repeat;
+}
+
+.liico0, .liico1, .liico2, .liico3, .liico4, .liico5, .liico6, .liico7, .liico8, .liico9, .liico10, .liico11, .liico12, .liico13  {
+	height: 30px;
+	width: 40px;
+	float: left;
+	margin-top: -5px;
+	margin-left: 0px !important;
+}
+
+@mixin leftbarbtn-bg-position ($position) {
+    background-position: 0px $position;
+    }
+
+.liico0 {
+	@include leftbarbtn-bg-position (-0px);
+}
+.liico1 {
+	@include leftbarbtn-bg-position (-31px);
+}
+.liico2 {
+	@include leftbarbtn-bg-position (-62px);
+}
+.liico3 {
+	@include leftbarbtn-bg-position (-93px);
+}
+.liico4 {
+	@include leftbarbtn-bg-position (-248px);
+}
+.liico5 {
+	@include leftbarbtn-bg-position (-279px);
+}
+.liico6 {
+	@include leftbarbtn-bg-position (-310px);
+}
+.liico7 {
+	@include leftbarbtn-bg-position (-341px);
+}
+.liico8 {
+	@include leftbarbtn-bg-position (-496px);
+}
+.liico9 {
+	@include leftbarbtn-bg-position (-527px);
+}
+.liico10 {
+	@include leftbarbtn-bg-position (-558px);
+}
+.liico11 {
+	@include leftbarbtn-bg-position (-589px);
+}
+.liico12 {
+	@include leftbarbtn-bg-position (-744px);
+}
+.liico13 {
+	@include leftbarbtn-bg-position (-775px);
+}
+
+.cbp-spmenu a:hover .liico0 {
+	@include leftbarbtn-bg-position (-124px);
+}
+.cbp-spmenu a:hover .liico1 {
+	@include leftbarbtn-bg-position (-155px);
+}
+.cbp-spmenu a:hover .liico2 {
+	@include leftbarbtn-bg-position (-186px);
+}
+.cbp-spmenu a:hover .liico3 {
+	@include leftbarbtn-bg-position (-217px);
+}
+.cbp-spmenu a:hover .liico4 {
+	@include leftbarbtn-bg-position (-372px);
+}
+.cbp-spmenu a:hover .liico5 {
+	@include leftbarbtn-bg-position (-403px);
+}
+.cbp-spmenu a:hover .liico6 {
+	@include leftbarbtn-bg-position (-434px);
+}
+.cbp-spmenu a:hover .liico7 {
+	@include leftbarbtn-bg-position (-465px);
+}
+.cbp-spmenu a:hover .liico8 {
+	@include leftbarbtn-bg-position (-620px);
+}
+.cbp-spmenu a:hover .liico9 {
+	@include leftbarbtn-bg-position (-651px);
+}
+.cbp-spmenu a:hover .liico10 {
+	@include leftbarbtn-bg-position (-682px);
+}
+.cbp-spmenu a:hover .liico11 {
+	@include leftbarbtn-bg-position (-713px);
+}
+.cbp-spmenu a:hover .liico12 {
+	@include leftbarbtn-bg-position (-868px);
+}
+.cbp-spmenu a:hover .liico13 {
+	@include leftbarbtn-bg-position (-899px);
+}
+
+//------------------content page--------------------------
+.sortable-custom{
+margin:0px; min-width:400px;overflow-x:auto;
+}
+
+#contentSearchTab {
+background-color:#dddddd;
+padding:5px 5px 0px 5px;
+}
+
+.tab-content{
+    padding:5px;
+    border-left:1px #DDDDDD solid;
+    border-right:1px #DDDDDD solid;
+    border-bottom:1px #DDDDDD solid;
+}
+
+.tab-content-custom{
+    padding:5px;
+    border-left:0px #DDDDDD solid;
+    border-right:0px #DDDDDD solid;
+    border-bottom:0px #DDDDDD solid;
+    font-weight:normal;    
+}
+
+.nav-tabs li  a{
+background-color:#F8F8F8;
+font-weight:bold;
+color:#D4D4D4;
+border-bottom:1px #DDDDDD solid;
+border-radius: 4px 4px 0 0;
+}
+//------------------search page--------------------------
+.search-content{
+font-size:9pt;
+}
+
+.search-form{
+background-color:#f8f8f8;
+padding:6px;
+border-bottom:1px solid #D4D4D4;
+}
+
+.search-content-text{
+background-color:#f8f8f8;padding:5px;
+border-bottom:1px solid #D4D4D4;
+}
+
+.search-text{
+    overflow:hidden;
+}
+
+.row{padding:2px}
+
+.ui-field-contain-left{
+float:left; width:50%
+}
+.ui-field-contain-center{
+float:left; width:100%
+}
+.ui-field-contain-right{
+float:right; width:50%;
+}
+
+input, .dropdown-custom{
+    width:55%;
+}
+
+.dropdown-custom{
+display:inline-block;
+}
+
+select{
+    width:auto;
+}
+
+label{
+   width:110px;max-width:110px;
+}
+
+#ftsSearch .dropdown-toggle,#ftsSearch .dropdown-menu{
+font-size:9pt;
+}
+#ftsSearch .dropdown-toggle{
+    height:24px;padding:0px;
+}
+
+.search-options {
+border:1px #EAEAEA solid; padding:10px;margin-top:20px;font-size:9pt;
+}
+.search-options-title{
+margin-top:-22px;top:auto;margin-bottom:10px
+}
+.search-options-title-bg{
+background-color:#f8f8f8;font-weight:bold;font-size:9pt;
+}
+.normal-btn{
+margin-top:20px;
+}
+.v-normal-btn-mask {
+background-color:#5c5c5c!important;color:#ffffff!important;
+}
+.function-title{
+background:#ffffff; margin:0px; color:#B10B00; clear:right; font-size:12pt; font-weight:bold; border-bottom:2px #252525 solid; height:45px; 
+text-indent:5px;vertical-align:middle;padding-top:15px;font-family: "ProximaNova-Regular"!important;
+}
+
+.pagination-ul{
+height:40px;padding:0px;list-style-type: none;
+margin-left:40%; margin-right:40%; width:160px;
+}
+.pagination-ul a{
+color:#5c5c5c;
+}
+.pagination-ul .pagination-li1 a, .pagination-ul .pagination-li3 a{
+    cursor:pointer;
+}
+.pagination-ul a:active{
+background-color:transparent; text-decoration:none;
+}
+.pagination-ul a:hover{
+background-color:transparent; text-decoration:none;
+}
+.pagination-div a:hover{background-color:transparent}
+
+.pagination-li1{
+padding-top:15px; margin:0px; height:100%; width:40px; float:left
+}
+.pagination-li2{
+padding-top:14px; margin:0px; height:100%; width:80px; color:#5c5c5c; float:left
+}
+.pagination-li3{
+padding-top:15px; padding-left:5px; margin:0px; height:100%; width:40px; float:left
+}
+.icon{
+width:28px;height:28px;display:inline-table;background-position:0px 0px; background-repeat:no-repeat
+}

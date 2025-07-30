@@ -1,0 +1,41 @@
+/*IE (all versions) specific CSS*/
+
+dl {
+  height: 20px;
+  margin-bottom: 0px;
+  margin-top: 5px;
+}
+
+.openClose {
+  display: inline;
+  margin-top: 10px;
+}
+
+img.void {
+  display: inline;
+}
+
+html>body .tabsBar li.selected {
+  padding: 0px;
+}
+
+html>body ul[id].tabsBar li.selected {
+  padding: 0px;
+}
+
+html>body .tabsBar li {
+  padding: 0px;
+}
+
+html>body ul[id].tabsBar li {
+  padding: 0px;
+}
+
+.alwaysYScroll {
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+#additionalMenuTable td {
+  border-bottom: none;
+}

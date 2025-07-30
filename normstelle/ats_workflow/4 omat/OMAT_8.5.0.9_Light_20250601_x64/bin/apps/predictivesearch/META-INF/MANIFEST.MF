@@ -1,0 +1,14 @@
+Manifest-Version: 1.0
+Spring-Boot-Classpath-Index: WEB-INF/classpath.idx
+Implementation-Title: pinpoint-predictivesearch-app
+Implementation-Version: 8.5.0.9
+Spring-Boot-Layers-Index: WEB-INF/layers.idx
+Start-Class: com.flatirons.pinpoint.predictive.search.PinpointPredicti
+ veSearchApplication
+Spring-Boot-Classes: WEB-INF/classes/
+Spring-Boot-Lib: WEB-INF/lib/
+Build-Jdk-Spec: 1.8
+Spring-Boot-Version: 2.7.16
+Created-By: Maven Archiver 3.4.0
+Main-Class: org.springframework.boot.loader.WarLauncher
+

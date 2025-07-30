@@ -1,0 +1,222 @@
+{
+    "showMouseHoverFigurePreview": true,
+    "displayRevisionsInfo": true,
+    "disablePrintableTable": false,
+    "embeddedCompactWindowEnabled": true,
+    "dateFormat": "MMM-dd-yyyy",
+    "partManualsWithRelatedAMMContentLink": [
+        "AIPC",
+        "IPD",
+        "IPDP"
+    ],
+    "allowDisplayHiddenAnchorsInTOC": false,
+    "showSupplementPopup": false,
+    "readAndSignService": "http://192.168.5.119:9011/pinpoint-server/services",
+    "importOverviewRefreshInterval": 60000,
+    "i18nKeyOverrides": {
+        "app.title.revisionDate": "app.title.releaseDate",
+        "metadata.title.key.Revision Number": "metadata.title.key.revisionNumberAA",
+        "app.title.revisionNumber": "app.title.revisionNumberAA",
+        "library.title.statusKey.Released": "library.title.statusKey.releasedAA",
+        "metadata.title.key.Revision Date": "metadata.title.key.revisionDateAA"
+    },
+    "disableBulkPrintForEntireManual": false,
+    "attachmentService": "http://192.168.5.119:9011/pinpoint-server/services/supplement",
+    "sspFieldLabel": "SSP",
+    "dataSources": [
+        {
+            "baseURL": "http://192.168.5.119:9011/pinpoint-server/services",
+            "type": "PINPOINT"
+        },
+        {
+            "baseURL": "http://192.168.5.97:9191/pinpoint-connector-ATA/services/widget/rest",
+            "type": "ATA"
+        },
+        {
+            "baseURL": "http://192.168.5.109:7445/pinpoint-connector-S1000D/services/widget/rest",
+            "type": "S1000D"
+        }
+    ],
+    "howToShowSearch": {
+        "popup": [
+            "TSM",
+            "WIRING",
+            "FRMFIM"
+        ],
+        "silent": [
+            "FTS",
+            "FIN"
+        ]
+    },
+    "showLicenseDetails": true,
+    "bookmarkService": "http://192.168.5.119:9011/pinpoint-server/services/bookmark",
+    "isHideInvalidContent": false,
+    "autoVueServerURL": "http://pp-tools.flatironssolutions.com:8080/FilesysVuelink",
+    "disabledFeatures": [
+        {"annotation": [{"public_candidate": "abled"}]},
+        {"content": [{"feedback": "abled"}]}
+    ],
+    "shoppingBasketType": "internal",
+    "displayUserRole": false,
+    "acmLogoutClient": "",
+    "securityClassification": {
+        "color": "#FFFFFF",
+        "bannerBackGroundColor": "#333333",
+        "enabled": false
+    },
+    "displayNotifyDate": true,
+    "allowClientCache": true,
+    "toggleAtaNumbering": false,
+    "showFilterConfirmPopup": false,
+    "pinpoint_viewer_webhelp": "webhelp{_lang}/index.html",
+    "showPublicMetaData": false,
+    "howToShowPublication": {
+        "splitWindow": [
+            "AIPC",
+            "EIPC",
+            "IPC",
+            "IPD",
+            "IPDP",
+            "WM",
+            "WDM",
+            "SSM",
+            "AWM",
+            "ASM",
+            "ASDP",
+            "AWDP"
+        ],
+        "fullGraphicWindow": []
+    },
+    "logoutURL": "",
+    "maxGraphicHistoryThumbnailList": 10,
+    "showFilterGlobalApplyPopup": false,
+    "predictiveSearch": {
+        "backendService": "http://localhost:9595",
+        "isRequestWithCookies": true,
+        "enabled": true
+    },
+    "openDefaultDocument": "true",
+    "configurationService": "http://192.168.5.119:9011/pinpoint-server/services/configurations",
+    "maximumLengthStepTitlesInStepNavigator": 20,
+    "hideDMCodeInNavigationHistory": false,
+    "readAndSignNotifyDaysPriorToOverdue": -2,
+    "ftsOptions": {
+        "showFunctionsDropDown": false,
+        "showPublicationCategoryDropDown": false,
+        "showSimpleAndComplexSearch": false
+    },
+    "annotationService": "http://192.168.5.119:9011/pinpoint-server/services/annotation",
+    "printService": "http://192.168.5.119:9011/pinpoint-server/services/print",
+    "isGreyOutInvalidToc": true,
+    "eulapopupService": "http://192.168.5.119:9011/pinpoint-server/services/users/eula",
+    "showFilterWashedOutPopup": false,
+    "disableTocExpansionAfterFTS": false,
+    "maximumResultsForCrossLibrarySearch": 100,
+    "highlightLinksInPdfDocument": "false",
+    "shoppingBasketDetails": {
+        "print": {
+            "layout": "potrait",
+            "margin": 1,
+            "pageFormat": "a4"
+        },
+        "view": {"columns": [
+            "itemPnr",
+            "itemDesc",
+            "itemMfr",
+            "itemQty",
+            "itemCustPnr"
+        ]}
+    },
+    "tsmSearchWarningAsDefault": false,
+    "filterNotSupportedPublications": {"PW1000G": [
+        "AWL",
+        "CIRM",
+        "EMAN",
+        "EIPC",
+        "ITEM",
+        "PPIPC",
+        "PPITEM"
+    ]},
+    "acmLoginURL": "http://acm-dm-center.flatironssolutions.com:8081/acmclient/#/",
+    "tsmSearchCaption": [
+        {
+            "library": "A350",
+            "tsmSearchTitle": "TSM",
+            "faultSystem": "CMS FAULT"
+        },
+        {
+            "library": "A380",
+            "tsmSearchTitle": "TSM",
+            "faultSystem": "CMS FAULT"
+        }
+    ],
+    "partOrderDetails": {
+        "filterAttrByLibrary": {
+            "default": "shipNumber",
+            "Airbus-330": "CEC",
+            "Airbus-320": "CEC",
+            "Boeing-737": "CEC"
+        },
+        "airlineCode": {
+            "default": "Delta Air Lines",
+            "A350": "Delta Air Lines"
+        },
+        "destinationURL": "http://192.168.5.119:9011/uri-mockery/sap.htm",
+        "partAvailabilityPage": "?page=partAvailabilityPage",
+        "filterAttr": "shipNumber",
+        "manageCartPage": "page=manageCartPage",
+        "publications": [
+            "AIPC",
+            "EIPC",
+            "Panasonic_IPD"
+        ]
+    },
+    "autoVueClientURL": "http://pp-tools.flatironssolutions.com:8080/AutoVue",
+    "showMouseHoverTooltip": true,
+    "RIILink": "",
+    "filterEnabledPublications": [
+        "AMM",
+        "AIPC",
+        "ASM",
+        "AWL",
+        "AWM",
+        "TSM",
+        "WDM",
+        "WM",
+        "SSM",
+        "FRMFIM",
+        "SDS",
+        "EIPC",
+        "BFIM",
+        "ESM",
+        "AMP",
+        "ANDTP",
+        "ARP",
+        "ASDP",
+        "ASRP",
+        "AWDP",
+        "ESPP",
+        "FIM",
+        "IPDP",
+        "ITEP",
+        "MPD",
+        "MRBR",
+        "SDFP",
+        "TIME",
+        "SRM",
+        "SSRM"
+    ],
+    "timeFormat": "hh:mm A",
+    "auditmanagerURL": "http://acm-dm-center.flatironssolutions.com...",
+    "showEulaPopup": "false",
+    "openDocumentInNewTabOrWindow": {
+        "forceIFrameMode": false,
+        "enabled": true
+    },
+    "pdfViewer": "advanced",
+    "hideFilterTextInToc": false,
+    "prioritizeSystemRevisionInfo": "true",
+    "printSheetNumLimitation": "no",
+    "authoringService": "http://192.168.5.119:9011/pinpoint-server/services/authoring",
+    "eulaContent": "http://192.168.5.119:9011/pinpoint-server/services/file/eula/content"
+}

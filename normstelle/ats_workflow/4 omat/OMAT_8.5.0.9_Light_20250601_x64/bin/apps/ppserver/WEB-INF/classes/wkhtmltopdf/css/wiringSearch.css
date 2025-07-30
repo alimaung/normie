@@ -1,0 +1,721 @@
+/* CSS classes copied from PPClient */
+#wiringSearch .dwClsListTable
+{
+    BORDER-RIGHT: 1px ridge;
+    PADDING-RIGHT: 0px;
+    BORDER-TOP: 1px ridge;
+    PADDING-LEFT: 0px;
+    FONT-WEIGHT: normal;
+    FONT-SIZE: 14pt;
+    PADDING-BOTTOM: 0px;
+    MARGIN: 0px;
+    BORDER-LEFT: 1px ridge;
+    WIDTH: 100%;
+    CURSOR: hand;
+    COLOR: navy;
+    PADDING-TOP: 0px;
+    BORDER-BOTTOM: 1px ridge;
+    FONT-FAMILY: verdana;
+    BORDER-COLLAPSE: collapse;
+    BACKGROUND-COLOR: white;
+}
+
+#wiringSearch .dwClsListTbSecondHeader
+{
+    BORDER-RIGHT: 1px ridge;
+    PADDING-RIGHT: 2px;
+    PADDING-LEFT: 2px;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 14pt;
+    PADDING-BOTTOM: 2px;
+    MARGIN: 0px;
+	BORDER-TOP: groove;
+    BORDER-LEFT: 1px ridge;
+    CURSOR: default;
+    COLOR: olive;
+    PADDING-TOP: 0px;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: #F5F5DC; //silver;
+    TEXT-ALIGN: center;
+    FONT-VARIANT: normal;
+	HEIGHT: 30px;
+}
+
+#wiringSearch .dwClsListTbHeaderData
+{
+    COLOR: black;
+    PADDING-TOP: 0px;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: white; //silver;
+    TEXT-ALIGN: center;
+    FONT-VARIANT: normal;
+	FONT-SIZE: 14pt;
+	BORDER-RIGHT: 1px ridge;
+	BORDER-LEFT: 1px ridge;
+	FONT: 8pt verdana;
+
+}
+
+#wiringSearch .dwClsListTbHeaderDataLeft
+{
+    COLOR: black;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: white; //silver;
+    TEXT-ALIGN: left;
+    FONT-VARIANT: normal;
+	FONT-SIZE: 14pt;
+	BORDER-RIGHT: 1px ridge;
+	BORDER-LEFT: 1px ridge;
+	BORDER-TOP: 0px;
+    BORDER-BOTTOM: 0px;
+	FONT: 8pt verdana;
+	CURSOR: hand;
+	MARGIN: 0px;
+	PADDING-RIGHT: 2px;
+    PADDING-LEFT: 2px;
+    PADDING-TOP: 3px;
+    PADDING-BOTTOM: 3px;
+
+}
+
+#wiringSearch .dwClsListTbHeaderRight
+{
+    BORDER-RIGHT: 1px ridge;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: groove;
+    PADDING-LEFT: 2px;
+    FONT-WEIGHT: bold;
+    FONT-SIZE: 14pt;
+    PADDING-BOTTOM: 2px;
+    MARGIN: 0px;
+    BORDER-LEFT: 1px ridge;
+    CURSOR: default;
+    COLOR: olive;
+    PADDING-TOP: 0px;
+    BORDER-BOTTOM: groove;
+    FONT-FAMILY: Verdana;
+    BACKGROUND-COLOR: #F5F5DC; //silver;
+    TEXT-ALIGN: right;
+    FONT-VARIANT: normal;
+}
+
+#wiringSearch .dwClsTR
+{
+    COLOR: black;
+    BACKGROUND-COLOR: white; //floralwhite;
+}
+
+#wiringSearch .dwClsLeadTR
+{
+    COLOR: black;
+    BACKGROUND-COLOR: #A9A9A9; //floralwhite;
+}
+
+#wiringSearch .dwClsTREven
+{
+    COLOR: black;
+    BACKGROUND-COLOR: white; //floralwhite;
+}
+
+#wiringSearch .dwClsTROdd
+{
+    COLOR: black;
+    BACKGROUND-COLOR: #E3E3E3;   //LightGray
+}
+
+#wiringSearch .dwClsTRHighlight
+{
+    COLOR: black;
+    BACKGROUND-COLOR: yellow; //green;
+}
+
+#wiringSearch .dwClsTRSelected
+{
+    COLOR: black;
+    BACKGROUND-COLOR: #F0E68C;
+}
+
+#wiringSearch .dwClsTDLink
+{
+    FONT-SIZE: 14pt;
+    COLOR: #0000CD;
+    TEXT-DECORATION: underline;
+    TEXT-ALIGN: center;
+}
+
+#wiringSearch .dwClsTD
+{
+    BORDER-RIGHT: 1px ridge;
+    BORDER-LEFT: 1px ridge;
+    BORDER-TOP: 0px;
+    BORDER-BOTTOM: 1px ridge;
+    PADDING-RIGHT: 2px;
+    PADDING-LEFT: 2px;
+    PADDING-TOP: 3px;
+    PADDING-BOTTOM: 3px;
+    MARGIN: 0px;
+    FONT: 14pt verdana;
+    CURSOR: hand;
+}
+
+#wiringSearch .dwClsTDNone
+{
+    BORDER-RIGHT: 0px ridge;
+    BORDER-LEFT: 0px ridge;
+    BORDER-TOP: 0px;
+    BORDER-BOTTOM: 0px ridge;
+    PADDING-RIGHT: 2px;
+    PADDING-LEFT: 2px;
+    PADDING-TOP: 3px;
+    PADDING-BOTTOM: 3px;
+    MARGIN: 0px;
+    FONT: 8pt verdana;
+    CURSOR: hand;
+    TEXT-ALIGN: center;
+}
+
+#wiringSearch .dwClsTDBottom
+{
+    BORDER-RIGHT: 0px ridge;
+    BORDER-LEFT: 0px ridge;
+    BORDER-TOP: 0px;
+    BORDER-BOTTOM: 1px ridge;
+    PADDING-RIGHT: 2px;
+    PADDING-LEFT: 2px;
+    PADDING-TOP: 3px;
+    PADDING-BOTTOM: 3px;
+    MARGIN: 0px;
+    FONT: 8pt verdana;
+    CURSOR: hand;
+    TEXT-ALIGN: center;
+}
+
+#wiringSearch .dwClsTDRightBorder
+{
+    BORDER-RIGHT: 1px ridge;
+    BORDER-LEFT: 0px ridge;
+    BORDER-TOP: 0px;
+    BORDER-BOTTOM: 0px ridge;
+    PADDING-RIGHT: 2px;
+    PADDING-LEFT: 2px;
+    PADDING-TOP: 3px;
+    PADDING-BOTTOM: 3px;
+    MARGIN: 0px;
+    FONT: 8pt verdana;
+    CURSOR: hand;
+    TEXT-ALIGN: center;
+}
+
+#wiringSearch .dwClsTDRightBottom
+{
+    BORDER-RIGHT: 1px ridge;
+    BORDER-LEFT: 0px ridge;
+    BORDER-TOP: 0px;
+    BORDER-BOTTOM: 1px ridge;
+    PADDING-RIGHT: 2px;
+    PADDING-LEFT: 2px;
+    PADDING-TOP: 3px;
+    PADDING-BOTTOM: 3px;
+    MARGIN: 0px;
+    FONT: 8pt verdana;
+    CURSOR: hand;
+    TEXT-ALIGN: center;
+}
+
+#wiringSearch .dwClsTDright
+{
+    BORDER-RIGHT: 1px ridge;
+    BORDER-LEFT: 1px ridge;
+    BORDER-TOP: 0px;
+    BORDER-BOTTOM: 1px ridge;
+    PADDING-RIGHT: 10px;
+    PADDING-LEFT: 2px;
+    PADDING-TOP: 3px;
+    PADDING-BOTTOM: 3px;
+    MARGIN: 0px;
+    FONT: 8pt verdana;
+    CURSOR: hand;
+    TEXT-ALIGN: right;
+}
+
+#wiringSearch .dwClsTab {
+    cursor: hand;
+}
+
+#wiringSearch .dwClsTabSelected {
+    color: #ccffcc;
+    background-color: #B0C4DE;
+    border-top: 4px outset #778899;
+    border-left: 5px outset #778899;
+    border-right: 2px inset #778899 ;
+}
+
+#wiringSearch .dwClsTabTitle {
+    color: #808080;
+    font-size:14pt;
+    text-align:center;
+    background-color: #B0C4DE;
+    font-weight:bold;
+}
+
+#wiringSearch .dwClsTabRight {
+    color: #808080;
+    font-size:14pt;
+    text-align:center;
+    background-color: #B0C4DE;
+    font-weight:bold;
+}
+
+#wiringSearch .dwClsTabContainer {
+    font-family:Verdana,sans-serif;
+    font-size:14pt;
+    color: palegreen;
+    background-color: #778899;
+    cursor: default;
+    margin-top: 1px;
+    margin-left: 0px;
+    margin-bottom: 0px;
+    margin-right: 1px;
+}
+
+#wiringSearch a.dwClsTabLink {
+    border-right:1px solid #B0C4DE;
+    border-bottom:1px solid #B0C4DE;
+    cursor:default;
+    font-family:verdana;
+    font-size:14pt;
+    font-weight:bold;
+    text-decoration:none;
+    color:white;
+    TEXT-ALIGN: center;
+}
+
+#wiringSearch a.dwClsTabLink:visited {
+    font-family:verdana;
+    font-size:14pt;
+    text-decoration:none;
+    color:white;
+    cursor:hand;
+    font-weight: bold;
+}
+
+#wiringSearch a.dwClsTabLink:hover {
+    font-family:verdana;
+    font-size:14pt;
+    text-decoration:none;
+    color:#F0E68C; //green;
+    cursor:hand;
+    font-weight: bold;
+}
+
+#wiringSearch a.dwClsTabLinkSelected {
+    font-family:verdana;
+    font-size:14pt;
+    text-decoration:none;
+    color:#000066;
+    cursor:default;
+    font-weight:bold;
+}
+
+#wiringSearch a.dwClsTabLinkSelected:visited {
+    font-family:verdana;
+    font-size:14pt;
+    text-decoration:none;
+    color:#000066;
+    cursor:default;
+    font-weight:bold;
+}
+
+#wiringSearch a.dwClsTabLinkSelected:hover {
+    font-family:verdana;
+    font-size:14pt;
+    text-decoration:none;
+    color:#708090;
+    cursor:default;
+    font-weight:bold;
+}
+
+#wiringSearch a.nostyle {
+    text-decoration: none !important;
+    color: black !important;
+}
+
+#wiringSearch .dwClsText
+{
+    COLOR: black;
+	font-weight:bold;
+}
+
+#wiringSearch .dwClsTextRed
+{
+    COLOR: white;
+    BACKGROUND-COLOR: red;
+	font-weight:bold;
+}
+
+#wiringSearch .dwClsTextYellow
+{
+    COLOR: black;
+    BACKGROUND-COLOR: yellow;
+	font-weight:bold;
+}
+
+#wiringSearch .dwClsTextBlue
+{
+    COLOR: white;
+    BACKGROUND-COLOR: blue;
+	font-weight:bold;
+}
+
+#wiringSearch .dwClsTextGreen
+{
+    COLOR: black;
+    BACKGROUND-COLOR: #90EE90;
+	font-weight:bold;
+}
+
+#wiringSearch .dwClsTextWhite
+{
+    COLOR: black;
+    BACKGROUND-COLOR: #fffacd;
+	font-weight:bold;
+}
+
+#wiringSearch .dwClsTextBlack
+{
+    COLOR: #D3D3D3;
+    BACKGROUND-COLOR: black;
+	font-weight:bold;
+}
+
+#wiringSearch .dwHISTORYDROPDOWN
+{
+    background-color: #B0C4DE;
+    BORDER-BOTTOM: 0;
+    BORDER-LEFT: 0;
+    BORDER-RIGHT: 0;
+    BORDER-TOP: 0;
+    CURSOR: hand;
+    FONT-SIZE: 14pt;
+    FONT-WEIGHT: bold;
+    HEIGHT: 10pt;
+    TEXT-ALIGN: center;
+    WIDTH: 150pt;
+    text-valign: center
+}
+
+#wiringSearch .dwClsEQUIPMENT
+{
+    BORDER-BOTTOM: 0;
+	BORDER-TOP: 0;
+	margin-top: -3px;
+    margin-left: 0px;
+    margin-bottom: -3px;
+    margin-right: 0px;
+	border-width:2px;
+	border-color:#808080;
+	border-style:solid;
+	TEXT-ALIGN: center;
+	FONT-SIZE: 14pt;
+	background-color: white;
+}
+
+#wiringSearch .pp-ui-widget-content {
+    margin-top: 0px !important;
+}
+
+#wiringSearch .pp-ui-widget-content .ui-field-contain-center {
+    margin-bottom: 10px;
+}
+
+#wiringSearch .pp-ui-widget-content .buttons {
+    text-align: center;
+    clear: both;
+}
+
+#wiringSearch .pp-ui-widget-content #wiringSearchResultTab {
+    clear: both;
+}
+
+#wiringSearch .pp-ui-widget-content .wireTable, #wiringSearch .pp-ui-widget-content .wireTableWithMultipleTbodys {
+    width: 100%;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+#wiringSearch .pp-ui-widget-content .wireTable td, #wiringSearch .pp-ui-widget-content .wireTableWithMultipleTbodys td {
+    padding: 5px;
+}
+
+#wiringSearch .pp-ui-widget-content .wireTableWithMultipleTbodys tbody .resultHeader {
+    cursor: pointer;
+}
+
+#wiringSearch .pp-ui-widget-content .wireTable tr:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+#wiringSearch .pp-ui-widget-content .wireTable tr:hover {
+    background-color: #FCFCFC;
+}
+
+#wiringSearch .pp-ui-widget-content .wireTableWithMultipleTbodys tbody:nth-child(odd) {
+    background-color: #f9f9f9;
+}
+
+#wiringSearch .pp-ui-widget-content .wireTableWithMultipleTbodys tbody:hover {
+    background-color: #FCFCFC;
+}
+
+#wiringSearch .pp-ui-widget-content .pagination-ul a {
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#wiringSearch .pp-ui-widget-content .wireTable a, #wiringSearch .pp-ui-widget-content .wireTableWithMultipleTbodys a {
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#wiringSearch #WDMSearchResults {
+    padding: 5px;
+}
+
+#wiringSearch #wiringSearchResultTab li.active > a, #wiringSearch #wiringSearchResultTab li.active > a:focus, #wiringSearch #wiringSearchResultTab li.active > a:hover {
+    border-bottom-color: #ffffff;
+    font-weight: bold;
+    height: 29px;
+    margin: 0px;
+}
+
+#wiringSearch #wiringSearchResultTab li > a {
+    height: 29px;
+    margin: 0px;
+}
+
+#wiringSearch #wiringSearchResultTab {
+    height: 29px;
+}
+
+#wiringSearch th {
+    height: 30px;
+    background-color: #f8f8f8;
+    padding: 2px;
+    vertical-align: bottom;
+    border-bottom: 2px solid #ddd;
+}
+
+#wiringSearch .no1 td {
+    padding: 2px;
+    border-bottom: 1px solid #ddd;
+    position: relative;
+}
+
+#wiringSearch #results .wireTableWithMultipleTbodys a, #wiringSearch #results .wireTable a {
+    color: #0CA5F5;
+    cursor: pointer;
+}
+
+#wiringSearch .v2-triangle {
+    border: 1px solid #ddd;
+    border-width: 1px 0 0 1px;
+    width: 8px;
+    height: 8px;
+    /* for IE11 firefox, safari, chrome, etc. */
+    transform: rotate(45deg);
+    -webkit-transform: rotate(45deg);
+    -moz-transform: rotate(45deg);
+    -o-transform: rotate(45deg);
+    z-index: 10000;
+    position: absolute;
+    background: #F9FCFF;
+    margin-left: 10px;
+    margin-top: 1px;
+}
+
+#wiringSearch .wireTableWithMultipleTbodys tbody:nth-child(odd) .v2-triangle, #wiringSearch .wireTable tr:nth-child(odd) {
+    background: #F9FCFF;
+}
+
+#wiringSearch .wireTable tr:hover .v2-triangle, #wiringSearch .wireTableWithMultipleTbodys tbody:hover .v2-triangle {
+    background: #F9FCFF;
+}
+
+#wiringSearch .hideRow {
+    background-color: #F9FCFF
+}
+
+#wiringSearch .tableTbody {
+    border-bottom: 1px solid #ddd;
+}
+
+#wiringSearch .pagination-ul {
+    height: 30px
+}
+
+#wiringSearch .tdBorder {
+    border: 1px solid #EAEAEA;
+}
+
+#wiringSearch .tdWidth {
+    width: 20%;
+}
+
+#wiringSearch #electricalPathTabContent .electricalEquipmentTable {
+    width: 100%;
+    margin: 0px;
+}
+
+#wiringSearch .pp-ui-widget-content .wireTableWithMultipleTbodys .clsTRSelected {
+    COLOR: black;
+    BACKGROUND-COLOR: #F0E68C;
+}
+
+#wiringSearch #electricalPathTabContent .dwClsTDcenter {
+    BORDER-RIGHT: 1px ridge;
+    BORDER-LEFT: 1px ridge;
+    BORDER-TOP: 0px;
+    BORDER-BOTTOM: 1px ridge;
+    PADDING-RIGHT: 2px;
+    PADDING-LEFT: 2px;
+    PADDING-TOP: 8px;
+    PADDING-BOTTOM: 8px;
+    MARGIN: 0px;
+    FONT: 9pt ProximaNova-Regular;
+    CURSOR: hand;
+    TEXT-ALIGN: center;
+}
+
+#wiringSearch #electricalPathTabContent .dwClsTDleft {
+    BORDER-RIGHT: 1px ridge;
+    BORDER-LEFT: 1px ridge;
+    BORDER-TOP: 0px;
+    BORDER-BOTTOM: 1px ridge;
+    PADDING-RIGHT: 2px;
+    PADDING-LEFT: 10px;
+    PADDING-TOP: 3px;
+    PADDING-BOTTOM: 3px;
+    MARGIN: 0px;
+    FONT: 9pt ProximaNova-Regular;
+    CURSOR: hand;
+    TEXT-ALIGN: left;
+}
+
+#wiringSearch #electricalPathTabContent .dwClsGraphic {
+    BORDER-RIGHT: 1px ridge;
+    BORDER-LEFT: 0px ridge;
+    BORDER-TOP: 0px;
+    BORDER-BOTTOM: 0px ridge;
+    PADDING-RIGHT: 2px;
+    PADDING-LEFT: 2px;
+    PADDING-TOP: 3px;
+    PADDING-BOTTOM: 3px;
+    MARGIN: 0px;
+    FONT: 9pt ProximaNova-Regular;
+    CURSOR: hand;
+    TEXT-ALIGN: center;
+}
+
+#wiringSearch #electricalPathTabContent .dwClsWire {
+    BORDER-RIGHT: 1px ridge;
+    BORDER-LEFT: 1px ridge;
+    BORDER-TOP: 0px;
+    BORDER-BOTTOM: 0px groove;
+    PADDING-RIGHT: 2px;
+    PADDING-LEFT: 2px;
+    PADDING-TOP: 6px;
+    PADDING-BOTTOM: 6px;
+    MARGIN: 0px;
+    FONT: 9pt ProximaNova-Regular;
+    CURSOR: hand;
+    TEXT-ALIGN: center;
+    background-color: #d3d3d3; //lightgrey
+}
+
+#wiringSearch #electricalPathTabContent .dwClsLeftWire {
+    BORDER-RIGHT: 2px solid;
+    BORDER-LEFT: 1px ridge;
+    BORDER-TOP: 0px;
+    BORDER-BOTTOM: 0px groove;
+    PADDING-TOP: 8px;
+    PADDING-BOTTOM: 8px;
+    MARGIN: 0px;
+    FONT: 9pt ProximaNova-Regular;
+    CURSOR: hand;
+    BORDER-RIGHT-COLOR:#808080;
+    WIDTH: 20%;
+    background-color: #d3d3d3;
+}
+
+#wiringSearch #electricalPathTabContent .dwClsRigthWire {
+    BORDER-RIGHT: 1px ridge;
+    BORDER-LEFT: 1px solid;
+    BORDER-TOP: 0px;
+    BORDER-BOTTOM: 0px groove;
+    PADDING-TOP: 8px;
+    PADDING-BOTTOM: 8px;
+    MARGIN: 0px;
+    FONT: 9pt ProximaNova-Regular;
+    CURSOR: hand;
+    BORDER-LEFT-COLOR:#808080;
+    WIDTH: 20%;
+    background-color: #d3d3d3;
+}
+
+#wiringSearch #electricalPathTabContent .dwClsTitle {
+    font-weight:bold;
+    FONT: 9pt ProximaNova-Regular;
+    CURSOR: hand;
+}
+
+#wiringSearch #electricalPathTabContent .dwClsListTbHeader {
+    BORDER-RIGHT: 1px ridge;
+    PADDING-RIGHT: 2px;
+    BORDER-TOP: groove;
+    PADDING-LEFT: 2px;
+    FONT-WEIGHT: bold;
+    FONT: 9pt ProximaNova-Regular;
+    PADDING-BOTTOM: 2px;
+    MARGIN: 0px;
+    BORDER-LEFT: 1px ridge;
+    CURSOR: default;
+    COLOR: olive;
+    PADDING-TOP: 0px;
+    BORDER-BOTTOM: groove;
+    BACKGROUND-COLOR: #F5F5DC; //silver;
+    TEXT-ALIGN: center;
+    FONT-VARIANT: normal;
+    HEIGHT: 30px;
+}
+
+#wiringSearch table {
+    display: table;
+}
+
+#wiringSearch .data {
+    white-space: pre; 
+}
+
+.spare-label {
+    display: inline-block;
+    min-width: 20px;white-space:nowrap; text-overflow:ellipsis; -o-text-overflow:ellipsis; overflow:hidden;
+    height: 25px;
+    cursor: pointer;
+    background: #ffffff;
+    border:1px solid #bbb;
+    color:#bbb;
+    text-align: center;
+    font-weight:normal;
+    padding-top:4px;    
+    border-radius: 3px;
+    transition: all .3s ease-out;
+}
+.spare-label:hover{
+    background: #c4c4c4;
+    color:#ffffff;
+    border:1px solid #ffffff;
+}
+.hiddenInput:checked + .spare-label {
+    background: #5285B8;
+    color:#fff;
+}

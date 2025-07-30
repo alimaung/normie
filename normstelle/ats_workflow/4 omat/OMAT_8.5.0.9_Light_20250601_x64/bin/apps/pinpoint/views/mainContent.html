@@ -1,0 +1,16 @@
+
+<div class="main-content-container">
+    <button type="button" ng-style="{'display': !(vm.showLandingPage && false)? 'none': ''}" class="btn btn-default" ng-show="vm.showLandingPage && false" style="margin: 0" ng-click='vm.closeLandPage()'>
+        <span id='close'  class="glyphicon glyphicon-remove" ></span>
+    </button>
+    <button type="button" ng-style="{'display': !(vm.showLandingPage && vm.showHome) ? 'none': ''}" class="btn btn-default" ng-show="vm.showLandingPage && vm.showHome" ng-click='vm.goToHomePage()' style="margin: 0">
+    	<i class="fa fa-home"></i>
+    </button>
+	<div id="readSignContent" ng-style="{'display': !vm.showReadAndSign ? 'none': ''}" ng-show="vm.showReadAndSign" style="height: 100%;">
+		<read-sign></read-sign>
+	</div>
+    <flatirons-landing-page ng-style="{'display': !vm.showLandingPage ? 'none': ''}" ng-show="vm.showLandingPage"></flatirons-landing-page>
+    <authoring-merge ng-show="vm.showAuthoringMerge" ng-style="{'display': !vm.showAuthoringMerge ? 'none': ''}" ></authoring-merge>
+    <div pp-content class='ui-widget-layout' ng-style="{'display': !vm.showContent ? 'none': ''}" ng-show="vm.showContent"></div>
+    <div pp-configuration ng-show="vm.showConfiguration" ng-style="{'display': !vm.showConfiguration ? 'none': ''}"></div>
+</div>

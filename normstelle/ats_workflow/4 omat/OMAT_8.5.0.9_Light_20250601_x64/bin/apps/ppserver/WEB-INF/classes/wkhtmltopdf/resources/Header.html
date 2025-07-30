@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <style type="text/css">
+
+        body {
+            font-size: 10pt !important;
+            font-family: Sans-Serif, serif !important;
+        }
+
+        .container {
+            height: 30px;
+            width: 100%;
+            border-bottom: 1px solid;
+            display: table
+        }
+
+        .left {
+            float: left;
+            height: 100%;
+            width: 32%;
+            text-align: left;
+            display: table;
+            word-wrap: break-word
+        }
+
+        .right {
+            float: right;
+        }
+
+        .child {
+            vertical-align: bottom;
+            display: table-cell;
+        }
+
+        .center {
+            float: left;
+            height: 100%;
+            width: 33%;
+            font-weight: bold;
+            display: table;
+            text-align: center
+        }
+
+		.pubHeaderLogo {
+		    margin-left: 5px;
+		    margin-top: 5px;
+		}
+
+		#pubHeader {
+		    width: 90%;
+		    height: 85%;
+		    border: solid black 1pt;
+		    font-size: 8pt;
+		    margin-left: 50px;
+		    margin-top: 5px;
+		}
+
+		.taskHeaderCenter {
+		    text-align: center;
+		    margin-top: 0.25em;
+		    margin-bottom: 0.25em;
+		}
+
+		.taskHeaderBold {
+		    font-weight: bold;
+		}
+
+		.taskHeaderRight {
+		    text-align: right;
+		    margin-right: 0.25em;
+		    margin-top: 0.25em;
+		    margin-bottom: 0.25em;
+		}
+
+		.taskHeaderLeft {
+		    margin-left: 0.25em;
+		    margin-top: 0.25em;
+		    margin-bottom: 0.25em;
+		}
+
+		.dmHeaderCenter {
+		    text-align: center;
+		    margin-top: 0.25em;
+		    margin-bottom: 0.25em;
+		}		
+
+		.dmHeaderRight {
+		    text-align: right;
+		    margin-right: 0.25em;
+		    margin-top: 0.25em;
+		    margin-bottom: 0.25em;
+		}
+
+		.dmHeaderLeft {
+		    margin-left: 0.25em;
+		    margin-top: 0.25em;
+		    margin-bottom: 0.25em;
+		}
+				
+        body {
+            margin-bottom: 0px
+        }
+    </style>
+    <script type="text/javascript">
+        function dynVar() {
+            var vars = {};
+            var params = document.location.search.substring(1).split('&');
+
+            for (var i in params) {
+                var paramArr = new Array();
+                var splitLen = params[i].indexOf('=');
+                paramArr[0] = params[i].substring(0, splitLen);
+                paramArr[1] = params[i].substring(splitLen + 1);
+                vars[paramArr[0]] = paramArr[1];
+            }
+
+            var tagValues = ['delimiter', 'break'];
+            if (vars['pp-printing-header-revisionLabel'] != 'null' && vars['pp-printing-header-releaseDateLabel'] != 'null'){
+               tagValues.push('rev-delimiter');
+            }
+            tagValues.forEach(processData, 'tags');
+
+            var titleValues = ['pp-printing-header-libraryTitle','pp-printing-header-publicationTitle', 'pp-printing-header-companyTitle'];
+            titleValues.forEach(processData, 'body');
+
+            var customValues = ['pp-printing-header-revisionLabel', 'pp-printing-header-revNum', 'pp-printing-header-releaseDateLabel',
+                'pp-printing-header-revdate', 'pp-printing-header-initiatedUserLabel', 'pp-printing-header-initiatedUser', 'pp-printing-header-firstName', 'pp-printing-header-lastName'];
+            if (vars.showPrintPDFRevisionDetails == 'true') {
+                customValues.forEach(processData, 'body');
+            } else {
+                customValues.forEach(processData, 'style');
+            }
+
+            var printDateTime = decodeURI(vars.printDateTime);
+            if (printDateTime) {
+                var printDateTimeValues = ['pp-printing-header-printedLabel', 'pp-printing-header-printDateTime'];
+                printDateTimeValues.forEach(processData, 'body');
+            }
+
+            function processData(value, index, array) {
+                var x = document.getElementsByClassName(value);
+                if (x && x.length > 0) {
+                    if (this == 'tags') {
+                        for (var i = 0; i < x.length; i++) {
+                            x[i].innerHTML = value && value == 'break' ? '<br/>' : ' : ';
+                        }
+                    } else if (this == 'body') {
+					    if (vars[value] != 'null'){
+                           x[0].innerHTML = decodeURI(vars[value]);
+						}
+                    } else if (this == 'style') {
+                        x[0].style.display = 'none';
+                    }
+                }
+            }
+
+            document.body.style.fontSize = vars.headerFontSize;
+            displayMetadata();
+
+            addRepeatedHeaderContent(vars['pp-printing-header-repeatedContent'], vars['pp-printing-header-clientLogoPath'], vars['page']);
+        }
+		
+	    function displayMetadata() {
+            var vars = {};
+            var params = document.location.search.substring(1).split('&');
+            for (var i in params) {
+                var paramArr = new Array();
+                var splitLen = params[i].indexOf('=');
+                paramArr[0] = params[i].substring(0, splitLen).toLowerCase();
+                paramArr[1] = params[i].substring(splitLen + 1);
+                vars[paramArr[0]] = paramArr[1];
+            }
+
+            displayProprietaryMessage(vars);
+        }
+
+        function displayProprietaryMessage(vars) {
+            if(vars['proprietary'] !== undefined) {
+                var proprietaryElement = document.getElementsByClassName(vars['proprietary'].toLowerCase());
+                if (proprietaryElement && proprietaryElement.length > 0) {
+                    proprietaryElement[0].style.removeProperty("display");
+                }
+            }
+        }
+
+      function addRepeatedHeaderContent(repeatedHeaderContent, clientLogoPath, currentPageNumber) {
+			if(repeatedHeaderContent !== null && repeatedHeaderContent !== 'null' && repeatedHeaderContent !== undefined && repeatedHeaderContent.length > 0) {
+				document.getElementById('pubHeader').innerHTML = decodeURIComponent(repeatedHeaderContent);
+				injectClientLogo(clientLogoPath);
+			} else {
+				document.getElementById('pubHeader').style.display = 'none';
+			}		
+      }
+
+      function injectClientLogo(clientLogoPath) {
+       		if(clientLogoPath !== null && clientLogoPath !== 'null' && clientLogoPath !== undefined && clientLogoPath.length > 0) {
+				var img = document.createElement('img');
+				img.src = decodeURI(clientLogoPath);
+				var clientLogoDiv = document.getElementsByClassName('pubHeaderLogo')[0];
+				clientLogoDiv.appendChild(img);
+			}
+       	}
+      
+    </script>
+</head>
+
+<body onload="dynVar()" pp-header-height="18mm">
+<div class="container">
+    <div class="left" style="font-size: 80%">
+        <div class="child" id="pp-printing-header">
+            <span class="pp-printing-header-companyTitle"></span>
+            <span class="break"></span>
+            <span class="pp-printing-header-printedLabel"></span><span class="delimiter"></span><span
+                class="pp-printing-header-printDateTime"></span>
+            <span class="break"></span>
+            <span class="pp-printing-header-revisionLabel"></span><span class="rev-delimiter"></span><span
+                class="pp-printing-header-revNum"></span>
+            <span class="break"></span>
+            <span class="pp-printing-header-releaseDateLabel"></span><span class="rev-delimiter"></span><span
+                class="pp-printing-header-revdate"></span>
+        </div>
+    </div>
+    <div class="center" style="font-size: 90%">
+        <div class="child">
+            <span class="pp-printing-header-libraryTitle"></span><span class="break"></span>
+            <span class="pp-printing-header-publicationTitle"></span>
+        </div>
+    </div>
+	<div class="pubHeader" id="pubHeader"></div>
+</div>
+</body>
+</html>
+
+
+<!--<body onload="dynVar()" pp-header-height="18mm">-->
+<!--<div class="container">-->
+
+<!--&lt;!&ndash;RR icon image in base 64 format&ndash;&gt;-->
+
+<!--<img class="right" src="data:image/png;base64, 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"  />-->
+
+<!--    <div class="left" style="font-size: 80%">-->
+<!--        <div class="child" id="pp-printing-header">-->
+<!--            <span class="pp-printing-header-companyTitle"></span>-->
+<!--            <span class="break"></span>-->
+<!--            <span class="pp-printing-header-printedLabel"></span><span class="delimiter"></span><span class="pp-printing-header-printDateTime"></span>-->
+<!--            <span class="break"></span>-->
+<!--            <span class="pp-printing-header-revisionLabel"></span><span class="delimiter"></span><span class="pp-printing-header-revNum"></span>-->
+<!--            <span class="break"></span>-->
+<!--            <span class="pp-printing-header-releaseDateLabel"></span><span class="delimiter"></span><span class="pp-printing-header-revdate"></span>-->
+<!--            <span class="break"></span>-->
+<!--            <span class="pp-printing-header-initiatedUserLabel"></span><span class="delimiter"></span><span class="pp-printing-header-firstName"></span>&nbsp;<span class="pp-printing-header-lastName"></span>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--    <div class="center" style="font-size: 90%">-->
+<!--        <div class="child">-->
+<!--            <span class="pp-printing-header-libraryTitle"></span><span class="break"></span>-->
+<!--            <span class="pp-printing-header-publicationTitle"></span>-->
+<!--        </div>-->
+<!--        By default proprietary messages are hidden, it will be added in pdf header based on metadata value -->
+<!--	    <div id="proprietary" style="color: red;"> -->
+<!--            <span class="boeing" style="display: none"> BOEING PROPRIETARY - Copyright &copy; Unpublished Work </span> -->
+<!--            <span class="airbus" style="display: none"> AIRBUS PROPRIETARY - Copyright &copy; Unpublished Work </span> -->
+<!--    	</div> -->
+<!--	    <div id="classification" style="color: blue;"> -->
+<!--		    <span class="classification"></span> -->
+<!--	    </div> -->
+<!--    </div>-->
+<!--</div>-->
+<!--</body>-->
+<!--</html>-->

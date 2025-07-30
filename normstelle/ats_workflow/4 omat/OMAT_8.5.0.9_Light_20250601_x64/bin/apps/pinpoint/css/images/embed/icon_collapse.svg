@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 20 20" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 57.1 (83088) - https://sketch.com -->
+    <title>Group 22 Copy</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <polygon id="path-1" points="11.6666667 1.66666667 0 1.66666667 0 0 11.6666667 0"></polygon>
+    </defs>
+    <g id="iPad" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Tablet---Level-1" transform="translate(-133.000000, -414.000000)">
+            <g id="Group-12-Copy" transform="translate(133.000000, 414.000000)">
+                <g id="Group-22-Copy">
+                    <rect id="Rectangle" stroke="#106CC8" fill="#FFFFFF" x="0.5" y="0.5" width="19" height="19" rx="2"></rect>
+                    <g id="Icons-/-Remove">
+                        <g id="baseline-remove-24px" transform="translate(4.166667, 9.166667)">
+                            <g id="Colors-/-Other-/-Dark-Grey">
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#path-1"></use>
+                                </mask>
+                                <use id="Mask" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+                                <g id="Colors-/-Interactions-/-Link-Blue" mask="url(#mask-2)" fill="#006EEE">
+                                    <g transform="translate(-4.166667, -9.166667)" id="Link-Blue">
+                                        <rect x="0" y="0" width="20" height="20"></rect>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

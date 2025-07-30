@@ -1,0 +1,97 @@
+<div id="RevisionHistoryDialog">
+    <div>
+        <ul style="text-align:left; margin-top: 15px" id="filterPub">
+            <div class="form-group">
+                <table width="95%">
+                    <tr>
+                        <td style="width: 25%" valign="top">
+                            <div class="type-ahead-suggestion-container" style="width:100%;padding-right:10px;">
+                                <span style="cursor: pointer;" class="glyphicon glyphicon-search searchbox" rel="tooltip"
+                                      title="{{translations.toolTip}}" ng-click="vm.filterByKeyword()"
+                                      ></span>
+                                <input type="text" id="searchInput"
+                                       placeholder="{{translations.placeHolder}}"
+                                       class="form-control" ng-model="searchkeyword" ng-keyup="vm.searchKeyUp($event)" >
+                            </div>
+                        </td>
+                        <td style="width: 25%;">
+                            <md-input-container style="width: 100%;margin: 0">
+                                <label> {{translations.selectStatus}} </label>
+                                <md-select ng-model='selectedStatus' ng-change="vm.filterByStatus();" data-md-container-class="changeLogStatusFilter" multiple >
+                                    <md-option ng-value="opt.id" ng-repeat="opt in filters.options" >
+                                    {{ opt.name }}
+                                    </md-option>
+                                </md-select>
+                            </md-input-container>
+                        </td>
+                        <td style="width: 10%;text-align: center;">
+                            <a href="" ng-click="vm.reset();">
+                                {{translations.clearFilters}}
+                            </a>
+                        </td>
+                        <td style="width: 40%;">
+                            <button type="button" class="btn btn-sm btn-default pull-right" ng-click="vm.exportAsCSV();">{{translations.exportToCSV}}</button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </ul>
+    </div>
+
+    <div id="table-content" class="scrollableTableContainer">
+        <table class="table table-striped table-hover fixed-table">
+            <thead>
+            <tr>
+                <th class="stickyHeader">
+                    <span>{{translations.document}}</span>
+                </th>
+                <th class="stickyHeader">
+                    <span>{{translations.status}}</span>
+                </th>
+                <th class="stickyHeader">
+                    <span>{{translations.lastModifyDate}}</span>
+                </th>
+                <th class="stickyHeader">
+                    <span>{{translations.author}}</span>
+                </th>
+                <th class="stickyHeader">
+                    <span>{{translations.approvedBy}}</span>
+                </th>
+                <th class="stickyHeader">
+                    <span>{{translations.approvedDate}}</span>
+                </th>
+                <th class="stickyHeader">
+                    <span>{{translations.action}}</span>
+                </th>
+            </tr>
+
+            </thead>
+            <tbody>
+            <tr ng-repeat="documentInfo in userdocInfo" ng-class="'document-status-' +documentInfo.status">
+                <td ><b>{{documentInfo.key}}</b><br><small>{{documentInfo.title}}</small></td>
+                <td >{{documentInfo.status}}</td>
+                <td >{{documentInfo.updateTime}}</td>
+                <td >{{documentInfo.username}}</td>
+                <td >{{documentInfo.approvedBy}}</td>
+                <td >{{documentInfo.approvedDate}}</td>
+                <td ><a ng-click="vm.viewDraft(documentInfo);">{{translations.view}}</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div id="viewRevisionHistory-footer" class="modal-footer" align="center">
+        <div class="function-title">
+            <span class="total-number-found-div-css" ng-show="totalNumberFound != 0 && totalNumberFound != 1 "> {{totalNumberFound}} {{'pinpointcomponent.authoring.viewRevisionHistory.alert.resultsFound' | translate}} </span>
+            <span class="total-number-found-div-css" ng-show="totalNumberFound === 1"> {{totalNumberFound}} {{'pinpointcomponent.authoring.viewRevisionHistory.alert.resultFound' | translate}} </span>
+            <span class="total-number-found-div-css" ng-show="totalNumberFound === 0"> {{'pinpointcomponent.authoring.viewRevisionHistory.alert.noData' | translate}} </span>
+        </div>
+        <div ng-if="userdocInfo!==null && userdocInfo.length > 0">
+            <pagination pagination-id="viewRevisionHistory_pagination"
+                        total-number="totalNumberFound == 0 ? numberOfPages*pageSize : totalNumberFound"
+                        total-page="numberOfPages" page-size="pageSize" current-page="currentPage"
+                        page-change-handler=" vm.pageChangeHandler(pageNumber)"
+                        page-size-change-handler="vm.pageSizeChangeHandler(pageSize)"></pagination>
+        </div>
+    </div>
+
+</div>

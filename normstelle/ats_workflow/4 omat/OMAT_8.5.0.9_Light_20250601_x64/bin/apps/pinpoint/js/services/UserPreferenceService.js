@@ -1,0 +1,6 @@
+/*
+ (c) 2020 Flatirons Solutions Inc., All Rights Reserved.
+*/
+angular.module("app").service("UserPreferenceService",["$rootScope",function($rootScope){this.addUserPreference=function(searchModule,type,value){var username=$rootScope.userDetails.userName;var userSearchData;var userPreferenceKey="userPreference-"+username;if(localStorage.getItem(userPreferenceKey))userSearchData=JSON.parse(localStorage.getItem(userPreferenceKey));else{userSearchData={};userSearchData[userPreferenceKey]={}}if(!userSearchData[userPreferenceKey][""+searchModule])userSearchData[userPreferenceKey][""+
+searchModule]={};userSearchData[userPreferenceKey][""+searchModule][""+type]=value;var userSearchDataStr=JSON.stringify(userSearchData);localStorage.setItem(userPreferenceKey,userSearchDataStr)};this.getUserPreference=function(searchModule,type){var userPreference="";var username=$rootScope.userDetails.userName;var userPreferenceKey="userPreference-"+username;if(localStorage.getItem(userPreferenceKey)){var userSearchData=JSON.parse(localStorage.getItem(userPreferenceKey));if(userSearchData&&userSearchData[userPreferenceKey]&&
+userSearchData[userPreferenceKey][""+searchModule]&&userSearchData[userPreferenceKey][""+searchModule][""+type])userPreference=userSearchData[userPreferenceKey][""+searchModule][""+type]}return userPreference}}]);

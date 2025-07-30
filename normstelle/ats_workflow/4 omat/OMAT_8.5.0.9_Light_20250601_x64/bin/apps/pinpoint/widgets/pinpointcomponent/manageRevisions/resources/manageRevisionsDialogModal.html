@@ -1,0 +1,100 @@
+<div id="manageRevisionsDialog">
+    <div id="revisionType" ng-init="vm.initType()" ng-show="canManageRevisions">
+        <div class="icon-addon addon-sm revision-div">
+        <span><input
+                type="radio" name="autoRadio" value="automatic"
+                class="form-control ng-pristine ng-valid ng-touched" ng-model="revisionControl"
+                ng-change="vm.setRevisionControlType()" aria-invalid="false"></span>
+            <span id="automaticDesc" class="description" rel="tooltip"
+                  title="{{translations.automatic}}"
+                  role="button" tabindex="0">{{translations.automatic}}</span>
+        </div>
+        <div class="icon-addon addon-sm revision-div">
+        <span><input
+                type="radio" name="manualRadio" value="manual" class="form-control"
+                ng-change="vm.setRevisionControlType()" ng-model="revisionControl"></span>
+            <span id="manualDesc" class="" rel="tooltip"
+                  title="{{translations.manual}}"
+                  role="button" tabindex="0">{{translations.manual}}</span>
+        </div>
+    </div>
+
+    <div id="table-content">
+        <div class="table-header">
+            <div>
+                <table class="table table-striped table-hover fixed-table">
+                    <thead>
+                        <tr>
+                            <th scope="col" class="column1">
+                                {{translations.revisionNum}}
+                            </th>
+                            <th scope="col" class="column2">
+                                {{translations.revisionDate}}
+                            </th>
+                            <th scope="col" ng-if="canMergeRevisions" class="oemChanges">
+                                {{translations.OEMChanges}}
+                            </th>
+                            <th scope="col" ng-if="canMergeRevisions" class="cocChanges">
+                                {{translations.COCChanges}}
+                            </th>
+                            <th scope="col" ng-if="canMergeRevisions" class="conflicts">
+                                {{translations.conflicts}}
+                            </th>
+                            <th scope="col" ng-if="canMergeRevisions" class="mergeStatus">
+                                {{translations.mergeStatus}}
+                            </th>
+                            <th scope="col" class="column3">
+                                {{translations.actions}}
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="revision in revisions">
+                            <td class="column1">{{revision.displayRevision}}
+                                <span ng-if="revision.release == publication.preferredRevision" class="label label-default">{{translations.default}}</span>
+                                <span ng-if="revision.release == publication.userActiveRevision" class="label label-primary">{{translations.active}}</span>
+                            </td>
+                            <td class="column2">{{revision.revdate}}</td>
+                            <td class="oemChanges" ng-if="canMergeRevisions">{{revision.changedDocuments == null ? '-' : revision.changedDocuments}}</td>
+                            <td class="cocChanges" ng-if="canMergeRevisions">{{revision.authoringData.changedDocuments == null ? '-' : revision.authoringData.changedDocuments}}</td>
+                            <td class="conflicts" ng-if="canMergeRevisions">{{revision.mergeData.conflicts == null ? '-' : revision.mergeData.conflicts}}</td>
+                            <td class="mergeStatus" ng-if="canMergeRevisions">{{revision.mergeData.status == null ? '-' : revision.mergeData.status}}</td>
+                            <td class="column3">
+
+
+                                <a role="button" style="cursor: pointer" ng-click="vm.viewMergeReport(revision)" id="viewMergeReport"
+                                   ng-if="vm.checkViewMerge(revision)">{{translations.viewMergeReport}}</a>
+
+                                <a role="button" style="cursor: pointer" ng-click="vm.createMergeReport(revision,$index)" id="createMergeReport"
+                                   ng-if="vm.checkCreateMerge(revision)" ng-class="vm.isNotNull(currentInProgressMergeRevisionNumber)? 'disabled reduce-opacity' : ''">{{translations.createMergeReport}}</a>
+
+                                <a role="button" style="cursor: pointer; display: block" id={{revision.release}} ng-if="canManageRevisions"
+                                   ng-class="(revisionControl === 'automatic' || revision.release == publication.preferredRevision)? 'disabled reduce-opacity' : ''"
+                                   ng-click="vm.setRevision(revision.release,this)">{{translations.setAsDefault}}</a>
+                                
+                                <a role="button" style="cursor: pointer; display: block"
+                                   ng-click="vm.setMyActiveRevision(revision.release)">{{vm.checkActiveRevision(revision)}}</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="manageRevisions-footer" class="modal-footer" align="center">
+        <div class="function-title">
+            <span class="total-number-found-div-css" ng-show="totalNumberFound != 0 && totalNumberFound != 1 "> {{totalNumberFound}} {{translations.resultsFound}} </span>
+            <span class="total-number-found-div-css" ng-show="totalNumberFound === 1"> {{totalNumberFound}} {{translations.resultFound}} </span>
+            <span class="total-number-found-div-css" ng-show="totalNumberFound === 0"> {{translations.noData}} </span>
+        </div>
+        <div ng-if="revisions!==null && revisions.length > 0">
+            <pagination pagination-id="manageRevisions_pagination"
+                        total-number="totalNumberFound == 0 ? numberOfPages*pageSize : totalNumberFound"
+                        total-page="numberOfPages" page-size="pageSize" current-page="currentPage"
+                        page-change-handler="vm.pageChangeHandler(pageNumber)"
+                        page-size-change-handler="vm.pageSizeChangeHandler(pageSize)"></pagination>
+        </div>
+    </div>
+
+</div>

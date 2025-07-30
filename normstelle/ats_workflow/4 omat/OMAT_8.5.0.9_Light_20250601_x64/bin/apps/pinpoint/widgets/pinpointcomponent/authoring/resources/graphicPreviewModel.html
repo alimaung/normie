@@ -1,0 +1,31 @@
+<div id="graphic-preview-model">
+    <table class="graphic-table">
+        <thead>
+            <tr>
+                <th class="graphic-table-header">
+                    <div><b>{{translations.oemTitle}}</b></div>
+                    <div class="subtext"><b>{{publication.name}} {{translations.revision}}
+                        {{publication.metadata.release}}</b> | {{publication.metadata.revdate}}
+                    </div>
+                </th>
+                <th class="graphic-table-header">
+                    <div><b>{{translations.draftTitle}}</b></div>
+                    <div class="subtext"><b>{{publication.name}} {{translations.revision}}
+                        {{publication.metadata.release}} {{translations.withChanges}}</b> |
+                        {{publication.metadata.revdate}}
+                    </div>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td id="oemImageContainer" ng-class="noOfOemChanges > 0 && oemImageSrc ? 'pp-oem-modified' : ''" class="graphic-table-border">
+                    <strong class="text-align-center" ng-if="!oemImageSrc">{{translations.noEquivalentImage}}</strong>
+                </td>
+                <td id="cocImageContainer" ng-class="'pp-'+draftSheet.status" class="graphic-table-border">
+                    <strong class="text-align-center" ng-if="!cocImageSrc">{{cocImageText}}</strong>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

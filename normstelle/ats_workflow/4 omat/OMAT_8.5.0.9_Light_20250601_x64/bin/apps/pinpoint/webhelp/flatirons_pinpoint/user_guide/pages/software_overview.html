@@ -1,0 +1,211 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Flatirons Pinpoint Flatirons Pinpoint consists of several modules that work together to present technical publications in various formats in a web-browser. As illustrated in the diagram below, the ..."/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta http-equiv="Pragma" content="no-cache"/><meta http-equiv="Expires" content="0"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="reference"/>
+<meta name="DC.Title" content="Software Overview"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="reference_fyx_1j4_3v"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Pragma" content="no-cache"/><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Expires" content="0"/><link xmlns="http://www.w3.org/1999/xhtml" rel="icon" type="image/png" href="../../../oxygen-webhelp/resources/img/favicon.ico"/><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../../../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../../../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../../../oxygen-webhelp/resources/js/jquery.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../../../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../../../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script><link rel="stylesheet" type="text/css" href="../../../oxygen-webhelp/resources/css/commonltr.css"/>
+<title>Software Overview</title>
+</head>
+<body onload="highlightSearchTerm()" id="reference_fyx_1j4_3v">
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#">Link to this page</a></div><div id="printlink"><a href="javascript:window.print();">Print this page</a></div></td></tr><tr><td><div class="navheader"/></td><td width="75%"/></tr></tbody></table>
+
+  <h1 class="title topictitle1">Software Overview</h1>
+
+  
+  <div class="body refbody">
+    <div class="section"><h2 class="title sectiontitle"><span class="ph"><span class="ph">Flatirons</span>
+                                        <span class="ph">Pinpoint</span></span></h2>
+      
+      <p class="p"><span class="ph"><span class="ph">Flatirons</span>
+                                        <span class="ph">Pinpoint</span></span> consists of several modules
+        that work together to present technical publications in various formats in a web-browser. As
+        illustrated in the diagram below, the Viewer can show publications from multiple
+        sources:</p>
+
+      <div class="fig fignone" id="reference_fyx_1j4_3v__fig_p2g_5yj_vs">
+        
+        <br/><img class="image" id="reference_fyx_1j4_3v__image_jkq_c24_3v" src="../../user_guide/graphics/pinpoint_architecture2.png" width="624"/><br/>
+      <p class="figcap">Pinpoint Architecture</p></div>
+
+      <p class="p">With Data Manager and appropriate builders set up, Pinpoint can show publications created
+        in Knowledge Center A, M, and S. Data Manager also supports import of data packages to
+        Knowledge Center S.</p>
+
+      <p class="p"><span class="ph"><span class="ph">Flatirons</span>
+                                        <span class="ph">Pinpoint</span></span> can be deployed as a server
+        version or as a standalone version. In the server version, the system components are
+        installed in one or several servers. Multiple users can log into the system at the same
+        time, as long as they have the appropriate permissions in the <span class="ph"><span class="ph">Access Control</span></span> module.</p>
+
+      <div class="p">There are two types of Pinpoint Standalone:<ul class="ul" id="reference_fyx_1j4_3v__ul_ysr_ns4_tlb">
+          <li class="li">A Pinpoint Standalone where the software components are packaged together so that they
+            can be started and run on a single computer, for example in a vehicle or an aircraft.
+            There is usually only one user account on this type. It is still possible for this type
+            of Pinpoint Standalone to synchronize to get updates from a remote Data Manager.</li>
+
+          <li class="li">A Pinpoint Standalone installed on an enterprise system with a local intranet network
+            that is not dependent on outside Internet access. Multiple users can log in using a
+            regular Internet browser from different computers or the same computer.</li>
+
+        </ul>
+</div>
+
+      <p class="p">Pinpoint Standalone Light is a variant created from Pinpoint Standalone after populating
+        the required manuals. It cannot be updated through remote sync. Any updates require
+        generating from Pinpoint Standalone and distributing again. This light version contains only
+        those components that are necessary to log in and view the content, which means that it is
+        smaller in size and faster to start up. It includes a read-only user and does not include
+        the functionality to manage users/groups or privileges.</p>
+
+      <p class="p">As mentioned, <span class="ph"><span class="ph">Flatirons</span>
+                                        <span class="ph">Pinpoint</span></span> is composed
+        of several modules. You can learn more about these modules by reading the sections
+        below.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle"><span class="ph"><span class="ph">Flatirons</span>
+                                        <span class="ph"><span class="ph">Pinpoint</span>
+                                        <span class="ph">Viewer</span></span></span>
+        <img class="image" id="reference_fyx_1j4_3v__image_s2n_dfw_3v" src="../graphics/pinpoint_icon.png"/></h2>
+      
+      <p class="p">The user guide you are reading right now is for <span class="ph"><span class="ph">Flatirons</span>
+                                        <span class="ph"><span class="ph">Pinpoint</span>
+                                        <span class="ph">Viewer</span></span></span> (from this point on
+        referred to as the <span class="ph">Viewer</span>).
+        It allow users to read, browse, search, filter, print and do other operations with
+        publications using a web-browser.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Flatirons Pinpoint - Data Manager <img class="image" id="reference_fyx_1j4_3v__image_i3t_y5p_3pb" src="../graphics/data_manager_icon.png"/></h2>
+      
+      <p class="p"><strong class="ph b">Not applicable for Pinpoint Standalone Light.</strong></p>
+
+      <p class="p">Flatirons Pinpoint - Data Manager, (from this point on referred to as the Data Manager), is
+        a web based tool for storing and extracting data into a format called Pinpoint Neutral. The
+        Pinpoint Neutral format is a Flatirons Solutions proprietary format. When a publication has
+        been published from the Data Manager, users can access and read the publication in the
+        Viewer. </p>
+
+      <div class="sectiondiv">
+        <p class="p"><strong class="ph b">Builders</strong></p>
+
+        <p class="p">Data Manager comes with different builders such as S1000D Builder, which takes a zipped
+          IETP Neutral package, or the A350 Builder, which fetches data from the Knowledge Center
+          CMS. The different builders can be selected during installation. Additional builders can
+          be developed by Flatirons Solutions, by a customer, or by any third party. They are
+          deployed on servers and connected to the Data Manager. </p>
+
+        <p class="p">After a PDF publication has been processed in the Data Manager, the PDF can be displayed
+          in the Viewer content area. Which plug-in (Adobe or PDFJS) is used to open the PDF depends
+          on the browser settings. Pinpoint provides embedded PDFJS for Chrome and Firefox and no
+          PDF Viewer plug-in is required to view documents. Internet Explorer requires Acrobat
+          Reader.</p>
+
+      </div>
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Access Control <img class="image" id="reference_fyx_1j4_3v__image_sdk_mmp_3pb" src="../graphics/acm-link.png"/></h2>
+      
+      <p class="p"><strong class="ph b">Not applicable for Pinpoint Standalone Light.</strong></p>
+
+      <p class="p">Access and permissions in the Viewer and in the <span class="ph">Data Manager</span> are managed in Flatirons
+        Pinpoint - Access Control. Administrators can open Access Control by clicking on the <img class="image" id="reference_fyx_1j4_3v__image_tdk_mmp_3pb" src="../graphics/acm-link.png" height="13"/> icon in the
+        application header and give privileges to users that shall be able view data, publish and
+        make configuration updates in the application.</p>
+
+      <p class="p">For details on configuring permissions for Pinpoint, refer to <span class="q">"Manage Permissions for
+          Pinpoint Viewer"</span> topic in the <cite class="cite">Flatirons Access Control Manager User
+        Guide</cite>.</p>
+
+    </div>
+
+    <div class="section" id="reference_fyx_1j4_3v__section_nwc_g34_3v"><h2 class="title sectiontitle">Required Third Party Software</h2>
+      
+      <div class="p">Flatirons Pinpoint Viewer does not support all types of image formats. This means that
+        non-supported formats must be converted to a supported format during the build process. The
+        image conversion is currently done by two third party applications:<ul class="ul" id="reference_fyx_1j4_3v__ul_r4d_jfy_g5">
+          <li class="li">EasyCopy for converting CGM to SVG.</li>
+
+          <li class="li">ImageMagick for converting TIFF to GIF.</li>
+
+        </ul>
+</div>
+
+      <p class="p">EasyCopy and ImageMagick are embedded in the product.</p>
+
+      <p class="p"><strong class="ph b">Software for viewing 3D graphics:</strong></p>
+
+      <div class="p">
+        <div class="note note"><span class="notetitle">Note:</span> When using Microsoft Internet Explorer 11 (IE11), you may experience memory and
+          performance issues with some 3D models. For example, the maximum memory for IE11 is about
+          64MB for Cortona SOLO, which is not sufficient for larger 3D models.</div>
+
+      </div>
+
+      <div class="p">
+        <ul class="ul" id="reference_fyx_1j4_3v__ul_e3q_2kr_2x">
+          <li class="li">Oracle AutoVue Client/Server Deployment version for viewing BRD/SCH/PCB graphics.
+            Please contact Flatirons for additional information about how to set this up.</li>
+
+        </ul>
+
+      </div>
+
+      <div class="p"><strong class="ph b">Software for viewing SWF graphics:</strong><ul class="ul" id="reference_fyx_1j4_3v__ul_rsw_vn5_n2b">
+          <li class="li">Adobe Flash plugin for viewing SWF format graphics.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Supported Browsers</h2>
+      
+      <div class="p">The application supports the current version and the version prior to that for these
+          browsers:<ul class="ul" id="reference_fyx_1j4_3v__ul_khy_khr_lrb">
+          <li class="li">Chrome</li>
+
+          <li class="li">Edge Chromium</li>
+
+          <li class="li">Firefox</li>
+
+          <li class="li">Safari</li>
+
+          <li class="li">Opera</li>
+
+        </ul>
+<div class="note note"><span class="notetitle">Note:</span> In Chrome, Edge Chromium, and Firefox, we have seen that cookies are not deleted
+          after restart of the browser. The following options can be used to fix the problem:<ul class="ul" id="reference_fyx_1j4_3v__ul_mm3_mjf_mv">
+            <li class="li">For Chrome, you can resolve this by enabling this setting: <span class="q">"Clear cookies and site
+                data when you close all windows"</span>. This option is located under <span class="ph menucascade"><span class="ph uicontrol">Settings</span> &gt; <span class="ph uicontrol">Privacy and security</span> &gt; <span class="ph uicontrol">Cookies and other site data</span></span>.</li>
+
+            <li class="li">For Edge Chromium, you can resolve this by enabling this setting: <span class="q">"Cookies and
+                other site data"</span>. This option is located under <span class="ph menucascade"><span class="ph uicontrol">Settings</span> &gt; <span class="ph uicontrol">Privacy, search, and services</span> &gt; <span class="ph uicontrol">Choose what to clear every time you close the browser</span></span>.</li>
+
+            <li class="li">For Firefox, you can resolve this by enabling this setting: use <span class="q">"Delete cookies
+                and site data when Firefox is closed"</span>. This option is located under <span class="ph menucascade"><span class="ph uicontrol">Settings</span> &gt; <span class="ph uicontrol">Privacy &amp; Security</span> &gt; <span class="ph uicontrol">Cookies and Site Data</span></span>.</li>
+
+          </ul>
+</div>
+</div>
+
+    </div>
+
+  </div>
+
+<div class="navfooter"><!----></div>
+</body>
+</html>

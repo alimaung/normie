@@ -1,0 +1,8 @@
+aaafoo => aaabar
+bbbfoo => bbbfoo bbbbar
+cccfoo => cccbar cccbaz
+pixima => pixma
+GB => gib,gigabyte,gigabytes
+MB => mib,megabyte,megabytes
+TV,tivi => tele
+zero => naught, cipher, nothing, zzero

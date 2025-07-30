@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE ddn [
+<!ENTITY % ISOEntities PUBLIC 'ISO 8879-1986//ENTITIES ISO Character Entities 20030531//EN//XML' 'http://www.s1000d.org/S1000D_4-1/ent/ISOEntities'>
+%ISOEntities;]>
+<ddn xmlns:dc="http://www.purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://www.s1000d.org/S1000D_4-1/xml_schema_flat/ddn.xsd">
+  <identAndStatusSection>
+    <ddnAddress>
+      <ddnIdent>
+        <ddnCode modelIdentCode="ROLLSROYCE" receiverIdent="K0680" senderIdent="K0680" seqNumber="00005" yearOfDataIssue="2025"/>
+      </ddnIdent>
+      <ddnAddressItems>
+        <issueDate day="19" month="05" year="2025"/>
+        <dispatchTo>
+          <dispatchAddress>
+            <enterprise>
+              <enterpriseName>ROLLS-ROYCE AIRLINES</enterpriseName>
+            </enterprise>
+            <address>
+              <city>Boulder</city>
+              <country>US</country>
+            </address>
+          </dispatchAddress>
+        </dispatchTo>
+        <dispatchFrom>
+          <dispatchAddress>
+            <enterprise>
+              <enterpriseName>ROLLS-ROYCE AIRLINES</enterpriseName>
+            </enterprise>
+            <address>
+              <city>Boulder</city>
+              <country>US</country>
+            </address>
+          </dispatchAddress>
+        </dispatchFrom>
+      </ddnAddressItems>
+    </ddnAddress>
+    <ddnStatus>
+      <security securityClassification="01"/>
+      <authorization>ganesan.govindarajan@flatironssolutions.com</authorization>    
+      <brexDmRef>
+        <dmRef>
+          <dmRefIdent>
+            <dmCode assyCode="0000" disassyCode="40" disassyCodeVariant="A" infoCode="022" infoCodeVariant="A" itemLocationCode="D" modelIdentCode="ROLLSROYCE" subSubSystemCode="0" subSystemCode="0" systemCode="00" systemDiffCode="A"/>	                          
+          </dmRefIdent>
+        </dmRef>
+      </brexDmRef>
+    </ddnStatus>
+  </identAndStatusSection>
+  <ddnContent>
+    <deliveryList>
+               
+      <deliveryListItem>
+        <dispatchFileName>DDN-ROLLSROYCE-K0680-K0680-2025-00005.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-K0680-K0680-2025-00005</entityControlNumber>
+        
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-A-00-00-0000-00A-00PA-D_189-00_EN-GB.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-A-00-00-0000-00A-00PA-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="189"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-A-00-00-0000-00A-00QA-D_189-00_EN-GB.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-A-00-00-0000-00A-00QA-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="189"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-A-00-00-0000-00A-00WA-D_189-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-A-00-00-0000-00A-00WA-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="189"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-A-00-00-0000-40A-022A-D_188-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-A-00-00-0000-40A-022A-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="188"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-00-00-00A00-018A-D_191-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-00-00-00A00-018A-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="191"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-00-00-00A00-018B-D_190-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-00-00-00A00-018B-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="190"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-00-00-00A00-018C-D_194-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-00-00-00A00-018C-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="194"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-00-00-00A00-018D-D_194-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-00-00-00A00-018D-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="194"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-00-00-00A00-018E-D_190-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-00-00-00A00-018E-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="190"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-00-00-00A00-018F-D_191-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-00-00-00A00-018F-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="191"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-00-00-00A00-018G-D_190-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-00-00-00A00-018G-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="190"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-00-00-00A00-018H-D_197-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-00-00-00A00-018H-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="197"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-00-00-00A00-018I-D_190-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-00-00-00A00-018I-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="190"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-40-00-00000-00UA-D_010-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-40-00-00000-00UA-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="010"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-50-70-01A00-941A-D_014-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-50-70-01A00-941A-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="014"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-50-70-02A00-941A-D_013-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-50-70-02A00-941A-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="013"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-50-70-03A00-941A-D_014-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-50-70-03A00-941A-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="014"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-50-70-04A00-941A-D_005-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-50-70-04A00-941A-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="005"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-50-70-05A00-941A-D_010-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-50-70-05A00-941A-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="010"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-50-70-06A00-941A-D_009-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-50-70-06A00-941A-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="009"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-50-70-07A00-941A-D_009-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-50-70-07A00-941A-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="009"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-50-70-08A00-941A-D_012-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-50-70-08A00-941A-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="012"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-50-70-09A00-941A-D_001-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-50-70-09A00-941A-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="001"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-50-70-10A00-941A-D_010-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-50-70-10A00-941A-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="010"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-50-70-11A00-941A-D_001-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-50-70-11A00-941A-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="001"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-50-70-12A00-941A-D_007-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-50-70-12A00-941A-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="007"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>DMC-ROLLSROYCE-OMAT-00-50-70-13A00-941A-D_001-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-OMAT-00-50-70-13A00-941A-D</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="001"/>
+     </deliveryListItem>     
+              
+      <deliveryListItem>
+        <dispatchFileName>PMC-ROLLSROYCE-K0680-OMAT0-01_201-00_EN-US.XML</dispatchFileName>
+        <entityControlNumber>ROLLSROYCE-K0680-OMAT0-01</entityControlNumber>
+        <issueInfo inWork="00" issueNumber="201"/>
+     </deliveryListItem>     
+    </deliveryList>
+  </ddnContent>
+</ddn>

@@ -1,0 +1,172 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="General Process Not applicable for Pinpoint Standalone Light. When a builder connected to Knowledge Center S, for instance the A350 Builder, is selected in the Publish Publication panel in Data ..."/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta http-equiv="Pragma" content="no-cache"/><meta http-equiv="Expires" content="0"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="reference"/>
+<meta name="DC.Title" content="Knowledge Center S Publish/Release Process"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="reference_lv4_5zv_kx"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Pragma" content="no-cache"/><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Expires" content="0"/><link xmlns="http://www.w3.org/1999/xhtml" rel="icon" type="image/png" href="../../../oxygen-webhelp/resources/img/favicon.ico"/><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../../../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../../../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../../../oxygen-webhelp/resources/js/jquery.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../../../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../../../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script><link rel="stylesheet" type="text/css" href="../../../oxygen-webhelp/resources/css/commonltr.css"/>
+<title>Knowledge Center S Publish/Release Process</title>
+</head>
+<body onload="highlightSearchTerm()" id="reference_lv4_5zv_kx">
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#">Link to this page</a></div><div id="printlink"><a href="javascript:window.print();">Print this page</a></div></td></tr><tr><td><div class="navheader"/></td><td width="75%"/></tr></tbody></table>
+
+  <h1 class="title topictitle1">Knowledge Center
+    S
+    Publish/Release Process</h1>
+
+  <div class="body refbody">
+    <div class="section"><h2 class="title sectiontitle">General Process</h2>
+      <p class="p"><strong class="ph b">Not applicable for Pinpoint Standalone Light.</strong></p>
+
+      
+      <p class="p">When a builder connected to Knowledge Center
+        S,
+        for instance the A350 Builder, is selected in the <span class="keyword wintitle">Publish Publication</span>
+        panel in Data Manager, the user will be able to select a Knowledge Center CSDB to publish
+        from and the publication type to publish. The selected publication is then fetched from
+        Knowledge Center
+        S
+        directly, the data is converted from XML to Pinpoint Neutral, and it becomes available as a
+        draft in Pinpoint Viewer. How long this process takes depends on the size of the
+        publication.</p>
+
+      <p class="p">Users with the appropriate privileges have access to review the publication revision. They
+        can either choose to release the revision to a set of user groups (Pinpoint viewers), or
+        they can rollback, that is, reject it and remove the revision from Pinpoint and Data
+        Manager. Another option is to reload the revision, which removes the revision and imports it
+        again from Data Manager.</p>
+
+      <div class="note note"><span class="notetitle">Note:</span> The publication release process described here can be overridden by defining a list of
+        publication types that shall be auto-released in Pinpoint. Be aware that if the publication
+        is auto-released you must remember to manually assign view privileges for the appropriate
+        users in Access Control. For more information about the auto-release configuration, refer to
+        the document <em class="ph i">Define Publications to be Auto Released</em> in the <cite class="cite">Flatirons Pinpoint
+          Configuration Guide</cite>.</div>
+
+      <div class="fig fignone" id="reference_lv4_5zv_kx__fig_a45_ymw_kx">
+        
+        <br/><img class="image" id="reference_lv4_5zv_kx__image_qp5_bnw_kx" src="../graphics/A350_publishing_flow_chart.png" width="624"/><br/>
+      <p class="figcap">Knowledge Center
+          S
+          Publish/Release Process</p></div>
+
+      <div class="note note"><span class="notetitle">Note:</span> The process described here applies to documentation published using the A350 Builder and
+        XWB KCt Builder. It does not apply to documentation published with the CMM Builder
+        (autorelease). CRDM is another exception. The CRDM must be published before other
+        publications as the data it contains is used by the other publications. There is no release
+        or rollback available for CRDM as it is automatically released in Pinpoint. It will not
+        appear in Pinpoint's table of content.</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Related Privileges</h2>
+      
+      <div class="p">These privileges in Access Control module panel are related to the publish process:<ul class="ul" id="reference_lv4_5zv_kx__ul_jfh_vrv_kx">
+          <li class="li"><span class="ph menucascade"><span class="ph uicontrol">Data Manager</span> &gt; <span class="ph uicontrol">application</span> &gt; <span class="ph uicontrol">Can download draft</span></span>: This resource is used by the Pinpoint Application User to download
+            publications from Data Manager (using e.g. the A350 builder) to Pinpoint. You will need
+            "Read" permissions to that resource to be able to download draft revisions.</li>
+
+          <li class="li"><span class="ph menucascade"><span class="ph uicontrol">Pinpoint</span> &gt; <span class="ph uicontrol">configuration</span> &gt; <span class="ph uicontrol">Can release or rollback draft revisions</span></span>: The user group that can release, rollback, and reload publication
+            revisions in Pinpoint needs to have Read permission to this resource to be able to see
+            and use the rollback/release/reload buttons. Users that do not have this privilege will
+            not be able to see draft revisions in Pinpoint, they will only see the latest released
+            revisions.</li>
+
+          <li class="li"><span class="ph menucascade"><span class="ph uicontrol">Pinpoint</span> &gt; <span class="ph uicontrol">data</span> &gt; <span class="ph uicontrol">[publication name]</span> &gt; <span class="ph uicontrol"> [revision number]</span></span>: The user group that can release, rollback, and reload publication
+            revisions in Pinpoint needs to have Read/Write/Delete permission to the publication
+            revision in order to perform release/rollback/reload. </li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Publishing from Data Manager</h2>
+      
+      <p class="p">The publishing from Knowledge Center
+        S
+        to Pinpoint Viewer is initiated in Data Manager by creating a repository library, a
+        publication plus selecting the appropriate CSDB and publication type. For detailed
+        instructions about the publishing, refer to the section <em class="ph i"><span class="q">"Create/Publish
+          Publication"</span></em> in the <em class="ph i">Flatirons Data Manager User Guide</em>.</p>
+
+      <div class="note note"><span class="notetitle">Note:</span> Remember that the CRDM must be imported before any other publication types. The CRDM
+        publishing is complete when you see a checkmark in the <strong class="ph b">Released</strong> field of the
+        Revisions section for the publication in Data Manager.</div>
+
+      <p class="p">If the publishing is successful, the publication will become available as a draft revision
+        for the Pinpoint users that have the appropriate privileges.</p>
+
+      <p class="p">As long as the latest publication revision is in draft status, you will not be allowed to
+        add a new revision from Data Manager. (The <img class="image" id="reference_lv4_5zv_kx__image_xhr_sc4_mbb" src="../graphics/create_new_button.png" height="16"/>
+        <span class="ph uicontrol">Add New Revision</span> button will be disabled.) When the publication is
+        released in Pinpoint Viewer, you will see a checkmark in the <strong class="ph b">Released</strong> field.</p>
+
+      <div class="p">If the publishing fails, Log and Resynch buttons are available under the
+          <img class="image" id="reference_lv4_5zv_kx__image_wvh_nlk_gdb" src="../graphics/publication_operations.png" height="16"/>
+        Publication Operations button in the Pinpoint header bar. These allow the user to
+        investigate the problem and retry the operation. In addition, Data Manager will attempt to
+        send an e-mail about the publish failure to a set of pre-defined users.<div class="note note"><span class="notetitle">Note:</span> There is a
+          description of how to configure the e-mail notification in the Pinpoint Configuration
+          guide (PDF document delivered together with the application). If not configured properly
+          or if the e-mail server is not running/reachable, the following warning message will be
+          thrown when Data Manager is trying to send a failure notification: <span class="ph filepath">E-mail server
+            is not available or not configured properly</span></div>
+</div>
+
+      <p class="p">The e-mail notification contains information that identifies the publication, summarizes
+        the problem and provides troubleshooting guidance.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Release, Rollback, and Reload in Pinpoint Viewer</h2>
+      
+      <p class="p">When releasing a publication in Data Manager, the publication can be released as a draft or
+        released automatically by checking the <span class="ph uicontrol">Auto Release</span> checkbox. If the
+        publication was auto released and the release was successful, the <img class="image" id="reference_lv4_5zv_kx__image_ryz_h1y_ljb" src="../graphics/publication_operations.png" height="16"/>
+        <span class="ph uicontrol">Publication Operations</span> icon is not visible in the Pinpoint
+        Viewer.</p>
+
+      <div class="p">Only users with the appropriate permissions can view the publication and do release,
+        rollback, or reload on the publication revision draft using these functions under the <img class="image" id="reference_lv4_5zv_kx__image_tjq_slk_gdb" src="../graphics/publication_operations.png" height="16"/>
+        <span class="ph uicontrol">Publication Operations</span> icon in the header bar:<ul class="ul" id="reference_lv4_5zv_kx__ul_hkh_qsp_kx">
+          <li class="li"><img class="image" id="reference_lv4_5zv_kx__image_clv_qsp_kx" src="../graphics/release_button.png" height="16"/>
+            – When
+            pressed, a new dialog with user groups appears. The groups chosen in this dialog will
+            get access to the released version. Refer to <a class="xref" href="release_rollback_a_publication_revision.html#task_p5y_sbv_kx">Release a Publication Revision</a> for more
+            information.</li>
+
+          <li class="li"><img class="image" id="reference_lv4_5zv_kx__image_gfc_ssp_kx" src="../graphics/rollback_button.png" height="16"/> –
+            When pressed, the publication revision is removed from the Pinpoint Viewer and the Data
+            Manager. The publication revision resource is also removed from the privilege tree in
+            Access Control module. Refer to <a class="xref" href="rollback_a_publication_revision.html#task_hys_yjv_kx">Rollback a Publication Revision</a> for more
+            information.</li>
+
+          <li class="li"><img class="image" id="reference_lv4_5zv_kx__image_ws1_pw5_3gb" src="../graphics/reload_button.png" height="16"/>
+            – When
+            pressed, the selected publication revision is deleted, and the revision is imported
+            again from Data Manager. Refer to <a class="xref" href="reload_a_publication_revision.html#reload_a_publication_revision">Reload a Publication Revision</a> for more
+              information.<div class="note note"><span class="notetitle">Note:</span> You may experience up to a 60-second delay after the reload is
+              complete before the import of the revision begins.</div>
+</li>
+
+        </ul>
+</div>
+
+    </div>
+
+  </div>
+
+<div class="navfooter"><!----></div>
+</body>
+</html>

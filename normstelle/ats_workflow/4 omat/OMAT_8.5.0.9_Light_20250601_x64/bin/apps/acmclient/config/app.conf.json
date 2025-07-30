@@ -1,0 +1,22 @@
+{
+    "amClient": "http://no-ppng-02.corenagroup.local:8084/amclient/",
+    "dmgrClient": "http://no-ppng-02.corenagroup.local:8080/dmgrclient/",
+    "acmServer": "http://localhost:9091/acmserver/api/",
+    "ppClient": "",
+    "acmClient": "http://localhost:3000/#/",
+    "loginWidget": {
+        "defaultUrl" : "#/",
+        "cookieDomain": "",
+        "cloud" : "assets/login/cloud.png",
+        "companyLogo" : "assets/login/slogo.jpg",
+        "background" : "assets/login/loginbg-2.jpg",
+        "productName" : "assets/login/loginlogo.png",
+        "redirectUrls": [
+            "http://no-ppng-02.corenagroup.local:8084/amclient/",
+            "http://no-ppng-02.corenagroup.local:8080/dmgrclient/"
+        ]
+    },
+    "groupManagerActive":false,
+    "roleManagerActive":false,
+    "showGenerateSecretKey" : false
+}
