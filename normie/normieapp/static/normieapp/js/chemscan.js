@@ -979,8 +979,8 @@ class ChemScanManager {
     
     createWgkBadge(wgkClass) {
         if (!wgkClass) return '-';
-        const wgkNumber = wgkClass.replace('WGK ', '').toLowerCase();
-        return `<span class="wgk-badge wgk${wgkNumber}">${wgkClass}</span>`;
+        const wgkNumber = wgkClass.replace('WGK ', '');
+        return `<span class="wgk-badge wgk${wgkNumber.toLowerCase()}">${wgkNumber}</span>`;
     }
     
     getWgkClass(wgkClass) {

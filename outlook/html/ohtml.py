@@ -1,0 +1,282 @@
+import win32com.client as win32
+from datetime import datetime, timedelta
+
+def create_approval_email():
+    """
+    Create a Google Material Design-inspired approval email for chemical/material consumable
+    """
+    
+    # Create Outlook application object
+    outlook = win32.Dispatch('outlook.application')
+    
+    # Create a new mail item
+    mail = outlook.CreateItem(0)  # 0 = olMailItem
+    
+    # Email details
+    mail.To = "manufacturing.team@company.com"
+    mail.CC = "safety.department@company.com; procurement@company.com"
+    mail.Subject = "✅ APPROVED: Chemical Consumable - Application 001/2025"
+    
+    # Calculate expiry date (example: 3 months from now)
+    expiry_date = datetime.now() + timedelta(days=90)
+    approval_date = datetime.now()
+    
+    # Google Material Design-inspired HTML email body
+    html_body = f"""
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body style="margin: 0; padding: 0; font-family: 'Google Sans', 'Segoe UI', Arial, sans-serif; background-color: #f8f9fa; line-height: 1.5;">
+        <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #f8f9fa;">
+            <tr>
+                <td align="center" style="padding: 20px;">
+                    <table cellpadding="0" cellspacing="0" border="0" width="1400" style="background-color: #ffffff; border-radius: 12px; box-shadow: 0 2px 16px rgba(0,0,0,0.08); overflow: hidden;">
+                        
+                        <!-- Header -->
+                        <tr>
+                            <td style="background-color: #1a73e8; color: #ffffff; padding: 32px 48px;">
+                                <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                    <tr>
+                                        <td style="vertical-align: middle;">
+                                            <h1 style="margin: 0; font-size: 32px; font-weight: 400; letter-spacing: -0.5px;">Chemical Approval System</h1>
+                                            <p style="margin: 8px 0 0 0; font-size: 16px; opacity: 0.9; font-weight: 300;">Advanced Manufacturing Solutions</p>
+                                        </td>
+                                        <td style="text-align: right; vertical-align: middle;">
+                                            <div style="background-color: rgba(255,255,255,0.15); padding: 12px 24px; border-radius: 24px; font-size: 14px; font-weight: 500;">
+                                                Application ID: <strong>001/2025</strong>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        
+                        <!-- Product Card -->
+                        <tr>
+                            <td style="padding: 48px;">
+                                <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #ffffff; border: 1px solid #e8eaed; border-radius: 12px; box-shadow: 0 1px 6px rgba(0,0,0,0.04);">
+                                    <tr>
+                                        <td style="padding: 32px;">
+                                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                                <tr>
+                                                    <td style="vertical-align: top; width: 70%;">
+                                                        <h2 style="margin: 0 0 16px 0; font-size: 28px; font-weight: 400; color: #202124; letter-spacing: -0.25px;">Tungsten Carbide Coating Solution WC-2024</h2>
+                                                        
+                                                        <table cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 24px;">
+                                                            <tr>
+                                                                <td style="width: 150px; color: #5f6368; font-size: 14px; padding: 8px 0; font-weight: 500;">Product Code:</td>
+                                                                <td style="color: #202124; font-size: 14px; padding: 8px 0; font-family: 'Roboto Mono', monospace;">WC-2024-TC-500ML</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="color: #5f6368; font-size: 14px; padding: 8px 0; font-weight: 500;">Internal Code (TKZ):</td>
+                                                                <td style="color: #202124; font-size: 14px; padding: 8px 0; font-family: 'Roboto Mono', monospace;">TKZ-2024-001</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="color: #5f6368; font-size: 14px; padding: 8px 0; font-weight: 500;">Application ID:</td>
+                                                                <td style="color: #1a73e8; font-size: 16px; padding: 8px 0; font-weight: 600; font-family: 'Roboto Mono', monospace;">001/2025</td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td style="color: #5f6368; font-size: 14px; padding: 8px 0; font-weight: 500;">Product Class:</td>
+                                                                <td style="color: #202124; font-size: 14px; padding: 8px 0;">Industrial Coating Solution - Class II</td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                    <td style="vertical-align: top; text-align: right; width: 30%;">
+                                                        <!-- Status Badges -->
+                                                        <table cellpadding="0" cellspacing="0" border="0" align="right">
+                                                            <tr>
+                                                                <td style="margin-bottom: 12px;">
+                                                                    <div style="background-color: #34a853; color: #ffffff; padding: 12px 20px; border-radius: 24px; font-size: 14px; font-weight: 500; text-align: center; margin-bottom: 12px; box-shadow: 0 2px 4px rgba(52,168,83,0.2);">
+                                                                        ✓ APPROVED
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div style="background-color: #1a73e8; color: #ffffff; padding: 8px 16px; border-radius: 20px; font-size: 12px; font-weight: 500; text-align: center; box-shadow: 0 2px 4px rgba(26,115,232,0.2);">
+                                                                        🆕 FIRST USE
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        
+                        <!-- Main Body Content -->
+                        <tr>
+                            <td style="padding: 0 48px 32px 48px;">
+                                <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #ffffff; border-radius: 12px; padding: 32px;">
+                                    <tr>
+                                        <td>
+                                            <h3 style="margin: 0 0 24px 0; font-size: 20px; font-weight: 400; color: #202124;">Laboratory Testing & Approval</h3>
+                                            <p style="margin: 0 0 16px 0; color: #5f6368; font-size: 16px; line-height: 1.6;">This product has been thoroughly tested and approved by our specialized laboratories. All safety, environmental, and performance criteria have been met according to company standards and regulatory requirements.</p>
+                                            
+                                            <table cellpadding="0" cellspacing="0" border="0" style="margin: 24px 0;">
+                                                <tr>
+                                                    <td style="background-color: #e8f0fe; color: #1a73e8; padding: 8px 16px; border-radius: 16px; margin-right: 12px; font-size: 13px; font-weight: 500;">Health & Safety Lab</td>
+                                                    <td style="width: 12px;"></td>
+                                                    <td style="background-color: #e8f0fe; color: #1a73e8; padding: 8px 16px; border-radius: 16px; margin-right: 12px; font-size: 13px; font-weight: 500;">Environmental Testing</td>
+                                                    <td style="width: 12px;"></td>
+                                                    <td style="background-color: #e8f0fe; color: #1a73e8; padding: 8px 16px; border-radius: 16px; font-size: 13px; font-weight: 500;">Manufacturing Lab</td>
+                                                </tr>
+                                            </table>
+                                            
+                                            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-top: 24px;">
+                                                <tr>
+                                                    <td style="width: 200px; color: #5f6368; font-size: 14px; padding: 8px 0; font-weight: 500;">Approval Date:</td>
+                                                    <td style="color: #202124; font-size: 14px; padding: 8px 0;">{approval_date.strftime('%B %d, %Y')}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: #5f6368; font-size: 14px; padding: 8px 0; font-weight: 500;">Valid Until:</td>
+                                                    <td style="color: #202124; font-size: 14px; padding: 8px 0;">{expiry_date.strftime('%B %d, %Y')}</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: #5f6368; font-size: 14px; padding: 8px 0; font-weight: 500;">Approved Location:</td>
+                                                    <td style="color: #202124; font-size: 14px; padding: 8px 0;">Manufacturing Floor A, Bay 3-5</td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="color: #5f6368; font-size: 14px; padding: 8px 0; font-weight: 500;">Usage Classification:</td>
+                                                    <td style="color: #202124; font-size: 14px; padding: 8px 0;">Controlled Industrial Use</td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        
+                        <!-- Links Section -->
+                        <tr>
+                            <td style="padding: 0 48px 32px 48px;">
+                                <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #f8f9fa; border-radius: 12px; padding: 32px; border-left: 4px solid #34a853;">
+                                    <tr>
+                                        <td>
+                                            <h3 style="margin: 0 0 16px 0; font-size: 18px; font-weight: 400; color: #202124;">Documentation & Resources</h3>
+                                            <p style="margin: 0 0 24px 0; color: #5f6368; font-size: 14px;">Access complete documentation including application form, MSDS, TDS, and detailed specifications.</p>
+                                            
+                                            <table cellpadding="0" cellspacing="0" border="0">
+                                                <tr>
+                                                    <td style="vertical-align: middle;">
+                                                        <table cellpadding="0" cellspacing="0" border="0" style="background-color: #34a853; border-radius: 8px; box-shadow: 0 2px 8px rgba(52,168,83,0.2);">
+                                                            <tr>
+                                                                <td>
+                                                                    <a href="https://normie.company.com/approvals/001-2025" style="display: block; padding: 16px 24px; color: #ffffff; text-decoration: none; font-weight: 500; font-size: 14px;">
+                                                                        📋 Open in Normie Platform
+                                                                    </a>
+                                                                </td>
+                                                            </tr>
+                                                        </table>
+                                                    </td>
+                                                    <td style="width: 24px;"></td>
+                                                    <td style="vertical-align: middle;">
+                                                        <a href="https://legacy.company.com/approvals/001-2025" style="color: #1a73e8; text-decoration: underline; font-size: 14px; font-weight: 400;">
+                                                            Legacy System Access
+                                                        </a>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        
+                        <!-- Important Conditions Section -->
+                        <tr>
+                            <td style="padding: 0 48px 48px 48px;">
+                                <table cellpadding="0" cellspacing="0" border="0" width="100%" style="background-color: #fef7e0; border: 1px solid #f9ab00; border-radius: 12px; padding: 32px; border-left: 4px solid #ea4335;">
+                                    <tr>
+                                        <td>
+                                            <h3 style="margin: 0 0 20px 0; font-size: 20px; font-weight: 500; color: #d93025;">⚠️ Critical Approval Conditions</h3>
+                                            
+                                            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom: 16px;">
+                                                <tr>
+                                                    <td style="background-color: #ffffff; padding: 20px; border-radius: 8px; border-left: 4px solid #ea4335; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                                        <strong style="color: #d93025; font-size: 16px;">Expiry Date Compliance</strong><br>
+                                                        <span style="color: #5f6368; font-size: 14px; line-height: 1.5;">Product usage cannot exceed 1/4 of the remaining time until expiry date. Current product expires on {(expiry_date + timedelta(days=120)).strftime('%B %d, %Y')}. Monitor usage carefully.</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            
+                                            <table cellpadding="0" cellspacing="0" border="0" width="100%" style="margin-bottom: 16px;">
+                                                <tr>
+                                                    <td style="background-color: #ffffff; padding: 20px; border-radius: 8px; border-left: 4px solid #ea4335; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                                        <strong style="color: #d93025; font-size: 16px;">Specification Certification Required</strong><br>
+                                                        <span style="color: #5f6368; font-size: 14px; line-height: 1.5;">Product must be certified to meet all technical specifications as outlined in the Technical Data Sheet before use. No exceptions permitted.</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            
+                                            <table cellpadding="0" cellspacing="0" border="0" width="100%">
+                                                <tr>
+                                                    <td style="background-color: #ffffff; padding: 20px; border-radius: 8px; border-left: 4px solid #ea4335; box-shadow: 0 1px 3px rgba(0,0,0,0.1);">
+                                                        <strong style="color: #d93025; font-size: 16px;">Mandatory Usage Monitoring</strong><br>
+                                                        <span style="color: #5f6368; font-size: 14px; line-height: 1.5;">All usage must be logged and reported according to safety protocols. Real-time monitoring required for compliance.</span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                        
+                        <!-- Footer -->
+                        <tr>
+                            <td style="background-color: #f8f9fa; color: #5f6368; padding: 32px 48px; text-align: center; font-size: 13px; border-top: 1px solid #e8eaed;">
+                                <strong style="color: #202124;">Quality Assurance & Safety Department</strong><br>
+                                Advanced Manufacturing Solutions<br>
+                                Phone: +1 (555) 123-4567 | Email: safety@company.com<br><br>
+                                <em>This is an automated approval notification generated on {approval_date.strftime('%B %d, %Y at %I:%M %p')}</em><br>
+                                <strong>Confidential:</strong> This approval is specific to the conditions stated above. Any deviation requires re-evaluation.
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+        </table>
+    </body>
+    </html>
+    """
+    
+    # Set the HTML body
+    mail.HTMLBody = html_body
+    
+    # Display the email instead of sending it
+    mail.Display(True)
+    
+    # Save the email to a file
+    with open("approval_email.html", "w", encoding="utf-8") as f:
+        f.write(html_body)
+
+
+    print("✅ Google Material Design-inspired approval email created!")
+    print(f"📧 Subject: {mail.Subject}")
+    print(f"📧 To: {mail.To}")
+    print(f"📧 CC: {mail.CC}")
+    print("\n🎨 New Material Design features:")
+    print("• 1400px wide content area")
+    print("• Google-style header with company branding")
+    print("• Product card with all details (name, codes, TKZ, Application ID)")
+    print("• Status badges (Approved/First Use)")
+    print("• Clean white body section")
+    print("• Green call-to-action section with Normie + Legacy links")
+    print("• Enhanced warning section with red/orange styling")
+    print("• Material Design colors and typography")
+    print("• Card-based layout with proper shadows and spacing")
+
+if __name__ == "__main__":
+    try:
+        create_approval_email()
+    except Exception as e:
+        print(f"❌ Error creating email: {str(e)}")
+        print("💡 Make sure Microsoft Outlook is installed and accessible via COM.")

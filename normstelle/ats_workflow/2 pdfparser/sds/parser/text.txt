@@ -1,0 +1,385 @@
+ 
+ 
+Sicherheitsdatenblatt  (1907/2006 EG) 
+ 
+Seite 1 von 4 
+Ausfertigungsdatum:            10.12.2024 
+ 
+  
+Auskunft gebende Abt.:       info@mikrofilmchemie.de 
+Notfall-Telefonnummer:      (+49)-6036-908-10 
+Version:                                 3.0 
+ 
+ 
+Staude Verwaltungs- & Betriebs GmbH 
+Soedeler Weg 2 – D-61200 Woelfersheim - Germany 
+Tel.: 0049/6036-90810, Fax: 0049/6036-90844 
+eMail: 
+info@mikrofilmchemie.de 
+Internet: www.mikrofilmchemie.de 
+Produktname: Piccolo-Öko-Entwickler Typ 25 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+1. Bezeichnung des Stoffs/Gemisches und des Unternehmens: 
+ 
+Produkt-Name 
+: Piccolo-Öko-Entwickler Typ 25 
+Produktgruppe 
+: Piccolo-Öko-Chemikalien-Set 
+Firma 
+: Staude Verwaltungs- u. Betriebs GmbH, Södeler Weg 2, 
+ 
+ 61200 Wölfersheim, DEUTSCHLAND 
+ 
+ Tel.: ++49(0)6036/908-10, Fax.: ++49(0)6036/908-44, E-Mail: info@mikrofilmchemie.de 
+ 
+ 
+2. Mögliche Gefahren/Besondere Hinweise für Mensch und Umwelt: 
+ 
+GHS07 Achtung     
+Verursacht schwere Augenreizung, H319 
+ 
+ 
+ 
+ 
+Pictogramme: 
+ 
+ 
+ 
+ 
+Signalwort: Achtung 
+ 
+EUH210: 
+ 
+Sicherheitsdatenblatt auf Anfrage erhältlich. 
+EUH031: 
+ 
+Entwickelt bei Berührung mit Säuren giftige Gase. 
+ 
+P101 
+ 
+ 
+Ist ärztlicher Rat erforderlich, Verpackung oder Kennzeichnungsetikett bereithalten. 
+P102 
+ 
+ 
+Darf nicht in Hände von Kindern gelangen. 
+P103 
+ 
+ 
+Vor Gebrauch Kennzeichnungsetikett lesen. 
+P264 
+ 
+ 
+Nach Handhabung Hände gründlich waschen 
+ 
+P305+P351+P338 BEI KONTAKT MIT DEN AUGEN: einige Minuten lang behutsam mit Wasser spülen. 
+Eventuell vorhandene Kontaktlinsen nach Möglichkeit entfernen. Weiter ausspülen  
+ 
+ 
+ 
+3. Zusammensetzung / Angaben zu Bestandteilen :  
+ 
+ 
+Mischung enthält: 
+ 
+CAS-Nr.  
+EG-Nr. 
+Stoffbezeichnung 
+ 
+584-08-7 
+209-529-3 
+Kaliumcarbonat 10 –  15 % 
+7757-83-7 
+231-821-4 
+Natriumsulfit 0,1 -0,5 % 
+92-43-3 
+202-155-1 
+Phenidon  0,3 – 0,5 % 
+64-02-8 
+200-573-9 
+Trilon B 0,2 – 0,4 % 
+ 
+ 
+
+ 
+ 
+Sicherheitsdatenblatt  (1907/2006 EG) 
+ 
+Seite 2 von 4 
+Ausfertigungsdatum:            10.12.2024 
+ 
+  
+Auskunft gebende Abt.:       info@mikrofilmchemie.de 
+Notfall-Telefonnummer:      (+49)-6036-908-10 
+Version:                                 3.0 
+ 
+ 
+Staude Verwaltungs- & Betriebs GmbH 
+Soedeler Weg 2 – D-61200 Woelfersheim - Germany 
+Tel.: 0049/6036-90810, Fax: 0049/6036-90844 
+eMail: 
+info@mikrofilmchemie.de 
+Internet: www.mikrofilmchemie.de 
+Produktname: Piccolo-Öko-Entwickler Typ 25 
+4. Erste Hilfe-Maßnahmen:  
+ 
+P302 + P353:  
+ 
+BEI KONTAKT MIT DER HAUT: Haut mit Wasser abwaschen / duschen 
+P305 + P351 + P338: 
+BEI KONTAKT MIT DEN AUGEN: Einige Minuten behutsam mit Wasser spülen. Eventuell vorhandene 
+Kontaktlinsen nach Möglichkeit entfernen. Weiter ausspülen. 
+P301 + P330 + P314: 
+BEI VERSCHLUCKEN: Mund ausspülen. Bei Unwohlsein ärztlichen Rat einholen/ ärztliche Hilfe hinzuziehen 
+ 
+5. Maßnahmen bei Brandbekämpfung: 
+ 
+Nicht brennbar. 
+ 
+ 
+ 
+ 
+6. Maßnahmen bei unbeabsichtigter Freisetzung:  
+ 
+Personenschutz:  
+P307 + P353 + P362 Bei Exposition: Haut mit Wasser abwaschen/duschen. Kontaminierte Kleidung ausziehen und vor erneutem 
+Tragen waschen. 
+ 
+Umweltschutz: 
+P273 Freisetzung in die Umwelt vermeiden. Nicht ins Erdreich, Gewässer oder Kanalisation gelangen lassen. 
+ 
+Reinigung/Aufnahme: 
+P391 Verschüttete Mengen aufnehmen. Wiederverwendung prüfen oder entsorgen. 
+ 
+7.Lagerung und Handhabung:  
+ 
+Lagerung 
+P401 An einem kühlen Ort, nicht unter 6°C, aufbewahren 
+ 
+P404 In einem geschlossenen Behälter aufbewahren. 
+Handhabung 
+P264 Nach Gebrauch Hände gründlich waschen 
+ 
+P270 Bei Gebrauch nicht essen, trinken oder rauchen 
+ 
+ 
+ 
+Brand- und Explosionsschutz: nicht brennbar, kann nicht explodieren 
+ 
+Lagerklasse 
+: LGK 12 
+ 
+8. Expositionsbegrenzung und persönliche Schutzausrüstung:  
+ 
+Persönliche Schutzausrüstungen:  
+Atemschutz:  
+-- 
+Augenschutz:  
+geschlossene Schutzbrille  
+Handschutz :  
+-- 
+Körperschutz:  
+-- 
+ 
+
+ 
+ 
+Sicherheitsdatenblatt  (1907/2006 EG) 
+ 
+Seite 3 von 4 
+Ausfertigungsdatum:            10.12.2024 
+ 
+  
+Auskunft gebende Abt.:       info@mikrofilmchemie.de 
+Notfall-Telefonnummer:      (+49)-6036-908-10 
+Version:                                 3.0 
+ 
+ 
+Staude Verwaltungs- & Betriebs GmbH 
+Soedeler Weg 2 – D-61200 Woelfersheim - Germany 
+Tel.: 0049/6036-90810, Fax: 0049/6036-90844 
+eMail: 
+info@mikrofilmchemie.de 
+Internet: www.mikrofilmchemie.de 
+Produktname: Piccolo-Öko-Entwickler Typ 25 
+9. Physikalische und chemische Eigenschaften:  
+ 
+Form 
+: flüssig 
+Dampfdruck (20°C) 
+: nicht bekannt 
+Farbe 
+: gelblich 
+Löslichkeit in Wasser (20°C) 
+: vollständig 
+Geruch  
+: geruchlos 
+pH-Wert (Lösung, 20°C) 
+: <10 
+Kristallisation 
+: < -2°C 
+Flammpunkt [°C 
+ 
+: nicht brennbar 
+Siedepunkt [°C] 
+: > 100°C 
+Selbstentzündlichkeit  
+: nicht anwendbar 
+Dichte (20°C) [g/cm3] 
+: nicht bekannt 
+Zündtemperatur 
+ 
+: nicht brennbar 
+Schmelzpunkt/-bereich 
+: -- 
+ 
+Explosionsgefahr 
+: -- 
+ 
+Löslichkeit in anderen Lösungsmitteln: n.d. 
+10. Stabilität und Reaktivität:  
+ 
+Zu vermeidende Bedingungen 
+ 
+: -- 
+Zu vermeidende Stoffe 
+ 
+ 
+: bei Zugabe von starker Säure kann Kohlendioxyd entstehen 
+ 
+Gefährliche Reaktionen 
+ 
+ 
+: keine 
+Gefährliche Zersetzungsprodukte  
+: keine 
+ 
+11. Angaben zur Toxikologie:      
+  
+Akute Toxizität: 
+Bestandteile, die zur akuten oralen Toxizität beitragen können: 
+Phenidon (0,01 – 0,1 %), LD 50 (oral): 475 mg/kg 
+Trilon B (0,01 – 0,1 %), LD 50 (oral): 2000 mg/kg 
+Berechneter Schätzwert akute orale Toxizität ATE (mix): 915663 mg/kg 
+ 
+Bestandteile, die zur akuten inhalativen Toxizität beitragen können: 
+Trilon B (0,01 – 0,1 %), LC 50 (inhaltativ): ATE 11 mg/l/4h 
+Berechneter Schätzwert akute inhalative Toxizität ATE (mix): 30000 mg/l/4h 
+ 
+Ätz-/Reizwirkung auf die Haut: 
+Relevante Inhaltstoffe: 
+Kaliumcarbonat (5,0 – 9,0 %) additiv, Einstufung des Stoffes: Kategorie 2/SCL: Kategorie2: 10% (Allgemeiner Grenzwert) 
+ 
+Schwere Augenschädigung/-reizung: 
+Relevante Inhaltsstoffe: 
+Kaliumcarbonat (5,0 – 9,0 %) additiv, Einstufung des Stoffes: Kategorie 2/SCL: Kategorie2: 10% (Allgemeiner Grenzwert) 
+Trilon B (0,01 – 0,1 %) nicht additiv, Einstufung des Stoffes: Kategorie 1/Kategorie 1: 3% (Allgemeiner Grenzwert) Kategorie 2: 10% 
+(Allgemeiner Grenzwert) 
+ 
+Spezifische Zielorgantoxizität (einmalige Exposition): Atemwegsreizung 
+Relevante Inhaltsstoffe: 
+Kaliumcarbonat (5,0 – 9,0 %) additiv, Einstufung des Stoffes: Kategorie 3/SCL: Kategorie3: 20% (Allgemeiner Grenzwert) 
+ 
+Das Gemisch wird nicht in diese Gefahrenkategorie eingestuft. 
+_____________________________________________________________________________________________________________ 
+ 
+
+ 
+ 
+Sicherheitsdatenblatt  (1907/2006 EG) 
+ 
+Seite 4 von 4 
+Ausfertigungsdatum:            10.12.2024 
+ 
+  
+Auskunft gebende Abt.:       info@mikrofilmchemie.de 
+Notfall-Telefonnummer:      (+49)-6036-908-10 
+Version:                                 3.0 
+ 
+ 
+Staude Verwaltungs- & Betriebs GmbH 
+Soedeler Weg 2 – D-61200 Woelfersheim - Germany 
+Tel.: 0049/6036-90810, Fax: 0049/6036-90844 
+eMail: 
+info@mikrofilmchemie.de 
+Internet: www.mikrofilmchemie.de 
+Produktname: Piccolo-Öko-Entwickler Typ 25 
+12. Umweltbezogene Angaben:  
+ 
+Bestandteile, die zur chronischen Gewässergefährdung beitragen können: 
+Phenidon ((0,01 – 0,1 %), Kategorie 2, LC50(Fisch): 10 mg/l, EC50(Krebstiere): 10 mg/l 
+ 
+Das Gemisch wird nicht in diese Gefahrenkategorie eingestuft. 
+ 
+13. Hinweise zur Entsorgung:  
+P501 Inhalt/Behälter der Entsorgung zuführen (gemäß lokalen Vorschriften) 
+Abfall-Schlüssel: 09 01 01*, Entwickler und Aktivator auf Wasserbasis 
+14. Angaben zum Transport:  
+ 
+Land: -- 
+ 
+LQ (Strasse): 
+--   
+ 
+Tunnel-Cat.: -- 
+Luft:  
+-- 
+ 
+PAX: --  
+ 
+CAO: -- 
+See: 
+-- 
+ 
+IMDG: -- 
+ 
+EmS(F): -- 
+ 
+EmS(S): -- 
+Packing: 
+-- 
+ 
+Marine Pollutant: -- 
+Sub.Risk: -- 
+ 
+UN-Nr: -- 
+ 
+15.Vorschriften / Kennzeichnung:  
+ 
+Keine Kennzeichnung erforderlich. 
+Die beim Umgang mit Chemikalien üblichen Vorsichtsmaßnahmen sind zu beachten. 
+ 
+Schweizer Giftklasse: Giftklassenfrei 
+ 
+ 
+16. Weitere Angaben:  
+ 
+Das Sicherheitsdatenblatt wurde gem. Verordnung 1907/2006 EG erstellt. Die vorstehenden Daten stützen sich auf den heutigen 
+Stand unserer Kenntnisse und stellen keine Zusicherungen von Eigenschaften dar. Die Daten wurden nach besten Wissen erstellt, 
+wir garantieren aber nicht die Vollständigkeit und Richtigkeit in allen Punkten. Bestehende Gesetze und Bestimmungen sind vom 
+Empfänger unseres Produktes in eigener Verantwortung zu beachten. 
+Eine Haftung für einen durch falsche Angaben entstandenen Schaden entfällt, es sei denn, diese Angaben sind auf Vorsatz oder 
+grobe Fahrlässigkeit zurückzuführen. Die gültigen arbeitshygienischen gesetzlichen Vorschriften sind zu beachten. 
+Dieses Sicherheitsdatenblatt ergänzt, ersetzt aber nicht die Gebrauchsanweisungen und Produktbeschriftungen. 
+Kopien des Sicherheitsdatenblattes sind nur für den internen Gebrauch gestattet! 
+ 
+Produkt-Verwendung 
+: Verarbeitung lichtempfindlicher fotografischer Materialien 
+Kontaktstelle für weitere technische Informationen und Handhabungshinweise:  
+Staude Verwaltungs- und Betriebs GmbH, D-61200 Wölfersheim, Tel.: 06036/90810, Fax.: 06036/908-44 
+ 
+ 
+ 
+ 
+ 
+ 
+

@@ -21,9 +21,12 @@
 
 /* Water hazard class badges */
 .wgk-badge {
-    display: inline-block;
-    padding: 4px 12px;
-    border-radius: 16px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
     font-size: 12px;
     font-weight: 600;
     letter-spacing: 0.5px;
@@ -37,9 +40,9 @@
 }
 
 .wgk-badge.wgk2 {
-    background-color: #fff9c4;
+    background-color: #ffedaf;
     color: #f57f17;
-    border: 1px solid #fff59d;
+    border: 1px solid #e5da7b;
 }
 
 .wgk-badge.wgk3 {
@@ -53,13 +56,14 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    /* width: 24px; */
+    /* height: 24px; */
     border-radius: 4px;
-    margin-right: 4px;
+    margin: 2px 2px 0 0;
     font-size: 10px;
     font-weight: bold;
     color: white;
+    padding: 0.2rem;
 }
 
 .ghs-symbol.ghs01 { background-color: #e53935; } /* Explosive */
