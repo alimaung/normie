@@ -1,0 +1,35 @@
+<div id="authoringHistoryModal">
+    <div id="table-content" class="scrollableTableContainer">
+        <table class="table table-striped table-hover fixed-table">
+            <thead>
+            <tr>
+                <th class="stickyHeader" style="width:30%">
+                    <span>{{translations.action}}</span>
+                </th>
+                <th class="stickyHeader" style="width:30%">
+                    <span>{{translations.performedBy}}</span>
+                </th>
+                <th class="stickyHeader" style="width:40%">
+                    <span>{{translations.comment}}</span>
+                </th>
+            </tr>
+
+            </thead>
+            <tbody>
+            <tr ng-repeat="entry in mergeHistory | orderBy: 'entry.timestamp': true">
+                <td>
+                    <span>{{entry.actionText}}</span>
+                    <br>
+                    <span>{{entry.actionOn}}</span>
+                </td>
+                <td>
+                    <span>{{entry.username}}</span>
+                    <br>
+                    <span class="timestamp">{{entry.formatedDateTime}}</span>
+                </td>
+                <td>{{entry.comment}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

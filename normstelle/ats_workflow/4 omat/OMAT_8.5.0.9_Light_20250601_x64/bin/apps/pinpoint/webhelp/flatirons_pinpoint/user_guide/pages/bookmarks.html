@@ -1,0 +1,148 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Bookmarks are links that makes it easy to get back to documents you want to view later. In Pinpoint, you can create bookmarks at the data module level from the Content pane or the publication level ..."/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta http-equiv="Pragma" content="no-cache"/><meta http-equiv="Expires" content="0"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="reference"/>
+<meta name="DC.Title" content="Bookmarks"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="reference_fmj_nrd_ny"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Pragma" content="no-cache"/><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Expires" content="0"/><link xmlns="http://www.w3.org/1999/xhtml" rel="icon" type="image/png" href="../../../oxygen-webhelp/resources/img/favicon.ico"/><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../../../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../../../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../../../oxygen-webhelp/resources/js/jquery.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../../../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../../../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script><link rel="stylesheet" type="text/css" href="../../../oxygen-webhelp/resources/css/commonltr.css"/>
+<title>Bookmarks</title>
+</head>
+<body onload="highlightSearchTerm()" id="reference_fmj_nrd_ny">
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#">Link to this page</a></div><div id="printlink"><a href="javascript:window.print();">Print this page</a></div></td></tr><tr><td><div class="navheader"/></td><td width="75%"/></tr></tbody></table>
+
+  <h1 class="title topictitle1">Bookmarks</h1>
+
+  <div class="body refbody">
+    <div class="section">
+      <div class="p">Bookmarks are links that makes it easy to get back to documents you want to view later. In
+        Pinpoint, you can create bookmarks at the data module level from the
+          <span class="keyword wintitle">Content</span> pane or the publication level from the
+          <span class="keyword wintitle">Library</span>
+        pane. You can also
+        create bookmarks for symbolic link publications.
+        It
+        is not possible to bookmark content within a data module or publication. Bookmarks are
+        private and can only be seen by the user that created them. However, they are stored on the
+        server, which means that a user can access previously stored bookmarks from different
+        computers. <div class="note note"><span class="notetitle">Note:</span> Publication level bookmarks are not supported for ATA publications. The
+            <img class="image" id="reference_fmj_nrd_ny__image_w4q_541_5mb" src="../graphics/bookmark_button_in_content_header.png" height="16"/>
+          <span class="ph uicontrol">Add Bookmark</span> icon will not appear in the
+            <span class="keyword wintitle">Library</span> page for this type of
+          publication.</div>
+<div class="note note"><span class="notetitle">Note:</span> This
+          feature is not available for HTML publications.</div>
+</div>
+
+      <p class="p">Bookmarks always resolve to the latest revision. When a revision is published and released,
+        existing bookmarks launch the content to the new revision. If you want to view the older
+        revision, you must select that revision.</p>
+
+      <div class="note note"><span class="notetitle">Note:</span> The bookmark feature is enabled by default, but it is possible to hide it by removing or
+        leaving the <span class="q">"bookmarkService"</span> parameter empty in the <samp class="ph codeph">pp.app.conf.json</samp>
+        file on the config directory. </div>
+
+      <p class="p">If the bookmark feature is enabled,  you will see a bookmark icon in the application's
+          <span class="keyword wintitle">Content</span> pane and when you hover over the name of a publication in the
+          <span class="keyword wintitle">Library</span> pane: </p>
+
+      <div class="fig fignone" id="reference_fmj_nrd_ny__fig_icv_w4m_hkb">
+        
+        <br/><img class="image" id="reference_fmj_nrd_ny__image_bkc_fwb_smb" src="../graphics/bookmark_content_header.png" width="240"/><br/>
+      <p class="figcap">Bookmark Icon - Content Pane</p></div>
+
+      <div class="fig fignone" id="reference_fmj_nrd_ny__fig_isq_2yb_smb">
+        
+        <img class="image" id="reference_fmj_nrd_ny__image_khb_1zb_smb" src="../graphics/bookmark_library_pane.png" width="480"/>
+      <p class="figcap">Bookmark Icon - Library Pane</p></div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Managing Bookmarks</h2>
+      
+      <div class="p">Bookmarks are created and deleted in the context of the document or publication you are
+        viewing. <ul class="ul" id="reference_fmj_nrd_ny__ul_ipn_rbc_smb">
+          <li class="li">In the <span class="keyword wintitle">Content</span> pane, you will see a <img class="image" id="reference_fmj_nrd_ny__image_rb3_dhx_py" src="../graphics/bookmark_button_in_content_header.png" height="16"/>
+            <span class="ph uicontrol">Bookmark</span> toggle icon. </li>
+
+          <li class="li">In the <span class="keyword wintitle">Library</span> pane, you will see a <img class="image" id="reference_fmj_nrd_ny__image_wdr_mcc_smb" src="../graphics/bookmark_button_in_content_header.png" height="16"/>
+            <span class="ph uicontrol">Bookmark</span> toggle icon when you hover over a publication name.</li>
+
+        </ul>
+</div>
+
+      <p class="p"> To bookmark the document you are viewing, just click this icon. The bookmark icon then
+        changes color, and a confirmation message will flash on the screen to let you know that the
+        bookmark is created. </p>
+
+      <div class="fig fignone" id="reference_fmj_nrd_ny__fig_r5v_bpm_hkb">
+        
+        <br/><img class="image" id="reference_fmj_nrd_ny__image_orc_dyj_ny" src="../graphics/bookmark_created.png" height="336"/><br/>
+      <p class="figcap">Bookmark Created Successfully Confirmation Message (Content Pane)</p></div>
+
+      <div class="fig fignone" id="reference_fmj_nrd_ny__fig_ofl_rdc_smb">
+        
+        <br/><img class="image" id="reference_fmj_nrd_ny__image_a5j_j2c_smb" src="../graphics/bookmark_created_library.png" width="576"/><br/>
+      <p class="figcap">Bookmark Created Successfully Confirmation Message (Library Pane)</p></div>
+
+      <div class="p">To remove the bookmark, click the toggle icon again. A confirmation message lets you know
+        that the bookmark is deleted and the icon changes color again. For example:<br/><img class="image" id="reference_fmj_nrd_ny__image_bwf_nfc_smb" src="../graphics/bookmark_deleted_message.png" width="144"/><br/><div class="note note"><span class="notetitle">Note:</span> You can also delete bookmarks from the <span class="ph uicontrol">Bookmark
+            Manager</span>. Refer to <a class="xref" href="#reference_fmj_nrd_ny__section_a3k_3xc_smb">Accessing/Managing Bookmarks in Bookmark Manager</a>.</div>
+</div>
+
+    </div>
+
+    <div class="section" id="reference_fmj_nrd_ny__section_a3k_3xc_smb"><h2 class="title sectiontitle">Accessing/Managing Bookmarks in Bookmark
+        Manager</h2><div class="p">Click the <img class="image" id="reference_fmj_nrd_ny__image_rnw_5xb_smb" src="../graphics/bookmark_manager_icon.png" height="16"/>
+        <span class="ph uicontrol">Bookmark Manager</span> icon in the <span class="keyword wintitle">Action</span> bar to open
+        the <span class="keyword wintitle">Bookmark Manager</span> dialog, which contains a list of all publications
+        with bookmarks.<div class="note note"><span class="notetitle">Note:</span> The <span class="ph uicontrol">Bookmark Manager</span> icon can be located in the
+            <img class="image" id="reference_fmj_nrd_ny__image_hwc_rk4_5fb" src="../graphics/more_icon.png" height="20"/>
+          <span class="keyword wintitle">More</span> drop-down menu if your page width is less than or equal to 1280
+          pixels.</div>
+</div>
+<div class="fig fignone" id="reference_fmj_nrd_ny__fig_bxq_dpm_hkb">
+        
+        <br/><img class="image" id="reference_fmj_nrd_ny__image_jjy_wyc_smb" src="../graphics/bookmark_manager.png" width="480"/><br/>
+      <p class="figcap">Bookmark Manager Dialog</p></div>
+<p class="p">Select <img class="image" id="reference_fmj_nrd_ny__image_ssh_tvn_p3b" src="../graphics/expand_all_bookmarks.png" height="13"/> to view the bookmarks for all publications. You can
+        select the <img class="image" id="reference_fmj_nrd_ny__image_tsh_tvn_p3b" src="../graphics/expand_icon.png" height="16"/> icon to view only bookmarks for that publication.</p>
+<p class="p">Select
+          <img class="image" id="reference_fmj_nrd_ny__image_ycs_hwn_p3b" src="../graphics/collapse_all_bookmarks.png" height="16"/> to hide the bookmarks for all publications. You can select the
+          <img class="image" id="reference_fmj_nrd_ny__image_umq_r14_p3b" src="../graphics/collapse_icon.png" height="16"/> icon to collapse only bookmarks for that
+        publication.</p>
+<div class="p">Bookmarks created at the publication level have an <img class="image" id="reference_fmj_nrd_ny__image_gbf_xzc_smb" src="../graphics/open_in_new_window_icon.png" height="16"/> Open in new icon located to the right of the bookmark icon. Click
+        this icon to open the publication in a new
+          window.<div class="note note"><span class="notetitle">Note:</span> When
+          you click a bookmark for a symbolic link publication, the original (target) publication
+          opens.</div>
+</div>
+The total number of bookmarks displays below the
+        <span class="ph uicontrol">Bookmark Manager</span> dialog name. The number of bookmarks in each
+      publication displays in parentheses in the right side of the dialog. Click a link to open a
+      document in the <span class="keyword wintitle">Content</span> pane. <div class="note note"><span class="notetitle">Note:</span> If you hover over the publication
+        name, the path where the document is located appears.</div>
+<div class="p">If you want to delete a
+        bookmark, click the <img class="image" id="reference_fmj_nrd_ny__image_nkt_hxn_p3b" src="../graphics/remove_bookmark.png" height="16"/>
+        <span class="ph uicontrol">Remove Bookmark</span> icon in the right side of the dialog. The bookmark
+        changes color, and a confirmation message flashes on the screen to show that the bookmark is
+        removed. For example:<div class="fig fignone" id="reference_fmj_nrd_ny__fig_kln_zbc_5mb">
+          <br/><img class="image" id="reference_fmj_nrd_ny__image_rlv_3cc_5mb" src="../graphics/bookmark_deleted_message.png" width="144"/><br/>
+        </div>
+</div>
+</div>
+
+  </div>
+
+<div class="navfooter"><!----></div>
+</body>
+</html>

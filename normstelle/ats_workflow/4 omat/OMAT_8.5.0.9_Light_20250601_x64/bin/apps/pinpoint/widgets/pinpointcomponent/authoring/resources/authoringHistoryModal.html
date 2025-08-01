@@ -1,0 +1,31 @@
+<div id="authoringHistoryModal">
+    <div id="table-content" class="scrollableTableContainer">
+        <table class="table table-striped table-hover fixed-table">
+            <thead>
+            <tr>
+                <th class="stickyHeader" style="width:25%">
+                    <span>{{translations.movedTo}}</span>
+                </th>
+                <th class="stickyHeader" style="width:25%">
+                    <span>{{translations.performedBy}}</span>
+                </th>
+                <th class="stickyHeader" style="width:50%">
+                    <span>{{translations.comment}}</span>
+                </th>
+            </tr>
+
+            </thead>
+            <tbody >
+            <tr ng-repeat="entry in authoringHistory | orderBy: 'entry.timestamp': true" ng-class="'document-status-' +entry.action">
+                <td >{{entry.action}}</td>
+                <td >
+                    <span>{{entry.username}}</span>
+                    <br>
+                    <span class="timestamp">{{entry.formatedDateTime}}</span>
+                </td>
+                <td >{{entry.comment}}</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

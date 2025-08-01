@@ -1,0 +1,41 @@
+#Do not remove this file - needed by the installer!
+#Fri Nov 01 03:40:58 PDT 2024
+spring.application.admin.jmx-name=org.springframework.boot\:type\=Admin,name\=acm
+default.acm.username=admin
+scheme.map.acm=Access Control
+jdbc.password=
+jdbc.url=jdbc\:hsqldb\:hsql\://localhost\:9002/standaloneDB
+cookie.domain=
+jdbc.minIdle=20
+audit.enabled=false
+jdbc.idleTimeout=600000
+jdbc.username=SA
+default.organization.ncage=SYS
+spring.jmx.enabled=false
+default.acm.groupname=Administrators
+management.health.rabbit.enabled=false
+management.health.mail.enabled=false
+hsqldb.path=${cor.workdir}/data/hsqldb/standaloneDB
+jdbc.connectionTimeout=30000
+jdbc.maxPoolSize=50
+spring.application.name=acm
+jdbc.driverClassName=org.hsqldb.jdbcDriver
+spring.jmx.default-domain=acm
+# Prevent Hibernate from trying to create or validate the database
+hibernate.hbm2ddl.auto=none
+hibernate.hbm2ddlauto=none
+# Prevent Liquibase from trying to upgrade the database
+dbupgrade.auto=false
+acm.username=Guest
+acm.password=RSA(RunE0uNibyAC+WUaEe3pkbbz2iodszvM0xMjwkVYxZjWkgaBuCxvWDIXyDmB/WIdfmv0eETnD72em4L0aGJX7Mc2u5BPUW4DgeNtwPAy2Rr6ExpzJaen72JB2uvIC1r6V0x7OzH6K776XrikAPWZIy/gEJZVDErFkbYlHe0c4lw=)
+# Guest Access Properties
+acm.guest.featureEnabled=true
+acm.guest.switchAccountsEnabled=false
+acm.guest.username=Guest
+acm.guest.password=RSA(GfRbAArcYv2baE7Dr1VI+t794l0PY3DGj9XSLo9YDMAAKLQYe0jiUuN8GLxnqdqQ+752V9ki+JllC4McYJwHkgZibedyMJKO5wwr5BLSXt6TjkgwBsorOCt//DgXgGgS/JdvlEPHp6gI6ZTCaTeg49XhZNsAGT1L7mRGV87Z7r4=)
+spring.application.admin.enabled=false
+scheme.map.dm=Data Manager\://application
+scheme.map.pp=Pinpoint
+jdbc.maxLifetime=1800000
+expireTokensOnStartup=true
+hibernate.dialect=com.flatirons.commons.hibernate.dialect.HsqldbDialect

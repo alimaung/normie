@@ -1,0 +1,210 @@
+.sidebar {
+  width: 4em;
+}
+
+.button {
+  background-color: #d4d0c8;
+  border: 1px solid #ffffff;
+  border-bottom: 1px solid #a0a0a0;
+  border-right: 1px solid #a0a0a0;
+
+  text-decoration: none;
+  font-weight: normal;
+  color: black;
+  cursor: pointer;
+
+  width: 6em;
+}
+
+.processView {
+  border-collapse: collapse;
+  border-width: 1px;
+  border-style: solid;
+  border-color: #b0b0b0;
+  margin-bottom: 3em;
+  width: 100%;
+}
+
+.processView tr, .processView thead, .processView tbody {
+  padding: 0px;
+  margin: 0px;
+}
+
+.processView td, .processView th {
+  padding: 0.5em;
+  margin: 0px;
+  border-width: 0px;
+  border-style: none;
+  vertical-align: middle;
+}
+
+/*.processView td {
+  background-color: #f0f0f0;
+}*/
+
+.processView th {
+  background-color: #003873;
+  background-image: none;
+  color: white;
+  font-weight: bold;
+  vertical-align: middle;
+}
+
+/*.processView iframe {
+  height: 550px;
+  width: 100%;
+}*/
+
+form {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+.stretch {
+  width: 100%;
+}
+
+.halfWidth {
+  width: 50%;
+}
+
+.top {
+  vertical-align: top;
+}
+
+.right {
+  text-align: right;
+}
+
+.left {
+  text-align: left;
+}
+
+.center {
+  text-align: center;
+}
+
+.center table {
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.invisible {
+  visibility: hidden;
+}
+
+.dlgDialog {
+  text-align: center;
+}
+
+.dlgDialog .dlgHalfWidth {
+  width: 50%;
+}
+
+.dlgDialog .dlgTop {
+  vertical-align: top;
+}
+
+.dlgDialog .dlgRight {
+  text-align: right;
+}
+
+.dlgDialog .dlgLeft {
+  text-align: left;
+}
+
+.dlgValidationMessage {
+  color: red;
+}
+
+.dlgDialog table {
+  text-align: left;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.dlgDialog td, .dlgDialog th {
+  padding: 0.1em;
+  margin: 0px;
+  border-width: 0px;
+  border-style: none;
+}
+
+.dlgDialogButtons {
+  width: 95%;
+  text-align: center;
+}
+
+.dlgDialogButtons td {
+  padding: 10px;
+  border-top: 1px solid #b0b0b0;
+  text-align: center;
+}
+
+.dlgButton {
+  background-color: #d4d0c8;
+  border: 1px solid #ffffff;
+  border-bottom: 1px solid #a0a0a0;
+  border-right: 1px solid #a0a0a0;
+
+  text-decoration: none;
+  font-weight: normal;
+  color: black;
+  cursor: pointer;
+
+  width: 6em;
+}
+
+.dlgDialogButtons .dlgButton {
+  margin: 8px;
+}
+
+.dlgGroup {
+  width: 95%;
+}
+
+.dlgGroup table {
+  width: 98%;
+}
+
+.dlgDialog .dlgTitle {
+  font-size: 14px;
+  font-weight: bold;
+  text-align: center;
+  width: 95%;
+}
+
+.dlgGroup .dlgTitle {
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.dlgSeparator {
+  border-style: solid;
+  border-width: 1px;
+  border-color: #b0b0b0;
+}
+
+.dlgMessage {
+  padding: 5px;
+}
+
+.dlgMandatory {
+  color: red;
+}
+
+/* default stylesheet overrides */
+.buttonBar {
+  border: none;
+}
+
+td {
+  border: none;
+}
+
+.stepsTable p {
+  margin: 0px;
+}

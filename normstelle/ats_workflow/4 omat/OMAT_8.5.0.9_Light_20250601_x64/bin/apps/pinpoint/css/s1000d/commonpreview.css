@@ -1,0 +1,128 @@
+<!--###################################################################################
+# commonpreview.css
+# This CSS is used by workcard preview, engineering project preview and task card preview stylesheets
+######################################################################################
+# Version history
+#         20050927  
+#  MN  0.01   Written
+######################################################################################-->		
+
+
+			body {
+					font-size: 12px;
+					font-family:  Arial, MS Sans Serif; 
+					}
+						th {
+          		padding: 4px;
+          		background: #e6e6e6;
+          		white-space: nowrap;
+             	font-size: 12px;
+          	}
+					td {
+						font-size: 12px;
+						vertical-align: top;
+					}
+          	
+		
+					h1 {
+					    padding: 5px;
+						font-size: 14px;
+						border-color: #000000;
+						border-style: solid;
+					    border-width: 1px 1px 1px 1px;
+					    background: #dddddd;
+					}
+					
+					.title {
+						font-size: 16px;
+						font-weight: bold;
+						vertical-align:top;
+					}
+
+					.centered {
+						text-align:center;
+					}   
+					
+					.tableClass {
+						width: 100%;
+						border: 1px solid #000000;
+						border-width: 1px 1px 1px 1px;
+						cell-spacing=10pt;
+						cell-padding=5pt;
+					}
+
+					.tdClass {
+						width:"10%";
+						
+						text-align:right;
+						font-weight:bold;
+					}
+
+					.tdClass_1_right {
+						width:"10%";
+						background: #ffffff;
+						border: 1px solid #000000;
+						border-width: 0px 0px 0px 0px;
+						text-align:left;
+					}
+
+					.tdTitle {
+						background: #eeeeee;
+						text-align:left;
+						font-weight:bold;
+						border: 1px dashed #000000;
+						border-width: 0px 0px 1px 0px;
+					}
+
+					.td_lhs_bold{
+						text-align:left;
+						font-weight:bold;
+						width: "20%";
+					}
+
+                     tablecontent{
+						font-size: 6px;
+					}
+						
+						.align1 {margin-left: -30pt;} 
+						.align2 {margin-left: -60pt;} 
+						.align3 {margin-left: -90pt;} 
+						.align4 {margin-left: -120pt;} 
+						.align5 {margin-left: -150pt;} 
+						.center {margin-left: -30pt;} 
+						 {
+							font-size: 12pt;
+							font-family: Arial, MS Sans Serif;
+						}
+						
+						table {
+							border-collapse: collapse;
+						}
+								
+						.signoff{
+						  border: 1px solid black;
+						  font-size: 10px;
+						}
+				.signoffspecial{
+						  border: solid black;
+border-width:2px 2px 2px 2px;
+						  font-size: 10px;
+						}
+			.estimation{border: 1px solid black;}	
+			
+						.location {margin-left: 20pt; margin-top: 4pt;
+						}
+						.sources {margin-left: 20pt; margin-top: 4pt;
+						}
+				  
+						.sources {margin-left: 20pt; margin-top: 4pt;
+						}
+					
+						td1 {
+							   font-family    : Arial, MS Sans Serif;
+							   font-size     : 220pt;
+							   font-weight    : Bold;
+							   text-align     : Center;
+							   color       : DarkKhaki;
+							   background-color  : DarkBlue;
+					  }

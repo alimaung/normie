@@ -1,0 +1,8 @@
+{
+    "timeout" : 120000,
+    "pageSize" : 10,
+    "airbusElecPath": {
+        "label": "Electrical Path",
+        "value": "ELECTRICAL"
+    }
+}

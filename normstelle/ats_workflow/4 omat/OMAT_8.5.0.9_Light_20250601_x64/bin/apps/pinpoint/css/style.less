@@ -1,0 +1,31 @@
+/**
+  color-base is the style color to be used in Pills and tab and other areas.
+  Please note, when changing these colors - corresponding colors from stylesheet should be manually updated to be in sync.
+  So that - PDF print and feedback scenarios are consistent with viewer.
+  Also, ensure in pinpoint mobile - same is updated.
+ */
+@color-base: #007588;
+@color-base-hover: #00869c;
+@color-base-active: #006474;
+
+.navbar-static-top {
+  background: @color-base !important;
+}
+
+#html-content #tab-content {
+  .nav > li > a:focus, .nav > li > a:hover {
+    background-color: @color-base-hover !important;
+  }
+
+  .nav-pills > li.active > a, .nav-pills > li.active > a:focus, .nav-pills > li.active > a:hover {
+    background-color: @color-base-active !important;
+  }
+
+  .nav-pills {
+    background-color: @color-base !important;
+  }
+
+  .check-mark-styling {
+    color: @color-base !important;
+  }
+}

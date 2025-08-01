@@ -1,0 +1,61 @@
+{
+  "menus": {
+    "titleKey": "toc.title.toc",
+    "leftMenus": [],
+    "rightMenus": [
+      {
+        "name": "showMetadata",
+        "title": "toc.title.showmetadata",
+        "icon": "fa-info",
+        "isHidden": false,
+        "action": "showMetadata"
+      },
+      {
+        "name": "toggleTocContent",
+        "titleKey": "toc.title.toggleContent",
+        "icon": "fa-low-vision",
+        "isHidden": true,
+        "action": "toggleFilteredTocVisibility"
+      },
+      {
+        "name": "printDocuments",
+        "title": "toc.title.bulkPrint",
+        "icon": "fa-print",
+        "isHidden": false,
+        "action": "showSubMenu",
+        "csName": "dropdown-menu dropdown-menu-right",
+        "type":"dropdown",
+        "subMenus": [
+          {
+            "name": "Print Entire Manual",
+            "title": "toc.title.printEntireManual",
+            "icon": "fa-book",
+            "isHidden": true,
+            "action": "printSelectedDocument"
+          },
+          {
+            "name": "Print Selected Section",
+            "title": "toc.title.printSelectedSection",
+            "icon": "fa-list",
+            "isHidden": true,
+            "action": "printSelectedDocument"
+          }
+        ]
+      },
+      {
+        "name": "showRevisionManager",
+        "title": "toc.title.showRevisions",
+        "icon": "fa-cogs",
+        "isHidden": false,
+        "action": "showRevisionManager"
+      },
+      {
+        "name": "showRevisionHistory",
+        "title": "toc.title.showRevisionHistory",
+        "icon": "fa fa-history",
+        "action": "showRevisionHistory",
+        "isHidden": false
+      }
+    ]
+  }
+}

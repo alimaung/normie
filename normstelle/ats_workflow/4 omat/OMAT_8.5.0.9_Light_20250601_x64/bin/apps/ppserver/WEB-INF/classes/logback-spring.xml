@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+	<include resource="org/springframework/boot/logging/logback/base.xml"/>
+	<include file="${cor.configdir}/logback-include.xml"/>
+	<include file="${cor.configdir}/logback-pp-json.xml" optional="true"/>
+
+     <!--This property need to match with what is happening in PinpointServerApplication.setLogDir() -->
+    <property name="log-path" value="${cor.logdir:-${java.io.tmpdir:-/tmp}/logs}"/>
+    
+	<appender name="pinpoint_server_performance" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log-path}/pinpoint_server_performance.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log-path}/logs/pinpoint_server_performance-%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss}] %5p [%t] %c{2\}:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="pinpoint_server" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log-path}/pinpoint_server.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log-path}/logs/pinpoint_server-%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss}] %5p [%t] %c{2\}:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="pinpoint_server_sync" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log-path}/pinpoint_server_sync.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log-path}/logs/pinpoint_server_sync-%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss}] %5p [%t] %c{2\}:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="pinpoint_server_imports" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log-path}/pinpoint_server_imports.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log-path}/logs/pinpoint_server_imports-%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss}] %5p [%t] %c{2\}:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="pinpoint_server_log" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log-path}/pinpoint_server_log.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log-path}/logs/pinpoint_server_log-%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss}] %5p [%t] %c{2\}:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="pinpoint_server_service" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log-path}/pinpoint_server_service.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log-path}/logs/pinpoint_server_service-%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss}] %5p [%t] %c{2\}:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="pinpoint_server_rest" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log-path}/pinpoint_server_rest.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log-path}/logs/pinpoint_server_rest-%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss}] %5p [%t] %c{2\}:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="pinpoint_server_hibernate" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log-path}/pinpoint_server_hibernate.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log-path}/logs/pinpoint_server_hibernate-%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss}] %5p [%t] %c{2\}:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="pinpoint_server_external" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log-path}/pinpoint_server_external.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log-path}/logs/pinpoint_server_external-%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss}] %5p [%t] %c{2\}:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="pinpoint_server_reindex" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${log-path}/pinpoint_server_reindex.log</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<fileNamePattern>${log-path}/logs/pinpoint_server_reindex-%d{yyyy-MM-dd}.log</fileNamePattern>
+			<maxHistory>7</maxHistory>
+		</rollingPolicy>
+		<encoder>
+			<pattern>[%d{yyyy-MM-dd HH:mm:ss}] %5p [%t] %c{2\}:%L - %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="org.hibernate.SQL" level="WARN" additivity="false">
+		<appender-ref ref="${pinpoint_server_hibernate_json_config:-pinpoint_server_hibernate}"/>
+	</logger>
+
+	<logger name="org.hibernate.type" level="WARN" additivity="false">
+		<appender-ref ref="${pinpoint_server_hibernate_json_config:-pinpoint_server_hibernate}"/>
+	</logger>
+	
+	<logger name="org.hibernate.orm.deprecation" level="ERROR" additivity="false">
+		<appender-ref ref="${pinpoint_server_hibernate_json_config:-pinpoint_server_hibernate}"/>
+	</logger>
+
+	<logger name="org.hibernate.tool.hbm2ddl" level="DEBUG" additivity="false">
+		<appender-ref ref="${pinpoint_server_hibernate_json_config:-pinpoint_server_hibernate}"/>
+	</logger>
+
+	<logger name="org.hibernate.jdbc" level="WARN" additivity="false">
+		<appender-ref ref="${pinpoint_server_hibernate_json_config:-pinpoint_server_hibernate}"/>
+	</logger>
+
+	<logger name="org.hibernate.type.descriptor.sql" level="WARN" additivity="false">
+		<appender-ref ref="${pinpoint_server_hibernate_json_config:-pinpoint_server_hibernate}"/>
+	</logger>
+
+	<logger name="com.flatirons.pinpoint.server.hibernate" level="WARN" additivity="false">
+		<appender-ref ref="${pinpoint_server_hibernate_json_config:-pinpoint_server_hibernate}"/>
+	</logger>
+
+	<logger name="com.flatirons.pinpoint.server.sync" level="INFO" additivity="false">
+		<appender-ref ref="${pinpoint_server_sync_json_config:-pinpoint_server_sync}"/>
+	</logger>
+
+	<logger name="com.flatirons.pinpoint.server.rest" level="INFO" additivity="false">
+		<appender-ref ref="${pinpoint_server_rest_json_config:-pinpoint_server_rest}"/>
+	</logger>
+
+	<logger name="com.flatirons.pinpoint.server.imports" level="INFO" additivity="false">
+		<appender-ref ref="${pinpoint_server_imports_json_config:-pinpoint_server_imports}"/>
+	</logger>
+
+	<logger name="com.flatirons.pinpoint.log" level="INFO" additivity="false">
+		<appender-ref ref="${pinpoint_server_log_json_config:-pinpoint_server_log}"/>
+	</logger>
+
+	<logger name="com.flatirons.pinpoint.server" level="info" additivity="false">
+		<appender-ref ref="${pinpoint_server_json_config:-pinpoint_server}"/>
+	</logger>
+
+	<logger name="com.flatirons.pinpoint.server.access.impl.AcmServerTalk" level="INFO" additivity="false">
+		<appender-ref ref="${pinpoint_server_external_json_config:-pinpoint_server_external}"/>
+	</logger>
+
+	<logger name="com.flatirons.pinpoint.server.common.utils.PinpointDataManagerClient" level="INFO" additivity="false">
+		<appender-ref ref="${pinpoint_server_external_json_config:-pinpoint_server_external}"/>
+	</logger>
+    
+	<logger name="com.flatirons.commons.rest.performance.PerformanceLogger" level="INFO" additivity="false">
+		<appender-ref ref="${pinpoint_server_performance_json_config:-pinpoint_server_performance}"/>
+	</logger>
+
+	<logger name="com.flatirons.pinpoint.server.service.impl.ReindexServiceImpl" level="INFO" additivity="false">
+		<appender-ref ref="${pinpoint_server_reindex_json_config:-pinpoint_server_reindex}"/>
+	</logger>
+
+	<logger name="com.flatirons.pinpoint.server.rest.resource.ReIndexResource" level="INFO" additivity="false">
+		<appender-ref ref="pinpoint_server_reindex"/>
+	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="pinpoint_server_imports" />
+		<appender-ref ref="pinpoint_server_service" />
+		<appender-ref ref="pinpoint_server_rest" />
+		<appender-ref ref="pinpoint_server_hibernate" />
+		<appender-ref ref="pinpoint_server_external" />
+		<appender-ref ref="pinpoint_server"/>
+		<appender-ref ref="CONSOLE" />
+	</root>
+</configuration>

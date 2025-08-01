@@ -1,0 +1,37 @@
+{
+    "isMatchWholeWord": false,
+    "caseSensitive": false,
+    "timeout" : 300000,
+    "pageSize" : 10,
+    "dataTypeSearches":
+    {
+        "Publications": { 
+            "searchFields": [
+                {
+                    "name": "text",
+                    "labelkey": "fulltextsearch.title.text"
+                },
+                {
+                    "name": "library",
+                    "labelkey": "fulltextsearch.title.library"
+                },
+                {
+                    "name": "publications",
+                    "labelkey": "fulltextsearch.title.publications"
+                }
+            ]
+        },
+        "Classifications": {
+            "searchFields": [
+                {
+                    "name": "text",
+                    "labelkey": "fulltextsearch.title.text"
+                },
+                {
+                    "name": "classifications",
+                    "labelkey": "fulltextsearch.title.classifications"
+                }
+            ]
+        }
+    }
+}

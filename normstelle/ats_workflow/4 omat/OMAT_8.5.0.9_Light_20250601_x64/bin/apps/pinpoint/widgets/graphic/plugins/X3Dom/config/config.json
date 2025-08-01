@@ -1,0 +1,56 @@
+{
+  "menus": {
+    "leftMenus": [
+      {
+        "name": "reset",
+        "titlekey": "graphic.title.reset",
+        "icon": "fa-refresh",
+        "isHidden": false,
+        "action": "resetX3DNav"
+      },
+      {
+        "name": "resetZoom",
+        "titlekey": "graphic.title.default",
+        "icon": "fa-camera",
+        "isHidden": false,
+        "action": "resetZoom"
+      },
+      {
+        "name": "leftView",
+        "titlekey": "graphic.title.left",
+        "icon": "fa-chevron-left",
+        "isHidden": false,
+        "action": "leftView"
+      },
+      {
+        "name": "topView",
+        "titlekey": "graphic.title.top",
+        "icon": "fa-chevron-up",
+        "isHidden": false,
+        "action": "topView"
+      },
+      {
+        "name": "bottomView",
+        "titlekey": "graphic.title.bottom",
+        "icon": "fa-chevron-down",
+        "isHidden": false,
+        "action": "bottomView"
+      },
+      {
+        "name": "rightView",
+        "titlekey": "graphic.title.right",
+        "icon": "fa-chevron-right",
+        "isHidden": false,
+        "action": "rightView"
+      },
+      {
+        "name": "goBack",
+        "titlekey": "graphic.title.goBack",
+        "icon": "fa-undo",
+        "isHidden": false,
+        "class": "goback-button disabled",
+        "action": "prevFocusNode"
+      }
+    ]
+  }
+}

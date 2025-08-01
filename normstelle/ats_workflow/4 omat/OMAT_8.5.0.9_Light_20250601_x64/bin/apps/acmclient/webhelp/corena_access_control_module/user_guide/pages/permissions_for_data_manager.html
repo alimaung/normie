@@ -1,0 +1,232 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The control of permissions (who can do what) in Data Manager is managed in Access Control Manager ( ). The Access Control Manager administrator grants permissions to the different user ..."/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta http-equiv="Pragma" content="no-cache"/><meta http-equiv="Expires" content="0"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="reference"/>
+<meta name="DC.Title" content="Permissions for Data Manager"/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="reference_pf1_srn_tnb"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Pragma" content="no-cache"/><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Expires" content="0"/><link xmlns="http://www.w3.org/1999/xhtml" rel="icon" type="image/png" href="../../../oxygen-webhelp/resources/img/favicon.ico"/><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../../../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../../../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../../../oxygen-webhelp/resources/js/jquery.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../../../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../../../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script><link rel="stylesheet" type="text/css" href="../../../oxygen-webhelp/resources/css/commonltr.css"/>
+<title>Permissions for Data Manager</title>
+</head>
+<body onload="highlightSearchTerm()" id="reference_pf1_srn_tnb">
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#">Link to this page</a></div><div id="printlink"><a href="javascript:window.print();">Print this page</a></div></td></tr><tr><td><div class="navheader"/></td><td width="75%"/></tr></tbody></table>
+
+  <h1 class="title topictitle1">Permissions for Data Manager</h1>
+
+  
+  <div class="body refbody">
+    <div class="section">
+      <p class="p">The control of permissions (who can do what) in Data Manager is managed in <span class="ph">Access Control Manager</span> (<img class="image" id="reference_pf1_srn_tnb__image_qf1_srn_tnb" src="../graphics/acm-link.png"/>). The <span class="ph">Access Control Manager</span> administrator grants
+        permissions to the different user roles/organizations that can access functions in the Data
+        Manager. The administrator grants permissions to user groups, which allows members of a
+        group access to the data.</p>
+
+      <p class="p">For a description of how to grant permissions to user roles/organizations, refer to <a class="xref" href="grant_permissions.html#task_rqz_c5v_y5">Manage Function Privileges and Data Access Permissions</a>. </p>
+
+      <p class="p"><span class="ph uicontrol">Read</span>, <span class="ph uicontrol">Write</span>, and
+          <span class="ph uicontrol">Delete</span> permissions can be granted for the nodes below the Data
+        Manager privilege tree.</p>
+
+      <div class="fig fignone" id="reference_pf1_srn_tnb__fig_rf1_srn_tnb">
+        
+        <br/><img class="image" id="reference_pf1_srn_tnb__image_sf1_srn_tnb" src="../graphics/dm_privilege_tree.png"/><br/>
+      <p class="figcap">Data Manager Privilege Tree</p></div>
+
+      <p class="p">The table below describes the privilege tree and effect of assigning
+          <span class="ph uicontrol">Read</span>, <span class="ph uicontrol">Write</span>, and
+          <span class="ph uicontrol">Delete</span> permissions to each of the nodes.</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="reference_pf1_srn_tnb__table_tf1_srn_tnb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. Data Manager Privilege Tree</span></caption>
+          
+          
+          <thead class="thead" align="left">
+            <tr class="row">
+              <th class="entry" valign="top" width="33.33333333333333%" id="d13772e87">Node (Top Level &gt; Sub Levels)</th>
+
+              <th class="entry" valign="top" width="66.66666666666666%" id="d13772e90">Description</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody class="tbody">
+            <tr class="row">
+              <td class="entry" valign="top" width="33.33333333333333%" headers="d13772e87 "><span class="ph menucascade"><span class="ph uicontrol">Application</span></span> (user roles / organizations)</td>
+
+              <td class="entry" valign="top" width="66.66666666666666%" headers="d13772e90 ">
+                <p class="p">Grant users the appropriate permissions for the <span class="ph">Data Manager</span>
+                  application:</p>
+
+                <ul class="ul" id="reference_pf1_srn_tnb__ul_uf1_srn_tnb">
+                  <li class="li"><span class="ph uicontrol">Read</span>
+                    permission enables the user to view the application main page (this option alone
+                    has no effect on visibility of other panels or data). To allow users to see
+                    data, set group/organization permissions on the appropriate
+                      <span class="ph uicontrol">Data</span> node(s) as well.</li>
+
+                  <li class="li">Full
+                      (<span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span>/<span class="ph uicontrol">Delete</span>)
+                    permissions enables publishing capabilities.</li>
+
+                </ul>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="33.33333333333333%" headers="d13772e87 "><span class="ph menucascade"><span class="ph uicontrol">Application</span> &gt; <span class="ph uicontrol">Build</span></span> (user roles / organizations)</td>
+
+              <td class="entry" valign="top" width="66.66666666666666%" headers="d13772e90 ">
+                <div class="note important"><span class="importanttitle">Important:</span> The user role that contains the <span class="q">"application user"</span> must
+                  have full
+                    (<span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span>/<span class="ph uicontrol">Delete</span>)
+                  permissions on the <span class="ph uicontrol">Build</span> node (refer to the definition of
+                    <span class="q">"application user"</span> below). This is required in order to make builders and
+                  publishing available. For user groups that contain regular end-users, the
+                    <span class="ph uicontrol">Build</span> node is not relevant.</div>
+
+                <p class="p">The <dfn class="term">application user</dfn> is pre-defined in a configuration file
+                    (<span class="ph filepath">dm_config.properties</span>) on the server and is required for
+                  communicating with the other Pinpoint applications (Access Control Manager and
+                  Builders). In dm-config.properties, this user is defined in the parameter
+                    <span class="keyword parmname">acm.username</span>. </p>
+
+                <div class="note important"><span class="importanttitle">Important:</span> Permission for the <span class="ph uicontrol">Build</span> node only
+                  applies to the group that contains the application user.</div>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="33.33333333333333%" headers="d13772e87 "><span class="ph menucascade"><span class="ph uicontrol">Application</span> &gt; <span class="ph uicontrol">Can configure track audits for libraries and publications</span></span> (user roles / organizations)</td>
+
+              <td class="entry" valign="top" width="66.66666666666666%" headers="d13772e90 ">Grant full
+                  (<span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span>/<span class="ph uicontrol">Delete</span>)
+                permission to allow users to configure the track audits functionality.<p class="p">Users with
+                    <span class="ph uicontrol">Read</span> permissions only can view the <span class="ph uicontrol">Track
+                    Audits</span> option but cannot change the value.</p>
+</td>
+
+            </tr>
+
+            
+            <tr class="row">
+              <td class="entry" valign="top" width="33.33333333333333%" headers="d13772e87 "><span class="ph menucascade"><span class="ph uicontrol">Application</span> &gt; <span class="ph uicontrol">Can delete Full and related Incremental revisions</span></span> (user roles / organizations)</td>
+
+              <td class="entry" valign="top" width="66.66666666666666%" headers="d13772e90 ">This resource is used by the Pinpoint Application User to delete full and
+                incremental revisions from Data Manager. The user role that contains the
+                "application user" must have full
+                  (<span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span>/<span class="ph uicontrol">Delete</span>)
+                permissions to delete revisions.<div class="note note"><span class="notetitle">Note:</span> If the user role does not have the
+                    <span class="ph uicontrol">Delete</span> permission, the <span class="ph uicontrol">Delete</span> icon
+                  does not display.</div>
+<p class="p">When you select a full revision to delete, the related
+                  incremental revisions are also selected.</p>
+<div class="note note"><span class="notetitle">Note:</span> The latest full released
+                  revision does not have the option to be deleted. </div>
+</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="33.33333333333333%" headers="d13772e87 "><span class="ph menucascade"><span class="ph uicontrol">Application</span> &gt; <span class="ph uicontrol">Can download draft</span></span> (user roles / organizations)</td>
+
+              <td class="entry" valign="top" width="66.66666666666666%" headers="d13772e90 "><div class="note note"><span class="notetitle">Note:</span> This resource is only relevant if you are using the A350
+                Builder.</div>
+This resource is used by the Pinpoint Application User to download
+                publications from Data Manager (using the A350 builder) to Pinpoint. You will need
+                  <span class="ph uicontrol">Read</span> permissions to that resource to be able to download
+                draft revisions.</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="33.33333333333333%" headers="d13772e87 "><span class="ph menucascade"><span class="ph uicontrol">Application</span> &gt; <span class="ph uicontrol">Can generate response code to unlock publications</span></span> (user roles / organizations)</td>
+
+              <td class="entry" valign="top" width="66.66666666666666%" headers="d13772e90 ">
+                <p class="p">Grant full
+                    (<span class="ph uicontrol">Read</span>/<span class="ph uicontrol">Write</span><span class="ph uicontrol">Delete</span>)
+                  permissions to allow an administrator to generate a response code using a
+                  challenge code provided by a user. This response code is then provided to the user
+                  to unlock a publication.</p>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="33.33333333333333%" headers="d13772e87 "><span class="ph menucascade"><span class="ph uicontrol">Application</span> &gt; <span class="ph uicontrol">Configuration</span></span> (user roles / organizations)</td>
+
+              <td class="entry" valign="top" width="66.66666666666666%" headers="d13772e90 ">
+                <p class="p">Grant the appropriate permissions for the <span class="keyword wintitle">Configuration</span>
+                  panel:</p>
+
+                <ul class="ul" id="reference_pf1_srn_tnb__ul_vf1_srn_tnb">
+                  <li class="li"><span class="ph uicontrol">Read</span> permission enables the user to view the
+                      <span class="keyword wintitle">Builders</span> panel and refresh the associated builders.</li>
+
+                  <li class="li"><span class="ph uicontrol">Write</span> permission enables the user to add new
+                    builders.</li>
+
+                  <li class="li"><span class="ph uicontrol">Delete</span> permission enables the user to delete existing
+                    builders.</li>
+
+                </ul>
+
+              </td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="33.33333333333333%" headers="d13772e87 "><span class="ph menucascade"><span class="ph uicontrol">Data</span> &gt; <span class="ph uicontrol"> (and sub-nodes)</span></span> (user groups / organizations)</td>
+
+              <td class="entry" valign="top" width="66.66666666666666%" headers="d13772e90 ">
+                <div class="p">Grant the appropriate permissions to data and sub-nodes:<ul class="ul" id="reference_pf1_srn_tnb__ul_wf1_srn_tnb">
+                    <li class="li"><span class="ph uicontrol">Read</span> permission (for data sub-nodes) allows the user
+                      to view folders and publications in <span class="keyword wintitle">Repository</span>,
+                        <span class="keyword wintitle">Folder Content</span> and
+                      <span class="keyword wintitle">Publications</span>.</li>
+
+                    <li class="li"><span class="ph uicontrol">Write</span> permission enables the user to create new
+                      folders and publish manuals.</li>
+
+                    <li class="li"><span class="ph uicontrol">Delete</span> permission enables the user to delete
+                      publications and folders in the <span class="keyword wintitle">Repository</span>.</li>
+
+                  </ul>
+</div>
+
+                <div class="note tip"><span class="tiptitle">Tip:</span> The permissions must be applied to each of the sub-nodes if the
+                  user can access all the content. To quickly assign a user to the full set of
+                  permissions for all the data you can select all permission types for the Data node
+                  and then activate the <span class="ph uicontrol">Apply to descendants</span> check
+                  box.</div>
+
+              </td>
+
+            </tr>
+
+          </tbody>
+
+        </table>
+</div>
+
+    </div>
+
+  </div>
+
+<div class="navfooter"><!----></div>
+</body>
+</html>

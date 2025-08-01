@@ -1,0 +1,7 @@
+{
+    "templateBracket": "widgets/pinpointcomponent/dwSearch/template/bracket",
+    "templateCircuit": "widgets/pinpointcomponent/dwSearch/template/circuit",
+    "templateGround": "widgets/pinpointcomponent/dwSearch/template/ground",
+    "templateSplice": "widgets/pinpointcomponent/dwSearch/template/splice",
+    "templateTerminal": "widgets/pinpointcomponent/dwSearch/template/terminal"
+}

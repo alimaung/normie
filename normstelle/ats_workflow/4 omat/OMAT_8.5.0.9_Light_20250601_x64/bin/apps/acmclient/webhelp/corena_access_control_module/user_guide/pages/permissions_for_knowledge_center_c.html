@@ -1,0 +1,1086 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="en-us" lang="en-us">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="The control of permissions (who can do what) in Knowledge Center Manufacturer (KCM) is managed in Access Control Manager ( ). The Access Control Manager administrator grants permissions to the ..."/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta http-equiv="Pragma" content="no-cache"/><meta http-equiv="Expires" content="0"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="reference"/>
+<meta name="DC.Title" content="Permissions for Knowledge Center Manufacturer (KCM)"/>
+<meta name="abstract" content=""/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="manage_permissions_for_knowledge_center_c"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Pragma" content="no-cache"/><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Expires" content="0"/><link xmlns="http://www.w3.org/1999/xhtml" rel="icon" type="image/png" href="../../../oxygen-webhelp/resources/img/favicon.ico"/><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../../../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../../../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../../../oxygen-webhelp/resources/js/jquery.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../../../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../../../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script><link rel="stylesheet" type="text/css" href="../../../oxygen-webhelp/resources/css/commonltr.css"/>
+<title>Permissions for Knowledge Center Manufacturer (KCM)</title>
+</head>
+<body onload="highlightSearchTerm()" id="manage_permissions_for_knowledge_center_c">
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#">Link to this page</a></div><div id="printlink"><a href="javascript:window.print();">Print this page</a></div></td></tr><tr><td><div class="navheader"/></td><td width="75%"/></tr></tbody></table>
+
+  <h1 class="title topictitle1">Permissions for Knowledge Center Manufacturer (KCM)</h1>
+
+  
+  <div class="body refbody"><p class="shortdesc"/>
+
+    <div class="section">
+      <p class="p">The control of permissions (who can do what) in Knowledge Center Manufacturer (KCM) is
+        managed in <span class="ph">Access Control Manager</span> (<img class="image" id="manage_permissions_for_knowledge_center_c__image_qf1_srn_tnb" src="../graphics/acm-link.png"/>). The <span class="ph">Access Control Manager</span> administrator grants
+        permissions to the different user roles/organizations that can access functions in KCM. </p>
+
+      <p class="p">For a description of how to grant permissions to user roles/organizations, refer to <a class="xref" href="grant_permissions.html#task_rqz_c5v_y5">Manage Function Privileges and Data Access Permissions</a>. </p>
+
+      <p class="p"><span class="ph uicontrol">Read</span>, <span class="ph uicontrol">Write</span>, and
+          <span class="ph uicontrol">Delete</span> permissions can be granted for the nodes below the KCM
+        privilege tree. However, KCM requires only <span class="ph uicontrol">Read</span> permission to access
+        its functionalities.</p>
+
+      
+      <div class="fig fignone" id="manage_permissions_for_knowledge_center_c__fig_rf1_srn_tnb">
+        
+        <br/><img class="image" id="manage_permissions_for_knowledge_center_c__image_fsm_tb1_ynb" src="../graphics/kcc_privilege_tree.png"/><br/>
+      <p class="figcap">Knowledge Center Manufacturer (KCM)
+          Privileges
+          for iSpec 2200</p></div>
+
+      <div class="fig fignone" id="manage_permissions_for_knowledge_center_c__fig_jsz_pkq_znb">
+        
+        <img class="image" id="manage_permissions_for_knowledge_center_c__image_enf_hlq_znb" src="../graphics/Knowledge%20Center%20c%20(KCc)%20Privilege%20Tree%20-%20S1000D.PNG"/>
+      <p class="figcap">Knowledge Center Manufacturer (KCM)
+          Privileges
+          for S1000D</p></div>
+
+    </div>
+
+    
+    <div class="section"><h2 class="title sectiontitle">CORENA FLOW Privilege</h2>
+      
+    </div>
+
+    
+    <div class="section">
+      <div class="p">The privileges for CORENA Flow are common across all CSDBs. Permission for CORENA Flow
+        allows access to FLOW Module Administration from the <span class="ph uicontrol">Configuration</span>
+        menu. If this permission is not given, the <span class="ph uicontrol">Configuration</span> menu is
+        disabled in KCM. For example:<div class="fig fignone" id="manage_permissions_for_knowledge_center_c__fig_i3x_sc1_ynb">
+          
+          <br/><img class="image" id="manage_permissions_for_knowledge_center_c__image_alr_5c1_ynb" src="../graphics/configuration_menu_disabled.png"/><br/>
+        <p class="figcap">Configuration Menu Disabled</p></div>
+</div>
+
+      <p class="p">When you create a new CSDB, based on the product scope of the CSDB (S1000D or iSpec), the
+        privileges are saved under the CSDB. When the configuration kits are imported, the list of
+        privileges are posted under the specific CSDB. Those privileges are required to access the
+        KCM functions for that CSDB.</p>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Assigning Permissions</h2>
+      
+      <div class="p">An administrator must grant <span class="ph uicontrol">Read</span> permission for a user to be able to
+        access the KCM functions. If a user, as a member of a user role or organization, does not
+        have permission for a function, the user cannot access that function. These permissions
+        control and restrict user access to KCM
+          functions.<div class="note note"><span class="notetitle">Note:</span> Users
+          must have <span class="ph uicontrol">Read</span> permission for <strong class="ph b">Application</strong> to allow them
+          access to KCM.</div>
+</div>
+
+      <p class="p">Here are some examples:</p>
+
+      <div class="p">
+        <ul class="ul" id="manage_permissions_for_knowledge_center_c__ul_y5y_221_ynb">
+          <li class="li">If a user does not have permission for <strong class="ph b">View CSDB</strong> for a specific CSDB, the user
+            cannot see that CSDB in KCM. </li>
+
+          <li class="li">If a user does not have permission for <strong class="ph b">Delete Delivery</strong> under <strong class="ph b">Delivery</strong>,
+            the user cannot delete a delivery from KCM Delivery Management.</li>
+
+        </ul>
+
+      </div>
+
+      <p class="p">Here are the main levels in the KCM
+        privileges:</p>
+
+      
+<div class="tablenoborder"><table cellpadding="4" cellspacing="0" summary="" id="manage_permissions_for_knowledge_center_c__table_tf1_srn_tnb" class="table" frame="border" border="1" rules="all"><caption><span class="tablecap">Table 1. KCM
+          Privileges</span></caption>
+          
+          
+          
+          
+          
+          
+          
+          <thead class="thead" align="left">
+            <tr class="row">
+              <th class="entry" valign="top" width="39.23512747875354%" id="d14636e196">Privilege</th>
+
+              <th class="entry" valign="top" width="46.60056657223796%" id="d14636e201">Description</th>
+
+              <th class="entry" valign="top" width="14.164305949008499%" id="d14636e204">Applies To</th>
+
+            </tr>
+
+          </thead>
+
+          <tbody class="tbody">
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 "><span class="ph uicontrol">Access
+                  Log</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="ph uicontrol">Access Log</span> in the
+                  <span class="ph uicontrol">Utilities</span> menu.</td>
+
+              
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+              
+            </tr>
+
+            
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Create MRU Content Based On Existing
+                  MRU</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to create an MRU based on an existing MRU in the
+                manual.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Create TR</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to create a Temporary Revision.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Validate Document</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to perform validation on iSpec document.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Approve ICN</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to approve ICNs.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Approve illustration</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to approve illustrations.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Create new DM based on DM</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to create a new data module based on an existing
+                data module.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Create new DM based on
+                template</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to create a new data module based on a
+                template.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Edit Meta Data</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to edit metadata in the <span class="ph uicontrol">Metadata
+                  Editor</span></td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Edit Metadata</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to edit metadata in the <span class="ph uicontrol">Metadata
+                  Editor</span></td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Edit Metadata in bulk</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to edit metadata for multiple data modules in the
+                  <span class="ph uicontrol">Metadata Bulk Editor</span>.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Edit MetaData Unstruct Doc</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to edit metadata for unstructured
+                documents.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Edit new DM based on DM</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to edit a new data module based on an existing data
+                module.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Edit new DM use skeleton</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to initiate content of new data module using a
+                skeleton.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Generate content for Cautions TIR and CIR
+                  DM</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to generate the content for cautions for TIR and
+                CIR data modules.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Generate content for TIR or CIR
+                DM</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to generate the content for TIR and CIR data
+                modules.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Generate content for Warnings TIR and CIR
+                  DM</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to generate the content for warnings for TIR and
+                CIR data modules.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Import Unstructured Doc</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to import unstructured documents.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Reject illustration</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow user to reject an illustration.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Release DM for approval</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to release data modules for approval.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Send DM for Review</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to send data modules for review.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Send Unstruct Doc to Review</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to send unstructured documents for review.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Start New Unstructured Doc</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to start a new unstructured document.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">SynchronizeDM</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to update the SGML/XML when data module metadata
+                has changed.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Upload DMC to CORENA IPC</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to upload DMCs to CORENA IPC (Illustrated Parts
+                Catalog).</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Validate DM</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant access to allow users to validate the content of data modules.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Edit document</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="keyword wintitle">Authoring Suite</span> panels, except for
+                  <span class="keyword wintitle">Find Illustration</span>.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Author Functions &gt; <span class="ph uicontrol">Edit illustration</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="keyword wintitle">Authoring Suite</span> panels, except for
+                  <span class="keyword wintitle">Find Data Module</span>.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 "><span class="ph uicontrol">Create CSDB</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">This privilege is not applicable for single CSDBs. <div class="note note"><span class="notetitle">Note:</span> Within the CORENA
+                  S1000D product scope you will find a separate node called <span class="q">"CORENA S1000D default
+                    system"</span>. The privilege tree below this node is intended for global
+                  privileges. Currently, the only active privilege in this tree is <span class="ph uicontrol">Create
+                    CSDB</span>. The CSDB Administrator will need to have the <span class="ph uicontrol">Create
+                    CSDB</span> privilege to be able to initiate a new CSDB from the
+                    <span class="ph uicontrol">CSDB Settings</span> file menu.</div>
+</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">CSDB Configuration &gt; <span class="ph uicontrol">Comment Settings</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to all panels in <span class="ph uicontrol">CSDB Configuration</span> &gt;
+                  <span class="ph uicontrol">Comment Settings</span>.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">CSDB Configuration &gt; <span class="ph uicontrol">CSDB Settings</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to all panels in <span class="ph uicontrol">CSDB Configuration</span> &gt;
+                  <span class="ph uicontrol">CSDB Settings</span>.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">CSDB Configuration &gt; <span class="ph uicontrol">Data Module Settings</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to all panels in <span class="ph uicontrol">CSDB Configuration</span> &gt;
+                  <span class="ph uicontrol">Data Module Settings</span>.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">CSDB Configuration &gt; <span class="ph uicontrol">Delete CSDB</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to delete CSDB (<span class="ph uicontrol">File</span> &gt;
+                  <span class="ph uicontrol">Del</span>) in <span class="ph uicontrol">CSDB Configuration</span> &gt;
+                  <span class="ph uicontrol">CSDB Settings</span> panel.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">CSDB Configuration &gt; <span class="ph uicontrol">Logo Settings</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="keyword wintitle">DM Logo</span> panel in <span class="ph uicontrol">CSDB
+                  Configuration</span> &gt; <span class="ph uicontrol">Logo Settings</span>.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">CSDB Configuration &gt; <span class="ph uicontrol">Media Settings</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="keyword wintitle">Media Type</span> panel in <span class="ph uicontrol">CSDB
+                  Configuration</span> &gt; <span class="ph uicontrol">Media Settings</span>.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">CSDB Configuration &gt; <span class="ph uicontrol">Scheme Settings</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to all panels in <span class="ph uicontrol">CSDB Configuration</span> &gt;
+                  <span class="ph uicontrol">Scheme Settings</span>.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">CSDB Configuration &gt; <span class="ph uicontrol">Security Settings</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="keyword wintitle">Security</span> panel in <span class="ph uicontrol">CSDB
+                  Configuration</span> &gt; <span class="ph uicontrol">Security Settings</span>.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">CSDB Configuration &gt; <span class="ph uicontrol">System Settings</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="keyword wintitle">Security</span> panel in <span class="ph uicontrol">CSDB
+                  Configuration</span> &gt; <span class="ph uicontrol">Security Settings</span>.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Delivery
+                &gt; <span class="ph uicontrol">Delete Delivery</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grant permission to allow users to delete a delivery from
+                KCM
+                Delivery Management.</td>
+
+              
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+              
+            </tr>
+
+            
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 "><span class="ph uicontrol">Delivery Suite</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to all panels in <span class="keyword wintitle">Delivery Suite</span>.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Delivery Suite &gt; <span class="ph uicontrol">DM 1st Verification</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to set the status First Verified on a data module.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Delivery Suite &gt; <span class="ph uicontrol">DM 2nd Verification</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to set the status Second Verified on a data module.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 "><span class="ph uicontrol">External
+                  Data Pool</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to all panels in <span class="keyword wintitle">External Data Pool</span>.</td>
+
+              
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+              
+            </tr>
+
+            
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">External Programs &gt; <span class="ph uicontrol">Configure Arbortext</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to use the <span class="ph uicontrol">Configure Arbortext</span> button in
+                  <span class="ph uicontrol">Configuration</span> &gt; <span class="ph uicontrol">External Programs</span>.
+                  <div class="note note"><span class="notetitle">Note:</span> If this privilege is not granted, the configure button will be disabled, and
+                  it will not be possible to change the Java home path.</div>
+</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">External Programs &gt; <span class="ph uicontrol">Configure CORENA Studio</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to use the <span class="ph uicontrol">Configure CORENA Studio</span> button
+                in <span class="ph uicontrol">Configuration</span> &gt; <span class="ph uicontrol">External Programs</span>.
+                  <div class="note note"><span class="notetitle">Note:</span> If this privilege is not granted, the configure button will be disabled, and
+                  it will not be possible to change the Java home path.</div>
+</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 "><span class="ph uicontrol">Information
+                  Rule Settings</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to all panels in <span class="ph uicontrol">Configuration</span> &gt;
+                  <span class="ph uicontrol">Information Rule Settings</span>.</td>
+
+              
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+              
+            </tr>
+
+            
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">IPC &gt; <span class="ph uicontrol">Start CORENA IPC</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to start CORENA IPC from the <span class="ph uicontrol">Utilities</span>
+                menu.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">IPC &gt; <span class="ph uicontrol">Start IPC ImpactReport</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to view the IPC Impact Report from the
+                  <span class="ph uicontrol">Utilities</span> menu.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            
+            
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning &gt; <span class="ph uicontrol">Add document</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="keyword wintitle">Create Data Module</span> panel in
+                  <span class="ph uicontrol">Planning Suite</span> &gt; <span class="ph uicontrol">Data Module
+                  Management</span>.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning &gt; <span class="ph uicontrol">Applicability Pool</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="keyword wintitle">Applicability Pool</span> panel in
+                  <span class="ph uicontrol">Planning Suite</span> &gt;
+                  <span class="ph uicontrol">Applicability</span>.<div class="note note"><span class="notetitle">Note:</span> In the Web Client, the user needs this
+                  privilege to open and use the <span class="ph uicontrol">Create Label</span> tab, which is
+                  present in the <span class="keyword wintitle">Set Applicability</span> panel.</div>
+</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning &gt; <span class="ph uicontrol">Assignment</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="ph uicontrol">Assign User</span>, <span class="ph uicontrol">Modify
+                  Assignment</span> and <span class="ph uicontrol">Remove Assignment</span>. These options
+                are found in the right-click menu (<span class="ph uicontrol">Planning</span> &gt;
+                  <span class="ph uicontrol">Assignment</span>) in <span class="keyword wintitle">Authoring and Planning
+                  Suite</span>.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning &gt; Change Requests &gt; <span class="ph uicontrol">Create/Update CR</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to create and update CRs in <span class="ph uicontrol">Planning Suite</span>
+                &gt; <span class="keyword wintitle">Change Request Management</span> panel.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning &gt; Change Requests &gt; <span class="ph uicontrol">Enable CR
+                Management</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="keyword wintitle">Change Request Management</span> panel.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning &gt; Change Requests &gt; <span class="ph uicontrol">Implement CR on
+                object</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to use the <span class="ph uicontrol">Implemented in this issue</span> check
+                box found in the <span class="ph uicontrol">Change Request </span>tab in <span class="keyword wintitle">Authoring
+                  Suite</span>−&gt;<span class="ph uicontrol">Find Data Module</span>. (This will make a link
+                between a CR and a DM/PM issue specific).</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning &gt; Change Requests &gt; <span class="ph uicontrol">Update CR
+                references</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to add/remove CR references to objects (DM/PM/ICN).</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning &gt; Comment &gt; <span class="ph uicontrol">Close Comment</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to close a comment that is official (Final Response).</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning &gt; Comment &gt; <span class="ph uicontrol">Edit Comment</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 "> Grants access to edit a comment.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning &gt; Comment &gt; <span class="ph uicontrol">Create and Delete Comment</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to create and delete comments.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning &gt; Comment &gt; <span class="ph uicontrol">Enable Comment Management</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to view the <span class="keyword wintitle">Comment</span> panel.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning
+                &gt; <span class="ph uicontrol">Copy Document</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to copy documents in the <span class="keyword wintitle">Doc Record</span> panel in
+                CORENA Web Client. (Only applicable for unstruct CSDBs).</td>
+
+              
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+              
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning
+                &gt; <span class="ph uicontrol">Cross Reference Table Editor</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="keyword wintitle">Cross-reference Table Editor</span> panel in
+                  <span class="keyword wintitle">Planning Suite</span> &gt;
+                <span class="ph uicontrol">Applicability</span>.</td>
+
+              
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+              
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning
+                &gt; <span class="ph uicontrol">Datamodule</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to Data Modules panel in <span class="keyword wintitle">Planning Suite</span> &gt;
+                  <span class="ph uicontrol">Workflow Management</span>.</td>
+
+              
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+              
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning
+                &gt; <span class="ph uicontrol">Delete Document</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to delete document using the right-click menu in<span class="keyword wintitle">
+                  Authoring/Planning Suite</span> (<span class="ph uicontrol">Planning</span> &gt;
+                  <span class="ph uicontrol">Delete from DB</span>).</td>
+
+              
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+              
+            </tr>
+
+            
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning &gt; DMRL Management &gt; <span class="ph uicontrol">Add DMRL entry</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="keyword wintitle">Create DMRL Entry</span> panel in
+                  <span class="keyword wintitle">Planning Suite</span> &gt; <span class="ph uicontrol">DMRL
+                Management</span>.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning &gt; DMRL Management &gt; <span class="ph uicontrol">Declare DMRL entry</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to the <span class="ph uicontrol">Declare</span> option in the DMRL entry
+                right-click menu or using the <span class="ph uicontrol">Declared</span> check box in
+                  <span class="ph uicontrol">DMRL Entry Manager</span> result list.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning &gt; DMRL Management &gt; <span class="ph uicontrol">Delete DMRL entry</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to the <span class="ph uicontrol">Delete</span> option in the DMRL entry
+                right-click menu in the <span class="ph uicontrol">DMRL Entry Manager</span> result
+                list.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning &gt; DMRL Management &gt; <span class="ph uicontrol">Edit DMRL entry
+                attribute</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to the <span class="ph uicontrol">Edit</span> option in the DMRL entry
+                right-click menu in the <span class="ph uicontrol">DMRL Entry Manager</span> result
+                list.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning &gt; DMRL Management &gt; <span class="ph uicontrol">Undeclare DMRL
+                entry</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to the <span class="ph uicontrol">Undeclare</span> option in the DMRL entry
+                right-click menu or using the <span class="ph uicontrol">Declared</span> check box
+                  in<span class="ph uicontrol"> DMRL Entry Manager</span> result list.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning
+                &gt; <span class="ph uicontrol">Illustration</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="keyword wintitle">Illustrations</span> panel in <span class="keyword wintitle">Planning
+                  Suite</span> &gt; <span class="ph uicontrol">Workflow Management</span>. Users with this
+                privilege will also be able to create new illustrations from the Illustration
+                Plug-in. (A <span class="ph uicontrol">Create New</span> button will be available next to the
+                  <span class="ph uicontrol">Select</span> and <span class="ph uicontrol">Cancel</span> buttons).</td>
+
+              
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+              
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning
+                &gt; <span class="ph uicontrol">Illustration Group</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="keyword wintitle">Illustration Group</span> panel in
+                  <span class="keyword wintitle">Planning Suite</span> &gt; <span class="ph uicontrol">Illustration
+                  Management</span>.</td>
+
+              
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+              
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning
+                &gt; <span class="ph uicontrol">PM Management</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="keyword wintitle">PM Management</span> in <span class="keyword wintitle">Planning
+                  Suite</span>.</td>
+
+              
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+              
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Planning
+                &gt; <span class="ph uicontrol">Remove Edit Lock</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to the <span class="ph uicontrol">Remove Edit Lock</span> option under
+                  <span class="ph uicontrol">Planning</span> in the right-click menu in
+                  <span class="keyword wintitle">Authoring/Planning Suite</span>.</td>
+
+              
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+              
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Repositories
+                &gt; <span class="ph uicontrol">Generic Pools</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to all panels in <span class="keyword wintitle">Generic Pools</span>.</td>
+
+              
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+              
+            </tr>
+
+            
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Repositories &gt; Parts &gt; <span class="ph uicontrol">Change Part
+                Group</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to the <span class="ph uicontrol">Change Part Group</span> menu option in
+                the <span class="ph uicontrol">Part Pool</span> right-click menu.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Repositories &gt; Parts &gt; <span class="ph uicontrol">Create and Delete Part</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="ph uicontrol">File</span> &gt; <span class="ph uicontrol">New</span> and
+                  <span class="ph uicontrol">File</span> &gt; <span class="ph uicontrol">Del</span> menus in
+                  <span class="keyword wintitle">Parts</span> panel.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Repositories &gt; Parts &gt; <span class="ph uicontrol">Edit Part</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to the <span class="ph uicontrol">Edit</span> button in the
+                  <span class="keyword wintitle">Parts</span> panel.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">Repositories &gt; Parts &gt; <span class="ph uicontrol">View Part</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to open and view content in the <span class="keyword wintitle">Parts</span>
+                panel.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">System Configuration &gt; Parts &gt; <span class="ph uicontrol">Allowed Values</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="ph uicontrol">System Configuration</span> &gt;
+                  <span class="ph uicontrol">Parts</span> &gt; <span class="keyword wintitle">Allowed Values</span> panel.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">System Configuration &gt; Parts &gt; <span class="ph uicontrol">Part Group</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="ph uicontrol">System Configuration</span> &gt;
+                  <span class="ph uicontrol">Parts</span> &gt; <span class="keyword wintitle">Part Group</span> panel.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">System Configuration &gt; Parts &gt; <span class="ph uicontrol">Part Settings</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="ph uicontrol">System Configuration</span> &gt;
+                  <span class="ph uicontrol">Parts</span> &gt; <span class="keyword wintitle">Part Settings</span> panel.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 ">System Configuration &gt; <span class="ph uicontrol">System Settings</span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="ph uicontrol">System Configuration</span> &gt;
+                  <span class="keyword wintitle">Settings</span> panel and <span class="keyword wintitle">Meta Data Settings</span>
+                panel.</td>
+
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+            </tr>
+
+            
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 "><span class="ph menucascade"><span class="ph uicontrol">Server Log</span></span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="ph uicontrol">Server Log</span> in the
+                  <span class="ph uicontrol">Utilities</span> menu.</td>
+
+              
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+              
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 "><span class="ph menucascade"><span class="ph uicontrol">Transfer Suite</span></span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to <span class="keyword wintitle">Transfer Suite</span> with
+                  <span class="keyword wintitle">Export</span> and <span class="keyword wintitle">Import</span> panels.</td>
+
+              
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+              
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 "><span class="ph menucascade"><span class="ph uicontrol">View CSDB</span></span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to log into the CSDB. (If not set, the CSDB will not appear in
+                the list of available CSDBs when logging in).<p class="p">This privilege will also make the
+                  CSDB available in CORENA WEB Client, and the user will be able to view the last
+                  official version of the data modules.</p>
+</td>
+
+              
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+              
+            </tr>
+
+            <tr class="row">
+              <td class="entry" valign="top" width="39.23512747875354%" headers="d14636e196 "><span class="ph menucascade"><span class="ph uicontrol">View Limited CSDB</span></span></td>
+
+              <td class="entry" valign="top" width="46.60056657223796%" headers="d14636e201 ">Grants access to log into the CSDB. Users with this privilege will only be able
+                to access <span class="keyword wintitle">Authoring Suite</span> and content within those DM Groups
+                they are assigned to in the <span class="keyword wintitle">Object Privileges</span> panel.</td>
+
+              
+              <td class="entry" valign="top" width="14.164305949008499%" headers="d14636e204 ">iSpec2200 S1000D</td>
+
+              
+            </tr>
+
+          </tbody>
+
+        </table>
+</div>
+
+    </div>
+
+  </div>
+
+<div class="navfooter"><!----></div>
+</body>
+</html>

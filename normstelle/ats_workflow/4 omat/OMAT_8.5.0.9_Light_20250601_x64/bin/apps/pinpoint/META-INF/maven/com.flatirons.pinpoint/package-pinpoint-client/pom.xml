@@ -1,0 +1,404 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.flatirons.pinpoint</groupId>
+    <artifactId>package-pinpoint-client</artifactId>
+    <version>8.5.0.9</version>
+    <packaging>war</packaging>
+
+    <properties>
+        <!-- We're (ab)using Maven's version range capabilities to dynamically give us desired versions based on the 
+        working branch. By using the same branch name between projects, we can have maven automatically use new
+        builds for branches with the same name or fall back to the default branch if none exist. By default, 
+        Maven will fetch builds from the parent branch *unless* a build with the same computed version (i.e. 
+        branch name) exists, where it will use that instead.
+
+        The parent branch should only be updated for long lived branches (e.g. release branches) so that branches
+        created from it will default to it for builds. Do *not* include prefixes (e.g. release/, feature/) in the 
+        value or _it will break the build_. If your parent branch is release/1.2.3, you'll simply use 1.2.3 part.
+
+        To override the versions for specific dependencies, update their specific properties below. -->
+        <flatirons.parentBranch>hotfix-8.5.0</flatirons.parentBranch>
+        <flatirons.versionRange>8.5.0.9</flatirons.versionRange>
+        <flatirons.defaultVersion>${flatirons.versionRange}</flatirons.defaultVersion>
+        
+        <maven.build.timestamp.format>yyyy-MMM-dd HH:mm</maven.build.timestamp.format>
+        <timestamp>${maven.build.timestamp}</timestamp>
+        <jackson.version>2.13.5</jackson.version>
+        <jersey-version>2.35</jersey-version>
+        <regression-features>${regID}</regression-features>
+        
+        <sonar.cpd.exclusions>widgets/graphic/plugins/js/plugin.js</sonar.cpd.exclusions>
+        <sonar.coverage.exclusions>js/highlight.js,js/ztreeExtension.js,js/controller/main.js,widgets/graphic/lib/**,widgets/graphic/plugins/X3Dom/**,widgets/graphic/plugins/js/**,widgets/content/js/**,widgets/content/plugins/**</sonar.coverage.exclusions>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>3.0.1</version>
+            <scope>provided</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-base</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.jaxrs</groupId>
+            <artifactId>jackson-jaxrs-json-provider</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-annotations</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>${jackson.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.jersey.core</groupId>
+            <artifactId>jersey-client</artifactId>
+            <version>${jersey-version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.glassfish.hk2</groupId>
+            <artifactId>hk2-utils</artifactId>
+            <version>2.6.1</version>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.8.0</version>
+        </dependency>
+    </dependencies>
+
+    <profiles>
+        <profile>
+            <id>normalBuild</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-resources-plugin</artifactId>
+                        <version>3.1.0</version>
+                        <executions>
+                            <execution>
+                                <id>copy-resources</id>
+                                <phase>validate</phase>
+                                <goals>
+                                    <goal>copy-resources</goal>
+                                </goals>
+                                <configuration>
+                                    <outputDirectory>${basedir}/deploy_filtered/config</outputDirectory>
+                                    <useDefaultDelimiters>true</useDefaultDelimiters>
+                                    <resources>
+                                        <resource>
+                                            <directory>config</directory>
+                                            <filtering>true</filtering>
+                                            <includes>
+                                                <include>*/**</include>
+                                            </includes>
+                                        </resource>
+                                    </resources>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <version>1.7.6</version>
+
+                        <executions>
+                            <execution>
+                                <id>install node and npm</id>
+                                <goals>
+                                    <goal>install-node-and-npm</goal>
+                                </goals>
+                                <configuration>
+                                    <nodeVersion>v8.16.0</nodeVersion>
+                                    <npmVersion>6.4.1</npmVersion>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>npm install</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>install --unsafe-perm=true --allow-root</arguments>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>npm install dependencies</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>run installdep --unsafe-perm=true --allow-root</arguments>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>npm build</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+
+                                <phase>generate-resources</phase>
+
+                                <configuration>
+                                    <arguments>run builddist --unsafe-perm=true --allow-root</arguments>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>dependency-report</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>run dependency-report --unsafe-perm=true --allow-root</arguments>
+                                </configuration>
+                            </execution>
+
+                        </executions>
+
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>2.6</version>
+                        <configuration>
+                            <warSourceDirectory>deploy</warSourceDirectory>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+
+        <profile>
+            <id>cie2e</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <version>1.8.0</version>
+
+                        <configuration>
+                            <workingDirectory></workingDirectory>
+                        </configuration>
+
+                        <executions>
+                            <execution>
+                                <id>install node and npm</id>
+                                <goals>
+                                    <goal>install-node-and-npm</goal>
+                                </goals>
+                                <configuration>
+                                    <nodeVersion>v8.12.0</nodeVersion>
+                                    <npmVersion>6.4.1</npmVersion>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>npm install</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>install</arguments>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>npm install dependencies</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>run installdep</arguments>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>cie2e</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>run cie2e</arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>2.6</version>
+                        <configuration>
+                            <warSourceDirectory>ignore</warSourceDirectory>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+
+            <id>rege2e</id>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>com.github.eirslett</groupId>
+                        <artifactId>frontend-maven-plugin</artifactId>
+                        <version>0.0.27</version>
+
+                        <configuration>
+                            <workingDirectory></workingDirectory>
+                        </configuration>
+
+                        <executions>
+                            <execution>
+                                <id>install node and npm</id>
+                                <goals>
+                                    <goal>install-node-and-npm</goal>
+                                </goals>
+                                <configuration>
+                                    <nodeVersion>v8.12.0</nodeVersion>
+                                    <npmVersion>6.4.1</npmVersion>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>npm install</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>install</arguments>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>npm install dependencies</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>run installdep</arguments>
+                                </configuration>
+                            </execution>
+
+                            <execution>
+                                <id>rege2e</id>
+                                <goals>
+                                    <goal>npm</goal>
+                                </goals>
+                                <configuration>
+                                    <arguments>run ${regression-features}</arguments>
+                                </configuration>
+                            </execution>
+                        </executions>
+
+                    </plugin>
+                    <plugin>
+                        <groupId>org.apache.maven.plugins</groupId>
+                        <artifactId>maven-war-plugin</artifactId>
+                        <version>2.6</version>
+                        <configuration>
+                            <warSourceDirectory>ignore</warSourceDirectory>
+                            <failOnMissingWebXml>false</failOnMissingWebXml>
+                        </configuration>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>sonar</id>
+            <properties>
+                <sonar.sources>js/,widgets/</sonar.sources>
+                <sonar.tests>test/</sonar.tests>
+                <sonar.exclusions>**/unittest/*,js/controller/main.js</sonar.exclusions>
+                <sonar.coverage.exclusions>js/app.js,js/controller/main.js,widgets/content/js/**,widgets/content/plugins/**,widgets/graphic/plugins/js/**,widgets/graphic/lib/**,widgets/graphic/plugins/X3Dom/**</sonar.coverage.exclusions>
+                <sonar.dynamic>reuseReports</sonar.dynamic>
+                <sonar.javascript.lcov.reportPaths>test/config/coverage/lcov-report/lcov.info</sonar.javascript.lcov.reportPaths>
+
+                <maven.test.skip>true</maven.test.skip>
+            </properties>
+            <build>
+                <plugins>
+                    <plugin>
+                        <groupId>org.sonarsource.scanner.maven</groupId>
+                        <artifactId>sonar-maven-plugin</artifactId>
+                        <version>4.0.0.4121</version>
+                        <configuration>
+                            <sonar.skip>false</sonar.skip>
+                        </configuration>
+                        <executions>
+                            <execution>
+                                <phase>verify</phase>
+                                <goals>
+                                    <goal>sonar</goal>
+                                </goals>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
+        <profile>
+            <id>build-containers</id>
+            <modules>
+                <module>container</module>
+            </modules>
+        </profile>
+    </profiles>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>2.3.2</version>
+                <configuration>
+                    <target>1.7</target>
+                    <source>1.7</source>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+    <distributionManagement>
+        <repository>
+            <id>fsi.nexus.releases</id>
+            <name>artifactory-releases</name>
+            <url>https://hub.flatirons.cloud/artifactory/flatirons</url>
+        </repository>
+        <snapshotRepository>
+            <id>fsi.nexus.snapshots</id>
+            <name>artifactory-snapshots</name>
+            <url>https://hub.flatirons.cloud/artifactory/flatirons</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+</project>

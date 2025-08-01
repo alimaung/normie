@@ -1,0 +1,182 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xml:lang="fr-fr" lang="fr-fr">
+<head><meta xmlns="http://www.w3.org/1999/xhtml" name="description" content="Processus général Non applicable pour Pinpoint Standalone Light. Lorsqu'un builder connecté au Knowledge Center S, par exemple l'A350 Builder, est sélectionné dans la fenêtre Publish Publication dans ..."/>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta http-equiv="Pragma" content="no-cache"/><meta http-equiv="Expires" content="0"/>
+<meta name="copyright" content="(C) Copyright 2005"/>
+<meta name="DC.rights.owner" content="(C) Copyright 2005"/>
+<meta name="DC.Type" content="reference"/>
+<meta name="DC.Title" content="Knowledge Center S Publier / Processus de libération"/>
+<meta name="abstract" content=""/>
+<meta xmlns="http://www.w3.org/1999/xhtml" name="description" content=""/>
+<meta name="DC.Format" content="XHTML"/>
+<meta name="DC.Identifier" content="reference_lv4_5zv_kx"/>
+<meta name="DC.Language" content="fr-FR"/>
+<meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Content-Type" content="text/html; charset=utf-8"><!----></meta><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate"/><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Pragma" content="no-cache"/><meta xmlns="http://www.w3.org/1999/xhtml" http-equiv="Expires" content="0"/><link xmlns="http://www.w3.org/1999/xhtml" rel="icon" type="image/png" href="../../oxygen-webhelp/resources/img/favicon.ico"/><link xmlns="http://www.w3.org/1999/xhtml" rel="stylesheet" type="text/css" href="../../oxygen-webhelp/resources/css/webhelp_topic.css"><!----></link><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript"><!--
+          
+          var prefix = "../../index.html";
+          
+          --></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../../oxygen-webhelp/resources/js/jquery.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" src="../../oxygen-webhelp/resources/js/jquery-ui.custom.min.js"><!----></script><script xmlns="http://www.w3.org/1999/xhtml" type="text/javascript" charset="utf-8" src="../../oxygen-webhelp/resources/js/webhelp_topic.js"><!----></script><link rel="stylesheet" type="text/css" href="../../oxygen-webhelp/resources/css/commonltr.css"/>
+<title>Knowledge Center S Publier / Processus de libération</title>
+</head>
+<body onload="highlightSearchTerm()" id="reference_lv4_5zv_kx">
+<table class="nav"><tbody><tr><td colspan="2"><div id="permalink"><a href="#">Link to this page</a></div><div id="printlink"><a href="javascript:window.print();">Print this page</a></div></td></tr><tr><td><div class="navheader"/></td><td width="75%"/></tr></tbody></table>
+
+  <h1 class="title topictitle1">Knowledge Center S Publier / Processus de libération</h1>
+
+  
+  <div class="body refbody"><p class="shortdesc"/>
+
+    <div class="section"><h2 class="title sectiontitle">Processus général</h2>
+      <p class="p"><strong class="ph b">Non applicable pour Pinpoint Standalone Light.</strong></p>
+
+      
+      <p class="p">Lorsqu'un builder connecté au Knowledge Center S, par exemple l'A350 Builder, est
+        sélectionné dans la fenêtre <span class="keyword wintitle">Publish Publication</span> dans le Data Manager,
+        l'utilisateur pourra sélectionner un CSDB de Knowledge Center à partir duquel publier et le
+        type de publication à publier. La publication sélectionnée est ensuite récupérée directement
+        de Knowledge Center S, les données sont converties à partir de XML vers Pinpoint Neutral, et
+        il devient disponible en tant que projet dans le Pinpoint Viewer. La durée de ce processus
+        dépend de la taille de la publication.</p>
+
+      <p class="p">Les utilisateurs disposant des privilèges appropriés ont accès à la révision de la
+        publication. Ils peuvent soit choisir de publier la révision sur un ensemble de groupes
+        d'utilisateurs (Pinpoint viewers), ou ils peuvent rejeter, qui est, la rejeter et de
+        supprimer la révision des groupes Pinpoint et du gestionnaire de données. Une autre option
+        consiste à recharger la révision, ce qui supprime la révision et l'importe à nouveau à
+        partir du gestionnaire de données.</p>
+
+      <div class="note note"><span class="notetitle">Remarque :</span> Le processus de publication manuelle décrit ici peut être ignoré en définissant une
+        liste de types de publication qui doivent être automatiquement publiés dans Pinpoint.
+        Attention que si la publication est publiée automatiquement, n'oubliez pas d'attribuer
+        manuellement des privilèges d'affichage aux utilisateurs appropriés dans Access Control.
+        Pour plus d'informations sur la configuration de la publication automatique, merci de
+        référer au document <em class="ph i">Définir les publications à publier automatiquement</em> dans la
+          <cite class="cite">Flatirons Pinpoint Configuration Guide</cite>.</div>
+
+      <div class="fig fignone" id="reference_lv4_5zv_kx__fig_a45_ymw_kx">
+        
+        <br/><img class="image" id="reference_lv4_5zv_kx__image_qp5_bnw_kx" src="../graphics/A350_publishing_flow_chart.png" width="624"/><br/>
+      <p class="figcap">Knowledge Center S Publish/Release Process</p></div>
+
+      <div class="note note"><span class="notetitle">Remarque :</span> Le processus décrit ici s'applique à la documentation publiée à l'aide de l'A350 Builder
+        et de XWB KCt Builder. Il ne s'applique pas à la documentation publiée avec le CMM Builder
+        (autorelease). Le CRDM est une autre exception. Le CRDM doit être publié avant les autres
+        publications car les données qu'il contient sont utilisées par les autres publications. Il
+        n'y a pas de Approver ou rejeter disponible pour CRDM car il est automatiquement apprové
+        dans Pinpoint. Il n'apparaîtra pas dans la table des matières de Pinpoint.</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Privilèges connexes</h2>
+      
+      <div class="p">Ces privilèges dans la fenêtre Access Control module sont liés au processus de
+          publication:<ul class="ul" id="reference_lv4_5zv_kx__ul_jfh_vrv_kx">
+          <li class="li"><span class="ph menucascade"><span class="ph uicontrol">Data Manager</span> &gt; <span class="ph uicontrol">application</span> &gt; <span class="ph uicontrol">Peut télécharger le projet de brouillon</span></span>: Cette ressource est utilisée par l'utilisateur de l'application Pinpoint
+            pour télécharger des publications de Data Manager Data Manager (en utilisant par exemple
+            l'A350 builder) à Pinpoint. Vous aurez besoin d'autorisations "Lecture" à cette
+            ressource pour pouvoir télécharger les projets de révision.</li>
+
+          <li class="li"><span class="ph menucascade"><span class="ph uicontrol">Pinpoint</span> &gt; <span class="ph uicontrol">configuration</span> &gt; <span class="ph uicontrol">Peut publier ou annuler des révisions de brouillon</span></span>: Le groupe d'utilisateurs qui doit être en mesure de Approuver et de
+            Rejeter les révisions de publication dans Pinpoint doit avoir l'autorisation de lecture
+            sur cette ressource pour pouvoir voir et utiliser les boutons de retour / relâchement /
+            rechargement. Les utilisateurs qui n'ont pas ce privilège ne pourront pas voir les
+            révisions de brouillon dans Pinpoint, ils ne verront seulement les révisions les plus
+            récentes.</li>
+
+          <li class="li"><span class="ph menucascade"><span class="ph uicontrol">Pinpoint</span> &gt; <span class="ph uicontrol">data</span> &gt; <span class="ph uicontrol">[le nom de publication]</span> &gt; <span class="ph uicontrol"> [le numéro de révision]</span></span>: Le groupe d'utilisateurs pouvant libérer, annuler et recharger des
+            révisions de publication dans Pinpoint doit disposer de l'autorisation Lecture /
+            Écriture / Suppression pour la révision de publication afin d'effectuer la libération /
+            l'annulation / le rechargement.</li>
+
+        </ul>
+</div>
+
+    </div>
+
+    <div class="section"><h2 class="title sectiontitle">Publication à partir du Data Manager</h2><p class="p">La publication du Knowledge
+        Center S à Pinpoint Viewer est lancée dans la Data Manager en créant une librarie de
+        référentiels, une publication et en sélectionnant la CSDB et le type de publication
+        appropriés. Pour plus d'instructions sur la publication, merci de référer à la section
+            <span class="q">"<em class="ph i">Create/Publish Publication</em>"</span> dans le <em class="ph i">Flatirons Data Manager User
+          Guide</em>.</p>
+<div class="note note"><span class="notetitle">Remarque :</span> N'oubliez pas que le fichier CRDM doit être importé avant tout autre
+        type de publication. La publication CRDM est terminée lorsque vous voyez une coche dans le
+        champ <strong class="ph b">Approuvé</strong> de la section Révisions pour la publication dans Data
+      Manager.</div>
+Si la publication est réussie, la publication deviendra disponible en tant que
+      version préliminaire pour les utilisateurs de Pinpoint disposant des privilèges
+        appropriés.<p class="p">Tant que la dernière révision de publication est en état de brouillon, vous ne
+        serez pas autorisé à ajouter une nouvelle révision à partir de Data Manager. (Le bouton
+          <img class="image" id="reference_lv4_5zv_kx__image_xhr_sc4_mbb" src="../graphics/create_new_button.png" height="16"/>Ajouter une nouvelle révision sera désactivé.) Lorsque la publication est publiée dans
+        Pinpoint Viewer, vous verrez une coche dans le champ <strong class="ph b">Approuvé</strong>.</p>
+<p class="p">Si la
+        publication échoue quelconque, les boutons Log and Resynch sont disponible sous le bouton
+        Opérations de publication <img class="image" id="reference_lv4_5zv_kx__image_ay1_jvb_xhb" src="../graphics/publication_operations.png" height="20"/> dans
+        la barre d'en-tête Pinpoint. Ceux-ci permettent à l'utilisateur d'étudier le problème et de
+        réessayer l'opération. En outre, Data Manager tentera d'envoyer un courrier électronique sur
+        l'échec de la publication à un ensemble d'utilisateurs prédéfinis.</p>
+<div class="note note"><span class="notetitle">Remarque :</span> 
+        <p class="p">Il y a une description de la configuration de la notification par e-mail dans le Data
+          Manager (document PDF fourni avec l'application). Si ce n'est pas configuré correctement
+          ou si le serveur de courrier n'est pas en cours d'exécution / accessible, le message
+          d'avertissement suivant s'affichera lorsque le Data Manager tente d'envoyer une
+          notification d'échec:</p>
+
+        <p class="p"><span class="ph filepath">Le serveur de courrier n'est pas disponible ou n'est pas configuré
+            correctement</span></p>
+
+      </div>
+<p class="p">La notification par e-mail contient des informations qui identifie la publication,
+        résume le problème et fournit des conseils de dépannage, comme le montre dans l'exemple
+        ci-dessous:</p>
+</div>
+
+    <div class="section"><h2 class="title sectiontitle">Release, Rollback, and Reload in Pinpoint Viewer</h2>
+      
+    </div>
+
+    <div class="section">
+      <p class="p">Lorsque vous publiez une publication dans Data Manager, celle-ci peut être publiée en tant
+        que brouillon ou automatiquement en cochant la case <span class="ph uicontrol">Libération
+          automatique</span>. Si la publication a été automatiquement publiée et que la
+        publication a réussi, l'icône <img class="image" id="reference_lv4_5zv_kx__image_ryz_h1y_ljb" src="../graphics/publication_operations.png" height="20"/>
+        <span class="ph uicontrol">Opérations de publication</span> n'est pas visible dans Pinpoint Viewer.</p>
+
+      <p class="p">Seuls les utilisateurs disposant des autorisations appropriées peuvent afficher la
+        publication et effectuer la publication, la restauration ou le rechargement sur le projet de
+        révision de publication à l’aide des fonctions suivantes sous c <img class="image" id="reference_lv4_5zv_kx__image_tjq_slk_gdb" src="../graphics/publication_operations.png" height="20"/>
+        <span class="ph uicontrol">Opérations de publication</span> dans la barre d’en-tête:</p>
+
+      <div class="p">
+        <ul class="ul" id="reference_lv4_5zv_kx__ul_hkh_qsp_kx">
+          <li class="li"><img class="image" id="reference_lv4_5zv_kx__image_clv_qsp_kx" src="../graphics/release_button.png" height="16"/>
+            <span class="ph uicontrol">Approuver</span> – Lorsqu'elle est appuyé, une nouvelle boîte de
+            dialogue avec les groupes d'utilisateurs apparaît. Les groupes choisis dans cette boîte
+            de dialogue auront accès à la version publiée. Referer-vous à <a class="xref" href="release_rollback_a_publication_revision.html#task_p5y_sbv_kx">Publier une révision de publication</a> pour plus d'informations.</li>
+
+          <li class="li"><img class="image" id="reference_lv4_5zv_kx__image_gfc_ssp_kx" src="../graphics/rollback_button.png" height="16"/>
+            <span class="ph uicontrol">Rejeter</span> – Lorsque vous appuyez sur, la révision de la publication
+            est supprimée de Pinpoint Viewer et la Data Manager. La ressource de révision de
+            publication est également supprimée de l'arborescence de privilèges dans le module
+            Access Control. Referer-vous à <a class="xref" href="rollback_a_publication_revision.html#task_hys_yjv_kx">Annulation d'une révision de Publication</a> pour plus d'informations.</li>
+
+          <li class="li"><img class="image" id="reference_lv4_5zv_kx__image_qn4_qvb_xhb" src="../graphics/reload_button.png" height="16"/>
+            <span class="ph uicontrol">Recharger</span> – Lorsque vous appuyez sur cette touche, la révision de
+            publication sélectionnée est supprimée et la révision est réimportée à partir du
+            Gestionnaire de données. Referer-vous à <a class="xref" href="reload_a_publication_revision.html#recharger_une_r_vision_de_publication">Recharger une révision de publication</a> pour plus d'informations.<div class="note note"><span class="notetitle">Remarque :</span> Il se peut que le délai de rechargement avant 60
+              secondes soit atteint l'importation de la vision commence.</div>
+</li>
+
+        </ul>
+
+      </div>
+
+    </div>
+
+  </div>
+
+<div class="navfooter"><!----></div>
+</body>
+</html>

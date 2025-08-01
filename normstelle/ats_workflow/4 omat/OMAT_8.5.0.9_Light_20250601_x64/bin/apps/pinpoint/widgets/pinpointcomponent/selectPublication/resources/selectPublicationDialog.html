@@ -1,0 +1,9 @@
+<div id="selectPublicationDialog">
+    <div class='alert alert-info' >
+        <p>{{translations.resultApplicableForMultiplePubs}}</p>
+    </div>
+    <div class="list-group">
+        <a class="list-group-item list-group-item-action" style="cursor: pointer" ng-repeat="publication in publications"
+           ng-click="vm.selectPublication(publication)">{{publication.documentPath ? publication.documentPath : publication.description}}</a>
+    </div>
+</div>

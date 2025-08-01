@@ -1,0 +1,18 @@
+body {
+  font-family: Geneva, Arial, Helvetica, sans-serif !important;
+}
+
+table, td, th {
+  border: 1px solid;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 12;
+  text-align: left;
+}
+
+td, th {
+  padding: 2px 5px;
+}

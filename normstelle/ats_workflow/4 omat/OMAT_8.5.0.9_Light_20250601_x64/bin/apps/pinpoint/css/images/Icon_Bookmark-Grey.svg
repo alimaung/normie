@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="10px" height="12px" viewBox="0 0 10 12" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.2 (78181) - https://sketchapp.com -->
+    <title>Icons / Bookmark / Filled</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M8,0 L1.33333333,0 C0.6,0 0.00666666667,0.6 0.00666666667,1.33333333 L0,12 L4.66666667,10 L9.33333333,12 L9.33333333,1.33333333 C9.33333333,0.6 8.73333333,0 8,0 Z" id="path-1"></path>
+    </defs>
+    <g id="Symbols" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Container-/-Modal" transform="translate(-16.000000, -21.000000)">
+            <g id="Modal">
+                <g id="Group" transform="translate(13.000000, 16.000000)">
+                    <g id="Icons-/-Bookmark-/-Filled-2" transform="translate(0.000000, 3.000000)">
+                        <g id="Icons-/-Bookmark-/-Filled">
+                            <g id="Colors-/-Other-/-Dark-Grey" transform="translate(3.333333, 2.000000)">
+                                <mask id="mask-2" fill="white">
+                                    <use xlink:href="#path-1"></use>
+                                </mask>
+                                <g id="Mask" fill-rule="nonzero"></g>
+                                <g id="Colors-/-Other-/-Medium-Grey" mask="url(#mask-2)" fill="#555555">
+                                    <g transform="translate(-3.333333, -2.000000)" id="Medium-Grey">
+                                        <rect x="0" y="0" width="16" height="16"></rect>
+                                    </g>
+                                </g>
+                            </g>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

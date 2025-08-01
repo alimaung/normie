@@ -1,0 +1,4 @@
+{
+    "template": "widgets/pinpointcomponent/sns/template/sns",
+    "selectorTemplate": "widgets/pinpointcomponent/sns/template/snsSelector"
+}

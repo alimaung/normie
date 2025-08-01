@@ -1,0 +1,5 @@
+2025-07-23 16:10:51,070  INFO org.apache.catalina.startup.ContextConfig log.173  - No global web.xml found
+2025-07-23 16:11:07,268  INFO org.apache.coyote.http11.Http11NioProtocol log.173  - Starting ProtocolHandler ["http-nio-8086"]
+2025-07-23 16:11:44,603  INFO org.apache.coyote.http11.Http11NioProtocol log.173  - Starting ProtocolHandler ["http-nio-8085"]
+2025-07-23 16:11:58,741  INFO org.apache.tomcat.util.http.parser.Cookie log.173  - A cookie header was received [NG_TRANSLATE_LANG_KEY={"lang":"en","domain":""}] that contained an invalid cookie. That cookie will be ignored.
+ Note: further occurrences of this error will be logged at DEBUG level.

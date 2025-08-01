@@ -1,0 +1,56 @@
+2025-07-23 16:11:08,476  INFO org.apache.catalina.core.ContainerBase.[pinpoint_engine].[localhost].[/ppserver] log.173  - 1 Spring WebApplicationInitializers detected on classpath
+2025-07-23 16:11:15,709  INFO org.apache.catalina.core.ContainerBase.[pinpoint_engine].[localhost].[/ppserver] log.173  - Initializing Spring embedded WebApplicationContext
+2025-07-23 16:11:17,949  INFO com.flatirons.commons.utilities.DatabaseInitializingBean afterPropertiesSet.39  - Check database connection.
+2025-07-23 16:11:17,952  INFO com.zaxxer.hikari.HikariDataSource getConnection.110  - HikariPool-2 - Starting...
+2025-07-23 16:11:17,969  WARN com.zaxxer.hikari.util.DriverDataSource <init>.70  - Registered driver with driverClassName=org.hsqldb.jdbcDriver was not found, trying direct instantiation.
+2025-07-23 16:11:18,370  INFO com.zaxxer.hikari.pool.PoolBase getAndSetNetworkTimeout.541  - HikariPool-2 - Driver does not support get/set network timeout for connections. (feature not supported)
+2025-07-23 16:11:18,403  INFO com.zaxxer.hikari.HikariDataSource getConnection.123  - HikariPool-2 - Start completed.
+2025-07-23 16:11:18,420  INFO com.flatirons.commons.utilities.DatabaseInitializingBean afterPropertiesSet.41  - Database connection is available.
+2025-07-23 16:11:18,787  INFO liquibase.integration log.37  - Liquibase did not run because 'shouldRun' property was set to false on liquibase Liquibase Spring bean.
+2025-07-23 16:11:31,801  INFO org.quartz.impl.StdSchedulerFactory instantiate.1220  - Using default implementation for ThreadExecutor
+2025-07-23 16:11:32,016  INFO org.quartz.core.SchedulerSignalerImpl <init>.61  - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2025-07-23 16:11:32,017  INFO org.quartz.core.QuartzScheduler <init>.229  - Quartz Scheduler v.2.3.2 created.
+2025-07-23 16:11:32,018  INFO org.quartz.simpl.RAMJobStore initialize.155  - RAMJobStore initialized.
+2025-07-23 16:11:32,020  INFO org.quartz.core.QuartzScheduler initialize.294  - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2025-07-23 16:11:32,020  INFO org.quartz.impl.StdSchedulerFactory instantiate.1374  - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2025-07-23 16:11:32,020  INFO org.quartz.impl.StdSchedulerFactory instantiate.1378  - Quartz scheduler version: 2.3.2
+2025-07-23 16:11:32,020  INFO org.quartz.core.QuartzScheduler setJobFactory.2293  - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@43db892d
+2025-07-23 16:11:33,084  INFO org.quartz.core.QuartzScheduler start.547  - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2025-07-23 16:11:55,833  INFO com.flatirons.commons.esapi.filter.FlatironsESAPISecurityConfiguration getResourceFile.26  - Loadin ESAPI Properties from the
+2025-07-23 16:11:55,850  INFO com.flatirons.commons.esapi.filter.FlatironsESAPISecurityConfiguration getResourceFile.26  - Loadin ESAPI Properties from the
+2025-07-23 16:11:56,784  INFO org.apache.catalina.core.ContainerBase.[pinpoint_engine].[localhost].[/ppserver] log.173  - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-07-23 16:12:03,532  INFO com.flatirons.commons.rest.performance.PerformanceLogger filter.55  - REST API: com.flatirons.pinpoint.server.rest.resource.SearchResource.fullTextSearchInit; Duration (ms): 1367
+2025-07-23 16:12:03,552  INFO com.flatirons.commons.rest.performance.PerformanceLogger filter.55  - REST API: com.flatirons.pinpoint.server.rest.resource.UserResource.getUserDetails; Duration (ms): 2790
+2025-07-23 16:12:03,569  INFO com.flatirons.commons.rest.performance.PerformanceLogger filter.55  - REST API: com.flatirons.pinpoint.server.rest.resource.ConfigurationResource.isEncryptionEnabled; Duration (ms): 2807
+2025-07-23 16:12:03,810  WARN org.apache.tika.parsers.PDFParser handleInitializableProblem.69  - J2KImageReader not loaded. JPEG2000 files will not be processed.
+See https://pdfbox.apache.org/2.0/dependencies.html#jai-image-io
+for optional dependencies.
+
+2025-07-23 16:12:04,471  WARN org.apache.tika.parser.SQLite3Parser handleInitializableProblem.69  - org.xerial's sqlite-jdbc is not loaded.
+Please provide the jar on your classpath to parse sqlite files.
+See tika-parsers/pom.xml for the correct version.
+2025-07-23 16:12:05,155  INFO com.flatirons.commons.rest.performance.PerformanceLogger filter.55 core=x:misspellings_core - REST API: com.flatirons.pinpoint.server.rest.resource.ConfigurationResource.getAllConfigurations; Duration (ms): 1392
+2025-07-23 16:12:05,430  INFO com.flatirons.commons.rest.performance.PerformanceLogger filter.55  - REST API: com.flatirons.pinpoint.server.rest.resource.FileResource.getLogo; Duration (ms): 4667
+2025-07-23 16:12:05,580  INFO com.flatirons.commons.rest.performance.PerformanceLogger filter.55  - REST API: com.flatirons.pinpoint.server.rest.resource.LandingPageResource.applicationPage; Duration (ms): 2021
+2025-07-23 16:12:57,800  INFO com.flatirons.commons.rest.performance.PerformanceLogger filter.55 core=x:pinpoint_server - REST API: com.flatirons.pinpoint.server.rest.resource.SearchResource.fullTextSearchSubmit; Duration (ms): 4915
+2025-07-23 16:14:25,176  INFO com.flatirons.commons.rest.performance.PerformanceLogger filter.55 core=x:pinpoint_server - REST API: com.flatirons.pinpoint.server.rest.resource.DocumentResource.documentContent; Duration (ms): 3196
+2025-07-23 16:53:12,535  WARN com.flatirons.commons.rest.performance.PerformanceLogger filter.52 core=x:pinpoint_server - REST API: com.flatirons.pinpoint.server.rest.resource.UserPrivilegeResource.allPrivileges; Duration (ms): 2325806
+2025-07-23 16:53:12,537  WARN com.flatirons.commons.rest.performance.PerformanceLogger filter.52 core=x:pinpoint_server - REST API: com.flatirons.pinpoint.server.rest.resource.UserResource.getUserDetails; Duration (ms): 2326619
+2025-07-23 16:53:12,538  WARN com.flatirons.commons.rest.performance.PerformanceLogger filter.52 core=x:misspellings_core - REST API: com.flatirons.pinpoint.server.rest.resource.FileResource.getLogo; Duration (ms): 2326797
+2025-07-23 16:53:12,537  WARN com.flatirons.commons.rest.performance.PerformanceLogger filter.52 core=x:pinpoint_server - REST API: com.flatirons.pinpoint.server.rest.resource.ConfigurationResource.isEncryptionEnabled; Duration (ms): 2326289
+2025-07-23 16:53:12,539  WARN com.flatirons.commons.rest.performance.PerformanceLogger filter.52 core=x:pinpoint_server - REST API: com.flatirons.pinpoint.server.rest.resource.FileResource.getCustomTheme; Duration (ms): 2325210
+2025-07-23 16:53:22,521  INFO com.flatirons.commons.rest.performance.PerformanceLogger filter.55 core=x:pinpoint_server - REST API: com.flatirons.pinpoint.server.rest.resource.ConfigurationResource.getAllConfigurations; Duration (ms): 3593
+2025-07-23 16:53:22,522  WARN com.flatirons.commons.rest.performance.PerformanceLogger filter.52 core=x:misspellings_core - REST API: com.flatirons.pinpoint.server.rest.resource.UserResource.getUserDetails; Duration (ms): 8092
+2025-07-23 16:53:22,522  WARN com.flatirons.commons.rest.performance.PerformanceLogger filter.52 core=x:pinpoint_server - REST API: com.flatirons.pinpoint.server.rest.resource.ConfigurationResource.getSingleConfiguration; Duration (ms): 7240
+2025-07-23 16:53:22,522  WARN com.flatirons.commons.rest.performance.PerformanceLogger filter.52 core=x:pinpoint_server - REST API: com.flatirons.pinpoint.server.rest.resource.ConfigurationResource.isEncryptionEnabled; Duration (ms): 8092
+2025-07-23 16:53:25,919  WARN com.flatirons.commons.rest.performance.PerformanceLogger filter.52 core=x:pinpoint_server - REST API: com.flatirons.pinpoint.server.rest.resource.SearchResource.fullTextSearchInit; Duration (ms): 10899
+2025-07-23 16:53:25,919  INFO com.flatirons.commons.rest.performance.PerformanceLogger filter.55 core=x:pinpoint_server - REST API: com.flatirons.pinpoint.server.rest.resource.LibraryResource.libraries; Duration (ms): 3328
+2025-07-23 16:53:25,940  WARN com.flatirons.commons.rest.performance.PerformanceLogger filter.52 core=x:pinpoint_server - REST API: com.flatirons.pinpoint.server.rest.resource.LandingPageResource.applicationPage; Duration (ms): 10658
+2025-07-23 22:10:49,304  WARN com.zaxxer.hikari.pool.HikariPool run.788  - HikariPool-2 - Thread starvation or clock leap detected (housekeeper delta=1h40m6s596ms34µs900ns).

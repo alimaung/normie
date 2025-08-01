@@ -1,0 +1,32 @@
+{
+  "defaultFormFields": [
+    {
+      "name": "User Name",
+      "scopeValue": ""
+    },
+    {
+      "name": "Create Date",
+      "scopeValue": "feedbackSubmitDate"
+    },
+    {
+      "name": "Publication Name",
+      "scopeValue": "publication.description"
+    },
+    {
+      "name": "Data Module Name",
+      "scopeValue": "page.refkey"
+    },
+    {
+      "name": "Feedback Text",
+      "scopeValue": "pComments"
+    },
+    {
+      "name": "User Email ID",
+      "scopeValue": ""
+    },
+    {
+      "name": "Feedback Attachments",
+      "scopeValue": ""
+    }
+  ]
+}

@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Implementation-Title: acm-client-package
+Implementation-Version: 8.5.0.9
+Archiver-Version: Plexus Archiver
+Built-By: builder
+Implementation-Vendor-Id: com.flatirons.acm.package
+Created-By: Apache Maven 3.6.3
+Build-Jdk: 1.8.0_292
+Implementation-URL: https://spring.io/projects/spring-boot/acm-top/acm
+ -client-package
+

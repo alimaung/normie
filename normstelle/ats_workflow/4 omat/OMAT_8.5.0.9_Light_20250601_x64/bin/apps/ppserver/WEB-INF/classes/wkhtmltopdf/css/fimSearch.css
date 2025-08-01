@@ -1,0 +1,17 @@
+#fimSearch-content {
+    padding: 5px !important;
+}
+
+#fimSearch-content table {
+    display: table;
+}
+
+#fimSearch-content a {
+    color: #337ab7;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+#fimSearch-content table td{
+    white-space: normal
+}

@@ -1,0 +1,26 @@
+{
+  "app" : {
+    "login" : {
+      "username": "Nom d'utilisateur",
+      "password": "Mot de Passe",
+      "showPassword": "Afficher le mot de passe",
+      "loginBtn": "Se connecter",
+      "pleaselogin": "S’IL VOUS PLAIT"
+      },
+     "alert" : {
+      "invalidCredentials": "NOM D'UTILISATEUR OU MOT DE PASSE INVALIDE",
+      "serverError": "Erreur Serveur: identifiants non valides",
+	  "invalidLicense": "La licence d'application valide n'est pas disponible. Veuillez contacter l'administrateur.",
+	  "kerberosLoginError": "Impossible d’effectuer la connexion Kerberos, veuillez fournir vos informations d'identification et essayez de vous connecter",
+	  "guestUserError": "Serveur incapable d’autoriser l’utilisateur invité.",
+	  "guestUserNotAvailable": "Connexion invité : non disponible",
+	  "redirectURLNotAllowed": "URL de redirection non autorisée : "
+
+    },
+     "language": {
+        "selector": "Choisissez la langue",
+        "en": "English",
+        "fr": "Français"
+      }
+  }
+}

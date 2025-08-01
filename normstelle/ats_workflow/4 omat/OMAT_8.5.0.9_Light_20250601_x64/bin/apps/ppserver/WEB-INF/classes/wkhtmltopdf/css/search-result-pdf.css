@@ -1,0 +1,44 @@
+
+
+.function-title {
+    background: #ffffff;
+    margin: 0px;
+    color: #B10B00;
+    clear: right;
+    font-size: 12pt;
+    font-weight: bold;
+    border-bottom: 2px #252525 solid;
+    height: 45px;
+    text-indent: 5px;
+    vertical-align: middle;
+    padding-top: 15px;
+    font-family: "ProximaNova-Regular" !important;
+}
+.search-content-text{
+    background-color:#f8f8f8;padding:5px;
+    border-bottom:1px solid #D4D4D4;
+}
+
+.btn {
+    background-image: none !important; /* The wkhtmltopdf does not print out gradiants used by bootstrap btn well, so we avoid the gradiants. */
+}
+
+input:not([type=button]), select, textarea {
+    padding: 4px;
+    border: 1px solid #bbb;
+    border-radius: 3px;
+    color: #000;
+    background-color: #fff;
+    line-height: normal;
+}
+
+#finSearch .tab-pane,
+#wiringSearch .tab-pane {
+    width: 100%;
+    display: none !important; /* This is required in order to override the important CSS style on pdf-styling.css causing hidden tabs to always be displayed. */
+}
+
+#finSearch .tab-pane.active,
+#wiringSearch .tab-pane.active {
+    display: block !important; /* This is required in order to override the important CSS style on pdf-styling.css causing hidden tabs to always be displayed. */
+}

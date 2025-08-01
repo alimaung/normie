@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+
+    <meta charset="utf-8" />
+
+    <meta name="viewport" content="width=device-width" />
+
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <link rel="shortcut icon" href="css/images/favicon.ico">
+
+    <title>Pinpoint</title>
+
+    <link rel="stylesheet" href="bower_components/jquery-ui/themes/smoothness/jquery-ui.min.css?rel=a60a236f1d" />
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css?rel=58a49b3689" />
+
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.min.css?rel=f0c8fc013c" />
+
+    <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css?rel=38dfd21969" />
+
+    <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css?rel=269550530c" />
+
+    <link rel="stylesheet" href="lib/w2ui/w2ui-1.4.3.min.css?rel=82db1b495f" />
+
+    <link rel="stylesheet" href="lib/zTree/css/zTreeStyle/zTreeStyle.css?rel=2ecfff56ff" />
+
+    <link rel="stylesheet" href="lib/zoom/css/imgareaselect-default.css?rel=95f9edf64a" />
+
+    <link rel="stylesheet" href="css/bootstrap-navbar-media-override.css" />
+
+    <link rel="stylesheet" href="css/app.css?rel=f3a1d818f9" />
+
+    <link rel="stylesheet" href="css/flatironsstyles/style.css" />
+
+    <link rel="stylesheet" href="css/global.css?rel=7ecaa13f2c" />
+
+    <link rel="stylesheet" href="css/style.css" />
+
+    <link rel="stylesheet" href="widgets/widgetsCss.css?rel=6d120cdd63" />
+
+    <link rel="stylesheet" href="bower_components/ngtoast/dist/ngToast.min.css?rel=114dee7177">
+
+    <link rel="stylesheet" href="bower_components/ngtoast/dist/ngToast-animations.min.css?rel=12ecf72cf8">
+
+    <link rel="stylesheet"
+        href="bower_components/eonasdan-bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.min.css?rel=159e6f21fa" />
+
+    <link rel="stylesheet" href="bower_components/jQuery-contextMenu/dist/jquery.contextMenu.min.css" />
+
+    <link rel="stylesheet" href="bower_components/seiyria-bootstrap-slider/dist/css/bootstrap-slider.min.css" />
+
+    <link rel="stylesheet" href="lib/videojs/video-js.min.css" />
+
+    <link rel="stylesheet" href="lib/videojs/plugin/videojs.chapter-thumbnails.min.css" />
+
+    <link rel="stylesheet" href="lib/quill/quill.snow.css">
+
+    <link rel="stylesheet" href="lib/md-steppers/dist/md-steppers.min.css" />
+
+    <link rel="stylesheet" href="lib/angular-material/angular-material.min.css" />
+
+    <link rel="stylesheet" href="bower_components/material-design-icons/iconfont/material-icons.css" />
+
+    <link rel="stylesheet" href="lib/cron/jquery-cron.css" />
+
+    <link rel="stylesheet" href="css/pinpointStyling.css" />
+
+    <link rel="stylesheet" href="bower_components/magnify/dist/css/magnify.css" />
+
+</head>
+
+<body>
+
+    <div ng-view="" class="viewPage"></div>
+
+    <script src="bower_components/jquery/jquery.min.js?rel=ccd0edd113"></script>
+
+    <script src="bower_components/jquery-ui/jquery-ui.min.js?rel=3600dbf27d"></script>
+
+    <script src="bower_components/is-loading/jquery.isloading.min.js?rel=058dd47133"></script>
+
+    <script
+        src="bower_components/jQuery-ajaxTransport-XDomainRequest/jquery.xdomainrequest.min.js?rel=924d77e764"></script>
+
+    <script src="bower_components/moment/min/moment.min.js?rel=0a8c0ed69d"></script>
+
+    <script
+        src="bower_components/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js?rel=852fcbef76"></script>
+
+    <script src="lib/w2ui/w2ui-1.4.3.min.js?rel=e0a7d541d5"></script>
+
+    <script src="bower_components/angular/angular.min.js?rel=fd3b4ad5f4"></script>
+
+    <script
+        src="bower_components/angular-compile-ext-pre-assign-bindings/angular-compile-ext-pre-assign-bindings.min.js?rel=ae3c1e0427"></script>
+
+    <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+    <script src="bower_components/angular-cookies/angular-cookies.min.js?rel=fc8680f965"></script>
+
+    <script src="bower_components/angular-route/angular-route.min.js?rel=11267220bb"></script>
+
+    <script src="bower_components/angular-sanitize/angular-sanitize.min.js?rel=2a97b802c2"></script>
+
+    <script src="bower_components/bootstrap/dist/js/bootstrap.min.js?rel=046ba2b5f4"></script>
+
+    <script src="bower_components/bootbox/bootbox.js?rel=2306d6a1c9"></script>
+
+    <script src="lib/zTree/js/jquery.ztree.core-3.5.min.js?rel=bdb015294a"></script>
+
+    <script src="lib/zTree/js/jquery.ztree.exhide-3.5.min.js?rel=26915fbc74"></script>
+
+    <script src="lib/zTree/js/jquery.ztree.exedit-3.5.min.js"></script>
+
+    <script src="js/ztreeExtension.js?rel=8fcf9613aa"></script>
+
+    <script src="js/utils.js?rel=14503d792a"></script>
+
+    <script src="bower_components/lodash/dist/lodash.min.js"></script>
+
+    <script src="lib/angularjs-dropdown-multiselect/src/angularjs-dropdown-multiselect.js?rel=b6eaca625d"></script>
+
+    <script
+        src="bower_components/angular-eonasdan-datetimepicker/dist/angular-eonasdan-datetimepicker.js?rel=9996a5fa18"></script>
+
+    <script src="bower_components/flow.js/dist/flow.js"></script>
+
+    <script src="bower_components/ng-flow/dist/ng-flow.js"></script>
+
+    <script src="bower_components/angular-translate/angular-translate.min.js?rel=043ca33cd1"></script>
+
+    <script
+        src="bower_components/angular-translate-loader-static-files/angular-translate-loader-static-files.min.js?rel=0d0f49ccc7"></script>
+
+    <script
+        src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.min.js?rel=5491ea6a28"></script>
+
+    <script
+        src="bower_components/angular-translate-storage-local/angular-translate-storage-local.min.js?rel=a1c79deca3"></script>
+
+    <script src="bower_components/messageformat/messageformat.min.js?rel=6c8cc0ffbb"></script>
+
+    <script
+        src="bower_components/angular-translate-interpolation-messageformat/angular-translate-interpolation-messageformat.min.js?rel=2e078ea19e"></script>
+
+    <script src="bower_components/angular-jwt/dist/angular-jwt.min.js?rel=a4ac1f3398"></script>
+
+    <script src="js/app.js?rel=be77f2bd06"></script>
+
+    <script src="config/pp.app.const.js?rel=6337a364f6"></script>
+
+    <script src="widgets/widgets.js?rel=0a51d93d39"></script>
+
+    <script src="js/custom.js?rel=c3a2ae10b4"></script>
+
+    <script src="js/services/interceptorsService.js?rel=983991fc54"></script>
+
+    <script src="js/services/DataService.js?rel=30574f3f85"></script>
+
+    <script src="js/services/PrintService.js"></script>
+
+    <script src="js/services/TranslateService.js?rel=585d7fa094"></script>
+
+    <script src="js/services/ExtResourceService.js?rel=b817b7e15a"></script>
+
+    <script src="js/services/ContextService.js?rel=5266ebe3cc"></script>
+
+    <script src="js/services/UserPreferenceService.js?rel=ba5f976efa"></script>
+
+    <script src="js/mainContent/mainContent.controller.js?rel=c3bf46e866"></script>
+
+    <script src="js/mainContent/mainContent.directive.js?rel=b91b67a074"></script>
+
+    <script src="js/controller/main.js?rel=7763fd7891"></script>
+
+    <script src="js/classie.js?rel=723c75fde6"></script>
+
+    <script src="js/highlight.js?rel=e8e3475c60"></script>
+
+    <script src="js/effectivityUtil.js?rel=6d115b6c52"></script>
+
+    <script src="lib/scrollto/jquery.scrollTo.min.js?rel=3b0ec5c1f8"></script>
+
+    <script src="bower_components/jquery-mousewheel/jquery.mousewheel.min.js?rel=639d1c35a6"></script>
+
+    <script src="lib/jquery.waituntilexists/jquery.waituntilexists.js?rel=2bee04e9ea"></script>
+
+    <script src="lib/pdf/pdfobject.js?rel=75e0016a97"></script>
+
+    <script src="lib/zoom/jquery.imgareaselect.dev.js?rel=5fa5f78f4f"></script>
+
+    <script src="lib/zoom/jquery.panzoom.js?rel=55962d8523"></script>
+
+    <script src="js/services/GotoService.js?rel=d0c2551bd7"></script>
+
+    <script src="bower_components/angular-ui-tree/dist/angular-ui-tree.min.js?rel=30bd280b5c"></script>
+
+    <script src="lib/annotator/annotator.js?rel=1b801b1318"></script>
+
+    <script src="lib/i18n/angular-locale.js?rel=4e84db290d"></script>
+
+    <script src="bower_components/ngtoast/dist/ngToast.min.js?rel=429414a758"></script>
+
+    <script src="bower_components/DateJS/build/date.js?rel=05714e3c3d"></script>
+
+    <script src="bower_components/stickUp/stickUp.min.js?rel=2a407130f9"></script>
+
+    <script src="bower_components/jQuery-contextMenu/dist/jquery.ui.position.min.js"></script>
+
+    <script src="bower_components/jQuery-contextMenu/dist/jquery.contextMenu.min.js"></script>
+
+    <script src="bower_components/seiyria-bootstrap-slider/dist/bootstrap-slider.min.js"></script>
+
+    <script src="lib/jquery.insertAtCaret/jquery.insertAtCaret.js?rel=2bb01b62a9"></script>
+
+    <script src="lib/tooltip/jQueryUITooltipService.js?rel=59d9bc34bd"></script>
+
+    <script src="bower_components/hammer-time/hammer-time.js"></script>
+
+    <script src="bower_components/hammerjs/hammer.min.js"></script>
+
+    <script src="bower_components/jquery.hammer.js/jquery.hammer.js"></script>
+
+    <script src="lib/adv_pdfviewer/build/pdf.js"></script>
+
+    <script src="lib/adv_pdfviewer/build/pdf.worker.js"></script>
+
+    <script src="lib/process-engine/processDm.js?rel=791445d836"></script>
+
+    <script src="lib/videojs/video.min.js"></script>
+
+    <script src="lib/videojs/plugin/videojs.chapter-nav.js"></script>
+
+    <script src="lib/quill/quill.min.js"></script>
+
+    <script src="lib/angular-animate/angular-animate.min.js"></script>
+
+    <script src="lib/angular-aria/angular-aria.min.js"></script>
+
+    <script src="lib/angular-messages/angular-messages.min.js"></script>
+
+    <script src="lib/angular-material/angular-material.min.js"></script>
+
+    <script src="lib/md-steppers/dist/md-steppers.min.js"></script>
+
+    <script src="lib/cron/jquery-cron.js"></script>
+
+    <script src="bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.min.js"></script>
+
+    <script src="bower_components/tinymce/tinymce.min.js?rel=38af9b0565"></script>
+
+    <script src="bower_components/magnify/dist/js/jquery.magnify.js?rel=6ae59d87db"></script>
+
+</body>
+
+</html>

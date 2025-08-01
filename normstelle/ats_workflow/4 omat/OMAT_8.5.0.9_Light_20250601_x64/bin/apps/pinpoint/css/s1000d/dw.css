@@ -1,0 +1,140 @@
+body {
+	font-size: x-small;
+	font-family: Verdana, Trebuchet MS, Arial, sans-serif;
+}
+
+#applicability>h3 {
+	margin: -1px;
+	padding-left: 10px;
+}
+
+#applicability>table {
+	margin: 0px;
+	padding-left: 2px;
+}
+
+#applicability>table td {
+	margin: 0px;
+	padding-top:0;
+	padding-bottom:0;
+	padding-right: 3px;
+	border-right: 1px solid #A6C9E2;
+}
+
+#applicability {
+	margin-bottom: 5px;
+}
+
+.ui-tabs-panel {
+	padding:0 !important;
+}
+
+.search-box {
+	padding: 5px 10px;
+	background: url("start/images/ui-bg_gloss-wave_75_2191c0_500x100.png") repeat-x scroll 50% 50% #6EAC2C;
+	border: 1px solid #ACDD4A;
+}
+
+.title-box {
+	padding: 0;
+	background: url("start/images/ui-bg_gloss-wave_75_2191c0_500x100.png") repeat-x scroll 50% 50% #6EAC2C;
+	border: 1px solid #ACDD4A;
+}
+
+.title-box h2{
+	margin: 8px 10px 8px 10px;
+}
+
+.data-tables table {
+	width: 99.8%;
+	border-collapse: collapse;
+	margin: 2px 2px 2px 2px;
+}
+
+.data-tables > table > tbody > tr > td, .data-tables table th {
+	border: 1px solid black;
+	border-spacing: 0;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+
+td.data-center {
+	text-align: center;
+}
+
+.data-tables table thead {
+	background: url("start/images/ui-bg_gloss-wave_75_2191c0_500x100.png") repeat-x scroll 50% 50% #2191C0;
+}
+
+.data-tables table>tbody>tr:hover {
+	background: url("start/images/ui-bg_glass_55_f8da4e_1x400.png") repeat-x scroll 10% 100% #f8da4e;
+	cursor: pointer;
+}
+
+.data-tables table>tbody>tr.selected {
+	background: url("start/images/ui-bg_gloss-wave_45_e14f1c_500x100.png") repeat-x scroll 50% 50% #e14f1c;
+	color: #EAF5F7;
+}
+
+td.detail-title {
+	width: 15em;
+	text-align: right;
+}
+
+.equipment-detail table td {
+	border: 1px solid black;
+	border-spacing: 0;
+}
+
+.wire-detail table td {
+  visible: hidden
+	border: 1px solid black;
+	border-spacing: 0;
+}
+
+.nopadding {
+	padding: 0px 0px 0px 0px !important;
+}
+
+.nomargin {
+	margin: -1px -1px -1px -1px  !important;
+}
+
+.hidden {
+	display:none;
+}
+
+#electrical-path .electrical-path {
+	border-bottom: 0 none;
+	border-top: 0 none;
+	background-color: #999;
+}
+
+#electrical-path tbody.equip td {
+	height: 50px;
+}
+
+#electrical-path tbody.wire td {
+	height: 25px;
+}
+
+#electrical-path div.equip {
+	border: 3px groove #666;
+	background-color: rgb( 251, 255, 148);
+	width: 150px;
+	margin-right: auto;
+	margin-left: auto;
+	height: 25px;
+	vertical-align: middle;
+	line-height: 25px;
+}
+
+#electrical-path div.equip > img {
+	float: left;
+}
+
+.a-link {
+  text-decoration: underline;
+  font-weight:bold;
+  color:blue;
+}

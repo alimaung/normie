@@ -1,0 +1,24 @@
+<div id="browseFiguresAndGrphicDialogModal">
+<div class="panel-library-list">
+    <div id="graphic-title"   style="padding-left: 12px;margin-left: 11px;">
+        <div>{{translations.chooseAnExistingGraphicsFromFiguresList}}</div>
+        <div class="panel-list-spacing-border" style="font-weight: bold;">{{translations.graphicAttachedToTheDocument.toUpperCase() }} ({{graphicList.length }})</div>
+        </div>
+    <ul class="panel-remove-bullet">
+        <li class="panel-list-spacing-border panel-remove-bullet" ng-repeat="graph in graphicList"  ng-hide="vm.isDeletedOrMoved(graph.status)">
+            <div ng-click="graph.isExpanded = !graph.isExpanded">
+                <i class="fa fa-lg" ng-class="graph.isExpanded? 'fa-minus-circle' : 'fa-plus-circle'"/>
+                <span class="panel-child">{{graph.displayTitle}}</span>
+            </div>
+            <ul class="panel-remove-bullet panel-right-align"  ng-if="graph.sheets.length!==0"  ng-show="graph.isExpanded" >
+                <li class=panel-left-border panel-remove-bullet ng-repeat="sheet in graph.sheets " ng-click="vm.insertSheet(graph.id,sheet)" ng-hide="vm.isDeletedOrMoved(sheet.status)">
+                    <i class="glyphicon glyphicon-picture"/>
+                    <a class="panel-child">{{sheet.displayTitle}}</a>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</div>
+</div>
+
+

@@ -1,0 +1,8 @@
+{
+    "template": "widgets/pinpointcomponent/readAndSign/template/readAndSign",
+    "acknowledgeConfirmMessage": "By acknowledging this I confirm that I have read and understood the content of this publication.",
+    "notificationMessage": "You have {TOTAL, plural, one {# publication} other {# publications}} that {DAYS, plural, offset:2 =0 {} =1 {{TOTAL, plural, one {is} other {are}} overdue and} =2 {{TOTAL, plural, one {is} other {are}} due or overdue and} =3 {{TOTAL, plural, one {is} other {are}} due tomorrow and} other {{TOTAL, plural, one {is} other {are}} within # days of being overdue and}} {TOTAL, plural, one {needs} other {need}} to be acknowledged. Click OK to view details.",
+    "colourfulUserGroupSchema": false,
+    "acknowledgeConfirmMessageKey": "pinpointcomponent.readAndSign.alert.acknowledgeConfirmMessage",
+    "notificationMessageKey": "pinpointcomponent.readAndSign.alert.notificationMessage",
+}

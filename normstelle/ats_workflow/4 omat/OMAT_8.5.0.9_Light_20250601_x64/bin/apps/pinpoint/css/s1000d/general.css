@@ -1,0 +1,232 @@
+.selected, .selected a {
+  background: #0A246A;
+  color: #fff;
+}
+
+dl {
+  margin: 10px 0;
+  clear: left;
+}
+
+dt {
+  width: 200px;
+  float: left;
+}
+
+dt.slim {
+  width: 100px;
+  float: left;
+}
+
+dd {
+  float: left;
+}
+
+img {
+  border: none;
+  margin: 0 4px;
+}
+
+a {
+  text-decoration: none;
+  color: #00c;
+}
+
+a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+a.inactive {
+  color: #ccc;
+}
+
+a:visited.inactive {
+  color: #ccc;
+}
+
+a:hover.inactive {
+  color: #ccc;
+  text-decoration: underline;
+}
+
+/* -- columns -----------------------*/
+
+.colWrapper {
+  float: left;
+  overflow: auto;
+}
+
+.col {
+  margin: 0 5px;
+}
+
+/* -- forms, groupboxes  -----------------------*/
+
+.groupbox {
+  margin-top : 20px;
+  padding-bottom: 5px;
+}
+
+.groupboxContent {
+  padding-bottom: 5px;
+}
+
+.openClose {
+  padding: 0 10px 0 0;
+  float: right;
+}
+
+.widgetGroup {
+  clear: left;
+  padding-top: 5px;
+}
+
+.widgetDiv {
+  float: left;
+  padding-right: 50px;
+  margin: 0 0 5px 0;
+}
+
+.widgetDivOverflow {
+  float: left;
+  overflow: auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 50px;
+  margin: 0 0 5px 0;
+}
+
+hr {
+  height: 0px;
+  border-bottom: 0px;
+  border-top: 1px solid #c3c3c3;
+}
+
+input.noTyping {
+  margin-right: 2px;
+  border-width: 1px;
+  border-style: solid;
+  background-color: #fff;
+  border-color: #fff;
+}
+
+.readOnly {
+  background: transparent;
+  border: none;
+}
+
+/* -- tables  -----------------------*/
+
+table {
+  width: 100%;
+  text-align: left;
+}
+
+th a:hover {
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* -- tree -----------------------*/
+
+.v {
+  white-space: nowrap;
+  margin: 0 0 2px 16px;
+}
+
+.u {
+  display: none;
+}
+
+.treeNode, #tree .selected  {
+  padding: 2px;
+}
+
+.treeNodeInactive {
+  color: #ccc;
+  padding: 2px;
+}
+
+#tree .selected {
+  background: #0A246A;
+  color: #fff;
+}
+
+/* -- popup -----------------------*/
+
+.popup {
+  padding: 5px;
+}
+
+.popup .selected, .popup .selected a {
+  background: #0A246A;
+  color: #fff;
+}
+
+/* -- misc -----------------------*/
+
+.msg {
+  font-weight: bold;
+  clear: left;
+}
+
+.error_msg {
+  color: #f00;
+  margin-bottom: 5px;
+  text-align: center;
+}
+
+.normalText {
+  font-size: 75%;
+  font-weight: normal;
+}
+
+img.noMargins {
+  margin: 0;
+}
+
+.inactive {
+  color: #ccc;
+}
+
+.missing {
+  color: red;
+}
+
+/* -- fixes for IE -------------*/
+
+form table {
+  width: auto;
+}
+
+/* -- experimental -------------*/
+
+th.icon {
+  width: 70px;
+}
+
+th.resource {
+  width: 350px;
+}
+
+th.actions {
+  width: 200px;
+}
+
+img.void {
+  display: none;
+}
+
+td.box_title , td.box_value {
+  border-bottom:none;
+}
+
+td.box_title {
+  width: 200px;
+  vertical-align:top;
+}
+
+td.slim {
+  width: 100px;
+}

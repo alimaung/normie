@@ -1,0 +1,189 @@
+﻿.pp-main {
+  display: flex;
+  height: calc(100vh - 44px - 8px);
+  border:none;
+  border-bottom: 8px solid #333333
+}
+
+#pp-content {
+  border:none;
+  border-right: 8px solid #333333;
+  flex: 3;
+}
+
+#pp-nav {
+  border:none;
+  border-left: 8px solid #333333;
+  border-right: 8px solid #333333;
+  flex: 1;
+}
+
+#pp-nav iframe {
+  border:none;
+}
+
+.i-header
+{
+	height: 36px;
+    line-height: 36px;
+	cursor: pointer;
+	font-size: 12pt;
+	font-weight: normal;
+	padding-left: 6px;
+	background-color: #5285B8;
+	color: #ffffff;
+}
+
+.i-header.ui-state-active
+{
+    background-color: #6d86c7;
+}
+
+.i-header:focus
+{
+    outline: none;  
+}
+
+.i-header-text
+{
+	line-height: 28px;
+}
+
+.i-header img
+{
+	float: left;
+	height: 16px;
+	width: 16px;
+	margin: 10px 6px;
+}
+
+body
+{
+	margin: 0px;    
+	padding: 0px;
+	overflow: hidden;
+	width: 100%;
+	height: 100%;
+	font-family: Segoe UI, Verdana, Arial, Helvetica, sans-serif;
+	font-size: 14pt;
+}
+
+html
+{
+	height: 100%;
+}
+
+#i-accordion
+{
+	height: 100%;
+}
+
+div#i-close-pane
+{
+    display: none;
+}
+
+div#i-close-pane a.btn
+{
+	background-color: gainsboro;
+	background-image: none;
+}
+
+#i-close-pane .btn 
+{
+	padding: 0px;
+}
+
+.fill-space {
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+#i-search {
+  /* The bottom border is 8px */
+  height: calc(100% - 8px);
+}
+
+.i-frame-container
+{
+	overflow-y: hidden;
+	padding: 0px;
+	/* The i-header div is 36px tall so we need to account for that here */
+	height: calc(100% - 36px);
+	width: 100%;
+}
+
+.i-arrow-container 
+{
+	padding-top: 12px;
+	padding-right: 12px;
+	float: right;
+}
+
+.i-arrow 
+{
+	width: 0; 
+	height: 0; 
+	border-top: 6px solid transparent;
+	border-bottom: 6px solid transparent;		
+}
+
+.i-arrow-right 
+{
+	border-left: 9px solid white;
+	float: right;
+	margin-left: 9px;
+}
+
+.i-arrow-left 
+{
+	border-right: 9px solid white; 
+	float:right;
+}
+
+.i-arrow-right-disabled 
+{
+	border-left: 9px solid #d5d5d5;
+}
+
+.i-arrow-left-disabled 
+{
+	border-right: 9px solid #d5d5d5; 
+}
+
+#pp-toc-header div.closeDialog {
+	justify-content: space-between;
+	border-bottom: 1px solid #e5e5e5;
+	background-color: #f8f8f8;
+	padding: 10px;
+}
+
+#pp-toc-header span.closeDialog {
+	font-size: medium;
+	cursor: pointer;
+	float: right;
+	display: inline;
+}
+
+#pp-toc-header dialog h4{
+	display: inline;
+}
+
+#pp-toc-header dialog {
+	margin: revert;
+	border-radius: 7px;
+	width: 95%;
+}
+
+#pp-toc-header iframe.cirContent {
+	width: 100%;
+}
+
+#pp-toc-header #changeLog img{
+	float: right;
+}
+
+#pp-toc-header .cir-content {
+	padding: 10px;
+}

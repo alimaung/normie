@@ -1,0 +1,45 @@
+2025-05-21 01:24:39,961  INFO org.apache.catalina.core.ContainerBase.[auth_engine].[localhost].[/acmserver] log.173  - 1 Spring WebApplicationInitializers detected on classpath
+2025-05-21 01:24:43,980  INFO org.apache.catalina.core.ContainerBase.[auth_engine].[localhost].[/acmserver] log.173  - Initializing Spring embedded WebApplicationContext
+2025-05-21 01:24:44,638  INFO com.flatirons.commons.utilities.DatabaseInitializingBean afterPropertiesSet.39  - Check database connection.
+2025-05-21 01:24:44,640  INFO com.zaxxer.hikari.HikariDataSource getConnection.110  - HikariPool-1 - Starting...
+2025-05-21 01:24:44,650  WARN com.zaxxer.hikari.util.DriverDataSource <init>.70  - Registered driver with driverClassName=org.hsqldb.jdbcDriver was not found, trying direct instantiation.
+2025-05-21 01:24:45,720 ERROR com.zaxxer.hikari.pool.HikariPool throwPoolInitializationException.594  - HikariPool-1 - Exception during pool initialization.
+java.sql.SQLTransientConnectionException: java.net.ConnectException: Connection refused: connect
+	at org.hsqldb.jdbc.JDBCUtil.sqlException(Unknown Source)
+	at org.hsqldb.jdbc.JDBCUtil.sqlException(Unknown Source)
+	at org.hsqldb.jdbc.JDBCConnection.<init>(Unknown Source)
+	at org.hsqldb.jdbc.JDBCDriver$1.run(Unknown Source)
+Caused by: org.hsqldb.HsqlException: java.net.ConnectException: Connection refused: connect
+	at org.hsqldb.ClientConnection.openConnection(Unknown Source)
+	at org.hsqldb.ClientConnection.initConnection(Unknown Source)
+	at org.hsqldb.ClientConnection.<init>(Unknown Source)
+	... 2 common frames omitted
+Caused by: java.net.ConnectException: Connection refused: connect
+	at java.base/java.net.PlainSocketImpl.connect0(Native Method)
+	at java.base/java.net.PlainSocketImpl.socketConnect(Unknown Source)
+	at java.base/java.net.AbstractPlainSocketImpl.doConnect(Unknown Source)
+	at java.base/java.net.AbstractPlainSocketImpl.connectToAddress(Unknown Source)
+	at java.base/java.net.AbstractPlainSocketImpl.connect(Unknown Source)
+	at java.base/java.net.SocksSocketImpl.connect(Unknown Source)
+	at java.base/java.net.Socket.connect(Unknown Source)
+	at java.base/java.net.Socket.connect(Unknown Source)
+	at java.base/java.net.Socket.<init>(Unknown Source)
+	at java.base/java.net.Socket.<init>(Unknown Source)
+	at org.hsqldb.server.HsqlSocketFactory.createSocket(Unknown Source)
+	... 5 common frames omitted
+2025-05-21 01:24:45,721  WARN com.flatirons.commons.utilities.DatabaseInitializingBean afterPropertiesSet.47  - Database is not Initialized, will attempt to start (path: D:\apps\PinPoint_Standalone\OMAT_8.5.0.9_Light_20250601_x64/data/hsqldb/standaloneDB)
+2025-05-21 01:24:45,722  INFO com.flatirons.commons.utilities.DatabaseInitializingBean startHsqldb.118  - Port specification found in url.
+2025-05-21 01:24:45,729  INFO com.flatirons.commons.utilities.DatabaseInitializingBean startHsqldb.123  - Using port from url: 9003
+2025-05-21 01:24:45,729  INFO com.flatirons.commons.utilities.DatabaseInitializingBean startHsqldb.130  - Starting HyperSQL ...please wait
+2025-05-21 01:24:46,133  INFO com.flatirons.commons.utilities.DatabaseInitializingBean startHsqldb.132  - HyperSQL started
+2025-05-21 01:24:46,133  INFO com.zaxxer.hikari.HikariDataSource getConnection.110  - HikariPool-1 - Starting...
+2025-05-21 01:24:46,133  WARN com.zaxxer.hikari.util.DriverDataSource <init>.70  - Registered driver with driverClassName=org.hsqldb.jdbcDriver was not found, trying direct instantiation.
+2025-05-21 01:24:46,242  INFO com.zaxxer.hikari.pool.PoolBase getAndSetNetworkTimeout.541  - HikariPool-1 - Driver does not support get/set network timeout for connections. (feature not supported)
+2025-05-21 01:24:46,275  INFO com.zaxxer.hikari.HikariDataSource getConnection.123  - HikariPool-1 - Start completed.
+2025-05-21 01:24:46,280  INFO com.flatirons.commons.utilities.DatabaseInitializingBean waitUntilConnectionAvailable.98  - Database Started Successfully.
+2025-05-21 01:24:46,380  INFO liquibase.integration log.37  - Liquibase did not run because 'shouldRun' property was set to false on liquibase Liquibase Spring bean.
+2025-05-21 01:24:52,697  INFO com.flatirons.commons.esapi.filter.FlatironsESAPISecurityConfiguration getResourceFile.26  - Loadin ESAPI Properties from the
+2025-05-21 01:24:52,701  INFO com.flatirons.commons.esapi.filter.FlatironsESAPISecurityConfiguration getResourceFile.26  - Loadin ESAPI Properties from the
+2025-05-21 01:25:11,520  INFO com.flatirons.commons.rest.performance.PerformanceLogger filter.55  - REST API: com.corena.acm.rest.resource.auth.AuthResource.postToken; Duration (ms): 1955
+2025-05-21 01:25:11,669  INFO org.apache.catalina.core.ContainerBase.[auth_engine].[localhost].[/acmserver] log.173  - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-21 01:25:18,647 ERROR com.corena.acm.rest.resource.auth.AuthResource deleteToken.249  - FAILED_GET_AUTH_HEADER

@@ -1,0 +1,63 @@
+<html>
+    <head>
+        <style>
+            table {
+                border:1px solid #aaaaaa;
+            }
+            td.property {
+                font-weight:bold;
+                text-align:right;
+                background-color: #dddddd;
+            }
+            td {
+                padding:4px;
+                background-color: #eeeeee;
+            }
+            span.variable {
+                font-style:italic;
+                color:#7777aa;
+            }
+            div.title {
+                font-size: 20px;
+                font-weight: bold;
+            }
+            div.environment-info {
+                font-size: 14px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="title">The attachment <span class="variable">{{title}}</span> has reached its notification date (<span class="variable">{{notifyDate}}</span>)</div>
+        <br/>
+        <div><b>Attachment Details:</b></div>
+        <table>
+            <tr>
+                <td class="property">Category</td>
+                <td>{{category}}</td>
+            </tr>
+            <tr>
+                <td class="property">Title</td>
+                <td>{{title}}</td>
+            </tr>
+            <tr>
+                <td class="property">Description</td>
+                <td>{{description}}</td>
+            </tr>
+            <tr>
+                <td class="property">Created Date</td>
+                <td>{{creationDate}} (by {{createdBy}})</td>
+            </tr>
+            <tr>
+                <td class="property">Notify Date</td>
+                <td>{{notifyDate}}</td>
+            </tr>
+            <tr>
+                <td class="property">Attached on</td>
+                <td><a href="https://pinpoint.flatironssolutions.com:8083/pinpoint/#/main/goto?library={{libraryId}}&publicationID={{publicationId}}&documentID={{parentKey}}">{{parentKey}}</a></td>
+            </tr>
+        </table>
+        <br/>
+        <div class="environment-info">ENVIRONMENT</div>
+        <div class="environment-info">https://pinpoint.flatironssolutions.com:8083/pinpoint</div>
+    </body>
+</html>

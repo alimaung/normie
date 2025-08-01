@@ -1,0 +1,25 @@
+{
+    "template": "widgets/content/plugins/template/contenthandle",
+    "contentTypes": {
+    	"html": {
+    		"tagName": "contenthtml",
+    		"attributes": [
+    			"load-content-params='loadContentParams'",
+    			"fire-content-updated-event='vm.fireContentUpdatedEvent(message)'",
+    			"hotspot-message='hotspotMessage'"
+    		]
+    	},
+		"pdf": {
+    		"tagName": "contentpdf",
+    		"attributes": [
+    			"pdf-url-content='pdfUrlContent'"
+    		]
+    	},
+		"htmlpub": {
+    		"tagName": "contenthtmlpub",
+    		"attributes": [
+    			"htmlpub-url-content='htmlpubUrlContent'"
+    		]
+    	}
+    }
+}

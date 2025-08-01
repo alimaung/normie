@@ -1,0 +1,15 @@
+Manifest-Version: 1.0
+Implementation-Title: pinpoint-server-package
+Implementation-Version: 8.5.0.9
+XRebel-Hub-App-Build: 2024-10-31 12:01
+Spring-Boot-Layers-Index: WEB-INF/layers.idx
+XRebel-Hub-App-Version: 8.5.0.9
+Spring-Boot-Version: 2.7.16
+Main-Class: org.springframework.boot.loader.WarLauncher
+Spring-Boot-Classpath-Index: WEB-INF/classpath.idx
+Start-Class: com.flatirons.pinpoint.server.PinpointServerApplication
+Spring-Boot-Classes: WEB-INF/classes/
+Spring-Boot-Lib: WEB-INF/lib/
+Build-Jdk-Spec: 1.8
+Created-By: Maven WAR Plugin 3.3.2
+

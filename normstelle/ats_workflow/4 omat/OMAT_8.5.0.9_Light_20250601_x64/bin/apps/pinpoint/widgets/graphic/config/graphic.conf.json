@@ -1,0 +1,198 @@
+{
+    "timeout" : 120000,
+    "menus": {
+        "leftMenus": [
+            {
+                "name": "findGraphic",
+                "titlekey": "graphic.title.findgraphic",
+                "icon": "fa-search",
+                "isHidden" : false,
+                "action": "findGraphic"
+            },
+            {
+                "name": "printGraphic",
+                "titlekey": "graphic.title.printgraphic",
+                "icon": "fa-print",
+                "isHidden" : true,
+                "action": "printGraphic"
+            }
+        ],
+        "rightMenus": [
+            {
+                "name": "Annotation",
+                "titlekey": "graphic.title.createannotation",
+                "icon": "fa-pencil-square-o",
+                "action": "createGraphicAnnotation"
+            },
+            {
+                "name": "List Graphic",
+                "titlekey": "graphic.title.figurelist",
+                "icon": "fa-picture-o",
+                "action": "showGraphicList"
+            },
+            {
+                "name": "openPdfInNewBrowserWindow",
+                "titlekey": "graphic.title.openPdfInNewBrowserWindow",
+                "icon": "fa-external-link",
+                "action": "openPdfInNewBrowserWindow",
+                "isHidden" : true
+            },
+            {
+                "name": "popupGraphic",
+                "titlekey": "graphic.title.opengraphicinnewwindow",
+                "icon": "fa-external-link",
+                "action": "popupGraphic"
+            },
+            {
+                "name": "downloadSheet",
+                "titlekey": "graphic.authoring.downloadSheet",
+                "icon": "fa-download",
+                "action": "downloadSheet",
+                "isHidden" : true
+            },
+            {
+                "name": "previousGraphic",
+                "titlekey": "graphic.title.previousgraphic",
+                "icon": "fa-chevron-left",
+                "action": "prevGraphic"
+            },
+            {
+                "name": "nextGraphic",
+                "titlekey": "graphic.title.nextfraphic",
+                "icon": "fa-chevron-right",
+                "action": "nextGraphic"
+            },
+            {
+                "name": "refreshGraphic",
+                "titlekey": "graphic.title.refresh",
+                "icon": "fa-refresh",
+                "action": "refreshGraphic"
+            },
+            {
+                "name": "zoomSelectAreaGraphic",
+                "titlekey": "graphic.title.zoomselect",
+                "icon": "fa-square-o",
+                "isHidden" : false,
+                "action": "zoomToggle"
+            },
+            {
+                "name": "zoomPan",
+                "titlekey": "graphic.title.zoompan",
+                "icon": "fa-arrows",
+                "isHidden" : true,
+                "action": "zoomToggle"
+            },
+            {
+                "name": "zoomInGraphic",
+                "titlekey": "graphic.title.zoomin",
+                "icon": "fa-search-plus",
+                "action": "zoomIn"
+            },
+            {
+                "name": "zoomOutGraphic",
+                "titlekey": "graphic.title.zoomout",
+                "icon": "fa-search-minus",
+                "action": "zoomOut"
+            },
+            {
+                "name": "rotateGraphic",
+                "titlekey": "graphic.title.rotate",
+                "icon": "fa-repeat",
+                "action": "rotateGraphic"
+            }
+        ],
+        "x3dButtons": [
+            {
+                "name": "reset",
+                "titlekey": "graphic.title.reset",
+                "icon": "fa-refresh",
+                "isHidden": false,
+                "class": "x3d-button",
+                "action": "resetX3DNav"
+            },
+            {
+                "name": "resetZoom",
+                "titlekey": "graphic.title.default",
+                "icon": "fa-camera",
+                "isHidden": false,
+                "class": "x3d-button",
+                "action": "resetZoom"
+            },
+            {
+                "name": "leftView",
+                "titlekey": "graphic.title.left",
+                "icon": "fa-chevron-left",
+                "isHidden": false,
+                "isDisabled": false,
+                "class": "x3d-button",
+                "action": "leftView"
+            },
+            {
+                "name": "topView",
+                "titlekey": "graphic.title.top",
+                "icon": "fa-chevron-up",
+                "isHidden": false,
+                "class": "x3d-button",
+                "action": "topView"
+            },
+            {
+                "name": "bottomView",
+                "titlekey": "graphic.title.bottom",
+                "icon": "fa-chevron-down",
+                "isHidden": false,
+                "class": "x3d-button",
+                "action": "bottomView"
+            },
+            {
+                "name": "rightView",
+                "titlekey": "graphic.title.right",
+                "icon": "fa-chevron-right",
+                "isHidden": false,
+                "class": "x3d-button",
+                "action": "rightView"
+            },
+            {
+                "name": "hiddenItems",
+                "titlekey": "graphic.title.hiddenItems",
+                "icon": "fa-eye-slash",
+                "isHidden": false,
+                "class": "x3d-button",
+                "action": "closeSidebarGraphic"
+            },
+            {
+                "name": "goBack",
+                "titlekey": "graphic.title.goBack",
+                "icon": "fa-undo",
+                "isHidden": false,
+                "class": "x3d-button goback-button disabled",
+                "action": "prevFocusNode"
+            }
+        ],
+        "hideMenus":{
+            "pdfIE":[
+                "rotateGraphic",
+                "zoomOutGraphic",
+                "zoomInGraphic",
+                "zoomPan",
+                "zoomSelectAreaGraphic",
+                "refreshGraphic",
+                "findGraphic",
+                "popupGraphic",
+                "Annotation",
+                "printGraphic"
+            ],
+            "pdfNonIE":[
+                "findGraphic",
+                "popupGraphic",
+                "Annotation",
+                "printGraphic"
+            ],
+            "svg":[
+                "printGraphic",
+                "zoomPan"
+            ]
+        }
+    },
+    "usePlugin": "Y",
+    "pluginSupportTypes": ["x3d","pdf","swf"]
+}

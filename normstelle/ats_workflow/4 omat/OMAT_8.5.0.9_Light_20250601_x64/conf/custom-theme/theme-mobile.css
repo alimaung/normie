@@ -1,0 +1,273 @@
+/**
+  color-base is the style color to be used in Pills and tab and other areas.
+  Also, ensure in pinpoint client - same is updated.
+ */
+ul,
+li {
+  list-style: none !important;
+  font-family: "ProximaNova-Regular" !important;
+}
+.navbar-static-top {
+  background: #4F98FF !important;
+}
+.navbar-static-top a:hover {
+  color: #fff !important;
+}
+.v2-icon {
+  width: 28px !important;
+  height: 29px !important;
+  display: inline-table !important;
+  background-repeat: no-repeat !important;
+}
+#content #trustedHtml_page .nav-pills {
+  background-color: #4F98FF !important;
+}
+#content #trustedHtml_page .nav > li > a:focus,
+#content #trustedHtml_page .nav > li > a:hover {
+  background-color: #006DFF !important;
+}
+#content #trustedHtml_page .nav-pills > li.active > a,
+#content #trustedHtml_page .nav-pills > li.active > a:focus,
+#content #trustedHtml_page .nav-pills > li.active > a:hover {
+  background-color: #271BCB !important;
+}
+#content #trustedHtml_page .check-mark-styling {
+  color: #4F98FF !important;
+}
+.v2_header_title {
+  margin-top: 0px !important;
+  width: 40px !important;
+}
+.nav-icon-align-menu {
+  border: 0px !important;
+  background-color: transparent !important;
+}
+#arrow-circle-left {
+  border-right: 0px !important;
+}
+#arrow-circle-right {
+  border: 0px !important;
+}
+#header .v2-nav-li-title {
+  width: auto !important;
+  padding-top: 4px !important;
+}
+#leftpanelulLower_mode_switch {
+  background-color: #10069F !important;
+  list-style: none!important;
+  font-family: ProximaNova-Regular !important;
+}
+/*Search css*/
+#SearchTabs1 .v2-search-tab {
+  text-decoration: none !important;
+  border-radius: 10px 10px 0px 0px !important;
+  width: 100% !important;
+  border: 0px !important;
+  color: #0000 !important;
+  font-family: "ProximaNova-Regular" !important;
+  font-weight: normal !important;
+  font-size: 16px !important;
+  background-color: #FFFFFF;
+}
+#SearchTabs2 .v2-search-tab {
+  text-decoration: none !important;
+  border-radius: 10px 10px 0px 0px !important;
+  width: 100% !important;
+  border: 0px !important;
+  color: #0000 !important;
+  font-family: "ProximaNova-Regular" !important;
+  font-weight: normal !important;
+  font-size: 16px !important;
+  background-color: #FFFFFF;
+}
+#SearchTabs3 .v2-search-tab {
+  text-decoration: none !important;
+  border-radius: 10px 10px 0px 0px !important;
+  width: 100% !important;
+  border: 0px !important;
+  color: #0000 !important;
+  font-family: "ProximaNova-Regular" !important;
+  font-weight: normal !important;
+  font-size: 16px !important;
+  background-color: #FFFFFF;
+}
+#SearchTabs4 .v2-search-tab {
+  text-decoration: none !important;
+  border-radius: 10px 10px 0px 0px !important;
+  width: 100% !important;
+  border: 0px !important;
+  color: #0000 !important;
+  font-family: "ProximaNova-Regular" !important;
+  font-weight: normal !important;
+  font-size: 16px !important;
+  background-color: #FFFFFF;
+}
+.v-normal-btn-mask {
+  background-color: #006DFF !important;
+  background-image: none !important;
+  border-color: #10069F !important;
+  color: white !important;
+}
+#applicTable tbody tr.highlight td {
+  background-color: #006DFF !important;
+}
+.v2_content_drop_ul {
+  width: auto !important;
+  background-color: #10069F !important;
+  height: 47px !important;
+  border-bottom: 2px solid #10069F !important;
+}
+.v2_content_drop_ul_li {
+  width: auto !important;
+  background-color: #10069F !important;
+  height: 47px !important;
+}
+.v2_content_drop_ul_li > a {
+  text-decoration: none;
+  background-color: #10069F !important;
+}
+.v2_content_drop_ul_li > a > ul {
+  width: auto !important;
+  background-color: #10069F !important;
+  height: 47px !important;
+}
+.client_logo {
+  width: 200px !important;
+  height: 50px !important;
+  margin-top: -3px !important;
+  -moz-background-size: contain !important;
+  -webkit-background-size: contain !important;
+  -o-background-size: contain !important;
+  background-size: contain !important;
+  padding-left: 5px;
+}
+.v2-nav,
+.v2-nav-lib {
+  background: #10069F !important;
+  height: 55px !important;
+  padding-top: 5px !important;
+}
+#v2-left-bar {
+  background: #006DFF !important;
+}
+.v2-menu-content {
+  border-bottom: 1px #7E7E7E solid !important;
+}
+.navbar.navbar-inverse.navbar-static-top {
+  background: #4F98FF !important;
+  border-color: #006DFF !important;
+}
+.alert-info {
+  color: white !important;
+  background-color: #006DFF !important;
+  background-image: none !important;
+  border-color: #10069F !important;
+}
+.btn.disabled,
+.btn[disabled],
+fieldset[disabled] .btn {
+  background-color: #E6E6E6 !important;
+  opacity: 1 !important;
+}
+.btn-success,
+.btn-success:hover,
+.btn-primary,
+.btn-primary:hover,
+.btn-default,
+.btn-default:active,
+.btn-default:focus,
+.btn-default:hover {
+  background-color: #006DFF !important;
+  background-image: none !important;
+  border-color: #10069F !important;
+  color: white !important;
+}
+.btn-secondary,
+.btn-secondary:hover {
+  color: #006DFF !important;
+  background-color: white !important;
+}
+content-header .flex-page-header, 
+generic-header .flex-page-header, 
+library-header .flex-page-header {
+   background: #10069F !important;
+}
+.btn.simpleComplex.btn-default {
+  background-color: white !important;
+  color: #006dff !important;
+  border-color: #006dff !important;
+}
+.btn-info,
+.btn-info:hover {
+  background-color: #4F98FF !important;
+  border-color: #10069F !important;
+}
+.eula-button {
+    font-weight: bold;
+    background-color: #006DFF !important;
+    background-image: none !important;
+    border-color: #10069F !important;
+    color: white !important;
+}
+.fa-plus-square:before,
+.fa-minus-square:before {
+  color: #006DFF !important;
+}
+.nav-pills {
+  background-color: #4F98FF !important;
+}
+.nav-pills > li.active > a {
+  background-color: #10069F !important;
+}
+.nav-pills > li.active > a:hover {
+  background-color: #10069F !important;
+}
+.nav-pills > li.active > a:focus {
+  background-color: #10069F !important;
+}
+#applicTable tbody tr.highlight td {
+  color: white !important;
+}
+.fa-2x {
+  font-size: 1.5em !important;
+}
+.v2_content_drop_ul_li > a {
+  background-color: #10069F !important;
+}
+.v2_content_drop_ul_li > a {
+  background-color: #10069F !important;
+}
+.v2-search-tab.ui-btn-active {
+  background-color: #006DFF !important;
+}
+.ui-page-theme-b .ui-bar-inherit {
+  background-color: #006DFF !important;
+  border-color: #10069F !important;
+}
+.co_logo_small {
+  display: none !important;
+}
+#leftpanelulLower_mode_switch {
+  background-color: #10069F !important;
+  list-style: none!important;
+  font-family: ProximaNova-Regular !important;
+}
+.v2-nav-div-icon {
+  display: inline-block!important;
+}
+@media all and (min-width: 992px) {
+  .client_logo {
+    width: 200px !important;
+    height: 50px !important;
+    margin-top: -3px !important;
+    background-repeat: no-repeat !important;
+	padding-left: 5px;
+  }
+  .logo_td {
+    width: 30% !important;
+    min-width: 400px !important;
+  }
+  .search_font {
+    font-size: 12pt !important;
+  }
+}

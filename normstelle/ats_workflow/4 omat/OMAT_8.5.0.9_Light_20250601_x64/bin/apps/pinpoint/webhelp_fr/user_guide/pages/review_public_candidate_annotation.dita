@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA Task//EN" "task.dtd">
+<task id="examiner_l_annotation_publique_du_candidat" xml:lang="fr-FR">
+    <title>Examiner le candidat à l'annotation publique</title>
+    <shortdesc/>
+    <taskbody>
+        <context>
+            <p product="standalone"><b>Non applicable pour Pinpoint Standalone Light.</b></p>
+            <p>Un utilisateur disposant des autorisations pour créer, modifier et supprimer des
+                annotations peut utiliser cette fonction pour examiner et approuver ou rejeter les
+                annotations créées en tant que candidat public.</p>
+            <note>Les annotations créées par les utilisateurs sans autorisation de les rendre
+                publiques sont créées en tant que "Public Candidate". Ces annotations doivent être
+                approuvées par un utilisateur disposant des autorisations appropriées avant d'être
+                rendues publiques. Pour plus d'informations, voir <xref
+                    href="create_new_annotation.dita" format="xml">Créer une nouvelle
+                    annotation</xref>.</note>
+            <p>Cette icône <image placement="inline"
+                    href="../graphics/annotation_public_candidate_icon.png" height="12pt"
+                    id="image_cgc_2lb_xhb"/> apparaît dans l'en-tête <uicontrol>Annotations /
+                    Supplemental Contents</uicontrol> pour les administrateurs lorsqu'il existe des
+                annotations des candidats à examiner. Le nombre indique combien de candidats publics
+                figurent dans le document.</p>
+            <p> Pour examiner une annotation de candidat publique, suivez les étapes ci-dessous:</p>
+        </context>
+        <steps>
+            <step>
+                <cmd>Recherchez l'annotation que vous souhaitez réviser et effectuez l'une des
+                    opérations suivantes:</cmd>
+                <choices id="choices_cqd_glb_xhb">
+                    <choice>Passez la souris sur l'annotation pour déclencher la boîte de dialogue
+                        contextuelle d'annotation.</choice>
+                    <choice>Cliquez dans la zone grise "Afficher les annotations" pour développer la
+                        zone d'annotation.</choice>
+                </choices>
+            </step>
+            <step>
+                <cmd>Cliquez sur l'icône en forme de crayon (<image placement="inline"
+                        href="../graphics/pencil2.png" height="12pt" id="image_eml_dmb_xhb"/> ou
+                        <image placement="inline" href="../graphics/pencil_icon.png" height="12pt"
+                        id="image_rrs_2mb_xhb"/>) pour activer.</cmd>
+                <stepresult>
+                    <p>Cette boîte de dialogue apparaît lorsque vous modifiez le champ "Afficher les
+                        annotations", par exemple:<image placement="break"
+                            href="../graphics/review_public_candidate_annotation.png"
+                            id="image_j5r_2nb_xhb"/></p>
+                </stepresult>
+            </step>
+            <step>
+                <cmd>Affichez toutes les annotations de fichiers pour les formats pris en charge ou
+                    en cliquant sur le nom du fichier pour les formats non pris en charge.</cmd>
+            </step>
+            <step>
+                <cmd>Après avoir examiné l'annotation, effectuez l'une des opérations
+                    suivantes:</cmd>
+                <choices id="choices_ihw_3nb_xhb">
+                    <choice>Cliquez sur <image placement="inline"
+                            href="../graphics/approve_public_candidate.png" height="12pt"
+                            id="image_lfw_tnb_xhb"/> le bouton pour l'approuver et ajoutez
+                        éventuellement un commentaire.<note>Lorsque vous approuvez une annotation,
+                            celle-ci devient publique, avec tous les commentaires. Les commentaires
+                            ne s'affichent pas en mode Afficher et servent uniquement au
+                            suivi.</note></choice>
+                    <choice>Cliquez sur <image placement="inline"
+                            href="../graphics/reject_public_candidate.png" height="12pt"
+                            id="image_dqr_snb_xhb"/> le bouton pour le rejeter. Vous devez ajouter
+                        un commentaire lors du rejet d'une annotation.<note>Lorsque vous refusez une
+                            annotation, elle devient privée pour la création, avec les commentaires
+                            de rejet.</note></choice>
+                    <choice>Cliquez sur <image placement="inline"
+                            href="../graphics/cancel_public_candidate.png" height="12pt"
+                            id="image_d5l_vnb_xhb"/> le bouton pour annuler.</choice>
+                </choices>
+            </step>
+        </steps>
+    </taskbody>
+</task>
+
+<?oxy_options track_changes="on"?>

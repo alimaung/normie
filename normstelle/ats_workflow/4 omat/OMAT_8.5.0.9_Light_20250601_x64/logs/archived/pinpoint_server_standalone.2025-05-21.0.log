@@ -1,0 +1,41 @@
+2025-05-21 01:24:52,987  INFO org.apache.catalina.core.ContainerBase.[pinpoint_engine].[localhost].[/ppserver] log.173  - 1 Spring WebApplicationInitializers detected on classpath
+2025-05-21 01:24:58,249  INFO org.apache.catalina.core.ContainerBase.[pinpoint_engine].[localhost].[/ppserver] log.173  - Initializing Spring embedded WebApplicationContext
+2025-05-21 01:24:59,585  INFO com.flatirons.commons.utilities.DatabaseInitializingBean afterPropertiesSet.39  - Check database connection.
+2025-05-21 01:24:59,587  INFO com.zaxxer.hikari.HikariDataSource getConnection.110  - HikariPool-2 - Starting...
+2025-05-21 01:24:59,596  WARN com.zaxxer.hikari.util.DriverDataSource <init>.70  - Registered driver with driverClassName=org.hsqldb.jdbcDriver was not found, trying direct instantiation.
+2025-05-21 01:24:59,796  INFO com.zaxxer.hikari.pool.PoolBase getAndSetNetworkTimeout.541  - HikariPool-2 - Driver does not support get/set network timeout for connections. (feature not supported)
+2025-05-21 01:24:59,814  INFO com.zaxxer.hikari.HikariDataSource getConnection.123  - HikariPool-2 - Start completed.
+2025-05-21 01:24:59,820  INFO com.flatirons.commons.utilities.DatabaseInitializingBean afterPropertiesSet.41  - Database connection is available.
+2025-05-21 01:25:00,086  INFO liquibase.integration log.37  - Liquibase did not run because 'shouldRun' property was set to false on liquibase Liquibase Spring bean.
+2025-05-21 01:25:08,711  INFO org.quartz.impl.StdSchedulerFactory instantiate.1220  - Using default implementation for ThreadExecutor
+2025-05-21 01:25:08,741  INFO org.quartz.core.SchedulerSignalerImpl <init>.61  - Initialized Scheduler Signaller of type: class org.quartz.core.SchedulerSignalerImpl
+2025-05-21 01:25:08,742  INFO org.quartz.core.QuartzScheduler <init>.229  - Quartz Scheduler v.2.3.2 created.
+2025-05-21 01:25:08,744  INFO org.quartz.simpl.RAMJobStore initialize.155  - RAMJobStore initialized.
+2025-05-21 01:25:08,746  INFO org.quartz.core.QuartzScheduler initialize.294  - Scheduler meta-data: Quartz Scheduler (v2.3.2) 'quartzScheduler' with instanceId 'NON_CLUSTERED'
+  Scheduler class: 'org.quartz.core.QuartzScheduler' - running locally.
+  NOT STARTED.
+  Currently in standby mode.
+  Number of jobs executed: 0
+  Using thread pool 'org.quartz.simpl.SimpleThreadPool' - with 10 threads.
+  Using job-store 'org.quartz.simpl.RAMJobStore' - which does not support persistence. and is not clustered.
+
+2025-05-21 01:25:08,747  INFO org.quartz.impl.StdSchedulerFactory instantiate.1374  - Quartz scheduler 'quartzScheduler' initialized from an externally provided properties instance.
+2025-05-21 01:25:08,747  INFO org.quartz.impl.StdSchedulerFactory instantiate.1378  - Quartz scheduler version: 2.3.2
+2025-05-21 01:25:08,747  INFO org.quartz.core.QuartzScheduler setJobFactory.2293  - JobFactory set to: org.springframework.scheduling.quartz.SpringBeanJobFactory@6046e5d6
+2025-05-21 01:25:09,082  INFO org.quartz.core.QuartzScheduler start.547  - Scheduler quartzScheduler_$_NON_CLUSTERED started.
+2025-05-21 01:25:17,781  INFO com.flatirons.commons.esapi.filter.FlatironsESAPISecurityConfiguration getResourceFile.26  - Loadin ESAPI Properties from the
+2025-05-21 01:25:17,787  INFO com.flatirons.commons.esapi.filter.FlatironsESAPISecurityConfiguration getResourceFile.26  - Loadin ESAPI Properties from the
+2025-05-21 01:25:18,235  INFO org.apache.catalina.core.ContainerBase.[pinpoint_engine].[localhost].[/ppserver] log.173  - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2025-05-21 01:25:20,161  WARN org.apache.tika.parsers.PDFParser handleInitializableProblem.69  - J2KImageReader not loaded. JPEG2000 files will not be processed.
+See https://pdfbox.apache.org/2.0/dependencies.html#jai-image-io
+for optional dependencies.
+
+2025-05-21 01:25:20,333  WARN org.apache.tika.parser.SQLite3Parser handleInitializableProblem.69  - org.xerial's sqlite-jdbc is not loaded.
+Please provide the jar on your classpath to parse sqlite files.
+See tika-parsers/pom.xml for the correct version.
+2025-05-21 01:25:21,136  INFO com.flatirons.commons.rest.performance.PerformanceLogger filter.55  - REST API: com.flatirons.pinpoint.server.rest.resource.FileResource.getLogo; Duration (ms): 1800
+2025-05-21 01:25:21,244  INFO com.flatirons.commons.rest.performance.PerformanceLogger filter.55  - REST API: com.flatirons.pinpoint.server.rest.resource.LandingPageResource.applicationPage; Duration (ms): 1176
+2025-05-21 01:26:10,603  INFO com.flatirons.commons.rest.performance.PerformanceLogger filter.55 core=x:misspellings_core - REST API: com.flatirons.pinpoint.server.rest.resource.DocumentResource.documentContent; Duration (ms): 1153
+2025-05-21 01:26:44,532  INFO com.flatirons.commons.rest.performance.PerformanceLogger filter.55 core=x:misspellings_core - REST API: com.flatirons.pinpoint.server.rest.resource.SearchResource.fullTextSearchSubmit; Duration (ms): 2510
+2025-05-21 01:26:48,459  INFO com.flatirons.commons.rest.performance.PerformanceLogger filter.55  - REST API: com.flatirons.pinpoint.server.rest.resource.DocumentResource.documentContent; Duration (ms): 1763
+2025-05-21 01:27:16,352  INFO com.flatirons.commons.rest.performance.PerformanceLogger filter.55  - REST API: com.flatirons.pinpoint.server.rest.resource.DocumentResource.documentContent; Duration (ms): 1028

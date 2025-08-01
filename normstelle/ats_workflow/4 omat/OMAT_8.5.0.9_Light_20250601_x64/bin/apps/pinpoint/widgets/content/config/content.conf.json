@@ -1,0 +1,181 @@
+{
+    "timeout" : 2400000,
+    "mouseHoverTooltipDelayTime" : 2000,
+    "menus": {
+        "leftMenus": [
+            {
+                "name": "findContent",
+                "titleKey": "content.title.findContent",
+                "icon": "fa-search",
+                "action": "findContent"
+            },
+            {
+                "name": "printContent",
+                "titleKey": "content.title.printContent",
+                "icon": "fa-print",
+                "isHidden" : true,
+                "action": "printContent"
+            },
+            {
+                "name": "metadata",
+                "titleKey": "content.title.metadata",
+                "icon": "fa-info",
+                "isHidden" : true,
+                "action": "showDocumentMetadata"
+            },
+            {
+                "name": "navigatePrevious",
+                "titleKey": "content.title.previousDocument",
+                "icon": "fa-arrow-circle-left",
+                "isHidden" : true,
+                "action": "navigatePrevious"
+            },
+            {
+                "name": "navigateNext",
+                "titleKey": "content.title.nextDocument",
+                "icon": "fa-arrow-circle-right",
+                "isHidden" : true,
+                "action": "navigateNext"
+            }
+
+        ],
+        "rightMenus": [
+            {
+                "name": "openCreateRestrictedFragments",
+                "titleKey": "content.title.createFragments",
+                "icon": "icon-key",
+                "action": "openRestrictedFragment",
+                "isHidden": true,
+                "type": "CreateRestrictedFragments",
+                "background": ""
+            },
+            {
+                "name": "openRestrictedFragmentModal",
+                "titleKey": "content.title.viewFragments",
+                "icon": "icon-restricted-modal",
+                "action": "openRestrictedFragment",
+                "type": "ViewRestrictedFragments",
+                "isHidden": true,
+                "background": ""
+            },
+            {
+                "name": "openAuthoringTab",
+                "titleKey": "content.title.authoringMode",
+                "icon": "fa-pencil",
+                "action": "openAuthoringTab",
+                "isHidden": true,
+                "background": ""
+            },
+            {
+                "name": "relatedContent",
+                "titleKey": "content.title.relatedContent",
+                "icon": "icon-book-search",
+                "action": "onClickAMMRelatedContentIcon",
+                "isHidden": true,
+                "background": ""
+            },
+            {
+                "name": "contentLink",
+                "titleKey": "content.title.parentContent",
+                "icon": "fa-book",
+                "action": "backToContent",
+                "isHidden": true,
+                "background": ""
+            },
+            {
+                "name": "landingUrl",
+                "titleKey": "content.title.landingPage",
+                "icon": "fa-home",
+                "action": "openLandingPage",
+                "isHidden": false,
+                "background": ""
+            },    
+            {
+                "name": "upload supplement",
+                "titleKey": "content.title.uploadSupplement",
+                "customStyle": "customUploadSupplement",
+                "isHidden": true,
+                "action": "showUploadSupplement",
+                "background": ""
+            },
+            {
+                "name": "acknowledge",
+                "titleKey": "content.title.acknowledge",
+                "icon": "fa-check",
+                "action": "acknowledgePublication",
+                "isHidden": true,
+                "background": ""
+            },
+            {
+                "name": "nextToAcknowledge",
+                "titleKey": "content.title.nextToAcknowledge",
+                "icon": "fa-chevron-circle-right",
+                "action": "openNextToAcknowledge",
+                "isHidden": true,
+                "background": ""
+            },
+            {
+                "name": "contentBookmark",
+                "titleKey": "content.title.bookmark",
+                "icon": "fa-bookmark-o",
+                "flaggedIcon": "fa-bookmark",
+                "action": "setBookmarkContent",
+                "background": ""
+            },
+            {
+                "name": "contentCopyLink",
+                "titleKey": "content.title.copyLink",
+                "icon": "fa-link",
+                "action": "openGoToLinkDialog",
+                "background": ""
+            },
+            {
+                "name": "ataStyle",
+                "titleKey": "content.title.ataStyle",
+                "icon": "fa-outdent",
+                "action": "switchAtaStyle",
+                "isHidden": false,
+                "background": ""
+            },    
+            {
+                "name": "toggleContent",
+                "titleKey": "content.title.toggleContent",
+                "icon": "fa-low-vision",
+                "action": "toggleFilteredContentVisibility"
+            },
+            {
+                "name": "feedbackContent",
+                "titleKey": "content.title.feedback",
+                "icon": "fa-cloud-upload",
+                "action": "feedbackContent",
+                "background": ""
+            },
+            {
+                "name": "List Graphic",
+                "titleKey": "content.title.figureList",
+                "icon": "fa-picture-o",
+                "action": "showGraphicSheet",
+                "background": ""
+            },
+            {
+                "name": "openContentInNewBrowserWindow",
+                "titleKey": "content.title.openContentInNewBrowserWindow",
+                "icon": "fa-external-link",
+                "action": "openContentInNewBrowserWindow",
+                "background": "",
+                "isHidden": true
+            }
+        ]
+    },
+    "splash": { 
+                "img": "css/images/Pinpoint-Logo.svg" 
+    },
+    "usePlugin": "N",
+    "pluginSupportTypes": ["html"],
+    "embedIcons": {
+                "expand": "css/images/embed/icon_expand.svg",
+                "collapse": "css/images/embed/icon_collapse.svg",
+                "close": "css/images/embed/icon_close.svg",
+                "error": "css/images/embed/icon_error-circle.svg"
+    }
+}

@@ -1,0 +1,54 @@
+{
+    "template": "widgets/pinpointcomponent/media/template/mediahandle",
+    "mediaTypes": {
+		"svg": {
+			"tagName": "mediasvg",
+			"attributes": [
+				"id='mediaSVGId'",
+				"load-media-params='loadMediaParams'",
+				"broad-cast-for-highlight-item-num='vm.broadCastForHighlightItemNum(message)'"
+			],
+			"panZoom": "panZoomAble",
+			"availableIcons": [
+				"findGraphic"
+			]
+		},
+		"x3d": {
+			"tagName": "x3dom",
+			"attributes": [
+				"id='mediaX3DomId'",
+				"load-media-params='loadMediaParams'",
+				"type='\"graphic\"'"
+			]
+		},
+		"pdf": {
+			"tagName": "mediapdf",
+			"attributes": [
+				"id='mediaPDFId'",
+				"load-media-params='loadMediaParams'",
+				"broad-cast-for-highlight-item-num='vm.broadCastForHighlightItemNum(message)'"
+			],
+			"panZoom" : "panZoomAble",
+			"availableIcons" : [
+				"findGraphic"
+			]
+		},
+		"swf": {
+			"tagName": "swfobject",
+			"attributes": [
+				"id='mediaSWFId'",
+				"load-media-params='loadMediaParams'",
+				"broad-cast-for-highlight-item-num='vm.broadCastForHighlightItemNum(message)'"
+			],
+			"panZoom" : "panZoomAble",
+			"availableIcons" : [
+				"findGraphic"
+			]
+		}
+	},
+    "panZoomTypes": {
+    	"panZoomAble" : "graphicContent",
+    	"disPanZoomAble" : "nonPanzoomableGraphicContent",
+    	"default" : "nonPanzoomableGraphicContent"
+    }
+}

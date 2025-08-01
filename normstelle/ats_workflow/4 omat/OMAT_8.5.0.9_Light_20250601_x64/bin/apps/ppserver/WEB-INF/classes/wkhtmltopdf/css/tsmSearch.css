@@ -1,0 +1,33 @@
+#tsmSearch table {
+    border-left: 1px;
+    border-right: 1px;
+    margin-bottom: 0px;
+    margin-top: 0px;
+    width: 100%;
+}
+
+#tsmSearch table th {
+    background: #AAAAAA
+}
+
+#tsmSearch td.selected_sign {
+    font-size: 150%;
+    padding-top: 2px !important;
+    padding-bottom: 0px !important;
+}
+
+#tsmSearch tr.selected_row {
+    font-weight: bolder;
+}
+
+#tsmSearch .table > tbody > tr > td, .table > tbody > tr > th {
+    vertical-align: top;
+}
+
+#tsmSearch table > tbody > tr > td.nestedTd {
+    padding-right: 0px;
+}
+
+#tsmSearch table {
+    display: table;
+}

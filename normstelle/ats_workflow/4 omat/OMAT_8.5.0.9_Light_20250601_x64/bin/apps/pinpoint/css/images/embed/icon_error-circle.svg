@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="20px" height="20px" viewBox="0 0 36 36" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 63.1 (92452) - https://sketch.com -->
+    <title>Icons / Error Circle</title>
+    <desc>Created with Sketch.</desc>
+    <defs>
+        <path d="M17.5,0 C7.84,0 0,7.84 0,17.5 C0,27.16 7.84,35 17.5,35 C27.16,35 35,27.16 35,17.5 C35,7.84 27.16,0 17.5,0 Z M20.125,28 L14.875,28 L14.875,22.75 L20.125,22.75 L20.125,28 Z M20.125,19.25 L14.875,19.25 L14.875,7 L20.125,7 L20.125,19.25 Z" id="path-1"></path>
+    </defs>
+    <g id="Embedded-Reference" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Icons-/-Error-Circle-Bold" transform="translate(-3.000000, -3.000000)">
+            <g id="baseline-error-24px" transform="translate(3.500000, 3.500000)">
+                <g id="Colors-/-Primary-/-Flatirons-Red">
+                    <mask id="mask-2" fill="white">
+                        <use xlink:href="#path-1"></use>
+                    </mask>
+                    <use id="Mask" fill="#000000" fill-rule="nonzero" xlink:href="#path-1"></use>
+                    <g id="Colors-/-Secondary-/-Grey-Gradient-Btm" mask="url(#mask-2)" fill="#AAAAAA">
+                        <g transform="translate(-3.500000, -3.500000)" id="Grey-Gradient-Btm">
+                            <rect x="0" y="0" width="42" height="42"></rect>
+                        </g>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

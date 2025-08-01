@@ -1,0 +1,323 @@
+body {
+    padding:5px;
+    margin: 0;
+}
+
+#equipment-appendix {
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+}
+
+#equipment-appendix table,
+#equipment-appendix td,
+#equipment-appendix th {
+    border: 1px solid #adadad;
+    border-collapse : collapse;
+    width: 100%;
+    text-align: center;
+}
+
+#equipment-appendix td,
+#equipment-appendix th {
+    width: 200px;
+    height: 30px;
+    font-size:14px;
+    white-space: nowrap;
+    padding: 10px;
+}
+
+#equipment-appendix thead {
+    padding: 10px 0;
+    height: 30px;
+    background-color: #EEEEEE;
+}
+
+#equipment-appendix th {
+    background-color:lightyellow;
+}
+
+#equipment-appendix tr.primaryRow {
+    background-color:#EEEEEE;
+    border: 1px solid #adadad;
+}
+
+#equipment-appendix span.illusRef,
+#equipment-appendix td.chapterRef {
+    color: blue;
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+#secondaryEquipmentTable td {
+    width: 50%
+}
+
+#equipment-appendix tr.centeredText {
+    text-align:center;
+}
+
+#equipment-appendix td.labelCell {
+    text-align:right;
+    padding-right:10px;
+}
+
+#equipment-appendix td.valueCell {
+    text-align:left;
+    padding-left:10px;
+}
+
+#equipment-appendix tr{
+    font-size: 0.9rem;
+}
+
+#equipment-appendix .hookupTitleContainer {
+    display:flex;
+    background-color: lightyellow;
+    height: 30px;
+    font-size: 14px;
+    font-weight: bold;
+    border-left: 1px solid #adadad;
+    border-top: 1px solid #adadad;
+}
+
+#equipment-appendix .hookUpLeftItem {
+    border-left: 1px solid #adadad;
+    margin-left: -1px;
+}
+
+#equipment-appendix .hookupTitleContainerData {
+    display:flex;
+    background-color: lightyellow;
+    height: 30px;
+    border-top: 1px solid #adadad;
+    border-bottom: 1px solid #adadad;
+    font-size: 14px;
+    background-color:#EEEEEE;
+}
+
+#equipment-appendix .hookUpContainer {
+    border-left: 1px solid #adadad;
+}
+
+#equipment-appendix .hookupTableContainer {
+   padding-left: 10%;
+   overflow: auto;
+}
+
+#equipment-appendix td.smallCell,
+#equipment-appendix th.smallCell {
+    width : 10%!important;
+}
+
+#equipment-appendix td.bigCell,
+#equipment-appendix th.bigCell {
+    width: 20%!important;
+}
+
+#equipment-appendix .titleContainerItem {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-right:1px solid #adadad;
+}
+
+#equipment-appendix th.tableCells,
+#equipment-appendix td.tableCells{
+    text-align: left;
+    padding-left: 10px;
+}
+
+#equipment-appendix td.tableWidth{
+    width: 80%;
+    padding: 0px;
+}
+
+#secondaryEquipmentTable tbody.secondaryTable{
+    display: block;
+}
+
+#attachment-appendix{
+    padding: 0 5px;
+}
+
+#attachment-appendix caption {
+    font-weight: bold;
+    color: black;
+}
+
+#attachment-appendix th {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    background: #b7b7b7;
+    color: black;
+    padding: 5px;
+}
+
+#attachment-appendix td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+    padding: 5px;
+}
+
+#attachment-appendix a {
+    color: #0000ff;
+}
+
+#attachment-appendix table {
+    width: 100%;
+    margin-bottom: 30px;
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+
+#coverPages{
+    margin-top: 20vh;
+}
+
+#coverPages p {
+    text-align:center;
+    font-size:20pt;
+    line-height:115%;
+    font-family:Geneva, Arial, Helvetica, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#coverPages .libraryTitle {
+    font-size:36.0pt;
+}
+
+#coverPages .publicationTitle {
+    font-size:28pt;
+}
+
+#secondaryEquipmentTable {
+    border: hidden !important;
+}
+
+dialog {
+    margin: revert;
+    border-radius: 7px;
+    width: 95%;
+}
+
+div.closeDialog {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #e5e5e5;
+    background-color: #f8f8f8;
+    padding: 10px;
+}
+
+span.closeDialog {
+  font-size: medium;
+  cursor:pointer;
+}
+
+.cir-title {
+    font-weight: bold;
+}
+
+p.cir-content {
+    padding: 10px;
+}
+
+iframe.cirContent {
+    width: 100%;
+    border: none;
+}
+
+#print-table {
+    width: 100%;
+    margin-top: 5px;
+}
+
+
+.print-header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 4px;
+    height: 52px;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid black;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    font-size: 10pt;
+    -webkit-box-sizing: initial;
+    box-sizing: initial;
+}
+
+.print-footer {
+    position:fixed;
+    bottom:0 ;
+    width: 100%;
+    display: flex ;
+    justify-content: center;
+    height:40px;
+    overflow: hidden;
+    border-top: 1px solid black;
+    font-family: Geneva, Arial, Helvetica, sans-serif;
+    font-size: 8pt;
+}
+
+#nameInformation {
+    width: 50%;
+    margin-left: 25%;
+    font-weight: bold;
+    text-align: center;
+    margin-top: 0;
+}
+
+#dateInformation {
+    position:fixed;
+    top:-2px;
+    left:5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: end;
+    height: 60px;
+}
+
+#einHookupTable{
+    border: hidden !important;
+}
+
+@media screen {
+    .onPrintOnly{
+        display: none;
+    }
+    thead , tfoot {
+        height: 0!important;
+    }
+}
+
+/* Make all the content of pills/tabs visible */
+.tab-content > .tab-pane {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+/* Display all the pills/tabs content without a scrollbar */
+.tab-content {
+    max-height: none !important;
+}
+
+.archiveNotSupportedLink, .undeterminedSupportLink {
+    cursor: not-allowed !important;
+    color: blue !important;
+    text-decoration: underline !important;
+}
+
+.pp-dynamic-link {
+    cursor: pointer;
+    color: blue;
+    text-decoration: underline;
+}
+
+.pp-hide-on-print {
+    display:none !important;
+}

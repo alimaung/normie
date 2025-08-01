@@ -1,0 +1,41 @@
+#*********Application config *****************
+pinpointURL=http://local.flatironssolutions.com:8083/pinpoint
+pinpointMobileURL=http://local.flatironssolutions.com:8083/ppmobile
+effect=filter
+docIdentifier=documentCode
+faultCodeIdentifier=FILT_FAULTCODE
+configuration=-A
+appendConfigChar=false
+#****************************************
+# Sample QC configurations **************
+#*********Airbus config *****************
+#Format:<fleetname>FleetName
+AAL_A320ModelName=Mock A320 Library
+DAL_A320ModelName=Non_Existing_Lib
+#Format:<fleetname>TSMManualName
+AAL_A320TSMManualName=Mock A320 TSM
+DAL_A320TSMManualName=Non_Existing_TSM
+#****************************************
+#*********Boeing config *****************
+AAL_777ModelName=Mock B777 Library
+AAL_777FRMFIMManualName=Mock B777 FRMFIM
+AAL_777AMMManualName=Mock B777 AMM (non-existing)
+DAL_B737ModelName=Non_Existing_Lib1
+DAL_B737AMMManualName=Non_Existing_AMM
+DAL_B737FRMFIMManualName=Non_Existing_FRMFIM
+##### OLD Convention
+A320FleetName=A320
+A340FleetName=A340
+A380FleetName=A380
+A320TSMManualName=A320-TSM
+A340TSMManualName=A340TSM
+A380TSMManualName=TSM_10147590
+B777FleetName=B777
+B767FleetName=B767
+B747FleetName=B747
+B777FRMFIMManualName=B777_FRMFIM_R76
+B767FRMFIMManualName=B767_FRMFIM_R55
+B747FRMFIMManualName=B747_FRMFIM_Rev85
+B777AMMManualName=B777-AMM
+B767AMMManualName=B767_AMM_R112_04072016
+B747AMMManualName=B747_AMM_R12

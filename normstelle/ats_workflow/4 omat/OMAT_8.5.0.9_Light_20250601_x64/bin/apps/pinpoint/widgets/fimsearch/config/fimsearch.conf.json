@@ -1,0 +1,75 @@
+{
+    "timeout" : 120000,
+    "pageSize" : 10,
+    "dataTypeCategories" : {
+        "ATA" : [
+            {
+                "name" : "Maint",
+                "labelKey" : "fimSearch.title.maintMessageSearch"
+            },
+            {
+                "name" : "CodeIndex",
+                "labelKey" : "fimSearch.title.FCIndexSearch",
+                "noKeyword" : true
+            },
+            {
+                "name" : "EICAS",
+                "labelKey" : "fimSearch.title.eicasEISSearch"
+            },
+            {
+                "name" : "Observed",
+                "labelKey" : "fimSearch.title.observedFaultSearch"
+            },
+            {
+                "name" : "Cabin",
+                "labelKey" : "fimSearch.title.cabinFaultSearch"
+            }
+        ],
+        "PINPOINT" : [
+            {
+                "name" : "Maint",
+                "labelKey" : "fimSearch.title.maintMessageSearch"
+            },
+            {
+                "name" : "CodeIndex",
+                "labelKey" : "fimSearch.title.FCIndexSearch",
+                "noKeyword" : true
+            },
+            {
+                "name" : "EICAS",
+                "labelKey" : "fimSearch.title.eicasEISSearch"
+            },
+            {
+                "name" : "Observed",
+                "labelKey" : "fimSearch.title.observedFaultSearch"
+            },
+            {
+                "name" : "Cabin",
+                "labelKey" : "fimSearch.title.cabinFaultSearch"
+            }
+        ],
+        "S1000D" : [
+            {
+                "name" : "Maint",
+                "labelKey" : "fimSearch.title.maintMessageSearch"
+            },
+            {
+                "name" : "CodeIndex",
+                "labelKey" : "fimSearch.title.FCIndexSearch",
+                "noKeyword" : true
+            },
+            {
+                "name" : "EICAS",
+                "labelKey" : "fimSearch.title.eicasEISSearch"
+            },
+            {
+                "name" : "Observed",
+                "labelKey" : "fimSearch.title.observedFaultSearch"
+            },
+            {
+                "name" : "Cabin",
+                "labelKey" : "fimSearch.title.cabinFaultSearch"
+            }
+        ]
+    }
+}

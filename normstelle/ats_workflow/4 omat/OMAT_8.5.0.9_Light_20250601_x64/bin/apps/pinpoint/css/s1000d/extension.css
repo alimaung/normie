@@ -1,0 +1,484 @@
+/*S1000D*/
+body {
+  background-color:#eee;
+  color:black;
+  font-weight:normal;
+  margin: 0;
+}
+a {color:#06c;}
+a:hover {color:#06f;}
+body, input, select, textarea {
+  font-size: 12px;
+  font-family: Verdana, Arial, Geneva, sans-serif;
+}
+
+.disabled,
+.menubutton .disabled,
+.menuBar .disabled,
+.menuBar .disabled:hover,
+.inlineMenuBar .disabled,
+.inlineMenuBar .disabled:hover,
+.menubutton .disabled:hover,
+ a.disabled, a.disabled:hover {
+  color: #888888;
+  cursor: default;
+  text-decoration:none;
+  background:none transparent;
+}
+
+.menubutton a.disabled:hover {
+/*  margin-top:1px;
+  margin-left:1px;
+  margin-bottom:1px;
+  margin-right:1px;*/
+  border-top:none;
+  border-left:none;
+  border-bottom:none;
+  border-right:none;
+}
+.header {
+  height: 60px;
+  text-align:right;
+  font-family:helvetica, arial, sans-serif;
+}
+
+.headerRight {
+  padding-top:4px;
+  padding-right:10px;
+  font-size: 11px;
+  color:#fff;
+}
+.headerRight a {
+  color:#fff;
+  text-decoration:underline;
+}
+
+.application {
+  margin-left:0pt;
+  padding-bottom:0pt;
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.footer {
+  text-align:right;
+  padding-right:10px;
+  font-size: 9px;
+  color:#666;
+}
+
+.tabsBar {
+  background:#407aaa;
+}
+
+.tabsBar table {
+  text-align: center;
+  width:100%;
+  border-spacing:0px;
+}
+
+.tabsBar img {
+  padding-right: 4px;
+  margin: 0px;
+}
+
+.tab {
+  padding: 0px;
+  width:110px;
+  height:25px;
+  vertical-align: middle;
+  border-bottom: 1px solid #e15119;
+}
+
+.tab a {
+  display: block;
+  padding-top: 5px;
+  padding-bottom: 1px;
+  width:110px;
+  height:19px;
+  vertical-align: middle;
+  text-decoration:none;
+  color:#98ccf8;
+  font-family: Helvetica, Arial, Geneva, sans-serif;
+  font-size:12px;
+}
+
+.tab a:hover {
+ /* background: url(../images/background/rounded_tabs/tab-hover.png) transparent no-repeat scroll top left;*/
+  vertical-align: middle;
+  text-decoration:none;
+  text-decoration:underline;
+  color:#fff;
+}
+
+.tabselected {
+  background: url(../images/background/rounded_tabs/tab-selected.png) transparent no-repeat scroll top left;
+  height:25px;
+  width:110px;
+  padding:0px;
+  vertical-align:middle;
+  border-bottom-color: black;
+}
+
+.tabselected a {
+  color:#fff;
+  font-family: Helvetica, Arial, Geneva, sans-serif;
+  font-size:12px;
+}
+
+.tabselected a:hover {
+  text-decoration:underline;
+}
+
+td.tablespacer{
+  border-bottom:1px solid #e15119;
+}
+
+.menuBar {
+  height:28px;
+  line-height:24px;
+  background: #000;
+  border-bottom: 1px solid #666;
+}
+.inlineMenuBar {
+  margin-bottom:4px;
+  background:none;
+  border:none;
+}
+
+.menuBar img, .inlineMenuBar img {
+  padding-right: 2px;
+  margin: 0px;
+}
+
+.menuBar table, .inlineMenuBar table {
+  width:auto;
+}
+
+.menuBar td {
+  border:none;
+  padding-top:0px;
+  padding-bottom:0px;
+  padding-left:0px;
+  padding-right:8px;
+}
+
+.inlineMenuBar td {
+  border:none;
+  padding-top:0px;
+  padding-bottom:0px;
+  padding-left:0px;
+  padding-right:0px;
+}
+
+.menuBar a, .inlineMenuBar a {
+  color:#16419E;
+  font-family: Helvetica, Arial, Geneva, sans-serif;
+  font-size:12px;
+  text-decoration:none;
+
+  white-space:nowrap;
+}
+.menuBar a {
+  color:#fff;
+}
+
+.menuBar a:hover, .inlineMenuBar a:hover {
+  text-decoration:underline;
+  background:none;
+  margin:0px;
+  padding:0px;
+}
+
+.menubutton a, .inlineMenuBar .menubutton a {
+   white-space: nowrap;
+  background:none;
+  text-decoration:none;
+  color:#ddd;
+  vertical-align:bottom;
+}
+.inlineMenuBar .menubutton a {
+  color:#06c;
+}
+
+.menubutton a:hover {
+  text-decoration:underline;
+  color:#fff;
+  border-color:#000;
+}
+.inlineMenuBar .menubutton a:hover {
+  text-decoration:underline;
+  color:#06f;
+  border-color:#eee;
+}
+
+.dropdown {
+  border: 1px solid #ccc;
+  list-style-type: none;
+  position: absolute;
+  visibility: hidden;
+  padding: 0px;
+  margin: 0px;
+  background-color: black;
+  z-index:99999;
+}
+
+.content {
+  height: 100%;
+  padding-left:8px;
+  padding-right:8px;
+  padding-top:4px;
+  padding-bottom:4px;
+}
+
+.infoBar {
+  background-color: white;
+  font-size:12pt;
+  border-top:1px solid #8DAED9;
+  border-left:1px solid #8DAED9;
+  border-right:1px solid #8DAED9;
+}
+
+.infoBar td {
+  border-bottom: none;
+}
+
+table.autoWidth {
+  width: auto;
+}
+
+.applicabilityIdentifier {
+}
+
+.primaryProductIdentifier {
+  text-decoration: underline;
+}
+
+h2 {
+  font-weight:bold;
+  font-size:10pt;
+  border-bottom: 1px solid #9bbbe3;
+  clear:both;
+  margin-bottom: 3px;
+}
+
+h1 {
+  background: url(../images/background/h1.png) transparent repeat scroll top left;
+  border: solid 1px #8DAED9;
+  text-align:center;
+  font-size:10pt;
+  margin-top: 0px;
+  margin-bottom: 0px;
+  margin-left: 0px;
+  margin-right: 0px;
+  padding-top: 2px;
+  padding-bottom:2px;
+  clear:both;
+  font-weight:bold;
+  background:none;
+ /* bp added 05/24 */
+	color:#333;
+  padding-top:10px;
+  border:none;
+  font-size:20px;
+  text-align:left;
+}
+
+form {
+  margin-top: 0;
+  border: none;
+}
+
+.formactions {
+  font-size:10px;
+  width:100%;
+}
+
+.left {
+  text-align:left;
+  border-bottom: none;
+  padding:0;
+}
+
+.quicklink {
+}
+
+.right {
+  text-align:right;
+  border-bottom: none;
+  padding:0;
+}
+
+.formbutton {
+}
+
+.buttonBar, .buttonBarWrapper {
+  clear:both;
+  text-align:center;
+}
+
+th {
+  background: url(../images/background/h1.png) transparent repeat scroll top left;
+  padding: 2px;
+  white-space: nowrap;
+  border-bottom: solid 1px #8DAED9;
+  border-left: solid 1px #8DAED9;
+  border-right: solid 1px #8DAED9;
+}
+
+th a {
+  font-weight:normal;
+  color:black;
+}
+
+td {
+  padding: 3px;
+  border-bottom: 1px solid #D9E8FB;
+}
+
+img.disabled {
+  filter:alpha(opacity=25);
+  -moz-opacity:0.25;
+  opacity: 0.25;
+}
+
+.s1000dContent {
+  border: 1px #BFBFBF solid;
+}
+
+.dultree {
+  background-color: white;
+  overflow: auto;
+}
+
+.popupBottom {
+  margin: 0;
+  padding: 10px;
+  border-top: 1px solid #000;
+  text-align: right;
+}
+
+form.popupBottom {
+  border: none;
+}
+
+input.bottomFrame {
+  margin: 0 2px 0 0;
+}
+
+.popupFrameset {
+}
+
+#applicabilityTable table {
+  width: 100%;
+}
+
+#applicabilityTable td {
+  border-bottom: none;
+}
+
+#applicabilityTable .col1_2, #applicabilityTable .col1_3 {
+  width: 30%;
+}
+
+#applicabilityTable .col2_3 {
+  width: 30%;
+}
+
+#contentContentPane {
+  background-color:#ddd; /* Need to define background-color separately */
+}
+
+.simplePagingTable {
+  border-bottom: 0px;
+  font-weight: bold;
+  text-align: center;
+  color: black;
+  vertical-align: center;
+}
+
+.simplePagingTable td {
+  width: 20%;
+  border-bottom: 0px;
+}
+
+td.simplePagingTablePrefixCell {
+  text-align: left;
+}
+
+td.simplePagingTablePrevious {
+  text-align: right;
+}
+
+td.simplePagingTableCurrent {
+  text-align: center;
+}
+
+td.simplePagingTableNext {
+  text-align: left;
+}
+
+td.simplePagingTablePostfixCell {
+  text-align: right;
+}
+
+td.noborder {
+  border-bottom: 0px;
+}
+
+td.nowrap {
+  white-space: nowrap;
+}
+
+body.viewDataModuleWindow {
+  background-color:white;
+}
+
+.viewDataModuleWindow td {
+  border-bottom: none;
+}
+
+.viewDataModuleWindow .infoBar {
+  border: none;
+}
+
+.excerpt-elem {
+  font-weight: bold;
+  color: #112299;
+}
+
+td.noFaultNavigationResults {
+  border-bottom: 0px;
+  text-align: center;
+}
+
+td.faultNavigationResult {
+  border: solid black 1px;
+}
+
+td.faultNavigationResult table {
+  border-color:#000000;
+  border-style: solid;
+  border-collapse: collapse;
+  frame: box;
+}
+
+td.faultNavigationResult th {
+  font-weight:bold;
+}
+
+td.faultNavigationResult td {
+  border-color:#000000;
+  border-width:1pt;
+  white-space: wrap;
+}
+
+td.faultNavigationResult tr {
+  border-color:#000000;
+  border-width:2pt;
+  background-color:"#E0E0E0";
+}
+
+a:visited.faultNavigationReferenceLink {
+  color: purple;
+}

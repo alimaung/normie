@@ -1,0 +1,20 @@
+<div ng-style="{'max-height' : (vm.getAttachmentTabHeight(vm.$rootScope)-30) +'px'}">
+    <table class="attachments-dialog" ng-repeat="category in attachmentsDialog.attachmentGroups | orderObjectBy:'icon-priority':true">
+        <tr class="category-row" ng-style="{'background-color':category.color,'border-left-color':category.color}">
+            <td colspan="3"><img class="category-icon" ng-src="{{category.icon}}"/> {{category.title}}</td>
+        </tr>
+        <tr class="header-row" ng-style="{'border-left-color':category.color}">
+            <th>{{vm.translateService.translate("Title", "pinpointcomponent.attachments.titles.title")}}</th>
+            <th style="min-width:100px;width:15%;">{{vm.translateService.translate("Date", "pinpointcomponent.attachments.titles.date")}}</th>
+            <th style="min-width:100px;width:15%;">{{vm.translateService.translate("Updated", "pinpointcomponent.attachments.titles.updatedDate")}}</th>
+        </tr>
+        <tr class="attachment-row" ng-style="{'border-left-color':category.color}" ng-repeat="attachment in category.attachments" ng-click="vm.openAttachment(attachment)">
+            <td><i ng-if="attachment.ATTACHMENT_TYPE == 'FILE' && vm.getAttachmentFileExtension(attachment) === 'pdf'" class="fa fa-file-o"></i>
+                <i ng-if="attachment.ATTACHMENT_TYPE == 'FILE' && vm.getAttachmentFileExtension(attachment) !== 'pdf'" class="fa fa-cloud-download"></i>
+                <i ng-if="attachment.ATTACHMENT_TYPE == 'LINK' " class="fa fa-link"></i>
+                <a style="font-weight:bold;">{{attachment.TITLE}}</a><br>{{attachment.DESCRIPTION}}</td>
+            <td style="white-space: nowrap;">{{attachment.DATE}}</td>
+            <td style="white-space: nowrap;">{{attachment.UPDATED_BY}}<br>{{attachment.UPDATE_TIME}}</td>
+        </tr>
+    </table>
+</div>

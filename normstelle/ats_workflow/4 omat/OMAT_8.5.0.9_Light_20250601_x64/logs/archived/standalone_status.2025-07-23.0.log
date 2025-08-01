@@ -1,0 +1,355 @@
+2025-07-23 16:10:38,687  INFO -    Startup: Starting Pinpoint Standalone
+2025-07-23 16:10:38,768  INFO - Pinpoint : Starting Pinpoint Standalone
+2025-07-23 16:10:38,770  INFO - Pinpoint : Checking required file permissions for C:\Users\u8064927\AppData\Local\Temp\
+2025-07-23 16:10:38,772  INFO - Pinpoint : Read,Write permissions OK.
+2025-07-23 16:10:38,775  INFO - In initSystemProperties: baseDir=C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64 workDir=C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64
+2025-07-23 16:10:38,780  INFO - 
+2025-07-23 16:10:38,780  INFO - --------------- ps_config.properties --------------------
+2025-07-23 16:10:38,781  INFO - Checking C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\ps_config.properties configuration file:
+2025-07-23 16:10:38,792  INFO - 'acm.main.path' = '/acmclient'
+2025-07-23 16:10:38,792  INFO - 'acm.port' = '8086'
+2025-07-23 16:10:38,792  INFO - 'acm.port.ssl' = '9191'
+2025-07-23 16:10:38,792  INFO - 'autodetect.free.ports' = 'true'
+2025-07-23 16:10:38,792  INFO - 'config.variant' = 'RR'
+2025-07-23 16:10:38,792  INFO - 'connector.compression' = 'on'
+2025-07-23 16:10:38,792  INFO - 'host.name' = 'localhost'
+2025-07-23 16:10:38,792  INFO - 'hsqldb.port' = '9003'
+2025-07-23 16:10:38,792  INFO - 'http.protocol' = 'http'
+2025-07-23 16:10:38,792  INFO - 'ldap.port' = '10489'
+2025-07-23 16:10:38,793  INFO - 'location.bin' = 'bin'
+2025-07-23 16:10:38,793  INFO - 'location.data' = 'data'
+2025-07-23 16:10:38,793  INFO - 'location.log' = 'logs'
+2025-07-23 16:10:38,793  INFO - 'number.of.threads' = '1'
+2025-07-23 16:10:38,793  INFO - 'parallel.startup' = 'true'
+2025-07-23 16:10:38,793  INFO - 'pinpoint.port' = '8085'
+2025-07-23 16:10:38,793  INFO - 'pinpoint.port.ssl' = '9193'
+2025-07-23 16:10:38,793  INFO - 'pp.main.path' = '/pinpoint'
+2025-07-23 16:10:38,793  INFO - 'stop.on.error' = 'true'
+2025-07-23 16:10:38,793  INFO - 'update.configuration' = 'true'
+2025-07-23 16:10:38,794  INFO - Using 'host.name'='localhost'
+2025-07-23 16:10:38,795  INFO - Checking if '8085' is in use on 'localhost'
+2025-07-23 16:10:38,821  INFO - Checking if '8085' is in use on 'localhost'
+2025-07-23 16:10:38,822  INFO - Port '8085' is not in use.
+2025-07-23 16:10:38,822  INFO - Port pinpoint.port = '8085' found to be free - will be used.
+2025-07-23 16:10:38,823  INFO - Checking if '8086' is in use on 'localhost'
+2025-07-23 16:10:38,823  INFO - Checking if '8086' is in use on 'localhost'
+2025-07-23 16:10:38,824  INFO - Port '8086' is not in use.
+2025-07-23 16:10:38,824  INFO - Port acm.port = '8086' found to be free - will be used.
+2025-07-23 16:10:38,824  INFO - Checking if '9003' is in use on 'localhost'
+2025-07-23 16:10:38,825  INFO - Checking if '9003' is in use on 'localhost'
+2025-07-23 16:10:38,825  INFO - Port '9003' is not in use.
+2025-07-23 16:10:38,825  INFO - Port hsqldb.port = '9003' found to be free - will be used.
+2025-07-23 16:10:38,825  INFO - Checking if '10489' is in use on 'localhost'
+2025-07-23 16:10:38,825  INFO - Checking if '10489' is in use on 'localhost'
+2025-07-23 16:10:38,826  INFO - Port '10489' is not in use.
+2025-07-23 16:10:38,826  INFO - Port ldap.port = '10489' found to be free - will be used.
+2025-07-23 16:10:38,826  INFO - Checking if '9193' is in use on 'localhost'
+2025-07-23 16:10:38,827  INFO - Checking if '9193' is in use on 'localhost'
+2025-07-23 16:10:38,827  INFO - Port '9193' is not in use.
+2025-07-23 16:10:38,827  INFO - Port pinpoint.port.ssl = '9193' found to be free - will be used.
+2025-07-23 16:10:38,827  INFO - Checking if '9191' is in use on 'localhost'
+2025-07-23 16:10:38,828  INFO - Checking if '9191' is in use on 'localhost'
+2025-07-23 16:10:38,828  INFO - Port '9191' is not in use.
+2025-07-23 16:10:38,828  INFO - Port acm.port.ssl = '9191' found to be free - will be used.
+2025-07-23 16:10:38,828  WARN - Did not find: 'keystore.alias' in 'C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\ps_config.properties'
+2025-07-23 16:10:38,828  WARN - Did not find: 'keystore.pass' in 'C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\ps_config.properties'
+2025-07-23 16:10:38,828  WARN - Did not find: 'keystore.file' in 'C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\ps_config.properties'
+2025-07-23 16:10:38,850  INFO - Start updating configuration files.
+2025-07-23 16:10:38,850  INFO - Update C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\acm_config.properties
+2025-07-23 16:10:38,862  INFO - Updated jdbc.url: 'jdbc.url=jdbc\:hsqldb\:hsql\://localhost\:9003/standaloneDB'
+2025-07-23 16:10:38,863  INFO - Update C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\acm.app.conf.json
+2025-07-23 16:10:38,874  WARN - Missing config file: 'C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\dm_config.properties'
+2025-07-23 16:10:38,875  WARN - Missing config file: 'C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\dm.app.conf.json'
+2025-07-23 16:10:38,875  INFO - Update C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\pp_config.properties
+2025-07-23 16:10:38,887  INFO - Updated jdbc.url: 'jdbc.url=jdbc\:hsqldb\:hsql\://localhost\:9003/standaloneDB'
+2025-07-23 16:10:38,889  INFO - Update C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\predictive_config.properties
+2025-07-23 16:10:38,903  INFO - Update C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\pp.app.conf.json
+2025-07-23 16:10:38,918  WARN - Missing config file: 'C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\builder_config.properties'
+2025-07-23 16:10:38,918  WARN - Missing config file: 'C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\ldapconfig.properties'
+2025-07-23 16:10:38,919  WARN - Missing config file: 'C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\data\hsqldb\dmdb.script'
+2025-07-23 16:10:38,919  INFO - End updating configuration files.
+2025-07-23 16:10:38,919  INFO - 
+2025-07-23 16:10:38,919  INFO - --------------- acm_config.properties --------------------
+2025-07-23 16:10:38,919  INFO - Checking C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\acm_config.properties configuration file:
+2025-07-23 16:10:38,919  INFO - 'acm.guest.featureEnabled' = 'true'
+2025-07-23 16:10:38,919  INFO - 'acm.guest.password' = 'RSA(GfRbAArcYv2baE7Dr1VI+t794l0PY3DGj9XSLo9YDMAAKLQYe0jiUuN8GLxnqdqQ+752V9ki+JllC4McYJwHkgZibedyMJKO5wwr5BLSXt6TjkgwBsorOCt//DgXgGgS/JdvlEPHp6gI6ZTCaTeg49XhZNsAGT1L7mRGV87Z7r4=)'
+2025-07-23 16:10:38,919  INFO - 'acm.guest.switchAccountsEnabled' = 'false'
+2025-07-23 16:10:38,919  INFO - 'acm.guest.username' = 'Guest'
+2025-07-23 16:10:38,920  INFO - 'acm.password' = 'RSA(RunE0uNibyAC+WUaEe3pkbbz2iodszvM0xMjwkVYxZjWkgaBuCxvWDIXyDmB/WIdfmv0eETnD72em4L0aGJX7Mc2u5BPUW4DgeNtwPAy2Rr6ExpzJaen72JB2uvIC1r6V0x7OzH6K776XrikAPWZIy/gEJZVDErFkbYlHe0c4lw=)'
+2025-07-23 16:10:38,920  INFO - 'acm.username' = 'Guest'
+2025-07-23 16:10:38,920  INFO - 'audit.enabled' = 'false'
+2025-07-23 16:10:38,920  INFO - 'cookie.domain' = ''
+2025-07-23 16:10:38,920  INFO - 'dbupgrade.auto' = 'false'
+2025-07-23 16:10:38,920  INFO - 'default.acm.groupname' = 'Administrators'
+2025-07-23 16:10:38,920  INFO - 'default.acm.username' = 'admin'
+2025-07-23 16:10:38,920  INFO - 'default.organization.ncage' = 'SYS'
+2025-07-23 16:10:38,920  INFO - 'expireTokensOnStartup' = 'true'
+2025-07-23 16:10:38,920  INFO - 'hibernate.dialect' = 'com.flatirons.commons.hibernate.dialect.HsqldbDialect'
+2025-07-23 16:10:38,920  INFO - 'hibernate.hbm2ddl.auto' = 'none'
+2025-07-23 16:10:38,920  INFO - 'hibernate.hbm2ddlauto' = 'none'
+2025-07-23 16:10:38,920  INFO - 'hsqldb.path' = '${cor.workdir}/data/hsqldb/standaloneDB'
+2025-07-23 16:10:38,920  INFO - 'jdbc.connectionTimeout' = '30000'
+2025-07-23 16:10:38,920  INFO - 'jdbc.driverClassName' = 'org.hsqldb.jdbcDriver'
+2025-07-23 16:10:38,920  INFO - 'jdbc.idleTimeout' = '600000'
+2025-07-23 16:10:38,920  INFO - 'jdbc.maxLifetime' = '1800000'
+2025-07-23 16:10:38,920  INFO - 'jdbc.maxPoolSize' = '50'
+2025-07-23 16:10:38,920  INFO - 'jdbc.minIdle' = '20'
+2025-07-23 16:10:38,920  INFO - 'jdbc.url' = 'jdbc:hsqldb:hsql://localhost:9003/standaloneDB'
+2025-07-23 16:10:38,920  INFO - 'jdbc.username' = 'SA'
+2025-07-23 16:10:38,920  INFO - 'management.health.mail.enabled' = 'false'
+2025-07-23 16:10:38,920  INFO - 'management.health.rabbit.enabled' = 'false'
+2025-07-23 16:10:38,921  INFO - 'scheme.map.acm' = 'Access Control'
+2025-07-23 16:10:38,921  INFO - 'scheme.map.dm' = 'Data Manager://application'
+2025-07-23 16:10:38,921  INFO - 'scheme.map.pp' = 'Pinpoint'
+2025-07-23 16:10:38,921  INFO - 'spring.application.admin.enabled' = 'false'
+2025-07-23 16:10:38,921  INFO - 'spring.application.admin.jmx-name' = 'org.springframework.boot:type=Admin,name=acm'
+2025-07-23 16:10:38,921  INFO - 'spring.application.name' = 'acm'
+2025-07-23 16:10:38,921  INFO - 'spring.jmx.default-domain' = 'acm'
+2025-07-23 16:10:38,921  INFO - 'spring.jmx.enabled' = 'false'
+2025-07-23 16:10:38,921  INFO - 
+2025-07-23 16:10:38,921  INFO - --------------- acm.app.conf.json --------------------
+2025-07-23 16:10:38,921  INFO - Checking C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\acm.app.conf.json configuration file:
+2025-07-23 16:10:38,925  INFO - Parsed ok (valid JSON)
+2025-07-23 16:10:38,926  WARN - Could not find dmgrClient property in C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\acm.app.conf.json
+2025-07-23 16:10:38,926  INFO - Checking host specified for 'acmServer' property.
+2025-07-23 16:10:38,926  INFO - Checking host specified for 'acmClient' property.
+2025-07-23 16:10:38,926  INFO - Checking host specified for 'ppClient' property.
+2025-07-23 16:10:38,926  INFO - Checking host specified for 'defaultUrl' property.
+2025-07-23 16:10:38,926  WARN - Found 'cookieDomain' = ''
+2025-07-23 16:10:38,926  INFO - Checking host specified for 'url' property.
+2025-07-23 16:10:38,926  WARN - Missing config file: 'C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\dm_config.properties'
+2025-07-23 16:10:38,926  WARN - Missing config file: 'C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\dm.app.conf.json'
+2025-07-23 16:10:38,927  INFO - 
+2025-07-23 16:10:38,927  INFO - --------------- pp_config.properties --------------------
+2025-07-23 16:10:38,927  INFO - Checking C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\pp_config.properties configuration file:
+2025-07-23 16:10:38,927  INFO - 'acm.db.hostname' = 'localhost'
+2025-07-23 16:10:38,927  INFO - 'acm.db.name' = 'standaloneDB'
+2025-07-23 16:10:38,927  INFO - 'acm.db.permissionstablename' = 'ACM_USERGROUPRESOURCE'
+2025-07-23 16:10:38,927  INFO - 'acm.db.port' = '9003'
+2025-07-23 16:10:38,927  INFO - 'acm.db.schema' = 'PUBLIC'
+2025-07-23 16:10:38,928  INFO - 'acm.db.username' = 'SA'
+2025-07-23 16:10:38,928  INFO - 'acm.group.name' = 'Administrators'
+2025-07-23 16:10:38,928  INFO - 'acm.password' = 'RSA(E8+QRQOpP2JfbPYtT7/c4dmBzvPVybG8zBhnZCNQRk57qhXYOJx0c+xpdjiYeYXFbB97Zx2bFz6nib7ZqFpQhStaVlNDZua0LDCVGRDh7sIFPIP4Tw9XywMazENQgBMSFBpX7+Tt5qDUbyIbH8J9W6oKr71WXcLOwn6n3qyZjAo=)'
+2025-07-23 16:10:38,928  INFO - 'acm.schema' = 'Pinpoint'
+2025-07-23 16:10:38,928  INFO - 'acm.url' = 'http://localhost:8086/acmserver'
+2025-07-23 16:10:38,928  INFO - 'acm.username' = 'Guest'
+2025-07-23 16:10:38,928  INFO - 'app-running-model' = 'standalone'
+2025-07-23 16:10:38,928  INFO - 'app.db.permissionsviewname' = 'VIEW_USERGROUPRESOURCE'
+2025-07-23 16:10:38,928  INFO - 'app.db.schema' = 'PUBLIC'
+2025-07-23 16:10:38,928  INFO - 'audit.enabled' = 'false'
+2025-07-23 16:10:38,928  INFO - 'auto.release.publication.type' = 'CRDM,CMM'
+2025-07-23 16:10:38,928  INFO - 'client.content.header.logo.path.mobile' = 'client-logo/logo_mobile.svg'
+2025-07-23 16:10:38,928  INFO - 'client.logo.path' = 'client-logo/logo.svg'
+2025-07-23 16:10:38,928  INFO - 'client.logo.path.mobile' = 'client-logo/logo.svg'
+2025-07-23 16:10:38,928  INFO - 'dbupgrade.auto' = 'false'
+2025-07-23 16:10:38,928  INFO - 'default.organization.ncage' = 'SYS'
+2025-07-23 16:10:38,928  INFO - 'download.destination' = '${cor.workdir}/data/pp'
+2025-07-23 16:10:38,928  INFO - 'encrypt.pinpoint_package.enabled' = 'true'
+2025-07-23 16:10:38,928  INFO - 'eula.content.path' = 'eula-content/eula.html'
+2025-07-23 16:10:38,928  INFO - 'extract.destination' = '${cor.workdir}/data/pp'
+2025-07-23 16:10:38,928  INFO - 'hibernate.dialect' = 'com.flatirons.commons.hibernate.dialect.HsqldbDialect'
+2025-07-23 16:10:38,928  INFO - 'hibernate.format_sql' = 'true'
+2025-07-23 16:10:38,928  INFO - 'hibernate.hbm2ddl.auto' = 'none'
+2025-07-23 16:10:38,928  INFO - 'hibernate.hbm2ddlauto' = 'none'
+2025-07-23 16:10:38,929  INFO - 'hibernate.show_sql' = 'false'
+2025-07-23 16:10:38,929  INFO - 'hsqldb.path' = '${cor.workdir}/data/hsqldb/standaloneDB'
+2025-07-23 16:10:38,929  INFO - 'import.neutral.package.location' = '${cor.workdir}/pinpoint-autoimport'
+2025-07-23 16:10:38,929  INFO - 'import.publication.thread.count' = '1'
+2025-07-23 16:10:38,929  INFO - 'imports.scheduled.time' = '*/2 * * * * ?'
+2025-07-23 16:10:38,929  INFO - 'includeAnchorsInTOC' = 'false'
+2025-07-23 16:10:38,929  INFO - 'insight.feedback.enable' = 'false'
+2025-07-23 16:10:38,929  INFO - 'jdbc.connectionTimeout' = '30000'
+2025-07-23 16:10:38,929  INFO - 'jdbc.driverClassName' = 'org.hsqldb.jdbcDriver'
+2025-07-23 16:10:38,929  INFO - 'jdbc.idleTimeout' = '600000'
+2025-07-23 16:10:38,929  INFO - 'jdbc.maxLifetime' = '1800000'
+2025-07-23 16:10:38,929  INFO - 'jdbc.maxPoolSize' = '50'
+2025-07-23 16:10:38,929  INFO - 'jdbc.minIdle' = '20'
+2025-07-23 16:10:38,929  INFO - 'jdbc.url' = 'jdbc:hsqldb:hsql://localhost:9003/standaloneDB'
+2025-07-23 16:10:38,929  INFO - 'jdbc.username' = 'SA'
+2025-07-23 16:10:38,929  INFO - 'management.health.mail.enabled' = 'false'
+2025-07-23 16:10:38,929  INFO - 'management.health.rabbit.enabled' = 'false'
+2025-07-23 16:10:38,929  INFO - 'mobile.package.destination' = '${cor.workdir}/data/pp/mobile'
+2025-07-23 16:10:38,929  INFO - 'mobile.publication.type' = ''
+2025-07-23 16:10:38,929  INFO - 'ondemand.publications.download.limit' = '2'
+2025-07-23 16:10:38,929  INFO - 'organization.space.destination' = '${cor.workdir}/data/pp/orgspace'
+2025-07-23 16:10:38,929  INFO - 'pdf.output.destination' = '${cor.workdir}/data/pp_pdf'
+2025-07-23 16:10:38,929  INFO - 'pinpoint.sync.authoring.time' = '0 0/5 * * * ?'
+2025-07-23 16:10:38,929  INFO - 'pinpoint.sync.org.config.time' = '10 * * * * ?'
+2025-07-23 16:10:38,929  INFO - 'pinpoint.sync.supplement.time' = '0 0/5 * * * ?'
+2025-07-23 16:10:38,929  INFO - 'pp.user.eula.enabled' = 'true'
+2025-07-23 16:10:38,930  INFO - 'printing.company.title' = 'Rolls-Royce'
+2025-07-23 16:10:38,930  INFO - 'printing.footer.content' = 'revisionnumber,releasedate,printed'
+2025-07-23 16:10:38,930  INFO - 'printing.footer.font-size' = '12'
+2025-07-23 16:10:38,930  INFO - 'printing.footer.releaseDateFormat' = 'MMM-dd-yyyy'
+2025-07-23 16:10:38,930  INFO - 'printing.header.font-size' = '12'
+2025-07-23 16:10:38,930  INFO - 'printing.landscape.html.table.attributes' = '8|10'
+2025-07-23 16:10:38,930  INFO - 'printing.landscape.orientation.page.size' = 'Tabloid'
+2025-07-23 16:10:38,930  INFO - 'printing.landscape.orientation.publication.name' = 'WDM,SSM,WM,ASM,AWM'
+2025-07-23 16:10:38,930  INFO - 'printing.margin.bottom' = '18mm'
+2025-07-23 16:10:38,930  INFO - 'printing.margin.left' = '2mm'
+2025-07-23 16:10:38,930  INFO - 'printing.margin.right' = '2mm'
+2025-07-23 16:10:38,930  INFO - 'printing.margin.top' = '18mm'
+2025-07-23 16:10:38,930  INFO - 'printing.pdf.show.footerwarningcontent' = 'true'
+2025-07-23 16:10:38,930  INFO - 'printing.pdf.show.revisiondetails' = 'true'
+2025-07-23 16:10:38,930  INFO - 'printing.plugin.path' = 'bin/wkhtmltopdf/wkhtmltopdf.exe'
+2025-07-23 16:10:38,930  INFO - 'printing.portrait.orientation.page.size' = 'Letter'
+2025-07-23 16:10:38,930  INFO - 'printing.revBar.class.add' = 'oembar.png'
+2025-07-23 16:10:38,930  INFO - 'printing.revBar.class.changeMark_fontColor_OEM' = 'oembar.png'
+2025-07-23 16:10:38,930  INFO - 'printing.revBar.class.coc_changeMark' = 'cocbar.gif'
+2025-07-23 16:10:38,930  INFO - 'printing.revBar.class.modify' = 'oembar.png'
+2025-07-23 16:10:38,930  INFO - 'printing.zoom.value' = '1.2'
+2025-07-23 16:10:38,930  INFO - 'publications.lock.offline.duration' = '-1'
+2025-07-23 16:10:38,930  INFO - 'show.revision.number' = 'custom'
+2025-07-23 16:10:38,930  INFO - 'show.warning.message.offline' = 'false'
+2025-07-23 16:10:38,930  INFO - 'solr.server.url' = 'http://localhost:8085/solr'
+2025-07-23 16:10:38,931  INFO - 'spring.application.admin.enabled' = 'false'
+2025-07-23 16:10:38,931  INFO - 'spring.application.admin.jmx-name' = 'org.springframework.boot:type=Admin,name=pp'
+2025-07-23 16:10:38,931  INFO - 'spring.application.name' = 'pp'
+2025-07-23 16:10:38,931  INFO - 'spring.jmx.default-domain' = 'pp'
+2025-07-23 16:10:38,931  INFO - 'spring.jmx.enabled' = 'false'
+2025-07-23 16:10:38,931  INFO - Checking host specified for 'acm.url' property.
+2025-07-23 16:10:38,931  WARN - Did not find: 'data_manager_resource_path_server' in 'C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\pp_config.properties'
+2025-07-23 16:10:38,931  INFO - Checking host specified for 'solr.server.url' property.
+2025-07-23 16:10:38,931  INFO - 
+2025-07-23 16:10:38,931  INFO - --------------- predictive_config.properties --------------------
+2025-07-23 16:10:38,931  INFO - Checking C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\predictive_config.properties configuration file:
+2025-07-23 16:10:38,932  INFO - 'debug' = 'false'
+2025-07-23 16:10:38,932  INFO - 'jsondoc.basePath' = 'http://localhost:8085/predictivesearch'
+2025-07-23 16:10:38,932  INFO - 'jsondoc.packages[0]' = 'com.flatirons.pinpoint.predictive.search'
+2025-07-23 16:10:38,932  INFO - 'jsondoc.version' = '1.0'
+2025-07-23 16:10:38,932  INFO - 'logging.file.name' = '${cor.logdir}/suggestions.log'
+2025-07-23 16:10:38,932  INFO - 'logging.level.com.flatirons.pinpoint.predictive.search' = 'INFO'
+2025-07-23 16:10:38,932  INFO - 'logging.level.org.springframework' = 'ERROR'
+2025-07-23 16:10:38,932  INFO - 'logging.pattern.file' = '%d %p %c{1.} [%t] %m%n'
+2025-07-23 16:10:38,932  INFO - 'management.endpoint.health.enabled' = 'true'
+2025-07-23 16:10:38,932  INFO - 'management.endpoint.health.show-details' = 'always'
+2025-07-23 16:10:38,932  INFO - 'management.endpoint.info.enabled' = 'true'
+2025-07-23 16:10:38,932  INFO - 'management.endpoints.enabled-by-default' = 'false'
+2025-07-23 16:10:38,932  INFO - 'management.health.consul.enabled' = 'false'
+2025-07-23 16:10:38,932  INFO - 'management.health.defaults.enabled' = 'false'
+2025-07-23 16:10:38,932  INFO - 'management.server.servlet.context-path' = '/actuator'
+2025-07-23 16:10:38,932  INFO - 'pinpoint.predictive.search.core.timeout' = '100000000'
+2025-07-23 16:10:38,932  INFO - 'pinpoint.predictive.search.cross.check' = 'true'
+2025-07-23 16:10:38,932  INFO - 'pinpoint.predictive.search.default.misspelling.first.part.limit' = '10'
+2025-07-23 16:10:38,932  INFO - 'pinpoint.predictive.search.default.misspelling.limit' = '10'
+2025-07-23 16:10:38,933  INFO - 'pinpoint.predictive.search.enable.cache' = 'true'
+2025-07-23 16:10:38,933  INFO - 'pinpoint.predictive.search.first.part.suggestions' = 'true'
+2025-07-23 16:10:38,933  INFO - 'pinpoint.predictive.search.history' = '${cor.workdir}/data/pp/predictivesearch/history.json'
+2025-07-23 16:10:38,933  INFO - 'pinpoint.predictive.search.languages' = '${cor.configdir}/predictivesearch/language.json'
+2025-07-23 16:10:38,933  INFO - 'pinpoint.predictive.search.max.response.timeout' = '15000'
+2025-07-23 16:10:38,933  INFO - 'pinpoint.predictive.search.pinpoint.solr.server' = 'http://localhost:8085/solr'
+2025-07-23 16:10:38,933  INFO - 'pinpoint.predictive.search.single.first.part.timeout' = '7000000'
+2025-07-23 16:10:38,933  INFO - 'pinpoint.predictive.search.solr.cores.path' = '${cor.workdir}/solr_home'
+2025-07-23 16:10:38,933  INFO - 'pinpoint.predictive.search.solr.server' = 'http://localhost:8085/solr'
+2025-07-23 16:10:38,933  INFO - 'pinpoint.solr.core.indexed' = 'pinpoint_server'
+2025-07-23 16:10:38,933  INFO - 'solr.core.abbreviations' = 'abbreviations_core'
+2025-07-23 16:10:38,933  INFO - 'solr.core.acronyms' = 'acronyms_core'
+2025-07-23 16:10:38,933  INFO - 'solr.core.misspellings' = 'misspellings_core'
+2025-07-23 16:10:38,933  INFO - 'solr.core.synonyms' = 'synonyms_core'
+2025-07-23 16:10:38,933  INFO - Checking host specified for 'pinpoint.predictive.search.solr.server' property.
+2025-07-23 16:10:38,933  INFO - Checking host specified for 'pinpoint.predictive.search.pinpoint.solr.server' property.
+2025-07-23 16:10:38,934  INFO - 
+2025-07-23 16:10:38,934  INFO - --------------- pp.app.conf.json --------------------
+2025-07-23 16:10:38,934  INFO - Checking C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\pp.app.conf.json configuration file:
+2025-07-23 16:10:38,934  INFO - Parsed ok (valid JSON)
+2025-07-23 16:10:38,934  INFO - Checking host specified for 'acmLoginURL' property.
+2025-07-23 16:10:38,934  WARN - Could not find datamanagerURL property in C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\pp.app.conf.json
+2025-07-23 16:10:38,934  INFO - Checking host specified for 'annotationService' property.
+2025-07-23 16:10:38,935  INFO - Checking host specified for 'bookmarkService' property.
+2025-07-23 16:10:38,935  INFO - Checking host specified for 'configurationService' property.
+2025-07-23 16:10:38,935  INFO - Checking host specified for 'eulapopupService' property.
+2025-07-23 16:10:38,935  INFO - Checking host specified for 'eulaContent' property.
+2025-07-23 16:10:38,935  INFO - Checking host specified for 'baseURL' property.
+2025-07-23 16:10:38,935  WARN - Missing config file: 'C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\builder_config.properties'
+2025-07-23 16:10:38,935  WARN - Missing config file: 'C:\Users\u8064927\Downloads\OMAT_8.5.0.9_Light_20250601_x64\conf\ldapconfig.properties'
+2025-07-23 16:10:38,935  INFO - Pinpoint : cor.use.tray=true
+2025-07-23 16:10:38,935  INFO - Pinpoint : Starting Pinpoint tray-bar application.
+2025-07-23 16:10:39,219  INFO - Pinpoint : SystemTray dpi is 144.0
+2025-07-23 16:10:39,220  INFO - Pinpoint : SystemTray font adjustment ratio set to 1.8
+2025-07-23 16:10:39,376  INFO - compression on
+2025-07-23 16:10:39,377  INFO - noCompressionUserAgents gozilla, traviata
+2025-07-23 16:10:39,377  INFO - compressibleMimeType text/html,text/xml,text/plain,text/css,text/javascript,application/octet-stream,application/json,application/xml,application/javascript,application/vnd.hzn-3d-crossword
+2025-07-23 16:10:39,393  INFO - Embedded LDAP server  not found.
+2025-07-23 16:10:39,400  INFO - ApacheDS  not found.
+2025-07-23 16:10:39,400  INFO - LdapAdmin  not found.
+2025-07-23 16:10:39,400  INFO -    Startup: Deploying: Access Control Manager server
+2025-07-23 16:10:39,400  INFO - Access Control Manager server  found for deploy.
+2025-07-23 16:10:39,417  INFO -    Startup: Deploying: Access Control Manager client
+2025-07-23 16:10:39,417  INFO - Access Control Manager client  found for deploy.
+2025-07-23 16:10:39,418  INFO - compression on
+2025-07-23 16:10:39,418  INFO - noCompressionUserAgents gozilla, traviata
+2025-07-23 16:10:39,419  INFO - compressibleMimeType text/html,text/xml,text/plain,text/css,text/javascript,application/octet-stream,application/json,application/xml,application/javascript,application/vnd.hzn-3d-crossword
+2025-07-23 16:10:39,419  INFO - Data Manager client  not found.
+2025-07-23 16:10:39,419  INFO - Data Manager server  not found.
+2025-07-23 16:10:39,419  INFO - builder  not found.
+2025-07-23 16:10:39,419  INFO - buildxwb  not found.
+2025-07-23 16:10:39,419  INFO - s1000d  not found.
+2025-07-23 16:10:39,419  INFO - buildb787  not found.
+2025-07-23 16:10:39,419  INFO - buildcmm  not found.
+2025-07-23 16:10:39,419  INFO - buildcseries  not found.
+2025-07-23 16:10:39,420  INFO - buildkca  not found.
+2025-07-23 16:10:39,420  INFO - pdfset  not found.
+2025-07-23 16:10:39,420  INFO - docplus  not found.
+2025-07-23 16:10:39,420  INFO - htmlset  not found.
+2025-07-23 16:10:39,420  INFO - ispec  not found.
+2025-07-23 16:10:39,421  INFO -    Startup: Deploying: Solr
+2025-07-23 16:10:39,421  INFO - Solr  found for deploy.
+2025-07-23 16:10:39,422  INFO -    Startup: Deploying: Pinpoint client
+2025-07-23 16:10:39,422  INFO - Pinpoint client  found for deploy.
+2025-07-23 16:10:39,422  INFO -    Startup: Deploying: Pinpoint server
+2025-07-23 16:10:39,423  INFO - Pinpoint server  found for deploy.
+2025-07-23 16:10:39,423  INFO -    Startup: Deploying: Predictive Search server
+2025-07-23 16:10:39,423  INFO - Predictive Search server  found for deploy.
+2025-07-23 16:10:39,424  INFO - Pinpoint mobile  not found.
+2025-07-23 16:10:39,424  INFO -    Startup: 
+2025-07-23 16:10:39,424  INFO -    Startup: Starting ACM ...please wait...
+2025-07-23 16:10:39,424  INFO -    Startup: 
+2025-07-23 16:10:39,430  INFO -    Startup: 
+2025-07-23 16:10:39,431  INFO -    Startup: Starting Pinpoint Standalone ...please wait...
+2025-07-23 16:10:39,432  INFO -    Startup: 
+2025-07-23 16:10:39,674  INFO - DeploymentListener: StandardEngine[auth_engine].StandardHost[localhost].StandardContext[/acmserver] : lifecycle state name: INITIALIZING
+2025-07-23 16:10:39,674  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/predictivesearch] : lifecycle state name: INITIALIZING
+2025-07-23 16:10:39,683  INFO - DeploymentListener: StandardEngine[auth_engine].StandardHost[localhost].StandardContext[/acmserver] : lifecycle state name: INITIALIZED
+2025-07-23 16:10:39,683  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/predictivesearch] : lifecycle state name: INITIALIZED
+2025-07-23 16:10:39,697  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/predictivesearch] : lifecycle state name: STARTING_PREP
+2025-07-23 16:10:39,697  INFO - DeploymentListener: StandardEngine[auth_engine].StandardHost[localhost].StandardContext[/acmserver] : lifecycle state name: STARTING_PREP
+2025-07-23 16:10:50,850  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/predictivesearch] : lifecycle state name: STARTING
+2025-07-23 16:10:50,854  INFO -    Startup: ...... Application started: predictivesearch
+2025-07-23 16:10:50,855  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/predictivesearch] : lifecycle state name: STARTED
+2025-07-23 16:10:50,855  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/ppserver] : lifecycle state name: INITIALIZING
+2025-07-23 16:10:50,856  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/ppserver] : lifecycle state name: INITIALIZED
+2025-07-23 16:10:50,859  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/ppserver] : lifecycle state name: STARTING_PREP
+2025-07-23 16:11:07,195  INFO - DeploymentListener: StandardEngine[auth_engine].StandardHost[localhost].StandardContext[/acmserver] : lifecycle state name: STARTING
+2025-07-23 16:11:07,197  INFO -    Startup: ...... Application started: acmserver
+2025-07-23 16:11:07,197  INFO - DeploymentListener: StandardEngine[auth_engine].StandardHost[localhost].StandardContext[/acmserver] : lifecycle state name: STARTED
+2025-07-23 16:11:07,197  INFO - DeploymentListener: StandardEngine[auth_engine].StandardHost[localhost].StandardContext[/acmclient] : lifecycle state name: INITIALIZING
+2025-07-23 16:11:07,199  INFO - DeploymentListener: StandardEngine[auth_engine].StandardHost[localhost].StandardContext[/acmclient] : lifecycle state name: INITIALIZED
+2025-07-23 16:11:07,202  INFO - DeploymentListener: StandardEngine[auth_engine].StandardHost[localhost].StandardContext[/acmclient] : lifecycle state name: STARTING_PREP
+2025-07-23 16:11:07,264  INFO - DeploymentListener: StandardEngine[auth_engine].StandardHost[localhost].StandardContext[/acmclient] : lifecycle state name: STARTING
+2025-07-23 16:11:07,265  INFO -    Startup: ...... Application started: acmclient
+2025-07-23 16:11:07,265  INFO - DeploymentListener: StandardEngine[auth_engine].StandardHost[localhost].StandardContext[/acmclient] : lifecycle state name: STARTED
+2025-07-23 16:11:07,290  INFO -    Startup: 
+2025-07-23 16:11:07,291  INFO -    Startup: ... ACM started ...
+2025-07-23 16:11:07,291  INFO -    Startup: 
+2025-07-23 16:11:33,689  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/ppserver] : lifecycle state name: STARTING
+2025-07-23 16:11:33,690  INFO -    Startup: ...... Application started: ppserver
+2025-07-23 16:11:33,690  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/ppserver] : lifecycle state name: STARTED
+2025-07-23 16:11:33,690  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/solr] : lifecycle state name: INITIALIZING
+2025-07-23 16:11:33,711  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/solr] : lifecycle state name: INITIALIZED
+2025-07-23 16:11:33,715  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/solr] : lifecycle state name: STARTING_PREP
+2025-07-23 16:11:41,167  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/solr] : lifecycle state name: STARTING
+2025-07-23 16:11:41,168  INFO -    Startup: ...... Application started: solr
+2025-07-23 16:11:41,168  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/solr] : lifecycle state name: STARTED
+2025-07-23 16:11:41,168  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/pinpoint] : lifecycle state name: INITIALIZING
+2025-07-23 16:11:41,171  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/pinpoint] : lifecycle state name: INITIALIZED
+2025-07-23 16:11:41,176  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/pinpoint] : lifecycle state name: STARTING_PREP
+2025-07-23 16:11:44,601  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/pinpoint] : lifecycle state name: STARTING
+2025-07-23 16:11:44,602  INFO -    Startup: ...... Application started: pinpoint
+2025-07-23 16:11:44,602  INFO - DeploymentListener: StandardEngine[pinpoint_engine].StandardHost[localhost].StandardContext[/pinpoint] : lifecycle state name: STARTED
+2025-07-23 16:11:44,703  INFO -    Startup: 
+2025-07-23 16:11:45,622  INFO -    Startup: Browser started - using url: http://localhost:8085/pinpoint
+2025-07-23 16:11:45,623  INFO -    Startup: Pinpoint Application started
+2025-07-23 16:11:45,623  INFO - Pinpoint Application started
+2025-07-23 16:11:45,623  INFO -    Startup: 
+2025-07-23 16:11:45,624  INFO -    Startup: ... Pinpoint Standalone started ...
+2025-07-23 16:11:45,624  INFO -    Startup: 

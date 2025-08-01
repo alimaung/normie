@@ -1,0 +1,12 @@
+{
+  "dynamicLinks" : [
+    {
+      "pattern": "",
+      "requiredMinProducts" : null,
+      "requiredMaxProducts": null,
+      "replacementUrl": "",
+      "requiresBanner": false,
+      "replacementBannerMessage": ""
+    }
+  ]
+}

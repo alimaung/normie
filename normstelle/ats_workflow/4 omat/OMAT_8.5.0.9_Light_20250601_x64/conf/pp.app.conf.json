@@ -1,0 +1,42 @@
+{
+    "configurationService": "http://localhost:8085/ppserver/services/configurations",
+    "shoppingBasketType": "internal",
+    "displayRevisionsInfo": "true",
+    "embeddedCompactWindowEnabled": true,
+    "isForceFilter": "true",
+    "dateFormat": "MMM-dd-yyyy",
+    "partManualsWithRelatedAMMContentLink": [
+        "AIPC",
+        "IPD",
+        "IPDP"
+    ],
+    "pinpoint_viewer_webhelp": "webhelp{_lang}/index.html",
+    "acmLoginURL": "http://localhost:8086/acmclient/#/",
+    "ftsOptions": {
+        "showFunctionsDropDown": true,
+        "showPublicationCategoryDropDown": true,
+        "showSimpleAndComplexSearch": true
+    },
+    "annotationService": "http://localhost:8085/ppserver/services/annotation",
+    "showMouseHoverTooltip": "true",
+    "showEulaPopup": "true",
+    "eulapopupService": "http://localhost:8085/ppserver/services/users/eula",
+    "attachmentService": "http://localhost:8085/ppserver/services/supplement",
+    "openDocumentInNewTabOrWindow": {
+        "forceIFrameMode": true,
+        "enabled": true
+    },
+    "predictiveSearch": {
+        "backendService": "http://localhost:8085/predictivesearch",
+        "enabled": true
+    },
+    "dataSources": [{
+        "baseURL": "http://localhost:8085/ppserver/services",
+        "type": "PINPOINT"
+    }],
+    "enableContentWarningCheckbox": "true",
+    "enableExportControl": "true",
+    "bookmarkService": "http://localhost:8085/ppserver/services/bookmark",
+    "eulaContent": "http://localhost:8085/ppserver/services/file/eula/content",
+    "authoringService": "http://localhost:8085/ppserver/services/authoring"
+}

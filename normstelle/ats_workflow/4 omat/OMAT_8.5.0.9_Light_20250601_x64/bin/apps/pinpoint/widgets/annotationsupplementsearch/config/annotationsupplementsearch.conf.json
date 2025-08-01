@@ -1,0 +1,43 @@
+{
+    "timeout" : 120000,
+    "pageSize" : 10,
+    "menus": {
+        "leftMenus": [],
+        "rightMenus": [
+            {
+                "name": "PublicCandidatesList",
+                "title": "annotationSupplementSearch.title.showPublicCandidatesList",
+                "icon": "fa-list",
+                "isHidden": true,
+                "action": "showPublicCandidatesList",
+                "count": 0
+            },
+            {
+                "name": "SupplementsList",
+                "title": "annotationSupplementSearch.title.showPPSupplementsList",
+                "icon": "fa-file",
+                "isHidden": true,
+                "action": "showPPSupplementsList",
+                "count": 0
+            }
+
+        ]
+    } ,
+    "annotationTypes": [
+        {
+            "type": "myAnnotations",
+            "title": "annotationSupplementSearch.title.myAnnotations",
+            "checked": true
+        },
+        {
+            "type": "publicCandidate",
+            "title": "annotationSupplementSearch.title.publicCandidate",
+            "checked": false
+        },
+        {
+            "type": "all",
+            "title": "annotationSupplementSearch.title.all",
+            "checked": false
+        }
+    ]
+}

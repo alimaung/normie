@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE task PUBLIC "-//OASIS//DTD DITA General Task//EN" "generalTask.dtd">
+<task id="task_m1k_32q_3v" xml:lang="fr-FR">
+    <title>Créer une nouvelle annotation</title>
+    <prolog>
+        <metadata>
+            <keywords>
+                <indexterm props="indexterm">créer une annotation</indexterm>
+            </keywords>
+        </metadata>
+    </prolog>
+    <taskbody>
+        <context>
+            <p>Pour créer des annotations pour du texte et / ou des graphiques (SVG, GIF et PNG),
+                procédez comme suit:<note>S'il existe un avertissement pour le document sur lequel
+                    vous souhaitez créer une annotation, vous devez accepter les instructions de
+                    sécurité. Après avoir coché la case Acquitter l'instruction de sécurité, l'icône
+                    d'annotation est activée, ce qui vous permet de créer une annotation pour le
+                    document.</note></p>
+        </context>
+        <steps id="steps_np3_n2q_3v">
+            <step>
+                <cmd>Pour créer une annotation de texte, procédez comme suit:</cmd>
+                <substeps id="substeps_cnx_kp3_fbb">
+                    <substep>
+                        <cmd>Dans la partie <wintitle>Contenu</wintitle>, mettez en surbrillance le
+                            texte que vous souhaitez annoter.</cmd>
+                        <stepresult>
+                            <image placement="break" href="../graphics/create_annotation.png"
+                                id="image_r3w_np3_fbb"/>
+                        </stepresult>
+                    </substep>
+                    <substep>
+                        <cmd>Cliquez sur l'icône d'annotation <image
+                                href="../graphics/annotation_icon.png" id="image_ccq_pp3_fbb"
+                                height="12pt"/>.</cmd>
+                    </substep>
+                </substeps>
+            </step>
+            <step>
+                <cmd>Pour créer une annotation pour un graphique, procédez comme suit:</cmd>
+                <substeps id="substeps_xmc_1q3_fbb">
+                    <substep>
+                        <cmd>Ouvrez le graphique sur lequel vous souhaitez créer une
+                            annotation.</cmd>
+                    </substep>
+                    <substep>
+                        <cmd>Cliquez sur le bouton <image
+                                href="../graphics/graphic_annotation_button.png"
+                                id="image_f1z_hq3_fbb"/> dans la barre d'outil
+                                <wintitle>Graphique</wintitle>.</cmd>
+                        <stepresult>Le curseur se transforme en une forme <image
+                                href="../graphics/annotation_cursor_in_graphic_pane.png"
+                                id="image_j1t_sq3_fbb" height="12pt"/>.</stepresult>
+                    </substep>
+                    <substep>
+                        <cmd>Dessiner un carré où vous voulez placer votre annotation</cmd>
+                    </substep>
+                </substeps>
+            </step>
+            <step>
+                <cmd>La boîte de dialogue contextuelle d'annotation qui apparaît est identique pour
+                    le texte et le graphique. </cmd>
+            </step>
+            <step>
+                <cmd>Si vous êtes autorisé à créer, modifier et supprimer des annotations publiques,
+                    cette boîte de dialogue contextuelle d'annotation apparaît:</cmd>
+                <stepresult>
+                    <fig id="fig_dn2_vql_fnb">
+                        <p>Accès si le contenu appartient à votre organisation</p>
+                        <image href="../graphics/annotation_dialog_same_organization_fr.png"
+                            id="image_nww_ylf_gnb"/>
+                    </fig>
+                    <fig id="fig_k4g_vgz_fnb">
+                        <title>Accès si le contenu n'appartient pas à votre organisation</title>
+                        <image href="../graphics/annotation_dialog_other_organization_fr.png"
+                            id="image_lj1_bmf_gnb"/>
+                    </fig>
+                </stepresult>
+            </step>
+            <step>
+                <cmd><b>Non applicable pour Pinpoint Standalone Light.</b> Si vous consultez une
+                    publication de votre organisation, sélectionnez l'un de ces boutons radio
+                        <uicontrol>d'accès</uicontrol>:</cmd>
+                <substeps id="substeps_urq_ykl_fnb">
+                    <substep>
+                        <cmd>Si vous souhaitez que l'annotation ne soit visible que par vous,
+                            sélectionnez le bouton radio <uicontrol>Privé</uicontrol>.</cmd>
+                    </substep>
+                    <substep>
+                        <cmd>Si vous souhaitez que l'annotation soit visible uniquement par votre
+                            organisation, sélectionnez le bouton radio <uicontrol>Mon
+                                organisation</uicontrol>.</cmd>
+                    </substep>
+                    <substep>
+                        <cmd>Si vous souhaitez que l'annotation soit visible par toutes les
+                            organisations, sélectionnez le bouton radio <uicontrol>Tout le
+                                monde</uicontrol>.</cmd>
+                    </substep>
+                </substeps>
+            </step>
+            <step>
+                <cmd><b>Non applicable pour Pinpoint Standalone Light.</b> Si vous consultez une
+                    publication d'une autre organisation, sélectionnez l'un de ces boutons radio
+                        <uicontrol>d'accès</uicontrol>:</cmd>
+                <substeps id="substeps_b2s_bll_fnb">
+                    <substep>
+                        <cmd>Si vous souhaitez que l'annotation ne soit visible que par vous,
+                            sélectionnez le bouton radio <uicontrol>Privé</uicontrol>.</cmd>
+                    </substep>
+                    <substep>
+                        <cmd>Si vous souhaitez que l'annotation soit visible uniquement par votre
+                            organisation, sélectionnez le bouton radio <uicontrol>Mon
+                                organisation</uicontrol>.</cmd>
+                    </substep>
+                </substeps>
+            </step>
+            <step>
+                <cmd>Si vous n'êtes pas autorisé à créer, modifier et supprimer des annotations
+                    publiques, cette boîte de dialogue contextuelle d'annotation apparaît:</cmd>
+                <stepresult>
+                    <fig id="fig_hhv_kkz_fnb">
+                        <image placement="break"
+                            href="../graphics/create_annotations_public_candidate.png"
+                            height="3.5in" id="image_qfd_3kz_fnb"/>
+                    </fig>
+                    <note>Vous pouvez déplacer la boîte de dialogue contextuelle d'annotation en
+                        cliquant sur l'en-tête d'annotation et en faisant glisser la boîte de
+                        dialogue vers un autre emplacement.</note>
+                </stepresult>
+            </step>
+            <step>
+                <cmd>Choisissez si l'annotation est privée ou publique</cmd>
+                <info>
+                    <note>Les annotations publiques sont sous le contrôle de privilège. Pour créer,
+                        modifier et supprimer des annotations publiques vous aurez besoin écriture
+                        et suppression de la permission <b>Peut créer, modifier ou supprimer des
+                            annotations publiques</b> dans le Access Control. Cette annotation doit
+                        être approuvée par un utilisateur disposant d'une autorisation en écriture
+                        avant de pouvoir être rendue publique.</note>
+                </info>
+            </step>
+            <step>
+                <cmd>Tapez un titre et les commentaires que vous voulez faire.</cmd>
+                <stepresult>
+                    <note class="- topic/note ">Le champ <uicontrol>Date</uicontrol> affiche la date
+                        actuelle et ne peut pas être modifié</note>
+                </stepresult>
+            </step>
+            <step>
+                <cmd>Dans la barre d'outils de format, sélectionnez un style de format à appliquer
+                    aux commentaires:</cmd>
+                <info>
+                    <ul id="ul_e52_gr2_1jb">
+                        <li>Gras</li>
+                        <li>Italiques</li>
+                        <li>Souligné</li>
+                        <li>Liste ordonnée</li>
+                        <li>Liste non ordonnée</li>
+                        <li>Retrait correct</li>
+                        <li>Retrait gauche</li>
+                    </ul>
+                    <note>Toutes les options de mise en forme que vous appliquez aux annotations
+                        sont visibles lorsque vous modifiez ou affichez une image d'annotation et
+                        lorsque vous créez un document de retour.</note>
+                </info>
+            </step>
+            <step>
+                <cmd>Facultatif: dans le champ <uicontrol>Sélectionner ou supprimer</uicontrol> un
+                    fichier, ajoutez une attachement à l'annotation à l'aide de l'une des méthodes
+                    suivantes:</cmd>
+                <choices id="choices_zzr_bjb_xhb">
+                    <choice>Faites glisser le fichier du système de fichiers de votre ordinateur et
+                        déposez-le dans le champ <uicontrol>Sélectionner ou supprimer</uicontrol> un
+                        fichier. </choice>
+                    <choice>Cliquez dans le champ pour ouvrir le navigateur de fichiers, recherchez
+                        et insérez le fichier. </choice>
+                </choices>
+                <info>Voici quelques exemples de formats pris en charge:</info>
+                <info>
+                    <p>
+                        <ul id="ul_dkn_1qp_shb">
+                            <li>.bmp </li>
+                            <li>.gif </li>
+                            <li>.jpg </li>
+                            <li>.jpeg </li>
+                            <li>.mp4 </li>
+                            <li>.png </li>
+                            <li>.pdf </li>
+                        </ul>
+                        <note>Pour supprimer une attachement, cliquez sur l'icône <image
+                                href="../graphics/remove_attachment_icon.png" id="image_lzt_bct_fhb"
+                                height="12pt"/> Supprimer la pièce jointe en regard du nom de la
+                            attachement. Toutes les attachements dans des formats pris en charge par
+                            le navigateur s'affichent en ligne dans l'annotation. </note>
+                    </p>
+                    <p>Les attachements dans des formats non pris en charge ont le nom de fichier.
+                            <note>Pour IE 11 uniquement: les attachements dont la taille de fichier
+                            est supérieure à 5 Mo semblent être plus lentes. des aperçus.</note></p>
+                </info>
+            </step>
+            <step>
+                <cmd>Cliquez sur le bouton <uicontrol>Enregistrer</uicontrol>. </cmd>
+                <stepresult>Dans le volet <wintitle>Contenu</wintitle>, le texte annoté apparaît en
+                    surbrillance jaune, tandis que dans le volet graphique, vous verrez l'annotation
+                    comme un carré rouge. Lorsque vous déplacez la souris sur l'annotation, elle
+                    apparaît dans une boîte de dialogue. Vous le verrez également si vous cliquez
+                    dans la zone grise "Afficher les annotations".</stepresult>
+            </step>
+        </steps>
+    </taskbody>
+</task>
