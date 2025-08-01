@@ -1,0 +1,279 @@
+/**
+ * Contact Autocomplete Styles
+ * 
+ * Modern, responsive styling for the contact autocomplete component
+ * with smooth animations and professional appearance.
+ */
+
+.autocomplete-container {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+}
+
+.autocomplete-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: #fff;
+    border: 1px solid #ddd;
+    border-top: none;
+    border-radius: 0 0 6px 6px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    max-height: 300px;
+    overflow-y: auto;
+    font-size: 14px;
+    animation: dropdownFadeIn 0.15s ease-out;
+}
+
+@keyframes dropdownFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.autocomplete-item {
+    padding: 12px 16px;
+    cursor: pointer;
+    border-bottom: 1px solid #f0f0f0;
+    transition: background-color 0.1s ease;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.autocomplete-item:last-child {
+    border-bottom: none;
+}
+
+.autocomplete-item:hover,
+.autocomplete-item.selected {
+    background-color: #f8f9fa;
+}
+
+.autocomplete-item.selected {
+    background-color: #e3f2fd;
+    border-left: 3px solid #2196f3;
+}
+
+.contact-main {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 8px;
+}
+
+.contact-name {
+    font-weight: 500;
+    color: #333;
+    flex: 1;
+    min-width: 0; /* Allow text truncation */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contact-email {
+    color: #666;
+    font-size: 13px;
+    flex-shrink: 0;
+    max-width: 250px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.contact-subtitle {
+    color: #888;
+    font-size: 12px;
+    font-style: italic;
+    margin-top: 2px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.autocomplete-no-results {
+    padding: 16px;
+    text-align: center;
+    color: #666;
+}
+
+.no-results-message {
+    font-weight: 500;
+    margin-bottom: 4px;
+}
+
+.no-results-suggestion {
+    font-size: 12px;
+    color: #888;
+}
+
+.autocomplete-error {
+    padding: 16px;
+    text-align: center;
+    color: #d32f2f;
+    background-color: #ffebee;
+}
+
+.error-message {
+    font-weight: 500;
+}
+
+/* Enhanced input styling for recipient fields */
+.recipient-input {
+    border-radius: 6px 6px 0 0;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.recipient-input:focus {
+    border-color: #2196f3;
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.1);
+    outline: none;
+}
+
+.autocomplete-container .recipient-input:focus {
+    border-radius: 6px 6px 0 0;
+}
+
+/* Scrollbar styling for dropdown */
+.autocomplete-dropdown::-webkit-scrollbar {
+    width: 6px;
+}
+
+.autocomplete-dropdown::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 0 0 6px 0;
+}
+
+.autocomplete-dropdown::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 3px;
+}
+
+.autocomplete-dropdown::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .autocomplete-dropdown {
+        font-size: 16px; /* Prevent iOS zoom */
+        max-height: 250px;
+    }
+    
+    .autocomplete-item {
+        padding: 14px 16px;
+    }
+    
+    .contact-main {
+        flex-direction: column;
+        gap: 2px;
+    }
+    
+    .contact-email {
+        max-width: none;
+        font-size: 14px;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .autocomplete-dropdown {
+        border-color: #000;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    }
+    
+    .autocomplete-item.selected {
+        background-color: #000;
+        color: #fff;
+        border-left-color: #fff;
+    }
+    
+    .contact-name {
+        color: #000;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .autocomplete-dropdown {
+        background: #2d2d2d;
+        border-color: #555;
+        color: #fff;
+    }
+    
+    .autocomplete-item {
+        border-bottom-color: #444;
+    }
+    
+    .autocomplete-item:hover {
+        background-color: #3d3d3d;
+    }
+    
+    .autocomplete-item.selected {
+        background-color: #1976d2;
+        border-left-color: #64b5f6;
+    }
+    
+    .contact-name {
+        color: #fff;
+    }
+    
+    .contact-email {
+        color: #bbb;
+    }
+    
+    .contact-subtitle {
+        color: #999;
+    }
+    
+    .autocomplete-no-results {
+        color: #bbb;
+    }
+    
+    .no-results-suggestion {
+        color: #888;
+    }
+}
+
+/* Loading indicator (optional enhancement) */
+.autocomplete-loading {
+    padding: 16px;
+    text-align: center;
+    color: #666;
+}
+
+.autocomplete-loading::after {
+    content: '';
+    display: inline-block;
+    width: 16px;
+    height: 16px;
+    border: 2px solid #ddd;
+    border-top-color: #2196f3;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 8px;
+}
+
+@keyframes spin {
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+/* Integration with existing compose styles */
+.compose-recipients .autocomplete-container {
+    width: 100%;
+}
+
+.compose-recipients .recipient-field .autocomplete-container {
+    flex: 1;
+} 

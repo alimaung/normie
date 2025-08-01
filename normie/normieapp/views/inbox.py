@@ -1110,3 +1110,104 @@ def inbox_send_email(request):
             'success': False,
             'error': 'Failed to send email. Please try again.'
         }) 
+
+@csrf_exempt
+@restrict_read_only_users
+def inbox_contact_autocomplete(request):
+    """
+    API endpoint for contact autocomplete in compose interface.
+    Returns contact suggestions for recipient fields.
+    """
+    if request.method != 'GET':
+        return JsonResponse({'success': False, 'error': 'Invalid request method'})
+    
+    try:
+        query = request.GET.get('q', '').strip()
+        limit = int(request.GET.get('limit', 10))
+        
+        # Validate input
+        if not query:
+            return JsonResponse({
+                'success': True,
+                'results': [],
+                'message': 'No query provided'
+            })
+        
+        if len(query) < 2:
+            return JsonResponse({
+                'success': True,
+                'results': [],
+                'message': 'Query too short (minimum 2 characters)'
+            })
+        
+        # Import contact service
+        try:
+            from ..services.contact_service import get_contact_service
+            contact_service = get_contact_service()
+            
+            if not contact_service.is_available():
+                return JsonResponse({
+                    'success': False,
+                    'error': 'Contact database not available. Please check configuration.',
+                    'results': []
+                })
+            
+            # Perform search
+            results = contact_service.search_contacts(query, limit)
+            
+            return JsonResponse({
+                'success': True,
+                'query': query,
+                'results': results,
+                'count': len(results)
+            })
+            
+        except ImportError:
+            logger.error("Contact service not available - missing contact_service module")
+            return JsonResponse({
+                'success': False,
+                'error': 'Contact service not configured',
+                'results': []
+            })
+        
+    except ValueError as e:
+        return JsonResponse({
+            'success': False,
+            'error': f'Invalid parameters: {str(e)}',
+            'results': []
+        })
+    except Exception as e:
+        logger.error(f"Error in contact autocomplete: {str(e)}", exc_info=True)
+        return JsonResponse({
+            'success': False,
+            'error': 'Internal server error',
+            'results': []
+        })
+
+
+@restrict_read_only_users
+def inbox_contact_stats(request):
+    """
+    Get contact database statistics for admin/debugging.
+    """
+    try:
+        from ..services.contact_service import get_contact_service
+        contact_service = get_contact_service()
+        stats = contact_service.get_database_stats()
+        
+        return JsonResponse({
+            'success': True,
+            'stats': stats
+        })
+        
+    except ImportError:
+        return JsonResponse({
+            'success': False,
+            'error': 'Contact service not available'
+        })
+    except Exception as e:
+        logger.error(f"Error getting contact stats: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': 'Internal server error'
+        }) 

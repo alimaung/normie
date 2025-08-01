@@ -38,21 +38,42 @@
             <div class="compose-recipients">
                 <div class="recipient-field">
                     <label class="recipient-label">{% trans "To" %}</label>
-                    <input type="email" id="compose-to" name="to" class="recipient-input" 
-                           placeholder="{% trans 'Recipients' %}" multiple
-                           value="{% if reply_email %}{{ reply_email.sender_email }}{% endif %}">
+                    <div class="recipient-input-wrapper">
+                        <div class="autocomplete-container">
+                            <input type="email" id="compose-to" name="to" class="recipient-input" 
+                                   placeholder="{% trans 'Start typing name or email...' %}" multiple
+                                   value="{% if reply_email %}{{ reply_email.sender_email }}{% endif %}">
+                        </div>
+                        <button type="button" class="check-names-btn" data-target="compose-to" title="{% trans 'Check Names' %}">
+                            <i class="fas fa-address-book"></i>
+                        </button>
+                    </div>
                 </div>
                 
                 <div class="recipient-field cc-field" style="display: none;">
                     <label class="recipient-label">{% trans "Cc" %}</label>
-                    <input type="email" id="compose-cc" name="cc" class="recipient-input" 
-                           placeholder="{% trans 'Cc recipients' %}" multiple>
+                    <div class="recipient-input-wrapper">
+                        <div class="autocomplete-container">
+                            <input type="email" id="compose-cc" name="cc" class="recipient-input" 
+                                   placeholder="{% trans 'Start typing name or email...' %}" multiple>
+                        </div>
+                        <button type="button" class="check-names-btn" data-target="compose-cc" title="{% trans 'Check Names' %}">
+                            <i class="fas fa-address-book"></i>
+                        </button>
+                    </div>
                 </div>
                 
                 <div class="recipient-field bcc-field" style="display: none;">
                     <label class="recipient-label">{% trans "Bcc" %}</label>
-                    <input type="email" id="compose-bcc" name="bcc" class="recipient-input" 
-                           placeholder="{% trans 'Bcc recipients' %}" multiple>
+                    <div class="recipient-input-wrapper">
+                        <div class="autocomplete-container">
+                            <input type="email" id="compose-bcc" name="bcc" class="recipient-input" 
+                                   placeholder="{% trans 'Start typing name or email...' %}" multiple>
+                        </div>
+                        <button type="button" class="check-names-btn" data-target="compose-bcc" title="{% trans 'Check Names' %}">
+                            <i class="fas fa-address-book"></i>
+                        </button>
+                    </div>
                 </div>
                 
                 <div class="recipient-toggles">
@@ -217,11 +238,98 @@
     </div>
 </div>
 
+<!-- Check Names Modal -->
+<div class="check-names-modal" id="check-names-modal" style="display: none;">
+    <div class="modal-overlay" onclick="closeCheckNamesModal()"></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>{% trans "Check Names" %}</h3>
+            <button class="modal-close" onclick="closeCheckNamesModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="search-box">
+                <input type="text" id="check-names-search" placeholder="{% trans 'Search contacts...' %}">
+                <button id="check-names-search-btn">
+                    <i class="fas fa-search"></i>
+                </button>
+            </div>
+            <div class="contacts-list" id="check-names-results">
+                <!-- Contact results will be populated here -->
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-secondary" onclick="closeCheckNamesModal()">{% trans "Cancel" %}</button>
+            <button class="btn btn-primary" onclick="selectContacts()">{% trans "Add Selected" %}</button>
+        </div>
+    </div>
+</div>
+
 <script>
-// Initialize compose functionality
+// Initialize compose functionality with autocomplete
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize compose manager
     if (typeof window.composeManager !== 'undefined') {
         window.composeManager.initializeCompose();
     }
+    
+    // Initialize autocomplete on recipient fields
+    const recipientFields = document.querySelectorAll('#compose-to, #compose-cc, #compose-bcc');
+    
+    recipientFields.forEach(field => {
+        if (field && typeof ContactAutocomplete !== 'undefined') {
+            new ContactAutocomplete(field, {
+                placeholder: field.placeholder || 'Start typing name or email...',
+                minLength: 2,
+                maxResults: 8
+            });
+        }
+    });
+    
+    // Initialize check names functionality
+    initializeCheckNames();
 });
+
+function initializeCheckNames() {
+    // Bind check names button events
+    document.querySelectorAll('.check-names-btn').forEach(btn => {
+        btn.addEventListener('click', function() {
+            const targetField = this.getAttribute('data-target');
+            openCheckNamesModal(targetField);
+        });
+    });
+}
+
+function openCheckNamesModal(targetFieldId) {
+    window.currentCheckNamesTarget = targetFieldId;
+    document.getElementById('check-names-modal').style.display = 'block';
+    document.getElementById('check-names-search').focus();
+}
+
+function closeCheckNamesModal() {
+    document.getElementById('check-names-modal').style.display = 'none';
+    window.currentCheckNamesTarget = null;
+}
+
+function selectContacts() {
+    const selectedContacts = document.querySelectorAll('#check-names-results .contact-item.selected');
+    const targetField = document.getElementById(window.currentCheckNamesTarget);
+    
+    if (targetField && selectedContacts.length > 0) {
+        const emails = Array.from(selectedContacts).map(item => 
+            item.getAttribute('data-formatted')
+        );
+        
+        const currentValue = targetField.value.trim();
+        const newValue = currentValue ? 
+            currentValue + ', ' + emails.join(', ') : 
+            emails.join(', ');
+            
+        targetField.value = newValue;
+        targetField.dispatchEvent(new Event('change', { bubbles: true }));
+    }
+    
+    closeCheckNamesModal();
+}
 </script> 

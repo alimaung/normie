@@ -78,6 +78,17 @@ urlpatterns = [
     path('inbox/flag/', views.inbox_flag_email, name='inbox_flag_email'),
     path('inbox/flag/<str:message_id>/', views.inbox_flag_single_email, name='inbox_flag_single_email'),
     
+    # Contact autocomplete functionality
+    path('inbox/contacts/autocomplete/', views.inbox_contact_autocomplete, name='inbox_contact_autocomplete'),
+    path('inbox/contacts/stats/', views.inbox_contact_stats, name='inbox_contact_stats'),
+    
+    # Contact management pages
+    path('contacts/', views.contacts_page, name='contacts'),
+    path('contacts/search/', views.contacts_search, name='contacts_search'),
+    path('contacts/detail/<str:email>/', views.contact_detail, name='contact_detail'),
+    path('contacts/export/', views.contacts_export, name='contacts_export'),
+    path('contacts/stats/', views.contacts_stats, name='contacts_stats'),
+    
     # Public pages for guests
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
@@ -129,4 +140,4 @@ urlpatterns = [
     
     # Under construction page
     path('under-construction/', views.under_construction, name='under_construction'),
-    ] 
+] 

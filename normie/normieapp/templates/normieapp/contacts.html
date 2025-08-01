@@ -1,0 +1,233 @@
+{% extends 'normieapp/base.html' %}
+{% load static %}
+{% load i18n %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/contacts.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="contacts-container">
+    <!-- Header Section -->
+    <div class="contacts-header">
+        <div class="header-left">
+            <h1>{% trans "Contact Management" %}</h1>
+            <p class="header-summary">
+                {% if is_available %}
+                    {% blocktrans with count=contact_stats.total_contacts %}
+                        Manage and search {{ count }} contacts from the organizational directory
+                    {% endblocktrans %}
+                {% else %}
+                    {% trans "Contact database not available" %}
+                {% endif %}
+            </p>
+        </div>
+        <div class="header-stats">
+            {% if is_available %}
+                <div class="stat-card">
+                    <span class="stat-value">{{ contact_stats.total_contacts|default:0 }}</span>
+                    <span class="stat-label">{% trans "Total Contacts" %}</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">{{ contact_stats.contacts_with_email|default:0 }}</span>
+                    <span class="stat-label">{% trans "With Email" %}</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-value">{{ contact_stats.database_size_mb|default:0 }}MB</span>
+                    <span class="stat-label">{% trans "Database Size" %}</span>
+                </div>
+            {% else %}
+                <div class="stat-card error">
+                    <span class="stat-value">
+                        <i class="fas fa-exclamation-triangle"></i>
+                    </span>
+                    <span class="stat-label">{% trans "Database Unavailable" %}</span>
+                </div>
+            {% endif %}
+        </div>
+    </div>
+
+    {% if is_available %}
+        <!-- Search and Filter Section -->
+        <div class="contacts-toolbar">
+            <div class="search-section">
+                <div class="search-box">
+                    <input type="text" id="contact-search" placeholder="{% trans 'Search contacts by name, email, or company...' %}" 
+                           class="search-input">
+                    <button id="search-btn" class="search-btn">
+                        <i class="fas fa-search"></i>
+                    </button>
+                    <button id="clear-search" class="clear-btn" style="display: none;">
+                        <i class="fas fa-times"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="toolbar-actions">
+                <div class="sort-controls">
+                    <label>{% trans "Sort by:" %}</label>
+                    <select id="sort-by" class="sort-select">
+                        <option value="name">{% trans "Name" %}</option>
+                        <option value="email">{% trans "Email" %}</option>
+                        <option value="company">{% trans "Company" %}</option>
+                    </select>
+                    <button id="sort-order" class="sort-order-btn" data-order="asc" title="{% trans 'Sort ascending' %}">
+                        <i class="fas fa-sort-alpha-down"></i>
+                    </button>
+                </div>
+                
+                <div class="action-buttons">
+                    <button id="export-btn" class="btn btn-secondary" disabled>
+                        <i class="fas fa-download"></i>
+                        {% trans "Export" %}
+                    </button>
+                    <button id="refresh-btn" class="btn btn-primary">
+                        <i class="fas fa-sync-alt"></i>
+                        {% trans "Refresh" %}
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div class="contacts-results">
+            <div class="results-header">
+                <div class="results-info">
+                    <span id="results-count">{% trans "Enter search query to find contacts" %}</span>
+                </div>
+                <div class="view-controls">
+                    <button class="view-btn active" data-view="list" title="{% trans 'List view' %}">
+                        <i class="fas fa-list"></i>
+                    </button>
+                    <button class="view-btn" data-view="grid" title="{% trans 'Grid view' %}">
+                        <i class="fas fa-th"></i>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="contacts-list" id="contacts-list">
+                <div class="empty-state">
+                    <div class="empty-icon">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <h3>{% trans "Search Contacts" %}</h3>
+                    <p>{% trans "Enter a name, email address, or company to find contacts" %}</p>
+                </div>
+            </div>
+            
+            <!-- Pagination -->
+            <div class="pagination-container" id="pagination-container" style="display: none;">
+                <div class="pagination-info">
+                    <span id="pagination-info"></span>
+                </div>
+                <div class="pagination-controls" id="pagination-controls">
+                    <!-- Pagination buttons will be generated here -->
+                </div>
+            </div>
+        </div>
+    {% else %}
+        <!-- Error State -->
+        <div class="error-state">
+            <div class="error-icon">
+                <i class="fas fa-database"></i>
+            </div>
+            <h3>{% trans "Contact Database Unavailable" %}</h3>
+            <p>{% trans "The contact database is not available. Please check the system configuration." %}</p>
+            {% if error %}
+                <div class="error-details">
+                    <strong>{% trans "Error:" %}</strong> {{ error }}
+                </div>
+            {% endif %}
+            <div class="error-actions">
+                <a href="{% url 'inbox' %}" class="btn btn-primary">
+                    <i class="fas fa-arrow-left"></i>
+                    {% trans "Back to Inbox" %}
+                </a>
+                <button onclick="window.location.reload()" class="btn btn-secondary">
+                    <i class="fas fa-sync-alt"></i>
+                    {% trans "Retry" %}
+                </button>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+<!-- Contact Detail Modal -->
+<div class="contact-detail-modal" id="contact-detail-modal" style="display: none;">
+    <div class="modal-overlay" onclick="closeContactDetail()"></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>{% trans "Contact Details" %}</h3>
+            <button class="modal-close" onclick="closeContactDetail()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body" id="contact-detail-content">
+            <!-- Contact details will be loaded here -->
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" onclick="composeToContact()">
+                <i class="fas fa-envelope"></i>
+                {% trans "Compose Email" %}
+            </button>
+            <button class="btn btn-secondary" onclick="closeContactDetail()">
+                {% trans "Close" %}
+            </button>
+        </div>
+    </div>
+</div>
+
+<!-- Export Modal -->
+<div class="export-modal" id="export-modal" style="display: none;">
+    <div class="modal-overlay" onclick="closeExportModal()"></div>
+    <div class="modal-content">
+        <div class="modal-header">
+            <h3>{% trans "Export Contacts" %}</h3>
+            <button class="modal-close" onclick="closeExportModal()">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="modal-body">
+            <p>{% trans "Export current search results to CSV format." %}</p>
+            <div class="export-options">
+                <div class="option-group">
+                    <label>{% trans "Format:" %}</label>
+                    <select id="export-format">
+                        <option value="csv">CSV (Excel)</option>
+                    </select>
+                </div>
+                <div class="export-info">
+                    <span id="export-count">0 contacts will be exported</span>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button class="btn btn-primary" onclick="performExport()">
+                <i class="fas fa-download"></i>
+                {% trans "Export" %}
+            </button>
+            <button class="btn btn-secondary" onclick="closeExportModal()">
+                {% trans "Cancel" %}
+            </button>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+// Pass Django data to JavaScript
+window.contactsData = {
+    urls: {
+        search: '{% url "contacts_search" %}',
+        detail: '{% url "contact_detail" email="EMAIL_PLACEHOLDER" %}',
+        export: '{% url "contacts_export" %}',
+        stats: '{% url "contacts_stats" %}',
+        compose: '{% url "inbox_compose" %}'
+    },
+    csrf: '{{ csrf_token }}',
+    isAvailable: {{ is_available|yesno:"true,false" }}
+};
+</script>
+<script src="{% static 'normieapp/js/contacts.js' %}"></script>
+{% endblock %} 
