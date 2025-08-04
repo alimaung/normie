@@ -82,6 +82,36 @@
                 </div>
             </div>
             
+            <!-- Account Selection -->
+            <div class="compose-account-selection">
+                <div class="account-field">
+                    <label class="account-label">{% trans "From" %}</label>
+                    <div class="account-input-wrapper">
+                        <select id="compose-from-account" name="from_account" class="account-select">
+                            <option value="">{% trans "Default Account" %}</option>
+                            <!-- Options will be populated via JavaScript -->
+                        </select>
+                        <button type="button" class="refresh-accounts-btn" id="refresh-accounts" title="{% trans 'Refresh Accounts' %}">
+                            <i class="fas fa-sync-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Send on behalf field (optional, for advanced users) -->
+                <div class="behalf-field" style="display: none;">
+                    <label class="behalf-label">{% trans "Send on behalf of" %}</label>
+                    <input type="email" id="compose-send-behalf" name="send_on_behalf" class="behalf-input" 
+                           placeholder="{% trans 'Enter email address (requires SendAs permission)' %}">
+                    <small class="behalf-help">{% trans "Only use if you have SendAs permission for the specified email address" %}</small>
+                </div>
+                
+                <div class="advanced-options">
+                    <button type="button" class="advanced-toggle" id="toggle-advanced">
+                        <i class="fas fa-cog"></i> {% trans "Advanced Options" %}
+                    </button>
+                </div>
+            </div>
+            
             <!-- Subject Field -->
             <div class="compose-subject">
                 <input type="text" id="compose-subject" name="subject" class="subject-input" 

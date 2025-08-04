@@ -20,6 +20,9 @@ class ComposeManager {
         // Bind events
         this.bindEvents();
         
+        // Load available accounts
+        this.loadAvailableAccounts();
+        
         // Initialize auto-save
         this.startAutoSave();
         
@@ -272,6 +275,15 @@ class ComposeManager {
         // Back button
         $(document).on('click', '.back-arrow-btn', () => {
             this.navigateBackToInbox();
+        });
+        
+        // Account management
+        $(document).on('click', '#refresh-accounts', () => {
+            this.loadAvailableAccounts();
+        });
+        
+        $(document).on('click', '#toggle-advanced', () => {
+            this.toggleAdvancedOptions();
         });
         
         console.log('Compose events bound');
@@ -664,6 +676,106 @@ class ComposeManager {
             window.inboxManager.showError(message);
         } else {
             alert(message);
+        }
+    }
+    
+    loadAvailableAccounts() {
+        console.log('Loading available accounts...');
+        
+        const accountSelect = document.getElementById('compose-from-account');
+        if (!accountSelect) {
+            console.log('Account select element not found');
+            return;
+        }
+        
+        // Show loading state
+        const refreshBtn = document.getElementById('refresh-accounts');
+        if (refreshBtn) {
+            refreshBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+            refreshBtn.disabled = true;
+        }
+        
+        fetch('/inbox/accounts/')
+            .then(response => response.json())
+            .then(data => {
+                if (data.success && data.accounts) {
+                    this.populateAccountsDropdown(data.accounts);
+                    console.log('Loaded', data.accounts.length, 'accounts');
+                } else {
+                    console.error('Error loading accounts:', data.error || 'Unknown error');
+                    this.showError('Failed to load accounts: ' + (data.error || 'Unknown error'));
+                }
+            })
+            .catch(error => {
+                console.error('Error fetching accounts:', error);
+                this.showError('Failed to load accounts. Please check your connection.');
+            })
+            .finally(() => {
+                // Reset refresh button
+                if (refreshBtn) {
+                    refreshBtn.innerHTML = '<i class="fas fa-sync-alt"></i>';
+                    refreshBtn.disabled = false;
+                }
+            });
+    }
+    
+    populateAccountsDropdown(accounts) {
+        const accountSelect = document.getElementById('compose-from-account');
+        if (!accountSelect) return;
+        
+        // Clear existing options except the default one
+        while (accountSelect.children.length > 1) {
+            accountSelect.removeChild(accountSelect.lastChild);
+        }
+        
+        // Add account options
+        accounts.forEach(account => {
+            const option = document.createElement('option');
+            option.value = account.smtp_address || account.display_name;
+            
+            // Create display text
+            let displayText = account.display_name;
+            if (account.smtp_address && account.smtp_address !== account.display_name) {
+                displayText += ` (${account.smtp_address})`;
+            }
+            
+            option.textContent = displayText;
+            option.title = `${account.display_name} - ${account.smtp_address || 'No SMTP address'}`;
+            
+            // Highlight the IRM account
+            if (account.display_name.includes('IRM-Standardisation-Office')) {
+                option.style.fontWeight = 'bold';
+                option.style.color = '#1a73e8';
+            }
+            
+            accountSelect.appendChild(option);
+        });
+        
+        // Auto-select IRM account if available
+        const irmOption = Array.from(accountSelect.options).find(option => 
+            option.textContent.includes('IRM-Standardisation-Office')
+        );
+        if (irmOption) {
+            irmOption.selected = true;
+            console.log('Auto-selected IRM-Standardisation-Office account');
+        }
+    }
+    
+    toggleAdvancedOptions() {
+        const behalfField = document.querySelector('.behalf-field');
+        const toggleBtn = document.getElementById('toggle-advanced');
+        
+        if (behalfField && toggleBtn) {
+            const isVisible = behalfField.style.display !== 'none';
+            behalfField.style.display = isVisible ? 'none' : 'block';
+            
+            const icon = toggleBtn.querySelector('i');
+            if (icon) {
+                icon.className = isVisible ? 'fas fa-cog' : 'fas fa-cog fa-spin';
+                setTimeout(() => {
+                    if (icon) icon.className = 'fas fa-cog';
+                }, 300);
+            }
         }
     }
 }

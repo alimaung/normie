@@ -138,6 +138,140 @@
     background: #f1f3f4;
 }
 
+/* Account Selection */
+.compose-account-selection {
+    border-bottom: 1px solid #e0e0e0;
+    padding: 12px 24px;
+    transition: border-color 0.2s ease;
+}
+
+.compose-account-selection:hover,
+.compose-account-selection:focus-within {
+    border-color: #1a73e8;
+}
+
+.account-field {
+    display: flex;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.account-label {
+    min-width: 50px;
+    font-size: 14px;
+    color: #5f6368;
+    font-weight: 500;
+    margin-right: 16px;
+}
+
+.account-input-wrapper {
+    display: flex;
+    align-items: center;
+    flex: 1;
+    gap: 8px;
+}
+
+.account-select {
+    flex: 1;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #202124;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.account-select:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.1);
+}
+
+.refresh-accounts-btn {
+    background: none;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    padding: 8px;
+    cursor: pointer;
+    color: #5f6368;
+    transition: all 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.refresh-accounts-btn:hover {
+    background: #f1f3f4;
+    border-color: #1a73e8;
+    color: #1a73e8;
+}
+
+.behalf-field {
+    margin-top: 12px;
+    padding-top: 12px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.behalf-label {
+    display: block;
+    font-size: 13px;
+    color: #5f6368;
+    font-weight: 500;
+    margin-bottom: 6px;
+}
+
+.behalf-input {
+    width: 100%;
+    border: 1px solid #dadce0;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 14px;
+    color: #202124;
+    background: #fff;
+    outline: none;
+    transition: border-color 0.2s ease;
+}
+
+.behalf-input:focus {
+    border-color: #1a73e8;
+    box-shadow: 0 0 0 2px rgba(26, 115, 232, 0.1);
+}
+
+.behalf-help {
+    display: block;
+    font-size: 12px;
+    color: #9aa0a6;
+    margin-top: 4px;
+    font-style: italic;
+}
+
+.advanced-options {
+    margin-top: 8px;
+}
+
+.advanced-toggle {
+    background: none;
+    border: none;
+    color: #1a73e8;
+    font-size: 13px;
+    cursor: pointer;
+    padding: 4px 0;
+    transition: color 0.2s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.advanced-toggle:hover {
+    color: #0d47a1;
+    text-decoration: underline;
+}
+
+.advanced-toggle i {
+    font-size: 12px;
+}
+
 /* Subject Field */
 .compose-subject {
     border-bottom: 1px solid #e0e0e0;

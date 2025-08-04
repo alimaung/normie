@@ -1966,9 +1966,89 @@ class OutlookService:
         """Get emails from Outbox folder."""
         return self.get_emails_list(filter_folder='Outbox', **kwargs)
 
+    def _find_account_by_email(self, email_address: str) -> Optional[object]:
+        """
+        Find an Outlook account by email address.
+        
+        Args:
+            email_address: The SMTP email address to search for
+            
+        Returns:
+            Account object if found, None otherwise
+        """
+        if not self._initialize_com():
+            logger.warning("COM interface not available for account search")
+            return None
+            
+        try:
+            accounts = self._namespace.Session.Accounts
+            
+            for i in range(1, accounts.Count + 1):
+                account = accounts.Item(i)
+                # Check both SmtpAddress and the account display name
+                if (hasattr(account, 'SmtpAddress') and 
+                    account.SmtpAddress and 
+                    account.SmtpAddress.lower() == email_address.lower()):
+                    logger.info(f"Found account by SMTP address: {account.DisplayName}")
+                    return account
+                elif email_address.lower() in account.DisplayName.lower():
+                    logger.info(f"Found account by display name: {account.DisplayName}")
+                    return account
+            
+            logger.warning(f"No account found for email address: {email_address}")
+            
+            # Log available accounts for debugging
+            logger.debug("Available accounts:")
+            for i in range(1, accounts.Count + 1):
+                account = accounts.Item(i)
+                smtp_addr = getattr(account, 'SmtpAddress', 'N/A')
+                logger.debug(f"  - {account.DisplayName} ({smtp_addr})")
+            
+            return None
+            
+        except Exception as e:
+            logger.error(f"Error finding account by email {email_address}: {str(e)}")
+            return None
+
+    def get_available_accounts(self) -> List[Dict]:
+        """
+        Get list of all available Outlook accounts.
+        
+        Returns:
+            List of dictionaries containing account information
+        """
+        if not self._initialize_com():
+            logger.warning("COM interface not available for account listing")
+            return []
+            
+        try:
+            accounts = self._namespace.Session.Accounts
+            account_list = []
+            
+            for i in range(1, accounts.Count + 1):
+                account = accounts.Item(i)
+                smtp_addr = getattr(account, 'SmtpAddress', '')
+                account_type = getattr(account, 'AccountType', 'Unknown')
+                
+                account_info = {
+                    'display_name': account.DisplayName,
+                    'smtp_address': smtp_addr,
+                    'account_type': account_type,
+                    'index': i
+                }
+                account_list.append(account_info)
+                
+            logger.info(f"Found {len(account_list)} accounts")
+            return account_list
+            
+        except Exception as e:
+            logger.error(f"Error getting available accounts: {str(e)}")
+            return []
+
     def send_email(self, to_recipients: List[str], subject: str, body: str, 
                    cc_recipients: List[str] = None, bcc_recipients: List[str] = None,
-                   attachments: List[str] = None, body_format: str = 'text') -> bool:
+                   attachments: List[str] = None, body_format: str = 'text',
+                   from_account: str = None, send_on_behalf: str = None) -> bool:
         """
         Send an email using COM interface.
         
@@ -1980,11 +2060,19 @@ class OutlookService:
             bcc_recipients: List of BCC recipients (optional)
             attachments: List of attachment file paths (optional)
             body_format: 'text' or 'html'
+            from_account: SMTP address of account to send from (optional)
+            send_on_behalf: Email address to send on behalf of (optional, requires SendAs permission)
             
         Returns:
             bool: True if successful, False otherwise
         """
-        logger.info(f"=== Attempting to send email: '{subject[:50]}...' to {len(to_recipients)} recipients ===")
+        send_info = f"'{subject[:50]}...' to {len(to_recipients)} recipients"
+        if from_account:
+            send_info += f" from account: {from_account}"
+        if send_on_behalf:
+            send_info += f" on behalf of: {send_on_behalf}"
+            
+        logger.info(f"=== Attempting to send email: {send_info} ===")
         
         if not self._initialize_com():
             logger.error("COM interface not available for sending email")
@@ -1993,6 +2081,21 @@ class OutlookService:
         try:
             # Create a new mail item (0 = olMailItem)
             mail_item = self._outlook_app.CreateItem(0)
+            
+            # Set the sending account if specified
+            if from_account:
+                account = self._find_account_by_email(from_account)
+                if account:
+                    mail_item.SendUsingAccount = account
+                    logger.info(f"Set SendUsingAccount to: {account.DisplayName}")
+                else:
+                    logger.error(f"Could not find account: {from_account}")
+                    return False
+            
+            # Set send on behalf if specified (requires SendAs permission)
+            if send_on_behalf:
+                mail_item.SentOnBehalfOfName = send_on_behalf
+                logger.info(f"Set SentOnBehalfOfName to: {send_on_behalf}")
             
             # Set recipients
             mail_item.To = '; '.join(to_recipients)
@@ -2050,7 +2153,8 @@ class OutlookService:
 
     def save_draft(self, to_recipients: List[str], subject: str, body: str,
                    cc_recipients: List[str] = None, bcc_recipients: List[str] = None,
-                   attachments: List[str] = None, body_format: str = 'text') -> bool:
+                   attachments: List[str] = None, body_format: str = 'text',
+                   from_account: str = None, send_on_behalf: str = None) -> bool:
         """
         Save an email as draft using COM interface.
         
@@ -2062,11 +2166,19 @@ class OutlookService:
             bcc_recipients: List of BCC recipients (optional)
             attachments: List of attachment file paths (optional)
             body_format: 'text' or 'html'
+            from_account: SMTP address of account to send from (optional)
+            send_on_behalf: Email address to send on behalf of (optional, requires SendAs permission)
             
         Returns:
             bool: True if successful, False otherwise
         """
-        logger.info(f"=== Attempting to save draft: '{subject[:50]}...' ===")
+        draft_info = f"'{subject[:50]}...'"
+        if from_account:
+            draft_info += f" from account: {from_account}"
+        if send_on_behalf:
+            draft_info += f" on behalf of: {send_on_behalf}"
+            
+        logger.info(f"=== Attempting to save draft: {draft_info} ===")
         
         if not self._initialize_com():
             logger.error("COM interface not available for saving draft")
@@ -2075,6 +2187,21 @@ class OutlookService:
         try:
             # Create a new mail item (0 = olMailItem)
             mail_item = self._outlook_app.CreateItem(0)
+            
+            # Set the sending account if specified
+            if from_account:
+                account = self._find_account_by_email(from_account)
+                if account:
+                    mail_item.SendUsingAccount = account
+                    logger.info(f"Set SendUsingAccount to: {account.DisplayName}")
+                else:
+                    logger.error(f"Could not find account: {from_account}")
+                    return False
+            
+            # Set send on behalf if specified (requires SendAs permission)
+            if send_on_behalf:
+                mail_item.SentOnBehalfOfName = send_on_behalf
+                logger.info(f"Set SentOnBehalfOfName to: {send_on_behalf}")
             
             # Set recipients
             if to_recipients:
@@ -2132,7 +2259,7 @@ class OutlookService:
             return False
 
     def reply_to_email(self, email_id: str, body: str, reply_all: bool = False,
-                       body_format: str = 'text') -> bool:
+                       body_format: str = 'text', from_account: str = None) -> bool:
         """
         Reply to an email using COM interface.
         
@@ -2141,12 +2268,17 @@ class OutlookService:
             body: Reply body content
             reply_all: True to reply to all recipients, False for reply to sender only
             body_format: 'text' or 'html'
+            from_account: SMTP address of account to reply from (optional)
             
         Returns:
             bool: True if successful, False otherwise
         """
         action = "reply to all" if reply_all else "reply to"
-        logger.info(f"=== Attempting to {action} email: {email_id} ===")
+        reply_info = f"{action} email: {email_id}"
+        if from_account:
+            reply_info += f" from account: {from_account}"
+            
+        logger.info(f"=== Attempting to {reply_info} ===")
         
         try:
             # Find the original email
@@ -2160,6 +2292,16 @@ class OutlookService:
                 reply_item = original_email_item.ReplyAll()
             else:
                 reply_item = original_email_item.Reply()
+            
+            # Set the sending account if specified
+            if from_account:
+                account = self._find_account_by_email(from_account)
+                if account:
+                    reply_item.SendUsingAccount = account
+                    logger.info(f"Set reply SendUsingAccount to: {account.DisplayName}")
+                else:
+                    logger.error(f"Could not find account for reply: {from_account}")
+                    return False
             
             # Set body content
             if body_format.lower() == 'html':
@@ -2178,7 +2320,8 @@ class OutlookService:
             return False
 
     def forward_email(self, email_id: str, to_recipients: List[str], body: str = "",
-                      cc_recipients: List[str] = None, body_format: str = 'text') -> bool:
+                      cc_recipients: List[str] = None, body_format: str = 'text',
+                      from_account: str = None) -> bool:
         """
         Forward an email using COM interface.
         
@@ -2188,11 +2331,16 @@ class OutlookService:
             body: Additional body content to add (optional)
             cc_recipients: List of CC recipients (optional)
             body_format: 'text' or 'html'
+            from_account: SMTP address of account to forward from (optional)
             
         Returns:
             bool: True if successful, False otherwise
         """
-        logger.info(f"=== Attempting to forward email: {email_id} to {len(to_recipients)} recipients ===")
+        forward_info = f"email: {email_id} to {len(to_recipients)} recipients"
+        if from_account:
+            forward_info += f" from account: {from_account}"
+            
+        logger.info(f"=== Attempting to forward {forward_info} ===")
         
         try:
             # Find the original email
@@ -2203,6 +2351,16 @@ class OutlookService:
             
             # Create forward
             forward_item = original_email_item.Forward()
+            
+            # Set the sending account if specified
+            if from_account:
+                account = self._find_account_by_email(from_account)
+                if account:
+                    forward_item.SendUsingAccount = account
+                    logger.info(f"Set forward SendUsingAccount to: {account.DisplayName}")
+                else:
+                    logger.error(f"Could not find account for forward: {from_account}")
+                    return False
             
             # Set recipients
             forward_item.To = '; '.join(to_recipients)

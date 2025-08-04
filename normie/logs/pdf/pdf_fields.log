@@ -24,3 +24,38 @@
 2025-07-30 12:11:16 - INFO - Successfully extracted 131 fields from PDF
 2025-07-30 12:11:16 - INFO - Field extraction completed in 0.13 seconds
 2025-07-30 12:11:16 - INFO - === PDF field extraction finished ===
+2025-08-04 21:46:44 - INFO - === Starting PDF field extraction from: C:\Users\Ali\Desktop\normie\normie\normieapp\static\normieapp\temp_forms\0578e2d9-0899-4fbe-87bf-6b6644c780e8.pdf ===
+2025-08-04 21:46:44 - INFO - Found 1 form fields in PDF
+2025-08-04 21:46:44 - INFO - Signature field Signature1: formatted signature found
+2025-08-04 21:46:44 - WARNING - Field 'Signature1' not found in PDF_FIELD_DICT
+2025-08-04 21:46:44 - INFO - Successfully extracted 1 fields from PDF
+2025-08-04 21:46:44 - INFO - Field extraction completed in 0.02 seconds
+2025-08-04 21:46:44 - INFO - === PDF field extraction finished ===
+2025-08-04 21:47:20 - INFO - === Starting PDF field extraction from: C:\Users\Ali\Desktop\normie\normie\normieapp\static\normieapp\temp_forms\c196a61a-5060-417a-ab18-f88873262740.pdf ===
+2025-08-04 21:47:20 - INFO - Found 1 form fields in PDF
+2025-08-04 21:47:20 - INFO - Signature field Signature1: formatted signature found
+2025-08-04 21:47:20 - WARNING - Field 'Signature1' not found in PDF_FIELD_DICT
+2025-08-04 21:47:20 - INFO - Successfully extracted 1 fields from PDF
+2025-08-04 21:47:20 - INFO - Field extraction completed in 0.02 seconds
+2025-08-04 21:47:20 - INFO - === PDF field extraction finished ===
+2025-08-04 21:47:34 - INFO - === Starting PDF field extraction from: C:\Users\Ali\Desktop\normie\normie\normieapp\static\normieapp\temp_forms\983f95fd-460e-467f-98ba-5ef2f73ef09a.pdf ===
+2025-08-04 21:47:34 - INFO - Found 131 form fields in PDF
+2025-08-04 21:47:34 - INFO - Signature field 25b: formatted signature found
+2025-08-04 21:47:34 - INFO - Successfully extracted 131 fields from PDF
+2025-08-04 21:47:34 - INFO - Field extraction completed in 0.08 seconds
+2025-08-04 21:47:34 - INFO - === PDF field extraction finished ===
+2025-08-04 22:40:11 - INFO - === Starting PDF field extraction from: C:\Users\Ali\Desktop\normie\normie\normieapp\static\normieapp\temp_forms\dcd9a591-d047-4e6c-96c9-cced61e9541c.pdf ===
+2025-08-04 22:40:11 - INFO - Found 131 form fields in PDF
+2025-08-04 22:40:11 - INFO - Successfully extracted 131 fields from PDF
+2025-08-04 22:40:11 - INFO - Field extraction completed in 0.07 seconds
+2025-08-04 22:40:11 - INFO - === PDF field extraction finished ===
+2025-08-04 22:40:17 - INFO - === Starting PDF save operation: C:\Users\Ali\Desktop\normie\normie\normieapp\static\normieapp\temp_forms\dcd9a591-d047-4e6c-96c9-cced61e9541c.pdf ===
+2025-08-04 22:40:17 - INFO - Processing 131 field updates
+2025-08-04 22:40:17 - INFO - Processing field values for PDF update
+2025-08-04 22:40:17 - INFO - 🔒 Skipping signature field '25b' completely - preserving original signature
+2025-08-04 22:40:17 - INFO - 🔒 Skipping signature field '32b' completely - preserving original signature
+2025-08-04 22:40:17 - INFO - 🔒 Skipping signature field '40b' completely - preserving original signature
+2025-08-04 22:40:17 - INFO - 🔒 Skipping signature field '47b' completely - preserving original signature
+2025-08-04 22:40:17 - INFO - 🔒 Skipping signature field '50b' completely - preserving original signature
+2025-08-04 22:40:18 - INFO - ✅ Successfully updated 162 fields in PDF
+2025-08-04 22:40:18 - INFO - 🔒 Preserved 5 signature fields unchanged

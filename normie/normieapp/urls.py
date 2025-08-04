@@ -83,6 +83,9 @@ urlpatterns = [
     path('inbox/contacts/autocomplete/', views.inbox_contact_autocomplete, name='inbox_contact_autocomplete'),
     path('inbox/contacts/stats/', views.inbox_contact_stats, name='inbox_contact_stats'),
     
+    # Account management
+    path('inbox/accounts/', views.inbox_get_accounts, name='inbox_get_accounts'),
+    
     # Contact management pages
     path('contacts/', views.contacts_page, name='contacts'),
     path('contacts/search/', views.contacts_search, name='contacts_search'),

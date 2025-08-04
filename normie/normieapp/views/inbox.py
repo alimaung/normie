@@ -967,6 +967,8 @@ def inbox_send_email(request):
         subject = request.POST.get('subject', '').strip()
         body_html = request.POST.get('body', '').strip()
         body_text = request.POST.get('body_text', '').strip()
+        from_account = request.POST.get('from_account', '').strip()
+        send_on_behalf = request.POST.get('send_on_behalf', '').strip()
         
         # Validate required fields
         if not to_recipients:
@@ -1043,7 +1045,9 @@ def inbox_send_email(request):
                     cc_recipients=cc_list if cc_list else None,
                     bcc_recipients=bcc_list if bcc_list else None,
                     attachments=attachments if attachments else None,
-                    body_format=body_format
+                    body_format=body_format,
+                    from_account=from_account if from_account else None,
+                    send_on_behalf=send_on_behalf if send_on_behalf else None
                 )
                 
                 if success:
@@ -1082,7 +1086,9 @@ def inbox_send_email(request):
                     cc_recipients=cc_list if cc_list else None,
                     bcc_recipients=bcc_list if bcc_list else None,
                     attachments=attachments if attachments else None,
-                    body_format=body_format
+                    body_format=body_format,
+                    from_account=from_account if from_account else None,
+                    send_on_behalf=send_on_behalf if send_on_behalf else None
                 )
                 
                 if success:
@@ -1236,4 +1242,27 @@ def inbox_contact_stats(request):
         return JsonResponse({
             'success': False,
             'error': 'Internal server error'
+        })
+
+
+@restrict_read_only_users
+def inbox_get_accounts(request):
+    """
+    Get list of available Outlook accounts for sending emails.
+    """
+    try:
+        outlook_service = OutlookService()
+        accounts = outlook_service.get_available_accounts()
+        
+        return JsonResponse({
+            'success': True,
+            'accounts': accounts
+        })
+        
+    except Exception as e:
+        logger.error(f"Error getting available accounts: {str(e)}")
+        return JsonResponse({
+            'success': False,
+            'error': str(e),
+            'accounts': []
         }) 
