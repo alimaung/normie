@@ -3,9 +3,6 @@ class InboxManager {
     constructor() {
         this.currentFilters = {
             search: '',
-            unread: false,
-            important: false,
-            attachments: false,
             sort_by: 'received_time',
             sort_order: 'desc'
         };
@@ -92,6 +89,8 @@ class InboxManager {
             currentFolder = 'Drafts';
         } else if (currentPath.includes('/inbox/outbox/')) {
             currentFolder = 'Outbox';
+        } else if (currentPath.includes('/inbox/contact/')) {
+            currentFolder = 'Contact';
         } else if (currentPath.includes('/inbox/')) {
             currentFolder = 'Inbox';
         }
@@ -112,7 +111,7 @@ class InboxManager {
         let selector = '';
         switch(folder) {
             case 'Inbox':
-                selector = '.folder-item a[href*="/inbox/"]:not([href*="/sent/"]):not([href*="/deleted/"]):not([href*="/drafts/"]):not([href*="/outbox/"])';
+                selector = '.folder-item a[href*="/inbox/"]:not([href*="/sent/"]):not([href*="/deleted/"]):not([href*="/drafts/"]):not([href*="/outbox/"]):not([href*="/contact/"])';
                 break;
             case 'Sent Items':
             case 'Sent Mail':
@@ -127,6 +126,9 @@ class InboxManager {
                 break;
             case 'Outbox':
                 selector = '.folder-item a[href*="/outbox/"]';
+                break;
+            case 'Contact':
+                selector = '.folder-item a[href*="/contact/"]';
                 break;
         }
         
@@ -244,20 +246,8 @@ class InboxManager {
             }
         });
         
-        // Filter checkboxes
-        $('#filter-unread').on('change', (e) => this.handleFilterChange('unread', e.target.checked));
-        $('#filter-important').on('change', (e) => this.handleFilterChange('important', e.target.checked));
-        $('#filter-attachments').on('change', (e) => this.handleFilterChange('attachments', e.target.checked));
-        
-        // Clear filters
-        $('#clear-filters, #clear-all-filters').on('click', () => this.clearAllFilters());
-        
-        // Quick filter links
-        $('.filter-item a[data-filter]').on('click', (e) => {
-            e.preventDefault();
-            const filter = $(e.currentTarget).data('filter');
-            this.toggleQuickFilter(filter);
-        });
+        // Clear search filters
+        $('#clear-search').on('click', () => this.clearSearch());
         
         // Sort links
         $('.sort-link').on('click', (e) => {
@@ -469,7 +459,7 @@ class InboxManager {
     
     hideElementsForCollapse() {
         // Hide counts and headers immediately without visual flash
-        $('.folder-count, .filter-count').hide();
+        $('.folder-count').hide();
         $('.folder-header-text').hide();
         
         // Apply bold weight to icons
@@ -478,7 +468,7 @@ class InboxManager {
     
     showElementsForExpansion() {
         // Show counts when expanded (if they have values)
-        $('.folder-count, .filter-count').each((i, el) => {
+        $('.folder-count').each((i, el) => {
             const $el = $(el);
             if ($el.text() && $el.text() !== '0') {
                 $el.show();
@@ -554,29 +544,13 @@ class InboxManager {
         this.loadEmails(false); // Use subtle loading for filter changes
     }
     
-    handleFilterChange(filterType, checked) {
-        this.currentFilters[filterType] = checked;
-        this.currentPage = 1;
-        this.loadEmails(false); // Use subtle loading for filter changes
-    }
+
     
-    toggleQuickFilter(filterType) {
-        const isActive = this.currentFilters[filterType];
-        this.currentFilters[filterType] = !isActive;
-        
-        // Update UI
-        $(`#filter-${filterType}`).prop('checked', this.currentFilters[filterType]);
-        
-        this.currentPage = 1;
-        this.loadEmails(false); // Use subtle loading for quick filters
-    }
+
     
     clearAllFilters() {
         this.currentFilters = {
             search: '',
-            unread: false,
-            important: false,
-            attachments: false,
             sort_by: 'received_time',
             sort_order: 'desc'
         };
@@ -585,7 +559,6 @@ class InboxManager {
         // Update UI
         $('#search-input').val('');
         $('#clear-search').hide();
-        $('#filter-unread, #filter-important, #filter-attachments').prop('checked', false);
         
         this.loadEmails(false); // Use subtle loading for filter clearing
     }
@@ -686,21 +659,15 @@ class InboxManager {
         if (this.currentFilters.search) {
             params.append('search', this.currentFilters.search);
         }
-        if (this.currentFilters.unread) {
-            params.append('unread', '1');
-        }
-        if (this.currentFilters.important) {
-            params.append('important', '1');
-        }
-        if (this.currentFilters.attachments) {
-            params.append('attachments', '1');
-        }
         if (this.currentFilters.folder) {
             params.append('folder', this.currentFilters.folder);
         }
         
-        // Always use the main inbox endpoint for SPA navigation
-        const baseUrl = window.inboxData?.urls?.inbox || '/inbox/';
+        // Use appropriate endpoint based on folder
+        let baseUrl = window.inboxData?.urls?.inbox || '/inbox/';
+        if (this.currentFilters.folder === 'Contact') {
+            baseUrl = '/inbox/contact/';
+        }
         
         // Use AJAX for smooth loading
         $.ajax({
@@ -757,9 +724,6 @@ class InboxManager {
             data: JSON.stringify({
                 page: this.currentPage,
                 search: this.currentFilters.search || null,
-                unread: this.currentFilters.unread || null,
-                important: this.currentFilters.important || null,
-                attachments: this.currentFilters.attachments || null,
                 folder: this.currentFilters.folder || null
             }),
             success: (response) => {
@@ -1239,21 +1203,8 @@ class InboxManager {
             $('#deleted-count').text(stats.folder_counts?.['Deleted Items'] || stats.folder_counts?.Trash || '');
             $('#outbox-count').text(stats.folder_counts?.Outbox || '');
             
-            // Update filter counts
-            $('.filter-count').each((i, el) => {
-                const $el = $(el);
-                const filterType = $el.closest('a').data('filter');
-                if (filterType === 'unread') {
-                    $el.text(stats.unread_emails || '');
-                } else if (filterType === 'important') {
-                    $el.text(stats.important_emails || '');
-                } else if (filterType === 'attachments') {
-                    $el.text(stats.emails_with_attachments || '');
-                }
-            });
-            
             // Hide empty counts
-            $('.folder-count, .filter-count').each((i, el) => {
+            $('.folder-count').each((i, el) => {
                 const $el = $(el);
                 if (!$el.text() || $el.text() === '0') {
                     $el.hide();
@@ -1324,20 +1275,15 @@ class InboxManager {
         if (this.currentFilters.search) {
             params.append('search', this.currentFilters.search);
         }
-        if (this.currentFilters.unread) {
-            params.append('unread', '1');
-        }
-        if (this.currentFilters.important) {
-            params.append('important', '1');
-        }
-        if (this.currentFilters.attachments) {
-            params.append('attachments', '1');
-        }
         if (this.currentFilters.folder) {
             params.append('folder', this.currentFilters.folder);
         }
         
-        const baseUrl = window.inboxData?.urls?.inbox || '/inbox/';
+        // Use appropriate endpoint based on folder
+        let baseUrl = window.inboxData?.urls?.inbox || '/inbox/';
+        if (this.currentFilters.folder === 'Contact') {
+            baseUrl = '/inbox/contact/';
+        }
         
         // Use AJAX for background update
         $.ajax({
@@ -1467,6 +1413,8 @@ class InboxManager {
             folder = 'Drafts';
         } else if (url.includes('/inbox/outbox/')) {
             folder = 'Outbox';
+        } else if (url.includes('/inbox/contact/')) {
+            folder = 'Contact';
         } else if (url.includes('/inbox/')) {
             folder = 'Inbox';
         }
@@ -1484,7 +1432,7 @@ class InboxManager {
         // Add loading state based on folder name, not URL matching
         switch(folder) {
             case 'Inbox':
-                $('.folder-item a[href*="/inbox/"]:not([href*="/sent/"]):not([href*="/deleted/"]):not([href*="/drafts/"]):not([href*="/outbox/"])').closest('.folder-item').addClass('loading');
+                $('.folder-item a[href*="/inbox/"]:not([href*="/sent/"]):not([href*="/deleted/"]):not([href*="/drafts/"]):not([href*="/outbox/"]):not([href*="/contact/"])').closest('.folder-item').addClass('loading');
                 break;
             case 'Sent Items':
             case 'Sent Mail':
@@ -1499,6 +1447,9 @@ class InboxManager {
                 break;
             case 'Outbox':
                 $('.folder-item a[href*="/outbox/"]').closest('.folder-item').addClass('loading');
+                break;
+            case 'Contact':
+                $('.folder-item a[href*="/contact/"]').closest('.folder-item').addClass('loading');
                 break;
         }
     }
@@ -1529,6 +1480,17 @@ class InboxManager {
         
         // Update page title and any folder indicators
         this.updateFolderDisplay(folder);
+        
+        // Show/hide contact archive panel
+        if (folder === 'Contact') {
+            if (window.contactMessages) {
+                window.contactMessages.showArchivePanel();
+            }
+        } else {
+            if (window.contactMessages) {
+                window.contactMessages.hideArchivePanel();
+            }
+        }
         
         // Load emails for the new folder
         this.loadEmails(true); // Use full loading for folder changes
@@ -1570,7 +1532,8 @@ class InboxManager {
             'Deleted Items': '/inbox/deleted/',
             'Trash': '/inbox/deleted/',
             'Drafts': '/inbox/drafts/',
-            'Outbox': '/inbox/outbox/'
+            'Outbox': '/inbox/outbox/',
+            'Contact': '/inbox/contact/'
         };
         return folderMap[folder] || '/inbox/';
     }
@@ -1591,9 +1554,6 @@ class InboxManager {
         // Update current filters to show only this email
         this.currentFilters = {
             search: '',
-            unread: false,
-            important: false,
-            attachments: false,
             sort_by: 'received_time',
             sort_order: 'desc',
             folder: this.currentFilters.folder // Keep current folder
@@ -1620,12 +1580,20 @@ class InboxManager {
     loadEmailById(emailId) {
         this.showLoading();
 
-        const params = new URLSearchParams({
-            email_id: emailId
-        });
-
-        // Always use the main inbox endpoint for SPA navigation
-        const baseUrl = window.inboxData?.urls?.inbox || '/inbox/';
+        const params = new URLSearchParams();
+        
+        // Use appropriate parameter and endpoint based on folder
+        if (this.currentFilters.folder === 'Contact') {
+            params.append('message_id', emailId);
+        } else {
+            params.append('email_id', emailId);
+        }
+        
+        // Use appropriate endpoint based on folder
+        let baseUrl = window.inboxData?.urls?.inbox || '/inbox/';
+        if (this.currentFilters.folder === 'Contact') {
+            baseUrl = '/inbox/contact/';
+        }
         
         // Use AJAX for smooth loading
         $.ajax({
@@ -1686,7 +1654,7 @@ class InboxManager {
     
     updateToolbarForEmailView() {
         // Hide selection controls and search for email view
-        $('.select-actions, .search-container, .filter-dropdown').hide();
+        $('.select-actions, .search-container').hide();
         
         // Show only basic actions
         $('.toolbar-actions').hide();
@@ -1701,8 +1669,8 @@ class InboxManager {
     }
     
     restoreToolbarForInbox() {
-        // Show selection controls, search, and filter dropdown
-        $('.select-actions, .search-container, .filter-dropdown').show();
+        // Show selection controls and search
+        $('.select-actions, .search-container').show();
         
         // Show default toolbar actions
         $('.toolbar-actions').show();

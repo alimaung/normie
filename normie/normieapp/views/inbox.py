@@ -184,9 +184,12 @@ def inbox_compose(request):
         # Get compose mode and email ID for reply/forward
         compose_mode = request.GET.get('mode', 'new')
         email_id = request.GET.get('email_id')
+        contact_message_id = request.GET.get('contact_message_id')
         
         # Get original email for reply/forward
         original_email = None
+        contact_message = None
+        
         if email_id and compose_mode in ['reply', 'forward']:
             outlook_service = OutlookService()
             original_email = outlook_service.get_email_by_id(email_id)
@@ -200,11 +203,34 @@ def inbox_compose(request):
                 messages.error(request, _('Original email not found'))
                 return redirect('inbox')
         
+        # Get contact message for reply to contact message
+        if contact_message_id:
+            from normieapp.models import ContactMessage
+            try:
+                contact_message = ContactMessage.objects.get(id=contact_message_id)
+                
+                # Mark contact message as in progress when composing a reply
+                if contact_message.status == 'new':
+                    contact_message.status = 'in_progress'
+                    if not contact_message.assigned_to:
+                        contact_message.assigned_to = request.user
+                    contact_message.save()
+                    
+            except ContactMessage.DoesNotExist:
+                if request.headers.get('X-Requested-With') == 'XMLHttpRequest':
+                    return JsonResponse({
+                        'success': False,
+                        'error': 'Contact message not found'
+                    })
+                messages.error(request, _('Contact message not found'))
+                return redirect('inbox')
+        
         context = {
             'page_title': _('Compose Email'),
             'compose_mode': compose_mode,
             'reply_email': original_email if compose_mode == 'reply' else None,
-            'forward_email': original_email if compose_mode == 'forward' else None
+            'forward_email': original_email if compose_mode == 'forward' else None,
+            'contact_message': contact_message
         }
         
         # Handle AJAX requests for SPA

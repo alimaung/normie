@@ -6,6 +6,17 @@
 
 {% block extra_css %}
 <link rel="stylesheet" href="{% static 'normieapp/css/contact.css' %}">
+<style>
+.form-group.has-error .form-control {
+    border-color: #dc3545;
+}
+.error-message {
+    font-size: 0.875rem;
+}
+.contact-notification {
+    margin-bottom: 1rem;
+}
+</style>
 {% endblock %}
 
 {% block content %}
@@ -50,7 +61,7 @@
                     </div>
                     <div class="form-group">
                         <label for="message" class="form-label">{% trans "Message" %}</label>
-                        <textarea id="message" name="message" class="form-control" rows="5" required></textarea>
+                        <textarea id="message" name="message" class="form-control" rows="5" maxlength="2000" required></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">
                         {% trans "Submit" %}
@@ -77,14 +88,6 @@
                                 Hohemarkstraße 60-70<br>
                                 61440 Oberursel (Taunus)<br>
                                 Building 9043.02.120
-                            </div>
-                        </li>
-                        <li class="info-item">
-                            <i class="fas fa-clock info-icon"></i>
-                            <div class="info-text">
-                                <span class="info-label">{% trans "Office Hours" %}</span>
-                                Monday - Friday: 7:00 - 15:00 (CET)<br>
-                                Saturday - Sunday: Closed
                             </div>
                         </li>
                         <li class="info-item">
@@ -165,4 +168,8 @@
         </div>
     </div>
 </div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'normieapp/js/contact.js' %}"></script>
 {% endblock %} 

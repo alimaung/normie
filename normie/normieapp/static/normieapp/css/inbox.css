@@ -1447,3 +1447,291 @@
 .email-list.loading {
     opacity: 0.5;
 } 
+
+/* Contact Message Styles */
+.contact-message-view .message-status-badge {
+    margin-bottom: 1rem;
+}
+
+.contact-status-new {
+    background-color: #e3f2fd;
+    color: #1976d2;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.contact-status-in_progress {
+    background-color: #fff3e0;
+    color: #f57c00;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.contact-status-resolved {
+    background-color: #e8f5e8;
+    color: #388e3c;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.contact-status-closed {
+    background-color: #fafafa;
+    color: #616161;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 500;
+}
+
+.message-category {
+    margin: 1rem 0;
+}
+
+.category-badge {
+    background-color: #f5f5f5;
+    padding: 0.25rem 0.75rem;
+    border-radius: 15px;
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.sender-department {
+    font-size: 0.875rem;
+    color: #666;
+    margin-top: 0.25rem;
+}
+
+.message-content {
+    background-color: #fafafa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    margin: 1rem 0;
+}
+
+.message-content h4 {
+    margin-bottom: 1rem;
+    color: #333;
+    font-size: 1rem;
+    font-weight: 600;
+}
+
+.message-text {
+    line-height: 1.6;
+    color: #444;
+}
+
+.internal-notes-section {
+    background-color: #fff9c4;
+    border-left: 4px solid #fbc02d;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.internal-notes-section h4 {
+    color: #f57f17;
+    margin-bottom: 0.5rem;
+}
+
+.assignment-info {
+    background-color: #e8f5e8;
+    border-left: 4px solid #4caf50;
+    padding: 1rem;
+    margin: 1rem 0;
+    border-radius: 0 8px 8px 0;
+}
+
+.assignment-info h4 {
+    color: #2e7d32;
+    margin-bottom: 0.5rem;
+}
+
+.assigned-user {
+    font-weight: 500;
+    color: #388e3c;
+}
+
+/* Contact Archive Panel */
+.contact-archive-panel {
+    position: relative;
+    background: white;
+    border-top: 1px solid #ddd;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    margin-top: 1rem;
+    display: none; /* Hidden by default */
+    max-height: 50vh;
+    overflow: hidden;
+}
+
+.contact-archive-panel.visible {
+    display: block;
+}
+
+.contact-archive-panel.expanded {
+    max-height: 70vh;
+}
+
+.contact-archive-header {
+    padding: 1rem;
+    border-bottom: 1px solid #eee;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #f8f9fa;
+    min-height: 60px;
+    font-weight: 500;
+}
+
+.contact-archive-header:hover {
+    background: #e9ecef;
+}
+
+.contact-archive-header h4 {
+    margin: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.contact-archive-content {
+    padding: 1rem;
+    max-height: 50vh;
+    overflow-y: auto;
+    resize: vertical;
+    display: none; /* Hidden by default */
+}
+
+.contact-archive-item {
+    padding: 0.75rem;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: between;
+    align-items: center;
+}
+
+.contact-archive-item:hover {
+    background: #f8f9fa;
+}
+
+.contact-archive-item .item-info {
+    flex: 1;
+}
+
+.contact-archive-item .item-subject {
+    font-weight: 500;
+    margin-bottom: 0.25rem;
+}
+
+.contact-archive-item .item-meta {
+    font-size: 0.875rem;
+    color: #666;
+}
+
+.contact-archive-item .item-actions {
+    display: flex;
+    gap: 0.5rem;
+} 
+
+/* Contact Message View Toolbar */
+.contact-message-view .email-view-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-bottom: 1px solid #e0e0e0;
+    background: #f8f9fa;
+}
+
+.contact-message-view .email-view-back {
+    margin-right: 1rem;
+}
+
+.contact-message-view .back-arrow-btn {
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.contact-message-view .back-arrow-btn:hover {
+    background: #e9ecef;
+    border-color: #adb5bd;
+    color: #495057;
+}
+
+.contact-message-view .email-view-actions {
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.contact-message-view .email-action-btn {
+    background: none;
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 0.5rem 0.75rem;
+    color: #666;
+    cursor: pointer;
+    transition: all 0.2s;
+    min-width: 40px;
+    height: 38px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.contact-message-view .email-action-btn:hover {
+    background: #e9ecef;
+    border-color: #adb5bd;
+    color: #495057;
+}
+
+.contact-message-view .email-action-btn.flag-btn.flagged {
+    color: #dc3545;
+    border-color: #dc3545;
+}
+
+.contact-message-view .email-action-btn.flag-btn.flagged:hover {
+    background: #f8d7da;
+}
+
+.contact-message-view .dropdown-toggle::after {
+    display: none; /* Hide default dropdown arrow since we use ellipsis icon */
+}
+
+.contact-message-view .dropdown-menu {
+    border: 1px solid #ddd;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    border-radius: 6px;
+    padding: 0.5rem 0;
+}
+
+.contact-message-view .dropdown-item {
+    padding: 0.5rem 1rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    border: none;
+    background: none;
+    width: 100%;
+    text-align: left;
+    color: #495057;
+}
+
+.contact-message-view .dropdown-item:hover {
+    background: #f8f9fa;
+}
+
+.contact-message-view .dropdown-item.text-danger {
+    color: #dc3545;
+}
+
+.contact-message-view .dropdown-item.text-danger:hover {
+    background: #f8d7da;
+} 

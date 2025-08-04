@@ -1,0 +1,988 @@
+HTML content length: 212265
+First 500 chars of HTML:     
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+<meta charset="UTF-8"/>
+<title>Product -search - DIN Media</title>
+<meta name="keywords" content='DIN,ISO,VDI,DVS,M/R,DVS-M/R,ASTM,Normen,Norm,DIN Normen,US-Normen,Auslandsnormen,international,Richtlinien,Standards,Downloads,Verlagsartikel,Normenverkauf,DIN Media'/>
+<link rel="shortcut icon" type="image/x-icon" href="https://www.dinmedia.de/resource/blob/1048604/aa7c99f2fca6e28b4370fd275a9bdee2/dinmedia-en-favicon.ico"/>
+<script
+type="modu
+Found 10 list items with bwr-card-group__list-item class
+Added card 1 from list item
+Added card 2 from list item
+Added card 3 from list item
+Added card 4 from list item
+Added card 5 from list item
+Added card 6 from list item
+Added card 7 from list item
+Added card 8 from list item
+Added card 9 from list item
+Added card 10 from list item
+Total cards to process: 10
+Processing card 1
+Card 1 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 1 title: 'ASTM E 192:2020'
+Card 1 url: 'https://www.dinmedia.de/en/standard/astm-e-192/334373221'
+Card 1 description: 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications'
+Card 1 details: '1.1 The reference radiographs provided in the adjunct to this standard illustrate various types and degrees of discontinuities occurring in thin-wall steel investment castings. Use of this ...'
+Card 1 status: '[CURRENT]'
+Card 1 year: '2020'
+Card 1 price with VAT: '65.30 EUR'
+Card 1 price no VAT: '61.03 EUR'
+Card 1 image: 'https://www.dinmedia.de/pic/cluster/w_7721_covf.225h.gif'
+Card 1 final standard object: {'index': 1, 'title': 'ASTM E 192:2020', 'url': 'https://www.dinmedia.de/en/standard/astm-e-192/334373221', 'description': 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications', 'details': '1.1 The reference radiographs provided in the adjunct to this standard illustrate various types and degrees of discontinuities occurring in thin-wall steel investment castings. Use of this ...', 'status': '[CURRENT]', 'year': '2020', 'price_vat': '65.30 EUR', 'price_no_vat': '61.03 EUR', 'price_vat_full': 'from65.30 EURVAT included', 'price_no_vat_full': 'from61.03 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_7721_covf.225h.gif', 'image_alt': 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications'}
+Added standard 1 to results
+Processing card 2
+Card 2 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 2 title: 'ASTM E 192:2020 - Translation: English'
+Card 2 url: 'https://www.dinmedia.de/en/standard/astm-e-192/334373221'
+Card 2 description: 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications'
+Card 2 status: '[CURRENT]'
+Card 2 year: '2020'
+Card 2 price with VAT: '78.40 EUR'
+Card 2 price no VAT: '73.27 EUR'
+Card 2 image: 'https://www.dinmedia.de/pic/cluster/w_7721_covf.225h.gif'
+Card 2 final standard object: {'index': 2, 'title': 'ASTM E 192:2020 - Translation: English', 'url': 'https://www.dinmedia.de/en/standard/astm-e-192/334373221', 'description': 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications', 'status': '[CURRENT]', 'year': '2020', 'price_vat': '78.40 EUR', 'price_no_vat': '73.27 EUR', 'price_vat_full': '78.40 EURVAT included', 'price_no_vat_full': '73.27 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_7721_covf.225h.gif', 'image_alt': 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications'}
+Added standard 2 to results
+Processing card 3
+Card 3 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 3 title: 'DIN 29783:1983-04'
+Card 3 url: 'https://www.dinmedia.de/en/standard/din-29783/1025799'
+Card 3 description: 'Aerospace; precision castings of titanium and titanium alloys; technical specification'
+Card 3 status: '[CURRENT]'
+Card 3 year: '1983-04'
+Card 3 price with VAT: '72.60 EUR'
+Card 3 price no VAT: '67.85 EUR'
+Card 3 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 3 final standard object: {'index': 3, 'title': 'DIN 29783:1983-04', 'url': 'https://www.dinmedia.de/en/standard/din-29783/1025799', 'description': 'Aerospace; precision castings of titanium and titanium alloys; technical specification', 'status': '[CURRENT]', 'year': '1983-04', 'price_vat': '72.60 EUR', 'price_no_vat': '67.85 EUR', 'price_vat_full': 'from72.60 EURVAT included', 'price_no_vat_full': 'from67.85 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Aerospace; precision castings of titanium and titanium alloys; technical specification'}
+Added standard 3 to results
+Processing card 4
+Card 4 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 4 title: 'DIN 51398:1983-07'
+Card 4 url: 'https://www.dinmedia.de/en/standard/din-51398/1044812'
+Card 4 description: 'Testing of lubricants; procedure for measurement of low temperature apparent viscosity by means of the Brookfield viscometer (liquid bath method)'
+Card 4 status: '[CURRENT]'
+Card 4 year: '1983-07'
+Card 4 price with VAT: '50.70 EUR'
+Card 4 price no VAT: '47.38 EUR'
+Card 4 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 4 final standard object: {'index': 4, 'title': 'DIN 51398:1983-07', 'url': 'https://www.dinmedia.de/en/standard/din-51398/1044812', 'description': 'Testing of lubricants; procedure for measurement of low temperature apparent viscosity by means of the Brookfield viscometer (liquid bath method)', 'status': '[CURRENT]', 'year': '1983-07', 'price_vat': '50.70 EUR', 'price_no_vat': '47.38 EUR', 'price_vat_full': 'from50.70 EURVAT included', 'price_no_vat_full': 'from47.38 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Testing of lubricants; procedure for measurement of low temperature apparent viscosity by means of the Brookfield viscometer (liquid bath method)'}
+Added standard 4 to results
+Processing card 5
+Card 5 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 5 title: 'DIN EN 12679:2018-12'
+Card 5 url: 'https://www.dinmedia.de/en/standard/din-en-12679/296731743'
+Card 5 description: 'Non-destructive testingÿ- Radiographic testingÿ- Determination of the size of industrial radiographic gamma sources; German version ENÿ12679:2018'
+Card 5 status: '[CURRENT]'
+Card 5 year: '2018-12'
+Card 5 price with VAT: '72.60 EUR'
+Card 5 price no VAT: '67.85 EUR'
+Card 5 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 5 final standard object: {'index': 5, 'title': 'DIN EN 12679:2018-12', 'url': 'https://www.dinmedia.de/en/standard/din-en-12679/296731743', 'description': 'Non-destructive testingÿ- Radiographic testingÿ- Determination of the size of industrial radiographic gamma sources; German version ENÿ12679:2018', 'status': '[CURRENT]', 'year': '2018-12', 'price_vat': '72.60 EUR', 'price_no_vat': '67.85 EUR', 'price_vat_full': 'from72.60 EURVAT included', 'price_no_vat_full': 'from67.85 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Non-destructive testingÿ- Radiographic testingÿ- Determination of the size of industrial radiographic gamma sources; German version ENÿ12679:2018'}
+Added standard 5 to results
+Processing card 6
+Card 6 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 6 title: 'DIN EN 13942:2009-06'
+Card 6 url: 'https://www.dinmedia.de/en/standard/din-en-13942/115798470'
+Card 6 description: 'Petroleum and natural gas industriesÿ- Pipeline transportation systemsÿ- Pipeline valves (ISOÿ14313:2007 modifiedÿ+ Corÿ1:2009); English version ENÿ13942:2009ÿ+ AC:2009'
+Card 6 status: '[CURRENT]'
+Card 6 year: '2009-06'
+Card 6 price with VAT: '186.50 EUR'
+Card 6 price no VAT: '174.30 EUR'
+Card 6 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 6 final standard object: {'index': 6, 'title': 'DIN EN 13942:2009-06', 'url': 'https://www.dinmedia.de/en/standard/din-en-13942/115798470', 'description': 'Petroleum and natural gas industriesÿ- Pipeline transportation systemsÿ- Pipeline valves (ISOÿ14313:2007 modifiedÿ+ Corÿ1:2009); English version ENÿ13942:2009ÿ+ AC:2009', 'status': '[CURRENT]', 'year': '2009-06', 'price_vat': '186.50 EUR', 'price_no_vat': '174.30 EUR', 'price_vat_full': 'from186.50 EURVAT included', 'price_no_vat_full': 'from174.30 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Petroleum and natural gas industriesÿ- Pipeline transportation systemsÿ- Pipeline valves (ISOÿ14313:2007 modifiedÿ+ Corÿ1:2009); English version ENÿ13942:2009ÿ+ AC:2009'}
+Added standard 6 to results
+Processing card 7
+Card 7 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 7 title: 'DIN ISO 13992:2015-07'
+Card 7 url: 'https://www.dinmedia.de/en/standard/din-iso-13992/233437352'
+Card 7 description: 'Alpine touring ski-bindingsÿ- Requirements and test methods (ISOÿ13992:2014)'
+Card 7 details: 'This International Standard specifies the main characteristics of touring ski-bindings and describes, as an example, the test methods A and B. This International Standard applies, in principle, to ...'
+Card 7 status: '[CURRENT]'
+Card 7 year: '2015-07'
+Card 7 price with VAT: '127.10 EUR'
+Card 7 price no VAT: '118.79 EUR'
+Card 7 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 7 final standard object: {'index': 7, 'title': 'DIN ISO 13992:2015-07', 'url': 'https://www.dinmedia.de/en/standard/din-iso-13992/233437352', 'description': 'Alpine touring ski-bindingsÿ- Requirements and test methods (ISOÿ13992:2014)', 'details': 'This International Standard specifies the main characteristics of touring ski-bindings and describes, as an example, the test methods A and B. This International Standard applies, in principle, to ...', 'status': '[CURRENT]', 'year': '2015-07', 'price_vat': '127.10 EUR', 'price_no_vat': '118.79 EUR', 'price_vat_full': 'from127.10 EURVAT included', 'price_no_vat_full': 'from118.79 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Alpine touring ski-bindingsÿ- Requirements and test methods (ISOÿ13992:2014)'}
+Added standard 7 to results
+Processing card 8
+Card 8 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 8 title: 'DIN ISO 15082:2018-02'
+Card 8 url: 'https://www.dinmedia.de/en/standard/din-iso-15082/280449032'
+Card 8 description: 'Road vehiclesÿ- Tests for rigid plastic safety glazing materials (ISOÿ15082:2016)'
+Card 8 status: '[CURRENT]'
+Card 8 year: '2018-02'
+Card 8 price with VAT: '139.20 EUR'
+Card 8 price no VAT: '130.09 EUR'
+Card 8 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 8 final standard object: {'index': 8, 'title': 'DIN ISO 15082:2018-02', 'url': 'https://www.dinmedia.de/en/standard/din-iso-15082/280449032', 'description': 'Road vehiclesÿ- Tests for rigid plastic safety glazing materials (ISOÿ15082:2016)', 'status': '[CURRENT]', 'year': '2018-02', 'price_vat': '139.20 EUR', 'price_no_vat': '130.09 EUR', 'price_vat_full': 'from139.20 EURVAT included', 'price_no_vat_full': 'from130.09 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Road vehiclesÿ- Tests for rigid plastic safety glazing materials (ISOÿ15082:2016)'}
+Added standard 8 to results
+Processing card 9
+Card 9 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/draft-sta...
+Card 9 title: 'DIN EN 12681-1:2025-09 - Draft'
+Card 9 url: 'https://www.dinmedia.de/en/draft-standard/din-en-12681-1/393629695'
+Card 9 description: 'Foundingÿ- Radiographic testingÿ- Partÿ1: Film techniques; German and English version prENÿ12681-1:2025'
+Card 9 year: '2025-09'
+Card 9 price with VAT: '139.20 EUR'
+Card 9 price no VAT: '130.09 EUR'
+Card 9 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 9 final standard object: {'index': 9, 'title': 'DIN EN 12681-1:2025-09 - Draft', 'url': 'https://www.dinmedia.de/en/draft-standard/din-en-12681-1/393629695', 'description': 'Foundingÿ- Radiographic testingÿ- Partÿ1: Film techniques; German and English version prENÿ12681-1:2025', 'year': '2025-09', 'price_vat': '139.20 EUR', 'price_no_vat': '130.09 EUR', 'price_vat_full': 'from139.20 EURVAT included', 'price_no_vat_full': 'from130.09 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Foundingÿ- Radiographic testingÿ- Partÿ1: Film techniques; German and English version prENÿ12681-1:2025'}
+Added standard 9 to results
+Processing card 10
+Card 10 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/draft-sta...
+Card 10 title: 'DIN EN 1564:2025-08 - Draft'
+Card 10 url: 'https://www.dinmedia.de/en/draft-standard/din-en-1564/392579181'
+Card 10 description: 'Foundingÿ- Ausferritic spheroidal graphite cast irons; German and English version prENÿ1564:2025'
+Card 10 year: '2025-08'
+Card 10 price with VAT: '127.10 EUR'
+Card 10 price no VAT: '118.79 EUR'
+Card 10 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 10 final standard object: {'index': 10, 'title': 'DIN EN 1564:2025-08 - Draft', 'url': 'https://www.dinmedia.de/en/draft-standard/din-en-1564/392579181', 'description': 'Foundingÿ- Ausferritic spheroidal graphite cast irons; German and English version prENÿ1564:2025', 'year': '2025-08', 'price_vat': '127.10 EUR', 'price_no_vat': '118.79 EUR', 'price_vat_full': 'from127.10 EURVAT included', 'price_no_vat_full': 'from118.79 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Foundingÿ- Ausferritic spheroidal graphite cast irons; German and English version prENÿ1564:2025'}
+Added standard 10 to results
+Final standards count: 10
+Standard 1: ASTM E 192:2020
+Standard 2: ASTM E 192:2020 - Translation: English
+Standard 3: DIN 29783:1983-04
+Standard 4: DIN 51398:1983-07
+Standard 5: DIN EN 12679:2018-12
+Standard 6: DIN EN 13942:2009-06
+Standard 7: DIN ISO 13992:2015-07
+Standard 8: DIN ISO 15082:2018-02
+Standard 9: DIN EN 12681-1:2025-09 - Draft
+Standard 10: DIN EN 1564:2025-08 - Draft
+HTML content length: 212264
+First 500 chars of HTML:     
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+<meta charset="UTF-8"/>
+<title>Product -search - DIN Media</title>
+<meta name="keywords" content='DIN,ISO,VDI,DVS,M/R,DVS-M/R,ASTM,Normen,Norm,DIN Normen,US-Normen,Auslandsnormen,international,Richtlinien,Standards,Downloads,Verlagsartikel,Normenverkauf,DIN Media'/>
+<link rel="shortcut icon" type="image/x-icon" href="https://www.dinmedia.de/resource/blob/1048604/aa7c99f2fca6e28b4370fd275a9bdee2/dinmedia-en-favicon.ico"/>
+<script
+type="modu
+Found 10 list items with bwr-card-group__list-item class
+Added card 1 from list item
+Added card 2 from list item
+Added card 3 from list item
+Added card 4 from list item
+Added card 5 from list item
+Added card 6 from list item
+Added card 7 from list item
+Added card 8 from list item
+Added card 9 from list item
+Added card 10 from list item
+Total cards to process: 10
+Processing card 1
+Card 1 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 1 title: 'ASTM E 192:2020'
+Card 1 url: 'https://www.dinmedia.de/en/standard/astm-e-192/334373221'
+Card 1 description: 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications'
+Card 1 details: '1.1 The reference radiographs provided in the adjunct to this standard illustrate various types and degrees of discontinuities occurring in thin-wall steel investment castings. Use of this ...'
+Card 1 status: '[CURRENT]'
+Card 1 year: '2020'
+Card 1 price with VAT: '65.30 EUR'
+Card 1 price no VAT: '61.03 EUR'
+Card 1 image: 'https://www.dinmedia.de/pic/cluster/w_7721_covf.225h.gif'
+Card 1 final standard object: {'index': 1, 'title': 'ASTM E 192:2020', 'url': 'https://www.dinmedia.de/en/standard/astm-e-192/334373221', 'description': 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications', 'details': '1.1 The reference radiographs provided in the adjunct to this standard illustrate various types and degrees of discontinuities occurring in thin-wall steel investment castings. Use of this ...', 'status': '[CURRENT]', 'year': '2020', 'price_vat': '65.30 EUR', 'price_no_vat': '61.03 EUR', 'price_vat_full': 'from65.30 EURVAT included', 'price_no_vat_full': 'from61.03 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_7721_covf.225h.gif', 'image_alt': 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications'}
+Added standard 1 to results
+Processing card 2
+Card 2 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 2 title: 'ASTM E 192:2020 - Translation: English'
+Card 2 url: 'https://www.dinmedia.de/en/standard/astm-e-192/334373221'
+Card 2 description: 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications'
+Card 2 status: '[CURRENT]'
+Card 2 year: '2020'
+Card 2 price with VAT: '78.40 EUR'
+Card 2 price no VAT: '73.27 EUR'
+Card 2 image: 'https://www.dinmedia.de/pic/cluster/w_7721_covf.225h.gif'
+Card 2 final standard object: {'index': 2, 'title': 'ASTM E 192:2020 - Translation: English', 'url': 'https://www.dinmedia.de/en/standard/astm-e-192/334373221', 'description': 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications', 'status': '[CURRENT]', 'year': '2020', 'price_vat': '78.40 EUR', 'price_no_vat': '73.27 EUR', 'price_vat_full': '78.40 EURVAT included', 'price_no_vat_full': '73.27 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_7721_covf.225h.gif', 'image_alt': 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications'}
+Added standard 2 to results
+Processing card 3
+Card 3 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 3 title: 'DIN 29783:1983-04'
+Card 3 url: 'https://www.dinmedia.de/en/standard/din-29783/1025799'
+Card 3 description: 'Aerospace; precision castings of titanium and titanium alloys; technical specification'
+Card 3 status: '[CURRENT]'
+Card 3 year: '1983-04'
+Card 3 price with VAT: '72.60 EUR'
+Card 3 price no VAT: '67.85 EUR'
+Card 3 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 3 final standard object: {'index': 3, 'title': 'DIN 29783:1983-04', 'url': 'https://www.dinmedia.de/en/standard/din-29783/1025799', 'description': 'Aerospace; precision castings of titanium and titanium alloys; technical specification', 'status': '[CURRENT]', 'year': '1983-04', 'price_vat': '72.60 EUR', 'price_no_vat': '67.85 EUR', 'price_vat_full': 'from72.60 EURVAT included', 'price_no_vat_full': 'from67.85 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Aerospace; precision castings of titanium and titanium alloys; technical specification'}
+Added standard 3 to results
+Processing card 4
+Card 4 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 4 title: 'DIN 51398:1983-07'
+Card 4 url: 'https://www.dinmedia.de/en/standard/din-51398/1044812'
+Card 4 description: 'Testing of lubricants; procedure for measurement of low temperature apparent viscosity by means of the Brookfield viscometer (liquid bath method)'
+Card 4 status: '[CURRENT]'
+Card 4 year: '1983-07'
+Card 4 price with VAT: '50.70 EUR'
+Card 4 price no VAT: '47.38 EUR'
+Card 4 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 4 final standard object: {'index': 4, 'title': 'DIN 51398:1983-07', 'url': 'https://www.dinmedia.de/en/standard/din-51398/1044812', 'description': 'Testing of lubricants; procedure for measurement of low temperature apparent viscosity by means of the Brookfield viscometer (liquid bath method)', 'status': '[CURRENT]', 'year': '1983-07', 'price_vat': '50.70 EUR', 'price_no_vat': '47.38 EUR', 'price_vat_full': 'from50.70 EURVAT included', 'price_no_vat_full': 'from47.38 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Testing of lubricants; procedure for measurement of low temperature apparent viscosity by means of the Brookfield viscometer (liquid bath method)'}
+Added standard 4 to results
+Processing card 5
+Card 5 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 5 title: 'DIN EN 12679:2018-12'
+Card 5 url: 'https://www.dinmedia.de/en/standard/din-en-12679/296731743'
+Card 5 description: 'Non-destructive testingÿ- Radiographic testingÿ- Determination of the size of industrial radiographic gamma sources; German version ENÿ12679:2018'
+Card 5 status: '[CURRENT]'
+Card 5 year: '2018-12'
+Card 5 price with VAT: '72.60 EUR'
+Card 5 price no VAT: '67.85 EUR'
+Card 5 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 5 final standard object: {'index': 5, 'title': 'DIN EN 12679:2018-12', 'url': 'https://www.dinmedia.de/en/standard/din-en-12679/296731743', 'description': 'Non-destructive testingÿ- Radiographic testingÿ- Determination of the size of industrial radiographic gamma sources; German version ENÿ12679:2018', 'status': '[CURRENT]', 'year': '2018-12', 'price_vat': '72.60 EUR', 'price_no_vat': '67.85 EUR', 'price_vat_full': 'from72.60 EURVAT included', 'price_no_vat_full': 'from67.85 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Non-destructive testingÿ- Radiographic testingÿ- Determination of the size of industrial radiographic gamma sources; German version ENÿ12679:2018'}
+Added standard 5 to results
+Processing card 6
+Card 6 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 6 title: 'DIN EN 13942:2009-06'
+Card 6 url: 'https://www.dinmedia.de/en/standard/din-en-13942/115798470'
+Card 6 description: 'Petroleum and natural gas industriesÿ- Pipeline transportation systemsÿ- Pipeline valves (ISOÿ14313:2007 modifiedÿ+ Corÿ1:2009); English version ENÿ13942:2009ÿ+ AC:2009'
+Card 6 status: '[CURRENT]'
+Card 6 year: '2009-06'
+Card 6 price with VAT: '186.50 EUR'
+Card 6 price no VAT: '174.30 EUR'
+Card 6 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 6 final standard object: {'index': 6, 'title': 'DIN EN 13942:2009-06', 'url': 'https://www.dinmedia.de/en/standard/din-en-13942/115798470', 'description': 'Petroleum and natural gas industriesÿ- Pipeline transportation systemsÿ- Pipeline valves (ISOÿ14313:2007 modifiedÿ+ Corÿ1:2009); English version ENÿ13942:2009ÿ+ AC:2009', 'status': '[CURRENT]', 'year': '2009-06', 'price_vat': '186.50 EUR', 'price_no_vat': '174.30 EUR', 'price_vat_full': 'from186.50 EURVAT included', 'price_no_vat_full': 'from174.30 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Petroleum and natural gas industriesÿ- Pipeline transportation systemsÿ- Pipeline valves (ISOÿ14313:2007 modifiedÿ+ Corÿ1:2009); English version ENÿ13942:2009ÿ+ AC:2009'}
+Added standard 6 to results
+Processing card 7
+Card 7 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 7 title: 'DIN ISO 13992:2015-07'
+Card 7 url: 'https://www.dinmedia.de/en/standard/din-iso-13992/233437352'
+Card 7 description: 'Alpine touring ski-bindingsÿ- Requirements and test methods (ISOÿ13992:2014)'
+Card 7 details: 'This International Standard specifies the main characteristics of touring ski-bindings and describes, as an example, the test methods A and B. This International Standard applies, in principle, to ...'
+Card 7 status: '[CURRENT]'
+Card 7 year: '2015-07'
+Card 7 price with VAT: '127.10 EUR'
+Card 7 price no VAT: '118.79 EUR'
+Card 7 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 7 final standard object: {'index': 7, 'title': 'DIN ISO 13992:2015-07', 'url': 'https://www.dinmedia.de/en/standard/din-iso-13992/233437352', 'description': 'Alpine touring ski-bindingsÿ- Requirements and test methods (ISOÿ13992:2014)', 'details': 'This International Standard specifies the main characteristics of touring ski-bindings and describes, as an example, the test methods A and B. This International Standard applies, in principle, to ...', 'status': '[CURRENT]', 'year': '2015-07', 'price_vat': '127.10 EUR', 'price_no_vat': '118.79 EUR', 'price_vat_full': 'from127.10 EURVAT included', 'price_no_vat_full': 'from118.79 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Alpine touring ski-bindingsÿ- Requirements and test methods (ISOÿ13992:2014)'}
+Added standard 7 to results
+Processing card 8
+Card 8 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 8 title: 'DIN ISO 15082:2018-02'
+Card 8 url: 'https://www.dinmedia.de/en/standard/din-iso-15082/280449032'
+Card 8 description: 'Road vehiclesÿ- Tests for rigid plastic safety glazing materials (ISOÿ15082:2016)'
+Card 8 status: '[CURRENT]'
+Card 8 year: '2018-02'
+Card 8 price with VAT: '139.20 EUR'
+Card 8 price no VAT: '130.09 EUR'
+Card 8 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 8 final standard object: {'index': 8, 'title': 'DIN ISO 15082:2018-02', 'url': 'https://www.dinmedia.de/en/standard/din-iso-15082/280449032', 'description': 'Road vehiclesÿ- Tests for rigid plastic safety glazing materials (ISOÿ15082:2016)', 'status': '[CURRENT]', 'year': '2018-02', 'price_vat': '139.20 EUR', 'price_no_vat': '130.09 EUR', 'price_vat_full': 'from139.20 EURVAT included', 'price_no_vat_full': 'from130.09 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Road vehiclesÿ- Tests for rigid plastic safety glazing materials (ISOÿ15082:2016)'}
+Added standard 8 to results
+Processing card 9
+Card 9 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/draft-sta...
+Card 9 title: 'DIN EN 12681-1:2025-09 - Draft'
+Card 9 url: 'https://www.dinmedia.de/en/draft-standard/din-en-12681-1/393629695'
+Card 9 description: 'Foundingÿ- Radiographic testingÿ- Partÿ1: Film techniques; German and English version prENÿ12681-1:2025'
+Card 9 year: '2025-09'
+Card 9 price with VAT: '139.20 EUR'
+Card 9 price no VAT: '130.09 EUR'
+Card 9 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 9 final standard object: {'index': 9, 'title': 'DIN EN 12681-1:2025-09 - Draft', 'url': 'https://www.dinmedia.de/en/draft-standard/din-en-12681-1/393629695', 'description': 'Foundingÿ- Radiographic testingÿ- Partÿ1: Film techniques; German and English version prENÿ12681-1:2025', 'year': '2025-09', 'price_vat': '139.20 EUR', 'price_no_vat': '130.09 EUR', 'price_vat_full': 'from139.20 EURVAT included', 'price_no_vat_full': 'from130.09 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Foundingÿ- Radiographic testingÿ- Partÿ1: Film techniques; German and English version prENÿ12681-1:2025'}
+Added standard 9 to results
+Processing card 10
+Card 10 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/draft-sta...
+Card 10 title: 'DIN EN 1564:2025-08 - Draft'
+Card 10 url: 'https://www.dinmedia.de/en/draft-standard/din-en-1564/392579181'
+Card 10 description: 'Foundingÿ- Ausferritic spheroidal graphite cast irons; German and English version prENÿ1564:2025'
+Card 10 year: '2025-08'
+Card 10 price with VAT: '127.10 EUR'
+Card 10 price no VAT: '118.79 EUR'
+Card 10 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 10 final standard object: {'index': 10, 'title': 'DIN EN 1564:2025-08 - Draft', 'url': 'https://www.dinmedia.de/en/draft-standard/din-en-1564/392579181', 'description': 'Foundingÿ- Ausferritic spheroidal graphite cast irons; German and English version prENÿ1564:2025', 'year': '2025-08', 'price_vat': '127.10 EUR', 'price_no_vat': '118.79 EUR', 'price_vat_full': 'from127.10 EURVAT included', 'price_no_vat_full': 'from118.79 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Foundingÿ- Ausferritic spheroidal graphite cast irons; German and English version prENÿ1564:2025'}
+Added standard 10 to results
+Final standards count: 10
+Standard 1: ASTM E 192:2020
+Standard 2: ASTM E 192:2020 - Translation: English
+Standard 3: DIN 29783:1983-04
+Standard 4: DIN 51398:1983-07
+Standard 5: DIN EN 12679:2018-12
+Standard 6: DIN EN 13942:2009-06
+Standard 7: DIN ISO 13992:2015-07
+Standard 8: DIN ISO 15082:2018-02
+Standard 9: DIN EN 12681-1:2025-09 - Draft
+Standard 10: DIN EN 1564:2025-08 - Draft
+HTML content length: 212265
+First 500 chars of HTML:     
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+<meta charset="UTF-8"/>
+<title>Product -search - DIN Media</title>
+<meta name="keywords" content='DIN,ISO,VDI,DVS,M/R,DVS-M/R,ASTM,Normen,Norm,DIN Normen,US-Normen,Auslandsnormen,international,Richtlinien,Standards,Downloads,Verlagsartikel,Normenverkauf,DIN Media'/>
+<link rel="shortcut icon" type="image/x-icon" href="https://www.dinmedia.de/resource/blob/1048604/aa7c99f2fca6e28b4370fd275a9bdee2/dinmedia-en-favicon.ico"/>
+<script
+type="modu
+Found 10 list items with bwr-card-group__list-item class
+Added card 1 from list item
+Added card 2 from list item
+Added card 3 from list item
+Added card 4 from list item
+Added card 5 from list item
+Added card 6 from list item
+Added card 7 from list item
+Added card 8 from list item
+Added card 9 from list item
+Added card 10 from list item
+Total cards to process: 10
+Processing card 1
+Card 1 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 1 title: 'ASTM E 192:2020'
+Card 1 url: 'https://www.dinmedia.de/en/standard/astm-e-192/334373221'
+Card 1 description: 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications'
+Card 1 details: '1.1 The reference radiographs provided in the adjunct to this standard illustrate various types and degrees of discontinuities occurring in thin-wall steel investment castings. Use of this ...'
+Card 1 status: '[CURRENT]'
+Card 1 year: '2020'
+Card 1 price with VAT: '65.30 EUR'
+Card 1 price no VAT: '61.03 EUR'
+Card 1 image: 'https://www.dinmedia.de/pic/cluster/w_7721_covf.225h.gif'
+Card 1 final standard object: {'index': 1, 'title': 'ASTM E 192:2020', 'url': 'https://www.dinmedia.de/en/standard/astm-e-192/334373221', 'description': 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications', 'details': '1.1 The reference radiographs provided in the adjunct to this standard illustrate various types and degrees of discontinuities occurring in thin-wall steel investment castings. Use of this ...', 'status': '[CURRENT]', 'year': '2020', 'price_vat': '65.30 EUR', 'price_no_vat': '61.03 EUR', 'price_vat_full': 'from65.30 EURVAT included', 'price_no_vat_full': 'from61.03 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_7721_covf.225h.gif', 'image_alt': 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications'}
+Added standard 1 to results
+Processing card 2
+Card 2 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 2 title: 'ASTM E 192:2020 - Translation: English'
+Card 2 url: 'https://www.dinmedia.de/en/standard/astm-e-192/334373221'
+Card 2 description: 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications'
+Card 2 status: '[CURRENT]'
+Card 2 year: '2020'
+Card 2 price with VAT: '78.40 EUR'
+Card 2 price no VAT: '73.27 EUR'
+Card 2 image: 'https://www.dinmedia.de/pic/cluster/w_7721_covf.225h.gif'
+Card 2 final standard object: {'index': 2, 'title': 'ASTM E 192:2020 - Translation: English', 'url': 'https://www.dinmedia.de/en/standard/astm-e-192/334373221', 'description': 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications', 'status': '[CURRENT]', 'year': '2020', 'price_vat': '78.40 EUR', 'price_no_vat': '73.27 EUR', 'price_vat_full': '78.40 EURVAT included', 'price_no_vat_full': '73.27 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_7721_covf.225h.gif', 'image_alt': 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications'}
+Added standard 2 to results
+Processing card 3
+Card 3 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 3 title: 'DIN 29783:1983-04'
+Card 3 url: 'https://www.dinmedia.de/en/standard/din-29783/1025799'
+Card 3 description: 'Aerospace; precision castings of titanium and titanium alloys; technical specification'
+Card 3 status: '[CURRENT]'
+Card 3 year: '1983-04'
+Card 3 price with VAT: '72.60 EUR'
+Card 3 price no VAT: '67.85 EUR'
+Card 3 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 3 final standard object: {'index': 3, 'title': 'DIN 29783:1983-04', 'url': 'https://www.dinmedia.de/en/standard/din-29783/1025799', 'description': 'Aerospace; precision castings of titanium and titanium alloys; technical specification', 'status': '[CURRENT]', 'year': '1983-04', 'price_vat': '72.60 EUR', 'price_no_vat': '67.85 EUR', 'price_vat_full': 'from72.60 EURVAT included', 'price_no_vat_full': 'from67.85 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Aerospace; precision castings of titanium and titanium alloys; technical specification'}
+Added standard 3 to results
+Processing card 4
+Card 4 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 4 title: 'DIN 51398:1983-07'
+Card 4 url: 'https://www.dinmedia.de/en/standard/din-51398/1044812'
+Card 4 description: 'Testing of lubricants; procedure for measurement of low temperature apparent viscosity by means of the Brookfield viscometer (liquid bath method)'
+Card 4 status: '[CURRENT]'
+Card 4 year: '1983-07'
+Card 4 price with VAT: '50.70 EUR'
+Card 4 price no VAT: '47.38 EUR'
+Card 4 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 4 final standard object: {'index': 4, 'title': 'DIN 51398:1983-07', 'url': 'https://www.dinmedia.de/en/standard/din-51398/1044812', 'description': 'Testing of lubricants; procedure for measurement of low temperature apparent viscosity by means of the Brookfield viscometer (liquid bath method)', 'status': '[CURRENT]', 'year': '1983-07', 'price_vat': '50.70 EUR', 'price_no_vat': '47.38 EUR', 'price_vat_full': 'from50.70 EURVAT included', 'price_no_vat_full': 'from47.38 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Testing of lubricants; procedure for measurement of low temperature apparent viscosity by means of the Brookfield viscometer (liquid bath method)'}
+Added standard 4 to results
+Processing card 5
+Card 5 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 5 title: 'DIN EN 12679:2018-12'
+Card 5 url: 'https://www.dinmedia.de/en/standard/din-en-12679/296731743'
+Card 5 description: 'Non-destructive testingÿ- Radiographic testingÿ- Determination of the size of industrial radiographic gamma sources; German version ENÿ12679:2018'
+Card 5 status: '[CURRENT]'
+Card 5 year: '2018-12'
+Card 5 price with VAT: '72.60 EUR'
+Card 5 price no VAT: '67.85 EUR'
+Card 5 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 5 final standard object: {'index': 5, 'title': 'DIN EN 12679:2018-12', 'url': 'https://www.dinmedia.de/en/standard/din-en-12679/296731743', 'description': 'Non-destructive testingÿ- Radiographic testingÿ- Determination of the size of industrial radiographic gamma sources; German version ENÿ12679:2018', 'status': '[CURRENT]', 'year': '2018-12', 'price_vat': '72.60 EUR', 'price_no_vat': '67.85 EUR', 'price_vat_full': 'from72.60 EURVAT included', 'price_no_vat_full': 'from67.85 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Non-destructive testingÿ- Radiographic testingÿ- Determination of the size of industrial radiographic gamma sources; German version ENÿ12679:2018'}
+Added standard 5 to results
+Processing card 6
+Card 6 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 6 title: 'DIN EN 13942:2009-06'
+Card 6 url: 'https://www.dinmedia.de/en/standard/din-en-13942/115798470'
+Card 6 description: 'Petroleum and natural gas industriesÿ- Pipeline transportation systemsÿ- Pipeline valves (ISOÿ14313:2007 modifiedÿ+ Corÿ1:2009); English version ENÿ13942:2009ÿ+ AC:2009'
+Card 6 status: '[CURRENT]'
+Card 6 year: '2009-06'
+Card 6 price with VAT: '186.50 EUR'
+Card 6 price no VAT: '174.30 EUR'
+Card 6 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 6 final standard object: {'index': 6, 'title': 'DIN EN 13942:2009-06', 'url': 'https://www.dinmedia.de/en/standard/din-en-13942/115798470', 'description': 'Petroleum and natural gas industriesÿ- Pipeline transportation systemsÿ- Pipeline valves (ISOÿ14313:2007 modifiedÿ+ Corÿ1:2009); English version ENÿ13942:2009ÿ+ AC:2009', 'status': '[CURRENT]', 'year': '2009-06', 'price_vat': '186.50 EUR', 'price_no_vat': '174.30 EUR', 'price_vat_full': 'from186.50 EURVAT included', 'price_no_vat_full': 'from174.30 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Petroleum and natural gas industriesÿ- Pipeline transportation systemsÿ- Pipeline valves (ISOÿ14313:2007 modifiedÿ+ Corÿ1:2009); English version ENÿ13942:2009ÿ+ AC:2009'}
+Added standard 6 to results
+Processing card 7
+Card 7 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 7 title: 'DIN ISO 13992:2015-07'
+Card 7 url: 'https://www.dinmedia.de/en/standard/din-iso-13992/233437352'
+Card 7 description: 'Alpine touring ski-bindingsÿ- Requirements and test methods (ISOÿ13992:2014)'
+Card 7 details: 'This International Standard specifies the main characteristics of touring ski-bindings and describes, as an example, the test methods A and B. This International Standard applies, in principle, to ...'
+Card 7 status: '[CURRENT]'
+Card 7 year: '2015-07'
+Card 7 price with VAT: '127.10 EUR'
+Card 7 price no VAT: '118.79 EUR'
+Card 7 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 7 final standard object: {'index': 7, 'title': 'DIN ISO 13992:2015-07', 'url': 'https://www.dinmedia.de/en/standard/din-iso-13992/233437352', 'description': 'Alpine touring ski-bindingsÿ- Requirements and test methods (ISOÿ13992:2014)', 'details': 'This International Standard specifies the main characteristics of touring ski-bindings and describes, as an example, the test methods A and B. This International Standard applies, in principle, to ...', 'status': '[CURRENT]', 'year': '2015-07', 'price_vat': '127.10 EUR', 'price_no_vat': '118.79 EUR', 'price_vat_full': 'from127.10 EURVAT included', 'price_no_vat_full': 'from118.79 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Alpine touring ski-bindingsÿ- Requirements and test methods (ISOÿ13992:2014)'}
+Added standard 7 to results
+Processing card 8
+Card 8 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 8 title: 'DIN ISO 15082:2018-02'
+Card 8 url: 'https://www.dinmedia.de/en/standard/din-iso-15082/280449032'
+Card 8 description: 'Road vehiclesÿ- Tests for rigid plastic safety glazing materials (ISOÿ15082:2016)'
+Card 8 status: '[CURRENT]'
+Card 8 year: '2018-02'
+Card 8 price with VAT: '139.20 EUR'
+Card 8 price no VAT: '130.09 EUR'
+Card 8 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 8 final standard object: {'index': 8, 'title': 'DIN ISO 15082:2018-02', 'url': 'https://www.dinmedia.de/en/standard/din-iso-15082/280449032', 'description': 'Road vehiclesÿ- Tests for rigid plastic safety glazing materials (ISOÿ15082:2016)', 'status': '[CURRENT]', 'year': '2018-02', 'price_vat': '139.20 EUR', 'price_no_vat': '130.09 EUR', 'price_vat_full': 'from139.20 EURVAT included', 'price_no_vat_full': 'from130.09 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Road vehiclesÿ- Tests for rigid plastic safety glazing materials (ISOÿ15082:2016)'}
+Added standard 8 to results
+Processing card 9
+Card 9 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/draft-sta...
+Card 9 title: 'DIN EN 12681-1:2025-09 - Draft'
+Card 9 url: 'https://www.dinmedia.de/en/draft-standard/din-en-12681-1/393629695'
+Card 9 description: 'Foundingÿ- Radiographic testingÿ- Partÿ1: Film techniques; German and English version prENÿ12681-1:2025'
+Card 9 year: '2025-09'
+Card 9 price with VAT: '139.20 EUR'
+Card 9 price no VAT: '130.09 EUR'
+Card 9 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 9 final standard object: {'index': 9, 'title': 'DIN EN 12681-1:2025-09 - Draft', 'url': 'https://www.dinmedia.de/en/draft-standard/din-en-12681-1/393629695', 'description': 'Foundingÿ- Radiographic testingÿ- Partÿ1: Film techniques; German and English version prENÿ12681-1:2025', 'year': '2025-09', 'price_vat': '139.20 EUR', 'price_no_vat': '130.09 EUR', 'price_vat_full': 'from139.20 EURVAT included', 'price_no_vat_full': 'from130.09 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Foundingÿ- Radiographic testingÿ- Partÿ1: Film techniques; German and English version prENÿ12681-1:2025'}
+Added standard 9 to results
+Processing card 10
+Card 10 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/draft-sta...
+Card 10 title: 'DIN EN 1564:2025-08 - Draft'
+Card 10 url: 'https://www.dinmedia.de/en/draft-standard/din-en-1564/392579181'
+Card 10 description: 'Foundingÿ- Ausferritic spheroidal graphite cast irons; German and English version prENÿ1564:2025'
+Card 10 year: '2025-08'
+Card 10 price with VAT: '127.10 EUR'
+Card 10 price no VAT: '118.79 EUR'
+Card 10 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 10 final standard object: {'index': 10, 'title': 'DIN EN 1564:2025-08 - Draft', 'url': 'https://www.dinmedia.de/en/draft-standard/din-en-1564/392579181', 'description': 'Foundingÿ- Ausferritic spheroidal graphite cast irons; German and English version prENÿ1564:2025', 'year': '2025-08', 'price_vat': '127.10 EUR', 'price_no_vat': '118.79 EUR', 'price_vat_full': 'from127.10 EURVAT included', 'price_no_vat_full': 'from118.79 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Foundingÿ- Ausferritic spheroidal graphite cast irons; German and English version prENÿ1564:2025'}
+Added standard 10 to results
+Final standards count: 10
+Standard 1: ASTM E 192:2020
+Standard 2: ASTM E 192:2020 - Translation: English
+Standard 3: DIN 29783:1983-04
+Standard 4: DIN 51398:1983-07
+Standard 5: DIN EN 12679:2018-12
+Standard 6: DIN EN 13942:2009-06
+Standard 7: DIN ISO 13992:2015-07
+Standard 8: DIN ISO 15082:2018-02
+Standard 9: DIN EN 12681-1:2025-09 - Draft
+Standard 10: DIN EN 1564:2025-08 - Draft
+HTML content length: 251653
+First 500 chars of HTML:     
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+<meta charset="UTF-8"/>
+<title>Product -search - DIN Media</title>
+<meta name="keywords" content='DIN,ISO,VDI,DVS,M/R,DVS-M/R,ASTM,Normen,Norm,DIN Normen,US-Normen,Auslandsnormen,international,Richtlinien,Standards,Downloads,Verlagsartikel,Normenverkauf,DIN Media'/>
+<link rel="shortcut icon" type="image/x-icon" href="https://www.dinmedia.de/resource/blob/1048604/aa7c99f2fca6e28b4370fd275a9bdee2/dinmedia-en-favicon.ico"/>
+<script
+type="modu
+Found 25 list items with bwr-card-group__list-item class
+Added card 1 from list item
+Added card 2 from list item
+Added card 3 from list item
+Added card 4 from list item
+Added card 5 from list item
+Added card 6 from list item
+Added card 7 from list item
+Added card 8 from list item
+Added card 9 from list item
+Added card 10 from list item
+Added card 11 from list item
+Added card 12 from list item
+Added card 13 from list item
+Added card 14 from list item
+Added card 15 from list item
+Added card 16 from list item
+Added card 17 from list item
+Added card 18 from list item
+Added card 19 from list item
+Added card 20 from list item
+Added card 21 from list item
+Added card 22 from list item
+Added card 23 from list item
+Added card 24 from list item
+Added card 25 from list item
+Total cards to process: 25
+Processing card 1
+Card 1 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 1 title: 'ASTM E 192:2020'
+Card 1 url: 'https://www.dinmedia.de/en/standard/astm-e-192/334373221'
+Card 1 description: 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications'
+Card 1 details: '1.1 The reference radiographs provided in the adjunct to this standard illustrate various types and degrees of discontinuities occurring in thin-wall steel investment castings. Use of this ...'
+Card 1 status: '[CURRENT]'
+Card 1 year: '2020'
+Card 1 price with VAT: '65.30 EUR'
+Card 1 price no VAT: '61.03 EUR'
+Card 1 image: 'https://www.dinmedia.de/pic/cluster/w_7721_covf.225h.gif'
+Card 1 final standard object: {'index': 1, 'title': 'ASTM E 192:2020', 'url': 'https://www.dinmedia.de/en/standard/astm-e-192/334373221', 'description': 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications', 'details': '1.1 The reference radiographs provided in the adjunct to this standard illustrate various types and degrees of discontinuities occurring in thin-wall steel investment castings. Use of this ...', 'status': '[CURRENT]', 'year': '2020', 'price_vat': '65.30 EUR', 'price_no_vat': '61.03 EUR', 'price_vat_full': 'from65.30 EURVAT included', 'price_no_vat_full': 'from61.03 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_7721_covf.225h.gif', 'image_alt': 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications'}
+Added standard 1 to results
+Processing card 2
+Card 2 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 2 title: 'ASTM E 192:2020 - Translation: English'
+Card 2 url: 'https://www.dinmedia.de/en/standard/astm-e-192/334373221'
+Card 2 description: 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications'
+Card 2 status: '[CURRENT]'
+Card 2 year: '2020'
+Card 2 price with VAT: '78.40 EUR'
+Card 2 price no VAT: '73.27 EUR'
+Card 2 image: 'https://www.dinmedia.de/pic/cluster/w_7721_covf.225h.gif'
+Card 2 final standard object: {'index': 2, 'title': 'ASTM E 192:2020 - Translation: English', 'url': 'https://www.dinmedia.de/en/standard/astm-e-192/334373221', 'description': 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications', 'status': '[CURRENT]', 'year': '2020', 'price_vat': '78.40 EUR', 'price_no_vat': '73.27 EUR', 'price_vat_full': '78.40 EURVAT included', 'price_no_vat_full': '73.27 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_7721_covf.225h.gif', 'image_alt': 'Standard Reference Radiographs of Investment Steel Castings for Aerospace Applications'}
+Added standard 2 to results
+Processing card 3
+Card 3 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 3 title: 'DIN 29783:1983-04'
+Card 3 url: 'https://www.dinmedia.de/en/standard/din-29783/1025799'
+Card 3 description: 'Aerospace; precision castings of titanium and titanium alloys; technical specification'
+Card 3 status: '[CURRENT]'
+Card 3 year: '1983-04'
+Card 3 price with VAT: '72.60 EUR'
+Card 3 price no VAT: '67.85 EUR'
+Card 3 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 3 final standard object: {'index': 3, 'title': 'DIN 29783:1983-04', 'url': 'https://www.dinmedia.de/en/standard/din-29783/1025799', 'description': 'Aerospace; precision castings of titanium and titanium alloys; technical specification', 'status': '[CURRENT]', 'year': '1983-04', 'price_vat': '72.60 EUR', 'price_no_vat': '67.85 EUR', 'price_vat_full': 'from72.60 EURVAT included', 'price_no_vat_full': 'from67.85 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Aerospace; precision castings of titanium and titanium alloys; technical specification'}
+Added standard 3 to results
+Processing card 4
+Card 4 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 4 title: 'DIN 51398:1983-07'
+Card 4 url: 'https://www.dinmedia.de/en/standard/din-51398/1044812'
+Card 4 description: 'Testing of lubricants; procedure for measurement of low temperature apparent viscosity by means of the Brookfield viscometer (liquid bath method)'
+Card 4 status: '[CURRENT]'
+Card 4 year: '1983-07'
+Card 4 price with VAT: '50.70 EUR'
+Card 4 price no VAT: '47.38 EUR'
+Card 4 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 4 final standard object: {'index': 4, 'title': 'DIN 51398:1983-07', 'url': 'https://www.dinmedia.de/en/standard/din-51398/1044812', 'description': 'Testing of lubricants; procedure for measurement of low temperature apparent viscosity by means of the Brookfield viscometer (liquid bath method)', 'status': '[CURRENT]', 'year': '1983-07', 'price_vat': '50.70 EUR', 'price_no_vat': '47.38 EUR', 'price_vat_full': 'from50.70 EURVAT included', 'price_no_vat_full': 'from47.38 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Testing of lubricants; procedure for measurement of low temperature apparent viscosity by means of the Brookfield viscometer (liquid bath method)'}
+Added standard 4 to results
+Processing card 5
+Card 5 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 5 title: 'DIN EN 12679:2018-12'
+Card 5 url: 'https://www.dinmedia.de/en/standard/din-en-12679/296731743'
+Card 5 description: 'Non-destructive testingÿ- Radiographic testingÿ- Determination of the size of industrial radiographic gamma sources; German version ENÿ12679:2018'
+Card 5 status: '[CURRENT]'
+Card 5 year: '2018-12'
+Card 5 price with VAT: '72.60 EUR'
+Card 5 price no VAT: '67.85 EUR'
+Card 5 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 5 final standard object: {'index': 5, 'title': 'DIN EN 12679:2018-12', 'url': 'https://www.dinmedia.de/en/standard/din-en-12679/296731743', 'description': 'Non-destructive testingÿ- Radiographic testingÿ- Determination of the size of industrial radiographic gamma sources; German version ENÿ12679:2018', 'status': '[CURRENT]', 'year': '2018-12', 'price_vat': '72.60 EUR', 'price_no_vat': '67.85 EUR', 'price_vat_full': 'from72.60 EURVAT included', 'price_no_vat_full': 'from67.85 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Non-destructive testingÿ- Radiographic testingÿ- Determination of the size of industrial radiographic gamma sources; German version ENÿ12679:2018'}
+Added standard 5 to results
+Processing card 6
+Card 6 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 6 title: 'DIN EN 13942:2009-06'
+Card 6 url: 'https://www.dinmedia.de/en/standard/din-en-13942/115798470'
+Card 6 description: 'Petroleum and natural gas industriesÿ- Pipeline transportation systemsÿ- Pipeline valves (ISOÿ14313:2007 modifiedÿ+ Corÿ1:2009); English version ENÿ13942:2009ÿ+ AC:2009'
+Card 6 status: '[CURRENT]'
+Card 6 year: '2009-06'
+Card 6 price with VAT: '186.50 EUR'
+Card 6 price no VAT: '174.30 EUR'
+Card 6 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 6 final standard object: {'index': 6, 'title': 'DIN EN 13942:2009-06', 'url': 'https://www.dinmedia.de/en/standard/din-en-13942/115798470', 'description': 'Petroleum and natural gas industriesÿ- Pipeline transportation systemsÿ- Pipeline valves (ISOÿ14313:2007 modifiedÿ+ Corÿ1:2009); English version ENÿ13942:2009ÿ+ AC:2009', 'status': '[CURRENT]', 'year': '2009-06', 'price_vat': '186.50 EUR', 'price_no_vat': '174.30 EUR', 'price_vat_full': 'from186.50 EURVAT included', 'price_no_vat_full': 'from174.30 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Petroleum and natural gas industriesÿ- Pipeline transportation systemsÿ- Pipeline valves (ISOÿ14313:2007 modifiedÿ+ Corÿ1:2009); English version ENÿ13942:2009ÿ+ AC:2009'}
+Added standard 6 to results
+Processing card 7
+Card 7 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/draft-sta...
+Card 7 title: 'DIN EN 12681-1:2025-09 - Draft'
+Card 7 url: 'https://www.dinmedia.de/en/draft-standard/din-en-12681-1/393629695'
+Card 7 description: 'Foundingÿ- Radiographic testingÿ- Partÿ1: Film techniques; German and English version prENÿ12681-1:2025'
+Card 7 year: '2025-09'
+Card 7 price with VAT: '139.20 EUR'
+Card 7 price no VAT: '130.09 EUR'
+Card 7 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 7 final standard object: {'index': 7, 'title': 'DIN EN 12681-1:2025-09 - Draft', 'url': 'https://www.dinmedia.de/en/draft-standard/din-en-12681-1/393629695', 'description': 'Foundingÿ- Radiographic testingÿ- Partÿ1: Film techniques; German and English version prENÿ12681-1:2025', 'year': '2025-09', 'price_vat': '139.20 EUR', 'price_no_vat': '130.09 EUR', 'price_vat_full': 'from139.20 EURVAT included', 'price_no_vat_full': 'from130.09 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Foundingÿ- Radiographic testingÿ- Partÿ1: Film techniques; German and English version prENÿ12681-1:2025'}
+Added standard 7 to results
+Processing card 8
+Card 8 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 8 title: 'DIN ISO 13992:2015-07'
+Card 8 url: 'https://www.dinmedia.de/en/standard/din-iso-13992/233437352'
+Card 8 description: 'Alpine touring ski-bindingsÿ- Requirements and test methods (ISOÿ13992:2014)'
+Card 8 details: 'This International Standard specifies the main characteristics of touring ski-bindings and describes, as an example, the test methods A and B. This International Standard applies, in principle, to ...'
+Card 8 status: '[CURRENT]'
+Card 8 year: '2015-07'
+Card 8 price with VAT: '127.10 EUR'
+Card 8 price no VAT: '118.79 EUR'
+Card 8 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 8 final standard object: {'index': 8, 'title': 'DIN ISO 13992:2015-07', 'url': 'https://www.dinmedia.de/en/standard/din-iso-13992/233437352', 'description': 'Alpine touring ski-bindingsÿ- Requirements and test methods (ISOÿ13992:2014)', 'details': 'This International Standard specifies the main characteristics of touring ski-bindings and describes, as an example, the test methods A and B. This International Standard applies, in principle, to ...', 'status': '[CURRENT]', 'year': '2015-07', 'price_vat': '127.10 EUR', 'price_no_vat': '118.79 EUR', 'price_vat_full': 'from127.10 EURVAT included', 'price_no_vat_full': 'from118.79 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Alpine touring ski-bindingsÿ- Requirements and test methods (ISOÿ13992:2014)'}
+Added standard 8 to results
+Processing card 9
+Card 9 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 9 title: 'DIN ISO 15082:2018-02'
+Card 9 url: 'https://www.dinmedia.de/en/standard/din-iso-15082/280449032'
+Card 9 description: 'Road vehiclesÿ- Tests for rigid plastic safety glazing materials (ISOÿ15082:2016)'
+Card 9 status: '[CURRENT]'
+Card 9 year: '2018-02'
+Card 9 price with VAT: '139.20 EUR'
+Card 9 price no VAT: '130.09 EUR'
+Card 9 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 9 final standard object: {'index': 9, 'title': 'DIN ISO 15082:2018-02', 'url': 'https://www.dinmedia.de/en/standard/din-iso-15082/280449032', 'description': 'Road vehiclesÿ- Tests for rigid plastic safety glazing materials (ISOÿ15082:2016)', 'status': '[CURRENT]', 'year': '2018-02', 'price_vat': '139.20 EUR', 'price_no_vat': '130.09 EUR', 'price_vat_full': 'from139.20 EURVAT included', 'price_no_vat_full': 'from130.09 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Road vehiclesÿ- Tests for rigid plastic safety glazing materials (ISOÿ15082:2016)'}
+Added standard 9 to results
+Processing card 10
+Card 10 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/draft-sta...
+Card 10 title: 'DIN EN 1564:2025-08 - Draft'
+Card 10 url: 'https://www.dinmedia.de/en/draft-standard/din-en-1564/392579181'
+Card 10 description: 'Foundingÿ- Ausferritic spheroidal graphite cast irons; German and English version prENÿ1564:2025'
+Card 10 year: '2025-08'
+Card 10 price with VAT: '127.10 EUR'
+Card 10 price no VAT: '118.79 EUR'
+Card 10 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 10 final standard object: {'index': 10, 'title': 'DIN EN 1564:2025-08 - Draft', 'url': 'https://www.dinmedia.de/en/draft-standard/din-en-1564/392579181', 'description': 'Foundingÿ- Ausferritic spheroidal graphite cast irons; German and English version prENÿ1564:2025', 'year': '2025-08', 'price_vat': '127.10 EUR', 'price_no_vat': '118.79 EUR', 'price_vat_full': 'from127.10 EURVAT included', 'price_no_vat_full': 'from118.79 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Foundingÿ- Ausferritic spheroidal graphite cast irons; German and English version prENÿ1564:2025'}
+Added standard 10 to results
+Processing card 11
+Card 11 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/draft-sta...
+Card 11 title: 'DIN EN 1759-3:2022-02 - Draft'
+Card 11 url: 'https://www.dinmedia.de/en/draft-standard/din-en-1759-3/343213369'
+Card 11 description: 'Flanges and their jointsÿ- Circular flanges for pipes, valves, fittings and accessories, Class designatedÿ- Partÿ3: Copper alloy flanges; German and English version prENÿ1759-3:2021'
+Card 11 year: '2022-02'
+Card 11 price with VAT: '121.20 EUR'
+Card 11 price no VAT: '113.27 EUR'
+Card 11 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 11 final standard object: {'index': 11, 'title': 'DIN EN 1759-3:2022-02 - Draft', 'url': 'https://www.dinmedia.de/en/draft-standard/din-en-1759-3/343213369', 'description': 'Flanges and their jointsÿ- Circular flanges for pipes, valves, fittings and accessories, Class designatedÿ- Partÿ3: Copper alloy flanges; German and English version prENÿ1759-3:2021', 'year': '2022-02', 'price_vat': '121.20 EUR', 'price_no_vat': '113.27 EUR', 'price_vat_full': 'from121.20 EURVAT included', 'price_no_vat_full': 'from113.27 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Flanges and their jointsÿ- Circular flanges for pipes, valves, fittings and accessories, Class designatedÿ- Partÿ3: Copper alloy flanges; German and English version prENÿ1759-3:2021'}
+Added standard 11 to results
+Processing card 12
+Card 12 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 12 title: 'DIN EN ISO 13703-2:2024-02'
+Card 12 url: 'https://www.dinmedia.de/en/standard/din-en-iso-13703-2/374505329'
+Card 12 description: 'Oil and gas industries including lower carbon energyÿ- Piping systems on offshore platforms and onshore plantsÿ- Partÿ2: Materials (ISOÿ13703-2:2023); English version ENÿISOÿ13703-2:2023'
+Card 12 details: 'Product with additional digital content.PDF (full content of the document)Additional digitale content will be provided based on format and purchase option. Please note any information in the document.'
+Card 12 status: '[CURRENT]'
+Card 12 year: '2024-02'
+Card 12 price with VAT: '440.00 EUR'
+Card 12 price no VAT: '411.21 EUR'
+Card 12 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 12 final standard object: {'index': 12, 'title': 'DIN EN ISO 13703-2:2024-02', 'url': 'https://www.dinmedia.de/en/standard/din-en-iso-13703-2/374505329', 'description': 'Oil and gas industries including lower carbon energyÿ- Piping systems on offshore platforms and onshore plantsÿ- Partÿ2: Materials (ISOÿ13703-2:2023); English version ENÿISOÿ13703-2:2023', 'details': 'Product with additional digital content.PDF (full content of the document)Additional digitale content will be provided based on format and purchase option. Please note any information in the document.', 'status': '[CURRENT]', 'year': '2024-02', 'price_vat': '440.00 EUR', 'price_no_vat': '411.21 EUR', 'price_vat_full': 'from440.00 EURVAT included', 'price_no_vat_full': 'from411.21 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Oil and gas industries including lower carbon energyÿ- Piping systems on offshore platforms and onshore plantsÿ- Partÿ2: Materials (ISOÿ13703-2:2023); English version ENÿISOÿ13703-2:2023'}
+Added standard 12 to results
+Processing card 13
+Card 13 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/draft-sta...
+Card 13 title: 'DIN EN 1092-3:2022-02 - Draft'
+Card 13 url: 'https://www.dinmedia.de/en/draft-standard/din-en-1092-3/343213333'
+Card 13 description: 'Flanges and their jointsÿ- Circular flanges for pipes, valves, fittings and accessories, PNÿdesignatedÿ- Partÿ3: Copper alloy flanges; German and English version prENÿ1092-3:2021'
+Card 13 year: '2022-02'
+Card 13 price with VAT: '139.20 EUR'
+Card 13 price no VAT: '130.09 EUR'
+Card 13 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 13 final standard object: {'index': 13, 'title': 'DIN EN 1092-3:2022-02 - Draft', 'url': 'https://www.dinmedia.de/en/draft-standard/din-en-1092-3/343213333', 'description': 'Flanges and their jointsÿ- Circular flanges for pipes, valves, fittings and accessories, PNÿdesignatedÿ- Partÿ3: Copper alloy flanges; German and English version prENÿ1092-3:2021', 'year': '2022-02', 'price_vat': '139.20 EUR', 'price_no_vat': '130.09 EUR', 'price_vat_full': 'from139.20 EURVAT included', 'price_no_vat_full': 'from130.09 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Flanges and their jointsÿ- Circular flanges for pipes, valves, fittings and accessories, PNÿdesignatedÿ- Partÿ3: Copper alloy flanges; German and English version prENÿ1092-3:2021'}
+Added standard 13 to results
+Processing card 14
+Card 14 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/draft-sta...
+Card 14 title: 'DIN EN 62680-2-1:2015-05 - Draft'
+Card 14 url: 'https://www.dinmedia.de/en/draft-standard/din-en-62680-2-1/231576495'
+Card 14 description: 'Universal Serial Bus interfaces for data and powerÿ- Partÿ2-1: Universal Serial Bus Specification, Revision 2.0 (IECÿ100/2331/CDV:2014); English version FprENÿ62680-2-1:2014'
+Card 14 year: '2015-05'
+Card 14 price with VAT: '507.80 EUR'
+Card 14 price no VAT: '474.58 EUR'
+Card 14 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 14 final standard object: {'index': 14, 'title': 'DIN EN 62680-2-1:2015-05 - Draft', 'url': 'https://www.dinmedia.de/en/draft-standard/din-en-62680-2-1/231576495', 'description': 'Universal Serial Bus interfaces for data and powerÿ- Partÿ2-1: Universal Serial Bus Specification, Revision 2.0 (IECÿ100/2331/CDV:2014); English version FprENÿ62680-2-1:2014', 'year': '2015-05', 'price_vat': '507.80 EUR', 'price_no_vat': '474.58 EUR', 'price_vat_full': 'from507.80 EURVAT included', 'price_no_vat_full': 'from474.58 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Universal Serial Bus interfaces for data and powerÿ- Partÿ2-1: Universal Serial Bus Specification, Revision 2.0 (IECÿ100/2331/CDV:2014); English version FprENÿ62680-2-1:2014'}
+Added standard 14 to results
+Processing card 15
+Card 15 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/draft-sta...
+Card 15 title: 'DIN ISO 16000-3:2025-09 - Draft'
+Card 15 url: 'https://www.dinmedia.de/en/draft-standard/din-iso-16000-3/393911159'
+Card 15 description: 'Indoor airÿ- Partÿ3: Determination of formaldehyde and other carbonyl compounds in indoor and test chamber airÿ- Active sampling method (ISO/DISÿ16000-3:2025); Text in German and English'
+Card 15 details: 'This part of ISO 16000 is intended to characterise indoor air, whereby the sampling strategy to be used is described in ISO 16000-2. It is applicable to formaldehyde and other carbonyl compounds ...'
+Card 15 price with VAT: '115.70 EUR'
+Card 15 price no VAT: '108.13 EUR'
+Card 15 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 15 final standard object: {'index': 15, 'title': 'DIN ISO 16000-3:2025-09 - Draft', 'url': 'https://www.dinmedia.de/en/draft-standard/din-iso-16000-3/393911159', 'description': 'Indoor airÿ- Partÿ3: Determination of formaldehyde and other carbonyl compounds in indoor and test chamber airÿ- Active sampling method (ISO/DISÿ16000-3:2025); Text in German and English', 'details': 'This part of ISO 16000 is intended to characterise indoor air, whereby the sampling strategy to be used is described in ISO 16000-2. It is applicable to formaldehyde and other carbonyl compounds ...', 'price_vat': '115.70 EUR', 'price_no_vat': '108.13 EUR', 'price_vat_full': 'from115.70 EURVAT included', 'price_no_vat_full': 'from108.13 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Indoor airÿ- Partÿ3: Determination of formaldehyde and other carbonyl compounds in indoor and test chamber airÿ- Active sampling method (ISO/DISÿ16000-3:2025); Text in German and English'}
+Added standard 15 to results
+Processing card 16
+Card 16 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/draft-sta...
+Card 16 title: 'DIN EN ISO 3884:2024-04 - Draft'
+Card 16 url: 'https://www.dinmedia.de/en/draft-standard/din-en-iso-3884/377543981'
+Card 16 description: 'Solid recovered fuelsÿ- Methods for the determination of the content of elements (Al, Ca, Fe, K, Mg, Na, P, S, Si, Ti, As, Ba, Be, Cd, Co, Cr, Cu, Hg, Mo, Mn, Ni, Pb, Sb, Se, Sn, Tl, V, Zn) (ISO/DISÿ3884:2024); German and English version prENÿISOÿ3884:2024'
+Card 16 year: '2024-04'
+Card 16 price with VAT: '222.60 EUR'
+Card 16 price no VAT: '208.04 EUR'
+Card 16 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 16 final standard object: {'index': 16, 'title': 'DIN EN ISO 3884:2024-04 - Draft', 'url': 'https://www.dinmedia.de/en/draft-standard/din-en-iso-3884/377543981', 'description': 'Solid recovered fuelsÿ- Methods for the determination of the content of elements (Al, Ca, Fe, K, Mg, Na, P, S, Si, Ti, As, Ba, Be, Cd, Co, Cr, Cu, Hg, Mo, Mn, Ni, Pb, Sb, Se, Sn, Tl, V, Zn) (ISO/DISÿ3884:2024); German and English version prENÿISOÿ3884:2024', 'year': '2024-04', 'price_vat': '222.60 EUR', 'price_no_vat': '208.04 EUR', 'price_vat_full': 'from222.60 EURVAT included', 'price_no_vat_full': 'from208.04 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Solid recovered fuelsÿ- Methods for the determination of the content of elements (Al, Ca, Fe, K, Mg, Na, P, S, Si, Ti, As, Ba, Be, Cd, Co, Cr, Cu, Hg, Mo, Mn, Ni, Pb, Sb, Se, Sn, Tl, V, Zn) (ISO/DISÿ3884:2024); German and English version prENÿISOÿ3884:2024'}
+Added standard 16 to results
+Processing card 17
+Card 17 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/draft-sta...
+Card 17 title: 'DIN EN IEC 61158-2:2022-11 - Draft'
+Card 17 url: 'https://www.dinmedia.de/en/draft-standard/din-en-iec-61158-2/358883489'
+Card 17 description: 'Industrial communication networksÿ- Fieldbus specificationsÿ- Partÿ2: Physical layer specification and service definition (IECÿ65C/1099/CDV:2021); English version prENÿIECÿ61158-2:2021'
+Card 17 year: '2022-11'
+Card 17 price with VAT: '507.80 EUR'
+Card 17 price no VAT: '474.58 EUR'
+Card 17 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 17 final standard object: {'index': 17, 'title': 'DIN EN IEC 61158-2:2022-11 - Draft', 'url': 'https://www.dinmedia.de/en/draft-standard/din-en-iec-61158-2/358883489', 'description': 'Industrial communication networksÿ- Fieldbus specificationsÿ- Partÿ2: Physical layer specification and service definition (IECÿ65C/1099/CDV:2021); English version prENÿIECÿ61158-2:2021', 'year': '2022-11', 'price_vat': '507.80 EUR', 'price_no_vat': '474.58 EUR', 'price_vat_full': 'from507.80 EURVAT included', 'price_no_vat_full': 'from474.58 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Industrial communication networksÿ- Fieldbus specificationsÿ- Partÿ2: Physical layer specification and service definition (IECÿ65C/1099/CDV:2021); English version prENÿIECÿ61158-2:2021'}
+Added standard 17 to results
+Processing card 18
+Card 18 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/draft-sta...
+Card 18 title: 'DIN EN IEC 60352-2:2023-03 - Draft'
+Card 18 url: 'https://www.dinmedia.de/en/draft-standard/din-en-iec-60352-2/363637627'
+Card 18 description: 'Solderless connectionsÿ- Partÿ2: Crimped connectionsÿ- General requirements, test methods and practical guidance (IECÿ48B/2889/CD:2021); Text in German and English'
+Card 18 year: '2023-03'
+Card 18 price with VAT: '378.20 EUR'
+Card 18 price no VAT: '353.46 EUR'
+Card 18 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 18 final standard object: {'index': 18, 'title': 'DIN EN IEC 60352-2:2023-03 - Draft', 'url': 'https://www.dinmedia.de/en/draft-standard/din-en-iec-60352-2/363637627', 'description': 'Solderless connectionsÿ- Partÿ2: Crimped connectionsÿ- General requirements, test methods and practical guidance (IECÿ48B/2889/CD:2021); Text in German and English', 'year': '2023-03', 'price_vat': '378.20 EUR', 'price_no_vat': '353.46 EUR', 'price_vat_full': 'from378.20 EURVAT included', 'price_no_vat_full': 'from353.46 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Solderless connectionsÿ- Partÿ2: Crimped connectionsÿ- General requirements, test methods and practical guidance (IECÿ48B/2889/CD:2021); Text in German and English'}
+Added standard 18 to results
+Processing card 19
+Card 19 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 19 title: 'DIN EN 12681-1:2018-02'
+Card 19 url: 'https://www.dinmedia.de/en/standard/din-en-12681-1/270577449'
+Card 19 description: 'Foundingÿ- Radiographic testingÿ- Partÿ1: Film techniques; German version ENÿ12681-1:2017'
+Card 19 status: '[CURRENT]'
+Card 19 year: '2018-02'
+Card 19 price with VAT: '127.10 EUR'
+Card 19 price no VAT: '118.79 EUR'
+Card 19 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 19 final standard object: {'index': 19, 'title': 'DIN EN 12681-1:2018-02', 'url': 'https://www.dinmedia.de/en/standard/din-en-12681-1/270577449', 'description': 'Foundingÿ- Radiographic testingÿ- Partÿ1: Film techniques; German version ENÿ12681-1:2017', 'status': '[CURRENT]', 'year': '2018-02', 'price_vat': '127.10 EUR', 'price_no_vat': '118.79 EUR', 'price_vat_full': 'from127.10 EURVAT included', 'price_no_vat_full': 'from118.79 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Foundingÿ- Radiographic testingÿ- Partÿ1: Film techniques; German version ENÿ12681-1:2017'}
+Added standard 19 to results
+Processing card 20
+Card 20 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 20 title: 'DIN EN ISO 24200:2022-09'
+Card 20 url: 'https://www.dinmedia.de/en/standard/din-en-iso-24200/355771035'
+Card 20 description: 'Petroleum, petrochemical and natural gas industriesÿ- Bulk material for offshore projectsÿ- Pipe support (ISOÿ24200:2022); English version ENÿISOÿ24200:2022'
+Card 20 status: '[CURRENT]'
+Card 20 year: '2022-09'
+Card 20 price with VAT: '150.80 EUR'
+Card 20 price no VAT: '140.93 EUR'
+Card 20 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 20 final standard object: {'index': 20, 'title': 'DIN EN ISO 24200:2022-09', 'url': 'https://www.dinmedia.de/en/standard/din-en-iso-24200/355771035', 'description': 'Petroleum, petrochemical and natural gas industriesÿ- Bulk material for offshore projectsÿ- Pipe support (ISOÿ24200:2022); English version ENÿISOÿ24200:2022', 'status': '[CURRENT]', 'year': '2022-09', 'price_vat': '150.80 EUR', 'price_no_vat': '140.93 EUR', 'price_vat_full': 'from150.80 EURVAT included', 'price_no_vat_full': 'from140.93 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Petroleum, petrochemical and natural gas industriesÿ- Bulk material for offshore projectsÿ- Pipe support (ISOÿ24200:2022); English version ENÿISOÿ24200:2022'}
+Added standard 20 to results
+Processing card 21
+Card 21 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 21 title: 'DIN EN ISO 10426-1:2010-05'
+Card 21 url: 'https://www.dinmedia.de/en/standard/din-en-iso-10426-1/125284858'
+Card 21 description: 'Petroleum and natural gas industriesÿ- Cements and materials for well cementingÿ- Partÿ1: Specification (ISOÿ10426-1:2009 + Cor.1:2010); English version ENÿISOÿ10426-1:2009 + AC:2010'
+Card 21 details: 'This standard specifies requirements and gives recommendations for the six classes A, B, C, D, G and H of well cements, including their chemical and physical requirements and procedures for ...'
+Card 21 status: '[CURRENT]'
+Card 21 year: '2010-05'
+Card 21 price with VAT: '127.10 EUR'
+Card 21 price no VAT: '118.79 EUR'
+Card 21 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 21 final standard object: {'index': 21, 'title': 'DIN EN ISO 10426-1:2010-05', 'url': 'https://www.dinmedia.de/en/standard/din-en-iso-10426-1/125284858', 'description': 'Petroleum and natural gas industriesÿ- Cements and materials for well cementingÿ- Partÿ1: Specification (ISOÿ10426-1:2009 + Cor.1:2010); English version ENÿISOÿ10426-1:2009 + AC:2010', 'details': 'This standard specifies requirements and gives recommendations for the six classes A, B, C, D, G and H of well cements, including their chemical and physical requirements and procedures for ...', 'status': '[CURRENT]', 'year': '2010-05', 'price_vat': '127.10 EUR', 'price_no_vat': '118.79 EUR', 'price_vat_full': 'from127.10 EURVAT included', 'price_no_vat_full': 'from118.79 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Petroleum and natural gas industriesÿ- Cements and materials for well cementingÿ- Partÿ1: Specification (ISOÿ10426-1:2009 + Cor.1:2010); English version ENÿISOÿ10426-1:2009 + AC:2010'}
+Added standard 21 to results
+Processing card 22
+Card 22 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 22 title: 'DIN EN ISO 10426-2:2006-02'
+Card 22 url: 'https://www.dinmedia.de/en/standard/din-en-iso-10426-2/70256185'
+Card 22 description: 'Petroleum and natural gas industriesÿ- Cements and materials for well cementingÿ- Partÿ2: Testing of well cements (ISOÿ10426-2:2003ÿ+ Amd.ÿ1:2005); English version ENÿISOÿ10426-2:2003ÿ+ A1:2005'
+Card 22 status: '[CURRENT]'
+Card 22 year: '2006-02'
+Card 22 price with VAT: '257.90 EUR'
+Card 22 price no VAT: '241.03 EUR'
+Card 22 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 22 final standard object: {'index': 22, 'title': 'DIN EN ISO 10426-2:2006-02', 'url': 'https://www.dinmedia.de/en/standard/din-en-iso-10426-2/70256185', 'description': 'Petroleum and natural gas industriesÿ- Cements and materials for well cementingÿ- Partÿ2: Testing of well cements (ISOÿ10426-2:2003ÿ+ Amd.ÿ1:2005); English version ENÿISOÿ10426-2:2003ÿ+ A1:2005', 'status': '[CURRENT]', 'year': '2006-02', 'price_vat': '257.90 EUR', 'price_no_vat': '241.03 EUR', 'price_vat_full': 'from257.90 EURVAT included', 'price_no_vat_full': 'from241.03 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Petroleum and natural gas industriesÿ- Cements and materials for well cementingÿ- Partÿ2: Testing of well cements (ISOÿ10426-2:2003ÿ+ Amd.ÿ1:2005); English version ENÿISOÿ10426-2:2003ÿ+ A1:2005'}
+Added standard 22 to results
+Processing card 23
+Card 23 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 23 title: 'DIN EN ISO 13705:2013-04'
+Card 23 url: 'https://www.dinmedia.de/en/standard/din-en-iso-13705/170905809'
+Card 23 description: 'Petroleum, petrochemical and natural gas industriesÿ- Fired heaters for general refinery service (ISOÿ13705:2012); English version ENÿISOÿ13705:2012, only on CD-ROM'
+Card 23 details: 'This International Standard specifies requirements and gives recommendations for the design, materials, fabrication, inspection, testing, preparation for shipment, and erection of fired heaters ...'
+Card 23 status: '[CURRENT]'
+Card 23 year: '2013-04'
+Card 23 price with VAT: '440.00 EUR'
+Card 23 price no VAT: '411.21 EUR'
+Card 23 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 23 final standard object: {'index': 23, 'title': 'DIN EN ISO 13705:2013-04', 'url': 'https://www.dinmedia.de/en/standard/din-en-iso-13705/170905809', 'description': 'Petroleum, petrochemical and natural gas industriesÿ- Fired heaters for general refinery service (ISOÿ13705:2012); English version ENÿISOÿ13705:2012, only on CD-ROM', 'details': 'This International Standard specifies requirements and gives recommendations for the design, materials, fabrication, inspection, testing, preparation for shipment, and erection of fired heaters ...', 'status': '[CURRENT]', 'year': '2013-04', 'price_vat': '440.00 EUR', 'price_no_vat': '411.21 EUR', 'price_vat_full': 'from440.00 EURVAT included', 'price_no_vat_full': 'from411.21 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Petroleum, petrochemical and natural gas industriesÿ- Fired heaters for general refinery service (ISOÿ13705:2012); English version ENÿISOÿ13705:2012, only on CD-ROM'}
+Added standard 23 to results
+Processing card 24
+Card 24 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 24 title: 'DIN EN ISO 13710:2005-07'
+Card 24 url: 'https://www.dinmedia.de/en/standard/din-en-iso-13710/73642195'
+Card 24 description: 'Petroleum, petrochemical and natural gas industriesÿ- Reciprocating positive displacement pumps (ISOÿ13710:2004); English version ENÿISOÿ13710:2004'
+Card 24 status: '[CURRENT]'
+Card 24 year: '2005-07'
+Card 24 price with VAT: '163.20 EUR'
+Card 24 price no VAT: '152.52 EUR'
+Card 24 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 24 final standard object: {'index': 24, 'title': 'DIN EN ISO 13710:2005-07', 'url': 'https://www.dinmedia.de/en/standard/din-en-iso-13710/73642195', 'description': 'Petroleum, petrochemical and natural gas industriesÿ- Reciprocating positive displacement pumps (ISOÿ13710:2004); English version ENÿISOÿ13710:2004', 'status': '[CURRENT]', 'year': '2005-07', 'price_vat': '163.20 EUR', 'price_no_vat': '152.52 EUR', 'price_vat_full': 'from163.20 EURVAT included', 'price_no_vat_full': 'from152.52 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Petroleum, petrochemical and natural gas industriesÿ- Reciprocating positive displacement pumps (ISOÿ13710:2004); English version ENÿISOÿ13710:2004'}
+Added standard 24 to results
+Processing card 25
+Card 25 HTML structure: <div class="bwr-card bwr-card--list js-card">
+<div class="bwr-card__inner">
+<div class="bwr-card__image-block">
+<div class="bwr-image bwr-image--squared bwr-card__image" data-dlink-href="/en/standard/...
+Card 25 title: 'DIN EN 6072:2011-06'
+Card 25 url: 'https://www.dinmedia.de/en/standard/din-en-6072/140066421'
+Card 25 description: 'Aerospace seriesÿ- Metallic materialsÿ- Test methodsÿ- Constant amplitude fatigue testing; German and English version ENÿ6072:2010'
+Card 25 details: 'This standard defines a method to determine constant amplitude fatigue data of metallic materials and the S-N curve (or W”hler curve). It has been prepared by ASD-STAN, Technical Section Metallic ...'
+Card 25 status: '[CURRENT]'
+Card 25 year: '2011-06'
+Card 25 price with VAT: '115.70 EUR'
+Card 25 price no VAT: '108.13 EUR'
+Card 25 image: 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif'
+Card 25 final standard object: {'index': 25, 'title': 'DIN EN 6072:2011-06', 'url': 'https://www.dinmedia.de/en/standard/din-en-6072/140066421', 'description': 'Aerospace seriesÿ- Metallic materialsÿ- Test methodsÿ- Constant amplitude fatigue testing; German and English version ENÿ6072:2010', 'details': 'This standard defines a method to determine constant amplitude fatigue data of metallic materials and the S-N curve (or W”hler curve). It has been prepared by ASD-STAN, Technical Section Metallic ...', 'status': '[CURRENT]', 'year': '2011-06', 'price_vat': '115.70 EUR', 'price_no_vat': '108.13 EUR', 'price_vat_full': 'from115.70 EURVAT included', 'price_no_vat_full': 'from108.13 EURVAT excluded', 'image_url': 'https://www.dinmedia.de/pic/cluster/w_8938_covf.225h.gif', 'image_alt': 'Aerospace seriesÿ- Metallic materialsÿ- Test methodsÿ- Constant amplitude fatigue testing; German and English version ENÿ6072:2010'}
+Added standard 25 to results
+Final standards count: 25
+Standard 1: ASTM E 192:2020
+Standard 2: ASTM E 192:2020 - Translation: English
+Standard 3: DIN 29783:1983-04
+Standard 4: DIN 51398:1983-07
+Standard 5: DIN EN 12679:2018-12
+Standard 6: DIN EN 13942:2009-06
+Standard 7: DIN EN 12681-1:2025-09 - Draft
+Standard 8: DIN ISO 13992:2015-07
+Standard 9: DIN ISO 15082:2018-02
+Standard 10: DIN EN 1564:2025-08 - Draft
+Standard 11: DIN EN 1759-3:2022-02 - Draft
+Standard 12: DIN EN ISO 13703-2:2024-02
+Standard 13: DIN EN 1092-3:2022-02 - Draft
+Standard 14: DIN EN 62680-2-1:2015-05 - Draft
+Standard 15: DIN ISO 16000-3:2025-09 - Draft
+Standard 16: DIN EN ISO 3884:2024-04 - Draft
+Standard 17: DIN EN IEC 61158-2:2022-11 - Draft
+Standard 18: DIN EN IEC 60352-2:2023-03 - Draft
+Standard 19: DIN EN 12681-1:2018-02
+Standard 20: DIN EN ISO 24200:2022-09
+Standard 21: DIN EN ISO 10426-1:2010-05
+Standard 22: DIN EN ISO 10426-2:2006-02
+Standard 23: DIN EN ISO 13705:2013-04
+Standard 24: DIN EN ISO 13710:2005-07
+Standard 25: DIN EN 6072:2011-06

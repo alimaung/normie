@@ -38,7 +38,7 @@
         <!-- Folder List -->
         <div class="folder-list">
             <div class="folder-header">
-                <span class="folder-header-text">{% trans "Folders" %}</span>
+                <span class="folder-header-text">{% trans "Outlook Folders" %}</span>
             </div>
             <ul>
                 <li class="folder-item {% if current_folder == 'Inbox' or not current_folder %}active{% endif %}">
@@ -93,37 +93,28 @@
             </ul>
         </div>
         
-        <!-- Quick Filters -->
-        <div class="quick-filters">
+        <!-- Intramail -->
+        <div class="intramail-list">
             <div class="folder-header">
-                <span class="folder-header-text">{% trans "Quick Filters" %}</span>
+                <span class="folder-header-text">{% trans "IntraComms" %}</span>
             </div>
             <ul>
-                <li class="filter-item">
-                    <a href="#" data-filter="unread" title="{% trans 'Unread emails' %}">
-                        <i class="fas fa-envelope folder-icon"></i>
-                        <span class="folder-name">{% trans "Unread" %}</span>
-                        {% if folder_stats.unread_emails %}
-                        <span class="filter-count">{{ folder_stats.unread_emails }}</span>
-                        {% endif %}
+                <li class="folder-item">
+                    <a href="{% url 'inbox_contact' %}" title="{% trans 'Contact Messages' %}">
+                        <i class="fas fa-user-friends folder-icon"></i>
+                        <span class="folder-name">{% trans "Contact" %}</span>
                     </a>
                 </li>
-                <li class="filter-item">
-                    <a href="#" data-filter="important" title="{% trans 'Important emails' %}">
-                        <i class="fas fa-star folder-icon"></i>
-                        <span class="folder-name">{% trans "Important" %}</span>
-                        {% if folder_stats.important_emails %}
-                        <span class="filter-count">{{ folder_stats.important_emails }}</span>
-                        {% endif %}
+                <li class="folder-item">
+                    <a href="#" title="{% trans 'Chat Messages' %}">
+                        <i class="fas fa-comments folder-icon"></i>
+                        <span class="folder-name">{% trans "Chat" %}</span>
                     </a>
                 </li>
-                <li class="filter-item">
-                    <a href="#" data-filter="attachments" title="{% trans 'Emails with attachments' %}">
-                        <i class="fas fa-paperclip folder-icon"></i>
-                        <span class="folder-name">{% trans "Attachments" %}</span>
-                        {% if folder_stats.emails_with_attachments %}
-                        <span class="filter-count">{{ folder_stats.emails_with_attachments }}</span>
-                        {% endif %}
+                <li class="folder-item">
+                    <a href="#" title="{% trans 'Ticket System' %}">
+                        <i class="fas fa-ticket-alt folder-icon"></i>
+                        <span class="folder-name">{% trans "Ticket" %}</span>
                     </a>
                 </li>
             </ul>
@@ -210,44 +201,7 @@
                     </div>
                 </div>
                 
-                <!-- Filters -->
-                <div class="filter-dropdown dropdown">
-                    <button class="btn btn-outline-secondary" type="button" 
-                            id="filter-dropdown" data-bs-toggle="dropdown">
-                        <i class="fas fa-filter"></i>
-                        {% trans "Filters" %}
-                    </button>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <label class="dropdown-item">
-                                <input type="checkbox" id="filter-unread" 
-                                       {% if current_filters.unread %}checked{% endif %}>
-                                {% trans "Unread only" %}
-                            </label>
-                        </li>
-                        <li>
-                            <label class="dropdown-item">
-                                <input type="checkbox" id="filter-important" 
-                                       {% if current_filters.important %}checked{% endif %}>
-                                {% trans "Important only" %}
-                            </label>
-                        </li>
-                        <li>
-                            <label class="dropdown-item">
-                                <input type="checkbox" id="filter-attachments" 
-                                       {% if current_filters.attachments %}checked{% endif %}>
-                                {% trans "With attachments" %}
-                            </label>
-                        </li>
-                        <li><hr class="dropdown-divider"></li>
-                        <li>
-                            <button class="dropdown-item" id="clear-filters">
-                                <i class="fas fa-times"></i>
-                                {% trans "Clear all filters" %}
-                            </button>
-                        </li>
-                    </ul>
-                </div>
+
             </div>
         </div>
         
@@ -270,12 +224,8 @@
             <div class="no-emails-message">
                 <i class="fas fa-inbox fa-3x text-muted mb-3"></i>
                 <h4>{% trans "No emails found" %}</h4>
-                {% if current_filters.search or current_filters.unread or current_filters.important or current_filters.attachments %}
-                <p>{% trans "Try adjusting your search or filters." %}</p>
-                <button class="btn btn-outline-primary" id="clear-all-filters">
-                    <i class="fas fa-times"></i>
-                    {% trans "Clear filters" %}
-                </button>
+                {% if current_filters.search %}
+                <p>{% trans "Try adjusting your search." %}</p>
                 {% else %}
                 <p>{% trans "Your inbox is empty." %}</p>
                 {% endif %}
@@ -425,6 +375,29 @@
             </nav>
         </div>
         {% endif %}
+        
+        <!-- Contact Archive Panel (only visible for Contact folder) -->
+        <div class="contact-archive-panel" id="contact-archive-panel">
+            <div class="contact-archive-header" id="contact-archive-toggle">
+                <h4>
+                    <i class="fas fa-archive"></i>
+                    {% trans "Processed Contact Messages" %}
+                    <span class="archive-count" id="archive-count">(0)</span>
+                </h4>
+                <i class="fas fa-chevron-up archive-chevron"></i>
+            </div>
+            <div class="contact-archive-content" id="contact-archive-content">
+                <div class="archive-loading" style="display: none;">
+                    <i class="fas fa-spinner fa-spin"></i> {% trans "Loading archived messages..." %}
+                </div>
+                <div class="archive-empty" style="display: none;">
+                    <p class="text-muted">{% trans "No processed messages found." %}</p>
+                </div>
+                <div class="archive-list" id="archive-list">
+                    <!-- Archived messages will be loaded here -->
+                </div>
+            </div>
+        </div>
     </div>
     
     <!-- Right Sidebar (Gmail-style) -->
@@ -572,6 +545,7 @@
 
 {% block extra_js %}
 <script src="{% static 'normieapp/js/inbox.js' %}"></script>
+<script src="{% static 'normieapp/js/contact-messages.js' %}"></script>
 {{ current_filters|json_script:"current-filters" }}
 {{ pagination|json_script:"pagination-data" }}
 {{ folder_stats|json_script:"folder-stats" }}

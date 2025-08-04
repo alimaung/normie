@@ -1,0 +1,186 @@
+{% load i18n %}
+{% load static %}
+
+<div class="email-view-container contact-message-view">
+    <!-- Email Header -->
+    <div class="email-view-header">
+        <div class="email-view-back">
+            <button class="back-arrow-btn" title="{% trans 'Back to inbox' %}">
+                <i class="fas fa-arrow-left"></i>
+            </button>
+        </div>
+        
+        <div class="email-view-actions">
+            <button class="email-action-btn reply-btn" 
+                    data-email="{{ message.email }}" 
+                    data-name="{{ message.name }}"
+                    data-message-id="{{ message.id }}"
+                    data-subject="Re: [{{ message.get_subject_display }}] {{ message.name }}"
+                    title="{% trans 'Reply to sender' %}">
+                <i class="fas fa-reply"></i>
+            </button>
+            
+            <button class="email-action-btn flag-btn{% if message.flagged %} flagged{% endif %}" 
+                    data-message-id="{{ message.id }}"
+                    data-flagged="{% if message.flagged %}true{% else %}false{% endif %}"
+                    title="{% trans 'Flag message' %}">
+                <i class="fas fa-flag{% if not message.flagged %}-o{% endif %}"></i>
+            </button>
+            
+            {% if message.status == 'new' %}
+            <button class="email-action-btn mark-progress-btn" 
+                    data-message-id="{{ message.id }}" 
+                    title="{% trans 'Mark as in progress' %}">
+                <i class="fas fa-play"></i>
+            </button>
+            {% elif message.status == 'in_progress' %}
+            <button class="email-action-btn mark-resolved-btn" 
+                    data-message-id="{{ message.id }}" 
+                    title="{% trans 'Mark as resolved' %}">
+                <i class="fas fa-check"></i>
+            </button>
+            {% endif %}
+            
+            <button class="email-action-btn" title="{% trans 'Print' %}" onclick="window.print()">
+                <i class="fas fa-print"></i>
+            </button>
+            
+            <div class="dropdown">
+                <button class="email-action-btn dropdown-toggle" 
+                        type="button" data-bs-toggle="dropdown"
+                        title="{% trans 'More actions' %}">
+                    <i class="fas fa-ellipsis-h"></i>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        <button class="dropdown-item assign-btn" data-message-id="{{ message.id }}">
+                            <i class="fas fa-user"></i>
+                            {% trans "Assign to me" %}
+                        </button>
+                    </li>
+                    <li>
+                        <button class="dropdown-item add-notes-btn" data-message-id="{{ message.id }}">
+                            <i class="fas fa-sticky-note"></i>
+                            {% trans "Add internal notes" %}
+                        </button>
+                    </li>
+                    <li><hr class="dropdown-divider"></li>
+                    <li>
+                        <button class="dropdown-item text-danger delete-message-btn" data-message-id="{{ message.id }}">
+                            <i class="fas fa-trash"></i>
+                            {% trans "Delete message" %}
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Message Content -->
+    <div class="email-view-content">
+        <!-- Header Section -->
+        <div class="email-header-section">
+            <div class="email-subject">
+                <h2>{{ email.subject }}</h2>
+            </div>
+            
+            <!-- Message Status Badge -->
+            <div class="message-status-badge">
+                <span class="badge contact-status-{{ message.status }}">
+                    {% if message.status == 'new' %}
+                        <i class="fas fa-circle"></i> {% trans "New" %}
+                    {% elif message.status == 'in_progress' %}
+                        <i class="fas fa-clock"></i> {% trans "In Progress" %}
+                    {% elif message.status == 'resolved' %}
+                        <i class="fas fa-check-circle"></i> {% trans "Resolved" %}
+                    {% elif message.status == 'closed' %}
+                        <i class="fas fa-times-circle"></i> {% trans "Closed" %}
+                    {% endif %}
+                </span>
+            </div>
+            
+            <div class="email-meta">
+                <div class="sender-info">
+                    <div class="sender-avatar">
+                        <i class="fas fa-user"></i>
+                    </div>
+                    <div class="sender-details">
+                        <div class="sender-name">{{ message.name }}</div>
+                        <div class="sender-email">{{ message.email }}</div>
+                        {% if message.department %}
+                        <div class="sender-department">
+                            <i class="fas fa-building"></i>
+                            {{ message.department }}
+                        </div>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="email-date">
+                    <span class="date-full" title="{{ message.created_at|date:'Y-m-d H:i:s' }}">
+                        {{ message.created_at|date:"F j, Y \a\t g:i A" }}
+                    </span>
+                </div>
+            </div>
+            
+            <!-- Subject Category -->
+            <div class="message-category">
+                <span class="category-badge">
+                    <i class="fas fa-tag"></i>
+                    {{ message.get_subject_display }}
+                </span>
+            </div>
+        </div>
+        
+        <!-- Body Section -->
+        <div class="email-body-section">
+            <div class="email-body-content">
+                <div class="message-content">
+                    <h4>{% trans "Message:" %}</h4>
+                    <div class="message-text">
+                        {{ message.message|linebreaksbr }}
+                    </div>
+                </div>
+                
+                <!-- Internal Notes Section (for staff) -->
+                {% if message.internal_notes %}
+                <div class="internal-notes-section">
+                    <h4>
+                        <i class="fas fa-sticky-note"></i>
+                        {% trans "Internal Notes:" %}
+                    </h4>
+                    <div class="internal-notes">
+                        {{ message.internal_notes|linebreaksbr }}
+                    </div>
+                </div>
+                {% endif %}
+                
+                <!-- Assignment Info -->
+                {% if message.assigned_to %}
+                <div class="assignment-info">
+                    <h4>
+                        <i class="fas fa-user-check"></i>
+                        {% trans "Assigned to:" %}
+                    </h4>
+                    <div class="assigned-user">
+                        {{ message.assigned_to.get_full_name|default:message.assigned_to.username }}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div> 
+
+<script>
+// Handle back button
+$(document).ready(function() {
+    $('.back-arrow-btn').on('click', function() {
+        if (window.inboxManager) {
+            window.inboxManager.navigateBackToInbox();
+        } else {
+            window.history.back();
+        }
+    });
+});
+</script> 

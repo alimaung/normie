@@ -174,6 +174,20 @@
                                 {{ forward_email.body|linebreaks }}
                             </div>
                         </div>
+                    {% elif contact_message %}
+                        <br><br>
+                        <div class="original-message">
+                            <div class="original-message-header">
+                                -----{% trans "Original Contact Message" %}-----<br>
+                                <strong>{% trans "From" %}:</strong> {{ contact_message.name }} &lt;{{ contact_message.email }}&gt;<br>
+                                <strong>{% trans "Date" %}:</strong> {{ contact_message.created_at|date:"F d, Y \a\t g:i A" }}<br>
+                                <strong>{% trans "Subject" %}:</strong> [{{ contact_message.get_subject_display }}] {{ contact_message.name }}<br>
+                                {% if contact_message.department %}<strong>{% trans "Department" %}:</strong> {{ contact_message.department }}<br>{% endif %}
+                            </div>
+                            <div class="original-message-body">
+                                {{ contact_message.message|linebreaks }}
+                            </div>
+                        </div>
                     {% endif %}
                 </div>
             </div>

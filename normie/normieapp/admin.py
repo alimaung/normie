@@ -3,7 +3,8 @@ from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.contrib.auth.models import User
 from .models import (
     UserProfile, CMSRRequest, ChemScanAssessment, EnvironmentalAssessment,
-    ManufacturingLabApproval, StandardsOfficeApproval, CMSRDocument, CMSRWorkflowLog
+    ManufacturingLabApproval, StandardsOfficeApproval, CMSRDocument, CMSRWorkflowLog,
+    ContactMessage
 )
 
 
@@ -101,3 +102,27 @@ admin.site.register(ManufacturingLabApproval)
 admin.site.register(StandardsOfficeApproval)
 admin.site.register(CMSRDocument)
 admin.site.register(CMSRWorkflowLog)
+
+@admin.register(ContactMessage)
+class ContactMessageAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'subject', 'status', 'created_at')
+    list_filter = ('status', 'subject', 'created_at')
+    search_fields = ('name', 'email', 'message')
+    readonly_fields = ('created_at', 'updated_at')
+    ordering = ('-created_at',)
+    
+    fieldsets = (
+        ('Contact Information', {
+            'fields': ('name', 'email', 'department')
+        }),
+        ('Message Details', {
+            'fields': ('subject', 'message')
+        }),
+        ('Status & Assignment', {
+            'fields': ('status', 'assigned_to', 'internal_notes')
+        }),
+        ('Timestamps', {
+            'fields': ('created_at', 'updated_at'),
+            'classes': ('collapse',)
+        }),
+    )

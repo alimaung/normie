@@ -1,0 +1,505 @@
+{% extends 'normieapp/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ page_title }} - Normie{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/din-search.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Header Section -->
+    <div class="page-header">
+        <div class="header-content">
+            <h1 class="page-title">
+                <i class="fas fa-shopping-cart"></i>
+                {% trans "Order DIN Standard" %}
+            </h1>
+            <p class="page-description">
+                {% trans "Complete your DIN standard order. This will prepare a request for procurement." %}
+            </p>
+        </div>
+    </div>
+
+    <!-- Order Form Section -->
+    <div class="order-section">
+        <div class="order-container">
+            <div class="order-form">
+                <div class="standard-info" id="standard-info">
+                    <!-- Standard information will be populated here -->
+                </div>
+
+                <form class="order-form-content" method="post">
+                    {% csrf_token %}
+                    
+                    <div class="form-section">
+                        <h3>{% trans "Order Details" %}</h3>
+                        
+                        <div class="form-group">
+                            <label for="quantity">{% trans "Quantity" %}</label>
+                            <input type="number" id="quantity" name="quantity" min="1" max="10" value="1" required>
+                            <small class="form-text">{% trans "Number of copies needed (max 10)" %}</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="format">{% trans "Format" %}</label>
+                            <select id="format" name="format" required>
+                                <option value="pdf">{% trans "PDF Download" %}</option>
+                                <option value="print">{% trans "Printed Copy" %}</option>
+                                <option value="both">{% trans "PDF + Printed Copy" %}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>{% trans "Requester Information" %}</h3>
+                        
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="requester_name">{% trans "Full Name" %}</label>
+                                <input type="text" id="requester_name" name="requester_name" 
+                                       value="{{ user.get_full_name|default:user.username }}" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="requester_email">{% trans "Email Address" %}</label>
+                                <input type="email" id="requester_email" name="requester_email" 
+                                       value="{{ user.email }}" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="department">{% trans "Department" %}</label>
+                                <input type="text" id="department" name="department" 
+                                       placeholder="{% trans 'e.g., Engineering, Quality Assurance' %}" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="cost_center">{% trans "Cost Center" %}</label>
+                                <input type="text" id="cost_center" name="cost_center" 
+                                       placeholder="{% trans 'Cost center for billing' %}" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>{% trans "Justification" %}</h3>
+                        
+                        <div class="form-group">
+                            <label for="purpose">{% trans "Purpose of Use" %}</label>
+                            <select id="purpose" name="purpose" required>
+                                <option value="">{% trans "Select purpose..." %}</option>
+                                <option value="quality_control">{% trans "Quality Control" %}</option>
+                                <option value="product_development">{% trans "Product Development" %}</option>
+                                <option value="compliance">{% trans "Regulatory Compliance" %}</option>
+                                <option value="testing">{% trans "Testing & Validation" %}</option>
+                                <option value="research">{% trans "Research & Development" %}</option>
+                                <option value="training">{% trans "Training & Education" %}</option>
+                                <option value="other">{% trans "Other" %}</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="justification">{% trans "Detailed Justification" %}</label>
+                            <textarea id="justification" name="justification" rows="4" 
+                                    placeholder="{% trans 'Please provide details about why this standard is needed, how it will be used, and its business impact.' %}" 
+                                    required></textarea>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="urgency">{% trans "Urgency Level" %}</label>
+                            <select id="urgency" name="urgency" required>
+                                <option value="normal">{% trans "Normal (2-3 weeks)" %}</option>
+                                <option value="high">{% trans "High (1 week)" %}</option>
+                                <option value="urgent">{% trans "Urgent (3-5 days)" %}</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3>{% trans "Order Summary" %}</h3>
+                        
+                        <div class="order-summary">
+                            <div class="summary-row">
+                                <span>{% trans "Standard:" %}</span>
+                                <span id="summary-title">-</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>{% trans "Quantity:" %}</span>
+                                <span id="summary-quantity">1</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>{% trans "Format:" %}</span>
+                                <span id="summary-format">PDF Download</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>{% trans "Estimated Cost:" %}</span>
+                                <span id="summary-cost">-</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <a href="{% url 'din_search' %}" class="btn btn-outline-secondary">
+                            <i class="fas fa-arrow-left"></i>
+                            {% trans "Back to Search" %}
+                        </a>
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            {% trans "Submit Order Request" %}
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Standard Info Template -->
+<template id="standard-info-template">
+    <div class="standard-preview">
+        <div class="standard-preview-image">
+            <img src="" alt="" class="preview-img">
+        </div>
+        <div class="standard-preview-content">
+            <h3 class="preview-title"></h3>
+            <p class="preview-description"></p>
+            <div class="preview-meta">
+                <span class="preview-status"></span>
+                <span class="preview-year"></span>
+            </div>
+            <div class="preview-pricing">
+                <div class="preview-price-vat"></div>
+                <div class="preview-price-no-vat"></div>
+            </div>
+        </div>
+    </div>
+</template>
+
+<style>
+.order-section {
+    margin-bottom: 2rem;
+}
+
+.order-container {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+.order-form {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.standard-preview {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 1.5rem;
+    padding: 2rem;
+    background: #f8f9fa;
+    border-bottom: 1px solid #e5e7eb;
+    align-items: start;
+}
+
+.standard-preview-image {
+    width: 80px;
+    height: 100px;
+}
+
+.preview-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 6px;
+    border: 1px solid #e5e7eb;
+}
+
+.preview-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin: 0 0 0.5rem 0;
+}
+
+.preview-description {
+    color: #6b7280;
+    margin: 0 0 1rem 0;
+    line-height: 1.5;
+}
+
+.preview-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.preview-status, .preview-year {
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+.preview-status {
+    background: #10b981;
+    color: white;
+}
+
+.preview-year {
+    background: #f3f4f6;
+    color: #6b7280;
+}
+
+.preview-pricing {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.order-form-content {
+    padding: 2rem;
+}
+
+.form-section {
+    margin-bottom: 2rem;
+    padding-bottom: 2rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.form-section:last-of-type {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+}
+
+.form-section h3 {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+}
+
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+.form-group label {
+    display: block;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+    width: 100%;
+    padding: 12px 16px;
+    border: 2px solid #e5e7eb;
+    border-radius: 6px;
+    font-size: 1rem;
+    transition: border-color 0.2s ease;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+    outline: none;
+    border-color: var(--primary-color, #1a73e8);
+}
+
+.form-text {
+    font-size: 0.85rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
+}
+
+.order-summary {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 8px;
+    border: 1px solid #e5e7eb;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.5rem 0;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.summary-row:last-child {
+    border-bottom: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.form-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-end;
+    padding-top: 2rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.btn {
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+.btn-outline-secondary {
+    background: white;
+    color: #6b7280;
+    border: 2px solid #d1d5db;
+}
+
+.btn-outline-secondary:hover {
+    background: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.btn-primary {
+    background: var(--primary-color, #1a73e8);
+    color: white;
+    border: 2px solid var(--primary-color, #1a73e8);
+}
+
+.btn-primary:hover {
+    background: var(--primary-hover, #1557b0);
+    border-color: var(--primary-hover, #1557b0);
+}
+
+@media (max-width: 768px) {
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .form-actions {
+        flex-direction: column;
+    }
+    
+    .standard-preview {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    
+    .standard-preview-image {
+        margin: 0 auto;
+    }
+}
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+$(document).ready(function() {
+    // Parse standard information from URL parameter
+    const urlParams = new URLSearchParams(window.location.search);
+    const standardParam = urlParams.get('standard');
+    
+    if (standardParam) {
+        try {
+            const standard = JSON.parse(decodeURIComponent(standardParam));
+            displayStandardInfo(standard);
+        } catch (e) {
+            console.error('Error parsing standard information:', e);
+        }
+    }
+    
+    // Update summary when form values change
+    $('#quantity, #format').on('change input', updateSummary);
+    
+    function displayStandardInfo(standard) {
+        const template = $('#standard-info-template')[0].content;
+        const infoElement = $(template.cloneNode(true));
+        
+        // Populate standard information
+        infoElement.find('.preview-title').text(standard.title || 'Unknown Standard');
+        infoElement.find('.preview-description').text(standard.description || '');
+        
+        if (standard.image_url) {
+            infoElement.find('.preview-img').attr('src', standard.image_url);
+        } else {
+            infoElement.find('.standard-preview-image').hide();
+        }
+        
+        if (standard.status) {
+            infoElement.find('.preview-status').text(standard.status);
+        } else {
+            infoElement.find('.preview-status').hide();
+        }
+        
+        if (standard.year) {
+            infoElement.find('.preview-year').text(standard.year);
+        } else {
+            infoElement.find('.preview-year').hide();
+        }
+        
+        if (standard.price_vat) {
+            infoElement.find('.preview-price-vat').text(standard.price_vat + ' (VAT incl.)');
+        }
+        if (standard.price_no_vat) {
+            infoElement.find('.preview-price-no-vat').text(standard.price_no_vat + ' (VAT excl.)');
+        }
+        
+        $('#standard-info').html(infoElement);
+        
+        // Update summary
+        $('#summary-title').text(standard.title || 'Unknown Standard');
+        updateSummary();
+    }
+    
+    function updateSummary() {
+        const quantity = $('#quantity').val() || 1;
+        const format = $('#format option:selected').text();
+        
+        $('#summary-quantity').text(quantity);
+        $('#summary-format').text(format);
+        
+        // Calculate estimated cost (simplified)
+        const baseCost = 65.30; // Base price from example
+        const formatMultiplier = {
+            'PDF Download': 1,
+            'Printed Copy': 1.2,
+            'PDF + Printed Copy': 1.5
+        };
+        
+        const multiplier = formatMultiplier[format] || 1;
+        const totalCost = (baseCost * quantity * multiplier).toFixed(2);
+        $('#summary-cost').text('€' + totalCost + ' (estimated)');
+    }
+    
+    // Form submission
+    $('.order-form-content').on('submit', function(e) {
+        e.preventDefault();
+        
+        // Here you would normally submit the form data
+        alert('{% trans "Order request submitted successfully! You will receive a confirmation email shortly." %}');
+        
+        // Redirect back to search
+        window.location.href = '{% url "din_search" %}';
+    });
+});
+</script>
+{% endblock %} 

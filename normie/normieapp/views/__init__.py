@@ -12,3 +12,5 @@ from .ajax import *
 from .utils import * 
 from .mlc import *
 from .contacts import *
+from .contact import *
+from .din import *

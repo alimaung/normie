@@ -1,0 +1,153 @@
+{% extends 'normieapp/base.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}{{ page_title }} - Normie{% endblock %}
+
+{% block extra_css %}
+<link rel="stylesheet" href="{% static 'normieapp/css/din-search.css' %}">
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Header Section -->
+    <div class="page-header">
+        <div class="header-content">
+            <h1 class="page-title">
+                <i class="fas fa-search"></i>
+                {% trans "DIN Standards Search" %}
+            </h1>
+            <p class="page-description">
+                {% trans "Search and order DIN standards from DIN Media. Enter your search query to find relevant standards." %}
+            </p>
+        </div>
+    </div>
+
+    <!-- Search Section -->
+    <div class="search-section">
+        <div class="search-container">
+            <div class="search-form">
+                <div class="search-input-group">
+                    <input type="text" 
+                           id="search-input" 
+                           class="search-input" 
+                           placeholder="{% trans 'Enter standard number or keywords (e.g., ASTM E 192)' %}" 
+                           value="">
+                    <select id="hits-per-page" class="search-select">
+                        <option value="10">10 {% trans "results" %}</option>
+                        <option value="25">25 {% trans "results" %}</option>
+                        <option value="50">50 {% trans "results" %}</option>
+                        <option value="100">100 {% trans "results" %}</option>
+                    </select>
+                    <button type="button" 
+                            id="search-btn" 
+                            class="search-btn">
+                        <i class="fas fa-search"></i>
+                        {% trans "Search" %}
+                    </button>
+                </div>
+                <div class="search-examples">
+                    <small class="text-muted">
+                        {% trans "Examples:" %}
+                        <span class="example-query" data-query="ASTM E 192">ASTM E 192</span>,
+                        <span class="example-query" data-query="DIN EN ISO">DIN EN ISO</span>,
+                        <span class="example-query" data-query="aerospace casting">aerospace casting</span>
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Loading Section -->
+    <div id="loading-section" class="loading-section" style="display: none;">
+        <div class="loading-content">
+            <div class="spinner"></div>
+            <p>{% trans "Searching DIN Media database..." %}</p>
+        </div>
+    </div>
+
+    <!-- Results Section -->
+    <div id="results-section" class="results-section" style="display: none;">
+        <div class="results-header">
+            <h2>{% trans "Search Results" %}</h2>
+            <div class="results-meta">
+                <span id="results-count">0</span> {% trans "standards found for" %} 
+                "<span id="search-query"></span>"
+            </div>
+        </div>
+        
+        <div id="results-container" class="results-container">
+            <!-- Results will be populated here -->
+        </div>
+    </div>
+
+    <!-- Error Section -->
+    <div id="error-section" class="error-section" style="display: none;">
+        <div class="error-content">
+            <i class="fas fa-exclamation-triangle"></i>
+            <h3>{% trans "Search Error" %}</h3>
+            <p id="error-message"></p>
+            <button type="button" class="btn btn-primary" onclick="retrySearch()">
+                {% trans "Try Again" %}
+            </button>
+        </div>
+    </div>
+
+    <!-- No Results Section -->
+    <div id="no-results-section" class="no-results-section" style="display: none;">
+        <div class="no-results-content">
+            <i class="fas fa-search"></i>
+            <h3>{% trans "No Results Found" %}</h3>
+            <p>{% trans "No standards found matching your search criteria. Try different keywords or check the spelling." %}</p>
+            <div class="suggestions">
+                <h4>{% trans "Search Tips:" %}</h4>
+                <ul>
+                    <li>{% trans "Use specific standard numbers (e.g., ASTM E 192)" %}</li>
+                    <li>{% trans "Try broader keywords if specific search fails" %}</li>
+                    <li>{% trans "Check spelling and abbreviations" %}</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Standard Card Template -->
+<template id="standard-card-template">
+    <div class="standard-card">
+        <div class="standard-image">
+            <img src="" alt="" class="standard-img">
+        </div>
+        <div class="standard-content">
+            <div class="standard-header">
+                <h3 class="standard-title"></h3>
+                <div class="standard-meta">
+                    <span class="standard-status"></span>
+                    <span class="standard-year"></span>
+                </div>
+            </div>
+            <p class="standard-description"></p>
+            <div class="standard-details"></div>
+        </div>
+        <div class="standard-actions">
+            <div class="standard-pricing">
+                <div class="price-vat"></div>
+                <div class="price-no-vat"></div>
+            </div>
+            <div class="action-buttons">
+                <a href="#" target="_blank" class="btn btn-outline-primary view-btn">
+                    <i class="fas fa-external-link-alt"></i>
+                    {% trans "View Details" %}
+                </a>
+                <button type="button" class="btn btn-primary order-btn">
+                    <i class="fas fa-shopping-cart"></i>
+                    {% trans "Order" %}
+                </button>
+            </div>
+        </div>
+    </div>
+</template>
+{% endblock %}
+
+{% block extra_js %}
+<script src="{% static 'normieapp/js/din-search.js' %}"></script>
+{% endblock %} 

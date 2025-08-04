@@ -5,6 +5,7 @@ URL configuration for normieapp.
 from django.urls import path
 from . import views
 from .views.auth import settings as auth_settings
+from .views.contact import contact_view, contact_messages_inbox, contact_message_action, contact_messages_archived
 
 urlpatterns = [
     path('', views.home, name='home'),
@@ -91,8 +92,13 @@ urlpatterns = [
     
     # Public pages for guests
     path('about/', views.about, name='about'),
-    path('contact/', views.contact, name='contact'),
+    path('contact/', contact_view, name='contact'),
     path('features/', views.features_detail, name='features_detail'),
+    
+    # Contact messages (inbox integration)
+    path('inbox/contact/', contact_messages_inbox, name='inbox_contact'),
+    path('inbox/contact/action/', contact_message_action, name='contact_message_action'),
+    path('inbox/contact/archived/', contact_messages_archived, name='contact_messages_archived'),
     
     # User management routes
     path('users/', views.user_management, name='user_management'),
@@ -137,6 +143,11 @@ urlpatterns = [
     path('solutions_spec/', views.solutions_spec, name='solutions_spec'),
     path('solutions_directory/', views.solutions_directory, name='solutions_directory'),
     path('solutions_tkz/', views.solutions_tkz, name='solutions_tkz'),
+    
+    # DIN Standards routes
+    path('din/', views.din_search, name='din_search'),
+    path('din/search/', views.din_search_api, name='din_search_api'),
+    path('din/order/', views.din_order, name='din_order'),
     
     # Under construction page
     path('under-construction/', views.under_construction, name='under_construction'),

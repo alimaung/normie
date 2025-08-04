@@ -50,3 +50,33 @@ NameError: name 'time' is not defined. Did you forget to import 'time'?
 2025-07-21 10:12:43 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 0000000037131A407E618D4D8533691FEF16F8410700837D288B2ABD74478135FFF495B683510000006EFE9D0000837D288B2ABD74478135FFF495B68351000100E48EB20000
 2025-07-21 10:13:07 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 0000000037131A407E618D4D8533691FEF16F8410700837D288B2ABD74478135FFF495B683510000006EFE9D0000837D288B2ABD74478135FFF495B68351000100E48EB00000
 2025-07-21 20:03:45 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 0000000037131A407E618D4D8533691FEF16F8410700837D288B2ABD74478135FFF495B683510000006EFE9D0000837D288B2ABD74478135FFF495B68351000100E48EBC0000
+2025-08-04 15:16:57 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 0000000037131A407E618D4D8533691FEF16F8410700837D288B2ABD74478135FFF495B683510000006EFE9D0000837D288B2ABD74478135FFF495B68351000100E48EBC0000
+2025-08-04 15:30:19 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 0000000037131A407E618D4D8533691FEF16F8410700837D288B2ABD74478135FFF495B683510000006EFE9D0000837D288B2ABD74478135FFF495B68351000100E48EBC0000
+2025-08-04 16:19:43 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: f0de8ab5-0cd7-44e3-8b6b-db679385dba5
+2025-08-04 16:19:48 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: f0de8ab5-0cd7-44e3-8b6b-db679385dba5
+2025-08-04 16:19:52 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: f0de8ab5-0cd7-44e3-8b6b-db679385dba5
+2025-08-04 16:19:56 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: dbebef38-34de-40c2-8f4d-065b99ed363a
+2025-08-04 16:20:05 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 185ff2a6-8ec1-4d67-b81e-feecd0ba13e3
+2025-08-04 16:20:15 - outlook_service - ERROR - _flag_email_via_com:1014 - COM flag operation failed: (-2147024809, 'The parameter is incorrect.', None, None)
+2025-08-04 16:20:16 - outlook_service - ERROR - flag_email:936 - ✗ Both COM and JSON failed - COM: None, JSON: None
+2025-08-04 16:21:15 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: f0de8ab5-0cd7-44e3-8b6b-db679385dba5
+2025-08-04 16:21:21 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 0000000037131A407E618D4D8533691FEF16F8410700837D288B2ABD74478135FFF495B683510000006EFE9D0000837D288B2ABD74478135FFF495B68351000100E48EBC0000
+2025-08-04 16:21:26 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: f0de8ab5-0cd7-44e3-8b6b-db679385dba5
+2025-08-04 16:22:23 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: f0de8ab5-0cd7-44e3-8b6b-db679385dba5
+2025-08-04 16:37:16 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: f0de8ab5-0cd7-44e3-8b6b-db679385dba5
+2025-08-04 16:37:23 - outlook_service - ERROR - _flag_email_via_com:1014 - COM flag operation failed: (-2147024809, 'The parameter is incorrect.', None, None)
+2025-08-04 16:37:23 - outlook_service - ERROR - flag_email:936 - ✗ Both COM and JSON failed - COM: None, JSON: None
+2025-08-04 16:37:25 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: f0de8ab5-0cd7-44e3-8b6b-db679385dba5
+2025-08-04 16:40:13 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: f0de8ab5-0cd7-44e3-8b6b-db679385dba5
+2025-08-04 16:40:19 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: f0de8ab5-0cd7-44e3-8b6b-db679385dba5
+2025-08-04 16:54:17 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: dbebef38-34de-40c2-8f4d-065b99ed363a
+2025-08-04 16:54:26 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 2eaeb7a6-c011-445a-a8ea-7265d7e7820f
+2025-08-04 17:03:05 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 2eaeb7a6-c011-445a-a8ea-7265d7e7820f
+2025-08-04 17:03:24 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 2eaeb7a6-c011-445a-a8ea-7265d7e7820f
+2025-08-04 17:07:14 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 2eaeb7a6-c011-445a-a8ea-7265d7e7820f
+2025-08-04 17:21:29 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 2eaeb7a6-c011-445a-a8ea-7265d7e7820f
+2025-08-04 17:21:47 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 2eaeb7a6-c011-445a-a8ea-7265d7e7820f
+2025-08-04 17:22:31 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 2eaeb7a6-c011-445a-a8ea-7265d7e7820f
+2025-08-04 17:24:25 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 2eaeb7a6-c011-445a-a8ea-7265d7e7820f
+2025-08-04 17:26:27 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 2eaeb7a6-c011-445a-a8ea-7265d7e7820f
+2025-08-04 17:28:40 - outlook_service - ERROR - mark_email_read:810 - Cannot mark email - not found in Outlook: 2eaeb7a6-c011-445a-a8ea-7265d7e7820f

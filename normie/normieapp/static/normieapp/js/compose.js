@@ -14,6 +14,9 @@ class ComposeManager {
         // Initialize editor
         this.initializeEditor();
         
+        // Handle URL parameters for prefilling
+        this.handleUrlParameters();
+        
         // Bind events
         this.bindEvents();
         
@@ -22,6 +25,174 @@ class ComposeManager {
         
         // Focus on To field or editor
         this.focusInitialField();
+    }
+    
+    handleUrlParameters() {
+        // Parse URL parameters to prefill form fields (override template values)
+        const urlParams = new URLSearchParams(window.location.search);
+        console.log('Current URL params:', urlParams.toString());
+        
+        // Prefill 'to' field (URL params override template values)
+        const toParam = urlParams.get('to');
+        if (toParam) {
+            const toField = document.getElementById('compose-to');
+            if (toField) {
+                toField.value = decodeURIComponent(toParam);
+                console.log('Prefilled To field with:', decodeURIComponent(toParam));
+            } else {
+                console.log('To field not found!');
+            }
+        }
+        
+        // Prefill 'subject' field (URL params override template values)
+        const subjectParam = urlParams.get('subject');
+        if (subjectParam) {
+            const subjectField = document.getElementById('compose-subject');
+            if (subjectField) {
+                subjectField.value = decodeURIComponent(subjectParam);
+                console.log('Prefilled Subject field with:', decodeURIComponent(subjectParam));
+            } else {
+                console.log('Subject field not found!');
+            }
+        }
+        
+        // Prefill 'cc' field if present
+        const ccParam = urlParams.get('cc');
+        if (ccParam) {
+            const ccField = document.getElementById('compose-cc');
+            if (ccField) {
+                ccField.value = ccParam;
+                // Show CC field if it's hidden
+                const ccFieldContainer = ccField.closest('.cc-field');
+                if (ccFieldContainer) {
+                    ccFieldContainer.style.display = 'block';
+                }
+            }
+        }
+        
+        // Prefill 'bcc' field if present
+        const bccParam = urlParams.get('bcc');
+        if (bccParam) {
+            const bccField = document.getElementById('compose-bcc');
+            if (bccField) {
+                bccField.value = bccParam;
+                // Show BCC field if it's hidden
+                const bccFieldContainer = bccField.closest('.bcc-field');
+                if (bccFieldContainer) {
+                    bccFieldContainer.style.display = 'block';
+                }
+            }
+        }
+    }
+    
+    prefillFields(data) {
+        console.log('Prefilling fields with data:', data);
+        
+        // Prefill 'to' field
+        if (data.to) {
+            const toField = document.getElementById('compose-to');
+            if (toField) {
+                toField.value = data.to;
+                console.log('Prefilled To field with:', data.to);
+            } else {
+                console.log('To field not found!');
+            }
+        }
+        
+        // Prefill 'subject' field
+        if (data.subject) {
+            const subjectField = document.getElementById('compose-subject');
+            if (subjectField) {
+                subjectField.value = data.subject;
+                console.log('Prefilled Subject field with:', data.subject);
+            } else {
+                console.log('Subject field not found!');
+            }
+        }
+        
+        // Prefill 'cc' field if present
+        if (data.cc) {
+            const ccField = document.getElementById('compose-cc');
+            if (ccField) {
+                ccField.value = data.cc;
+                // Show CC field if it's hidden
+                const ccFieldContainer = ccField.closest('.cc-field');
+                if (ccFieldContainer) {
+                    ccFieldContainer.style.display = 'block';
+                }
+            }
+        }
+        
+        // Prefill 'bcc' field if present
+        if (data.bcc) {
+            const bccField = document.getElementById('compose-bcc');
+            if (bccField) {
+                bccField.value = data.bcc;
+                // Show BCC field if it's hidden
+                const bccFieldContainer = bccField.closest('.bcc-field');
+                if (bccFieldContainer) {
+                    bccFieldContainer.style.display = 'block';
+                }
+            }
+        }
+        
+        // Add original message to compose body
+        if (data.originalMessage && this.editor) {
+            this.insertOriginalMessage(data.originalMessage);
+        }
+    }
+    
+    insertOriginalMessage(originalMessage) {
+        console.log('Inserting original message:', originalMessage);
+        
+        // Create the original message HTML
+        let originalMessageHtml = '<br><br><div class="original-message">';
+        originalMessageHtml += '<div class="original-message-header">';
+        originalMessageHtml += '-----Original Contact Message-----<br>';
+        originalMessageHtml += `<strong>From:</strong> ${this.escapeHtml(originalMessage.name)}`;
+        if (originalMessage.email) {
+            originalMessageHtml += ` &lt;${this.escapeHtml(originalMessage.email)}&gt;`;
+        }
+        originalMessageHtml += '<br>';
+        if (originalMessage.date) {
+            originalMessageHtml += `<strong>Date:</strong> ${this.escapeHtml(originalMessage.date)}<br>`;
+        }
+        if (originalMessage.category) {
+            originalMessageHtml += `<strong>Subject:</strong> [${this.escapeHtml(originalMessage.category)}] ${this.escapeHtml(originalMessage.name)}<br>`;
+        }
+        if (originalMessage.department) {
+            originalMessageHtml += `<strong>Department:</strong> ${this.escapeHtml(originalMessage.department)}<br>`;
+        }
+        originalMessageHtml += '</div>';
+        originalMessageHtml += '<div class="original-message-body">';
+        if (originalMessage.content) {
+            // Convert line breaks to <br> tags
+            const escapedContent = this.escapeHtml(originalMessage.content);
+            originalMessageHtml += escapedContent.replace(/\n/g, '<br>');
+        }
+        originalMessageHtml += '</div>';
+        originalMessageHtml += '</div>';
+        
+        // Insert the original message into the editor
+        this.editor.innerHTML = originalMessageHtml;
+        
+        // Position cursor at the beginning for the reply
+        this.editor.focus();
+        const range = document.createRange();
+        const selection = window.getSelection();
+        range.setStart(this.editor, 0);
+        range.collapse(true);
+        selection.removeAllRanges();
+        selection.addRange(range);
+        
+        console.log('Original message inserted into compose body');
+    }
+    
+    escapeHtml(text) {
+        if (!text) return '';
+        const div = document.createElement('div');
+        div.textContent = text;
+        return div.innerHTML;
     }
     
     initializeEditor() {

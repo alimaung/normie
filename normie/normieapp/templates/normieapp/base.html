@@ -17,7 +17,7 @@
     <!-- Load our main CSS files -->
     <link rel="stylesheet" href="{% static 'normieapp/css/styles.css' %}">
     <link rel="stylesheet" href="{% static 'normieapp/css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'normieapp/css/pagination.css' %}">
+    <!-- <link rel="stylesheet" href="{% static 'normieapp/css/pagination.css' %}"> -->
     {% block extra_css %}{% endblock %}
 </head>
 <body>
@@ -57,6 +57,13 @@
                                                 <div class="dropdown-item-title">CR Status</div>
                                                 <div class="dropdown-item-description">Track request progress</div>
                     </div>
+                                        </a>
+                                        <a href="{% url 'din_search' %}" class="dropdown-item">
+                                            <i class="fas fa-shopping-cart"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Order Norm</div>
+                                                <div class="dropdown-item-description">Search and order DIN standards</div>
+                                            </div>
                                         </a>
                                     </div>
                                     
@@ -148,25 +155,12 @@
                                 <div class="dropdown-item-description">Chemical analysis tool</div>
                             </div>
                         </a>
-                        <a href="{% url 'inbox' %}" class="dropdown-item">
-                            <i class="fas fa-envelope"></i>
-                            <div class="dropdown-item-content">
-                                <div class="dropdown-item-title">Inbox</div>
-                                <div class="dropdown-item-description">Email management</div>
-                            </div>
-                        </a>
+
                         <a href="{% url 'tkz' %}" class="dropdown-item">
                             <i class="fas fa-code"></i>
                             <div class="dropdown-item-content">
                                 <div class="dropdown-item-title">TKZ</div>
                                 <div class="dropdown-item-description">Technical classification</div>
-                            </div>
-                        </a>
-                        <a href="{% url 'under_construction' %}" class="dropdown-item">
-                            <i class="fas fa-chart-bar"></i>
-                            <div class="dropdown-item-content">
-                                <div class="dropdown-item-title">Analytics</div>
-                                <div class="dropdown-item-description">Data insights & reports</div>
                             </div>
                         </a>
                     </div>
@@ -187,20 +181,6 @@
                                 <div class="dropdown-item-description">Parse and analyze applicant status data</div>
                             </div>
                         </a>
-                        <a href="{% url 'under_construction' %}" class="dropdown-item">
-                            <i class="fas fa-cogs"></i>
-                            <div class="dropdown-item-content">
-                                <div class="dropdown-item-title">Batch Processing</div>
-                                <div class="dropdown-item-description">Automated workflow execution</div>
-                            </div>
-                        </a>
-                        <a href="{% url 'under_construction' %}" class="dropdown-item">
-                            <i class="fas fa-tasks"></i>
-                            <div class="dropdown-item-content">
-                                <div class="dropdown-item-title">Task Manager</div>
-                                <div class="dropdown-item-description">Manage workflow tasks</div>
-                            </div>
-                        </a>
                     </div>
                     
                     <div class="dropdown-section">
@@ -212,13 +192,50 @@
                                 <div class="dropdown-item-description">Maritime Labour Convention substance lookup</div>
                             </div>
                         </a>
-                        <a href="{% url 'under_construction' %}" class="dropdown-item simple">
-                            <i class="fas fa-calculator"></i>
-                            <div class="dropdown-item-content">
-                                <div class="dropdown-item-title">Calculator</div>
-                            </div>
-                        </a>
                     </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="navbar-dropdown">
+                        <a href="#" class="dropdown-toggle">
+                            {% trans "IntraComm" %} <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu card-dropdown products-style">
+                            <div class="dropdown-card">
+                                <div class="dropdown-products">
+                                    <div class="dropdown-section">
+                                        <div class="section-title">Intranet Communications</div>
+                                        <a href="{% url 'inbox' %}" class="dropdown-item">
+                                            <i class="fas fa-envelope"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Inbox</div>
+                                                <div class="dropdown-item-description">Email management</div>
+                                            </div>
+                                        </a>
+                                                                                 <a href="{% url 'contact' %}" class="dropdown-item">
+                                             <i class="fas fa-user-friends"></i>
+                                             <div class="dropdown-item-content">
+                                                 <div class="dropdown-item-title">Contact</div>
+                                                 <div class="dropdown-item-description">Contact messages</div>
+                                             </div>
+                                         </a>
+                                        <a href="{% url 'under_construction' %}" class="dropdown-item">
+                                            <i class="fas fa-comments"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Chat</div>
+                                                <div class="dropdown-item-description">Internal chat system</div>
+                                            </div>
+                                        </a>
+                                        <a href="{% url 'under_construction' %}" class="dropdown-item">
+                                            <i class="fas fa-ticket-alt"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Tickets</div>
+                                                <div class="dropdown-item-description">Support and request tickets</div>
+                                            </div>
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -296,6 +313,13 @@
                                 <div class="dropdown-item-description">Track request progress</div>
                             </div>
                         </a>
+                        <a href="{% url 'din_search' %}" class="dropdown-item">
+                            <i class="fas fa-shopping-cart"></i>
+                            <div class="dropdown-item-content">
+                                <div class="dropdown-item-title">Order Norm</div>
+                                <div class="dropdown-item-description">Search and order DIN standards</div>
+                            </div>
+                        </a>
                                     </div>
                                     
                                     <div class="dropdown-section">
@@ -360,6 +384,49 @@
                                             <div class="dropdown-item-content">
                                                 <div class="dropdown-item-title">MLC Check</div>
                                                 <div class="dropdown-item-description">Maritime Labour Convention substance lookup</div>
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="navbar-dropdown">
+                        <a href="#" class="dropdown-toggle">
+                            {% trans "IntraComm" %} <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="dropdown-menu card-dropdown products-style">
+                            <div class="dropdown-card">
+                                <div class="dropdown-products">
+                                    <div class="dropdown-section">
+                                        <div class="section-title">Intranet Communications</div>
+                                        <a href="{% url 'inbox' %}" class="dropdown-item">
+                                            <i class="fas fa-envelope"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Inbox</div>
+                                                <div class="dropdown-item-description">Email management</div>
+                                            </div>
+                                        </a>
+                                        <a href="{% url 'contact' %}" class="dropdown-item">
+                                            <i class="fas fa-user-friends"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Contact</div>
+                                                <div class="dropdown-item-description">Contact messages</div>
+                                            </div>
+                                        </a>
+                                        <a href="{% url 'under_construction' %}" class="dropdown-item">
+                                            <i class="fas fa-comments"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Chat</div>
+                                                <div class="dropdown-item-description">Internal chat system</div>
+                                            </div>
+                                        </a>
+                                        <a href="{% url 'under_construction' %}" class="dropdown-item">
+                                            <i class="fas fa-ticket-alt"></i>
+                                            <div class="dropdown-item-content">
+                                                <div class="dropdown-item-title">Tickets</div>
+                                                <div class="dropdown-item-description">Support and request tickets</div>
                                             </div>
                                         </a>
                                     </div>

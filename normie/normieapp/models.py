@@ -95,6 +95,63 @@ class UserProfile(models.Model):
             
         super().save(*args, **kwargs)
 
+class ContactMessage(models.Model):
+    """Contact form messages"""
+    
+    SUBJECT_CHOICES = [
+        ('norms', _('Norms & Standards')),
+        ('specs', _('Specifications')),
+        ('chemicals', _('Chemical Standards')),
+        ('materials', _('Material Testing')),
+        ('archival', _('Archival Request')),
+        ('other', _('Other')),
+    ]
+    
+    STATUS_CHOICES = [
+        ('new', _('New')),
+        ('in_progress', _('In Progress')),
+        ('resolved', _('Resolved')),
+        ('closed', _('Closed')),
+    ]
+    
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    name = models.CharField(max_length=100, verbose_name=_('Name'))
+    email = models.EmailField(verbose_name=_('Email'))
+    department = models.CharField(max_length=100, blank=True, verbose_name=_('Department'))
+    subject = models.CharField(max_length=20, choices=SUBJECT_CHOICES, verbose_name=_('Subject'))
+    message = models.TextField(verbose_name=_('Message'))
+    
+    # Status tracking
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='new')
+    assigned_to = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, related_name='assigned_contact_messages')
+    flagged = models.BooleanField(default=False, help_text=_('Mark as important/flagged'))
+    
+    # Timestamps
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    # Internal notes
+    internal_notes = models.TextField(blank=True, help_text=_('Internal notes for staff'))
+    
+    class Meta:
+        ordering = ['-created_at']
+        verbose_name = _('Contact Message')
+        verbose_name_plural = _('Contact Messages')
+    
+    def __str__(self):
+        return f"{self.name} - {self.get_subject_display()} ({self.created_at.strftime('%Y-%m-%d')})"
+    
+    @property
+    def is_unread(self):
+        """Check if message is unread (new status)"""
+        return self.status == 'new'
+    
+    def mark_as_read(self):
+        """Mark message as read by changing status from new to in_progress"""
+        if self.status == 'new':
+            self.status = 'in_progress'
+            self.save()
+
 class CMSRRequest(models.Model):
     """Main CMSR (Consumable Material Supply Request) model"""
     
