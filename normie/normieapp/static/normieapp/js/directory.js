@@ -2019,6 +2019,16 @@ document.addEventListener('DOMContentLoaded', function() {
         .doc-preview-actions a,.doc-preview-actions button{padding:6px 10px;border-radius:6px;border:1px solid #d2d2d7;background:#fff;cursor:pointer;font-size:12px;color:#1d1d1f;display:inline-flex;align-items:center;gap:6px}
         .doc-preview-actions a.primary{background:#0071e3;border-color:#0071e3;color:#fff}
         .doc-preview-iframe{flex:1;border:0;width:100%;height:100%;background:#fff}
+
+        /* Dark mode for modal */
+        .dark-mode .doc-preview-backdrop{background:rgba(0,0,0,0.6)}
+        .dark-mode .doc-preview-modal{background:#1f1f1f;box-shadow:0 10px 30px rgba(0,0,0,.6)}
+        .dark-mode .doc-preview-header{background:#222;border-bottom-color:#333}
+        .dark-mode .doc-preview-title{color:#eaeaea}
+        .dark-mode .doc-preview-actions a,.dark-mode .doc-preview-actions button{background:#2a2a2a;border-color:#444;color:#eaeaea}
+        .dark-mode .doc-preview-actions a.primary{background:#0a84ff;border-color:#0a84ff;color:#fff}
+        .dark-mode .doc-preview-actions a:hover,.dark-mode .doc-preview-actions button:hover{background:#333}
+        .dark-mode .doc-preview-iframe{background:#111}
         `;
         document.head.appendChild(style);
     }

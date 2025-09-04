@@ -10,7 +10,6 @@ import mimetypes
 from urllib.parse import unquote
 
 
-@restrict_read_only_users
 def directory(request):
     """
     Directory page view - requires applicant role or above.
@@ -18,7 +17,6 @@ def directory(request):
     return render(request, 'normieapp/directory.html')
 
 
-@restrict_read_only_users
 def directory_detail(request, row_number):
     """
     Display detailed view of a specific directory item by row number.
@@ -145,7 +143,6 @@ def requests_page(request):
     return render(request, 'normieapp/requests.html', context) 
 
 
-@restrict_read_only_users
 @xframe_options_exempt
 def directory_document(request):
     """
