@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import Http404, FileResponse, HttpResponse
 from django.utils.translation import gettext as _
 from ..decorators import restrict_read_only_users
+from django.views.decorators.clickjacking import xframe_options_exempt
 import json
 import os
 from django.conf import settings
@@ -145,6 +146,7 @@ def requests_page(request):
 
 
 @restrict_read_only_users
+@xframe_options_exempt
 def directory_document(request):
     """
     Streams a document from the configured UNC share, given a relative URL from Verzeichnis.json.
@@ -157,8 +159,8 @@ def directory_document(request):
     if not rel_url:
         raise Http404("Missing document URL")
 
-    # Base UNC path (as provided)
-    base_unc = "\\\\deberdna-c010a\\DocumentManagement\\Ofs\\obl\\Dokumentenservice\\TeileundStoffe\\"
+    # Base UNC path (as provided, with GlobalDE)
+    base_unc = "\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\Ofs\\obl\\Dokumentenservice\\TeileundStoffe\\"
 
     # Normalize provided URL: decode, convert slashes, strip leading dots and separators
     rel_url = unquote(rel_url)
@@ -190,7 +192,10 @@ def directory_document(request):
     download_flag = request.GET.get('download', '').lower() in ('1', 'true', 'yes')
     disposition = 'attachment' if download_flag else 'inline'
 
-    response = FileResponse(open(full_path, 'rb'), content_type=content_type)
+    try:
+        response = FileResponse(open(full_path, 'rb'), content_type=content_type)
+    except PermissionError:
+        raise Http404("Document not accessible")
     filename = os.path.basename(full_path)
     response["Content-Disposition"] = f"{disposition}; filename=\"{filename}\""
     return response

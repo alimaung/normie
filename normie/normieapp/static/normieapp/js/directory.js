@@ -2016,7 +2016,7 @@ document.addEventListener('DOMContentLoaded', function() {
         .doc-preview-header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid #e8e8ed;background:#f5f5f7}
         .doc-preview-title{font-size:14px;font-weight:600;color:#1d1d1f;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         .doc-preview-actions{display:flex;gap:8px}
-        .doc-preview-actions a,.doc-preview-actions button{padding:6px 10px;border-radius:6px;border:1px solid #d2d2d7;background:#fff;cursor:pointer;font-size:12px;color:#1d1d1f}
+        .doc-preview-actions a,.doc-preview-actions button{padding:6px 10px;border-radius:6px;border:1px solid #d2d2d7;background:#fff;cursor:pointer;font-size:12px;color:#1d1d1f;display:inline-flex;align-items:center;gap:6px}
         .doc-preview-actions a.primary{background:#0071e3;border-color:#0071e3;color:#fff}
         .doc-preview-iframe{flex:1;border:0;width:100%;height:100%;background:#fff}
         `;
@@ -2037,20 +2037,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const actions = document.createElement('div');
         actions.className = 'doc-preview-actions';
         const openBtn = document.createElement('a');
-        openBtn.textContent = 'Open in new tab';
+        openBtn.innerHTML = '<i class="fas fa-external-link-alt"></i><span>Open in new tab</span>';
         openBtn.target = '_blank';
         openBtn.rel = 'noopener';
         const openFileBtn = document.createElement('a');
-        openFileBtn.textContent = 'Open via file://';
+        openFileBtn.innerHTML = '<i class="fas fa-folder-open"></i><span>Open via file://</span>';
         openFileBtn.target = '_blank';
         openFileBtn.rel = 'noopener';
+        const copyBtn = document.createElement('button');
+        copyBtn.innerHTML = '<i class="fas fa-copy"></i><span>Copy file URL</span>';
         const downloadBtn = document.createElement('a');
-        downloadBtn.textContent = 'Download';
+        downloadBtn.innerHTML = '<i class="fas fa-download"></i><span>Download</span>';
         downloadBtn.className = 'primary';
         const closeBtn = document.createElement('button');
-        closeBtn.textContent = 'Close';
+        closeBtn.innerHTML = '<i class="fas fa-times"></i><span>Close</span>';
         actions.appendChild(openBtn);
         actions.appendChild(openFileBtn);
+        actions.appendChild(copyBtn);
         actions.appendChild(downloadBtn);
         actions.appendChild(closeBtn);
         header.appendChild(title);
@@ -2066,12 +2069,12 @@ document.addEventListener('DOMContentLoaded', function() {
         backdrop.addEventListener('click', (e) => { if (e.target === backdrop) cleanup(); });
         closeBtn.addEventListener('click', cleanup);
 
-        return { backdrop, iframe, title, openBtn, openFileBtn, downloadBtn };
+        return { backdrop, iframe, title, openBtn, openFileBtn, copyBtn, downloadBtn };
     }
 
     function buildFileUrlFromRelative(relUrl) {
         const server = 'deberdna-c010a';
-        const basePath = 'DocumentManagement/Ofs/obl/Dokumentenservice/TeileundStoffe';
+        const basePath = 'GlobalDE/DocumentManagement/Ofs/obl/Dokumentenservice/TeileundStoffe';
         const cleaned = String(relUrl || '')
             .replace(/^[.\\/]+/g, '')
             .replace(/\\\\/g, '/')
@@ -2081,7 +2084,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     window.showDocumentPreview = function(relUrl) {
-        const { backdrop, iframe, title, openBtn, openFileBtn, downloadBtn } = createModal();
+        const { backdrop, iframe, title, openBtn, openFileBtn, copyBtn, downloadBtn } = createModal();
         const url = `/directory/document/?url=${encodeURIComponent(relUrl)}`;
         iframe.src = url;
         const filename = relUrl.split('\\').pop().split('/').pop();
@@ -2089,6 +2092,28 @@ document.addEventListener('DOMContentLoaded', function() {
         openBtn.href = url;
         const fileUrl = buildFileUrlFromRelative(relUrl);
         openFileBtn.href = fileUrl;
+        copyBtn.addEventListener('click', async () => {
+            try {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(fileUrl);
+                } else {
+                    const tmp = document.createElement('input');
+                    tmp.value = fileUrl;
+                    document.body.appendChild(tmp);
+                    tmp.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tmp);
+                }
+                const original = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
+                copyBtn.disabled = true;
+                setTimeout(() => { copyBtn.innerHTML = original; copyBtn.disabled = false; }, 1200);
+            } catch (e) {
+                const original = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i><span>Copy failed</span>';
+                setTimeout(() => { copyBtn.innerHTML = original; }, 1500);
+            }
+        });
         downloadBtn.href = `${url}&download=1`;
         downloadBtn.setAttribute('download', filename || 'document');
         document.body.appendChild(backdrop);
