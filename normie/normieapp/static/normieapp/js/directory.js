@@ -1538,6 +1538,22 @@ class DirectoryManager {
             const row = this.createTableRow(item);
             tbody.appendChild(row);
         });
+
+        // Attach click handlers for document preview on the freshly rendered rows
+        tbody.querySelectorAll('a.doc-icon[data-url]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const relUrl = link.getAttribute('data-url');
+                if (relUrl) {
+                    if (typeof window.showDocumentPreview === 'function') {
+                        window.showDocumentPreview(relUrl);
+                    } else {
+                        const previewUrl = `/directory/document/?url=${encodeURIComponent(relUrl)}`;
+                        window.open(previewUrl, '_blank');
+                    }
+                }
+            });
+        });
     }
     
     renderGrid() {
@@ -1555,6 +1571,22 @@ class DirectoryManager {
         const pageData = this.searchResults.slice(startIndex, endIndex);
         
         gridContainer.innerHTML = pageData.map(item => this.createCard(item)).join('');
+
+        // Attach click handlers for card doc preview
+        gridContainer.querySelectorAll('a.card-doc-icon[data-url]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const relUrl = link.getAttribute('data-url');
+                if (relUrl) {
+                    if (typeof window.showDocumentPreview === 'function') {
+                        window.showDocumentPreview(relUrl);
+                    } else {
+                        const previewUrl = `/directory/document/?url=${encodeURIComponent(relUrl)}`;
+                        window.open(previewUrl, '_blank');
+                    }
+                }
+            });
+        });
     }
     
     // Helper function to handle empty values
@@ -1690,7 +1722,7 @@ class DirectoryManager {
             return `
                 <div class="card-doc-item">
                     <a href="#" class="card-doc-icon ${hasDoc ? 'available' : 'unavailable'}" 
-                       title="${key}" data-url="${hasDoc ? (doc.url || '#') : '#'}">
+                       title="${key}" data-url="${hasDoc ? (doc.url || '') : ''}">
                         <i class="${icon}"></i>
                     </a>
                     ${countBadge}
@@ -1768,7 +1800,7 @@ class DirectoryManager {
                 return `
                     <td class="document-cell attachment-column">
                         <div class="doc-container">
-                            <a href="#" class="doc-icon" title="${column}" data-url="${url}">
+                            <a href="#" class="doc-icon" title="${column}" data-url="${doc ? (doc.url || '') : ''}">
                                 <i class="${iconMap[column] || 'fas fa-file'}"></i>
                             </a>
                             ${countBadge}
@@ -1971,3 +2003,103 @@ class DirectoryManager {
 document.addEventListener('DOMContentLoaded', function() {
     new DirectoryManager();
 });
+
+// Lightweight modal preview utility shared by directory pages
+(function() {
+    function ensureStyles() {
+        if (document.getElementById('doc-preview-styles')) return;
+        const style = document.createElement('style');
+        style.id = 'doc-preview-styles';
+        style.textContent = `
+        .doc-preview-backdrop{position:fixed;inset:0;background:rgba(0,0,0,0.45);z-index:10000;display:flex;align-items:center;justify-content:center}
+        .doc-preview-modal{background:#fff;border-radius:10px;box-shadow:0 10px 30px rgba(0,0,0,.2);width:min(90vw,1100px);height:min(90vh,800px);display:flex;flex-direction:column;overflow:hidden}
+        .doc-preview-header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid #e8e8ed;background:#f5f5f7}
+        .doc-preview-title{font-size:14px;font-weight:600;color:#1d1d1f;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+        .doc-preview-actions{display:flex;gap:8px}
+        .doc-preview-actions a,.doc-preview-actions button{padding:6px 10px;border-radius:6px;border:1px solid #d2d2d7;background:#fff;cursor:pointer;font-size:12px;color:#1d1d1f}
+        .doc-preview-actions a.primary{background:#0071e3;border-color:#0071e3;color:#fff}
+        .doc-preview-iframe{flex:1;border:0;width:100%;height:100%;background:#fff}
+        `;
+        document.head.appendChild(style);
+    }
+
+    function createModal() {
+        ensureStyles();
+        const backdrop = document.createElement('div');
+        backdrop.className = 'doc-preview-backdrop';
+        const modal = document.createElement('div');
+        modal.className = 'doc-preview-modal';
+
+        const header = document.createElement('div');
+        header.className = 'doc-preview-header';
+        const title = document.createElement('div');
+        title.className = 'doc-preview-title';
+        const actions = document.createElement('div');
+        actions.className = 'doc-preview-actions';
+        const openBtn = document.createElement('a');
+        openBtn.textContent = 'Open in new tab';
+        openBtn.target = '_blank';
+        openBtn.rel = 'noopener';
+        const openFileBtn = document.createElement('a');
+        openFileBtn.textContent = 'Open via file://';
+        openFileBtn.target = '_blank';
+        openFileBtn.rel = 'noopener';
+        const downloadBtn = document.createElement('a');
+        downloadBtn.textContent = 'Download';
+        downloadBtn.className = 'primary';
+        const closeBtn = document.createElement('button');
+        closeBtn.textContent = 'Close';
+        actions.appendChild(openBtn);
+        actions.appendChild(openFileBtn);
+        actions.appendChild(downloadBtn);
+        actions.appendChild(closeBtn);
+        header.appendChild(title);
+        header.appendChild(actions);
+
+        const iframe = document.createElement('iframe');
+        iframe.className = 'doc-preview-iframe';
+        modal.appendChild(header);
+        modal.appendChild(iframe);
+        backdrop.appendChild(modal);
+
+        function cleanup() { document.body.removeChild(backdrop); }
+        backdrop.addEventListener('click', (e) => { if (e.target === backdrop) cleanup(); });
+        closeBtn.addEventListener('click', cleanup);
+
+        return { backdrop, iframe, title, openBtn, openFileBtn, downloadBtn };
+    }
+
+    function buildFileUrlFromRelative(relUrl) {
+        const server = 'deberdna-c010a';
+        const basePath = 'DocumentManagement/Ofs/obl/Dokumentenservice/TeileundStoffe';
+        const cleaned = String(relUrl || '')
+            .replace(/^[.\\/]+/g, '')
+            .replace(/\\\\/g, '/')
+            .replace(/\\/g, '/')
+            .replace(/^\//, '');
+        return `file://${server}/${basePath}/${cleaned}`;
+    }
+
+    window.showDocumentPreview = function(relUrl) {
+        const { backdrop, iframe, title, openBtn, openFileBtn, downloadBtn } = createModal();
+        const url = `/directory/document/?url=${encodeURIComponent(relUrl)}`;
+        iframe.src = url;
+        const filename = relUrl.split('\\').pop().split('/').pop();
+        title.textContent = filename || 'Document preview';
+        openBtn.href = url;
+        const fileUrl = buildFileUrlFromRelative(relUrl);
+        openFileBtn.href = fileUrl;
+        downloadBtn.href = `${url}&download=1`;
+        downloadBtn.setAttribute('download', filename || 'document');
+        document.body.appendChild(backdrop);
+    };
+
+    // Generic delegation for detail page attachment links
+    document.addEventListener('click', function(e) {
+        const link = e.target.closest('a.doc-link[data-url]');
+        if (link && link.dataset.url) {
+            e.preventDefault();
+            window.showDocumentPreview(link.dataset.url);
+        }
+    });
+})();

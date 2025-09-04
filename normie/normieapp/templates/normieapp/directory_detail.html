@@ -10,6 +10,10 @@
     <link rel="stylesheet" href="{% static 'normieapp/css/directory-detail.css' %}">
 {% endblock %}
 
+{% block extra_js %}
+    <script src="{% static 'normieapp/js/directory.js' %}"></script>
+{% endblock %}
+
 {% block content %}
 <div class="directory-detail-container">
     <!-- Header Section -->
@@ -224,7 +228,7 @@
             <div class="attachment-item">
                 <div class="attachment-icon">
                     {% if item.antrag_doc %}
-                        <a href="#" class="doc-link available" title="Application Document">
+                        <a href="#" class="doc-link available" title="Application Document" data-url="{{ item.antrag_doc.url }}">
                             <i class="fas fa-file-pdf"></i>
                         </a>
                     {% else %}
@@ -242,7 +246,7 @@
             <div class="attachment-item">
                 <div class="attachment-icon">
                     {% if item.datenblatt %}
-                        <a href="#" class="doc-link available" title="Data Sheet">
+                        <a href="#" class="doc-link available" title="Data Sheet" data-url="{{ item.datenblatt.url }}">
                             <i class="fas fa-file-excel"></i>
                         </a>
                     {% else %}
@@ -260,7 +264,7 @@
             <div class="attachment-item">
                 <div class="attachment-icon">
                     {% if item.produkt_zulassung %}
-                        <a href="#" class="doc-link available" title="Product Approval">
+                        <a href="#" class="doc-link available" title="Product Approval" data-url="{{ item.produkt_zulassung.url }}">
                             <i class="fas fa-certificate"></i>
                         </a>
                     {% else %}
@@ -278,7 +282,7 @@
             <div class="attachment-item">
                 <div class="attachment-icon">
                     {% if item.sdb_msds %}
-                        <a href="#" class="doc-link available" title="SDB MSDS">
+                        <a href="#" class="doc-link available" title="SDB MSDS" data-url="{{ item.sdb_msds.url }}">
                             <i class="fas fa-file-medical"></i>
                         </a>
                     {% else %}
@@ -296,7 +300,7 @@
             <div class="attachment-item">
                 <div class="attachment-icon">
                     {% if item.gefährdungsprüfung_beurteilung %}
-                        <a href="#" class="doc-link available" title="ChemScan Assessment">
+                        <a href="#" class="doc-link available" title="ChemScan Assessment" data-url="{{ item.gefährdungsprüfung_beurteilung.url }}">
                             <i class="fas fa-shield-alt"></i>
                         </a>
                     {% else %}
@@ -314,7 +318,7 @@
             <div class="attachment-item">
                 <div class="attachment-icon">
                     {% if item.gefährdungsprüfung %}
-                        <a href="#" class="doc-link available" title="Hazard Assessment">
+                        <a href="#" class="doc-link available" title="Hazard Assessment" data-url="{{ item.gefährdungsprüfung.url }}">
                             <i class="fas fa-exclamation-triangle"></i>
                         </a>
                     {% else %}
@@ -332,7 +336,7 @@
             <div class="attachment-item">
                 <div class="attachment-icon">
                     {% if item.sonstiges %}
-                        <a href="#" class="doc-link available" title="Miscellaneous Documents">
+                        <a href="#" class="doc-link available" title="Miscellaneous Documents" data-url="{{ item.sonstiges.url }}">
                             <i class="fas fa-file-alt"></i>
                         </a>
                     {% else %}
@@ -350,7 +354,7 @@
             <div class="attachment-item">
                 <div class="attachment-icon">
                     {% if item.schriftverkehr %}
-                        <a href="#" class="doc-link available" title="Correspondence">
+                        <a href="#" class="doc-link available" title="Correspondence" data-url="{{ item.schriftverkehr.url }}">
                             <i class="fas fa-envelope"></i>
                         </a>
                     {% else %}
@@ -368,7 +372,7 @@
             <div class="attachment-item">
                 <div class="attachment-icon">
                     {% if item.änderungshistorie %}
-                        <a href="#" class="doc-link available" title="Change History">
+                        <a href="#" class="doc-link available" title="Change History" data-url="{{ item.änderungshistorie.url }}">
                             <i class="fas fa-history"></i>
                         </a>
                     {% else %}

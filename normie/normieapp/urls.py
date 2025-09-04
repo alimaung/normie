@@ -12,6 +12,7 @@ urlpatterns = [
     path('requests/', views.requests_page, name='requests'),	
     path('directory/', views.directory, name='directory'),
     path('directory/row/<int:row_number>/', views.directory_detail, name='directory_detail'),
+    path('directory/document/', views.directory_document, name='directory_document'),
     path('tkz/', views.tkz, name='tkz'),
     path('tkz/part/<int:row_number>/', views.tkz_detail, name='tkz_detail'),
     path('chemscan/', views.chemscan, name='chemscan'),

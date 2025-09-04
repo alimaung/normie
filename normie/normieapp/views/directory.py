@@ -1,10 +1,12 @@
 from django.shortcuts import render
-from django.http import Http404
+from django.http import Http404, FileResponse, HttpResponse
 from django.utils.translation import gettext as _
 from ..decorators import restrict_read_only_users
 import json
 import os
 from django.conf import settings
+import mimetypes
+from urllib.parse import unquote
 
 
 @restrict_read_only_users
@@ -140,3 +142,55 @@ def requests_page(request):
         'page_title': _('Requests Management'),
     }
     return render(request, 'normieapp/requests.html', context) 
+
+
+@restrict_read_only_users
+def directory_document(request):
+    """
+    Streams a document from the configured UNC share, given a relative URL from Verzeichnis.json.
+
+    Query params:
+    - url: relative path as found in Verzeichnis.json (e.g., "..\\Datenblatt\\file.pdf")
+    - download: if "1" or "true", force download; otherwise attempt inline preview
+    """
+    rel_url = request.GET.get('url', '')
+    if not rel_url:
+        raise Http404("Missing document URL")
+
+    # Base UNC path (as provided)
+    base_unc = "\\\\deberdna-c010a\\DocumentManagement\\Ofs\\obl\\Dokumentenservice\\TeileundStoffe\\"
+
+    # Normalize provided URL: decode, convert slashes, strip leading dots and separators
+    rel_url = unquote(rel_url)
+    rel_url = rel_url.replace('/', '\\')
+    while rel_url.startswith('..') or rel_url.startswith('\\') or rel_url.startswith('/'):
+        rel_url = rel_url.lstrip('.').lstrip('\\/').lstrip('/').lstrip('\\')
+
+    # Join and normalize the full path
+    full_path = os.path.normpath(os.path.join(base_unc, rel_url))
+
+    # Security: ensure the path is within the base UNC directory
+    try:
+        common = os.path.commonpath([full_path, os.path.normpath(base_unc)])
+    except ValueError:
+        # Different drive letters or invalid path
+        raise Http404("Invalid document path")
+    if common != os.path.normpath(base_unc):
+        raise Http404("Invalid document path")
+
+    if not os.path.exists(full_path) or not os.path.isfile(full_path):
+        raise Http404("Document not found")
+
+    # Determine content type
+    content_type, _ = mimetypes.guess_type(full_path)
+    if not content_type:
+        content_type = 'application/octet-stream'
+
+    # Decide disposition
+    download_flag = request.GET.get('download', '').lower() in ('1', 'true', 'yes')
+    disposition = 'attachment' if download_flag else 'inline'
+
+    response = FileResponse(open(full_path, 'rb'), content_type=content_type)
+    filename = os.path.basename(full_path)
+    response["Content-Disposition"] = f"{disposition}; filename=\"{filename}\""
+    return response
