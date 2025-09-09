@@ -218,15 +218,15 @@ class ContinuousExcelUpdater:
         return url if url else url
 
     def rgb_to_hex(self, rgb_value):
-        """Convert RGB value to hex color code"""
+        """Convert RGB value to hex color code - same logic as working COM method"""
         if rgb_value is None:
             return None
         
         try:
-            # Convert to integer if it's a float
+            # Convert to integer if it's a float - exactly like the working version
             rgb_int = int(rgb_value)
             
-            # Extract RGB components from the integer
+            # Extract RGB components from the integer - same bit operations
             red = rgb_int & 255
             green = (rgb_int >> 8) & 255
             blue = (rgb_int >> 16) & 255
@@ -237,81 +237,7 @@ class ContinuousExcelUpdater:
             self.log(f"Warning: Could not convert RGB value {rgb_value} to hex: {e}")
             return None
 
-    def openpyxl_color_to_hex(self, color_obj):
-        """Convert openpyxl color object to hex color code"""
-        if not color_obj:
-            return "#FFFFFF"
-        
-        try:
-            # Handle openpyxl indexed colors
-            if hasattr(color_obj, 'indexed') and color_obj.indexed is not None:
-                indexed_color_map = {
-                    42: "#CCFFCC",  # Light green (approved)
-                    43: "#CCFF99",  # Light green-yellow (approved for first order)  
-                    47: "#FFCC99",  # Light orange (not approved)
-                }
-                
-                indexed_val = color_obj.indexed
-                if indexed_val in indexed_color_map:
-                    return indexed_color_map[indexed_val]
-                
-                return "#FFFFFF"
-            
-            # Handle RGB colors
-            elif hasattr(color_obj, 'rgb') and color_obj.rgb:
-                rgb_value = color_obj.rgb
-                if isinstance(rgb_value, str):
-                    if len(rgb_value) == 8:
-                        return f"#{rgb_value[2:].upper()}"
-                    elif len(rgb_value) == 6:
-                        return f"#{rgb_value.upper()}"
-                return "#FFFFFF"
-                
-            # Handle theme colors
-            elif hasattr(color_obj, 'theme') and color_obj.theme is not None:
-                return "#FFFFFF"
-                
-            # Try indexed access for RGB values
-            elif hasattr(color_obj, '__getitem__'):
-                try:
-                    r, g, b = color_obj[0], color_obj[1], color_obj[2]
-                    if isinstance(r, float):
-                        r, g, b = int(r * 255), int(g * 255), int(b * 255)
-                    return f"#{r:02X}{g:02X}{b:02X}"
-                except (IndexError, TypeError, ValueError):
-                    pass
-                    
-            # Try value attribute
-            elif hasattr(color_obj, 'value') and color_obj.value:
-                rgb_value = color_obj.value
-                if isinstance(rgb_value, str):
-                    if len(rgb_value) == 8:
-                        return f"#{rgb_value[2:].upper()}"
-                    elif len(rgb_value) == 6:
-                        return f"#{rgb_value.upper()}"
-                return "#FFFFFF"
-                
-            # Direct string conversion
-            elif isinstance(color_obj, str):
-                if len(color_obj) == 8:
-                    return f"#{color_obj[2:].upper()}"
-                elif len(color_obj) == 6:
-                    return f"#{color_obj.upper()}"
-                return "#FFFFFF"
-                
-            # Try individual RGB attributes
-            elif hasattr(color_obj, 'red') and hasattr(color_obj, 'green') and hasattr(color_obj, 'blue'):
-                r, g, b = color_obj.red, color_obj.green, color_obj.blue
-                if isinstance(r, float):
-                    r, g, b = int(r * 255), int(g * 255), int(b * 255)
-                return f"#{r:02X}{g:02X}{b:02X}"
-                
-            else:
-                return "#FFFFFF"
-            
-        except Exception as e:
-            self.log(f"Warning: Could not convert color object {type(color_obj)} to hex: {e}")
-            return "#FFFFFF"
+    # Note: openpyxl_color_to_hex method removed - now using reliable Win32 COM for color extraction
 
     def map_color_to_status(self, color: str) -> str:
         """Map color codes to status descriptions"""
@@ -325,27 +251,86 @@ class ContinuousExcelUpdater:
         return color_mapping.get(color, "unknown")
 
     def extract_excel_to_json(self, excel_file_path: Path) -> Dict[str, Any]:
-        """Extract data and hyperlinks from Excel file using openpyxl"""
+        """Extract data using optimized flow: COM for colors (reuse conversion session), openpyxl for data"""
         
         try:
             from openpyxl import load_workbook
-        except ImportError:
-            raise ImportError("openpyxl is required. Install with: pip install openpyxl")
+            import win32com.client as win32
+            import pythoncom
+        except ImportError as e:
+            raise ImportError(f"Required libraries missing: {e}. Install with: pip install openpyxl pywin32")
         
         start_time = time.time()
         max_row = 5000  # Limit for performance
         
         try:
-            self.log("Starting Excel extraction with openpyxl")
+            self.log("Starting optimized Excel extraction (COM for colors, openpyxl for data)")
             self.log(f"Reading Excel file: {excel_file_path}")
             
-            # Load workbook
+            # STEP 1: COM session for colors (reuse the conversion connection if this is XLSX already)
+            color_start = time.time()
+            colors = []
+            color_count = 0
+            
+            self.log("Opening Excel with COM for color extraction...")
+            
+            # Initialize COM 
+            pythoncom.CoInitialize()
+            excel_app = None
+            com_workbook = None
+            
+            try:
+                excel_app = win32.Dispatch("Excel.Application")
+                excel_app.Visible = False
+                excel_app.DisplayAlerts = False
+                
+                # Open Excel file with COM
+                com_workbook = excel_app.Workbooks.Open(str(excel_file_path), UpdateLinks=0, ReadOnly=1)
+                com_worksheet = com_workbook.ActiveSheet
+                
+                # Get dimensions from COM
+                actual_max_row = min(com_worksheet.UsedRange.Rows.Count, max_row)
+                self.log(f"COM detected {actual_max_row} rows, extracting colors from column A...")
+                
+                # Extract colors while COM is open
+                for row_num in range(2, actual_max_row + 1):
+                    try:
+                        cell_a = com_worksheet.Cells(row_num, 1)
+                        rgb_value = cell_a.Interior.Color
+                        hex_color = self.rgb_to_hex(rgb_value)
+                        
+                        if hex_color and hex_color != "#FFFFFF":
+                            colors.append(hex_color)
+                            color_count += 1
+                            
+                            # Debug: Show first few colors
+                            if color_count <= 5:
+                                self.log(f"  Row {row_num}: RGB={rgb_value} -> {hex_color}")
+                        else:
+                            colors.append("#FFFFFF")
+                            
+                    except Exception as e:
+                        self.log(f"Warning: Could not extract color from row {row_num}: {e}")
+                        colors.append("#FFFFFF")
+                
+            finally:
+                # Clean up COM session
+                if com_workbook:
+                    com_workbook.Close(SaveChanges=False)
+                if excel_app:
+                    excel_app.Quit()
+                pythoncom.CoUninitialize()
+            
+            color_time = time.time() - color_start
+            self.log(f"Colors extracted with COM in {color_time:.3f}s ({color_count} colored cells found)")
+            
+            # STEP 2: Load workbook with openpyxl for fast data reading
             load_start = time.time()
             workbook = load_workbook(excel_file_path, data_only=False)
             worksheet = workbook.active
             
             load_time = time.time() - load_start
-            self.log(f"Workbook loaded in {load_time:.3f}s")
+            self.log(f"Workbook loaded with openpyxl in {load_time:.3f}s")
             
             # Get worksheet dimensions
             actual_max_row = min(worksheet.max_row, max_row)
@@ -377,32 +362,7 @@ class ContinuousExcelUpdater:
             hyperlink_col_names = [headers[i-1] for i in hyperlink_col_indices if i <= len(headers)]
             self.log(f"Hyperlink columns: {hyperlink_col_names}")
             
-            # Extract colors from column A
-            color_start = time.time()
-            colors = []
-            color_count = 0
-            
-            for row_num in range(2, actual_max_row + 1):
-                try:
-                    cell = worksheet.cell(row=row_num, column=1)
-                    
-                    if cell.fill and cell.fill.start_color:
-                        hex_color = self.openpyxl_color_to_hex(cell.fill.start_color)
-                        
-                        if hex_color and hex_color != "#FFFFFF":
-                            colors.append(hex_color)
-                            color_count += 1
-                        else:
-                            colors.append("#FFFFFF")
-                    else:
-                        colors.append("#FFFFFF")
-                        
-                except Exception as e:
-                    self.log(f"Warning: Could not extract color from row {row_num}: {e}")
-                    colors.append("#FFFFFF")
-            
-            color_time = time.time() - color_start
-            self.log(f"Colors extracted in {color_time:.3f}s")
+            # Colors already extracted in STEP 1 (above) - no need to extract again
             
             # Extract hyperlinks
             hyperlink_start = time.time()
@@ -563,7 +523,8 @@ class ContinuousExcelUpdater:
                         'note': 'URL normalization disabled during extraction to prevent conflicts with cleanup step',
                         'normalized_count': 0
                     },
-                    'extraction_method': 'openpyxl_ultra_fast',
+                    'extraction_method': 'optimized_hybrid_v2',
+                    'color_extraction_method': 'win32_com_single_session',
                     'performance': {
                         'total_time': total_processing_time,
                         'load_time': load_time,
@@ -580,8 +541,9 @@ class ContinuousExcelUpdater:
             
             self.log(f"Successfully processed {len(data_rows)} rows")
             self.log(f"Total hyperlinks found: {final_hyperlink_count}")
-            self.log(f"Colors extracted: {final_color_count}")
+            self.log(f"Colors extracted: {final_color_count} (single COM session)")
             self.log(f"Total time: {total_processing_time:.3f}s")
+            self.log("Note: Optimized v2 - COM for colors (single session), openpyxl for data")
             self.log("Note: URL normalization disabled during extraction - will be handled in cleanup step")
             
             return data_dict
@@ -664,7 +626,7 @@ class ContinuousExcelUpdater:
         if was_changed:
             obj['url'] = fixed_url
             self.stats['fixed_urls'] += 1
-            self.log(f"  -> Fixed URL: {original_url} -> {fixed_url}")
+            #self.log(f"  -> Fixed URL: {original_url} -> {fixed_url}")
             return True
         else:
             self.stats['unchanged_urls'] += 1
@@ -813,17 +775,18 @@ class ContinuousExcelUpdater:
             original_cwd = os.getcwd()
             
             try:
-                # Create a unique temporary directory to avoid conflicts between multiple extractions
-                temp_extraction_dir = json_file_path.parent / f"temp_extraction_{uuid.uuid4().hex[:8]}"
-                temp_extraction_dir.mkdir(exist_ok=True)
+                # Use the existing temp directory instead of creating new ones
+                temp_extraction_dir = self.temp_dir
                 
-                # Change to the temporary extraction directory
+                # Change to the temp directory
                 os.chdir(temp_extraction_dir)
                 
                 # Copy the JSON file to the expected name in temp directory
                 temp_json_path = temp_extraction_dir / "Verzeichnis.json"
+                if temp_json_path.exists():
+                    temp_json_path.unlink()  # Remove existing copy
                 shutil.copy2(json_file_path, temp_json_path)
-                self.log(f"Created temporary copy in extraction dir: {temp_json_path}")
+                self.log(f"Created temporary copy in temp dir: {temp_json_path}")
                 
                 # Extract URLs (unique URLs by default) - output will be in temp directory
                 temp_output_file = str(output_file_name)
@@ -838,17 +801,17 @@ class ContinuousExcelUpdater:
                     self.log(f"Warning: Output file not created: {temp_output_path}")
                     return False
                 
+                # Clean up the temporary JSON copy
+                try:
+                    if temp_json_path.exists():
+                        temp_json_path.unlink()
+                        self.log(f"Cleaned up temporary JSON copy: {temp_json_path}")
+                except Exception as cleanup_error:
+                    self.log(f"Warning: Could not clean up temp JSON: {cleanup_error}")
+                
                 return True
                 
             finally:
-                # Clean up temporary extraction directory
-                try:
-                    if 'temp_extraction_dir' in locals() and temp_extraction_dir.exists():
-                        shutil.rmtree(temp_extraction_dir)
-                        self.log(f"Cleaned up temporary extraction directory: {temp_extraction_dir}")
-                except Exception as cleanup_error:
-                    self.log(f"Warning: Could not clean up temp extraction dir: {cleanup_error}")
-                
                 # Restore original working directory
                 os.chdir(original_cwd)
                 

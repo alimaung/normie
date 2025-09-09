@@ -33,9 +33,10 @@ def normalize_url(url):
 def rgb_to_hex(rgb_value):
     """
     Convert RGB value to hex color code
+    Enhanced to handle Win32 COM Excel indexed colors correctly
     
     Args:
-        rgb_value (int/float): RGB value as integer or float
+        rgb_value (int/float): RGB value as integer or float from Win32 COM
         
     Returns:
         str: Hex color code
@@ -47,12 +48,33 @@ def rgb_to_hex(rgb_value):
         # Convert to integer if it's a float
         rgb_int = int(rgb_value)
         
-        # Extract RGB components from the integer
+        # CRITICAL: Handle Win32 COM indexed colors first
+        # These are the actual RGB integer values that Win32 COM returns for Excel indexed colors
+        com_indexed_color_map = {
+            13434828: "#CCFFCC",  # Light green (approved) - indexed 42
+            10079487: "#CCFF99",  # Light green-yellow (approved for first order) - indexed 43  
+            10079164: "#FFCC99",  # Light orange (not approved) - indexed 47
+            16777215: "#FFFFFF",  # White (processing) - default
+            # Add more mappings as needed when other indexed colors are encountered
+        }
+        
+        # Check if this is a known indexed color first
+        if rgb_int in com_indexed_color_map:
+            return com_indexed_color_map[rgb_int]
+        
+        # If not a known indexed color, process as regular RGB
+        # Extract RGB components from the integer (BGR format for Win32 COM)
         red = rgb_int & 255
         green = (rgb_int >> 8) & 255
         blue = (rgb_int >> 16) & 255
         
-        return f"#{red:02X}{green:02X}{blue:02X}"
+        hex_color = f"#{red:02X}{green:02X}{blue:02X}"
+        
+        # Debug: Log unknown colors for future mapping
+        if hex_color not in ["#FFFFFF", "#000000"]:  # Ignore common defaults
+            print(f"Debug: Unknown color RGB={rgb_int} -> {hex_color} (add to indexed_color_map if this is a standard Excel color)")
+        
+        return hex_color
     
     except (ValueError, TypeError) as e:
         print(f"Warning: Could not convert RGB value {rgb_value} to hex: {e}")
@@ -171,18 +193,26 @@ def extract_excel_to_json_unified(excel_file_path, output_json_path=None, max_ro
                 rgb_value = cell_a.Interior.Color
                 cell_color = rgb_to_hex(rgb_value)
                 
+                # Enhanced debugging for color extraction
+                if color_count <= 10:  # Debug first 10 colors found
+                    print(f"[{time.strftime('%H:%M:%S')}]   Row {row_num}: Win32 RGB={rgb_value} -> Hex={cell_color}")
+                
                 if cell_color and cell_color != "#FFFFFF":  # Ignore default white
                     row_data['color'] = cell_color
                     row_data['status'] = map_color_to_status(cell_color)
                     color_count += 1
                     
-                    # Debug: Show first few colors
+                    # Debug: Show first few colors with full details
                     if color_count <= 5:
-                        print(f"[{time.strftime('%H:%M:%S')}]   Row {row_num}, Column A: Color {cell_color} -> Status: {row_data['status']}")
+                        print(f"[{time.strftime('%H:%M:%S')}]   Row {row_num}, Column A: RGB={rgb_value} -> Color={cell_color} -> Status='{row_data['status']}'")
                 else:
                     # Default to white/processing if no specific color
                     row_data['color'] = "#FFFFFF"
                     row_data['status'] = "processing"
+                    
+                    # Debug: Show some white values to verify they're actually white
+                    if color_count == 0 and row_num <= 5:
+                        print(f"[{time.strftime('%H:%M:%S')}]   Row {row_num}: White/default color detected (RGB={rgb_value})")
                     
             except Exception as e:
                 print(f"[{time.strftime('%H:%M:%S')}] Warning: Could not extract color from row {row_num}: {e}")
