@@ -1,0 +1,6 @@
+# Excel processing dependencies
+openpyxl>=3.0.0
+pywin32>=300
+
+# Optional: for better error handling and logging
+pathlib2>=2.3.5; python_version < '3.4'

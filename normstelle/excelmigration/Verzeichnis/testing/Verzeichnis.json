@@ -56,15 +56,7 @@
       "rule": "Replace \"../.docs\" with \"file:///\\\\Dehesdna-a009a\\projekte\\k-z\\ofs\\Dokumentenservice\\TeileundStoffe\"",
       "normalized_count": 0
     },
-    "extraction_method": "win32com",
-    "performance": {
-      "total_processing_time": 480.45272493362427,
-      "color_processing_time": 19.688634872436523,
-      "hyperlink_processing_time": 217.5396773815155,
-      "regular_cell_time": 67.40248322486877,
-      "average_row_time_ms": 103.05721255547496,
-      "rows_per_second": 9.703348025852215
-    }
+    "extraction_method": "win32com"
   },
   "data": [
     {

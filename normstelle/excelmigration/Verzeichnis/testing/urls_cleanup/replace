@@ -1,0 +1,22 @@
+replace:
+\\Dehesdna-a009a\projekte\k-z\ofs\Dokumentenservice\TeileundStoffe
+\\Dehesdna-a007a\projekte\k-z\ofs\Dokumentenservice\TeileundStoffe
+\\Dehesdna-a0079a\projekte\k-z\ofs\Dokumentenservice\TeileundStoffe
+\\Deberdna-a018a\projekte\k-z\ofs\Dokumentenservice\TeileundStoffe
+file:///\\Dehesdna-a0079a\projekte\k-z\ofs\Dokumentenservice\TeileundStoffe
+../
+..\
+
+with:
+\\deberdna-c010a\GlobalDE\DocumentManagement\Ofs\obl\Dokumentenservice\TeileundStoffe\
+
+ignore:
+http://edm1.dw.brr.de/cgi-bin/DirectShow.pl?doc_name=LBR3044
+http://edm1.dw.brr.de/cgi-bin/DirectShow.pl?doc_name=LBR3045
+http://edm1.dw.brr.de/cgi-bin/DirectShow.pl?doc_name=LBR3046
+http://edm1.dw.brr.de/cgi-bin/DirectShow.pl?doc_name=LBR3047
+https://www.ansell.com/de/de/products/alphatec-02-100
+../../../../../../u9992675/AppData/Roaming/Text-Files/Interne_Spec/lbr3035_1.doc
+../../../../../../u9992675/AppData/Roaming/Text-Files/Interne_Spec/lbr3035_1.doc
+../../../../../a-j/HSE Oberursel/1 Verantwortung, Führen, Organisieren/1.2 Gefährdungsbeurteilung/1.2.4 Begehungsberichte/02 Templates/Aktionsliste.
++contents of: C:\Users\RAVEN\Desktop\normie\normstelle\excelmigration\Verzeichnis\testing\urls_cleanup\manual\urls_dead.txt

@@ -1,21 +1,60 @@
 Option Explicit
 
-' Simple Outlook VBA Script for Email Detection
-' This script monitors incoming emails for #IRMNORMIE and shows a message box
+' Enhanced Outlook VBA Script for Email Detection
+' This script monitors incoming emails for #IRMNORMIE in inbox folders of ALL accounts and sends replies with default account
 
-Private WithEvents olInbox As Outlook.Items
+Private WithEvents inboxItems1 As Outlook.Items
+Private WithEvents inboxItems2 As Outlook.Items
+Private monitoredAccounts As Collection
 
 Private Sub Application_Startup()
-    ' Initialize the inbox monitoring when Outlook starts
-    Set olInbox = Application.Session.GetDefaultFolder(olFolderInbox).Items
-    MsgBox "Email monitoring started! Looking for emails with #IRMNORMIE", vbInformation, "Auto-Reply Monitor"
+    ' Initialize monitoring for inbox folders of all accounts when Outlook starts
+    Call SetupAllInboxMonitoring()
+    MsgBox "Email monitoring started for inbox folders of ALL accounts! Looking for emails with #IRMNORMIE", vbInformation, "Auto-Reply Monitor"
 End Sub
 
-Private Sub olInbox_ItemAdd(ByVal Item As Object)
-    ' This event fires when a new item is added to the inbox
-    If TypeOf Item Is Outlook.MailItem Then
-        Call ProcessIncomingEmail(Item)
-    End If
+' Setup monitoring for inbox folders of all accounts
+Private Sub SetupAllInboxMonitoring()
+    Dim ns As Outlook.NameSpace
+    Dim store As Outlook.store
+    Dim inboxFolder As Outlook.Folder
+    Dim accountIndex As Integer
+    
+    Set ns = Application.Session
+    Set monitoredAccounts = New Collection
+    accountIndex = 0
+    
+    ' Loop through all stores (accounts) and monitor their inbox folders
+    For Each store In ns.Stores
+        On Error Resume Next
+        
+        ' Try to get the inbox folder for this store
+        Set inboxFolder = store.GetDefaultFolder(olFolderInbox)
+        
+        If Not inboxFolder Is Nothing Then
+            accountIndex = accountIndex + 1
+            monitoredAccounts.Add store.DisplayName
+            
+            ' Assign to available WithEvents variables (maximum 2 accounts)
+            Select Case accountIndex
+                Case 1: Set inboxItems1 = inboxFolder.Items
+                Case 2: Set inboxItems2 = inboxFolder.Items
+                Case Else
+                    ' Maximum reached
+                    Debug.Print "Maximum monitored accounts reached (2). Additional account ignored: " & store.DisplayName
+            End Select
+        End If
+        
+        On Error GoTo 0
+    Next store
+End Sub
+
+' Event handlers for monitored inbox folders
+Private Sub inboxItems1_ItemAdd(ByVal Item As Object)
+    If TypeOf Item Is Outlook.MailItem Then: Call ProcessIncomingEmail(Item): End If
+End Sub
+Private Sub inboxItems2_ItemAdd(ByVal Item As Object)
+    If TypeOf Item Is Outlook.MailItem Then: Call ProcessIncomingEmail(Item): End If
 End Sub
 
 Private Sub ProcessIncomingEmail(ByVal mailItem As Outlook.MailItem)
@@ -44,6 +83,7 @@ Private Sub ShowEmailDetected(ByVal mailItem As Outlook.MailItem)
     Dim replyMail As Outlook.MailItem
     Dim htmlTemplate As String
     Dim finalHtml As String
+    Dim defaultAccount As Outlook.Account
     
     ' Get email information
     senderName = mailItem.SenderName
@@ -64,10 +104,25 @@ Private Sub ShowEmailDetected(ByVal mailItem As Outlook.MailItem)
         .Subject = "Re: " & emailSubject
         .HTMLBody = finalHtml
         .BodyFormat = olFormatHTML
-        .Send
     End With
+
+    ' Send using default account only
+    Set defaultAccount = GetDefaultAccount()
+
+    On Error GoTo SendDefault_Failed
+    If Not defaultAccount Is Nothing Then
+        Set replyMail.SendUsingAccount = defaultAccount
+    End If
+    replyMail.Send
+    On Error GoTo 0
+    GoTo Send_Cleanup
+
+SendDefault_Failed:
+    On Error GoTo 0
+    MsgBox "Failed to send reply email using default account.", vbExclamation, "Send Error"
     
     ' Clean up
+Send_Cleanup:
     Set replyMail = Nothing
 End Sub
 
@@ -90,15 +145,49 @@ End Sub
 
 ' Function to manually start monitoring (if needed)
 Public Sub StartMonitoring()
-    Set olInbox = Application.Session.GetDefaultFolder(olFolderInbox).Items
-    MsgBox "Email monitoring started manually!", vbInformation, "Monitor Started"
+    Call SetupAllInboxMonitoring()
+    MsgBox "Email monitoring started manually for inbox folders of ALL accounts!", vbInformation, "Monitor Started"
 End Sub
 
 ' Function to stop monitoring
 Public Sub StopMonitoring()
-    Set olInbox = Nothing
-    MsgBox "Email monitoring stopped!", vbInformation, "Monitor Stopped"
+    ' Clean up all monitored inbox items
+    Set inboxItems1 = Nothing
+    Set inboxItems2 = Nothing
+    Set monitoredAccounts = Nothing
+    MsgBox "Email monitoring stopped for all inbox folders!", vbInformation, "Monitor Stopped"
 End Sub
+
+
+' Get the default sending account (match default store, fallback to first)
+Private Function GetDefaultAccount() As Outlook.Account
+    Dim ns As Outlook.NameSpace
+    Dim defaultStore As Outlook.store
+    Dim acct As Outlook.Account
+    Set ns = Application.Session
+    Set defaultStore = ns.DefaultStore
+    
+    For Each acct In ns.Accounts
+        On Error Resume Next
+        If Not acct Is Nothing Then
+            If Not acct.DeliveryStore Is Nothing Then
+                If acct.DeliveryStore.StoreID = defaultStore.StoreID Then
+                    Set GetDefaultAccount = acct
+                    On Error GoTo 0
+                    Exit Function
+                End If
+            End If
+        End If
+        On Error GoTo 0
+    Next acct
+    
+    ' Fallback: first account if available
+    If ns.Accounts.Count > 0 Then
+        Set GetDefaultAccount = ns.Accounts.Item(1)
+    Else
+        Set GetDefaultAccount = Nothing
+    End If
+End Function
 
 ' Get IPv4 address from system
 Private Function GetIPv4Address() As String

@@ -58,12 +58,12 @@
     },
     "extraction_method": "win32com",
     "performance": {
-      "total_processing_time": 480.45272493362427,
-      "color_processing_time": 19.688634872436523,
-      "hyperlink_processing_time": 217.5396773815155,
-      "regular_cell_time": 67.40248322486877,
-      "average_row_time_ms": 103.05721255547496,
-      "rows_per_second": 9.703348025852215
+      "total_processing_time": 267.5582914352417,
+      "color_processing_time": 10.367554664611816,
+      "hyperlink_processing_time": 67.98831939697266,
+      "regular_cell_time": 11.140257596969604,
+      "average_row_time_ms": 57.39131090417025,
+      "rows_per_second": 17.42424043370887
     }
   },
   "data": [
