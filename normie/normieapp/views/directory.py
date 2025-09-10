@@ -146,27 +146,37 @@ def requests_page(request):
 @xframe_options_exempt
 def directory_document(request):
     """
-    Streams a document from the configured UNC share, given a relative URL from Verzeichnis.json.
+    Streams a document from the configured UNC share, given a URL from Verzeichnis.json.
+    
+    Now handles pre-cleaned full file:// URLs.
 
     Query params:
-    - url: relative path as found in Verzeichnis.json (e.g., "..\\Datenblatt\\file.pdf")
+    - url: full file:// URL as found in cleaned Verzeichnis.json
     - download: if "1" or "true", force download; otherwise attempt inline preview
     """
-    rel_url = request.GET.get('url', '')
-    if not rel_url:
+    url = request.GET.get('url', '')
+    if not url:
         raise Http404("Missing document URL")
 
-    # Base UNC path (as provided, with GlobalDE)
+    # Base UNC path for security validation
     base_unc = "\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\Ofs\\obl\\Dokumentenservice\\TeileundStoffe\\"
 
-    # Normalize provided URL: decode, convert slashes, strip leading dots and separators
-    rel_url = unquote(rel_url)
-    rel_url = rel_url.replace('/', '\\')
-    while rel_url.startswith('..') or rel_url.startswith('\\') or rel_url.startswith('/'):
-        rel_url = rel_url.lstrip('.').lstrip('\\/').lstrip('/').lstrip('\\')
-
-    # Join and normalize the full path
-    full_path = os.path.normpath(os.path.join(base_unc, rel_url))
+    # Handle pre-cleaned full file:// URLs
+    url = unquote(url)
+    
+    if url.startswith('file://'):
+        # Extract the UNC path from file:// URL
+        # Convert file://server/path to \\server\path
+        unc_part = url[7:]  # Remove 'file://'
+        if unc_part.startswith('/'):
+            unc_part = unc_part[1:]  # Remove leading /
+        full_path = os.path.normpath('\\\\' + unc_part.replace('/', '\\'))
+    else:
+        # Fallback: treat as relative path (for backwards compatibility)
+        rel_url = url.replace('/', '\\')
+        while rel_url.startswith('..') or rel_url.startswith('\\') or rel_url.startswith('/'):
+            rel_url = rel_url.lstrip('.').lstrip('\\/').lstrip('/').lstrip('\\')
+        full_path = os.path.normpath(os.path.join(base_unc, rel_url))
 
     # Security: ensure the path is within the base UNC directory
     try:

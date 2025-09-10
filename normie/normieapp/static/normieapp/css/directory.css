@@ -502,7 +502,8 @@
     width: 100%;
     border-collapse: collapse;
     font-size: 14px;
-    min-width: 1800px; /* Reduced from 2000px since we removed Date column */
+    min-width: 1800px; /* Full width with attachments */
+    table-layout: auto;
 }
 
 .directory-table thead {
@@ -1939,15 +1940,16 @@
 
 /* Attachment column visibility */
 .directory-table .attachment-column {
-    transition: all 0.3s ease;
+    transition: opacity 0.3s ease;
 }
 
 .hide-attachments .directory-table .attachment-column {
-    visibility: hidden;
-    width: 0;
-    padding: 0;
-    border: none;
-    overflow: hidden;
+    display: none;
+}
+
+/* Adjust table width when attachments are hidden */
+.hide-attachments .directory-table {
+    min-width: 1450px; /* Reduced by ~350px for 9 attachment columns */
 }
 
 /* Grid View Styles */

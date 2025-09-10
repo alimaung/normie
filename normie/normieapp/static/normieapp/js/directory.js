@@ -143,9 +143,11 @@ class DirectoryManager {
                      'Sonstiges', 'Schriftverkehr', 'Änd. Historie'].includes(originalKey)) {
                     
                     if (value && typeof value === 'string') {
+                        // Check if URL is already full (starts with file://) or relative
+                        const finalUrl = value.startsWith('file://') ? value : baseUrl + value;
                         decompressed[originalKey] = {
                             display_text: 'pdf',
-                            url: baseUrl + value,
+                            url: finalUrl,
                             original_url: null,
                             tooltip: ''
                         };
@@ -2249,14 +2251,8 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function buildFileUrlFromRelative(relUrl) {
-        const server = 'deberdna-c010a';
-        const basePath = 'GlobalDE/DocumentManagement/Ofs/obl/Dokumentenservice/TeileundStoffe';
-        const cleaned = String(relUrl || '')
-            .replace(/^[.\\/]+/g, '')
-            .replace(/\\\\/g, '/')
-            .replace(/\\/g, '/')
-            .replace(/^\//, '');
-        return `file://${server}/${basePath}/${cleaned}`;
+        // URLs are now pre-cleaned and full, so return as-is
+        return String(relUrl || '');
     }
 
     window.showDocumentPreview = function(relUrl) {
