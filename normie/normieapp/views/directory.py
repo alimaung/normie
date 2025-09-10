@@ -165,12 +165,17 @@ def directory_document(request):
     url = unquote(url)
     
     if url.startswith('file://'):
-        # Extract the UNC path from file:// URL
-        # Convert file://server/path to \\server\path
-        unc_part = url[7:]  # Remove 'file://'
-        if unc_part.startswith('/'):
-            unc_part = unc_part[1:]  # Remove leading /
-        full_path = os.path.normpath('\\\\' + unc_part.replace('/', '\\'))
+        # Handle the specific format: file:///\\\\server\\path
+        if url.startswith('file:///\\\\'):
+            # Remove 'file:///\\\\' and keep the UNC path as-is
+            full_path = os.path.normpath('\\\\' + url[11:])
+        else:
+            # Standard file:// URL - extract the UNC path
+            # Convert file://server/path to \\server\path
+            unc_part = url[7:]  # Remove 'file://'
+            if unc_part.startswith('/'):
+                unc_part = unc_part[1:]  # Remove leading /
+            full_path = os.path.normpath('\\\\' + unc_part.replace('/', '\\'))
     else:
         # Fallback: treat as relative path (for backwards compatibility)
         rel_url = url.replace('/', '\\')

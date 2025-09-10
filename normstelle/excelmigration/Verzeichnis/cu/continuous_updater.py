@@ -161,18 +161,34 @@ class ContinuousExcelUpdater:
         )
 
     def copy_to_temp_dir(self, src_path: Path) -> Path:
-        """Copy source file to temp directory with unique name; return destination path."""
-        # Use timestamp for unique filename to avoid conflicts
-        timestamp = int(time.time())
-        dest_path = self.temp_dir / f"Verzeichnis_{timestamp}.xlsb"
+        """Copy source file to temp directory with fixed name (reusable); return destination path."""
+        # Use fixed filename - will be overwritten on each run to avoid accumulation
+        dest_path = self.temp_dir / "Verzeichnis_current.xlsb"
+        
+        # Clean up existing file first
+        if dest_path.exists():
+            try:
+                dest_path.unlink()
+                self.log(f"Removed existing temp file: {dest_path}")
+            except Exception as e:
+                self.log(f"Warning: Could not remove existing temp file: {e}")
+        
         self.log(f"Copying {src_path} to {dest_path}")
         shutil.copy2(src_path, dest_path)
         return dest_path
 
     def convert_xlsb_to_xlsx(self, xlsb_path: Path) -> Path:
         """Use Excel COM to convert .xlsb to .xlsx (overwrites destination)."""
-        # Create unique XLSX name based on the input XLSB name
-        xlsx_path = xlsb_path.with_suffix('.xlsx')
+        # Use fixed XLSX name (will be overwritten on each run)
+        xlsx_path = self.temp_dir / "Verzeichnis_current.xlsx"
+        
+        # Clean up existing XLSX file first
+        if xlsx_path.exists():
+            try:
+                xlsx_path.unlink()
+                self.log(f"Removed existing temp XLSX: {xlsx_path}")
+            except Exception as e:
+                self.log(f"Warning: Could not remove existing temp XLSX: {e}")
         
         try:
             import win32com.client  # type: ignore
@@ -913,28 +929,46 @@ class ContinuousExcelUpdater:
             return False
 
     def cleanup_temp_files(self):
-        """Clean up temporary files (including timestamped files)"""
+        """Clean up temporary files (optimized for single-file approach)"""
         try:
-            # Clean up files with timestamp patterns and regular temp files
+            # Clean up current temp files and any leftover timestamped files
             patterns = [
-                "Verzeichnis_*.xlsb",      # Timestamped XLSB files
-                "Verzeichnis_*.xlsx",      # Timestamped XLSX files  
-                "Verzeichnis.xlsb",        # Legacy fixed name
-                "Verzeichnis.xlsx",        # Legacy fixed name
+                "Verzeichnis_current.xlsb",    # Current XLSB file
+                "Verzeichnis_current.xlsx",    # Current XLSX file
+                "Verzeichnis_*.xlsb",          # Legacy timestamped XLSB files
+                "Verzeichnis_*.xlsx",          # Legacy timestamped XLSX files  
+                "Verzeichnis.xlsb",            # Legacy fixed name
+                "Verzeichnis.xlsx",            # Legacy fixed name
                 "Verzeichnis_original_temp.json",
                 "Verzeichnis_temp.json"
             ]
             
+            files_deleted = 0
             for pattern in patterns:
                 for temp_file in self.temp_dir.glob(pattern):
                     try:
                         temp_file.unlink()
+                        files_deleted += 1
                         self.log(f"Deleted temp file: {temp_file}")
                     except Exception as file_error:
                         self.log(f"Warning: Could not delete {temp_file}: {file_error}")
+            
+            if files_deleted == 0:
+                self.log("No temp files to clean up")
+            else:
+                self.log(f"Cleaned up {files_deleted} temp files")
                     
         except Exception as e:
             self.log(f"Warning: Could not delete temp files: {e}")
+    
+    def cleanup_single_file(self, file_path: Path):
+        """Clean up a single temp file immediately after use"""
+        try:
+            if file_path.exists():
+                file_path.unlink()
+                self.log(f"Immediately cleaned up: {file_path}")
+        except Exception as e:
+            self.log(f"Warning: Could not clean up {file_path}: {e}")
 
     def run_single_update(self) -> bool:
         """Run a single update cycle. Returns True if successful."""
@@ -946,16 +980,34 @@ class ContinuousExcelUpdater:
             # Step 1: Fetch source Excel file
             src_path = self.pick_source_path()
             
-            # Step 2: Copy to temp directory (with unique filename)
+            # Step 2: Copy to temp directory (with fixed filename)
             temp_xlsb = self.copy_to_temp_dir(src_path)
-            self.log(f"Created unique temp file: {temp_xlsb.name}")
+            self.log(f"Created temp file: {temp_xlsb.name}")
             
-            # Step 3: Convert XLSB to XLSX (with unique filename)
-            temp_xlsx = self.convert_xlsb_to_xlsx(temp_xlsb)
-            self.log(f"Converting to unique XLSX: {temp_xlsx.name}")
-            
-            # Step 4: Extract data to JSON
-            json_data = self.extract_excel_to_json(temp_xlsx)
+            try:
+                # Step 3: Convert XLSB to XLSX (with fixed filename)
+                temp_xlsx = self.convert_xlsb_to_xlsx(temp_xlsb)
+                self.log(f"Converting to XLSX: {temp_xlsx.name}")
+                
+                # Clean up XLSB immediately after conversion
+                self.cleanup_single_file(temp_xlsb)
+                
+                try:
+                    # Step 4: Extract data to JSON
+                    json_data = self.extract_excel_to_json(temp_xlsx)
+                    
+                    # Clean up XLSX immediately after extraction
+                    self.cleanup_single_file(temp_xlsx)
+                    
+                except Exception as extract_error:
+                    # Clean up XLSX even if extraction fails
+                    self.cleanup_single_file(temp_xlsx)
+                    raise extract_error
+                    
+            except Exception as conversion_error:
+                # Clean up XLSB even if conversion fails
+                self.cleanup_single_file(temp_xlsb)
+                raise conversion_error
             
             # Step 5: Save original extracted JSON (before URL cleanup)
             temp_original_json = self.temp_dir / "Verzeichnis_original_temp.json"
@@ -976,6 +1028,10 @@ class ContinuousExcelUpdater:
             temp_json = self.temp_dir / "Verzeichnis_temp.json"
             final_json = self.data_dir / "Verzeichnis.json"
             self.save_json_data(json_data, temp_json, final_json)
+            
+            # Clean up temp JSON files immediately after save
+            self.cleanup_single_file(temp_original_json)
+            self.cleanup_single_file(temp_json)
             
             # Step 7.5: Create compressed version for web interface
             try:
@@ -1008,7 +1064,7 @@ class ContinuousExcelUpdater:
             else:
                 self.log("Warning: URL extraction failed for both files")
             
-            # Step 9: Cleanup temp files
+            # Step 9: Final cleanup (any remaining temp files)
             self.cleanup_temp_files()
             
             self.log("="*60)

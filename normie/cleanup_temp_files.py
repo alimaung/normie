@@ -24,10 +24,12 @@ def main():
     
     # Patterns to clean up
     patterns = [
-        "Verzeichnis_*.xlsb",      # Timestamped XLSB files
-        "Verzeichnis_*.xlsx",      # Timestamped XLSX files  
-        "Verzeichnis.xlsb",        # Legacy fixed name
-        "Verzeichnis.xlsx",        # Legacy fixed name
+        "Verzeichnis_current.xlsb",    # Current XLSB file (new fixed name)
+        "Verzeichnis_current.xlsx",    # Current XLSX file (new fixed name)
+        "Verzeichnis_*.xlsb",          # Legacy timestamped XLSB files
+        "Verzeichnis_*.xlsx",          # Legacy timestamped XLSX files  
+        "Verzeichnis.xlsb",            # Legacy fixed name
+        "Verzeichnis.xlsx",            # Legacy fixed name
         "Verzeichnis_original_temp.json",
         "Verzeichnis_temp.json"
     ]

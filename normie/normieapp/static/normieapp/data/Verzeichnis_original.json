@@ -31,7 +31,7 @@
       "Lieferant",
       "Hersteller"
     ],
-    "source_file": "Verzeichnis_1757505454.xlsx",
+    "source_file": "Verzeichnis_1757506664.xlsx",
     "hyperlinks_extracted": true,
     "hyperlink_columns": [
       "Antrag",
@@ -59,12 +59,12 @@
     "extraction_method": "optimized_hybrid_v2",
     "color_extraction_method": "win32_com_single_session",
     "performance": {
-      "total_time": 75.86403036117554,
-      "load_time": 22.13325810432434,
-      "data_read_time": 0.353992223739624,
-      "color_extraction_time": 53.15810179710388,
-      "hyperlink_extraction_time": 0.05637240409851074,
-      "data_processing_time": 0.1491382122039795,
+      "total_time": 41.654396533966064,
+      "load_time": 13.946245431900024,
+      "data_read_time": 0.13899993896484375,
+      "color_extraction_time": 27.361350536346436,
+      "hyperlink_extraction_time": 0.07041192054748535,
+      "data_processing_time": 0.12677597999572754,
       "library_used": "openpyxl",
       "excel_app_needed": false
     },
