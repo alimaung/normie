@@ -10,6 +10,7 @@ from .views.pdf import *
 from .views.applicant import *
 from .views.cmsr import *
 from .views.directory import *
+from .views.directory_status import *
 from .views.prototyping import *
 from .views.inbox import *
 from .views.ajax import *

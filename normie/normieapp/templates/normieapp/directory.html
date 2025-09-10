@@ -17,26 +17,45 @@
 {% block content %}
 <div class="directory-container">
     <!-- Header Section -->
-    <!-- <div class="directory-header">
+    <div class="directory-header">
         <div class="header-left">
             <h1>Directory of Parts and Materials</h1>
             <p class="header-summary">Complete database of parts, materials, and approval statuses</p>
         </div>
         <div class="header-stats">
+            <div class="stat-card stat-card-live">
+                <span class="stat-value">
+                    <i class="fas fa-circle stat-live-dot"></i>
+                    Live
+                </span>
+                <span class="stat-label">Online Status</span>
+            </div>
             <div class="stat-card">
                 <span class="stat-value">4,607</span>
-                <span class="stat-label">Total Entries</span>
+                <span class="stat-label">All</span>
             </div>
-            <div class="stat-card">
-                <span class="stat-value">3,842</span>
+            <div class="stat-card stat-approved">
+                <span class="stat-value">2,156</span>
                 <span class="stat-label">Approved</span>
             </div>
-            <div class="stat-card">
-                <span class="stat-value">2,156</span>
-                <span class="stat-label">Aircraft Parts</span>
+            <div class="stat-card stat-first-use">
+                <span class="stat-value">1,686</span>
+                <span class="stat-label">First Use</span>
+            </div>
+            <div class="stat-card stat-processing">
+                <span class="stat-value">521</span>
+                <span class="stat-label">Processing</span>
+            </div>
+            <div class="stat-card stat-rejected">
+                <span class="stat-value">244</span>
+                <span class="stat-label">Rejected</span>
+            </div>
+            <div class="stat-card stat-aircraft">
+                <span class="stat-value">3,142</span>
+                <span class="stat-label">Aircraft Relevant</span>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <!-- Active Filters -->
     <div class="active-filters-container" id="active-filters">

@@ -161,18 +161,22 @@ class ContinuousExcelUpdater:
         )
 
     def copy_to_temp_dir(self, src_path: Path) -> Path:
-        """Copy source file to temp directory as Verzeichnis.xlsb; return destination path."""
-        dest_path = self.temp_dir / "Verzeichnis.xlsb"
+        """Copy source file to temp directory with unique name; return destination path."""
+        # Use timestamp for unique filename to avoid conflicts
+        timestamp = int(time.time())
+        dest_path = self.temp_dir / f"Verzeichnis_{timestamp}.xlsb"
         self.log(f"Copying {src_path} to {dest_path}")
         shutil.copy2(src_path, dest_path)
         return dest_path
 
     def convert_xlsb_to_xlsx(self, xlsb_path: Path) -> Path:
         """Use Excel COM to convert .xlsb to .xlsx (overwrites destination)."""
-        xlsx_path = self.temp_dir / "Verzeichnis.xlsx"
+        # Create unique XLSX name based on the input XLSB name
+        xlsx_path = xlsb_path.with_suffix('.xlsx')
         
         try:
             import win32com.client  # type: ignore
+            import pythoncom
         except Exception as exc:
             raise RuntimeError(
                 "pywin32 is required. Install with: pip install pywin32"
@@ -181,6 +185,8 @@ class ContinuousExcelUpdater:
         if xlsx_path.exists():
             xlsx_path.unlink()
 
+        # Initialize COM for this thread
+        pythoncom.CoInitialize()
         excel = None
         workbook = None
         try:
@@ -208,6 +214,8 @@ class ContinuousExcelUpdater:
                     excel.Quit()
             except Exception:
                 pass
+            # Clean up COM
+            pythoncom.CoUninitialize()
         
         return xlsx_path
 
@@ -735,11 +743,95 @@ class ContinuousExcelUpdater:
             self.log(f"Moving to final location: {final_path}")
             shutil.move(str(temp_path), str(final_path))
             
+            
             self.log(f"Successfully saved JSON file: {final_path}")
             
         except Exception as e:
             self.log(f"Error saving JSON: {e}")
             raise
+
+    def create_compressed_version(self, json_path: Path, compressed_path: Path):
+        """Create compressed version of JSON for faster web loading"""
+        try:
+            # Import the optimizer class (inline to avoid import issues)
+            class JSONOptimizer:
+                def __init__(self):
+                    self.base_url = "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\Ofs\\obl\\Dokumentenservice\\TeileundStoffe\\\\"
+                    self.column_map = {
+                        "Antrag-nummer": "an", "Teile-nummer": "tn", "Freigabe": "fr",
+                        "relevant für Luftfahrtteile": "rl", "Benennung": "bn",
+                        "Produktname / Normkurzbezeichnung": "pn", "Produktzulassungs-spezifikation": "ps",
+                        "Eingang": "ein", "Abschluss": "ab", "Abteilung": "abt", "Einsatzort": "eo",
+                        "Antragsteller": "as", "Antrag": "ant", "Datenblatt": "db", "Produkt-zulassung": "pz",
+                        "SDB MSDS": "sdb", "Gefährdungsprüfungeurteilung": "gpu", "Gefährdungsprüfung": "gp",
+                        "Sonstiges": "so", "Schriftverkehr": "sv", "Änd. Historie": "ah", "Datum": "dt",
+                        "Bearbeiter": "bb", "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "bem",
+                        "GSK-Nr.": "gsk", "Lieferant": "lf", "Hersteller": "hs", "color": "c", "status": "s"
+                    }
+                    
+                def compress_url(self, url: str) -> str:
+                    if not url or not url.startswith(self.base_url):
+                        return url
+                    return url[len(self.base_url):]
+                    
+                def compress_document(self, doc):
+                    if not doc or not isinstance(doc, dict):
+                        return None
+                    url = doc.get('url', '')
+                    return self.compress_url(url) if url else None
+                    
+                def compress_data(self, data):
+                    original_data = data.get('data', [])
+                    compressed_data = []
+                    for item in original_data:
+                        compressed_item = {}
+                        for orig_key, value in item.items():
+                            short_key = self.column_map.get(orig_key, orig_key)
+                            if value is None:
+                                continue
+                            if orig_key in ['Antrag', 'Datenblatt', 'Produkt-zulassung', 'SDB MSDS',
+                                          'Gefährdungsprüfungeurteilung', 'Gefährdungsprüfung', 
+                                          'Sonstiges', 'Schriftverkehr', 'Änd. Historie']:
+                                compressed_doc = self.compress_document(value)
+                                if compressed_doc:
+                                    compressed_item[short_key] = compressed_doc
+                            else:
+                                compressed_item[short_key] = value
+                        compressed_data.append(compressed_item)
+                    
+                    return {
+                        "metadata": {
+                            "total_rows": len(compressed_data),
+                            "base_url": self.base_url,
+                            "column_map": {v: k for k, v in self.column_map.items()},
+                            "compressed": True,
+                            "version": "1.0"
+                        },
+                        "data": compressed_data
+                    }
+            
+            # Create compressed version
+            self.log(f"Creating compressed version: {compressed_path}")
+            
+            with open(json_path, 'r', encoding='utf-8') as f:
+                data = json.load(f)
+            
+            optimizer = JSONOptimizer()
+            compressed_data = optimizer.compress_data(data)
+            
+            with open(compressed_path, 'w', encoding='utf-8') as f:
+                json.dump(compressed_data, f, separators=(',', ':'))
+            
+            # Get file sizes for logging
+            original_size = json_path.stat().st_size / (1024 * 1024)
+            compressed_size = compressed_path.stat().st_size / (1024 * 1024)
+            savings = (1 - compressed_size / original_size) * 100
+            
+            self.log(f"Compression complete: {original_size:.1f}MB → {compressed_size:.1f}MB ({savings:.1f}% smaller)")
+            
+        except Exception as e:
+            self.log(f"Warning: Failed to create compressed version: {e}")
+
 
     def extract_urls_from_json(self, json_file_path: Path, output_file_name: str = None) -> bool:
         """Extract URLs from a JSON file and save to text file
@@ -821,17 +913,25 @@ class ContinuousExcelUpdater:
             return False
 
     def cleanup_temp_files(self):
-        """Clean up temporary files"""
+        """Clean up temporary files (including timestamped files)"""
         try:
-            temp_xlsb = self.temp_dir / "Verzeichnis.xlsb"
-            temp_xlsx = self.temp_dir / "Verzeichnis.xlsx"
-            temp_original_json = self.temp_dir / "Verzeichnis_original_temp.json"
-            temp_json = self.temp_dir / "Verzeichnis_temp.json"
+            # Clean up files with timestamp patterns and regular temp files
+            patterns = [
+                "Verzeichnis_*.xlsb",      # Timestamped XLSB files
+                "Verzeichnis_*.xlsx",      # Timestamped XLSX files  
+                "Verzeichnis.xlsb",        # Legacy fixed name
+                "Verzeichnis.xlsx",        # Legacy fixed name
+                "Verzeichnis_original_temp.json",
+                "Verzeichnis_temp.json"
+            ]
             
-            for temp_file in [temp_xlsb, temp_xlsx, temp_original_json, temp_json]:
-                if temp_file.exists():
-                    temp_file.unlink()
-                    self.log(f"Deleted temp file: {temp_file}")
+            for pattern in patterns:
+                for temp_file in self.temp_dir.glob(pattern):
+                    try:
+                        temp_file.unlink()
+                        self.log(f"Deleted temp file: {temp_file}")
+                    except Exception as file_error:
+                        self.log(f"Warning: Could not delete {temp_file}: {file_error}")
                     
         except Exception as e:
             self.log(f"Warning: Could not delete temp files: {e}")
@@ -846,11 +946,13 @@ class ContinuousExcelUpdater:
             # Step 1: Fetch source Excel file
             src_path = self.pick_source_path()
             
-            # Step 2: Copy to temp directory
+            # Step 2: Copy to temp directory (with unique filename)
             temp_xlsb = self.copy_to_temp_dir(src_path)
+            self.log(f"Created unique temp file: {temp_xlsb.name}")
             
-            # Step 3: Convert XLSB to XLSX
+            # Step 3: Convert XLSB to XLSX (with unique filename)
             temp_xlsx = self.convert_xlsb_to_xlsx(temp_xlsb)
+            self.log(f"Converting to unique XLSX: {temp_xlsx.name}")
             
             # Step 4: Extract data to JSON
             json_data = self.extract_excel_to_json(temp_xlsx)
@@ -874,6 +976,13 @@ class ContinuousExcelUpdater:
             temp_json = self.temp_dir / "Verzeichnis_temp.json"
             final_json = self.data_dir / "Verzeichnis.json"
             self.save_json_data(json_data, temp_json, final_json)
+            
+            # Step 7.5: Create compressed version for web interface
+            try:
+                compressed_json = self.data_dir / "Verzeichnis_compressed.json"
+                self.create_compressed_version(final_json, compressed_json)
+            except Exception as e:
+                self.log(f"Warning: Failed to create compressed version: {e}")
             
             # Step 8: Extract URLs from both JSON files
             self.log("Extracting URLs from JSON files...")

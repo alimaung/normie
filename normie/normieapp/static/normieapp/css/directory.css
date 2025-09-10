@@ -33,18 +33,139 @@
 
 .header-stats {
     display: flex;
-    gap: 16px;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 100%;
 }
 
 /* Stat cards styling */
 .stat-card {
     text-align: center;
-    padding: 15px;
+    padding: 10px 12px;
     background-color: var(--color-surface);
-    border-radius: 8px;
-    min-width: 120px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    border-radius: 6px;
+    min-width: 90px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Status-specific stat card styling */
+.stat-approved {
+    border-left: 4px solid #34c759;
+}
+
+.stat-approved .stat-value {
+    color: #34c759;
+}
+
+.stat-first-use {
+    border-left: 4px solid #007aff;
+}
+
+.stat-first-use .stat-value {
+    color: #007aff;
+}
+
+.stat-processing {
+    border-left: 4px solid #ff9500;
+}
+
+.stat-processing .stat-value {
+    color: #ff9500;
+}
+
+.stat-rejected {
+    border-left: 4px solid #ff3b30;
+}
+
+.stat-rejected .stat-value {
+    color: #ff3b30;
+}
+
+.stat-aircraft {
+    border-left: 4px solid #af52de;
+}
+
+.stat-aircraft .stat-value {
+    color: #af52de;
+}
+
+/* Live status card styling */
+.stat-card-live {
+    transition: all 0.3s ease;
+    cursor: pointer;
+    user-select: none;
+}
+
+/* Live status states */
+.stat-card-live.live {
+    border-left: 4px solid #30d158;
+    background-color: #f0fff4;
+}
+
+.stat-card-live.live .stat-live-dot {
+    color: #30d158;
+    animation: pulse 2s infinite;
+}
+
+.stat-card-live.updating {
+    border-left: 4px solid #007aff;
+    background-color: #f0f9ff;
+}
+
+.stat-card-live.updating .stat-live-dot {
+    color: #007aff;
+    animation: spin 1s linear infinite;
+}
+
+.stat-card-live.starting {
+    border-left: 4px solid #ff9500;
+    background-color: #fff8f0;
+}
+
+.stat-card-live.starting .stat-live-dot {
+    color: #ff9500;
+    animation: blink 1s infinite;
+}
+
+.stat-card-live.warning {
+    border-left: 4px solid #ff9500;
+    background-color: #fff8f0;
+}
+
+.stat-card-live.warning .stat-live-dot {
+    color: #ff9500;
+}
+
+.stat-card-live.offline {
+    border-left: 4px solid #8e8e93;
+    background-color: #f9f9f9;
+}
+
+.stat-card-live.offline .stat-live-dot {
+    color: #8e8e93;
+}
+
+/* Status indicator animations */
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+@keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0.3; }
+}
+
+.stat-card-live:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .stat-card:hover {
@@ -54,15 +175,71 @@
 
 .stat-value {
     display: block;
-    font-size: 24px;
+    font-size: 18px;
     font-weight: 600;
     color: #1a73e8;
-    margin-bottom: 4px;
+    margin-bottom: 2px;
 }
 
 .stat-label {
-    font-size: 14px;
+    font-size: 11px;
     color: #86868b;
+    text-align: center;
+    line-height: 1.2;
+    word-wrap: break-word;
+}
+
+/* Offline status label styling */
+.stat-card-live.offline .stat-label {
+    font-size: 12px;
+    color: #c53030;
+}
+
+/* Live status card styling */
+.stat-card-live .stat-value {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    color: #30d158;
+    transition: all 0.3s ease;
+}
+
+.stat-live-dot {
+    color: #30d158;
+    font-size: 12px;
+    animation: pulse 2s infinite;
+    transition: all 0.3s ease;
+}
+
+/* Offline status styling */
+.stat-card-live.offline {
+    background-color: #fff5f5;
+    border: 1px solid #fed7d7;
+}
+
+.stat-card-live.offline .stat-value {
+    color: #ff3b30;
+}
+
+.stat-card-live.offline .stat-live-dot {
+    color: #ff3b30;
+    animation: none;
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.7;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
 }
 
 /* Search and filter section */
@@ -518,6 +695,22 @@
     border-radius: 50%;
 }
 
+/* Relevance indicator with plane icon */
+.relevance-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+}
+
+.table-plane-icon {
+    font-size: 12px;
+    color: #86868b;
+    transform: rotate(-45deg);
+}
+
+/* Static grey plane icon */
+
 .status-dot.approved {
     background-color: #34c759;
 }
@@ -795,6 +988,13 @@
     
     .header-stats {
         margin-top: 16px;
+        gap: 6px;
+        justify-content: center;
+    }
+    
+    .stat-card {
+        min-width: 75px;
+        padding: 8px 10px;
     }
     
     .search-filter-container {
@@ -883,6 +1083,34 @@
 }
 
 @media (max-width: 768px) {
+    .header-left h1 {
+        font-size: 24px;
+    }
+    
+    .header-stats {
+        gap: 6px;
+        flex-direction: row;
+        justify-content: center;
+    }
+    
+    .stat-card {
+        min-width: 65px;
+        padding: 6px 8px;
+        font-size: 12px;
+    }
+    
+    .stat-value {
+        font-size: 14px;
+    }
+    
+    .stat-label {
+        font-size: 9px;
+    }
+    
+    .stat-card-live.offline .stat-label {
+        font-size: 8px;
+    }
+    
     .filter-row {
         grid-template-columns: 1fr;
     }
@@ -1715,7 +1943,11 @@
 }
 
 .hide-attachments .directory-table .attachment-column {
-    display: none;
+    visibility: hidden;
+    width: 0;
+    padding: 0;
+    border: none;
+    overflow: hidden;
 }
 
 /* Grid View Styles */
@@ -2124,6 +2356,59 @@
 .dark-mode .stat-value { color: #7ab3ff; }
 .dark-mode .stat-label { color: #a0a0a3; }
 
+/* Dark mode live status styling */
+.dark-mode .stat-card-live .stat-value {
+    color: #30d158;
+}
+
+.dark-mode .stat-live-dot {
+    color: #30d158;
+}
+
+/* Dark mode offline status styling */
+.dark-mode .stat-card-live.offline {
+    background-color: #2b1717;
+    border: 1px solid #e22a25;
+}
+
+.dark-mode .stat-card-live.offline .stat-value {
+    color: #ff453a;
+}
+
+.dark-mode .stat-card-live.offline .stat-live-dot {
+    color: #ff453a;
+}
+
+.dark-mode .stat-card-live:hover {
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.6);
+}
+
+.dark-mode .stat-card-live.offline .stat-label {
+    color: #ff453a;
+}
+
+
+/* Dark mode status stat cards */
+.dark-mode .stat-approved .stat-value {
+    color: #30d158;
+}
+
+.dark-mode .stat-first-use .stat-value {
+    color: #64d2ff;
+}
+
+.dark-mode .stat-processing .stat-value {
+    color: #ff9f0a;
+}
+
+.dark-mode .stat-rejected .stat-value {
+    color: #ff453a;
+}
+
+.dark-mode .stat-aircraft .stat-value {
+    color: #bf5af2;
+}
+
 .dark-mode .search-input-container {
     border-color: #333;
     background-color: #1f1f1f;
@@ -2239,6 +2524,9 @@
 .dark-mode .action-btn i,
 .dark-mode .pagination-btn i { color: #e0e0e0; }
 .dark-mode .card-plane-icon { color: #a0a0a3; }
+
+/* Dark mode table plane icon - static grey */
+.dark-mode .table-plane-icon { color: #a0a0a3; }
 
 /* Dark styles for filter-section-footer and children */
 .dark-mode .filter-section-footer { background-color: #222; border-top-color: #333; }

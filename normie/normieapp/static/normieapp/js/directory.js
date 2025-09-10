@@ -13,6 +13,7 @@ class DirectoryManager {
         this.currentSearchQuery = '';
         this.attachmentsVisible = false;
         this.currentView = 'table'; // 'table' or 'grid'
+        this.statusPollingInterval = null;
         
         this.init();
     }
@@ -38,6 +39,7 @@ class DirectoryManager {
             this.updatePagination();
             this.updateStats();
             this.updateSortIcons(); // Update sort icons to show default sort
+            this.startStatusPolling(); // Start monitoring update service status
             this.hideLoading();
         } catch (error) {
             console.error('Failed to initialize directory:', error);
@@ -48,12 +50,34 @@ class DirectoryManager {
     
     async loadData() {
         try {
-            const response = await fetch('/static/normieapp/data/Verzeichnis.json');
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+            // Try compressed version first, fallback to original
+            let response;
+            let jsonData;
+            
+            try {
+                response = await fetch('/static/normieapp/data/Verzeichnis_compressed.json');
+                if (response.ok) {
+                    jsonData = await response.json();
+                    console.log('Loaded compressed directory data');
+                    
+                    // Decompress if needed
+                    if (jsonData.metadata && jsonData.metadata.compressed) {
+                        this.data = this.decompressData(jsonData);
+                    } else {
+                        this.data = jsonData.data || [];
+                    }
+                } else {
+                    throw new Error('Compressed version not available');
+                }
+            } catch (e) {
+                console.log('Compressed version not available, loading full version...');
+                response = await fetch('/static/normieapp/data/Verzeichnis.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                jsonData = await response.json();
+                this.data = jsonData.data || [];
             }
-            const jsonData = await response.json();
-            this.data = jsonData.data || [];
             
             // Apply default sort immediately after loading (Application No. descending)
             this.sortColumn = 'Antrag-nummer';
@@ -95,6 +119,58 @@ class DirectoryManager {
             console.error('Error loading data:', error);
             throw error;
         }
+    }
+
+    decompressData(compressedData) {
+        // Decompress the JSON data on the client side
+        console.log('Decompressing directory data...');
+        
+        const metadata = compressedData.metadata || {};
+        const columnMap = metadata.column_map || {};
+        const baseUrl = metadata.base_url || '';
+        const compressedItems = compressedData.data || [];
+        
+        const decompressedData = compressedItems.map(item => {
+            const decompressed = {};
+            
+            // Restore original column names and values
+            for (const [shortKey, value] of Object.entries(item)) {
+                const originalKey = columnMap[shortKey] || shortKey;
+                
+                // Decompress document URLs
+                if (['Antrag', 'Datenblatt', 'Produkt-zulassung', 'SDB MSDS',
+                     'Gefährdungsprüfungeurteilung', 'Gefährdungsprüfung', 
+                     'Sonstiges', 'Schriftverkehr', 'Änd. Historie'].includes(originalKey)) {
+                    
+                    if (value && typeof value === 'string') {
+                        decompressed[originalKey] = {
+                            display_text: 'pdf',
+                            url: baseUrl + value,
+                            original_url: null,
+                            tooltip: ''
+                        };
+                    } else {
+                        decompressed[originalKey] = null;
+                    }
+                } else {
+                    decompressed[originalKey] = value;
+                }
+            }
+            
+            // Add null values for missing document columns
+            ['Antrag', 'Datenblatt', 'Produkt-zulassung', 'SDB MSDS',
+             'Gefährdungsprüfungeurteilung', 'Gefährdungsprüfung', 
+             'Sonstiges', 'Schriftverkehr', 'Änd. Historie'].forEach(docCol => {
+                if (!(docCol in decompressed)) {
+                    decompressed[docCol] = null;
+                }
+            });
+            
+            return decompressed;
+        });
+        
+        console.log(`Decompressed ${decompressedData.length} items`);
+        return decompressedData;
     }
     
     setupEventListeners() {
@@ -1826,10 +1902,25 @@ class DirectoryManager {
     updateStats() {
         const totalEntries = this.data.length;
         
-        // Count approved items (both "approved" and "approved for first order")
+        // Count by status
         const approvedCount = this.data.filter(item => {
             const status = this.getItemStatus(item);
-            return status === 'approved' || status === 'first use';
+            return status === 'approved';
+        }).length;
+        
+        const firstUseCount = this.data.filter(item => {
+            const status = this.getItemStatus(item);
+            return status === 'first use';
+        }).length;
+        
+        const processingCount = this.data.filter(item => {
+            const status = this.getItemStatus(item);
+            return status === 'processing';
+        }).length;
+        
+        const rejectedCount = this.data.filter(item => {
+            const status = this.getItemStatus(item);
+            return status === 'rejected';
         }).length;
         
         const aircraftCount = this.data.filter(item => {
@@ -1837,13 +1928,88 @@ class DirectoryManager {
             return relevanceValue && relevanceValue.toLowerCase() === 'ja';
         }).length;
         
-        // Update stat cards
+        // Update stat cards by class/position
+        // [0] = Live status (don't update)
+        // [1] = All
+        // [2] = Approved 
+        // [3] = First Use
+        // [4] = Processing
+        // [5] = Rejected
+        // [6] = Aircraft Relevant
         const statCards = document.querySelectorAll('.stat-card');
-        if (statCards.length >= 3) {
-            statCards[0].querySelector('.stat-value').textContent = totalEntries.toLocaleString();
-            statCards[1].querySelector('.stat-value').textContent = approvedCount.toLocaleString();
-            statCards[2].querySelector('.stat-value').textContent = aircraftCount.toLocaleString();
+        if (statCards.length >= 7) {
+            // Skip [0] - that's the live status indicator
+            statCards[1].querySelector('.stat-value').textContent = totalEntries.toLocaleString();
+            statCards[2].querySelector('.stat-value').textContent = approvedCount.toLocaleString();
+            statCards[3].querySelector('.stat-value').textContent = firstUseCount.toLocaleString();
+            statCards[4].querySelector('.stat-value').textContent = processingCount.toLocaleString();
+            statCards[5].querySelector('.stat-value').textContent = rejectedCount.toLocaleString();
+            statCards[6].querySelector('.stat-value').textContent = aircraftCount.toLocaleString();
         }
+    }
+
+    async startStatusPolling() {
+        // Poll status every 10 seconds
+        this.statusPollingInterval = setInterval(() => {
+            this.updateLiveStatus();
+        }, 10000);
+        
+        // Initial status check
+        this.updateLiveStatus();
+    }
+
+    async updateLiveStatus() {
+        try {
+            const response = await fetch('/directory/status/');
+            if (response.ok) {
+                const status = await response.json();
+                this.updateLiveStatusIndicator(status);
+            }
+        } catch (error) {
+            console.warn('Failed to fetch live status:', error);
+        }
+    }
+
+    updateLiveStatusIndicator(status) {
+        const liveCard = document.querySelector('.stat-card-live');
+        if (!liveCard) return;
+
+        const statusValue = liveCard.querySelector('.stat-value');
+        const statusDot = liveCard.querySelector('.stat-live-dot');
+        const statusLabel = liveCard.querySelector('.stat-label');
+        
+        if (!statusValue || !statusDot) return;
+
+        // Update text and dot color based on status
+        const statusText = statusValue.childNodes[2]; // Text node after icon
+        if (statusText) {
+            statusText.textContent = ` ${status.status_text}`;
+        }
+
+        // Update dot color
+        statusDot.className = `fas fa-circle stat-live-dot ${status.status_class}`;
+        
+        // Update card class for styling
+        liveCard.className = `stat-card stat-card-live ${status.status_class}`;
+
+        // Update label with last update time
+        if (statusLabel && status.last_update) {
+            const lastUpdateDate = new Date(status.last_update * 1000);
+            const timeString = lastUpdateDate.toLocaleTimeString('en-US', { 
+                hour12: false, 
+                hour: '2-digit', 
+                minute: '2-digit'
+            });
+            statusLabel.textContent = `Last: ${timeString}`;
+        } else if (statusLabel) {
+            statusLabel.textContent = 'Online Status';
+        }
+
+        // Add title with more info
+        const nextUpdate = status.next_update_in ? `Next update in ${Math.round(status.next_update_in / 60)} minutes` : '';
+        const lastUpdate = status.time_since_update ? `Last updated ${Math.round(status.time_since_update / 60)} minutes ago` : '';
+        const hasCompressed = status.has_compressed ? 'Compressed version available' : 'No compressed version';
+        liveCard.title = [nextUpdate, lastUpdate, hasCompressed].filter(Boolean).join(' • ');
     }
     
     hideLoading() {

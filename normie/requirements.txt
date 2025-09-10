@@ -9,5 +9,6 @@ PyMuPDF>=1.22.0,<1.23.0
 python-dotenv>=1.0.0,<1.1.0
 pywin32>=306; sys_platform == 'win32'
 pythoncom>=0.0.1; sys_platform == 'win32'
+psutil>=5.9.0,<6.0.0
 pytz>=2023.3
 beautifulsoup4>=4.12.0,<4.13.0
