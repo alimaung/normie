@@ -164,11 +164,21 @@ def directory_document(request):
     # Handle pre-cleaned full file:// URLs
     url = unquote(url)
     
+    # Debug logging
+    print(f"[DEBUG] Document request - Original URL: {request.GET.get('url', '')}")
+    print(f"[DEBUG] Document request - Decoded URL: {url}")
+    
     if url.startswith('file://'):
-        # Handle the specific format: file:///\\\\server\\path
-        if url.startswith('file:///\\\\'):
-            # Remove 'file:///\\\\' and keep the UNC path as-is
+        # Handle multiple URL formats with different backslash patterns
+        if url.startswith('file:///\\\\\\\\'):
+            # Format: file:///\\\\\\\\server\\path (8 backslashes)
+            full_path = os.path.normpath('\\\\' + url[13:])
+        elif url.startswith('file:///\\\\'):
+            # Format: file:///\\\\server\\path (4 backslashes) 
             full_path = os.path.normpath('\\\\' + url[11:])
+        elif url.startswith('file:///\\'):
+            # Format: file:///\\server\\path (2 backslashes)
+            full_path = os.path.normpath('\\\\' + url[9:])
         else:
             # Standard file:// URL - extract the UNC path
             # Convert file://server/path to \\server\path
@@ -183,16 +193,27 @@ def directory_document(request):
             rel_url = rel_url.lstrip('.').lstrip('\\/').lstrip('/').lstrip('\\')
         full_path = os.path.normpath(os.path.join(base_unc, rel_url))
 
+    # Debug logging for constructed path
+    print(f"[DEBUG] Document request - Constructed path: {full_path}")
+    print(f"[DEBUG] Document request - Base UNC: {base_unc}")
+    print(f"[DEBUG] Document request - Path exists: {os.path.exists(full_path)}")
+    print(f"[DEBUG] Document request - Is file: {os.path.isfile(full_path) if os.path.exists(full_path) else 'N/A'}")
+    
     # Security: ensure the path is within the base UNC directory
     try:
         common = os.path.commonpath([full_path, os.path.normpath(base_unc)])
     except ValueError:
         # Different drive letters or invalid path
+        print(f"[DEBUG] Document request - Security check failed: Different drive letters")
         raise Http404("Invalid document path")
     if common != os.path.normpath(base_unc):
+        print(f"[DEBUG] Document request - Security check failed: Path outside base directory")
+        print(f"[DEBUG] Document request - Common path: {common}")
+        print(f"[DEBUG] Document request - Normalized base: {os.path.normpath(base_unc)}")
         raise Http404("Invalid document path")
 
     if not os.path.exists(full_path) or not os.path.isfile(full_path):
+        print(f"[DEBUG] Document request - File not found: {full_path}")
         raise Http404("Document not found")
 
     # Determine content type
