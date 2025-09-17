@@ -159,7 +159,7 @@ def directory_document(request):
         raise Http404("Missing document URL")
 
     # Base UNC path for security validation
-    base_unc = "\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\Ofs\\obl\\Dokumentenservice\\TeileundStoffe\\"
+    base_unc = "\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\"
 
     # Handle pre-cleaned full file:// URLs
     url = unquote(url)
@@ -172,13 +172,14 @@ def directory_document(request):
         # Handle multiple URL formats with different backslash patterns
         if url.startswith('file:///\\\\\\\\'):
             # Format: file:///\\\\\\\\server\\path (8 backslashes)
-            full_path = os.path.normpath('\\\\' + url[13:])
+            full_path = os.path.normpath('\\\\' + url[12:])
         elif url.startswith('file:///\\\\'):
             # Format: file:///\\\\server\\path (4 backslashes) 
-            full_path = os.path.normpath('\\\\' + url[11:])
+            full_path = os.path.normpath('\\\\' + url[10:])
         elif url.startswith('file:///\\'):
             # Format: file:///\\server\\path (2 backslashes)
-            full_path = os.path.normpath('\\\\' + url[9:])
+            full_path = os.path.normpath('\\\\' + url[7:])
+            print(url)
         else:
             # Standard file:// URL - extract the UNC path
             # Convert file://server/path to \\server\path

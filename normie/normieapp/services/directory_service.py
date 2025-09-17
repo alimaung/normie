@@ -22,7 +22,7 @@ class JSONOptimizer:
     
     def __init__(self):
         # Common base URL that appears in all file paths
-        self.base_url = "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\Ofs\\obl\\Dokumentenservice\\TeileundStoffe\\\\"
+        self.base_url = "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\\\"
         
         # Column name mappings (long -> short)
         self.column_map = {

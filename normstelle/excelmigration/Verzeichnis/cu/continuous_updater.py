@@ -60,8 +60,8 @@ class ContinuousExcelUpdater:
             self.data_dir = self.django_base / "normieapp" / "static" / "normieapp" / "data"
         
         # Source paths for Excel files
-        self.live_src = "\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\Ofs\\obl\\Dokumentenservice\\TeileundStoffe\\Datei\\Verzeichnis.xlsb"
-        self.test_src = "D:\\GlobalDE\\DocumentManagement\\Ofs\\obl\\Dokumentenservice\\TeileundStoffe\\Datei\\Verzeichnis.xlsb"
+        self.live_src = "\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Datei\\Verzeichnis.xlsb"
+        self.test_src = "D:\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Datei\\Verzeichnis.xlsb"
         
         # Replacement rules for URL cleanup (loaded from replace file)
         self.replacement_rules = []
@@ -772,7 +772,7 @@ class ContinuousExcelUpdater:
             # Import the optimizer class (inline to avoid import issues)
             class JSONOptimizer:
                 def __init__(self):
-                    self.base_url = "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\Ofs\\obl\\Dokumentenservice\\TeileundStoffe\\\\"
+                    self.base_url = "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\\\"
                     self.column_map = {
                         "Antrag-nummer": "an", "Teile-nummer": "tn", "Freigabe": "fr",
                         "relevant für Luftfahrtteile": "rl", "Benennung": "bn",

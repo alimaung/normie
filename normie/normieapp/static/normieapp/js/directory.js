@@ -1951,10 +1951,10 @@ class DirectoryManager {
     }
 
     async startStatusPolling() {
-        // Poll status every 10 seconds
+        // Poll status every 4 m
         this.statusPollingInterval = setInterval(() => {
             this.updateLiveStatus();
-        }, 10000);
+        }, 240000);
         
         // Initial status check
         this.updateLiveStatus();
