@@ -969,6 +969,34 @@ class ContinuousExcelUpdater:
                 self.log(f"Immediately cleaned up: {file_path}")
         except Exception as e:
             self.log(f"Warning: Could not clean up {file_path}: {e}")
+            
+    def cleanup_legacy_testing_files(self):
+        """Clean up legacy testing files that are no longer needed"""
+        try:
+            # Files that are no longer created (legacy testing files)
+            legacy_patterns = [
+                "Verzeichnis_original.json",      # Original extracted data
+                "Verzeichnis_original.json.backup", # Backup of original
+                "urls_original.txt",              # URL list from original
+                "urls_cleaned.txt"                # URL list from cleaned
+            ]
+            
+            files_deleted = 0
+            for pattern in legacy_patterns:
+                legacy_file = self.data_dir / pattern
+                if legacy_file.exists():
+                    try:
+                        legacy_file.unlink()
+                        files_deleted += 1
+                        self.log(f"Removed legacy testing file: {legacy_file}")
+                    except Exception as file_error:
+                        self.log(f"Warning: Could not remove legacy file {legacy_file}: {file_error}")
+            
+            if files_deleted > 0:
+                self.log(f"Cleaned up {files_deleted} legacy testing files")
+                    
+        except Exception as e:
+            self.log(f"Warning: Could not clean up legacy files: {e}")
 
     def run_single_update(self) -> bool:
         """Run a single update cycle. Returns True if successful."""
@@ -1009,28 +1037,16 @@ class ContinuousExcelUpdater:
                 self.cleanup_single_file(temp_xlsb)
                 raise conversion_error
             
-            # Step 5: Save original extracted JSON (before URL cleanup)
-            temp_original_json = self.temp_dir / "Verzeichnis_original_temp.json"
-            final_original_json = self.data_dir / "Verzeichnis_original.json"
-            
-            # Create a copy for the original (deep copy to avoid modification)
-            import copy
-            original_json_data = copy.deepcopy(json_data)
-            original_json_data['metadata']['note'] = 'Original extracted data before URL cleanup'
-            
-            self.save_json_data(original_json_data, temp_original_json, final_original_json)
-            self.log(f"Saved original extracted data: {final_original_json}")
-            
-            # Step 6: Cleanup URLs in the main data
+            # Step 5: Cleanup URLs in the main data (skip saving original)
             changes_made = self.cleanup_urls_in_json(json_data)
+            self.log(f"URL cleanup completed with {changes_made} changes")
             
-            # Step 7: Save cleaned JSON to final location
+            # Step 6: Save cleaned JSON to final location (only essential file)
             temp_json = self.temp_dir / "Verzeichnis_temp.json"
             final_json = self.data_dir / "Verzeichnis.json"
             self.save_json_data(json_data, temp_json, final_json)
             
-            # Clean up temp JSON files immediately after save
-            self.cleanup_single_file(temp_original_json)
+            # Clean up temp JSON file immediately after save
             self.cleanup_single_file(temp_json)
             
             # Step 7.5: Create compressed version for web interface
@@ -1040,48 +1056,19 @@ class ContinuousExcelUpdater:
             except Exception as e:
                 self.log(f"Warning: Failed to create compressed version: {e}")
             
-            # Step 8: Extract URLs from both JSON files
-            self.log("Extracting URLs from JSON files...")
+            # Step 7: Skip URL extraction (not needed for production)
             
-            # Extract URLs from original (pre-cleanup) JSON
-            original_extraction = self.extract_urls_from_json(
-                final_original_json, 
-                "urls_original.txt"
-            )
-            
-            # Extract URLs from cleaned JSON
-            cleaned_extraction = self.extract_urls_from_json(
-                final_json, 
-                "urls_cleaned.txt"
-            )
-            
-            if original_extraction and cleaned_extraction:
-                self.log("URL extraction completed for both files")
-            elif original_extraction:
-                self.log("URL extraction completed for original file only")
-            elif cleaned_extraction:
-                self.log("URL extraction completed for cleaned file only")
-            else:
-                self.log("Warning: URL extraction failed for both files")
+            # Step 8: Clean up legacy testing files (no longer needed)
+            self.cleanup_legacy_testing_files()
             
             # Step 9: Final cleanup (any remaining temp files)
             self.cleanup_temp_files()
             
             self.log("="*60)
             self.log("UPDATE CYCLE COMPLETED SUCCESSFULLY")
-            self.log(f"Original file: {final_original_json}")
-            self.log(f"Cleaned file: {final_json}")
-            
-            # Show URL extraction files
-            if original_extraction or cleaned_extraction:
-                self.log("URL extraction files:")
-                if original_extraction:
-                    urls_original_path = final_original_json.parent / "urls_original.txt"
-                    self.log(f"  Original URLs: {urls_original_path}")
-                if cleaned_extraction:
-                    urls_cleaned_path = final_json.parent / "urls_cleaned.txt"
-                    self.log(f"  Cleaned URLs: {urls_cleaned_path}")
-            
+            self.log(f"Main file: {final_json}")
+            self.log(f"Compressed file: {compressed_json}")
+            self.log(f"Backup file: {final_json.with_suffix('.json.backup')}")
             self.log(f"Total rows: {json_data['metadata']['total_rows']}")
             self.log(f"URL changes: {changes_made}")
             self.log("="*60)
