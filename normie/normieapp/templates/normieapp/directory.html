@@ -1,8 +1,9 @@
 {% extends "normieapp/base.html" %}
 {% load static %}
+{% load i18n %}
 
 {% block title %}
-    Directory
+    {% trans "Directory" %}
 {% endblock %}
 
 {% block extra_css %}
@@ -22,17 +23,36 @@
             <p class="header-summary">Complete database of parts, materials, and approval statuses</p>
         </div>
         <div class="header-stats">
+            <div class="stat-card stat-card-live">
+                <span class="stat-value">
+                    <i class="fas fa-circle stat-live-dot"></i>
+                    Live
+                </span>
+                <span class="stat-label">Online Status</span>
+            </div>
             <div class="stat-card">
                 <span class="stat-value">4,607</span>
-                <span class="stat-label">Total Entries</span>
+                <span class="stat-label">All</span>
             </div>
-            <div class="stat-card">
-                <span class="stat-value">3,842</span>
+            <div class="stat-card stat-approved">
+                <span class="stat-value">2,156</span>
                 <span class="stat-label">Approved</span>
             </div>
-            <div class="stat-card">
-                <span class="stat-value">2,156</span>
-                <span class="stat-label">Aircraft Parts</span>
+            <div class="stat-card stat-first-use">
+                <span class="stat-value">1,686</span>
+                <span class="stat-label">First Use</span>
+            </div>
+            <div class="stat-card stat-processing">
+                <span class="stat-value">521</span>
+                <span class="stat-label">Processing</span>
+            </div>
+            <div class="stat-card stat-rejected">
+                <span class="stat-value">244</span>
+                <span class="stat-label">Rejected</span>
+            </div>
+            <div class="stat-card stat-aircraft">
+                <span class="stat-value">3,142</span>
+                <span class="stat-label">Aircraft Relevant</span>
             </div>
         </div>
     </div>
@@ -40,18 +60,18 @@
     <!-- Active Filters -->
     <div class="active-filters-container" id="active-filters">
         <div class="active-filters-title">
-            <i class="fas fa-tags"></i> Active Filters
+            <i class="fas fa-tags"></i> {% trans "Active Filters" %}
         </div>
         <ul class="active-filters-list"></ul>
         <button class="clear-filters-btn">
-            <i class="fas fa-times-circle"></i> Clear All Filters
+            <i class="fas fa-times-circle"></i> {% trans "Clear All Filters" %}
         </button>
     </div>
 
     <!-- Filter Section -->
     <div class="filter-section-container" id="filter-section" style="display: none;">
         <div class="filter-section-header">
-            <h3><i class="fas fa-filter"></i> Filter Options</h3>
+            <h3><i class="fas fa-filter"></i> {% trans "Filter Options" %}</h3>
             <button class="close-filter-section-btn" id="close-filter-section">
                 <i class="fas fa-times"></i>
             </button>
@@ -59,48 +79,48 @@
         
         <div class="filter-section-content">
             <div class="filter-tabs">
-                <button class="filter-tab active" data-tab="basic">Basic Filters</button>
-                <button class="filter-tab" data-tab="advanced">Advanced Filters</button>
-                <button class="filter-tab" data-tab="date">Date Filters</button>
-                <button class="filter-tab" data-tab="document">Document Filters</button>
+                <button class="filter-tab active" data-tab="basic">{% trans "Basic Filters" %}</button>
+                <button class="filter-tab" data-tab="advanced">{% trans "Advanced Filters" %}</button>
+                <button class="filter-tab" data-tab="date">{% trans "Date Filters" %}</button>
+                <button class="filter-tab" data-tab="document">{% trans "Document Filters" %}</button>
             </div>
 
             <div class="filter-tab-content active" data-tab="basic">
                 <div class="filter-row">
                     <div class="filter-group card-style">
-                        <h4><i class="fas fa-check-circle"></i> Approval Status</h4>
+                        <h4><i class="fas fa-check-circle"></i> {% trans "Approval Status" %}</h4>
                         <div class="filter-options checkbox-toggle">
-                            <label class="filter-option"><input type="checkbox" name="approval-status" value="all" checked> All</label>
-                            <label class="filter-option approved"><input type="checkbox" name="approval-status" value="approved"> Approved</label>
-                            <label class="filter-option first-use"><input type="checkbox" name="approval-status" value="first-use"> First Use</label>
-                            <label class="filter-option processing"><input type="checkbox" name="approval-status" value="processing"> Processing</label>
-                            <label class="filter-option rejected"><input type="checkbox" name="approval-status" value="rejected"> Rejected</label>
+                            <label class="filter-option"><input type="checkbox" name="approval-status" value="all" checked> {% trans "All" %}</label>
+                            <label class="filter-option approved"><input type="checkbox" name="approval-status" value="approved"> {% trans "Approved" %}</label>
+                            <label class="filter-option first-use"><input type="checkbox" name="approval-status" value="first-use"> {% trans "First Use" %}</label>
+                            <label class="filter-option processing"><input type="checkbox" name="approval-status" value="processing"> {% trans "Processing" %}</label>
+                            <label class="filter-option rejected"><input type="checkbox" name="approval-status" value="rejected"> {% trans "Rejected" %}</label>
                         </div>
                     </div>
                     
                     <div class="filter-group card-style">
-                        <h4><i class="fas fa-plane"></i> Product Relevance</h4>
+                        <h4><i class="fas fa-plane"></i> {% trans "Product Relevance" %}</h4>
                         <div class="filter-options radio-toggle">
-                            <label class="filter-option"><input type="radio" name="relevance" value="all" checked> All</label>
-                            <label class="filter-option aircraft"><input type="radio" name="relevance" value="aircraft"> Aviation Relevant</label>
-                            <label class="filter-option not-aircraft"><input type="radio" name="relevance" value="non-aircraft"> Not Aviation Relevant</label>
+                            <label class="filter-option"><input type="radio" name="relevance" value="all" checked> {% trans "All" %}</label>
+                            <label class="filter-option aircraft"><input type="radio" name="relevance" value="aircraft"> {% trans "Aviation Relevant" %}</label>
+                            <label class="filter-option not-aircraft"><input type="radio" name="relevance" value="non-aircraft"> {% trans "Not Aviation Relevant" %}</label>
                         </div>
                     </div>
                     
                     <div class="filter-group card-style">
-                        <h4><i class="fas fa-map-marker-alt"></i> Location</h4>
+                        <h4><i class="fas fa-map-marker-alt"></i> {% trans "Location" %}</h4>
                         <div class="filter-options radio-toggle">
-                            <label class="filter-option"><input type="radio" name="location" value="all" checked> All</label>
+                            <label class="filter-option"><input type="radio" name="location" value="all" checked> {% trans "All" %}</label>
                             <label class="filter-option ou"><input type="radio" name="location" value="ou"> OU</label>
                             <label class="filter-option dw"><input type="radio" name="location" value="dw"> DW</label>
                         </div>
                     </div>
                     
                     <div class="filter-group card-style">
-                        <h4><i class="fas fa-user-cog"></i> Processor</h4>
+                        <h4><i class="fas fa-user-cog"></i> {% trans "Processor" %}</h4>
                         <div class="filter-options checkbox-toggle">
-                            <label class="filter-option"><input type="checkbox" name="processor" value="all" checked> All</label>
-                            <label class="filter-option applicant"><input type="checkbox" name="processor" value="applicant"> Applicant</label>
+                            <label class="filter-option"><input type="checkbox" name="processor" value="all" checked> {% trans "All" %}</label>
+                            <label class="filter-option applicant"><input type="checkbox" name="processor" value="applicant"> {% trans "Applicant" %}</label>
                             <label class="filter-option uub"><input type="checkbox" name="processor" value="uub"> UUB</label>
                             <label class="filter-option uws"><input type="checkbox" name="processor" value="uws"> UWS</label>
                             <label class="filter-option hse"><input type="checkbox" name="processor" value="hse"> HSE</label>
@@ -113,57 +133,61 @@
             <div class="filter-tab-content" data-tab="advanced">
                 <div class="filter-row">
                     <div class="filter-group card-style">
-                        <h4><i class="fas fa-font"></i> Description</h4>
+                        <h4><i class="fas fa-font"></i> {% trans "Description" %}</h4>
                         <div class="filter-input-group">
                             <select class="filter-condition">
-                                <option value="contains">Contains</option>
-                                <option value="not_contains">Does not contain</option>
-                                <option value="starts_with">Starts with</option>
-                                <option value="ends_with">Ends with</option>
-                                <option value="equals">Equals</option>
+                                <option value="contains">{% trans "Contains" %}</option>
+                                <option value="not_contains">{% trans "Does not contain" %}</option>
+                                <option value="starts_with">{% trans "Starts with" %}</option>
+                                <option value="ends_with">{% trans "Ends with" %}</option>
+                                <option value="equals">{% trans "Equals" %}</option>
                             </select>
-                            <input type="text" class="filter-text-input" placeholder="Enter text...">
+                            {% trans "Enter text..." as ph_enter_text %}
+                            <input type="text" class="filter-text-input" placeholder="{{ ph_enter_text }}">
                         </div>
                     </div>
                     
                     <div class="filter-group card-style">
-                        <h4><i class="fas fa-hashtag"></i> Part Number</h4>
+                        <h4><i class="fas fa-hashtag"></i> {% trans "Part Number" %}</h4>
                         <div class="filter-input-group">
                             <select class="filter-condition">
-                                <option value="contains">Contains</option>
-                                <option value="not_contains">Does not contain</option>
-                                <option value="starts_with">Starts with</option>
-                                <option value="ends_with">Ends with</option>
-                                <option value="equals">Equals</option>
+                                <option value="contains">{% trans "Contains" %}</option>
+                                <option value="not_contains">{% trans "Does not contain" %}</option>
+                                <option value="starts_with">{% trans "Starts with" %}</option>
+                                <option value="ends_with">{% trans "Ends with" %}</option>
+                                <option value="equals">{% trans "Equals" %}</option>
                             </select>
-                            <input type="text" class="filter-text-input" placeholder="Enter part number...">
+                            {% trans "Enter part number..." as ph_part_no %}
+                            <input type="text" class="filter-text-input" placeholder="{{ ph_part_no }}">
                         </div>
                     </div>
 
                     <div class="filter-group card-style">
-                        <h4><i class="fas fa-file-signature"></i> Application Number</h4>
+                        <h4><i class="fas fa-file-signature"></i> {% trans "Application Number" %}</h4>
                         <div class="filter-input-group">
                             <select class="filter-condition">
-                                <option value="contains">Contains</option>
-                                <option value="not_contains">Does not contain</option>
-                                <option value="starts_with">Starts with</option>
-                                <option value="ends_with">Ends with</option>
-                                <option value="equals">Equals</option>
+                                <option value="contains">{% trans "Contains" %}</option>
+                                <option value="not_contains">{% trans "Does not contain" %}</option>
+                                <option value="starts_with">{% trans "Starts with" %}</option>
+                                <option value="ends_with">{% trans "Ends with" %}</option>
+                                <option value="equals">{% trans "Equals" %}</option>
                             </select>
-                            <input type="text" class="filter-text-input" placeholder="Enter application number...">
+                            {% trans "Enter application number..." as ph_app_no %}
+                            <input type="text" class="filter-text-input" placeholder="{{ ph_app_no }}">
                         </div>
                     </div>
 
                     <div class="filter-group card-style">
-                        <h4><i class="fas fa-building"></i> Department</h4>
+                        <h4><i class="fas fa-building"></i> {% trans "Department" %}</h4>
                         <div class="filter-input-group">
                             <select class="filter-condition">
-                                <option value="contains">Contains</option>
-                                <option value="not_contains">Does not contain</option>
-                                <option value="starts_with">Starts with</option>
-                                <option value="equals">Equals</option>
+                                <option value="contains">{% trans "Contains" %}</option>
+                                <option value="not_contains">{% trans "Does not contain" %}</option>
+                                <option value="starts_with">{% trans "Starts with" %}</option>
+                                <option value="equals">{% trans "Equals" %}</option>
                             </select>
-                            <input type="text" class="filter-text-input" placeholder="Enter department...">
+                            {% trans "Enter department..." as ph_department %}
+                            <input type="text" class="filter-text-input" placeholder="{{ ph_department }}">
                         </div>
                     </div>
                 </div>
@@ -172,49 +196,49 @@
             <div class="filter-tab-content" data-tab="date">
                 <div class="filter-row">
                     <div class="filter-group card-style">
-                        <h4><i class="fas fa-calendar-plus"></i> Entry Date</h4>
+                        <h4><i class="fas fa-calendar-plus"></i> {% trans "Entry Date" %}</h4>
                         <div class="filter-date-group">
                             <div class="date-range">
-                                <label>From:</label>
+                                <label>{% trans "From:" %}</label>
                                 <input type="date" class="filter-date-input" id="date-from">
                             </div>
                             <div class="date-range">
-                                <label>To:</label>
+                                <label>{% trans "To:" %}</label>
                                 <input type="date" class="filter-date-input" id="date-to">
                             </div>
                         </div>
                         <div class="quick-date-options">
-                            <button class="quick-date-btn" data-range="today">Today</button>
-                            <button class="quick-date-btn" data-range="yesterday">Yesterday</button>
-                            <button class="quick-date-btn" data-range="week">This Week</button>
-                            <button class="quick-date-btn" data-range="month">This Month</button>
-                            <button class="quick-date-btn" data-range="year">This Year</button>
+                            <button class="quick-date-btn" data-range="today">{% trans "Today" %}</button>
+                            <button class="quick-date-btn" data-range="yesterday">{% trans "Yesterday" %}</button>
+                            <button class="quick-date-btn" data-range="week">{% trans "This Week" %}</button>
+                            <button class="quick-date-btn" data-range="month">{% trans "This Month" %}</button>
+                            <button class="quick-date-btn" data-range="year">{% trans "This Year" %}</button>
                         </div>
                     </div>
 
                     <div class="filter-group card-style">
-                        <h4><i class="fas fa-calendar-check"></i> Completion Date</h4>
+                        <h4><i class="fas fa-calendar-check"></i> {% trans "Completion Date" %}</h4>
                         <div class="filter-date-group">
                             <div class="date-range">
-                                <label>From:</label>
+                                <label>{% trans "From:" %}</label>
                                 <input type="date" class="filter-date-input" id="completion-from">
                             </div>
                             <div class="date-range">
-                                <label>To:</label>
+                                <label>{% trans "To:" %}</label>
                                 <input type="date" class="filter-date-input" id="completion-to">
                             </div>
                         </div>
                         <div class="quick-date-options">
-                            <button class="quick-date-btn" data-range="today" data-target="completion">Today</button>
-                            <button class="quick-date-btn" data-range="yesterday" data-target="completion">Yesterday</button>
-                            <button class="quick-date-btn" data-range="week" data-target="completion">This Week</button>
-                            <button class="quick-date-btn" data-range="month" data-target="completion">This Month</button>
-                            <button class="quick-date-btn" data-range="year" data-target="completion">This Year</button>
+                            <button class="quick-date-btn" data-range="today" data-target="completion">{% trans "Today" %}</button>
+                            <button class="quick-date-btn" data-range="yesterday" data-target="completion">{% trans "Yesterday" %}</button>
+                            <button class="quick-date-btn" data-range="week" data-target="completion">{% trans "This Week" %}</button>
+                            <button class="quick-date-btn" data-range="month" data-target="completion">{% trans "This Month" %}</button>
+                            <button class="quick-date-btn" data-range="year" data-target="completion">{% trans "This Year" %}</button>
                         </div>
                     </div>
 
                     <div class="filter-group card-style">
-                        <h4><i class="fas fa-clock"></i> Processing Time</h4>
+                        <h4><i class="fas fa-clock"></i> {% trans "Processing Time" %}</h4>
                         <div class="filter-range-group">
                             <div class="range-slider-container">
                                 <div class="range-values">
@@ -235,43 +259,45 @@
             <div class="filter-tab-content" data-tab="document">
                 <div class="filter-row">
                     <div class="filter-group card-style">
-                        <h4><i class="fas fa-file-alt"></i> Document Availability</h4>
+                        <h4><i class="fas fa-file-alt"></i> {% trans "Document Availability" %}</h4>
                         <div class="filter-options checkbox-toggle">
-                            <label class="filter-option"><input type="checkbox" name="doc-application" value="yes"> Application</label>
-                            <label class="filter-option"><input type="checkbox" name="doc-datasheet" value="yes"> Data Sheet</label>
-                            <label class="filter-option"><input type="checkbox" name="doc-approval" value="yes"> Product Approval</label>
+                            <label class="filter-option"><input type="checkbox" name="doc-application" value="yes"> {% trans "Application" %}</label>
+                            <label class="filter-option"><input type="checkbox" name="doc-datasheet" value="yes"> {% trans "Data Sheet" %}</label>
+                            <label class="filter-option"><input type="checkbox" name="doc-approval" value="yes"> {% trans "Product Approval" %}</label>
                             <label class="filter-option"><input type="checkbox" name="doc-sdb" value="yes"> SDB MSDS</label>
                             <label class="filter-option"><input type="checkbox" name="doc-chemscan" value="yes"> ChemScan</label>
-                            <label class="filter-option"><input type="checkbox" name="doc-hazard" value="yes"> Hazard Assessment</label>
-                            <label class="filter-option"><input type="checkbox" name="doc-misc" value="yes"> Miscellaneous</label>
-                            <label class="filter-option"><input type="checkbox" name="doc-correspondence" value="yes"> Correspondence</label>
-                            <label class="filter-option"><input type="checkbox" name="doc-history" value="yes"> Change History</label>
+                            <label class="filter-option"><input type="checkbox" name="doc-hazard" value="yes"> {% trans "Hazard Assessment" %}</label>
+                            <label class="filter-option"><input type="checkbox" name="doc-misc" value="yes"> {% trans "Miscellaneous" %}</label>
+                            <label class="filter-option"><input type="checkbox" name="doc-correspondence" value="yes"> {% trans "Correspondence" %}</label>
+                            <label class="filter-option"><input type="checkbox" name="doc-history" value="yes"> {% trans "Change History" %}</label>
                         </div>
                     </div>
 
                     <div class="filter-group card-style">
-                        <h4><i class="fas fa-user"></i> Applicant</h4>
+                        <h4><i class="fas fa-user"></i> {% trans "Applicant" %}</h4>
                         <div class="filter-input-group">
                             <select class="filter-condition">
-                                <option value="contains">Contains</option>
-                                <option value="not_contains">Does not contain</option>
-                                <option value="starts_with">Starts with</option>
-                                <option value="equals">Equals</option>
+                                <option value="contains">{% trans "Contains" %}</option>
+                                <option value="not_contains">{% trans "Does not contain" %}</option>
+                                <option value="starts_with">{% trans "Starts with" %}</option>
+                                <option value="equals">{% trans "Equals" %}</option>
                             </select>
-                            <input type="text" class="filter-text-input" placeholder="Enter applicant name...">
+                            {% trans "Enter applicant name..." as ph_applicant %}
+                            <input type="text" class="filter-text-input" placeholder="{{ ph_applicant }}">
                         </div>
                     </div>
 
                     <div class="filter-group card-style">
-                        <h4><i class="fas fa-tag"></i> Product Name</h4>
+                        <h4><i class="fas fa-tag"></i> {% trans "Product Name" %}</h4>
                         <div class="filter-input-group">
                             <select class="filter-condition">
-                                <option value="contains">Contains</option>
-                                <option value="not_contains">Does not contain</option>
-                                <option value="starts_with">Starts with</option>
-                                <option value="equals">Equals</option>
+                                <option value="contains">{% trans "Contains" %}</option>
+                                <option value="not_contains">{% trans "Does not contain" %}</option>
+                                <option value="starts_with">{% trans "Starts with" %}</option>
+                                <option value="equals">{% trans "Equals" %}</option>
                             </select>
-                            <input type="text" class="filter-text-input" placeholder="Enter product name...">
+                            {% trans "Enter product name..." as ph_product_name %}
+                            <input type="text" class="filter-text-input" placeholder="{{ ph_product_name }}">
                         </div>
                     </div>
                 </div>
@@ -280,11 +306,11 @@
         
         <div class="filter-section-footer">
             <div class="filter-count">
-                <span id="filter-count-badge">0</span> filters selected
+                <span id="filter-count-badge">0</span> {% trans "filters selected" %}
             </div>
             <div class="filter-actions">
-                <button class="filter-reset-btn">Reset All</button>
-                <button class="filter-apply-btn">Apply Filters</button>
+                <button class="filter-reset-btn">{% trans "Reset All" %}</button>
+                <button class="filter-apply-btn">{% trans "Apply Filters" %}</button>
             </div>
         </div>
     </div>
@@ -297,13 +323,14 @@
                 <div class="search-badges" id="search-badges">
                     <!-- Search badges will be populated by JavaScript -->
                 </div>
-                <input type="text" placeholder="Search all or with filtered results..." id="directory-search">
+                {% trans "Search all or with filtered results..." as ph_search %}
+                <input type="text" placeholder="{{ ph_search }}" id="directory-search">
             </div>
         </div>
         <div class="controls-right">
             <div class="pagination-container inline-pagination">
                 <div class="pagination-info">
-                    Showing <span class="current-range">1-25</span> of <span class="total-items">4,607</span> items
+                    {% trans "Showing" %} <span class="current-range">1-25</span> {% trans "of" %} <span class="total-items">4,607</span> {% trans "items" %}
                 </div>
                 <div class="pagination-controls">
                     <button class="pagination-btn" disabled><i class="fas fa-chevron-left"></i></button>
@@ -315,7 +342,7 @@
                     <button class="pagination-btn"><i class="fas fa-chevron-right"></i></button>
                 </div>
                 <div class="items-per-page">
-                    <label for="items-per-page-select">Items per page:</label>
+                    <label for="items-per-page-select">{% trans "Items per page:" %}</label>
                     <select id="items-per-page-select">
                         <option value="5">5</option>
                         <option value="10">10</option>
@@ -327,10 +354,10 @@
             </div>
             <div class="filter-controls">
                 <button class="attachment-btn" id="toggle-attachments">
-                    <i class="fas fa-paperclip"></i> Show Attachments
+                    <i class="fas fa-paperclip"></i> {% trans "Show Attachments" %}
                 </button>
                 <button class="filter-btn" id="toggle-filter-panel">
-                    <i class="fas fa-filter"></i>Filter Data
+                    <i class="fas fa-filter"></i>{% trans "Filter Data" %}
                 </button>
                 <div class="view-options">
                     <button class="view-btn active"><i class="fas fa-table"></i></button>
@@ -343,7 +370,7 @@
     <!-- Loading Indicator -->
     <div id="loading-indicator" class="loading-container">
         <div class="loading-spinner"></div>
-        <p>Loading directory data...</p>
+        <p>{% trans "Loading directory data..." %}</p>
     </div>
 
     <!-- Table Container -->
@@ -351,29 +378,29 @@
         <table class="directory-table">
             <thead>
                 <tr>
-                    <th class="sortable text-center">Application No. <i class="fas fa-sort"></i></th>
-                    <th class="sortable text-center">Part No. <i class="fas fa-sort"></i></th>
-                    <th class="text-center">Approval</th>
-                    <th class="text-center">Product Relevance</th>
-                    <th class="sortable">Description <i class="fas fa-sort"></i></th>
-                    <th class="sortable">Product Name <i class="fas fa-sort"></i></th>
-                    <th>Product Approval Specification</th>
-                    <th class="sortable">Entry Date <i class="fas fa-sort"></i></th>
-                    <th class="sortable">Completion Date <i class="fas fa-sort"></i></th>
-                    <th class="sortable">Department <i class="fas fa-sort"></i></th>
-                    <th class="text-center">Location</th>
-                    <th class="sortable">Applicant <i class="fas fa-sort"></i></th>
-                    <th class="attachment-column">Application</th>
-                    <th class="attachment-column">Data Sheet</th>
-                    <th class="attachment-column">Product Approval</th>
+                    <th class="sortable text-center">{% trans "Application No." %} <i class="fas fa-sort"></i></th>
+                    <th class="sortable text-center">{% trans "Part No." %} <i class="fas fa-sort"></i></th>
+                    <th class="text-center">{% trans "Approval" %}</th>
+                    <th class="text-center">{% trans "Product Relevance" %}</th>
+                    <th class="sortable">{% trans "Description" %} <i class="fas fa-sort"></i></th>
+                    <th class="sortable">{% trans "Product Name" %} <i class="fas fa-sort"></i></th>
+                    <th>{% trans "Product Approval Specification" %}</th>
+                    <th class="sortable">{% trans "Entry Date" %} <i class="fas fa-sort"></i></th>
+                    <th class="sortable">{% trans "Completion Date" %} <i class="fas fa-sort"></i></th>
+                    <th class="sortable">{% trans "Department" %} <i class="fas fa-sort"></i></th>
+                    <th class="text-center">{% trans "Location" %}</th>
+                    <th class="sortable">{% trans "Applicant" %} <i class="fas fa-sort"></i></th>
+                    <th class="attachment-column">{% trans "Application" %}</th>
+                    <th class="attachment-column">{% trans "Data Sheet" %}</th>
+                    <th class="attachment-column">{% trans "Product Approval" %}</th>
                     <th class="attachment-column">SDB MSDS</th>
                     <th class="attachment-column">ChemScan</th>
-                    <th class="attachment-column">Hazard Assessment</th>
-                    <th class="attachment-column">Miscellaneous</th>
-                    <th class="attachment-column">Correspondence</th>
-                    <th class="attachment-column">Change History</th>
-                    <th class="text-center">Processor</th>
-                    <th>Actions</th>
+                    <th class="attachment-column">{% trans "Hazard Assessment" %}</th>
+                    <th class="attachment-column">{% trans "Miscellaneous" %}</th>
+                    <th class="attachment-column">{% trans "Correspondence" %}</th>
+                    <th class="attachment-column">{% trans "Change History" %}</th>
+                    <th class="text-center">{% trans "Processor" %}</th>
+                    <th>{% trans "Actions" %}</th>
                 </tr>
             </thead>
             <tbody>

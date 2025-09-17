@@ -13,6 +13,7 @@ class DirectoryManager {
         this.currentSearchQuery = '';
         this.attachmentsVisible = false;
         this.currentView = 'table'; // 'table' or 'grid'
+        this.statusPollingInterval = null;
         
         this.init();
     }
@@ -38,6 +39,7 @@ class DirectoryManager {
             this.updatePagination();
             this.updateStats();
             this.updateSortIcons(); // Update sort icons to show default sort
+            this.startStatusPolling(); // Start monitoring update service status
             this.hideLoading();
         } catch (error) {
             console.error('Failed to initialize directory:', error);
@@ -48,12 +50,34 @@ class DirectoryManager {
     
     async loadData() {
         try {
-            const response = await fetch('/static/normieapp/data/Verzeichnis.json');
-            if (!response.ok) {
-                throw new Error(`HTTP error! status: ${response.status}`);
+            // Try compressed version first, fallback to original
+            let response;
+            let jsonData;
+            
+            try {
+                response = await fetch('/static/normieapp/data/Verzeichnis_compressed.json');
+                if (response.ok) {
+                    jsonData = await response.json();
+                    console.log('Loaded compressed directory data');
+                    
+                    // Decompress if needed
+                    if (jsonData.metadata && jsonData.metadata.compressed) {
+                        this.data = this.decompressData(jsonData);
+                    } else {
+                        this.data = jsonData.data || [];
+                    }
+                } else {
+                    throw new Error('Compressed version not available');
+                }
+            } catch (e) {
+                console.log('Compressed version not available, loading full version...');
+                response = await fetch('/static/normieapp/data/Verzeichnis.json');
+                if (!response.ok) {
+                    throw new Error(`HTTP error! status: ${response.status}`);
+                }
+                jsonData = await response.json();
+                this.data = jsonData.data || [];
             }
-            const jsonData = await response.json();
-            this.data = jsonData.data || [];
             
             // Apply default sort immediately after loading (Application No. descending)
             this.sortColumn = 'Antrag-nummer';
@@ -95,6 +119,60 @@ class DirectoryManager {
             console.error('Error loading data:', error);
             throw error;
         }
+    }
+
+    decompressData(compressedData) {
+        // Decompress the JSON data on the client side
+        console.log('Decompressing directory data...');
+        
+        const metadata = compressedData.metadata || {};
+        const columnMap = metadata.column_map || {};
+        const baseUrl = metadata.base_url || '';
+        const compressedItems = compressedData.data || [];
+        
+        const decompressedData = compressedItems.map(item => {
+            const decompressed = {};
+            
+            // Restore original column names and values
+            for (const [shortKey, value] of Object.entries(item)) {
+                const originalKey = columnMap[shortKey] || shortKey;
+                
+                // Decompress document URLs
+                if (['Antrag', 'Datenblatt', 'Produkt-zulassung', 'SDB MSDS',
+                     'Gefährdungsprüfungeurteilung', 'Gefährdungsprüfung', 
+                     'Sonstiges', 'Schriftverkehr', 'Änd. Historie'].includes(originalKey)) {
+                    
+                    if (value && typeof value === 'string') {
+                        // Check if URL is already full (starts with file://) or relative
+                        const finalUrl = value.startsWith('file://') ? value : baseUrl + value;
+                        decompressed[originalKey] = {
+                            display_text: 'pdf',
+                            url: finalUrl,
+                            original_url: null,
+                            tooltip: ''
+                        };
+                    } else {
+                        decompressed[originalKey] = null;
+                    }
+                } else {
+                    decompressed[originalKey] = value;
+                }
+            }
+            
+            // Add null values for missing document columns
+            ['Antrag', 'Datenblatt', 'Produkt-zulassung', 'SDB MSDS',
+             'Gefährdungsprüfungeurteilung', 'Gefährdungsprüfung', 
+             'Sonstiges', 'Schriftverkehr', 'Änd. Historie'].forEach(docCol => {
+                if (!(docCol in decompressed)) {
+                    decompressed[docCol] = null;
+                }
+            });
+            
+            return decompressed;
+        });
+        
+        console.log(`Decompressed ${decompressedData.length} items`);
+        return decompressedData;
     }
     
     setupEventListeners() {
@@ -1826,10 +1904,25 @@ class DirectoryManager {
     updateStats() {
         const totalEntries = this.data.length;
         
-        // Count approved items (both "approved" and "approved for first order")
+        // Count by status
         const approvedCount = this.data.filter(item => {
             const status = this.getItemStatus(item);
-            return status === 'approved' || status === 'first use';
+            return status === 'approved';
+        }).length;
+        
+        const firstUseCount = this.data.filter(item => {
+            const status = this.getItemStatus(item);
+            return status === 'first use';
+        }).length;
+        
+        const processingCount = this.data.filter(item => {
+            const status = this.getItemStatus(item);
+            return status === 'processing';
+        }).length;
+        
+        const rejectedCount = this.data.filter(item => {
+            const status = this.getItemStatus(item);
+            return status === 'rejected';
         }).length;
         
         const aircraftCount = this.data.filter(item => {
@@ -1837,13 +1930,88 @@ class DirectoryManager {
             return relevanceValue && relevanceValue.toLowerCase() === 'ja';
         }).length;
         
-        // Update stat cards
+        // Update stat cards by class/position
+        // [0] = Live status (don't update)
+        // [1] = All
+        // [2] = Approved 
+        // [3] = First Use
+        // [4] = Processing
+        // [5] = Rejected
+        // [6] = Aircraft Relevant
         const statCards = document.querySelectorAll('.stat-card');
-        if (statCards.length >= 3) {
-            statCards[0].querySelector('.stat-value').textContent = totalEntries.toLocaleString();
-            statCards[1].querySelector('.stat-value').textContent = approvedCount.toLocaleString();
-            statCards[2].querySelector('.stat-value').textContent = aircraftCount.toLocaleString();
+        if (statCards.length >= 7) {
+            // Skip [0] - that's the live status indicator
+            statCards[1].querySelector('.stat-value').textContent = totalEntries.toLocaleString();
+            statCards[2].querySelector('.stat-value').textContent = approvedCount.toLocaleString();
+            statCards[3].querySelector('.stat-value').textContent = firstUseCount.toLocaleString();
+            statCards[4].querySelector('.stat-value').textContent = processingCount.toLocaleString();
+            statCards[5].querySelector('.stat-value').textContent = rejectedCount.toLocaleString();
+            statCards[6].querySelector('.stat-value').textContent = aircraftCount.toLocaleString();
         }
+    }
+
+    async startStatusPolling() {
+        // Poll status every 4 m
+        this.statusPollingInterval = setInterval(() => {
+            this.updateLiveStatus();
+        }, 240000);
+        
+        // Initial status check
+        this.updateLiveStatus();
+    }
+
+    async updateLiveStatus() {
+        try {
+            const response = await fetch('/directory/status/');
+            if (response.ok) {
+                const status = await response.json();
+                this.updateLiveStatusIndicator(status);
+            }
+        } catch (error) {
+            console.warn('Failed to fetch live status:', error);
+        }
+    }
+
+    updateLiveStatusIndicator(status) {
+        const liveCard = document.querySelector('.stat-card-live');
+        if (!liveCard) return;
+
+        const statusValue = liveCard.querySelector('.stat-value');
+        const statusDot = liveCard.querySelector('.stat-live-dot');
+        const statusLabel = liveCard.querySelector('.stat-label');
+        
+        if (!statusValue || !statusDot) return;
+
+        // Update text and dot color based on status
+        const statusText = statusValue.childNodes[2]; // Text node after icon
+        if (statusText) {
+            statusText.textContent = ` ${status.status_text}`;
+        }
+
+        // Update dot color
+        statusDot.className = `fas fa-circle stat-live-dot ${status.status_class}`;
+        
+        // Update card class for styling
+        liveCard.className = `stat-card stat-card-live ${status.status_class}`;
+
+        // Update label with last update time
+        if (statusLabel && status.last_update) {
+            const lastUpdateDate = new Date(status.last_update * 1000);
+            const timeString = lastUpdateDate.toLocaleTimeString('en-US', { 
+                hour12: false, 
+                hour: '2-digit', 
+                minute: '2-digit'
+            });
+            statusLabel.textContent = `Last: ${timeString}`;
+        } else if (statusLabel) {
+            statusLabel.textContent = 'Online Status';
+        }
+
+        // Add title with more info
+        const nextUpdate = status.next_update_in ? `Next update in ${Math.round(status.next_update_in / 60)} minutes` : '';
+        const lastUpdate = status.time_since_update ? `Last updated ${Math.round(status.time_since_update / 60)} minutes ago` : '';
+        const hasCompressed = status.has_compressed ? 'Compressed version available' : 'No compressed version';
+        liveCard.title = [nextUpdate, lastUpdate, hasCompressed].filter(Boolean).join(' • ');
     }
     
     hideLoading() {
@@ -2016,9 +2184,19 @@ document.addEventListener('DOMContentLoaded', function() {
         .doc-preview-header{display:flex;justify-content:space-between;align-items:center;padding:10px 14px;border-bottom:1px solid #e8e8ed;background:#f5f5f7}
         .doc-preview-title{font-size:14px;font-weight:600;color:#1d1d1f;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
         .doc-preview-actions{display:flex;gap:8px}
-        .doc-preview-actions a,.doc-preview-actions button{padding:6px 10px;border-radius:6px;border:1px solid #d2d2d7;background:#fff;cursor:pointer;font-size:12px;color:#1d1d1f}
+        .doc-preview-actions a,.doc-preview-actions button{padding:6px 10px;border-radius:6px;border:1px solid #d2d2d7;background:#fff;cursor:pointer;font-size:12px;color:#1d1d1f;display:inline-flex;align-items:center;gap:6px}
         .doc-preview-actions a.primary{background:#0071e3;border-color:#0071e3;color:#fff}
         .doc-preview-iframe{flex:1;border:0;width:100%;height:100%;background:#fff}
+
+        /* Dark mode for modal */
+        .dark-mode .doc-preview-backdrop{background:rgba(0,0,0,0.6)}
+        .dark-mode .doc-preview-modal{background:#1f1f1f;box-shadow:0 10px 30px rgba(0,0,0,.6)}
+        .dark-mode .doc-preview-header{background:#222;border-bottom-color:#333}
+        .dark-mode .doc-preview-title{color:#eaeaea}
+        .dark-mode .doc-preview-actions a,.dark-mode .doc-preview-actions button{background:#2a2a2a;border-color:#444;color:#eaeaea}
+        .dark-mode .doc-preview-actions a.primary{background:#0a84ff;border-color:#0a84ff;color:#fff}
+        .dark-mode .doc-preview-actions a:hover,.dark-mode .doc-preview-actions button:hover{background:#333}
+        .dark-mode .doc-preview-iframe{background:#111}
         `;
         document.head.appendChild(style);
     }
@@ -2037,20 +2215,23 @@ document.addEventListener('DOMContentLoaded', function() {
         const actions = document.createElement('div');
         actions.className = 'doc-preview-actions';
         const openBtn = document.createElement('a');
-        openBtn.textContent = 'Open in new tab';
+        openBtn.innerHTML = '<i class="fas fa-external-link-alt"></i><span>Open in new tab</span>';
         openBtn.target = '_blank';
         openBtn.rel = 'noopener';
         const openFileBtn = document.createElement('a');
-        openFileBtn.textContent = 'Open via file://';
+        openFileBtn.innerHTML = '<i class="fas fa-folder-open"></i><span>Open via file://</span>';
         openFileBtn.target = '_blank';
         openFileBtn.rel = 'noopener';
+        const copyBtn = document.createElement('button');
+        copyBtn.innerHTML = '<i class="fas fa-copy"></i><span>Copy file URL</span>';
         const downloadBtn = document.createElement('a');
-        downloadBtn.textContent = 'Download';
+        downloadBtn.innerHTML = '<i class="fas fa-download"></i><span>Download</span>';
         downloadBtn.className = 'primary';
         const closeBtn = document.createElement('button');
-        closeBtn.textContent = 'Close';
+        closeBtn.innerHTML = '<i class="fas fa-times"></i><span>Close</span>';
         actions.appendChild(openBtn);
         actions.appendChild(openFileBtn);
+        actions.appendChild(copyBtn);
         actions.appendChild(downloadBtn);
         actions.appendChild(closeBtn);
         header.appendChild(title);
@@ -2066,22 +2247,16 @@ document.addEventListener('DOMContentLoaded', function() {
         backdrop.addEventListener('click', (e) => { if (e.target === backdrop) cleanup(); });
         closeBtn.addEventListener('click', cleanup);
 
-        return { backdrop, iframe, title, openBtn, openFileBtn, downloadBtn };
+        return { backdrop, iframe, title, openBtn, openFileBtn, copyBtn, downloadBtn };
     }
 
     function buildFileUrlFromRelative(relUrl) {
-        const server = 'deberdna-c010a';
-        const basePath = 'DocumentManagement/Ofs/obl/Dokumentenservice/TeileundStoffe';
-        const cleaned = String(relUrl || '')
-            .replace(/^[.\\/]+/g, '')
-            .replace(/\\\\/g, '/')
-            .replace(/\\/g, '/')
-            .replace(/^\//, '');
-        return `file://${server}/${basePath}/${cleaned}`;
+        // URLs are now pre-cleaned and full, so return as-is
+        return String(relUrl || '');
     }
 
     window.showDocumentPreview = function(relUrl) {
-        const { backdrop, iframe, title, openBtn, openFileBtn, downloadBtn } = createModal();
+        const { backdrop, iframe, title, openBtn, openFileBtn, copyBtn, downloadBtn } = createModal();
         const url = `/directory/document/?url=${encodeURIComponent(relUrl)}`;
         iframe.src = url;
         const filename = relUrl.split('\\').pop().split('/').pop();
@@ -2089,6 +2264,28 @@ document.addEventListener('DOMContentLoaded', function() {
         openBtn.href = url;
         const fileUrl = buildFileUrlFromRelative(relUrl);
         openFileBtn.href = fileUrl;
+        copyBtn.addEventListener('click', async () => {
+            try {
+                if (navigator.clipboard && navigator.clipboard.writeText) {
+                    await navigator.clipboard.writeText(fileUrl);
+                } else {
+                    const tmp = document.createElement('input');
+                    tmp.value = fileUrl;
+                    document.body.appendChild(tmp);
+                    tmp.select();
+                    document.execCommand('copy');
+                    document.body.removeChild(tmp);
+                }
+                const original = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-check"></i><span>Copied!</span>';
+                copyBtn.disabled = true;
+                setTimeout(() => { copyBtn.innerHTML = original; copyBtn.disabled = false; }, 1200);
+            } catch (e) {
+                const original = copyBtn.innerHTML;
+                copyBtn.innerHTML = '<i class="fas fa-exclamation-triangle"></i><span>Copy failed</span>';
+                setTimeout(() => { copyBtn.innerHTML = original; }, 1500);
+            }
+        });
         downloadBtn.href = `${url}&download=1`;
         downloadBtn.setAttribute('download', filename || 'document');
         document.body.appendChild(backdrop);

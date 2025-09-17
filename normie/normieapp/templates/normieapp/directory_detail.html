@@ -57,7 +57,7 @@
                 </div>
                 
                 <div class="relevance-indicator">
-                    {% if item.aircraft_relevant == "ja" %}
+                    {% if item.aircraft_relevant|lower == "ja" %}
                         <div class="aircraft-relevant glow-aircraft">
                             <i class="fas fa-plane"></i>
                             <span>Aircraft Relevant</span>

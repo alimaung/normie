@@ -1,0 +1,73 @@
+{
+  "data": [
+    {
+      "field_id": 7974,
+      "position": 0,
+      "color": null,
+      "is_always_present": null,
+      "display_width": null,
+      "min_number_of_values": null,
+      "max_number_of_values": null,
+      "inherit_default_values": 1,
+      "allow_other_value": null
+    },
+    {
+      "field_id": 7975,
+      "position": 1,
+      "color": "eceff1",
+      "is_always_present": 1,
+      "display_width": 1,
+      "min_number_of_values": 0,
+      "max_number_of_values": 1,
+      "inherit_default_values": 1,
+      "allow_other_value": 0
+    },
+    {
+      "field_id": 7977,
+      "position": 2,
+      "color": null,
+      "is_always_present": null,
+      "prefix": null,
+      "suffix": null,
+      "display_width": null,
+      "unique_values": null,
+      "value_is_required": null,
+      "default_value": null,
+      "inherit_default_value": 1
+    },
+    {
+      "field_id": 107,
+      "position": 3,
+      "color": null,
+      "is_always_present": null,
+      "display_width": null,
+      "value_is_required": null,
+      "default_value": null,
+      "inherit_default_value": 0
+    },
+    {
+      "field_id": 4033,
+      "position": 4,
+      "color": "cc1a33",
+      "is_always_present": 0,
+      "display_width": 1,
+      "min_number_of_values": 0,
+      "max_number_of_values": 100,
+      "inherit_default_values": 0,
+      "allow_other_value": 0
+    },
+    {
+      "field_id": 8567,
+      "position": 5,
+      "color": null,
+      "is_always_present": null,
+      "prefix": null,
+      "suffix": null,
+      "display_width": null,
+      "unique_values": null,
+      "value_is_required": null,
+      "default_value": null,
+      "inherit_default_value": 1
+    }
+  ]
+}

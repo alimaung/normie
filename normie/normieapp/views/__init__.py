@@ -14,3 +14,4 @@ from .mlc import *
 from .contacts import *
 from .contact import *
 from .din import *
+from .directory_status import *

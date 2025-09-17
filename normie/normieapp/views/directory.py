@@ -2,6 +2,7 @@ from django.shortcuts import render
 from django.http import Http404, FileResponse, HttpResponse
 from django.utils.translation import gettext as _
 from ..decorators import restrict_read_only_users
+from django.views.decorators.clickjacking import xframe_options_exempt
 import json
 import os
 from django.conf import settings
@@ -9,7 +10,6 @@ import mimetypes
 from urllib.parse import unquote
 
 
-@restrict_read_only_users
 def directory(request):
     """
     Directory page view - requires applicant role or above.
@@ -17,7 +17,6 @@ def directory(request):
     return render(request, 'normieapp/directory.html')
 
 
-@restrict_read_only_users
 def directory_detail(request, row_number):
     """
     Display detailed view of a specific directory item by row number.
@@ -144,41 +143,78 @@ def requests_page(request):
     return render(request, 'normieapp/requests.html', context) 
 
 
-@restrict_read_only_users
+@xframe_options_exempt
 def directory_document(request):
     """
-    Streams a document from the configured UNC share, given a relative URL from Verzeichnis.json.
+    Streams a document from the configured UNC share, given a URL from Verzeichnis.json.
+    
+    Now handles pre-cleaned full file:// URLs.
 
     Query params:
-    - url: relative path as found in Verzeichnis.json (e.g., "..\\Datenblatt\\file.pdf")
+    - url: full file:// URL as found in cleaned Verzeichnis.json
     - download: if "1" or "true", force download; otherwise attempt inline preview
     """
-    rel_url = request.GET.get('url', '')
-    if not rel_url:
+    url = request.GET.get('url', '')
+    if not url:
         raise Http404("Missing document URL")
 
-    # Base UNC path (as provided)
-    base_unc = "\\\\deberdna-c010a\\DocumentManagement\\Ofs\\obl\\Dokumentenservice\\TeileundStoffe\\"
+    # Base UNC path for security validation
+    base_unc = "\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\"
 
-    # Normalize provided URL: decode, convert slashes, strip leading dots and separators
-    rel_url = unquote(rel_url)
-    rel_url = rel_url.replace('/', '\\')
-    while rel_url.startswith('..') or rel_url.startswith('\\') or rel_url.startswith('/'):
-        rel_url = rel_url.lstrip('.').lstrip('\\/').lstrip('/').lstrip('\\')
+    # Handle pre-cleaned full file:// URLs
+    url = unquote(url)
+    
+    # Debug logging
+    print(f"[DEBUG] Document request - Original URL: {request.GET.get('url', '')}")
+    print(f"[DEBUG] Document request - Decoded URL: {url}")
+    
+    if url.startswith('file://'):
+        # Handle multiple URL formats with different backslash patterns
+        if url.startswith('file:///\\\\\\\\'):
+            # Format: file:///\\\\\\\\server\\path (8 backslashes)
+            full_path = os.path.normpath('\\\\' + url[12:])
+        elif url.startswith('file:///\\\\'):
+            # Format: file:///\\\\server\\path (4 backslashes) 
+            full_path = os.path.normpath('\\\\' + url[10:])
+        elif url.startswith('file:///\\'):
+            # Format: file:///\\server\\path (2 backslashes)
+            full_path = os.path.normpath('\\\\' + url[7:])
+            print(url)
+        else:
+            # Standard file:// URL - extract the UNC path
+            # Convert file://server/path to \\server\path
+            unc_part = url[7:]  # Remove 'file://'
+            if unc_part.startswith('/'):
+                unc_part = unc_part[1:]  # Remove leading /
+            full_path = os.path.normpath('\\\\' + unc_part.replace('/', '\\'))
+    else:
+        # Fallback: treat as relative path (for backwards compatibility)
+        rel_url = url.replace('/', '\\')
+        while rel_url.startswith('..') or rel_url.startswith('\\') or rel_url.startswith('/'):
+            rel_url = rel_url.lstrip('.').lstrip('\\/').lstrip('/').lstrip('\\')
+        full_path = os.path.normpath(os.path.join(base_unc, rel_url))
 
-    # Join and normalize the full path
-    full_path = os.path.normpath(os.path.join(base_unc, rel_url))
-
+    # Debug logging for constructed path
+    print(f"[DEBUG] Document request - Constructed path: {full_path}")
+    print(f"[DEBUG] Document request - Base UNC: {base_unc}")
+    print(f"[DEBUG] Document request - Path exists: {os.path.exists(full_path)}")
+    print(f"[DEBUG] Document request - Is file: {os.path.isfile(full_path) if os.path.exists(full_path) else 'N/A'}")
+    
     # Security: ensure the path is within the base UNC directory
     try:
         common = os.path.commonpath([full_path, os.path.normpath(base_unc)])
     except ValueError:
         # Different drive letters or invalid path
+        print(f"[DEBUG] Document request - Security check failed: Different drive letters")
         raise Http404("Invalid document path")
     if common != os.path.normpath(base_unc):
+        print(f"[DEBUG] Document request - Security check failed: Path outside base directory")
+        print(f"[DEBUG] Document request - Common path: {common}")
+        print(f"[DEBUG] Document request - Normalized base: {os.path.normpath(base_unc)}")
         raise Http404("Invalid document path")
 
     if not os.path.exists(full_path) or not os.path.isfile(full_path):
+        print(f"[DEBUG] Document request - File not found: {full_path}")
         raise Http404("Document not found")
 
     # Determine content type
@@ -190,7 +226,10 @@ def directory_document(request):
     download_flag = request.GET.get('download', '').lower() in ('1', 'true', 'yes')
     disposition = 'attachment' if download_flag else 'inline'
 
-    response = FileResponse(open(full_path, 'rb'), content_type=content_type)
+    try:
+        response = FileResponse(open(full_path, 'rb'), content_type=content_type)
+    except PermissionError:
+        raise Http404("Document not accessible")
     filename = os.path.basename(full_path)
     response["Content-Disposition"] = f"{disposition}; filename=\"{filename}\""
     return response

@@ -125,11 +125,11 @@ def main():
         
     # 6. PATCH /cards/{card_id} - Update specific card
     # Only include fields you want to update, not the entire card object
-    card_update_data = {
-        "column_id": 206400,  # Moving card to a different column 206400 or 206230
-    }
+    #card_update_data = {
+    #    "column_id": 206400,  # Moving card to a different column 206400 or 206230
+    #}
     
-    make_api_request(f"/cards/{CARD_ID}", f"Update card {CARD_ID}", f"card_{CARD_ID}_update", method='PATCH', json_data=card_update_data)
+    #make_api_request(f"/cards/{CARD_ID}", f"Update card {CARD_ID}", f"card_{CARD_ID}_update", method='PATCH', json_data=card_update_data)
     
     # 5. GET /cards/{card_id} - Get specific card details
     #make_api_request(f"/cards/{CARD_ID}", f"Get card {CARD_ID} details", f"card_{CARD_ID}_details")

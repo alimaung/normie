@@ -213,7 +213,7 @@
                 <a href="{% url 'user_profile' %}" class="btn-hero secondary">{% trans "View Your Profile" %}</a>
             {% else %}
                 <a href="{% url 'login' %}" class="btn-hero primary">{% trans "Get Started Today" %}</a>
-                <a href="#contact" class="btn-hero secondary">{% trans "Schedule a Demo" %}</a>
+                <a href="{% url 'contact' %}" class="btn-hero secondary">{% trans "Schedule a Demo" %}</a>
             {% endif %}
         </div>
     </div>

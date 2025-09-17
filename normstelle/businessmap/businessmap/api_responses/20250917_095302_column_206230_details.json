@@ -1,0 +1,15 @@
+{
+  "data": {
+    "workflow_id": 12723,
+    "section": 3,
+    "parent_column_id": null,
+    "name": "Verfilmung",
+    "description": "",
+    "color": "ffe680",
+    "limit": 0,
+    "cards_per_row": 1,
+    "flow_type": 1,
+    "card_ordering": null,
+    "position": 2
+  }
+}

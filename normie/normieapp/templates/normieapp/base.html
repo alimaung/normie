@@ -657,7 +657,14 @@
                                             <div class="dropdown-item-description">Material management</div>
                                         </div>
                                     </a>
-                                    <a href="{% url 'under_construction' %}" class="dropdown-item">
+                                    <a href="{% url 'open_request' %}" class="dropdown-item">
+                                        <i class="fas fa-plus-circle"></i>
+                                        <div class="dropdown-item-content">
+                                            <div class="dropdown-item-title">Open Request</div>
+                                            <div class="dropdown-item-description">Submit a new request</div>
+                                        </div>
+                                    </a>
+                                    <a href="{% url 'directory' %}" class="dropdown-item">
                                         <i class="fas fa-folder"></i>
                                         <div class="dropdown-item-content">
                                             <div class="dropdown-item-title">Directory</div>
@@ -783,6 +790,11 @@
                 height="15"
                 alt="{{ LANGUAGE_CODE|upper }}">
             </a>
+            <form id="set-language-form" action="{% url 'set_language' %}" method="post" style="display:none;">
+                {% csrf_token %}
+                <input type="hidden" name="language" value="">
+                <input type="hidden" name="next" value="{{ request.get_full_path }}">
+            </form>
             <!-- Dark Mode Toggle -->
             <button id="dark-mode-toggle" title="Toggle Dark Mode">
                 <i id="dark-mode-icon" class="fas fa-moon"></i>
@@ -1007,6 +1019,18 @@
     <script>
         // Load and apply saved color theme
         document.addEventListener('DOMContentLoaded', function() {
+            // Language toggle handler -> posts to set_language
+            const langToggle = document.getElementById('lang-toggle');
+            const langForm = document.getElementById('set-language-form');
+            if (langToggle && langForm) {
+                langToggle.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const currentLang = "{{ LANGUAGE_CODE|slice:':2' }}";
+                    const targetLang = currentLang === 'de' ? 'en' : 'de';
+                    langForm.querySelector('input[name="language"]').value = targetLang;
+                    langForm.submit();
+                });
+            }
             const savedColor = localStorage.getItem('primaryColor');
             if (savedColor) {
                 applyColorTheme(savedColor);
