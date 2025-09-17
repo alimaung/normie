@@ -34,23 +34,46 @@ def main():
         "Verzeichnis_temp.json"
     ]
     
+    # Legacy testing files to clean up (now removed from production)
+    data_dir = Path(settings.BASE_DIR) / "normieapp" / "static" / "normieapp" / "data"
+    legacy_patterns = [
+        "Verzeichnis_original.json",      # Original extracted data
+        "Verzeichnis_original.json.backup", # Backup of original
+        "urls_original.txt",              # URL list from original  
+        "urls_cleaned.txt"                # URL list from cleaned
+    ]
+    
     total_cleaned = 0
     
     print(f"🧹 Cleaning temp directory: {temp_dir}")
     
+    # Clean temp files
     for pattern in patterns:
         for temp_file in temp_dir.glob(pattern):
             try:
                 temp_file.unlink()
-                print(f"   ✅ Deleted: {temp_file.name}")
+                print(f"   ✅ Deleted temp: {temp_file.name}")
                 total_cleaned += 1
             except Exception as e:
                 print(f"   ⚠️  Could not delete {temp_file.name}: {e}")
     
+    print(f"🧹 Cleaning legacy testing files: {data_dir}")
+    
+    # Clean legacy testing files from data directory
+    for pattern in legacy_patterns:
+        legacy_file = data_dir / pattern
+        if legacy_file.exists():
+            try:
+                legacy_file.unlink()
+                print(f"   ✅ Deleted legacy: {legacy_file.name}")
+                total_cleaned += 1
+            except Exception as e:
+                print(f"   ⚠️  Could not delete {legacy_file.name}: {e}")
+    
     if total_cleaned == 0:
-        print("   ✨ No temp files found (already clean)")
+        print("   ✨ No files to clean (already clean)")
     else:
-        print(f"   🎉 Cleaned up {total_cleaned} temp files")
+        print(f"   🎉 Cleaned up {total_cleaned} files total")
     
     return 0
 

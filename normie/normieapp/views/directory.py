@@ -170,15 +170,9 @@ def directory_document(request):
     
     if url.startswith('file://'):
         # Handle multiple URL formats with different backslash patterns
-        if url.startswith('file:///\\\\\\\\'):
-            # Format: file:///\\\\\\\\server\\path (8 backslashes)
-            full_path = os.path.normpath('\\\\' + url[13:])
-        elif url.startswith('file:///\\\\'):
-            # Format: file:///\\\\server\\path (4 backslashes) 
-            full_path = os.path.normpath('\\\\' + url[11:])
-        elif url.startswith('file:///\\'):
+        if url.startswith('file:///\\'):
             # Format: file:///\\server\\path (2 backslashes)
-            full_path = os.path.normpath('\\\\' + url[9:])
+            full_path = os.path.normpath('\\\\' + url[8:])
         else:
             # Standard file:// URL - extract the UNC path
             # Convert file://server/path to \\server\path
