@@ -13,7 +13,7 @@ import sys
 from pathlib import Path
 
 
-LIVE_SRC = "\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\Ofs\\obl\\Dokumentenservice\\TeileundStoffe\\Datei\\Verzeichnis.xlsb"
+LIVE_SRC = "\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Datei\\Verzeichnis.xlsb"
 TEST_SRC = "D:\\GlobalDE\\DocumentManagement\\Ofs\\obl\\Dokumentenservice\\TeileundStoffe\\Datei\\Verzeichnis.xlsb"
 
 

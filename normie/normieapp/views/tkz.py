@@ -7,7 +7,7 @@ import os
 from django.conf import settings
 
 
-@restrict_read_only_users
+#@restrict_read_only_users
 def tkz(request):
     """
     TKZ parts directory page view - requires applicant role or above.
@@ -15,7 +15,7 @@ def tkz(request):
     return render(request, 'normieapp/tkz.html')
 
 
-@restrict_read_only_users
+#@restrict_read_only_users
 def tkz_detail(request, row_number):
     """
     Display detailed view of a specific TKZ part by row number.
