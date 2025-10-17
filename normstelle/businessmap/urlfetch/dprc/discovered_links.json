@@ -1,0 +1,14 @@
+{
+  "base_url": "https://demo.kanbanize.com/openapi",
+  "discovery_timestamp": "2025-09-17 13:44:17",
+  "total_links": 1,
+  "links": [
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getApiLimits#Request",
+      "title": "API Limits",
+      "method": "",
+      "operation_text": "API Limits",
+      "source": "operations_href"
+    }
+  ]
+}

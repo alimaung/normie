@@ -1,4 +1,4 @@
-/* Additional styling for open request form */
+    /* Additional styling for open request form */
 .disabled-field {
     background-color: #f8f9fa !important;
     color: #5f6368 !important;
@@ -315,4 +315,365 @@ input.field-value:focus, textarea.field-value:focus {
 .inline-radio-field .radio-option {
     margin-bottom: 0;
     padding: 2px 6px;
+}
+
+/* ========================================
+   DARK MODE STYLES
+   ======================================== */
+
+/* Main Container */
+.dark-mode .pdf-form-container {
+    background-color: #1a1a1a;
+    color: #eaeaea;
+}
+
+/* Form Actions Bar */
+.dark-mode .form-actions {
+    background-color: #1f1f1f;
+    border-bottom-color: #333;
+}
+
+.dark-mode .form-actions .left h2 {
+    color: #f5f5f7;
+}
+
+.dark-mode .form-actions .left span {
+    color: #a0a0a3;
+}
+
+.dark-mode .btn-cancel {
+    background-color: transparent;
+    border-color: #444;
+    color: #eaeaea;
+}
+
+.dark-mode .btn-cancel:hover {
+    background-color: #2a2a2a;
+    border-color: #555;
+}
+
+.dark-mode .btn-save {
+    background-color: #0a84ff;
+    border-color: #0a84ff;
+    color: #fff;
+}
+
+.dark-mode .btn-save:hover {
+    background-color: #0a74df;
+}
+
+/* Form Header */
+.dark-mode .form-header-section {
+    background-color: #1f1f1f;
+    border-bottom-color: #333;
+}
+
+.dark-mode .form-title {
+    color: #f5f5f7;
+}
+
+.dark-mode .form-subtitle {
+    color: #a0a0a3;
+}
+
+/* Section Cards */
+.dark-mode .section-card {
+    background-color: #1f1f1f;
+    border-color: #333;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.dark-mode .section-header {
+    background-color: #222;
+    border-bottom-color: #333;
+    color: #f5f5f7;
+}
+
+.dark-mode .section-header i {
+    color: #0a84ff;
+}
+
+/* Column Field Headers */
+.dark-mode .column-field-header {
+    background-color: #222;
+    border-bottom-color: #333;
+}
+
+.dark-mode .column-field-id {
+    background-color: #0a84ff;
+    color: #fff;
+}
+
+.dark-mode .column-field-title {
+    color: #f5f5f7;
+}
+
+.dark-mode .column-field-title.required::after {
+    color: #ff453a;
+}
+
+/* Form Table */
+.dark-mode .form-table {
+    background-color: #1f1f1f;
+    border-color: #333;
+}
+
+.dark-mode .form-table th,
+.dark-mode .form-table td {
+    border-color: #333;
+    color: #eaeaea;
+}
+
+.dark-mode .field-label {
+    background-color: #222;
+    color: #f5f5f7;
+}
+
+.dark-mode .field-id {
+    background-color: #0a84ff;
+    color: #fff;
+}
+
+.dark-mode .field-description {
+    color: #eaeaea;
+}
+
+.dark-mode .field-description.required::after {
+    color: #ff453a;
+}
+
+/* Input Fields */
+.dark-mode input.field-value,
+.dark-mode textarea.field-value {
+    background-color: #1f1f1f;
+    border-color: #444;
+    color: #eaeaea;
+}
+
+.dark-mode input.field-value:focus,
+.dark-mode textarea.field-value:focus {
+    border-color: #0a84ff;
+    box-shadow: 0 0 0 1px #0a84ff;
+}
+
+.dark-mode input.field-value::placeholder,
+.dark-mode textarea.field-value::placeholder {
+    color: #8a8a8d;
+}
+
+/* Disabled Fields */
+.dark-mode .disabled-field {
+    background-color: #2a2a2a !important;
+    color: #8a8a8d !important;
+    border-color: #444 !important;
+}
+
+/* Error States */
+.dark-mode .field-error {
+    border-color: #ff453a !important;
+    background-color: #2b1717 !important;
+}
+
+.dark-mode .field-error:focus {
+    border-color: #ff453a !important;
+    box-shadow: 0 0 0 1px #ff453a !important;
+}
+
+.dark-mode .error-message {
+    color: #ff453a;
+}
+
+/* Radio Button Styling */
+.dark-mode .radio-option {
+    background-color: transparent;
+}
+
+.dark-mode .radio-option:hover {
+    background-color: #2a2a2a;
+}
+
+.dark-mode .radio-option input[type="radio"] {
+    accent-color: #0a84ff;
+}
+
+.dark-mode .radio-option label {
+    color: #eaeaea;
+}
+
+.dark-mode .radio-option input[type="radio"]:checked + label {
+    color: #0a84ff;
+}
+
+.dark-mode .radio-option:has(input[type="radio"]:checked) {
+    background-color: #1a2940;
+    border-color: #0a84ff;
+}
+
+/* Checkbox Styling */
+.dark-mode .checkbox-option {
+    background-color: transparent;
+}
+
+.dark-mode .checkbox-option:hover {
+    background-color: #2a2a2a;
+}
+
+.dark-mode .checkbox-option input[type="checkbox"] {
+    accent-color: #0a84ff;
+}
+
+.dark-mode .checkbox-option label {
+    color: #eaeaea;
+}
+
+.dark-mode .checkbox-option input[type="checkbox"]:checked + label {
+    color: #0a84ff;
+}
+
+.dark-mode .checkbox-option:has(input[type="checkbox"]:checked) {
+    background-color: #1a2940;
+    border-color: #0a84ff;
+}
+
+/* Radio Group Error State */
+.dark-mode .radio-group-error {
+    border-color: #ff453a;
+    background-color: #2b1717;
+}
+
+/* Column Field Error State */
+.dark-mode .column-field.has-error .column-field-input input,
+.dark-mode .column-field.has-error .column-field-input .radio-group {
+    border-color: #ff453a;
+    background-color: #2b1717;
+}
+
+/* Date Picker */
+.dark-mode .date-picker-toggle {
+    background-color: #0a84ff;
+    color: #fff;
+}
+
+.dark-mode .date-picker-toggle:hover {
+    background-color: #0a74df;
+}
+
+.dark-mode .date-picker-toggle:disabled {
+    background-color: #444;
+    color: #8a8a8d;
+}
+
+/* Alert Styling */
+.dark-mode .alert-success {
+    background-color: #1b2a21;
+    border-color: #2fae4f;
+    color: #30d158;
+}
+
+.dark-mode .alert-danger {
+    background-color: #2b1717;
+    border-color: #e22a25;
+    color: #ff453a;
+}
+
+/* Required Field Indicator */
+.dark-mode .required::after {
+    color: #ff453a;
+}
+
+/* Inline Radio Field Styling */
+.dark-mode .inline-radio-field .radio-field-label {
+    color: #eaeaea;
+}
+
+/* Loading State */
+.dark-mode .btn-loading {
+    opacity: 0.7;
+}
+
+/* Form Row Borders */
+.dark-mode .form-row {
+    border-bottom-color: #333;
+}
+
+.dark-mode .form-row td {
+    border-color: #333;
+}
+
+/* Stacked Radio Styling */
+.dark-mode .stacked-radio .radio-group {
+    background-color: transparent;
+}
+
+/* Column Field Input Containers */
+.dark-mode .column-field-input {
+    background-color: transparent;
+}
+
+/* Two Column, Three Column, and Four Column Row Styling */
+.dark-mode .two-column-row,
+.dark-mode .three-column-row,
+.dark-mode .four-column-row {
+    background-color: transparent;
+}
+
+/* Column Field Borders */
+.dark-mode .column-field {
+    border-color: #333;
+}
+
+.dark-mode .two-col-field,
+.dark-mode .three-col-field {
+    border-color: #333;
+}
+
+/* Focus States for Better Accessibility */
+.dark-mode input.field-value:focus-visible,
+.dark-mode textarea.field-value:focus-visible {
+    outline: 2px solid #0a84ff;
+    outline-offset: 2px;
+}
+
+.dark-mode .radio-option input[type="radio"]:focus-visible,
+.dark-mode .checkbox-option input[type="checkbox"]:focus-visible {
+    outline: 2px solid #0a84ff;
+    outline-offset: 2px;
+}
+
+/* Button Focus States */
+.dark-mode .date-picker-toggle:focus-visible {
+    outline: 2px solid #0a84ff;
+    outline-offset: 2px;
+}
+
+.dark-mode .btn-cancel:focus-visible,
+.dark-mode .btn-save:focus-visible {
+    outline: 2px solid #0a84ff;
+    outline-offset: 2px;
+}
+
+/* Additional Form Elements */
+.dark-mode .alert {
+    border-color: #444;
+}
+
+.dark-mode .alert i {
+    color: inherit;
+}
+
+/* Column Field Flex Containers */
+.dark-mode .flex-1,
+.dark-mode .flex-1-2,
+.dark-mode .flex-0-8,
+.dark-mode .flex-0-5 {
+    background-color: transparent;
+}
+
+/* Radio Group Disabled State */
+.dark-mode .radio-group.disabled-field {
+    opacity: 0.6;
+}
+
+.dark-mode .checkbox-container.disabled-field {
+    opacity: 0.6;
 }

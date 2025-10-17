@@ -59,3 +59,13 @@
 2025-08-04 22:40:17 - INFO - 🔒 Skipping signature field '50b' completely - preserving original signature
 2025-08-04 22:40:18 - INFO - ✅ Successfully updated 162 fields in PDF
 2025-08-04 22:40:18 - INFO - 🔒 Preserved 5 signature fields unchanged
+2025-10-12 19:11:44 - INFO - === Starting PDF field extraction from: C:\Users\RAVEN\Desktop\normie\normie\normieapp\static\normieapp\temp_forms\70444e51-1195-47b3-ad7b-6d84a00d922f.pdf ===
+2025-10-12 19:11:44 - INFO - Found 129 form fields in PDF
+2025-10-12 19:11:44 - WARNING - Field '12' not found in PDF_FIELD_DICT
+2025-10-12 19:11:44 - INFO - Signature field 25b: formatted signature found
+2025-10-12 19:11:44 - INFO - Signature field 32b: formatted signature found
+2025-10-12 19:11:45 - INFO - Signature field 47b: formatted signature found
+2025-10-12 19:11:45 - INFO - Signature field 50b: formatted signature found
+2025-10-12 19:11:45 - INFO - Successfully extracted 129 fields from PDF
+2025-10-12 19:11:45 - INFO - Field extraction completed in 0.34 seconds
+2025-10-12 19:11:45 - INFO - === PDF field extraction finished ===

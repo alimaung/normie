@@ -1,0 +1,1411 @@
+{
+  "base_url": "https://demo.kanbanize.com/openapi",
+  "extraction_timestamp": "2025-09-17 14:14:03",
+  "total_links": 169,
+  "clicked_sections": [
+    "API Limits",
+    "BAI Prompt History",
+    "Business Rules Active Rules Limit",
+    "Board Milestones",
+    "Board Effective Cycle Time Columns",
+    "Block Reason Cards",
+    "Block Reason Boards",
+    "Calculated Outcome Value Rules Execution History",
+    "Business Rule Execution History",
+    "Board Column Checklist Item Allowed Users",
+    "API Request History",
+    "Board Departure Rules",
+    "Board Tags",
+    "Board Card and Initiative Effective Views Settings",
+    "Board Discard Reasons",
+    "Board Stickers",
+    "Board BAI Prompts",
+    "Board Structure Revisions",
+    "Card Attachments",
+    "Block Reasons",
+    "Board Custom Field Allowed Values",
+    "Board Logged Time Categories",
+    "Board Default Settings",
+    "Calculated Outcome Value Rules Active Rules Limit",
+    "Card Comment Attachments",
+    "Card Cover Image",
+    "Boards",
+    "Card Column Checklist Items",
+    "Board Arrival Rules",
+    "Board Custom Field Default Contributors",
+    "Card Co Owners",
+    "Board Custom Fields",
+    "Card Comments",
+    "Archived Card Versions",
+    "Board Structure",
+    "Board Column Checklist Items",
+    "Board Settings",
+    "Board Assignees",
+    "Board Teams",
+    "Board Access Requests",
+    "Board Card Templates",
+    "Board Visible Standard Fields",
+    "Card Block Reason",
+    "Board Card and Initiative Views My Settings",
+    "Board Card Types",
+    "Board History",
+    "Block Reason History",
+    "Board Points Of Contact",
+    "Board Card and Initiative Default Views Settings",
+    "Board Block Reasons"
+  ],
+  "links": [
+    {
+      "url": "https://demo.kanbanize.com/openapi#/",
+      "title": "Overview",
+      "method": "",
+      "operation_text": "Overview",
+      "section": "Unknown",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getApiLimits",
+      "title": "Get the hourly and minutely limits for API requests",
+      "method": "GET",
+      "operation_text": "Get the hourly and minutely limits for API requests",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getApiRequestHistory",
+      "title": "Get a list of past API requests",
+      "method": "GET",
+      "operation_text": "Get a list of past API requests",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getApiRequestHistoryAggregated",
+      "title": "Get a list of API requests aggregated by user",
+      "method": "GET",
+      "operation_text": "Get a list of API requests aggregated by user",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getArchivedCardVersions",
+      "title": "Get a list of archived card versions",
+      "method": "GET",
+      "operation_text": "Get a list of archived card versions",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/createArchiveCardVersion",
+      "title": "Create an archived card version",
+      "method": "POST",
+      "operation_text": "Create an archived card version",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getArchiveCardVersion",
+      "title": "Get the details of a single archived card version",
+      "method": "GET",
+      "operation_text": "Get the details of a single archived card version",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/updateArchiveCardVersion",
+      "title": "Update an archived card version",
+      "method": "PATCH",
+      "operation_text": "Update an archived card version",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/deleteArchiveCardVersion",
+      "title": "Delete an archived card version",
+      "method": "DELETE",
+      "operation_text": "Delete an archived card version",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBaiPromptsHistory",
+      "title": "Get a list of BAI prompt creation, deletion, and update events.",
+      "method": "GET",
+      "operation_text": "Get a list of BAI prompt creation, deletion, and update events.",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBlockReasonBoards",
+      "title": "Get a list of boards where the block reason is available",
+      "method": "GET",
+      "operation_text": "Get a list of boards where the block reason is available",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/updateBlockReasonBoards",
+      "title": "Change the availability of a block reason on one or more boards",
+      "method": "POST",
+      "operation_text": "Change the availability of a block reason on one or more boards",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBlockReasonCards",
+      "title": "Get a list of cards where the block reason is currently applied",
+      "method": "GET",
+      "operation_text": "Get a list of cards where the block reason is currently applied",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBlockReasonsHistory",
+      "title": "Get a list of block reasons creation, deletion and update events",
+      "method": "GET",
+      "operation_text": "Get a list of block reasons creation, deletion and update events",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBlockReasons",
+      "title": "Get a list of block reasons",
+      "method": "GET",
+      "operation_text": "Get a list of block reasons",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/createBlockReason",
+      "title": "Create a block reason",
+      "method": "POST",
+      "operation_text": "Create a block reason",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBlockReason",
+      "title": "Get the details of a single block reason",
+      "method": "GET",
+      "operation_text": "Get the details of a single block reason",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/updateBlockReason",
+      "title": "Update a block reason",
+      "method": "PATCH",
+      "operation_text": "Update a block reason",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/deleteBlockReason",
+      "title": "Delete a block reason",
+      "method": "DELETE",
+      "operation_text": "Delete a block reason",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardAccessRequests",
+      "title": "Get a list of access requests for a board",
+      "method": "GET",
+      "operation_text": "Get a list of access requests for a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/requestBoardAccess",
+      "title": "Request access to a board",
+      "method": "PUT",
+      "operation_text": "Request access to a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/processBoardAccessRequests",
+      "title": "Process a list of access requests",
+      "method": "POST",
+      "operation_text": "Process a list of access requests",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardArrivalRules",
+      "title": "Get a list of the arrival rules for a board",
+      "method": "GET",
+      "operation_text": "Get a list of the arrival rules for a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addBoardArrivalRule",
+      "title": "Add an arrival rule to a board",
+      "method": "POST",
+      "operation_text": "Add an arrival rule to a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardArrivalRule",
+      "title": "Get the details of an arrival rule for a board",
+      "method": "GET",
+      "operation_text": "Get the details of an arrival rule for a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/updateBoardArrivalRule",
+      "title": "Update an arrival rule for a board",
+      "method": "PATCH",
+      "operation_text": "Update an arrival rule for a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/removeBoardArrivalRule",
+      "title": "Remove an arrival rule from a board",
+      "method": "DELETE",
+      "operation_text": "Remove an arrival rule from a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardBaiPrompts",
+      "title": "Get a list of the BAI prompts for a board",
+      "method": "GET",
+      "operation_text": "Get a list of the BAI prompts for a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addBoardBaiPrompt",
+      "title": "Add a BAI prompt to a board",
+      "method": "POST",
+      "operation_text": "Add a BAI prompt to a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardBaiPrompt",
+      "title": "Get the details of a BAI prompt for a board",
+      "method": "GET",
+      "operation_text": "Get the details of a BAI prompt for a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/updateBoardBaiPrompt",
+      "title": "Update a BAI prompt for a board",
+      "method": "PATCH",
+      "operation_text": "Update a BAI prompt for a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/removeBoardBaiPrompt",
+      "title": "Remove a BAI prompt from a board",
+      "method": "DELETE",
+      "operation_text": "Remove a BAI prompt from a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardAssignees",
+      "title": "Get a list of board assignees",
+      "method": "GET",
+      "operation_text": "Get a list of board assignees",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardUserRole",
+      "title": "Get the role of a board assignee",
+      "method": "GET",
+      "operation_text": "Get the role of a board assignee",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/setBoardUserRole",
+      "title": "Assign a user to a board",
+      "method": "PUT",
+      "operation_text": "Assign a user to a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/unsetBoardUserRole",
+      "title": "Unassign a user from a board",
+      "method": "DELETE",
+      "operation_text": "Unassign a user from a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/setBoardUserRoles",
+      "title": "Assign/unassign users to/from a board.",
+      "method": "POST",
+      "operation_text": "Assign/unassign users to/from a board.",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardBlockReasons",
+      "title": "Get a list of block reasons available on a board",
+      "method": "GET",
+      "operation_text": "Get a list of block reasons available on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/checkBoardBlockReason",
+      "title": "Check if a block reason is available on a board",
+      "method": "GET",
+      "operation_text": "Check if a block reason is available on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addBoardBlockReason",
+      "title": "Make a block reason available on a board",
+      "method": "PUT",
+      "operation_text": "Make a block reason available on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/removeBoardBlockReason",
+      "title": "Make a block reason unavailable on a board",
+      "method": "DELETE",
+      "operation_text": "Make a block reason unavailable on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardEffectiveCycleTimeColumns",
+      "title": "Get the specified board's workflows and their effective cycle time columns",
+      "method": "GET",
+      "operation_text": "Get the specified board's workflows and their effective cycle time columns",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardCardAndInitiativeViewSettings",
+      "title": "Get the default card and initiative view settings for one of the four available views on a board",
+      "method": "GET",
+      "operation_text": "Get the default card and initiative view settings for one of the four available views on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/updateBoardCardAndInitiativeViewSettings",
+      "title": "Update the default card and initiative view settings for one of the four available views on a board",
+      "method": "PATCH",
+      "operation_text": "Update the default card and initiative view settings for one of the four available views on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardCardAndInitiativeViewEffectiveSettings",
+      "title": "Get the effective card and initiative view settings for one of the four available views on a board",
+      "method": "GET",
+      "operation_text": "Get the effective card and initiative view settings for one of the four available views on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getMyBoardCardAndInitiativeViewSettings",
+      "title": "Get the current user's card and initiative view settings for one of the four available views on a board",
+      "method": "GET",
+      "operation_text": "Get the current user's card and initiative view settings for one of the four available views on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/updateMyBoardCardAndInitiativeViewSettings",
+      "title": "Update the current user's card and initiative view settings for one of the four available views on a board",
+      "method": "PATCH",
+      "operation_text": "Update the current user's card and initiative view settings for one of the four available views on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/setBoardCardAndInitiativeViewSettings",
+      "title": "Set the current user's card and initiative view settings for one of the four available views on a board",
+      "method": "PUT",
+      "operation_text": "Set the current user's card and initiative view settings for one of the four available views on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/resetBoardCardAndInitiativeViewSettings",
+      "title": "Reset the current user's card and initiative view settings for one of the board’s four available views to their default state",
+      "method": "DELETE",
+      "operation_text": "Reset the current user's card and initiative view settings for one of the board’s four available views to their default state",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardCardTemplates",
+      "title": "Get a list of card templates available on a board",
+      "method": "GET",
+      "operation_text": "Get a list of card templates available on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/checkBoardCardTemplate",
+      "title": "Check if a card template is available on a board",
+      "method": "GET",
+      "operation_text": "Check if a card template is available on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addBoardCardTemplate",
+      "title": "Make a card template available on a board",
+      "method": "PUT",
+      "operation_text": "Make a card template available on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/removeBoardCardTemplate",
+      "title": "Make a card template unavailable on a board",
+      "method": "DELETE",
+      "operation_text": "Make a card template unavailable on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardCardTypes",
+      "title": "Get a list of card types available on a board",
+      "method": "GET",
+      "operation_text": "Get a list of card types available on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/checkBoardCardType",
+      "title": "Check if a card type is available on a board",
+      "method": "GET",
+      "operation_text": "Check if a card type is available on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addBoardCardType",
+      "title": "Make a card type available on a board",
+      "method": "PUT",
+      "operation_text": "Make a card type available on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/updateBoardCardType",
+      "title": "Update a card type available on a board",
+      "method": "PATCH",
+      "operation_text": "Update a card type available on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/removeBoardCardType",
+      "title": "Make a card type unavailable on a board",
+      "method": "DELETE",
+      "operation_text": "Make a card type unavailable on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardCardTypeEffectiveSettings",
+      "title": "Get the effective settings of a card type for a board if it is available on it",
+      "method": "GET",
+      "operation_text": "Get the effective settings of a card type for a board if it is available on it",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getChecklistItems",
+      "title": "Get a list of checklist items in a specified column",
+      "method": "GET",
+      "operation_text": "Get a list of checklist items in a specified column",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/createChecklistItem",
+      "title": "Create a checklist item in a specified column",
+      "method": "POST",
+      "operation_text": "Create a checklist item in a specified column",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getChecklistItem",
+      "title": "Get the details of a single checklist item in a specified column",
+      "method": "GET",
+      "operation_text": "Get the details of a single checklist item in a specified column",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/updateChecklistItem",
+      "title": "Update a checklist item in a specified column",
+      "method": "PATCH",
+      "operation_text": "Update a checklist item in a specified column",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/deleteChecklistItem",
+      "title": "Delete a checklist item in a specified column",
+      "method": "DELETE",
+      "operation_text": "Delete a checklist item in a specified column",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getColumnChecklistItemAllowedUsers",
+      "title": "Get a list of the users that are allowed to mark the specified checklist item as completed in a specified column",
+      "method": "GET",
+      "operation_text": "Get a list of the users that are allowed to mark the specified checklist item as completed in a specified column",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/checkColumnChecklistItemAllowedUser",
+      "title": "Check if a user is allowed to mark the specified checklist item as completed in a specified column",
+      "method": "GET",
+      "operation_text": "Check if a user is allowed to mark the specified checklist item as completed in a specified column",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/allowColumnChecklistItemUser",
+      "title": "Allow a user to mark the specified checklist item as completed in a specified column",
+      "method": "PUT",
+      "operation_text": "Allow a user to mark the specified checklist item as completed in a specified column",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/disallowColumnChecklistItemUser",
+      "title": "Disallow a user to mark the specified checklist item as completed in a specified column",
+      "method": "DELETE",
+      "operation_text": "Disallow a user to mark the specified checklist item as completed in a specified column",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardCustomFieldAllowedValues",
+      "title": "Get a list of the allowed values of a custom field of type dropdown on a specified board",
+      "method": "GET",
+      "operation_text": "Get a list of the allowed values of a custom field of type dropdown on a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardCustomFieldAllowedValue",
+      "title": "Get a single allowed value for a custom field of type dropdown on a specified board",
+      "method": "GET",
+      "operation_text": "Get a single allowed value for a custom field of type dropdown on a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addOrUpdateBoardCustomFieldAllowedValue",
+      "title": "Add or update an allowed value for a custom field of type dropdown on a specified board",
+      "method": "PUT",
+      "operation_text": "Add or update an allowed value for a custom field of type dropdown on a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/updateBoardCustomFieldAllowedValue",
+      "title": "Update an allowed value for a custom field of type dropdown on a specified board",
+      "method": "PATCH",
+      "operation_text": "Update an allowed value for a custom field of type dropdown on a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/removeBoardCustomFieldAllowedValue",
+      "title": "Remove an allowed value for a custom field of type dropdown on a specified board",
+      "method": "DELETE",
+      "operation_text": "Remove an allowed value for a custom field of type dropdown on a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardCustomFieldDefaultContributors",
+      "title": "Get a list of the default contributors for a custom field of type contributor on a specified board",
+      "method": "GET",
+      "operation_text": "Get a list of the default contributors for a custom field of type contributor on a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/checkBoardCustomFieldDefaultContributor",
+      "title": "Check if a user is a default contributor for a custom field of type contributor on a specified board",
+      "method": "GET",
+      "operation_text": "Check if a user is a default contributor for a custom field of type contributor on a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addBoardCustomFieldDefaultContributor",
+      "title": "Set a user as a default contributor for a custom field of type contributor on a specified board",
+      "method": "PUT",
+      "operation_text": "Set a user as a default contributor for a custom field of type contributor on a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/removeBoardCustomFieldDefaultContributor",
+      "title": "Remove a user from the default contributor list for a custom field of type contributor on a specified board",
+      "method": "DELETE",
+      "operation_text": "Remove a user from the default contributor list for a custom field of type contributor on a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardCustomFields",
+      "title": "Get a list of custom fields available on a specified board",
+      "method": "GET",
+      "operation_text": "Get a list of custom fields available on a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardCustomField",
+      "title": "Get a custom field available on a specified board",
+      "method": "GET",
+      "operation_text": "Get a custom field available on a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addBoardCustomField",
+      "title": "Add a custom field to a board",
+      "method": "PUT",
+      "operation_text": "Add a custom field to a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/updateBoardCustomField",
+      "title": "Update the properties of a custom field available on a specified board",
+      "method": "PATCH",
+      "operation_text": "Update the properties of a custom field available on a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/removeBoardCustomField",
+      "title": "Make a custom field unavailable on a specified board",
+      "method": "DELETE",
+      "operation_text": "Make a custom field unavailable on a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardCustomFieldEffectiveSettings",
+      "title": "Get the effective settings of a custom field available on a specified board",
+      "method": "GET",
+      "operation_text": "Get the effective settings of a custom field available on a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardDefaultSettings",
+      "title": "Get the default values of the board settings",
+      "method": "GET",
+      "operation_text": "Get the default values of the board settings",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardDefaultSetting",
+      "title": "Get the default value of a specific board setting",
+      "method": "GET",
+      "operation_text": "Get the default value of a specific board setting",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/setBoardDefaultSetting",
+      "title": "Set the default value of a specific board setting",
+      "method": "PUT",
+      "operation_text": "Set the default value of a specific board setting",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/resetBoardDefaultSetting",
+      "title": "Reset the default value of a specific board setting",
+      "method": "DELETE",
+      "operation_text": "Reset the default value of a specific board setting",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardDeparturelRules",
+      "title": "Get a list of the departure rules for a specified board",
+      "method": "GET",
+      "operation_text": "Get a list of the departure rules for a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addBoardDepartureRule",
+      "title": "Add a departure rule to a specified board",
+      "method": "POST",
+      "operation_text": "Add a departure rule to a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardDepartureRule",
+      "title": "Get a specific departure rule for a specified board",
+      "method": "GET",
+      "operation_text": "Get a specific departure rule for a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/updateBoardDepartureRule",
+      "title": "Update a departure rule for a specified board",
+      "method": "PATCH",
+      "operation_text": "Update a departure rule for a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/deleteBoardDepartureRule",
+      "title": "Delete a departure rule from a specified board",
+      "method": "DELETE",
+      "operation_text": "Delete a departure rule from a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardDiscardReasons",
+      "title": "Get a list of discard reasons available on the specified board",
+      "method": "GET",
+      "operation_text": "Get a list of discard reasons available on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/checkBoardDiscardReason",
+      "title": "Check if a discard reason is available on the specified board",
+      "method": "GET",
+      "operation_text": "Check if a discard reason is available on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addBoardDiscardReason",
+      "title": "Make a discard reason available on the specified board",
+      "method": "PUT",
+      "operation_text": "Make a discard reason available on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/removeBoardDiscardReason",
+      "title": "Make a discard reason unavailable on the specified board",
+      "method": "DELETE",
+      "operation_text": "Make a discard reason unavailable on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardsHistory",
+      "title": "Get a list of board management history events",
+      "method": "GET",
+      "operation_text": "Get a list of board management history events",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardLoggedTimeCategories",
+      "title": "Get a list of the logged time categories for the specified board",
+      "method": "GET",
+      "operation_text": "Get a list of the logged time categories for the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardLoggedTimeCategory",
+      "title": "Check if a logged time category is available on the specified board.",
+      "method": "GET",
+      "operation_text": "Check if a logged time category is available on the specified board.",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addBoardLoggedTimeCategory",
+      "title": "Make a logged time category available on the specified board",
+      "method": "PUT",
+      "operation_text": "Make a logged time category available on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/removeBoardLoggedTimeCategory",
+      "title": "Make a logged time category unavailable on the specified board",
+      "method": "DELETE",
+      "operation_text": "Make a logged time category unavailable on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardMilestones",
+      "title": "Get a list of milestones available on the specified board",
+      "method": "GET",
+      "operation_text": "Get a list of milestones available on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/checkBoardMilestone",
+      "title": "Check if a milestone is available on the specified board",
+      "method": "GET",
+      "operation_text": "Check if a milestone is available on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addBoardMilestone",
+      "title": "Make a milestone available on the specified board",
+      "method": "PUT",
+      "operation_text": "Make a milestone available on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/removeBoardMilestone",
+      "title": "Make a milestone unavailable on the specified board",
+      "method": "DELETE",
+      "operation_text": "Make a milestone unavailable on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardPointsOfContact",
+      "title": "Get a list of users assigned as points of contact for the specified board",
+      "method": "GET",
+      "operation_text": "Get a list of users assigned as points of contact for the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/checkBoardPointOfContact",
+      "title": "Check if a user is added as point of contact for the specified board",
+      "method": "GET",
+      "operation_text": "Check if a user is added as point of contact for the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addBoardPointOfContact",
+      "title": "Add a user as a point of contact for the specified board",
+      "method": "PUT",
+      "operation_text": "Add a user as a point of contact for the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/removeBoardPointOfContact",
+      "title": "Remove a user as a point of contact for the specified board",
+      "method": "DELETE",
+      "operation_text": "Remove a user as a point of contact for the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardSettings",
+      "title": "Get the values of the board settings",
+      "method": "GET",
+      "operation_text": "Get the values of the board settings",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/setBoardSettings",
+      "title": "Set the values of the board settings",
+      "method": "PATCH",
+      "operation_text": "Set the values of the board settings",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardStickers",
+      "title": "Get a list of stickers available on the specified board",
+      "method": "GET",
+      "operation_text": "Get a list of stickers available on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/checkBoardSticker",
+      "title": "Check if a sticker is available on the specified board",
+      "method": "GET",
+      "operation_text": "Check if a sticker is available on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addBoardSticker",
+      "title": "Make a sticker available on the specified board",
+      "method": "PUT",
+      "operation_text": "Make a sticker available on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/updateBoardSticker",
+      "title": "Update the properties of a sticker for the specified board",
+      "method": "PATCH",
+      "operation_text": "Update the properties of a sticker for the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/removeBoardSticker",
+      "title": "Make a sticker unavailable on the specified board",
+      "method": "DELETE",
+      "operation_text": "Make a sticker unavailable on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/paths/boards-board_id--currentStructure/get",
+      "title": "Get the current board structure",
+      "method": "GET",
+      "operation_text": "Get the current board structure",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getCurrentBoardStructureRevision",
+      "title": "Get the current revision of the board structure for the specified board",
+      "method": "GET",
+      "operation_text": "Get the current revision of the board structure for the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardStructureRevisions",
+      "title": "Get a list of the past revisions of the board structure for the specified board",
+      "method": "GET",
+      "operation_text": "Get a list of the past revisions of the board structure for the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardStructureRevision",
+      "title": "Get a specific revision of the board structure for the specified board",
+      "method": "GET",
+      "operation_text": "Get a specific revision of the board structure for the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardTags",
+      "title": "Get a list of the tags available on the specified board",
+      "method": "GET",
+      "operation_text": "Get a list of the tags available on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/checkBoardTag",
+      "title": "Check if a tag is available on the specified board",
+      "method": "GET",
+      "operation_text": "Check if a tag is available on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addBoardTag",
+      "title": "Make a tag available on the specified board",
+      "method": "PUT",
+      "operation_text": "Make a tag available on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/removeBoardTag",
+      "title": "Make a tag unavailable on a board",
+      "method": "DELETE",
+      "operation_text": "Make a tag unavailable on a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardTeams",
+      "title": "Get a list of the teams assigned to a specified board",
+      "method": "GET",
+      "operation_text": "Get a list of the teams assigned to a specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardTeamRole",
+      "title": "Check if a team is assigned to the specified board",
+      "method": "GET",
+      "operation_text": "Check if a team is assigned to the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addBoardTeam",
+      "title": "Assign or update a team's role for the specified board",
+      "method": "PUT",
+      "operation_text": "Assign or update a team's role for the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/removeBoardTeam",
+      "title": "Unassign a team from the specified board",
+      "method": "DELETE",
+      "operation_text": "Unassign a team from the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoardVisibleStandardFields",
+      "title": "Get a list of standard fields visible on the specified board",
+      "method": "GET",
+      "operation_text": "Get a list of standard fields visible on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/checkBoardStandardField",
+      "title": "Check if a standard field is visible on the specified board",
+      "method": "GET",
+      "operation_text": "Check if a standard field is visible on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addBoardStandardField",
+      "title": "Make a standard field visible on the specified board",
+      "method": "PUT",
+      "operation_text": "Make a standard field visible on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/removeBoardStandardField",
+      "title": "Make a standard field no longer visible on the specified board",
+      "method": "DELETE",
+      "operation_text": "Make a standard field no longer visible on the specified board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoards",
+      "title": "Get a list of boards",
+      "method": "GET",
+      "operation_text": "Get a list of boards",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/createBoard",
+      "title": "Create a board",
+      "method": "POST",
+      "operation_text": "Create a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBoard",
+      "title": "Get the details of a single board",
+      "method": "GET",
+      "operation_text": "Get the details of a single board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/updateBoard",
+      "title": "Update a board",
+      "method": "PATCH",
+      "operation_text": "Update a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/deleteBoard",
+      "title": "Delete a board",
+      "method": "DELETE",
+      "operation_text": "Delete a board",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBusinessRulesExecutionHistory",
+      "title": "Get a list of business rule executions",
+      "method": "GET",
+      "operation_text": "Get a list of business rule executions",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getBusinessRulesActiveRulesLimit",
+      "title": "Get the active rules limit for the business rules",
+      "method": "GET",
+      "operation_text": "Get the active rules limit for the business rules",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getCalculatedOutcomeValueRulesActiveRulesLimit",
+      "title": "Get the active rules limit for the calculated outcome value rules",
+      "method": "GET",
+      "operation_text": "Get the active rules limit for the calculated outcome value rules",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getCalculatedOutcomeValueRulesExecutionHistory",
+      "title": "Get a list of calculated outcome value rule executions",
+      "method": "GET",
+      "operation_text": "Get a list of calculated outcome value rule executions",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getCardAttachments",
+      "title": "Get a list of a card's attachments",
+      "method": "GET",
+      "operation_text": "Get a list of a card's attachments",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addCardAttachment",
+      "title": "Add an attachment to a card",
+      "method": "POST",
+      "operation_text": "Add an attachment to a card",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getCardAttachment",
+      "title": "Get the details of an attachment for a card",
+      "method": "GET",
+      "operation_text": "Get the details of an attachment for a card",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/updateCardAttachment",
+      "title": "Update the details of an attachment for a card",
+      "method": "PATCH",
+      "operation_text": "Update the details of an attachment for a card",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/deleteCardAttachment",
+      "title": "Delete an attachment from a card",
+      "method": "DELETE",
+      "operation_text": "Delete an attachment from a card",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/paths/cards-card_id--blockReason/get",
+      "title": "Get the block reason for a specific card",
+      "method": "GET",
+      "operation_text": "Get the block reason for a specific card",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/setCardBlockReason",
+      "title": "Block a card",
+      "method": "PUT",
+      "operation_text": "Block a card",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/unblockCard",
+      "title": "Unblock a card",
+      "method": "DELETE",
+      "operation_text": "Unblock a card",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getCardColumnChecklistItems",
+      "title": "Get a list of checked column checklist items for a card",
+      "method": "GET",
+      "operation_text": "Get a list of checked column checklist items for a card",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getCardColumnChecklistItem",
+      "title": "Get the details of a checked column checklist item for a card",
+      "method": "GET",
+      "operation_text": "Get the details of a checked column checklist item for a card",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/checkCardColumnChecklistItem",
+      "title": "Check a column checklist item for a card",
+      "method": "PUT",
+      "operation_text": "Check a column checklist item for a card",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/uncheckCardColumnChecklistItem",
+      "title": "Uncheck a column checklist item for a card",
+      "method": "DELETE",
+      "operation_text": "Uncheck a column checklist item for a card",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getCardCommentAttachments",
+      "title": "Get a card comment's attachments",
+      "method": "GET",
+      "operation_text": "Get a card comment's attachments",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addCardCommentAttachment",
+      "title": "Add an attachment to a card comment.",
+      "method": "POST",
+      "operation_text": "Add an attachment to a card comment.",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getCardCommentAttachment",
+      "title": "Get the details of a specific attachment for a card comment",
+      "method": "GET",
+      "operation_text": "Get the details of a specific attachment for a card comment",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/deleteCardCommentAttachment",
+      "title": "Delete an attachment for a card comment",
+      "method": "DELETE",
+      "operation_text": "Delete an attachment for a card comment",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getCardComments",
+      "title": "Get a card's comments",
+      "method": "GET",
+      "operation_text": "Get a card's comments",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addCardComment",
+      "title": "Add a comment to a card.",
+      "method": "POST",
+      "operation_text": "Add a comment to a card.",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getCardComment",
+      "title": "Get the details of a comment for a card",
+      "method": "GET",
+      "operation_text": "Get the details of a comment for a card",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/updateCardComment",
+      "title": "Update the details of a comment on a card",
+      "method": "PATCH",
+      "operation_text": "Update the details of a comment on a card",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/deleteCardComment",
+      "title": "Delete a comment from a card",
+      "method": "DELETE",
+      "operation_text": "Delete a comment from a card",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getCardCoverImage",
+      "title": "Get the details of the card's cover image",
+      "method": "GET",
+      "operation_text": "Get the details of the card's cover image",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/setCardCoverImage",
+      "title": "Set the card's cover image",
+      "method": "PUT",
+      "operation_text": "Set the card's cover image",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/removeCardCoverImage",
+      "title": "Remove the card's cover image",
+      "method": "DELETE",
+      "operation_text": "Remove the card's cover image",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/getCardCoOwners",
+      "title": "Get a card's co-owners",
+      "method": "GET",
+      "operation_text": "Get a card's co-owners",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/checkCardCoOwner",
+      "title": "Check if a user is a co-owner of a card",
+      "method": "GET",
+      "operation_text": "Check if a user is a co-owner of a card",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/addCardCoOwner",
+      "title": "Add a user as a co-owner of a card",
+      "method": "PUT",
+      "operation_text": "Add a user as a co-owner of a card",
+      "section": "Overview",
+      "source": "navigation_click"
+    },
+    {
+      "url": "https://demo.kanbanize.com/openapi#/operations/removeCardCoOwner",
+      "title": "Remove a user as a co-owner of a card",
+      "method": "DELETE",
+      "operation_text": "Remove a user as a co-owner of a card",
+      "section": "Overview",
+      "source": "navigation_click"
+    }
+  ]
+}
