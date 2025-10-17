@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "total_rows": 4672,
+    "total_rows": 4675,
     "total_columns": 27,
     "columns": [
       "Antrag-nummer",
@@ -59,21 +59,21 @@
     "extraction_method": "optimized_hybrid_v2",
     "color_extraction_method": "win32_com_single_session",
     "performance": {
-      "total_time": 33.73093390464783,
-      "load_time": 12.58365774154663,
-      "data_read_time": 0.11199808120727539,
-      "color_extraction_time": 20.88618493080139,
-      "hyperlink_extraction_time": 0.0419919490814209,
-      "data_processing_time": 0.0950765609741211,
+      "total_time": 55.77839684486389,
+      "load_time": 18.13129448890686,
+      "data_read_time": 0.1929948329925537,
+      "color_extraction_time": 37.183101415634155,
+      "hyperlink_extraction_time": 0.07199740409851074,
+      "data_processing_time": 0.1802830696105957,
       "library_used": "openpyxl",
       "excel_app_needed": false
     },
     "url_cleanup": {
       "applied": true,
-      "total_changes": 16976,
+      "total_changes": 16989,
       "statistics": {
-        "total_urls": 17239,
-        "fixed_urls": 16976,
+        "total_urls": 17252,
+        "fixed_urls": 16989,
         "ignored_urls": 262,
         "unchanged_urls": 1,
         "error_urls": 0
@@ -96399,7 +96399,7 @@
       "Antragsteller": "Graf, C.",
       "Antrag": {
         "display_text": "pdf",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag/2012/040-2012_01041628_Freigabe.pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2012\\040-2012_01041628_Freigabe.pdf",
         "original_url": null,
         "tooltip": ""
       },
@@ -141063,7 +141063,7 @@
       },
       "Datenblatt": {
         "display_text": "pdf",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Datenblatt/01041628_pinsel.pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Datenblatt\\01041628_pinsel.pdf",
         "original_url": null,
         "tooltip": ""
       },
@@ -141074,7 +141074,7 @@
       "Sonstiges": null,
       "Schriftverkehr": {
         "display_text": "msg",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr/041-2017_01041628_WG%20Bitte%20um%20QIR%20für%20TKZ%2001042932%20(DW)%2001041628%20(OU)%20%20Erinnerung.msg",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\041-2017_01041628_WG%20Bitte%20um%20QIR%20für%20TKZ%2001042932%20(DW)%2001041628%20(OU)%20%20Erinnerung.msg",
         "original_url": null,
         "tooltip": ""
       },
@@ -174264,7 +174264,7 @@
       "Antragsteller": "Schrepffer, M.",
       "Antrag": {
         "display_text": "pdf",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2019\\211-2019_01043556_Freigabe.pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2019\\211-2019_01043556_Freigabe_MHD%20Change_2025_10_14.pdf",
         "original_url": null,
         "tooltip": ""
       },
@@ -174318,9 +174318,9 @@
       },
       "Datum": null,
       "Bearbeiter": null,
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Hohe Priorität -> Hinweis Antragsteller: dieser Stoff wird schnellstmöglich für Trent 1000 benötigt. Ein Sicherheitsdatenblatt auf Deutsch gibt es leider nicht, wenn erforderlich muss es im Genehmigungsprozess übersetzt werden.\nAntrag am 05.12.2019 an HS&E DW geschickt. Info von HS&E DW am 09.12 -> Antrag am selben Tag ans Labor weitergeleitet (siehe Schriftverkehr).\n22.06.2020: Anfrage vom Antragsteller zum Bearbeitungsstatus. Ilona di Iorio bestätigt am 24.06.2020, daß die Anträge 211/2019 & 212/2019  zur Bearbeitung bei Günther Jakobi sind. \n28.07.2021: Laborbewertung per Email erhalten. Originalantrag kommt nachträglich per Hauspost (siehe Email unter 'Sonstiges').\n28.07.2021: Freigabe zur Erstbestellung\n14.12.2022: Anfrage ans Labor DW, ob dort zur Erteilung der Freigabe zur Verwendung schon Lieferzertifikate vorliegen. Da keine Dokumente zur Lieferung bekannt sind, wurde die Anfrage am 21.12.2022 an Quy Luu weitergeleitet.\n01.07.2024: Korrektur der Anforderungen bezüglich Laborfreigabe zur Erstbestellung erhalten. 09.07.2024: Anfrage an H&B Stoffe RR DW zwecks Korrektur vom SAP Einkaufsbestelltext. Am selben Tag erledigt (siehe 'Historie')\n17.07.2024: erneute Freigabe zur Erstbestellung\n18.07.2024: Info an RRD Quality, POAH. Antwort am selben Tag erhalten -> QIR steht noch nicht zur Verfügung (siehe Spalte 'Q')\n28.10.2024: Laborfreigabe + Zertifikate erhalten. Am 29.10. Anfrage ans Labor zwecks Korrektur unter Feld 49: 2.1 statt 3.1. Korrektur am selben Tag bestätigt und Anfrage an H&B Stoffe RR DW zwecks Anpassung vom SAP Einkaufsbestelltext. Am 30.10.2024 erledigt (siehe Spalte 'R').",
-      "GSK-Nr.": null,
-      "Lieferant": null,
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Hohe Priorität -> Hinweis Antragsteller: dieser Stoff wird schnellstmöglich für Trent 1000 benötigt. Ein Sicherheitsdatenblatt auf Deutsch gibt es leider nicht, wenn erforderlich muss es im Genehmigungsprozess übersetzt werden.\nAntrag am 05.12.2019 an HS&E DW geschickt. Info von HS&E DW am 09.12 -> Antrag am selben Tag ans Labor weitergeleitet (siehe Schriftverkehr).\n22.06.2020: Anfrage vom Antragsteller zum Bearbeitungsstatus. Ilona di Iorio bestätigt am 24.06.2020, daß die Anträge 211/2019 & 212/2019  zur Bearbeitung bei Günther Jakobi sind. \n28.07.2021: Laborbewertung per Email erhalten. Originalantrag kommt nachträglich per Hauspost (siehe Email unter 'Sonstiges').\n28.07.2021: Freigabe zur Erstbestellung\n14.12.2022: Anfrage ans Labor DW, ob dort zur Erteilung der Freigabe zur Verwendung schon Lieferzertifikate vorliegen. Da keine Dokumente zur Lieferung bekannt sind, wurde die Anfrage am 21.12.2022 an Quy Luu weitergeleitet.\n01.07.2024: Korrektur der Anforderungen bezüglich Laborfreigabe zur Erstbestellung erhalten. 09.07.2024: Anfrage an H&B Stoffe RR DW zwecks Korrektur vom SAP Einkaufsbestelltext. Am selben Tag erledigt (siehe 'Historie')\n17.07.2024: erneute Freigabe zur Erstbestellung\n18.07.2024: Info an RRD Quality, POAH. Antwort am selben Tag erhalten -> QIR steht noch nicht zur Verfügung (siehe Spalte 'Q')\n28.10.2024: Laborfreigabe + Zertifikate erhalten. Am 29.10. Anfrage ans Labor zwecks Korrektur unter Feld 49: 2.1 statt 3.1. Korrektur am selben Tag bestätigt und Anfrage an H&B Stoffe RR DW zwecks Anpassung vom SAP Einkaufsbestelltext. Am 30.10.2024 erledigt (siehe Spalte 'R').\n14.10.2025: Laborkorrektur bezüglich MHD Abfrage erhalten und korrigierten Antrag verlinkt. 15.10.2025: QIR wurde auch aktualisiert. Emailaustausch hierzu, siehe Spalte Y.\n15.10.2025: Anfrage an H&B Stoffe RR DW zwecks SAP Anpassung vom Einkaufsbestelltext (Löschen des Eintrags zur MHD Abfrage), An selben Tag erledigt (siehe Spalte Z)",
+      "GSK-Nr.": "msg",
+      "Lieferant": "msg",
       "Hersteller": null
     },
     {
@@ -220412,7 +220412,7 @@
       },
       "Datum": "2024-11-01 00:00:00+00:00",
       "Bearbeiter": "Freigabe Erstbestellung",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Datenblätter von Quy Luu angefordert.\n20.09.2024: Datenblätter von Pelikan geliefert, SBD von 2017 allerdings bestätigt Pelikan, das es sich um das aktuellste Datenblatt handelt (siehe Schriftverkehr).\n25.09.2024: Neues SDB (18.11.2022) als Ersatz zur Version von 06.12.2019 nachträglich erhalten (siehe 'Sonstiges').\n29.10.2024: MHD Abfrage in SAP nachträglich aktiviert. Anfrage an H&B Stoffe RR DW zwecks SAP Anpassung vom Einkaufsbestelltext und Aktivierung der Prüfungen im Reiter Qualitätsmanagement (siehe Spalte 'Q')\n01.11.2024: H&B Stoffe hat in SAP die geforderten Änderungen vorgenommen. Freigabe für die Erstbestellung versendet.\n08.10.2025: Anfrage von Clara Röpenack nach dem Status beantwortet. 09.10.2025: Präzisierung von H&B Stoffe RR DW erhalten -> Probleme bei der Beschaffung nach den aktuellen Vorgaben. Stellungnahmen von Quy Luu und Harriet Frier (Labor) angefragt (siehe Spalte Y). Info von Quy Luu (Anfrage vom 04.09.2025 an Hersteller noch unbeantwortet), siehe Spalte Z",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Datenblätter von Quy Luu angefordert.\n20.09.2024: Datenblätter von Pelikan geliefert, SBD von 2017 allerdings bestätigt Pelikan, das es sich um das aktuellste Datenblatt handelt (siehe Schriftverkehr).\n25.09.2024: Neues SDB (18.11.2022) als Ersatz zur Version von 06.12.2019 nachträglich erhalten (siehe 'Sonstiges').\n29.10.2024: MHD Abfrage in SAP nachträglich aktiviert. Anfrage an H&B Stoffe RR DW zwecks SAP Anpassung vom Einkaufsbestelltext und Aktivierung der Prüfungen im Reiter Qualitätsmanagement (siehe Spalte 'Q')\n01.11.2024: H&B Stoffe hat in SAP die geforderten Änderungen vorgenommen. Freigabe für die Erstbestellung versendet.\n08.10.2025: Anfrage von Clara Röpenack nach dem Status beantwortet. 09.10.2025: Präzisierung von H&B Stoffe RR DW erhalten -> Probleme bei der Beschaffung nach den aktuellen Vorgaben. Stellungnahmen von Quy Luu und Harriet Frier (Labor) angefragt. Stellungnahme und Anfrage vom Labor am 14.10. erhalten (siehe Spalte Y). Info von Quy Luu (Anfrage vom 04.09.2025 an Hersteller noch unbeantwortet), siehe Spalte Z",
       "GSK-Nr.": "msg",
       "Lieferant": "msg",
       "Hersteller": null
@@ -224675,23 +224675,23 @@
       "Hersteller": null
     },
     {
-      "color": "#CCFF99",
-      "status": "approved for first order",
+      "color": "#CCFFCC",
+      "status": "approved",
       "Antrag-nummer": "045/2025",
       "Teile-nummer": "01044273",
-      "Freigabe": "TBD",
+      "Freigabe": "Ja",
       "relevant für Luftfahrtteile": "Ja",
       "Benennung": "SCHMIERMITTEL",
       "Produktname / Normkurzbezeichnung": "Rocol AEROSPEC® 300",
       "Produktzulassungs-spezifikation": null,
       "Eingang": "2025-03-19 00:00:00+00:00",
-      "Abschluss": null,
+      "Abschluss": "2025-10-15 00:00:00+00:00",
       "Abteilung": "AT&C-ME-MS",
       "Einsatzort": "DW",
       "Antragsteller": "Martin, N.",
       "Antrag": {
         "display_text": "pdf",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\045-2025_01044273_Erstbestellung.pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\045-2025_01044273_Freigabe.pdf",
         "original_url": null,
         "tooltip": ""
       },
@@ -224721,16 +224721,21 @@
         "tooltip": ""
       },
       "Sonstiges": null,
-      "Schriftverkehr": null,
+      "Schriftverkehr": {
+        "display_text": "msg",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\045-2025_01044273_WG%20SAP%20ANPASSUNG%20PNR%2001044273%20Erstbestellung.msg",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Änd. Historie": {
         "display_text": "pdf",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2024\\081-2024_01044180_Freigabe.pdf",
         "original_url": null,
         "tooltip": ""
       },
-      "Datum": "2025-07-11 00:00:00+00:00",
-      "Bearbeiter": "Freigabe zur Erstbestellung",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Ersatz für 01044180 (siehe Antrag 081/2024). Antragsteller nachgebohrt. ChemScan parallel weitergeleitet.\n19.03.2025: an ChemScan weitergeleitet\n10.04.2025: ChemScan- & Umweltschutzbewertung von Herrn Dibbert erhalten.\n11.04.2025: Antrag an Herrn Hanstein weitergeleitet\n30.04.2025: Antrag an HS&E DW weiter geleitet. Bewertung am 14.05.2025 erhalten.\nInfo zur Zulassung: kein Eintrag im MLC104 ; Aerospec 300 XG-291 unter OMat 4/4A eingetragen.\n15.05.2025: ans Labor weitergeleitet\n10.07.2025: Laborfreigabe zur Erstbestellung erhalten. Bitte beachten: TO DO -> Frage vom Labor: Klärung beim Antragsteller, wieso beim Vorgängerprodukt kein Kontakt mit Luftfahrtteilen angekreuzt war und beim neuen Antrag Kontakt mit Luftfahrtteilen vorgesehen ist (gleiche Anwendung)!",
+      "Datum": null,
+      "Bearbeiter": null,
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Ersatz für 01044180 (siehe Antrag 081/2024). Antragsteller nachgebohrt. ChemScan parallel weitergeleitet.\n19.03.2025: an ChemScan weitergeleitet\n10.04.2025: ChemScan- & Umweltschutzbewertung von Herrn Dibbert erhalten.\n11.04.2025: Antrag an Herrn Hanstein weitergeleitet\n30.04.2025: Antrag an HS&E DW weiter geleitet. Bewertung am 14.05.2025 erhalten.\nInfo zur Zulassung: kein Eintrag im MLC104 ; Aerospec 300 XG-291 unter OMat 4/4A eingetragen.\n15.05.2025: ans Labor weitergeleitet\n10.07.2025: Laborfreigabe zur Erstbestellung erhalten. Bitte beachten: TO DO -> Frage vom Labor: Klärung beim Antragsteller, wieso beim Vorgängerprodukt kein Kontakt mit Luftfahrtteilen angekreuzt war und beim neuen Antrag Kontakt mit Luftfahrtteilen vorgesehen ist (gleiche Anwendung)!\n11.07.2025: Freigabe zur Erstbestellung\n15.10.2025: Laborfreigabe zur Verwendung erhalten. Anfrage an H&B Stoffe RR DW zwecks Anpassung vom SAP Einkaufsbestelltext. Am selben Tag erledigt (siehe Schriftverkehr)",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
@@ -226687,7 +226692,7 @@
       "Antragsteller": "Kühne, R.",
       "Antrag": {
         "display_text": "pdf",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\076-2025_01044301_Erstbestellung.pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\076-2025_01044301_Erstbestellung_Gebindekorrektur.pdf",
         "original_url": null,
         "tooltip": ""
       },
@@ -226716,17 +226721,27 @@
         "original_url": null,
         "tooltip": ""
       },
-      "Sonstiges": null,
+      "Sonstiges": {
+        "display_text": "msg",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\076-2025_01044301_SAP%20ANPASSUNG_WG%20Anfrage%20RRD%20Dahlewitz%2001044301%20ABBEIZMITTEL%20A-292NC.msg",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Schriftverkehr": {
         "display_text": "msg",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\076-2025_01044301_FW%20Cee-Bee%20SDS%20Request.msg",
         "original_url": null,
         "tooltip": ""
       },
-      "Änd. Historie": null,
-      "Datum": "2025-07-11 00:00:00+00:00",
+      "Änd. Historie": {
+        "display_text": "msg",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\076-2025_01044301_AW%20Anfrage%20RRD%20Dahlewitz%2001044301%20ABBEIZMITTEL%20A-292NC%2001040546%20PRUEFMITTEL%20Oil%20Blue%20B%20Liquid.msg",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Datum": "11,07.2025",
       "Bearbeiter": "Freigabe zur Erstbestellung",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Cold paint stripper\n30.04.2025: Antragsteller hat Quy Luu mit Beschaffung von TDB und SDB beauftragt.\n06.05.2025: SDB (deutsch + englisch) von Harriet Frier erhalten (siehe Schriftverkehr) -> Hersteller ist McGean (Cee-Bee ist die Business Division for Aviation Products)\nInfo zur Zulassung: Produkt nicht ausdrücklich unter der CSS235 gelistet.\nCheck MLC132: kein Treffer.\n06.05-2025: Antrag an ChemScan weitergeleitet. Bewertung am 20.05. erhalten und Antrag am 21.05. an den Umweltschutz weitergeleitet.\n27.05.2025: ans Labor weitergeleitet\n10.07.2025: Laborfreigabe zur Erstbestellung erhalten.",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Cold paint stripper\n30.04.2025: Antragsteller hat Quy Luu mit Beschaffung von TDB und SDB beauftragt.\n06.05.2025: SDB (deutsch + englisch) von Harriet Frier erhalten (siehe Schriftverkehr) -> Hersteller ist McGean (Cee-Bee ist die Business Division for Aviation Products)\nInfo zur Zulassung: Produkt nicht ausdrücklich unter der CSS235 gelistet.\nCheck MLC132: kein Treffer.\n06.05-2025: Antrag an ChemScan weitergeleitet. Bewertung am 20.05. erhalten und Antrag am 21.05. an den Umweltschutz weitergeleitet.\n27.05.2025: ans Labor weitergeleitet\n10.07.2025: Laborfreigabe zur Erstbestellung erhalten.\n14.10.2025: Gebindekorrektur durchgeführt (Hintergrund hierzu, siehe Email von Lutz Riede vom 13.10.2025 unter 'Historie')\n14.10.2025: Anfrage an H&B Stoffe zwecks Gebindekorrektur im SAP Einkaufsbestelltext. An 15.10. erledigt (siehe 'Sonstiges')",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
@@ -227920,10 +227935,15 @@
         "original_url": null,
         "tooltip": ""
       },
-      "Gefährdungsprüfung": null,
+      "Gefährdungsprüfung": {
+        "display_text": "PartA",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\096-2025_01044325_IP9189A_ChemScan.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Sonstiges": {
-        "display_text": "pdf",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Sonstiges\\096-2025_01044325_359614_Intumescent%20Catalyst%20note%20May%202025.pdf",
+        "display_text": "PartB",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\096-2025_01044325_IP9189B-R1_ChemScan.pdf",
         "original_url": null,
         "tooltip": ""
       },
@@ -227939,11 +227959,11 @@
         "original_url": null,
         "tooltip": ""
       },
-      "Datum": "2025-10-02 00:00:00+00:00",
-      "Bearbeiter": "ChemScan",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Grund des Antrags: Part B wird nicht mehr hergestellt - neue Zusammensetzung & Bezeichnung PartB-R1\nalte TKZ 10003849 (Anträge 146/2022 & 199/2001) wird nicht mehr hergestellt (siehe Info Hersteller unter 'Sonstiges').\nAnfrage an Antragsteller zwecks Präzisierung Feld 13 (Kontakt mit Luftfahrtteilen) und Lieferung von TDB und SDB. Antwort am selben Tag erhalten (siehe Schriftverkehr) -> Feld13 präzisiert, TDB & SDB werden von H&B Stoffe RR DW (S. Fronczyk) angefragt.\n18.06.2025: SDB von H&B Stoffe RR DW erhalten. Es handelt sich aber um das SDB zu nicht mehr lieferbarem Part B. Am selben Tag, erneute Anfrage an H&B Stoffe zwecks direkte Nachfrage beim Hersteller.  19.06.2025: Anfrage von Quy Luu an Hersteller (siehe 'Historie')\n30.09.2025: TDS und SDB Part B-R1 von Harriet Frier erhalten. am 01.10.2025: Anfrage an H. Frier zwecks Beschaffung vom SDB zu Part A (siehe Spalte Y). Aktuelles SDB für Part A am 02.10.2025 von H. Frier erhalten.\nAktuelles TDB (Issue 1) von der Internetseite des Herstellers heruntergeladen ; allerdings steht da nichts von Part B-R1, sondern weiterhin IP9189 A/B\n",
+      "Datum": "2025-10-15 00:00:00+00:00",
+      "Bearbeiter": "Umweltschutz (E. Hanstein) + HSE DW (P. Meyer)",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Grund des Antrags: Part B wird nicht mehr hergestellt - neue Zusammensetzung & Bezeichnung PartB-R1\nalte TKZ 10003849 (Anträge 146/2022 & 199/2001) wird nicht mehr hergestellt (siehe Info Hersteller unter 'Spalte Z').\nAnfrage an Antragsteller zwecks Präzisierung Feld 13 (Kontakt mit Luftfahrtteilen) und Lieferung von TDB und SDB. Antwort am selben Tag erhalten (siehe Schriftverkehr) -> Feld13 präzisiert, TDB & SDB werden von H&B Stoffe RR DW (S. Fronczyk) angefragt.\n18.06.2025: SDB von H&B Stoffe RR DW erhalten. Es handelt sich aber um das SDB zu nicht mehr lieferbarem Part B. Am selben Tag, erneute Anfrage an H&B Stoffe zwecks direkte Nachfrage beim Hersteller.  19.06.2025: Anfrage von Quy Luu an Hersteller (siehe 'Historie')\n30.09.2025: TDS und SDB Part B-R1 von Harriet Frier erhalten. am 01.10.2025: Anfrage an H. Frier zwecks Beschaffung vom SDB zu Part A (siehe Spalte Y). Aktuelles SDB für Part A am 02.10.2025 von H. Frier erhalten.\nAktuelles TDB (Issue 1) von der Internetseite des Herstellers heruntergeladen ; allerdings steht da nichts von Part B-R1, sondern weiterhin IP9189 A/B\n",
       "GSK-Nr.": "msg",
-      "Lieferant": null,
+      "Lieferant": "pdf",
       "Hersteller": null
     },
     {
@@ -230806,7 +230826,12 @@
         "tooltip": ""
       },
       "Gefährdungsprüfungeurteilung": null,
-      "Gefährdungsprüfung": null,
+      "Gefährdungsprüfung": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\147-2025_01044385_Amperit%20831_ChemScan.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Sonstiges": {
         "display_text": "pdf",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Sonstiges\\147-2025_01044385_Certificate%20of%20Analysis3160544.pdf",
@@ -230825,8 +230850,8 @@
         "original_url": null,
         "tooltip": ""
       },
-      "Datum": "2025-10-02 00:00:00+00:00",
-      "Bearbeiter": "ChemScan",
+      "Datum": "2025-10-10 00:00:00+00:00",
+      "Bearbeiter": "Umweltschutz (P. Meyer/E. Hanstein)",
       "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Zweck des Antrags: Zulassung als alternativen YSZ Pulver zum aktuell verwendeten Metco 204B-NS (siehe Antrag 007/2005 mit TKZ 01040129 unter Historie) der Firma Oerlikon\nCertificate of Analysis für eine spezielle Pulver Lotnummer, mit denen aktuell Test durchgeführt werden, siehe Sonstiges.\n29.09.2025: Anfrage an Antragsteller bezüglich Teamleiter, SDB, u. ä. Antwort und SDB am 01.10. erhalten (siehe Schriftverkehr).\nMLC132 ergab keine Treffer\nZur Info: Nur MLC104 Eintrag, Amperit 831.359 ist im OMat Verzeichnis nicht vorhanden.",
       "GSK-Nr.": null,
       "Lieferant": null,
@@ -230867,7 +230892,12 @@
         "tooltip": ""
       },
       "Gefährdungsprüfungeurteilung": null,
-      "Gefährdungsprüfung": null,
+      "Gefährdungsprüfung": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\148-2025_01044386_%20Sprühkleber%20extra%20stark_ChemScan.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Sonstiges": null,
       "Schriftverkehr": {
         "display_text": "msg",
@@ -230876,8 +230906,8 @@
         "tooltip": ""
       },
       "Änd. Historie": null,
-      "Datum": "2025-09-30 00:00:00+00:00",
-      "Bearbeiter": "ChemScan",
+      "Datum": "2025-10-10 00:00:00+00:00",
+      "Bearbeiter": "Umweltschutz (E. Hanstein) + HSE DW (P. Meyer)",
       "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Keine Anlage in SAP\nHintergrund des Antrags, siehe Schriftverkehr\nMLC132 ergab keine Treffer\n07.10.2025: Anfrage von Enes Faruk Balli zum Status beantwortet.",
       "GSK-Nr.": null,
       "Lieferant": null,
@@ -231102,7 +231132,7 @@
       "Änd. Historie": null,
       "Datum": "2025-10-06 00:00:00+00:00",
       "Bearbeiter": "Umweltschutz (E. Hanstein) + HSE OU",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "In Bearbeitung.\nKein Gefahrstoff, keine ChemScan Bewertung notwendig.\nIn DW bereits freigegeben, soll auch in OU eingesetzt werden",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Kein Gefahrstoff, keine ChemScan Bewertung notwendig.\nIn DW bereits freigegeben, soll auch in OU eingesetzt werden",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
@@ -231121,7 +231151,7 @@
       "Abschluss": null,
       "Abteilung": "AT&C-ME-MS",
       "Einsatzort": "DW",
-      "Antragsteller": "Niclas, M.",
+      "Antragsteller": "Martin, N.",
       "Antrag": {
         "display_text": "pdf",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\153-2025_01044391.pdf",
@@ -231137,13 +231167,18 @@
         "tooltip": ""
       },
       "Gefährdungsprüfungeurteilung": null,
-      "Gefährdungsprüfung": null,
+      "Gefährdungsprüfung": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\153-2025_01044391_Hadol%20Spezialfett%20CAL%202_ChemScan.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Sonstiges": null,
       "Schriftverkehr": null,
       "Änd. Historie": null,
-      "Datum": "2025-10-06 00:00:00+00:00",
-      "Bearbeiter": "ChemScan",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "In Bearbeitung. Keine Anlage in SAP. MLC132 ergab keine Treffer.",
+      "Datum": "2025-10-10 00:00:00+00:00",
+      "Bearbeiter": "Umweltschutz (E. Hanstein) + HSE DW (P. Meyer)",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Keine Anlage in SAP. MLC132 ergab keine Treffer.\nKein TDB erhalten. \nInfo zur Zulassung: kein Eintrag im MLC 104 und im OMat Verzeichnis",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
@@ -231184,7 +231219,130 @@
       "Änd. Historie": null,
       "Datum": "2025-10-08 00:00:00+00:00",
       "Bearbeiter": "Umweltschutz (P. Meyer/E. Hanstein)",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "In Bearbeitung. Alternative zu 152/2025",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Alternative zu 152/2025",
+      "GSK-Nr.": null,
+      "Lieferant": null,
+      "Hersteller": null
+    },
+    {
+      "color": "#FFFFFF",
+      "status": "processing",
+      "Antrag-nummer": "155/2025",
+      "Teile-nummer": "01041628",
+      "Freigabe": "TBD",
+      "relevant für Luftfahrtteile": "Ja",
+      "Benennung": "PINSEL",
+      "Produktname / Normkurzbezeichnung": "FISCHPINSEL (SCHRAUBENPINSEL) stumpf gearbeitet, kurzer Stiel, Bezeichnung 0410-02, (TYP 410, Größe 2)",
+      "Produktzulassungs-spezifikation": null,
+      "Eingang": "2025-10-10 00:00:00+00:00",
+      "Abschluss": null,
+      "Abteilung": "A&T-ME",
+      "Einsatzort": "DW",
+      "Antragsteller": "Halavin, W.",
+      "Antrag": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\155-2025_01041628.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Datenblatt": null,
+      "Produkt-zulassung": null,
+      "SDB MSDS": null,
+      "Gefährdungsprüfungeurteilung": null,
+      "Gefährdungsprüfung": null,
+      "Sonstiges": null,
+      "Schriftverkehr": {
+        "display_text": "msg",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\155-2025_01041628_WG%20Antrag%200412023%20_%20TKZ%2001041628%20_%20PINSEL%20FISCHPINSEL%20(SCHRAUBENPINSEL).msg",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Änd. Historie": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2023\\041-2023_01041628_Freigabe.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Datum": "2025-10-13 00:00:00+00:00",
+      "Bearbeiter": "Antragsteller",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Update des bestehenden Antrags 041/2023 (Änderung auf kurzen Pinsel-Holzstiel). Produkt ist bereits zugelassen und in Oberursel im Einsatz (TKZ 01041628). \nProdukt schon in OU (Anträge 040/2012 & 041/2017) und in DW (Antrag 041/2023) zugelassen.\nInfo vom Antragsteller: \"Es gibt vom Hersteller keine chemische Analyse des Pinsels. Wurde bereits angefragt.\"\n13.10.2025: Anfrage an Antragsteller zwecks Lieferung vom Produktdatenblatt & Bild vom Produkt (ähnlich und alternativ zur \"falschen\" vorhandenen Dokumentation zum Vorgängerantrag 041/2023) (siehe Schriftverkehr.",
+      "GSK-Nr.": null,
+      "Lieferant": null,
+      "Hersteller": null
+    },
+    {
+      "color": "#FFFFFF",
+      "status": "processing",
+      "Antrag-nummer": "156/2025",
+      "Teile-nummer": 1044394,
+      "Freigabe": "TBD",
+      "relevant für Luftfahrtteile": "nein",
+      "Benennung": "SCHUTZLACK",
+      "Produktname / Normkurzbezeichnung": "Gagecoat #11",
+      "Produktzulassungs-spezifikation": "-",
+      "Eingang": "2025-10-14 00:00:00+00:00",
+      "Abschluss": "-",
+      "Abteilung": "ETS-CA-OPS13",
+      "Einsatzort": "DW",
+      "Antragsteller": "Ebert, C.",
+      "Antrag": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag/2025/156-2025_01044394.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Datenblatt": null,
+      "Produkt-zulassung": null,
+      "SDB MSDS": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Sicherheitsdatenblatt/156-2025_01044394_SDB.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Gefährdungsprüfungeurteilung": null,
+      "Gefährdungsprüfung": null,
+      "Sonstiges": null,
+      "Schriftverkehr": null,
+      "Änd. Historie": null,
+      "Datum": null,
+      "Bearbeiter": "Chemscan",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "In Bearbeitung. Alternative/Ersatz für HBM SL-450 Abdecklack\nMLC132 ergab keine Treffer.\n\n\n",
+      "GSK-Nr.": null,
+      "Lieferant": null,
+      "Hersteller": null
+    },
+    {
+      "color": "#FFFFFF",
+      "status": "processing",
+      "Antrag-nummer": "157/2025",
+      "Teile-nummer": 1044395,
+      "Freigabe": "TBD",
+      "relevant für Luftfahrtteile": "nein",
+      "Benennung": "HANDWASCHMITTEL",
+      "Produktname / Normkurzbezeichnung": "ECOVER ZERO HAND-SPÜLMITTEL REFILL 5L",
+      "Produktzulassungs-spezifikation": "-",
+      "Eingang": "2025-10-15 00:00:00+00:00",
+      "Abschluss": "-",
+      "Abteilung": "ETS-CP-MEM11",
+      "Einsatzort": "DW",
+      "Antragsteller": "Sefrin, D.",
+      "Antrag": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag/2025/157-2025_01044395.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Datenblatt": null,
+      "Produkt-zulassung": null,
+      "SDB MSDS": null,
+      "Gefährdungsprüfungeurteilung": null,
+      "Gefährdungsprüfung": null,
+      "Sonstiges": null,
+      "Schriftverkehr": null,
+      "Änd. Historie": null,
+      "Datum": null,
+      "Bearbeiter": "Chemscan",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "In Bearbeitung.\n17.10.2025:SDB vom Hersteller angefragt.\n",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
