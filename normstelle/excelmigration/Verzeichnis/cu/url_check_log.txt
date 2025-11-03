@@ -1,0 +1,7 @@
+﻿[2025-09-17 13:27:43] Starting URL availability check
+[2025-09-17 13:27:43] Input file: urls_cleaned.txt
+[2025-09-17 13:27:43] Output file: urls_unavailable.txt
+[2025-09-17 13:27:43] Max concurrent checks: 10
+[2025-09-17 13:27:43] Total URLs to check: 14404
+[2025-09-17 13:27:48] UNAVAILABLE (Line 4): file:///\\deberdna-c010a\GlobalDE\DocumentManagement\NormstelleShare\TeileundStoffe\Antrag/2014/001-2014_01042594_Mindesthalbarkeit%20ergänzt.pdf [File URL]
+[2025-09-17 13:27:50] UNAVAILABLE (Line 18): file:///\\deberdna-c010a\GlobalDE\DocumentManagement\NormstelleShare\TeileundStoffe\Antrag\1998\070-1998_01044250%20neu.pdf [File URL]

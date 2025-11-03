@@ -17756,3 +17756,27 @@ NameError: name 'time' is not defined. Did you forget to import 'time'?
 2025-09-04 15:35:48 - INFO - Emails file not found: C:\Users\user1\Desktop\normie\outlook\analyze\mail\emails.json
 2025-09-04 15:35:48 - INFO - Found 4 folder-specific email files
 2025-09-04 15:35:48 - INFO - Found 4 folder-specific email files
+2025-10-21 20:26:01 - INFO - Emails file not found: C:\Users\RAVEN\Desktop\normie\outlook\analyze\mail\emails.json
+2025-10-21 20:26:01 - INFO - Found 4 folder-specific email files
+2025-10-21 20:26:01 - INFO - Found 4 folder-specific email files
+2025-10-21 20:26:14 - INFO - Emails file not found: C:\Users\RAVEN\Desktop\normie\outlook\analyze\mail\emails.json
+2025-10-21 20:26:14 - INFO - Found 4 folder-specific email files
+2025-10-21 20:26:14 - INFO - Found 4 folder-specific email files
+2025-10-21 20:26:26 - INFO - Emails file not found: C:\Users\RAVEN\Desktop\normie\outlook\analyze\mail\emails.json
+2025-10-21 20:26:26 - INFO - Found 4 folder-specific email files
+2025-10-21 20:26:26 - INFO - Emails file not found: C:\Users\RAVEN\Desktop\normie\outlook\analyze\mail\emails.json
+2025-10-21 20:26:26 - INFO - === Attempting to mark email as read: 0000000037131A407E618D4D8533691FEF16F8410700837D288B2ABD74478135FFF495B683510000006EFE9D0000837D288B2ABD74478135FFF495B68351000100E48EBC0000 ===
+2025-10-21 20:26:26 - INFO - Found 4 folder-specific email files
+2025-10-21 20:26:27 - INFO - Email to mark as read: 'ChemScan: Stellungnahmen 063, 111, 112, 113, 114 u...' from i.eiser@uub-schwan.de
+2025-10-21 20:26:52 - INFO - Emails file not found: C:\Users\RAVEN\Desktop\normie\outlook\analyze\mail\emails.json
+2025-10-21 20:26:52 - INFO - Found 4 folder-specific email files
+2025-10-21 20:26:52 - INFO - Found 4 folder-specific email files
+2025-10-21 20:27:12 - INFO - Emails file not found: C:\Users\RAVEN\Desktop\normie\outlook\analyze\mail\emails.json
+2025-10-21 20:27:12 - INFO - Found 4 folder-specific email files
+2025-10-21 20:27:12 - INFO - Found 4 folder-specific email files
+2025-10-21 20:27:33 - INFO - Emails file not found: C:\Users\RAVEN\Desktop\normie\outlook\analyze\mail\emails.json
+2025-10-21 20:27:33 - INFO - Found 4 folder-specific email files
+2025-10-21 20:27:33 - INFO - Found 4 folder-specific email files
+2025-10-21 20:27:53 - INFO - Emails file not found: C:\Users\RAVEN\Desktop\normie\outlook\analyze\mail\emails.json
+2025-10-21 20:27:53 - INFO - Found 4 folder-specific email files
+2025-10-21 20:27:53 - INFO - Found 4 folder-specific email files

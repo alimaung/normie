@@ -1,0 +1,17 @@
+{
+  "pdf_path": "001-2024_01040645_Freigabe.pdf",
+  "base_url": "https://app.chemscan.de",
+  "entity_id": "2177",
+  "csrf_token": "R8ZUfQSDav-G52HCcPjAGTVoV7TXPJfAnnxf5axhZNg",
+  "cookies": {
+    "BAPRM": "YUtHOFUwTWcxTjduemd1UnA4VHdMTEpMTktXSkdrdjFOUzVWbjc1aVUzOGR3dUlZa1NLa1cxOUNSdmk2aUhSQWtIZDh1T3lremYyTEY3dndsZ2xDcUE9PTptQjFWR3pGbU9HWUtXZHpwKzhVSjZpcXIxYXdmOW1ON0FUdkVrWWt5V2l1TC9BZUljVzNuazJwUkx3RmpBLzErbW9IZHFmTFVYQ2ZkOHYvMTNQQzVGdz09",
+    "BAPID": "e201cf681d7e8ebbba545d5ae6b74b64",
+    "https-_csrf": "R8ZUfQSDav-G52HCcPjAGTVoV7TXPJfAnnxf5axhZNg"
+  },
+  "widget_id": null,
+  "widget_container": "dialog",
+  "widget_init": "1",
+  "comment": "TEST",
+  "owner_id": "303",
+  "form_token": "e3c0ece.BjvK3egWitenmERfr5-5vIRVRFyz3MnSLSLyuyOhFWA.R2yb5Nov_OWS33UH_abA69cvDw2Aha-0fA-e6FuTcVlFeJqIh0O-5p_oEQ"
+}
