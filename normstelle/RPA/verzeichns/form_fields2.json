@@ -1,0 +1,884 @@
+{
+    "1": {
+        "/T": "1",
+        "/FT": "/Tx",
+        "/TU": "1. Antragsnummer - eine fortlaufende Nummer zur Identifizierung des Antrags. XXX/YYYY (YYYY ist das Antragsjahr).",
+        "/Ff": 4096
+    },
+    "2a": {
+        "/T": "2a",
+        "/FT": "/Tx",
+        "/TU": "2. Antragsteller Name",
+        "/V": "Noll, Markus "
+    },
+    "2b": {
+        "/T": "2b",
+        "/FT": "/Tx",
+        "/TU": "2. Antragserstellungsdatum",
+        "/V": "22.10.2025"
+    },
+    "2c": {
+        "/T": "2c",
+        "/FT": "/Tx",
+        "/TU": "2. Antragsteller Abteilung",
+        "/V": "O-BM Gal."
+    },
+    "2d": {
+        "/T": "2d",
+        "/FT": "/Tx",
+        "/TU": "2. Telefonnummer des Antragstellers",
+        "/V": "N/A"
+    },
+    "3": {
+        "/T": "3",
+        "/FT": "/Tx",
+        "/TU": "3. Benennung - Eindeutige Benennung für den Stoff. Es ist die Bezeichnung aus dem SDB zu übernehmen.",
+        "/Ff": 4096,
+        "/V": "Reinraum-Swab HUBY-BB-002, unsteril, GMP C/D, 2-fach, Baumwollköpfe, 2500 ST/VE"
+    },
+    "4": {
+        "/T": "4",
+        "/FT": "/Tx",
+        "/TU": "4. Fremdteilenummer - die Teilenummer des Lieferanten/Herstellers.",
+        "/V": "N/A"
+    },
+    "5": {
+        "/T": "5",
+        "/FT": "/Btn",
+        "/TU": "5. Kennzeichnung des Bedarfs",
+        "/Ff": 32768,
+        "/V": "/0",
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "6": {
+        "/T": "6",
+        "/FT": "/Btn",
+        "/TU": "6. Kennzeichnung des Produkts",
+        "/Ff": 32768,
+        "/V": "/0",
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "7": {
+        "/T": "7",
+        "/FT": "/Tx",
+        "/TU": "7. REACh-Code",
+        "/Ff": 4096,
+        "/V": "N/A"
+    },
+    "8": {
+        "/T": "8",
+        "/FT": "/Tx",
+        "/TU": "8. Lieferant (wird vom Einkauf festgelegt)",
+        "/Ff": 4096,
+        "/V": "(wird vom Einkauf festgelegt)"
+    },
+    "9": {
+        "/T": "9",
+        "/FT": "/Tx",
+        "/TU": "9. Hersteller",
+        "/Ff": 4096,
+        "/V": " HEIN Reinraum GmbH"
+    },
+    "10": {
+        "/T": "10",
+        "/FT": "/Tx",
+        "/TU": "10. Verwendungszweck, Anforderungsgrund, Prozessbeschreibung, Anwendungsform. Bitte geben Sie so viele Informationen wie möglich an.",
+        "/Ff": 4096,
+        "/V": "Watte wird zum manuellen Auftragen von Ätzflüssigkeiten, Reinigern verwendet (Lokales Ätzen, Reinigen)    "
+    },
+    "11": {
+        "/T": "11",
+        "/FT": "/Tx",
+        "/TU": "11. Triebwerksprogramm",
+        "/Ff": 4096,
+        "/V": "Projekt unabhängig "
+    },
+    "12a": {
+        "/T": "12a",
+        "/FT": "/Tx",
+        "/TU": "12. Einsatzort / Standort - Abteilung, Bereich (Gebäude/Etage/Raum) und Arbeitsplatz (DW oder OU)",
+        "/Ff": 4096,
+        "/V": "OU  //  Galvanik, Strukturprüfung"
+    },
+    "12b": {
+        "/T": "12b",
+        "/FT": "/Tx",
+        "/TU": "12. Bereich Teamleiter*innen (Name/EMail)",
+        "/Ff": 4096,
+        "/V": "Born, Andreas  //  Sorg, Sven  "
+    },
+    "13": {
+        "/T": "13",
+        "/FT": "/Btn",
+        "/TU": "13. Erzeugnis relevant. (besteht Kontakt mit Luftfahrtteilen?)",
+        "/Ff": 32768,
+        "/V": "/0",
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "14": {
+        "/T": "14",
+        "/FT": "/Btn",
+        "/TU": "14. Nutzung",
+        "/Ff": 32768,
+        "/V": "/1",
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "15a": {
+        "/T": "15a",
+        "/FT": "/Btn",
+        "/TU": "15a. Lagerhaltig?",
+        "/Ff": 32768,
+        "/V": "/1",
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "15b": {
+        "/T": "15b",
+        "/FT": "/Btn",
+        "/TU": "15b. Bestellung über SAP?",
+        "/Ff": 32768,
+        "/V": "/1",
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "16": {
+        "/T": "16",
+        "/FT": "/Tx",
+        "/TU": "16. Basismengeneinheit SAP (z.B. Gramm, Liter, Stück usw.) ",
+        "/Ff": 4096,
+        "/V": "N/A"
+    },
+    "17a": {
+        "/T": "17a",
+        "/FT": "/Tx",
+        "/TU": "17. monatlicher Bedarf (als Vielfaches der Basismengeneinheit)",
+        "/Ff": 4096,
+        "/V": "1 Packung"
+    },
+    "17b": {
+        "/T": "17b",
+        "/FT": "/Tx",
+        "/TU": "17. Häufigkeit der Anwendung (täglich, 1x wöchentlich...)",
+        "/Ff": 4096,
+        "/V": "Mehrmals Wöchentlich"
+    },
+    "17c": {
+        "/T": "17c",
+        "/FT": "/Tx",
+        "/TU": "17. Menge pro Anwendung",
+        "/Ff": 4096,
+        "/V": "5 Stück"
+    },
+    "18a": {
+        "/T": "18a",
+        "/FT": "/Btn",
+        "/TU": "18. EUßSicherheitsdatenblatt (eSDB)",
+        "/V": "/Yes"
+    },
+    "18b": {
+        "/T": "18b",
+        "/FT": "/Btn",
+        "/TU": "18. Technisches Datenblatt, Produktbeschreibung",
+        "/V": "/Yes"
+    },
+    "18c": {
+        "/T": "18c",
+        "/FT": "/Btn",
+        "/TU": "18. Gefährdungsbeurteilung"
+    },
+    "18d": {
+        "/T": "18d",
+        "/FT": "/Btn",
+        "/TU": "18. Produktzulassung nach:"
+    },
+    "18e": {
+        "/T": "18e",
+        "/FT": "/Tx",
+        "/TU": "18. Produktzulassung nach Spezifikation - eine Spezifikation oder sonstige Kundenforderung, die dieses Stoffe bzw. seine Anwendung kontrolliert",
+        "/Ff": 4096
+    },
+    "19": {
+        "/T": "19",
+        "/FT": "/Tx",
+        "/TU": "19. Erläuterungen - zusätzliche Informationen (MSRR, CSS, OMat usw.), die zur Bewertung des Teiles / Stoffes notwendig oder hilfreich sind.",
+        "/Ff": 4096,
+        "/V": "1 Verpackungseinheit = 100 Packungen mit je 25 Swabs (Mercateo)"
+    },
+    "20": {
+        "/T": "20",
+        "/FT": "/Tx",
+        "/TU": "20. Ggf. Verweis auf vergangene Anträge",
+        "/Ff": 4096,
+        "/V": "N/A"
+    },
+    "21": {
+        "/T": "21",
+        "/FT": "/Tx",
+        "/TU": "21. Wunschtermin für Produkteinsatz",
+        "/Ff": 4096,
+        "/V": "Schnellstmöglich "
+    },
+    "22a": {
+        "/T": "22a",
+        "/FT": "/Tx",
+        "/TU": "22a. ChemScan durch",
+        "/Ff": 4096,
+        "/V": "UUB"
+    },
+    "22a1": {
+        "/T": "22a1",
+        "/FT": "/Tx",
+        "/TU": "22a. ChemScan Datum",
+        "/Ff": 4096
+    },
+    "22a2": {
+        "/T": "22a2",
+        "/FT": "/Btn",
+        "/TU": "22a. ChemScan durchgeführt",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "22b": {
+        "/T": "22b",
+        "/FT": "/Tx",
+        "/TU": "22b. ChemScan durch",
+        "/Ff": 4096,
+        "/V": "UUB"
+    },
+    "22b1": {
+        "/T": "22b1",
+        "/FT": "/Tx",
+        "/TU": "22b. ChemScan Datum",
+        "/Ff": 4096
+    },
+    "22b2": {
+        "/T": "22b2",
+        "/FT": "/Btn",
+        "/TU": "22b. ChemScan durchgeführt",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "23a1": {
+        "/T": "23a1",
+        "/FT": "/Tx",
+        "/TU": "23a. ChemVV:",
+        "/Ff": 4096
+    },
+    "23a2": {
+        "/T": "23a2",
+        "/FT": "/Tx",
+        "/TU": "23a. Sonstige: ",
+        "/Ff": 4096
+    },
+    "23a3": {
+        "/T": "23a3",
+        "/FT": "/Btn",
+        "/TU": "23a. KMR (TRGS 905)"
+    },
+    "23a4": {
+        "/T": "23a4",
+        "/FT": "/Btn",
+        "/TU": "23a. ArbMedVV"
+    },
+    "23a5": {
+        "/T": "23a5",
+        "/FT": "/Btn",
+        "/TU": "23a. SVHC / REACh XIV"
+    },
+    "23a6": {
+        "/T": "23a6",
+        "/FT": "/Btn",
+        "/TU": "23a. ChemVV:"
+    },
+    "23a7": {
+        "/T": "23a7",
+        "/FT": "/Btn",
+        "/TU": "23a. AGW (TRGS 900)"
+    },
+    "23a8": {
+        "/T": "23a8",
+        "/FT": "/Btn",
+        "/TU": "23a. ODIN"
+    },
+    "23a9": {
+        "/T": "23a9",
+        "/FT": "/Btn",
+        "/TU": "23a. REACh XVII"
+    },
+    "23a10": {
+        "/T": "23a10",
+        "/FT": "/Btn",
+        "/TU": "23a. Sonstige:"
+    },
+    "23a11": {
+        "/T": "23a11",
+        "/FT": "/Btn",
+        "/TU": "23a. BGW (TRGS 903)"
+    },
+    "23a12": {
+        "/T": "23a12",
+        "/FT": "/Btn",
+        "/TU": "23a. ERB (Bek 910)"
+    },
+    "23a13": {
+        "/T": "23a13",
+        "/FT": "/Btn",
+        "/TU": "23a. Ex-Schutz"
+    },
+    "23a14": {
+        "/T": "23a14",
+        "/FT": "/Btn",
+        "/TU": "23a. Physikalische Gefahr"
+    },
+    "23b1": {
+        "/T": "23b1",
+        "/FT": "/Tx",
+        "/TU": "23b. ChemVV:",
+        "/Ff": 4096
+    },
+    "23b2": {
+        "/T": "23b2",
+        "/FT": "/Tx",
+        "/TU": "23b. Sonstige: ",
+        "/Ff": 4096
+    },
+    "23b3": {
+        "/T": "23b3",
+        "/FT": "/Btn",
+        "/TU": "23b. KMR (TRGS 905)"
+    },
+    "23b4": {
+        "/T": "23b4",
+        "/FT": "/Btn",
+        "/TU": "23b. ArbMedVV"
+    },
+    "23b5": {
+        "/T": "23b5",
+        "/FT": "/Btn",
+        "/TU": "23b. SVHC"
+    },
+    "23b6": {
+        "/T": "23b6",
+        "/FT": "/Btn",
+        "/TU": "23b. ChemVV:"
+    },
+    "23b7": {
+        "/T": "23b7",
+        "/FT": "/Btn",
+        "/TU": "23b. AGW (TRGS 900)"
+    },
+    "23b8": {
+        "/T": "23b8",
+        "/FT": "/Btn",
+        "/TU": "23b. ODIN"
+    },
+    "23b9": {
+        "/T": "23b9",
+        "/FT": "/Btn",
+        "/TU": "23b. REACh XIV"
+    },
+    "23b10": {
+        "/T": "23b10",
+        "/FT": "/Btn",
+        "/TU": "23b. Sonstige:"
+    },
+    "23b11": {
+        "/T": "23b11",
+        "/FT": "/Btn",
+        "/TU": "23b. BGW (TRGS 903)"
+    },
+    "23b12": {
+        "/T": "23b12",
+        "/FT": "/Btn",
+        "/TU": "23b. ERB (Bek 910)"
+    },
+    "23b13": {
+        "/T": "23b13",
+        "/FT": "/Btn",
+        "/TU": "23b. REACh XVII"
+    },
+    "23b14": {
+        "/T": "23b14",
+        "/FT": "/Btn",
+        "/TU": "23b. Physikalische Gefahr"
+    },
+    "24a1": {
+        "/T": "24a1",
+        "/FT": "/Tx",
+        "/TU": "24a. AwSV - WGK = ",
+        "/Ff": 4096
+    },
+    "24a2": {
+        "/T": "24a2",
+        "/FT": "/Tx",
+        "/TU": "24a. ADR - UN-Nr. = ",
+        "/Ff": 4096
+    },
+    "24a3": {
+        "/T": "24a3",
+        "/FT": "/Tx",
+        "/TU": "24a. TRGS 510 - Lagerkl. = ",
+        "/Ff": 4096
+    },
+    "24a4": {
+        "/T": "24a4",
+        "/FT": "/Btn",
+        "/TU": "24a. SVHC PBT"
+    },
+    "24a5": {
+        "/T": "24a5",
+        "/FT": "/Btn",
+        "/TU": "24a. AWSV - WGK ="
+    },
+    "24a6": {
+        "/T": "24a6",
+        "/FT": "/Btn",
+        "/TU": "24a. ADR - UN Nr. ="
+    },
+    "24a7": {
+        "/T": "24a7",
+        "/FT": "/Btn",
+        "/TU": "24a. TRGS 510- Lagerkl. ="
+    },
+    "24a8": {
+        "/T": "24a8",
+        "/FT": "/Btn",
+        "/TU": "24a. SVHC vPvB"
+    },
+    "24a9": {
+        "/T": "24a9",
+        "/FT": "/Btn",
+        "/TU": "24a. 2.BImSchV (KMR Kat1)"
+    },
+    "24a10": {
+        "/T": "24a10",
+        "/FT": "/Btn",
+        "/TU": "24a. 12.BImSchV (H1, H2, P8)"
+    },
+    "24a11": {
+        "/T": "24a11",
+        "/FT": "/Btn",
+        "/TU": "24a. 31.BImSchV (VOC)"
+    },
+    "24b1": {
+        "/T": "24b1",
+        "/FT": "/Tx",
+        "/TU": "24b. AwSV - WGK = ",
+        "/Ff": 4096
+    },
+    "24b2": {
+        "/T": "24b2",
+        "/FT": "/Tx",
+        "/TU": "24b. ADR - UN-Nr. = ",
+        "/Ff": 4096
+    },
+    "24b3": {
+        "/T": "24b3",
+        "/FT": "/Tx",
+        "/TU": "24b. TRGS 510 - Lagerkl. = ",
+        "/Ff": 4096
+    },
+    "24b4": {
+        "/T": "24b4",
+        "/FT": "/Btn",
+        "/TU": "24b. SVHC PBT"
+    },
+    "24b5": {
+        "/T": "24b5",
+        "/FT": "/Btn",
+        "/TU": "24b. AWSV - WGK ="
+    },
+    "24b6": {
+        "/T": "24b6",
+        "/FT": "/Btn",
+        "/TU": "24b. ADR - UN Nr. ="
+    },
+    "24b7": {
+        "/T": "24b7",
+        "/FT": "/Btn",
+        "/TU": "24b. TRGS 510- Lagerkl. ="
+    },
+    "24b8": {
+        "/T": "24b8",
+        "/FT": "/Btn",
+        "/TU": "24b. SVHC vPvB"
+    },
+    "24b9": {
+        "/T": "24b9",
+        "/FT": "/Btn",
+        "/TU": "24b. 2.BImSchV (KMR Kat1)"
+    },
+    "24b10": {
+        "/T": "24b10",
+        "/FT": "/Btn",
+        "/TU": "24a. 12.BImSchV (H1, H 2, P8)"
+    },
+    "24b11": {
+        "/T": "24b11",
+        "/FT": "/Btn",
+        "/TU": "24b. 31.BImSchV (VOC)"
+    },
+    "25a": {
+        "/T": "25a",
+        "/FT": "/Tx",
+        "/TU": "25. Umweltschutz Name",
+        "/Ff": 4096
+    },
+    "25b": {
+        "/T": "25b",
+        "/FT": "/Sig",
+        "/TU": "25. Umweltschutz Unterschrift"
+    },
+    "25c": {
+        "/T": "25c",
+        "/FT": "/Tx",
+        "/TU": "25. Datum der Umweltschutz Prüfung ",
+        "/Ff": 4096
+    },
+    "26": {
+        "/T": "26",
+        "/FT": "/Btn",
+        "/TU": "26. Ergebnis der Prüfung für Umweltschutz",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "27": {
+        "/T": "27",
+        "/FT": "/Btn",
+        "/TU": "27. BImSch-Genehmigung erfoderlich?",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "28": {
+        "/T": "28",
+        "/FT": "/Btn",
+        "/TU": "28. AwSV Anlage erforderlich?",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "29": {
+        "/T": "29",
+        "/FT": "/Btn",
+        "/TU": "29. Beteiligung Umweltschutz bei Gefährdungsbeur-teilung erforderlich?",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "30": {
+        "/T": "30",
+        "/FT": "/Btn",
+        "/TU": "30. Zusammenlagerung zu beachten?",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "31": {
+        "/T": "31",
+        "/FT": "/Tx",
+        "/TU": "31. Erläuterungen - Erläuterungen zur Freigabe und Hinweise für den Wareneingang.",
+        "/Ff": 4096
+    },
+    "32a": {
+        "/T": "32a",
+        "/FT": "/Tx",
+        "/TU": "32. Arbeits- & Gesundheitschutz Name",
+        "/Ff": 4096
+    },
+    "32b": {
+        "/T": "32b",
+        "/FT": "/Sig",
+        "/TU": "32. Arbeits- & Gesundheitschutz Unterschrift"
+    },
+    "32c": {
+        "/T": "32c",
+        "/FT": "/Tx",
+        "/TU": "32. Datum der Arbeits- & Gesundheitschutz Prüfung ",
+        "/Ff": 4096
+    },
+    "33": {
+        "/T": "33",
+        "/FT": "/Btn",
+        "/TU": "33. Ergebnis der Prüfung für Arbeits- & Gesundheitsschutz ",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "34": {
+        "/T": "34",
+        "/FT": "/Btn",
+        "/TU": "34. Produkt ist HS&E-relevant?",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "35": {
+        "/T": "35",
+        "/FT": "/Btn",
+        "/TU": "35. Information an Lager erforderlich?",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "36": {
+        "/T": "36",
+        "/FT": "/Btn",
+        "/TU": "36. Gefahrstoffspezifische Gefährdungsbeurteilung erforderlich?",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "37": {
+        "/T": "37",
+        "/FT": "/Btn",
+        "/TU": "37. Betriebsanweisung erforderlich?",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes"
+        ]
+    },
+    "38": {
+        "/T": "38",
+        "/FT": "/Tx",
+        "/TU": "38. Erläuterungen - Erläuterungen zur Freigabe und Hinweise für den Wareneingang.",
+        "/Ff": 4096
+    },
+    "39": {
+        "/T": "39",
+        "/FT": "/Btn",
+        "/TU": "39. Produkt und Lieferantenzulassung",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "39a": {
+        "/T": "39a",
+        "/FT": "/Tx",
+        "/TU": "39. nicht möglich / Ablehnung Grund:",
+        "/Ff": 4096
+    },
+    "40a": {
+        "/T": "40a",
+        "/FT": "/Tx",
+        "/TU": "40. Fertigungslabor Name",
+        "/Ff": 4096
+    },
+    "40b": {
+        "/T": "40b",
+        "/FT": "/Sig",
+        "/TU": "40. Fertigungslabor Unterschrift"
+    },
+    "40c": {
+        "/T": "40c",
+        "/FT": "/Tx",
+        "/TU": "40. Datum der Fertigungslabor Prüfung ",
+        "/Ff": 4096
+    },
+    "41": {
+        "/T": "41",
+        "/FT": "/Btn",
+        "/TU": "41. Haltbarkeit bei Bestellung",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "41a": {
+        "/T": "41a",
+        "/FT": "/Tx",
+        "/TU": "41. Tagen",
+        "/Ff": 4096
+    },
+    "42": {
+        "/T": "42",
+        "/FT": "/Btn",
+        "/TU": "42. Zertifikat (nach DIN EN 10204)",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "42a": {
+        "/T": "42a",
+        "/FT": "/Tx",
+        "/TU": "42. Andere Zertifikat",
+        "/Ff": 4096
+    },
+    "43": {
+        "/T": "43",
+        "/FT": "/Btn",
+        "/TU": "43. MLC104-Eintrag erforderlich?",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "44": {
+        "/T": "44",
+        "/FT": "/Btn",
+        "/TU": "44. OMat-Eintrag erforderlich?",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "44a": {
+        "/T": "44a",
+        "/FT": "/Tx",
+        "/TU": "44. OMat Nr.",
+        "/Ff": 4096
+    },
+    "45": {
+        "/T": "45",
+        "/FT": "/Tx",
+        "/TU": "45. Produktzulassung nach:",
+        "/Ff": 4096
+    },
+    "46": {
+        "/T": "46",
+        "/FT": "/Tx",
+        "/TU": "46. Lieferantenanforderung / Produktzulassungsforderungen für den Einkaufsbestelltext in SAP",
+        "/Ff": 4096
+    },
+    "47a": {
+        "/T": "47a",
+        "/FT": "/Tx",
+        "/TU": "47. Fertigungslabor Name",
+        "/Ff": 4096
+    },
+    "47b": {
+        "/T": "47b",
+        "/FT": "/Sig",
+        "/TU": "47. Fertigungslabor Unterschrift"
+    },
+    "47c": {
+        "/T": "47c",
+        "/FT": "/Tx",
+        "/TU": "47. Datum der Fertigungslabor Prüfung",
+        "/Ff": 4096
+    },
+    "48": {
+        "/T": "48",
+        "/FT": "/Btn",
+        "/TU": "48. Zertifikat (nach DIN EN 10204)",
+        "/Ff": 32768,
+        "/Opt": [
+            "Yes",
+            "Yes",
+            "Yes",
+            "Yes"
+        ]
+    },
+    "48a": {
+        "/T": "48a",
+        "/FT": "/Tx",
+        "/TU": "48. Andere Zertifikat",
+        "/Ff": 4096
+    },
+    "49": {
+        "/T": "49",
+        "/FT": "/Tx",
+        "/TU": "49. Lieferantenanforderung / Produktzulassungsforderungen für den Einkaufsbestelltext in SAP",
+        "/Ff": 4096
+    },
+    "50a": {
+        "/T": "50a",
+        "/FT": "/Tx",
+        "/TU": "50. Normenstelle Name",
+        "/Ff": 4096
+    },
+    "50b": {
+        "/T": "50b",
+        "/FT": "/Sig",
+        "/TU": "50. Normenstelle Unterschrift"
+    },
+    "50c": {
+        "/T": "50c",
+        "/FT": "/Tx",
+        "/TU": "50. Normenstelle Datum",
+        "/Ff": 4096
+    },
+    "51": {
+        "/T": "51",
+        "/FT": "/Tx",
+        "/TU": "51. Teilenummer",
+        "/Ff": 4096
+    },
+    "52": {
+        "/T": "52",
+        "/FT": "/Tx",
+        "/TU": "52. Erläuterungen bzw. Änderungen",
+        "/Ff": 4096
+    }
+}

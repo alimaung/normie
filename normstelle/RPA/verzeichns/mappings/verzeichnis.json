@@ -1,0 +1,31 @@
+{
+    "columns": [
+        "Antrag-nummer",
+        "Teile-nummer",
+        "Freigabe",
+        "relevant für Luftfahrtteile",
+        "Benennung",
+        "Produktname / Normkurzbezeichnung",
+        "Produktzulassungs-spezifikation",
+        "Eingang",
+        "Abschluss",
+        "Abteilung",
+        "Einsatzort",
+        "Antragsteller",
+        "Antrag",
+        "Datenblatt",
+        "Produkt-zulassung",
+        "SDB MSDS",
+        "Gefährdungsprüfungeurteilung",
+        "Gefährdungsprüfung",
+        "Sonstiges",
+        "Schriftverkehr",
+        "Änd. Historie",
+        "Datum",
+        "Bearbeiter",
+        "Bemerkung \n(295 offene Anträge)",
+        "GSK-Nr.",
+        "Lieferant",
+        "Hersteller"
+    ]
+}

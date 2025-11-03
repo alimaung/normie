@@ -1,0 +1,20 @@
+# CMSR Automation Requirements
+
+# PDF Processing
+PyPDF2>=3.0.0
+
+# Excel File Handling (COM interface)
+pywin32>=306
+
+# ID Generation (for reading Excel files to get last numbers)
+pandas>=2.0.0
+pyxlsb>=1.0.10
+xlrd>=2.0.0
+
+# Standard libraries (included with Python)
+# - json
+# - pathlib
+# - datetime
+# - re
+# - collections
+# - win32com.client (part of pywin32)

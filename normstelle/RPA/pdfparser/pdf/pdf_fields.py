@@ -104,14 +104,15 @@ def extract_form_fields(pdf_path, output_path):
                 cleaned_field = clean_signature_field(field_data)
                 cleaned_fields[field_name] = cleaned_field
             
-            # Save to JSON
-            with open(output_path, 'w', encoding='utf-8') as json_file:
-                json.dump(cleaned_fields, json_file, indent=4, ensure_ascii=False)
+            # Save to JSON (only if output_path is provided)
+            if output_path:
+                with open(output_path, 'w', encoding='utf-8') as json_file:
+                    json.dump(cleaned_fields, json_file, indent=4, ensure_ascii=False)
             
             return cleaned_fields
         return None
 
 # Usage
-pdf_path = r'D:\.staging\158\Antrag T&S Huby Swab Wattestäbchen.pdf'
+pdf_path = r'C:\Users\RAVEN\Desktop\normie\normstelle\RPA\pdfparser\Antrag T&S Huby Swab Wattestäbchen.pdf'
 output_path = 'form_fields2.json'
 form_fields = extract_form_fields(pdf_path, output_path)

@@ -1,0 +1,13 @@
+{
+    "columns": [
+        "Teilenummer",
+        "TO-Nummer",
+        "Benennung / Kategorie",
+        "Normkurzbezeichnung / Titel",
+        "Projekt",
+        "Name",
+        "Abteilung",
+        "Datum",
+        "Bemerkungen:"
+    ]
+}
