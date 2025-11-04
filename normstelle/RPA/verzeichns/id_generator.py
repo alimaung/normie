@@ -23,14 +23,18 @@ def get_last_tkz_number(tkz_file_path):
     """
     print(f"Reading TKZ file using COM: {tkz_file_path}")
     
+    # Ensure we have a Path object and get absolute path
+    tkz_path = Path(tkz_file_path)
+    absolute_path = tkz_path.resolve()
+    
     try:
         # Create Excel COM object
         excel_app = win32com.client.Dispatch("Excel.Application")
         excel_app.Visible = False
         excel_app.DisplayAlerts = False
         
-        # Open workbook
-        workbook = excel_app.Workbooks.Open(str(tkz_file_path.absolute()))
+        # Open workbook with absolute path as string
+        workbook = excel_app.Workbooks.Open(str(absolute_path))
         worksheet = workbook.Worksheets(1)  # First sheet
         
         # Get the used range to find how many rows have data
@@ -121,6 +125,10 @@ def get_last_antragsnummer(verzeichnis_file_path):
     """
     print(f"Reading Verzeichnis file using COM: {verzeichnis_file_path}")
     
+    # Ensure we have a Path object and get absolute path
+    verzeichnis_path = Path(verzeichnis_file_path)
+    absolute_path = verzeichnis_path.resolve()
+    
     current_year = datetime.now().year
     
     try:
@@ -129,8 +137,8 @@ def get_last_antragsnummer(verzeichnis_file_path):
         excel_app.Visible = False
         excel_app.DisplayAlerts = False
         
-        # Open workbook
-        workbook = excel_app.Workbooks.Open(str(verzeichnis_file_path.absolute()))
+        # Open workbook with absolute path as string
+        workbook = excel_app.Workbooks.Open(str(absolute_path))
         worksheet = workbook.Worksheets(1)  # First sheet
         
         # Get the used range

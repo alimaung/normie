@@ -34,20 +34,28 @@ def process_cmsr_application(pdf_path, tkz_file_path=None, verzeichnis_file_path
     print("=== CMSR Application Processing ===")
     print(f"Processing PDF: {pdf_path}")
     
+    # Convert all paths to Path objects for consistent handling
+    pdf_path = Path(pdf_path)
+    
     # Set default file paths if not provided
     if tkz_file_path is None:
         tkz_file_path = Path(__file__).parent / "TKZ.xls"
+    else:
+        tkz_file_path = Path(tkz_file_path)
+        
     if verzeichnis_file_path is None:
         verzeichnis_file_path = Path(__file__).parent / "Verzeichnis.xlsb"
+    else:
+        verzeichnis_file_path = Path(verzeichnis_file_path)
     
     # Validate input files exist
-    if not Path(pdf_path).exists():
+    if not pdf_path.exists():
         return {"success": False, "error": f"PDF file not found: {pdf_path}"}
     
-    if not Path(tkz_file_path).exists():
+    if not tkz_file_path.exists():
         return {"success": False, "error": f"TKZ file not found: {tkz_file_path}"}
         
-    if not Path(verzeichnis_file_path).exists():
+    if not verzeichnis_file_path.exists():
         return {"success": False, "error": f"Verzeichnis file not found: {verzeichnis_file_path}"}
     
     try:

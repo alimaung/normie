@@ -113,6 +113,6 @@ def extract_form_fields(pdf_path, output_path):
         return None
 
 # Usage
-pdf_path = r'C:\Users\RAVEN\Desktop\normie\normstelle\RPA\pdfparser\Antrag T&S Huby Swab Wattestäbchen.pdf'
-output_path = 'form_fields2.json'
-form_fields = extract_form_fields(pdf_path, output_path)
+#pdf_path = r'C:\Users\RAVEN\Desktop\normie\normstelle\RPA\pdfparser\Antrag T&S Huby Swab Wattestäbchen.pdf'
+#output_path = 'form_fields2.json'
+#form_fields = extract_form_fields(pdf_path, output_path)
