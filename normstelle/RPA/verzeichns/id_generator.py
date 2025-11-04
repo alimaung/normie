@@ -140,7 +140,8 @@ def get_last_antragsnummer(verzeichnis_file_path):
         # Open workbook with absolute path as string
         # verzeichnis_file_path=r"Q:\DocumentManagement\NormstelleShare\TeileundStoffe\Datei\Verzeichnis.xlsb"
         print(f"\033[31m\n{absolute_path}\n\033[0m")
-        workbook = excel_app.Workbooks.Open(str(absolute_path), ReadOnly=True)
+        workbook = excel_app.Workbooks.Open(str(absolute_path))
+        time.sleep(10)
         print(f"\033[32m\n{workbook}\n\033[0m")
         worksheet = workbook.Worksheets(1)  # First sheet
         print(f"\033[34m\n{worksheet}\n\033[0m")

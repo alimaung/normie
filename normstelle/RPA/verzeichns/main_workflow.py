@@ -18,7 +18,7 @@ from pdf_processor import process_pdf_for_excel
 from id_generator import generate_new_ids
 from excel_writer import write_to_excel_sheets
 
-def process_cmsr_application(pdf_path, tkz_file_path=r"Q:\DocumentManagement\NormstelleShare\Teilenummernvergabe\Teilenummern_0104....xls", verzeichnis_file_path=r"Q:\DocumentManagement\NormstelleShare\TeileundStoffe\Datei\Verzeichnis - Copy.xlsb"):
+def process_cmsr_application(pdf_path, tkz_file_path=r"Q:\DocumentManagement\NormstelleShare\Teilenummernvergabe\Teilenummern_0104....xls", verzeichnis_file_path=r"Q:\DocumentManagement\NormstelleShare\TeileundStoffe\Datei\Verzeichnis.xlsb"):
     """
     Complete CMSR processing workflow.
     
