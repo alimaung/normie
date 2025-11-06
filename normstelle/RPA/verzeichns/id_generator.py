@@ -14,6 +14,7 @@ import win32com.client
 import re, time
 from datetime import datetime
 from pathlib import Path
+import pythoncom
 
 def get_last_tkz_number(tkz_file_path):
     """
@@ -29,8 +30,8 @@ def get_last_tkz_number(tkz_file_path):
     
     try:
         # Create Excel COM object
-        excel_app = win32com.client.Dispatch("Excel.Application")
-        excel_app.Visible = True
+        excel_app = win32com.client.DispatchEx("Excel.Application")
+        excel_app.Visible = False
         excel_app.DisplayAlerts = False
         
         # Open workbook with absolute path as string
@@ -133,15 +134,15 @@ def get_last_antragsnummer(verzeichnis_file_path):
     
     try:
         # Create Excel COM object
-        excel_app = win32com.client.Dispatch("Excel.Application")
-        excel_app.Visible = True
+        excel_app = win32com.client.DispatchEx("Excel.Application")
+        #excel_app.Visible = False
         excel_app.DisplayAlerts = False
         
         # Open workbook with absolute path as string
         # verzeichnis_file_path=r"Q:\DocumentManagement\NormstelleShare\TeileundStoffe\Datei\Verzeichnis.xlsb"
         print(f"\033[31m\n{absolute_path}\n\033[0m")
         workbook = excel_app.Workbooks.Open(str(absolute_path))
-        time.sleep(10)
+        #time.sleep(10)
         print(f"\033[32m\n{workbook}\n\033[0m")
         worksheet = workbook.Worksheets(1)  # First sheet
         print(f"\033[34m\n{worksheet}\n\033[0m")

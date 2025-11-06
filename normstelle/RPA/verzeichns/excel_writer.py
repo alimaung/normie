@@ -3,6 +3,8 @@ Excel Writer Module for CMSR Automation
 
 Writes extracted PDF data to TKZ and Verzeichnis Excel sheets
 using the column mappings defined in the JSON files.
+
+TODO READ CHECKS FOR EXCEL FILES BEFORE ACCESS
 """
 
 import json
@@ -121,18 +123,21 @@ def create_verzeichnis_row(pdf_data, new_tkz, new_antragsnummer, pdf_fields):
     verzeichnis_row['L'] = pdf_data.get('2a', '')  # "2a - Antragsteller Name"
     
     # Remove hyperlinks - leave empty for now
-    verzeichnis_row['M'] = ''  # Antrag (was hyperlink to PDF)
-    verzeichnis_row['N'] = ''  # Datenblatt (was hyperlink to TDS)
-    verzeichnis_row['O'] = ''  # Produkt-zulassung (was hyperlink to COC)
-    verzeichnis_row['P'] = ''  # SDB MSDS (was hyperlink to MSDS)
-    verzeichnis_row['Q'] = ''  # Gefährdungsbeurteilung (was hyperlink to hazard assessment)
+    #verzeichnis_row['M'] = ''  # Antrag (was hyperlink to PDF)
+    #verzeichnis_row['N'] = ''  # Datenblatt (was hyperlink to TDS)
+    #verzeichnis_row['O'] = ''  # Produkt-zulassung (was hyperlink to COC)
+    #verzeichnis_row['P'] = ''  # SDB MSDS (was hyperlink to MSDS)
+    #verzeichnis_row['Q'] = ''  # Gefährdungsbeurteilung (was hyperlink to hazard assessment)
     
+    verzeichnis_row['V'] = datetime.now().strftime("%d.%m.%Y")
+    verzeichnis_row['W'] = "Normstelle"
+
     # Fill remaining columns with empty values for now
-    for col in ['R', 'S', 'T', 'U', 'V', 'W']:
-        verzeichnis_row[col] = ''
+    #for col in ['R', 'S', 'T', 'U']:
+    #    verzeichnis_row[col] = ''
     
     # Special handling for column X
-    verzeichnis_row['X'] = 'Keine SAP Anlage' if pdf_data.get('15b') == 'Nein' else ''  # "15b - Bestellung über SAP?"
+    verzeichnis_row['X'] = 'Keine SAP Anlage' if pdf_data.get('15b') == 'Nein' else 'In Bearbeitung'  # "15b - Bestellung über SAP?"
     
     return verzeichnis_row
 

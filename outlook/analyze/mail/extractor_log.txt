@@ -1,0 +1,471 @@
+2025-11-05 14:45:17 - === Universal Email Extraction Started ===
+2025-11-05 14:45:17 - Searching for account: IRM-Standardisation-Office
+2025-11-05 14:45:17 - Found target store: IRM-Standardisation-Office (Account: IRM-Standardisation-Office)
+2025-11-05 14:45:17 - Processing account: IRM-Standardisation-Office
+2025-11-05 14:45:17 - Detected standard Outlook account - using Outlook folder structure
+2025-11-05 14:45:18 - Added Inbox folder (238 items)
+2025-11-05 14:45:18 - Added Outlook Deleted Items folder (1 items)
+2025-11-05 14:45:18 - Added Outlook Sent Items folder (0 items)
+2025-11-05 14:45:18 - Added Outlook Drafts folder (0 items)
+2025-11-05 14:45:18 - Processing standard folders with consistent naming...
+2025-11-05 14:45:18 - Processing standard folder: Inbox
+2025-11-05 14:45:18 -   Found folder: Inbox (238 items)
+2025-11-05 14:45:18 - Processing folder 'Inbox' as 'Inbox'
+2025-11-05 14:45:18 - No existing email JSON found - will create new file
+2025-11-05 14:45:18 -     Using EntryID as identifier: 4784079156320995 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:18 -   PROCESS: New email - Antrag auf Teile und Stoffe ... (Hash: 4784079156320995)
+2025-11-05 14:45:18 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:18 -     DEBUG: Found 5 attachments to process
+2025-11-05 14:45:18 -   Downloading attachment: Antrag auf Teile und Stoffe (POM6mm Tisch Auflage EBW).pdf
+2025-11-05 14:45:18 -   Downloaded successfully: Antrag auf Teile und Stoffe (POM6mm Tisch Auflage EBW).pdf
+2025-11-05 14:45:18 -   Downloading attachment: PI_20_RI_999999_D210716_Silicon free.pdf
+2025-11-05 14:45:18 -   Downloaded successfully: PI_20_RI_999999_D210716_Silicon free.pdf
+2025-11-05 14:45:18 -   Downloading attachment: Sustarin C Halogene Phosphor Schwefel frei 29.10.2025.pdf
+2025-11-05 14:45:18 -   Downloaded successfully: Sustarin C Halogene Phosphor Schwefel frei 29.10.2025.pdf
+2025-11-05 14:45:18 -   Downloading attachment: AN_31011658.PDF
+2025-11-05 14:45:18 -   Downloaded successfully: AN_31011658.PDF
+2025-11-05 14:45:18 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:18 -     Using EntryID as identifier: 7677561609319194 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:18 -   PROCESS: New email - Datenkarten Nummernvergabe... (Hash: 7677561609319194)
+2025-11-05 14:45:18 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:18 -     DEBUG: Found 4 attachments to process
+2025-11-05 14:45:18 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:18 -     Using EntryID as identifier: 7680923009465604 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:18 -   PROCESS: New email - WG: Change Request QCTP BRR0092... (Hash: 7680923009465604)
+2025-11-05 14:45:18 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:18 -     DEBUG: Found 7 attachments to process
+2025-11-05 14:45:18 -   Downloading attachment: 2024-051_QCTP BRR0092.docx
+2025-11-05 14:45:19 -   Downloaded successfully: 2024-051_QCTP BRR0092.docx
+2025-11-05 14:45:19 -   Downloading attachment: qctpbrr0092_9.doc
+2025-11-05 14:45:19 -   Downloaded successfully: qctpbrr0092_9.doc
+2025-11-05 14:45:19 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:19 -     Using EntryID as identifier: 4786480156408841 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:19 -   PROCESS: New email - Antrag T&S Eisen 3... (Hash: 4786480156408841)
+2025-11-05 14:45:19 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:19 -     DEBUG: Found 4 attachments to process
+2025-11-05 14:45:19 -   Downloading attachment: Sicherheitsdatenblatt Eisen 3.pdf
+2025-11-05 14:45:19 -   Downloaded successfully: Sicherheitsdatenblatt Eisen 3.pdf
+2025-11-05 14:45:19 -   Downloading attachment: Antrag T&S Nanocolor Eisen 3 Test, Ref. 985037.pdf
+2025-11-05 14:45:19 -   Downloaded successfully: Antrag T&S Nanocolor Eisen 3 Test, Ref. 985037.pdf
+2025-11-05 14:45:19 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:19 -     Using EntryID as identifier: 4784559356291713 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:19 -   PROCESS: New email - Antrag T&S Kupfer 7 ... (Hash: 4784559356291713)
+2025-11-05 14:45:19 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:19 -     DEBUG: Found 4 attachments to process
+2025-11-05 14:45:19 -   Downloading attachment: Sicherheitsdatenblatt Kupfer 7.pdf
+2025-11-05 14:45:19 -   Downloaded successfully: Sicherheitsdatenblatt Kupfer 7.pdf
+2025-11-05 14:45:19 -   Downloading attachment: Antrag T&S Nanocolor Kupfer 7 Test, Ref. 985054.pdf
+2025-11-05 14:45:19 -   Downloaded successfully: Antrag T&S Nanocolor Kupfer 7 Test, Ref. 985054.pdf
+2025-11-05 14:45:19 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:19 -     Using EntryID as identifier: 4784319256277072 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:19 -   PROCESS: New email - Antrag T&S Chromat 5... (Hash: 4784319256277072)
+2025-11-05 14:45:19 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:19 -     DEBUG: Found 4 attachments to process
+2025-11-05 14:45:19 -   Downloading attachment: Sicherheitsdatenblatt NANOCOLOR Chromat 5.pdf
+2025-11-05 14:45:19 -   Downloaded successfully: Sicherheitsdatenblatt NANOCOLOR Chromat 5.pdf
+2025-11-05 14:45:19 -   Downloading attachment: Antrag T&S Nanocolor Chromat 5 Test, Ref. 985024.pdf
+2025-11-05 14:45:19 -   Downloaded successfully: Antrag T&S Nanocolor Chromat 5 Test, Ref. 985024.pdf
+2025-11-05 14:45:19 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:19 -     Using EntryID as identifier: 4784079156262431 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:19 -   PROCESS: New email - Antrag T&S Chrom 2... (Hash: 4784079156262431)
+2025-11-05 14:45:19 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:19 -     DEBUG: Found 4 attachments to process
+2025-11-05 14:45:19 -   Downloading attachment: Sicherheitsdatenblatt NANOCOLORgesamt - Chrom 2.pdf
+2025-11-05 14:45:19 -   Downloaded successfully: Sicherheitsdatenblatt NANOCOLORgesamt - Chrom 2.pdf
+2025-11-05 14:45:19 -   Downloading attachment: Antrag T&S Nanocolor gesamt  Chrom 2 Test, Ref. 985059.pdf
+2025-11-05 14:45:19 -   Downloaded successfully: Antrag T&S Nanocolor gesamt  Chrom 2 Test, Ref. 985059.pdf
+2025-11-05 14:45:19 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:19 -     Using EntryID as identifier: 7680202709421681 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:19 -   PROCESS: New email - Offene LA Überarbeitungen LA361, LA102, LA362, LA0... (Hash: 7680202709421681)
+2025-11-05 14:45:19 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:19 -     DEBUG: Found 11 attachments to process
+2025-11-05 14:45:19 -   Downloading attachment: 2024-043_LA352.pdf
+2025-11-05 14:45:19 -   Downloaded successfully: 2024-043_LA352.pdf
+2025-11-05 14:45:19 -   Downloading attachment: 2024-038_LA361.pdf
+2025-11-05 14:45:19 -   Downloaded successfully: 2024-038_LA361.pdf
+2025-11-05 14:45:19 -   Downloading attachment: 2024-041_LA102.pdf
+2025-11-05 14:45:19 -   Downloaded successfully: 2024-041_LA102.pdf
+2025-11-05 14:45:19 -   Downloading attachment: 2024-069_LA364.pdf
+2025-11-05 14:45:19 -   Downloaded successfully: 2024-069_LA364.pdf
+2025-11-05 14:45:19 -   Downloading attachment: 2024-068_LA096.pdf
+2025-11-05 14:45:19 -   Downloaded successfully: 2024-068_LA096.pdf
+2025-11-05 14:45:19 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:19 -     Using EntryID as identifier: 4783839056247790 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:19 -   PROCESS: New email - Antrag T&S Nickel 4... (Hash: 4783839056247790)
+2025-11-05 14:45:19 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:19 -     DEBUG: Found 4 attachments to process
+2025-11-05 14:45:19 -   Downloading attachment: Sicherheitsdatenblatt Nickel 4.pdf
+2025-11-05 14:45:19 -   Downloaded successfully: Sicherheitsdatenblatt Nickel 4.pdf
+2025-11-05 14:45:19 -   Downloading attachment: Antrag T&S Nanocolor Nickel 4 Test, Ref. 985071.pdf
+2025-11-05 14:45:19 -   Downloaded successfully: Antrag T&S Nanocolor Nickel 4 Test, Ref. 985071.pdf
+2025-11-05 14:45:19 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:19 -     Using EntryID as identifier: 4783598956233149 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:19 -   PROCESS: New email - Antrag T&S Sulfat HR 1000... (Hash: 4783598956233149)
+2025-11-05 14:45:19 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:19 -     DEBUG: Found 4 attachments to process
+2025-11-05 14:45:19 -   Downloading attachment: Sicherheitsdatenblatt NANOCOLOR Sulfat HR 1000.pdf
+2025-11-05 14:45:19 -   Downloaded successfully: Sicherheitsdatenblatt NANOCOLOR Sulfat HR 1000.pdf
+2025-11-05 14:45:19 -   Downloading attachment: Antrag T&S Nanocolor Sulfat HR 1000 Test, Ref. 985063.pdf
+2025-11-05 14:45:19 -   Downloaded successfully: Antrag T&S Nanocolor Sulfat HR 1000 Test, Ref. 985063.pdf
+2025-11-05 14:45:19 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:19 -     Using EntryID as identifier: 4785279656277072 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:19 -   PROCESS: New email - AfT&S 160/2025 (TKZ 01044401) - CHEMISCHE ANALYTIK... (Hash: 4785279656277072)
+2025-11-05 14:45:19 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:19 -     DEBUG: Found 7 attachments to process
+2025-11-05 14:45:19 -   Downloading attachment: 160-2025_01044401.pdf
+2025-11-05 14:45:20 -   Downloaded successfully: 160-2025_01044401.pdf
+2025-11-05 14:45:20 -   Downloading attachment: 160-2025_01044401_Sicherheitsdatenblatt Zink 6.pdf
+2025-11-05 14:45:20 -   Downloaded successfully: 160-2025_01044401_Sicherheitsdatenblatt Zink 6.pdf
+2025-11-05 14:45:20 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:20 -     Using EntryID as identifier: 4785039556262431 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:20 -   PROCESS: New email - Antrag T&S Cadmium 2 ... (Hash: 4785039556262431)
+2025-11-05 14:45:20 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:20 -     DEBUG: Found 4 attachments to process
+2025-11-05 14:45:20 -   Downloading attachment: Sicherheitsdatenblatt Cadmium 2.pdf
+2025-11-05 14:45:20 -   Downloaded successfully: Sicherheitsdatenblatt Cadmium 2.pdf
+2025-11-05 14:45:20 -   Downloading attachment: Antrag T&S Nanocolor Cadmium 2 Test, Ref. 985014.pdf
+2025-11-05 14:45:20 -   Downloaded successfully: Antrag T&S Nanocolor Cadmium 2 Test, Ref. 985014.pdf
+2025-11-05 14:45:20 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:20 -     Using EntryID as identifier: 4784799456247790 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:20 -   PROCESS: New email - Antrag T&S Zink 6 ... (Hash: 4784799456247790)
+2025-11-05 14:45:20 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:20 -     DEBUG: Found 4 attachments to process
+2025-11-05 14:45:20 -   Downloading attachment: Sicherheitsdatenblatt Zink 6.pdf
+2025-11-05 14:45:20 -   Downloaded successfully: Sicherheitsdatenblatt Zink 6.pdf
+2025-11-05 14:45:20 -   Downloading attachment: Antrag T&S Nanocolor Zink 6 Test, Ref. 985042.pdf
+2025-11-05 14:45:20 -   Downloaded successfully: Antrag T&S Nanocolor Zink 6 Test, Ref. 985042.pdf
+2025-11-05 14:45:20 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:20 -     Using EntryID as identifier: 7679722509392399 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:20 -   PROCESS: New email - AW: DIN EN ISO 14253... (Hash: 7679722509392399)
+2025-11-05 14:45:20 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:20 -     DEBUG: Found 8 attachments to process
+2025-11-05 14:45:20 -   Downloading attachment: Search-04.11.2025_12.08.csv
+2025-11-05 14:45:20 -   Downloaded successfully: Search-04.11.2025_12.08.csv
+2025-11-05 14:45:20 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:20 -     Using EntryID as identifier: 7677801709275271 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:20 -   PROCESS: New email - 2te Erinnerung: Änderungsantrag LA354 & LA069... (Hash: 7677801709275271)
+2025-11-05 14:45:20 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:20 -     DEBUG: Found 7 attachments to process
+2025-11-05 14:45:20 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:20 -     Using EntryID as identifier: 7677561609260630 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:20 -   PROCESS: New email - Reminder: CR und Dokument 0289 3875... (Hash: 7677561609260630)
+2025-11-05 14:45:20 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:20 -     DEBUG: Found 9 attachments to process
+2025-11-05 14:45:20 -   Downloading attachment: 0289 3875_2024-12 IRM.docx
+2025-11-05 14:45:20 -   Downloaded successfully: 0289 3875_2024-12 IRM.docx
+2025-11-05 14:45:20 -   Downloading attachment: 2024-070_02893875.docx
+2025-11-05 14:45:20 -   Downloaded successfully: 2024-070_02893875.docx
+2025-11-05 14:45:20 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:20 -     Using EntryID as identifier: 4781918256072098 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:20 -   PROCESS: New email - AfT&S 159/2025 (TKZ 10002007) - KLEBER M-Bond 200 ... (Hash: 4781918256072098)
+2025-11-05 14:45:20 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:20 -     DEBUG: Found 8 attachments to process
+2025-11-05 14:45:20 -   Downloading attachment: 159-2025_10002007.pdf
+2025-11-05 14:45:20 -   Downloaded successfully: 159-2025_10002007.pdf
+2025-11-05 14:45:20 -   Downloading attachment: 159-2025_10002007_VISHAY 3312_14413_M-Bond_200_Adhesive_EU_DE_SDS_2020_878_V4.0_dt.pdf
+2025-11-05 14:45:20 -   Downloaded successfully: 159-2025_10002007_VISHAY 3312_14413_M-Bond_200_Adhesive_EU_DE_SDS_2020_878_V4.0_dt.pdf
+2025-11-05 14:45:20 -   Downloading attachment: 159-2025_10002007_6849_14414_M-Bond_200_Catalyst_C_SDS_EU_DE_SDS_2020_878_V4.0_Final.pdf
+2025-11-05 14:45:20 -   Downloaded successfully: 159-2025_10002007_6849_14414_M-Bond_200_Catalyst_C_SDS_EU_DE_SDS_2020_878_V4.0_Final.pdf
+2025-11-05 14:45:20 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:20 -     Using EntryID as identifier: 7677321509245989 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:20 -   PROCESS: New email - AW: CR für LA396... (Hash: 7677321509245989)
+2025-11-05 14:45:20 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:20 -     DEBUG: Found 9 attachments to process
+2025-11-05 14:45:20 -   Downloading attachment: LA_396_2019-11.docx
+2025-11-05 14:45:20 -   Downloaded successfully: LA_396_2019-11.docx
+2025-11-05 14:45:20 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:20 -     Using EntryID as identifier: 4781197956028175 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:20 -   PROCESS: New email - AW: QN211494205 (PNR 10002007; VC 206430): Contain... (Hash: 4781197956028175)
+2025-11-05 14:45:20 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:20 -     DEBUG: Found 10 attachments to process
+2025-11-05 14:45:20 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:20 -     Using EntryID as identifier: 4780717755998893 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:20 -   PROCESS: New email - RE: QN211494205 (PNR 10002007; VC 206430): Contain... (Hash: 4780717755998893)
+2025-11-05 14:45:20 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:20 -     DEBUG: Found 13 attachments to process
+2025-11-05 14:45:20 -   Downloading attachment: M-Bond 200.pdf
+2025-11-05 14:45:20 -   Downloaded successfully: M-Bond 200.pdf
+2025-11-05 14:45:20 -   Downloading attachment: VISHAY 3312_14413_M-Bond_200_Adhesive_EU_DE_SDS_2020_878_V4.0_dt.pdf
+2025-11-05 14:45:21 -   Downloaded successfully: VISHAY 3312_14413_M-Bond_200_Adhesive_EU_DE_SDS_2020_878_V4.0_dt.pdf
+2025-11-05 14:45:21 -   Downloading attachment: 10002007_GBU_M-Bond 200 Adhesive_A&T_MRO&DEV_Inst_24.05.2018.xlsx
+2025-11-05 14:45:23 -   Downloaded successfully: 10002007_GBU_M-Bond 200 Adhesive_A&T_MRO&DEV_Inst_24.05.2018.xlsx
+2025-11-05 14:45:23 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:23 -     Using EntryID as identifier: 4771834054988664 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:23 -   PROCESS: New email - WG: QN211494205 (PNR 10002007; VC 206430): Contain... (Hash: 4771834054988664)
+2025-11-05 14:45:23 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:23 -     DEBUG: Found 14 attachments to process
+2025-11-05 14:45:23 -   Downloading attachment: 10002007-M-Bond-200-adhesive.pdf
+2025-11-05 14:45:23 -   Downloaded successfully: 10002007-M-Bond-200-adhesive.pdf
+2025-11-05 14:45:23 -   Downloading attachment: M-Bond 200.pdf
+2025-11-05 14:45:24 -   Downloaded successfully: M-Bond 200.pdf
+2025-11-05 14:45:24 -   Downloading attachment: 6849_14414_M-Bond_200_Catalyst_C_SDS_EU_DE_SDS_2020_878_V4.0_Final.pdf
+2025-11-05 14:45:24 -   Downloaded successfully: 6849_14414_M-Bond_200_Catalyst_C_SDS_EU_DE_SDS_2020_878_V4.0_Final.pdf
+2025-11-05 14:45:24 -   Downloading attachment: 10002007_GBU_M-Bond 200 Adhesive_A&T_MRO&DEV_Inst_24.05.2018.xlsx
+2025-11-05 14:45:26 -   Downloaded successfully: 10002007_GBU_M-Bond 200 Adhesive_A&T_MRO&DEV_Inst_24.05.2018.xlsx
+2025-11-05 14:45:26 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:26 -     Using EntryID as identifier: 4767992454754408 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:26 -   PROCESS: New email - AW: QN211494205 (PNR 10002007; VC 206430): Contain... (Hash: 4767992454754408)
+2025-11-05 14:45:26 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:26 -     DEBUG: Found 14 attachments to process
+2025-11-05 14:45:26 -   Downloading attachment: 10002007-M-Bond-200-adhesive.pdf
+2025-11-05 14:45:26 -   Downloaded successfully: 10002007-M-Bond-200-adhesive.pdf
+2025-11-05 14:45:26 -   Downloading attachment: M-Bond 200.pdf
+2025-11-05 14:45:26 -   Downloaded successfully: M-Bond 200.pdf
+2025-11-05 14:45:27 -   Downloading attachment: 6849_14414_M-Bond_200_Catalyst_C_SDS_EU_DE_SDS_2020_878_V4.0_Final.pdf
+2025-11-05 14:45:27 -   Downloaded successfully: 6849_14414_M-Bond_200_Catalyst_C_SDS_EU_DE_SDS_2020_878_V4.0_Final.pdf
+2025-11-05 14:45:27 -   Downloading attachment: 10002007_GBU_M-Bond 200 Adhesive_A&T_MRO&DEV_Inst_24.05.2018.xlsx
+2025-11-05 14:45:29 -   Downloaded successfully: 10002007_GBU_M-Bond 200 Adhesive_A&T_MRO&DEV_Inst_24.05.2018.xlsx
+2025-11-05 14:45:29 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:29 -     Using EntryID as identifier: 7677081409231348 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:29 -   PROCESS: New email - Reminder: Genehmigungsumlauf PBR4126_2024-11... (Hash: 7677081409231348)
+2025-11-05 14:45:29 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:29 -     DEBUG: Found 9 attachments to process
+2025-11-05 14:45:29 -   Downloading attachment: 2024-059_PBR4126.pdf
+2025-11-05 14:45:29 -   Downloaded successfully: 2024-059_PBR4126.pdf
+2025-11-05 14:45:29 -   Downloading attachment: PBR4126_2024-11.pdf
+2025-11-05 14:45:29 -   Downloaded successfully: PBR4126_2024-11.pdf
+2025-11-05 14:45:29 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:29 -     Using EntryID as identifier: 7676841309216707 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:29 -   PROCESS: New email - Reminder: Änderung QCTP BRR 0192... (Hash: 7676841309216707)
+2025-11-05 14:45:29 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:29 -     DEBUG: Found 9 attachments to process
+2025-11-05 14:45:29 -   Downloading attachment: qctpbrr0192_10.pdf
+2025-11-05 14:45:29 -   Downloaded successfully: qctpbrr0192_10.pdf
+2025-11-05 14:45:29 -   Downloading attachment: 2025-016_QCTP BRR0192.pdf
+2025-11-05 14:45:30 -   Downloaded successfully: 2025-016_QCTP BRR0192.pdf
+2025-11-05 14:45:30 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:30 -     Using EntryID as identifier: 4767752354739767 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:30 -   PROCESS: New email - WG: QN211494205 (PNR 10002007; VC 206430): Contain... (Hash: 4767752354739767)
+2025-11-05 14:45:30 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:30 -     DEBUG: Found 14 attachments to process
+2025-11-05 14:45:30 -   Downloading attachment: 10002007-M-Bond-200-adhesive.pdf
+2025-11-05 14:45:30 -   Downloaded successfully: 10002007-M-Bond-200-adhesive.pdf
+2025-11-05 14:45:30 -   Downloading attachment: M-Bond 200.pdf
+2025-11-05 14:45:30 -   Downloaded successfully: M-Bond 200.pdf
+2025-11-05 14:45:30 -   Downloading attachment: 6849_14414_M-Bond_200_Catalyst_C_SDS_EU_DE_SDS_2020_878_V4.0_Final.pdf
+2025-11-05 14:45:30 -   Downloaded successfully: 6849_14414_M-Bond_200_Catalyst_C_SDS_EU_DE_SDS_2020_878_V4.0_Final.pdf
+2025-11-05 14:45:30 -   Downloading attachment: 10002007_GBU_M-Bond 200 Adhesive_A&T_MRO&DEV_Inst_24.05.2018.xlsx
+2025-11-05 14:45:33 -   Downloaded successfully: 10002007_GBU_M-Bond 200 Adhesive_A&T_MRO&DEV_Inst_24.05.2018.xlsx
+2025-11-05 14:45:33 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:33 -     Using EntryID as identifier: 4767512254725126 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:33 -   PROCESS: New email - AW: QN211494205 (PNR 10002007; VC 206430): Contain... (Hash: 4767512254725126)
+2025-11-05 14:45:33 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:33 -     DEBUG: Found 10 attachments to process
+2025-11-05 14:45:33 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:33 -     Using EntryID as identifier: 7675880909158143 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:33 -   PROCESS: New email - WG: ChemScan: Stellungnahmen 157/2025... (Hash: 7675880909158143)
+2025-11-05 14:45:33 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:33 -     DEBUG: Found 4 attachments to process
+2025-11-05 14:45:33 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:33 -     Using EntryID as identifier: 7678762109275271 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:33 -   PROCESS: New email - WG: Antrag für Teile und Stoffe - 155/2025_0104162... (Hash: 7678762109275271)
+2025-11-05 14:45:33 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:33 -     DEBUG: Found 6 attachments to process
+2025-11-05 14:45:33 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:33 -     Using EntryID as identifier: 7678522009260630 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:33 -   PROCESS: New email - WG: ChemScan: Stellungnahmen 157/2025... (Hash: 7678522009260630)
+2025-11-05 14:45:33 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:33 -     DEBUG: Found 8 attachments to process
+2025-11-05 14:45:33 -   Downloading attachment: 157-2025_01044395.pdf
+2025-11-05 14:45:33 -   Downloaded successfully: 157-2025_01044395.pdf
+2025-11-05 14:45:33 -   Downloading attachment: 157-2025_01044395_PDB.pdf
+2025-11-05 14:45:33 -   Downloaded successfully: 157-2025_01044395_PDB.pdf
+2025-11-05 14:45:33 -   Downloading attachment: 157-2025_01044395_Hand-Spülmittel.pdf
+2025-11-05 14:45:33 -   Downloaded successfully: 157-2025_01044395_Hand-Spülmittel.pdf
+2025-11-05 14:45:33 -   Downloading attachment: 157-2025_01044395_SDB.pdf
+2025-11-05 14:45:33 -   Downloaded successfully: 157-2025_01044395_SDB.pdf
+2025-11-05 14:45:34 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:34 -     Using EntryID as identifier: 7675880909099579 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:34 -   PROCESS: New email -  Reminder PBR4121 zum Ballot... (Hash: 7675880909099579)
+2025-11-05 14:45:34 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:34 -     DEBUG: Found 8 attachments to process
+2025-11-05 14:45:34 -   Downloading attachment: PBR4121_2025-06.pdf
+2025-11-05 14:45:34 -   Downloaded successfully: PBR4121_2025-06.pdf
+2025-11-05 14:45:34 -   Downloading attachment: 2025-011_PBR4121.pdf
+2025-11-05 14:45:34 -   Downloaded successfully: 2025-011_PBR4121.pdf
+2025-11-05 14:45:34 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:34 -     Using EntryID as identifier: 5607381505454762 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:34 -   PROCESS: New email - WG: QN211494205 (PNR 10002007; VC 206430): Contain... (Hash: 5607381505454762)
+2025-11-05 14:45:34 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:34 -     DEBUG: Found 11 attachments to process
+2025-11-05 14:45:34 -   Downloading attachment: 082-2013_10002007 (01041928).pdf
+2025-11-05 14:45:34 -   Downloaded successfully: 082-2013_10002007 (01041928).pdf
+2025-11-05 14:45:34 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:34 -     Using EntryID as identifier: 5589133903814970 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:34 -   PROCESS: New email - AW: P15 RTSS Casting (KH25932) RQSC Update - RQSC1... (Hash: 5589133903814970)
+2025-11-05 14:45:34 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:34 -     DEBUG: Found 8 attachments to process
+2025-11-05 14:45:34 -   Downloading attachment: RQSC Justification Report Signatory Sheet.pdf
+2025-11-05 14:45:34 -   Downloaded successfully: RQSC Justification Report Signatory Sheet.pdf
+2025-11-05 14:45:34 -   Downloading attachment: Justification Report RQSC10X-4031_04.docx
+2025-11-05 14:45:34 -   Downloaded successfully: Justification Report RQSC10X-4031_04.docx
+2025-11-05 14:45:35 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:35 -     Using EntryID as identifier: 5588893803800329 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:35 -   PROCESS: New email - AW: Quy Luus Elternzeit - Vertretung?... (Hash: 5588893803800329)
+2025-11-05 14:45:35 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:35 -     DEBUG: Found 5 attachments to process
+2025-11-05 14:45:35 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:35 -     Using EntryID as identifier: 5591294803888175 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:35 -   PROCESS: New email - AW: 01043975 has a action in quarantine database (... (Hash: 5591294803888175)
+2025-11-05 14:45:35 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:35 -     DEBUG: Found 6 attachments to process
+2025-11-05 14:45:35 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:35 -     Using EntryID as identifier: 5588413603712483 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:35 -   PROCESS: New email - AW: 01043975 has a action in quarantine database (... (Hash: 5588413603712483)
+2025-11-05 14:45:35 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:35 -     DEBUG: Found 6 attachments to process
+2025-11-05 14:45:35 -   Downloading attachment: 029-2023_01043975_Freigabe_Verwendung.pdf
+2025-11-05 14:45:35 -   Downloaded successfully: 029-2023_01043975_Freigabe_Verwendung.pdf
+2025-11-05 14:45:35 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:35 -     Using EntryID as identifier: 7674680409026374 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:35 -   PROCESS: New email - Anlage von TKZ01043583 und TKZ01041274 in der Chem... (Hash: 7674680409026374)
+2025-11-05 14:45:35 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:35 -     DEBUG: Found 9 attachments to process
+2025-11-05 14:45:35 -   Downloading attachment: 018-2020_01043583.pdf
+2025-11-05 14:45:35 -   Downloaded successfully: 018-2020_01043583.pdf
+2025-11-05 14:45:35 -   Downloading attachment: 018-2020_01043583_Zyglo ZL-56.pdf
+2025-11-05 14:45:35 -   Downloaded successfully: 018-2020_01043583_Zyglo ZL-56.pdf
+2025-11-05 14:45:35 -   Downloading attachment: 018-2020_01043583_DE-ZYGLOZL-56CLPSDSVER17-2-22-08-2018.pdf
+2025-11-05 14:45:36 -   Downloaded successfully: 018-2020_01043583_DE-ZYGLOZL-56CLPSDSVER17-2-22-08-2018.pdf
+2025-11-05 14:45:36 -   Downloading attachment: 030-2023_01041274_Freigabe.pdf
+2025-11-05 14:45:36 -   Downloaded successfully: 030-2023_01041274_Freigabe.pdf
+2025-11-05 14:45:36 -   Downloading attachment: 030-2023_01041274_ARDROX9D4A_30687748_SDB_DE_2-1_25.07.2022.PDF
+2025-11-05 14:45:36 -   Downloaded successfully: 030-2023_01041274_ARDROX9D4A_30687748_SDB_DE_2-1_25.07.2022.PDF
+2025-11-05 14:45:36 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:36 -     Using EntryID as identifier: 5586732903434304 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:36 -   PROCESS: New email - AW: PNR 01044273 Erstbestellung... (Hash: 5586732903434304)
+2025-11-05 14:45:36 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:36 -     DEBUG: Found 8 attachments to process
+2025-11-05 14:45:36 -   Downloading attachment: 050-2025_01044273_LAB.pdf
+2025-11-05 14:45:36 -   Downloaded successfully: 050-2025_01044273_LAB.pdf
+2025-11-05 14:45:36 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:36 -     Using EntryID as identifier: 5579529902877946 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:36 -   PROCESS: New email - HOHE PRIORITÄT - Antrag Teile & Stoffe 151/2025 (T... (Hash: 5579529902877946)
+2025-11-05 14:45:36 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:36 -     DEBUG: Found 11 attachments to process
+2025-11-05 14:45:36 -   Downloading attachment: 151-2025_01044388_HSE.pdf
+2025-11-05 14:45:36 -   Downloaded successfully: 151-2025_01044388_HSE.pdf
+2025-11-05 14:45:36 -   Downloading attachment: 151-2025_01044388_BONDERITE-S-MA-527-HT-en_GL.pdf
+2025-11-05 14:45:36 -   Downloaded successfully: 151-2025_01044388_BONDERITE-S-MA-527-HT-en_GL.pdf
+2025-11-05 14:45:37 -   Downloading attachment: 151-2025_01044388_Produktzulassung.JPG
+2025-11-05 14:45:37 -   Downloaded successfully: 151-2025_01044388_Produktzulassung.JPG
+2025-11-05 14:45:37 -   Downloading attachment: 009-2025_01044238_Freigabe_Gebindekorrektur_TDB.pdf
+2025-11-05 14:45:37 -   Downloaded successfully: 009-2025_01044238_Freigabe_Gebindekorrektur_TDB.pdf
+2025-11-05 14:45:37 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:37 -     Using EntryID as identifier: 5576648702643690 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:37 -   PROCESS: New email - Antrag T&S Huby Swabs Wattestäbchen ... (Hash: 5576648702643690)
+2025-11-05 14:45:37 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:37 -     DEBUG: Found 8 attachments to process
+2025-11-05 14:45:37 -   Downloading attachment: TDS HUBY SWAB BB002.pdf
+2025-11-05 14:45:37 -   Downloaded successfully: TDS HUBY SWAB BB002.pdf
+2025-11-05 14:45:37 -   Downloading attachment: Certificate of Non-Use of Chlorine & Silicon - HUBY SWAB.PDF
+2025-11-05 14:45:37 -   Downloaded successfully: Certificate of Non-Use of Chlorine & Silicon - HUBY SWAB.PDF
+2025-11-05 14:45:37 -   Downloading attachment: SDS HUBY SWAB.PDF
+2025-11-05 14:45:37 -   Downloaded successfully: SDS HUBY SWAB.PDF
+2025-11-05 14:45:37 -   Downloading attachment: HALOGEN HUBY SWAB 03.04.26.pdf
+2025-11-05 14:45:37 -   Downloaded successfully: HALOGEN HUBY SWAB 03.04.26.pdf
+2025-11-05 14:45:37 -   Downloading attachment: Antrag T&S Huby Swab Wattestäbchen.pdf
+2025-11-05 14:45:37 -   Downloaded successfully: Antrag T&S Huby Swab Wattestäbchen.pdf
+2025-11-05 14:45:37 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:37 -     Using EntryID as identifier: 5576168502555844 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:37 -   PROCESS: New email - AW: Antrag für Teile und Stoffe Amperit 831.359 Hö... (Hash: 5576168502555844)
+2025-11-05 14:45:38 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:38 -     DEBUG: Found 7 attachments to process
+2025-11-05 14:45:38 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:38 -     Using EntryID as identifier: 5575448202511921 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:38 -   PROCESS: New email - SAP ANPASSUNG: P/N 01044348... (Hash: 5575448202511921)
+2025-11-05 14:45:38 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:38 -     DEBUG: Found 8 attachments to process
+2025-11-05 14:45:38 -   Downloading attachment: 118-2025_01044348_Laborfreigabe_Verwendung.pdf
+2025-11-05 14:45:38 -   Downloaded successfully: 118-2025_01044348_Laborfreigabe_Verwendung.pdf
+2025-11-05 14:45:38 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:38 -     Using EntryID as identifier: 7677561609143502 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:38 -   PROCESS: New email - AW: QCTP BRR0187 Change Request... (Hash: 7677561609143502)
+2025-11-05 14:45:38 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:38 -     DEBUG: Found 8 attachments to process
+2025-11-05 14:45:38 -   Downloading attachment: qctpbrr0187_5.docx
+2025-11-05 14:45:38 -   Downloaded successfully: qctpbrr0187_5.docx
+2025-11-05 14:45:38 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:38 -     Using EntryID as identifier: 7673960108982451 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:38 -   PROCESS: New email - AW: QCTP BRR0186 Change Request... (Hash: 7673960108982451)
+2025-11-05 14:45:39 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:39 -     DEBUG: Found 8 attachments to process
+2025-11-05 14:45:39 -   Downloading attachment: qctpbrr0186_5.docx
+2025-11-05 14:45:39 -   Downloaded successfully: qctpbrr0186_5.docx
+2025-11-05 14:45:39 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:39 -     Using EntryID as identifier: 5594656203683201 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:39 -   PROCESS: New email - WG: PNR 01044273 Erstbestellung... (Hash: 5594656203683201)
+2025-11-05 14:45:39 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:39 -     DEBUG: Found 9 attachments to process
+2025-11-05 14:45:39 -   Downloading attachment: 045-2025_01044273_HSE_labor_Freigabe-Verwendung.pdf
+2025-11-05 14:45:39 -   Downloaded successfully: 045-2025_01044273_HSE_labor_Freigabe-Verwendung.pdf
+2025-11-05 14:45:39 -   Downloading attachment: 050-2025_01044273_Erstbestellung.pdf
+2025-11-05 14:45:39 -   Downloaded successfully: 050-2025_01044273_Erstbestellung.pdf
+2025-11-05 14:45:39 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:39 -     Using EntryID as identifier: 7676601209084938 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:39 -   PROCESS: New email - AW: Change Request PBR4124... (Hash: 7676601209084938)
+2025-11-05 14:45:39 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:39 -     DEBUG: Found 7 attachments to process
+2025-11-05 14:45:39 -   Downloading attachment: 2023-089_PBR4124.docx
+2025-11-05 14:45:39 -   Downloaded successfully: 2023-089_PBR4124.docx
+2025-11-05 14:45:39 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:39 -     Using EntryID as identifier: 5592735403507509 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:39 -   PROCESS: New email - AW: P/N 01044348... (Hash: 5592735403507509)
+2025-11-05 14:45:39 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:39 -     DEBUG: Found 3 attachments to process
+2025-11-05 14:45:39 -   Downloading attachment: 118-2025_01044348_Laborfreigabe_Verwendung.pdf
+2025-11-05 14:45:39 -   Downloaded successfully: 118-2025_01044348_Laborfreigabe_Verwendung.pdf
+2025-11-05 14:45:39 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:39 -     Using EntryID as identifier: 5595136403595355 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:39 -   PROCESS: New email - RQSC16Q-4007 Is.3 Pearl700 LP1 Blades... (Hash: 5595136403595355)
+2025-11-05 14:45:40 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:40 -     DEBUG: Found 7 attachments to process
+2025-11-05 14:45:40 -   Downloading attachment: RQSC-16Q-4007_Issue 3_Final.pdf
+2025-11-05 14:45:40 -   Downloaded successfully: RQSC-16Q-4007_Issue 3_Final.pdf
+2025-11-05 14:45:40 -   Downloading attachment: Referenzblatt - Granta MI.pdf
+2025-11-05 14:45:40 -   Downloaded successfully: Referenzblatt - Granta MI.pdf
+2025-11-05 14:45:40 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:40 -     Using EntryID as identifier: 5591054703346458 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:40 -   PROCESS: New email - Bearbeitungsstatus der Anträge Teile & Stoffe... (Hash: 5591054703346458)
+2025-11-05 14:45:40 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:40 -     DEBUG: Found 5 attachments to process
+2025-11-05 14:45:40 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:40 -     Using EntryID as identifier: 5590814603331817 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:40 -   PROCESS: New email - AW: Antrag für Teile und Stoffe Amperit 831.359 Hö... (Hash: 5590814603331817)
+2025-11-05 14:45:40 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:40 -     DEBUG: Found 7 attachments to process
+2025-11-05 14:45:40 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:40 -     Using EntryID as identifier: 5578329402101973 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:40 -   PROCESS: New email - Freischaltung für Oberursel Rahmenvertrag, Fa. Avi... (Hash: 5578329402101973)
+2025-11-05 14:45:40 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:40 -     DEBUG: Found 4 attachments to process
+2025-11-05 14:45:40 -   Downloading attachment: AW FREIGABE - ATS 0502025 TKZ 01044273 Rocol AEROSPEC 300.msg
+2025-11-05 14:45:40 -   Downloaded successfully: AW FREIGABE - ATS 0502025 TKZ 01044273 Rocol AEROSPEC 300.msg
+2025-11-05 14:45:40 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:40 - Writing JSON file: C:\Users\u8064927\Desktop\normie\outlook\analyze\mail\emails_inbox.json
+2025-11-05 14:45:41 - Processed 50 emails for Inbox
+2025-11-05 14:45:41 - Processing standard folder: Drafts
+2025-11-05 14:45:41 -   Found folder: Drafts (0 items)
+2025-11-05 14:45:41 - Processing folder 'Drafts' as 'Drafts'
+2025-11-05 14:45:41 - No existing email JSON found - will create new file
+2025-11-05 14:45:41 - Writing JSON file: C:\Users\u8064927\Desktop\normie\outlook\analyze\mail\emails_drafts.json
+2025-11-05 14:45:41 - Processed 0 emails for Drafts
+2025-11-05 14:45:41 - Processing standard folder: Sent Items
+2025-11-05 14:45:41 -   Found folder: Sent Items (0 items)
+2025-11-05 14:45:41 - Processing folder 'Sent Items' as 'Sent Items'
+2025-11-05 14:45:41 - No existing email JSON found - will create new file
+2025-11-05 14:45:41 - Writing JSON file: C:\Users\u8064927\Desktop\normie\outlook\analyze\mail\emails_sent_items.json
+2025-11-05 14:45:41 - Processed 0 emails for Sent Items
+2025-11-05 14:45:41 - Processing standard folder: Deleted Items
+2025-11-05 14:45:41 -   Found folder: Deleted Items (1 items)
+2025-11-05 14:45:41 - Processing folder 'Deleted Items' as 'Deleted Items'
+2025-11-05 14:45:41 - No existing email JSON found - will create new file
+2025-11-05 14:45:41 -     Using EntryID as identifier: 6063363442870811 (from 0000000037131A407E618D4D853369...)
+2025-11-05 14:45:41 -   PROCESS: New email - RE: ESID Nummern... (Hash: 6063363442870811)
+2025-11-05 14:45:41 -     DEBUG: Starting attachment processing...
+2025-11-05 14:45:41 -     DEBUG: Found 7 attachments to process
+2025-11-05 14:45:41 -     DEBUG: Email processing complete, incrementing count...
+2025-11-05 14:45:41 - Writing JSON file: C:\Users\u8064927\Desktop\normie\outlook\analyze\mail\emails_deleted_items.json
+2025-11-05 14:45:41 - Processed 1 emails for Deleted Items
+2025-11-05 14:45:41 - Standard folder processing completed
+2025-11-05 14:45:41 - === Universal Email Extraction Completed ===
