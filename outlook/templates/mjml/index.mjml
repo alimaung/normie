@@ -1,0 +1,193 @@
+<mjml>
+  <mj-head>
+    <mj-title>Application Registered - Standardization Approval Workflow</mj-title>
+    <mj-preview>Your consumables and materials supply request has been registered</mj-preview>
+    <mj-attributes>
+      <mj-all font-family="Arial, sans-serif" />
+      <mj-text font-size="14px" color="#333333" line-height="1.6" />
+      <mj-button background-color="#0066cc" color="white" font-size="16px" font-weight="bold" border-radius="4px" />
+    </mj-attributes>
+    <mj-style inline="inline">
+      .header-logo {
+        max-width: 200px;
+        height: auto;
+      }
+      .application-box {
+        background-color: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 20px;
+        margin: 20px 0;
+      }
+      .status-badge {
+        background-color: #28a745;
+        color: white;
+        padding: 6px 12px;
+        border-radius: 20px;
+        font-size: 12px;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+      .info-row {
+        margin: 10px 0;
+        padding: 8px 0;
+        border-bottom: 1px solid #e9ecef;
+      }
+      .info-label {
+        font-weight: bold;
+        color: #495057;
+        margin-bottom: 4px;
+      }
+      .info-value {
+        color: #212529;
+        font-size: 16px;
+      }
+    </mj-style>
+  </mj-head>
+  <mj-body background-color="#f4f4f4">
+    <!-- Header Section -->
+    <mj-section background-color="#ffffff" padding="20px 0">
+      <mj-column>
+        <mj-image 
+          src="https://via.placeholder.com/200x60/0066cc/ffffff?text=COMPANY+LOGO" 
+          alt="Company Logo" 
+          width="200px"
+          css-class="header-logo"
+          align="left"
+        />
+      </mj-column>
+      <mj-column>
+        <mj-text align="right" font-size="12px" color="#6c757d">
+          Standardization Department<br/>
+          Supply Chain Management
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Main Content Section -->
+    <mj-section background-color="#ffffff" padding="40px 20px">
+      <mj-column>
+        <!-- Status Badge -->
+        <mj-text align="center" padding="0 0 20px 0">
+          <span class="status-badge">Application Registered</span>
+        </mj-text>
+
+        <!-- Main Heading -->
+        <mj-text align="center" font-size="28px" font-weight="bold" color="#212529" padding="0 0 10px 0">
+          Your Request Has Been Registered
+        </mj-text>
+
+        <!-- Subheading -->
+        <mj-text align="center" font-size="16px" color="#6c757d" padding="0 0 30px 0">
+          Consumables and Materials Supply Request
+        </mj-text>
+
+        <!-- Greeting -->
+        <mj-text font-size="16px" padding="0 0 20px 0">
+          Dear Applicant,
+        </mj:text>
+
+        <!-- Main Message -->
+        <mj-text font-size="16px" padding="0 0 20px 0">
+          We are pleased to confirm that your consumables and materials supply request has been successfully registered in our standardization approval workflow system. Your application is now being processed by our team.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Application Details Section -->
+    <mj-section background-color="#ffffff" padding="0 20px 40px 20px">
+      <mj-column>
+        <mj-text font-size="18px" font-weight="bold" color="#212529" padding="0 0 20px 0">
+          Application Details
+        </mj-text>
+        
+        <!-- Application Details Box -->
+        <mj-raw>
+          <div class="application-box">
+            <div class="info-row">
+              <div class="info-label">Application ID</div>
+              <div class="info-value">XXX/YYYY</div>
+            </div>
+            <div class="info-row">
+              <div class="info-label">Part Number</div>
+              <div class="info-value">XXXXXXXX</div>
+            </div>
+            <div class="info-row" style="border-bottom: none;">
+              <div class="info-label">Product Name</div>
+              <div class="info-value">Product Name String</div>
+            </div>
+          </div>
+        </mj-raw>
+
+        <!-- Next Steps -->
+        <mj-text font-size="16px" padding="20px 0">
+          <strong>What happens next?</strong><br/>
+          • Your application will be reviewed by our standardization team<br/>
+          • You will receive updates via email as your application progresses<br/>
+          • The review process typically takes 5-10 business days<br/>
+          • You can track your application status using the button below
+        </mj-text>
+
+        <!-- Call to Action Button -->
+        <mj-button 
+          href="#" 
+          background-color="#0066cc" 
+          color="white" 
+          font-size="16px" 
+          font-weight="bold" 
+          border-radius="6px"
+          padding="15px 30px"
+          align="center"
+        >
+          View Application Status
+        </mj-button>
+
+        <!-- Additional Information -->
+        <mj-text font-size="14px" color="#6c757d" padding="30px 0 0 0">
+          If you have any questions about your application or need to make changes, please contact our standardization team at <a href="mailto:standardization@company.com" style="color: #0066cc;">standardization@company.com</a> or call us at +1 (555) 123-4567.
+        </mj-text>
+      </mj-column>
+    </mj-section>
+
+    <!-- Divider -->
+    <mj-section background-color="#ffffff" padding="0 20px">
+      <mj-column>
+        <mj-divider border-color="#e9ecef" border-width="1px" />
+      </mj-column>
+    </mj-section>
+
+    <!-- Footer Section -->
+    <mj-section background-color="#f8f9fa" padding="30px 20px">
+      <mj-column>
+        <mj-text align="center" font-size="14px" color="#6c757d" padding="0 0 15px 0">
+          <strong>Standardization Department</strong><br/>
+          Supply Chain Management Division
+        </mj-text>
+        
+        <mj-text align="center" font-size="12px" color="#6c757d" padding="0 0 15px 0">
+          123 Business Avenue, Suite 456<br/>
+          Business City, BC 12345<br/>
+          Phone: +1 (555) 123-4567 | Email: standardization@company.com
+        </mj-text>
+
+        <!-- Social Links -->
+        <mj-social font-size="15px" icon-size="20px" mode="horizontal" padding="15px 0" align="center">
+          <mj-social-element name="linkedin" href="#" />
+          <mj-social-element name="twitter" href="#" />
+          <mj-social-element name="facebook" href="#" />
+        </mj-social>
+
+        <!-- Footer Text -->
+        <mj-text align="center" font-size="11px" color="#868e96" padding="20px 0 0 0">
+          This is an automated message from the Standardization Approval Workflow System.<br/>
+          Please do not reply directly to this email.<br/><br/>
+          
+          © 2024 Company Name. All rights reserved.<br/>
+          <a href="#" style="color: #6c757d;">Privacy Policy</a> | 
+          <a href="#" style="color: #6c757d;">Terms of Service</a> | 
+          <a href="#" style="color: #6c757d;">Unsubscribe</a>
+        </mj-text>
+      </mj-column>
+    </mj-section>
+  </mj-body>
+</mjml>
