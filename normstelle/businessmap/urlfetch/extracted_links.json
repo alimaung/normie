@@ -1,0 +1,64 @@
+{
+  "https://demo.kanbanize.com/openapi": {
+    "page_info": {
+      "url": "https://demo.kanbanize.com/openapi",
+      "status_code": 200,
+      "content_type": "text/html; charset=UTF-8",
+      "content_length": 1348,
+      "structure": {
+        "title": "Businessmap API Documentation",
+        "meta_description": "",
+        "h1_count": 0,
+        "h2_count": 0,
+        "h3_count": 0,
+        "nav_elements": 0,
+        "main_content": 0,
+        "article_count": 0,
+        "section_count": 0
+      }
+    },
+    "links": [
+      {
+        "url": "https://demo.kanbanize.com/application-v1110/resources/libs/stoplight/styles.min.css",
+        "original_href": "/application-v1110/resources/libs/stoplight/styles.min.css",
+        "tag": "link",
+        "attribute": "href",
+        "text": "",
+        "title": "",
+        "class": [],
+        "id": "",
+        "rel": [
+          "stylesheet"
+        ],
+        "type": "",
+        "categories": [
+          "internal",
+          "stylesheet"
+        ]
+      },
+      {
+        "url": "https://demo.kanbanize.com/application-v1110/resources/libs/stoplight/web-components.min.js",
+        "original_href": "/application-v1110/resources/libs/stoplight/web-components.min.js",
+        "tag": "script",
+        "attribute": "src",
+        "text": "",
+        "title": "",
+        "class": [],
+        "id": "",
+        "type": "application/javascript",
+        "async": false,
+        "defer": false,
+        "categories": [
+          "javascript",
+          "internal"
+        ]
+      }
+    ],
+    "link_count": 2,
+    "categories_summary": {
+      "internal": 2,
+      "stylesheet": 1,
+      "javascript": 1
+    }
+  }
+}

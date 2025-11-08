@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport"/>
+<title>Businessmap API Documentation</title>
+<script src="application-v1110_resources_libs_stoplight_web-components.min.js" type="application/javascript"></script>
+<link href="application-v1110_resources_libs_stoplight_styles.min.css" rel="stylesheet"/>
+<style>
+            /* Hide the "Powered by Stoplight" branding */
+            a[href*="stoplight.io"] {
+                display: none;
+            }
+
+            /* Hide the "Security" section from the Overview */
+            div[data-test="security"] {
+                display: none;
+            }
+
+            /* Hide the "Additional Information" section from the Overview */
+            div[data-test="additional-info"] {
+                display: none;
+            }
+
+            /* Make sidebar scrollable */
+            .sl-elements-api > div.sl-flex > div.sl-flex-col {
+                max-height: 100vh;
+            }
+        </style>
+</head>
+<body>
+<elements-api ,="" apidescriptionurl="openapi.json" hideschemas="true" layout="responsive" logo="favicon.ico" router="hash"></elements-api>
+</body>
+</html>
