@@ -59,6 +59,12 @@
     "extraction_method": "optimized_hybrid_v2",
     "color_extraction_method": "win32_com_single_session",
     "performance": {
+      "total_time": 38.05685353279114,
+      "load_time": 11.802568674087524,
+      "data_read_time": 0.1280069351196289,
+      "color_extraction_time": 25.952134370803833,
+      "hyperlink_extraction_time": 0.05129432678222656,
+      "data_processing_time": 0.10774564743041992,
       "total_time": 93.21775364875793,
       "load_time": 26.53720450401306,
       "data_read_time": 0.24863934516906738,
@@ -71,7 +77,10 @@
     "url_cleanup": {
       "applied": true,
       "total_changes": 17033,
+      "total_changes": 17033,
       "statistics": {
+        "total_urls": 17296,
+        "fixed_urls": 17033,
         "total_urls": 17296,
         "fixed_urls": 17033,
         "ignored_urls": 262,
@@ -101439,6 +101448,7 @@
       "Abschluss": "2013-02-11 00:00:00+00:00",
       "Abteilung": "OU-51",
       "Einsatzort": "OU",
+      "Antragsteller": "Schrage, S.",
       "Antragsteller": "Schrage, S.",
       "Antrag": {
         "display_text": "pdf",
@@ -206191,7 +206201,9 @@
       "Datum": null,
       "Bearbeiter": null,
       "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "17.04.2023: Freigabe zur Erstbestellung\n24.05.2023: Lieferdokumente erhalten und ans Labor, samt Antrag 029/2023 zwecks Erteilung der Freigabe zur Verwendung weitergeleitet. Anfrage Labor an Quy Luu: 2.1 Zertifikat vom Hersteller soll vom Lieferanten noch nachgereicht werden (siehe Anhang zur Email zur Laborfreigabe unter Spalte 'R').\n31.05.2023: Freigabe zur Verwendung vom Labor, samt erhaltene benötigte Zertifikate, erhalten (siehe Spalte 'R').\n31.05.2023: Anfrage an H&B Stoffe RR DW zwecks Anpassung vom SAP Einkaufsbestelltext ; am selben Tag erledigt (siehe 'Historie').\n23.10.2025: Info vom Wareneingang, 2.1 Zertifikat fehlt bei Lieferung, QN wird erstellt. 24.10.2025: Lieferschein wurde nachgereicht (siehe Spalte Y). Zusatzinfo am selben Tag von Tim Helbing erhalten: \"QIR not in line with N0122 & WI.SP. 0301 has been superseeded\".\n27.10.2025: Anfrage an Tim Helbing, ob nach der Nachlieferung vom Lieferschein und QIR Korrektur, das Problem gelöst ist. Antwort am selben Tag erhalten. 03.11.2025: QIR durch Marcle Mundhas angepasst (siehe Spalte 'Z') ",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "17.04.2023: Freigabe zur Erstbestellung\n24.05.2023: Lieferdokumente erhalten und ans Labor, samt Antrag 029/2023 zwecks Erteilung der Freigabe zur Verwendung weitergeleitet. Anfrage Labor an Quy Luu: 2.1 Zertifikat vom Hersteller soll vom Lieferanten noch nachgereicht werden (siehe Anhang zur Email zur Laborfreigabe unter Spalte 'R').\n31.05.2023: Freigabe zur Verwendung vom Labor, samt erhaltene benötigte Zertifikate, erhalten (siehe Spalte 'R').\n31.05.2023: Anfrage an H&B Stoffe RR DW zwecks Anpassung vom SAP Einkaufsbestelltext ; am selben Tag erledigt (siehe 'Historie').\n23.10.2025: Info vom Wareneingang, 2.1 Zertifikat fehlt bei Lieferung, QN wird erstellt. 24.10.2025: Lieferschein wurde nachgereicht (siehe Spalte Y). Zusatzinfo am selben Tag von Tim Helbing erhalten: \"QIR not in line with N0122 & WI.SP. 0301 has been superseeded\".\n27.10.2025: Anfrage an Tim Helbing, ob nach der Nachlieferung vom Lieferschein und QIR Korrektur, das Problem gelöst ist. Antwort am selben Tag erhalten. 03.11.2025: QIR durch Marcle Mundhas angepasst (siehe Spalte 'Z') ",
       "GSK-Nr.": "msg",
+      "Lieferant": "msg",
       "Lieferant": "msg",
       "Hersteller": null
     },
@@ -219169,11 +219181,13 @@
       "Änd. Historie": {
         "display_text": "msg",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\091-2024_01044194_WG%20KLÄRUNG%20ZUR%20LIEFERZERTIFIKATE%20FREIGABE%20ZUR%20VERWENDUNG.msg",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\091-2024_01044194_WG%20KLÄRUNG%20ZUR%20LIEFERZERTIFIKATE%20FREIGABE%20ZUR%20VERWENDUNG.msg",
         "original_url": null,
         "tooltip": ""
       },
       "Datum": "2025-08-26 00:00:00+00:00",
       "Bearbeiter": "H&B Stoffe RR DW (KLAERUNG zu Bestelldaten & Lieferzertifikate)",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "16.08.2024: Freigabe zur Erstbestellung.\n08.10.2024: Laborfreigabe zur Verwendung samt Lieferzertifikate erhalten (siehe Schriftverkehr)\n08.10.2024: Anfrage an H&B Stoffe RR DW zwecks Anpassung vom Einkaufsbestelltext. Am 09.10.2024 erledigt (siehe 'Sonstiges')\n26.08.2025: Anfrage an H&B Stoffe RR DW zwecks Kontrolle der Bestelldaten -> geliefert wurde bisher nicht das freigegebene Produkt, sondern das Produkt was erst jetzt über den Antrag 117/2025 freigegeben wurde. Anfrage von H&B Stoffe am 27.08. an Dengler weitergeleitet. Antwort am selben Tag erhalten. 29.08.2025: Antwort von H&B Stoffe an den Lieferant -> neue Bestellung wird durch Quy Luu ausgelöst. (siehe 'Historie')",
       "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "16.08.2024: Freigabe zur Erstbestellung.\n08.10.2024: Laborfreigabe zur Verwendung samt Lieferzertifikate erhalten (siehe Schriftverkehr)\n08.10.2024: Anfrage an H&B Stoffe RR DW zwecks Anpassung vom Einkaufsbestelltext. Am 09.10.2024 erledigt (siehe 'Sonstiges')\n26.08.2025: Anfrage an H&B Stoffe RR DW zwecks Kontrolle der Bestelldaten -> geliefert wurde bisher nicht das freigegebene Produkt, sondern das Produkt was erst jetzt über den Antrag 117/2025 freigegeben wurde. Anfrage von H&B Stoffe am 27.08. an Dengler weitergeleitet. Antwort am selben Tag erhalten. 29.08.2025: Antwort von H&B Stoffe an den Lieferant -> neue Bestellung wird durch Quy Luu ausgelöst. (siehe 'Historie')",
       "GSK-Nr.": null,
       "Lieferant": null,
@@ -228759,12 +228773,14 @@
       "Schriftverkehr": {
         "display_text": "msg",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\110-2025_xxxxxxxx_AW%20Antrag%20Teile%20Stoffe%20Never-Seez%20Pure%20Nickel.msg",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\110-2025_xxxxxxxx_AW%20Antrag%20Teile%20Stoffe%20Never-Seez%20Pure%20Nickel.msg",
         "original_url": null,
         "tooltip": ""
       },
       "Änd. Historie": null,
       "Datum": "2025-07-08 00:00:00+00:00",
       "Bearbeiter": "Antragstellerin",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Zweck des Antrags: Erweiterung des Anwendungsgebiets auf BR730C3\nTO DO: klären welche TKZ verwendet werden soll, da im letzten Antrag 156/2014 für OU wurde die neue TKZ 01042592 angelegt mit Hinweis auf Nummerkollision in SAP für die TKZ 10004395 für DW (Anträge 188/2013 & 032/2003). Die letzte TKZ scheint aber in SAP noch vorhanden zu sein!\n08.07.2025: Anfrage an Antragstellerin zwecks Lieferung eines aktuellen SDBs (siehe Schriftverkehr).",
       "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Zweck des Antrags: Erweiterung des Anwendungsgebiets auf BR730C3\nTO DO: klären welche TKZ verwendet werden soll, da im letzten Antrag 156/2014 für OU wurde die neue TKZ 01042592 angelegt mit Hinweis auf Nummerkollision in SAP für die TKZ 10004395 für DW (Anträge 188/2013 & 032/2003). Die letzte TKZ scheint aber in SAP noch vorhanden zu sein!\n08.07.2025: Anfrage an Antragstellerin zwecks Lieferung eines aktuellen SDBs (siehe Schriftverkehr).",
       "GSK-Nr.": null,
       "Lieferant": null,
@@ -229729,6 +229745,7 @@
       "Produktzulassungs-spezifikation": null,
       "Eingang": "2025-07-21 00:00:00+00:00",
       "Abschluss": "2025-09-10 00:00:00+00:00",
+      "Abschluss": "2025-09-10 00:00:00+00:00",
       "Abteilung": "AT&C-ME-MT",
       "Einsatzort": "DW",
       "Antragsteller": "Löbl, F.",
@@ -229765,6 +229782,15 @@
         "original_url": null,
         "tooltip": ""
       },
+      "Änd. Historie": {
+        "display_text": "msg",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\128-2025_01044355_RE%20AfTS%20-%20Fuchs%20Acticide%20MV_STORNIERUNG.msg",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Datum": null,
+      "Bearbeiter": null,
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Keine SAP-Anlage\nCheck MLC132: kein Treffer\n11.08.2025: Anfrage per Online Kontakt Formular beim Hersteller Fuchs für die Zusendung des Technische Datenblattes für die Labor Bewertung.\n12.08.2025: Produktdatenblatt von der Firma Fuchs per Mail erhalten (siehe Schriftverkehr Verlinkung). Antrag ans Labor weitergeleitet.\n10.09.2025: Antragsteller zieht Antrag zurück, da existierende Alternative gefunden wurde (siehe 'Historie')",
       "Änd. Historie": {
         "display_text": "msg",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\128-2025_01044355_RE%20AfTS%20-%20Fuchs%20Acticide%20MV_STORNIERUNG.msg",
@@ -230345,6 +230371,8 @@
     {
       "color": "#CCFF99",
       "status": "approved for first order",
+      "color": "#CCFF99",
+      "status": "approved for first order",
       "Antrag-nummer": "138/2025",
       "Teile-nummer": "01044369",
       "Freigabe": "TBD",
@@ -230359,6 +230387,7 @@
       "Antragsteller": "Sommer, J.",
       "Antrag": {
         "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\138-2025_01044369_Erstbestellung.pdf",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\138-2025_01044369_Erstbestellung.pdf",
         "original_url": null,
         "tooltip": ""
@@ -230384,11 +230413,16 @@
       "Datum": "2025-11-07 00:00:00+00:00",
       "Bearbeiter": "Freigabe zur Erstbestellung",
       "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "kein TDB erhalten ; Declaration of Conformity ist aus dem Jahr 2018 (siehe Spalte O)\n26.08.2025: Antrag ans Labor weitergeleitet",
+      "Datum": "2025-11-07 00:00:00+00:00",
+      "Bearbeiter": "Freigabe zur Erstbestellung",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "kein TDB erhalten ; Declaration of Conformity ist aus dem Jahr 2018 (siehe Spalte O)\n26.08.2025: Antrag ans Labor weitergeleitet",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
     },
     {
+      "color": "#CCFF99",
+      "status": "approved for first order",
       "color": "#CCFF99",
       "status": "approved for first order",
       "Antrag-nummer": "139/2025",
@@ -230405,6 +230439,7 @@
       "Antragsteller": "Sommer, J.",
       "Antrag": {
         "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\139-2025_01044370_Erstbestellung.pdf",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\139-2025_01044370_Erstbestellung.pdf",
         "original_url": null,
         "tooltip": ""
@@ -230427,6 +230462,9 @@
       "Sonstiges": null,
       "Schriftverkehr": null,
       "Änd. Historie": null,
+      "Datum": "2025-11-07 00:00:00+00:00",
+      "Bearbeiter": "Freigabe zur Erstbestellung",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "kein TDB erhalten ; Declaration of Conformity ist aus dem Jahr 2018 (siehe Spalte O)\n26.08.2025: Antrag ans Labor weitergeleitet",
       "Datum": "2025-11-07 00:00:00+00:00",
       "Bearbeiter": "Freigabe zur Erstbestellung",
       "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "kein TDB erhalten ; Declaration of Conformity ist aus dem Jahr 2018 (siehe Spalte O)\n26.08.2025: Antrag ans Labor weitergeleitet",
@@ -230737,8 +230775,11 @@
     {
       "color": "#CCFFCC",
       "status": "approved",
+      "color": "#CCFFCC",
+      "status": "approved",
       "Antrag-nummer": "145/2025",
       "Teile-nummer": "01044383",
+      "Freigabe": "Ja",
       "Freigabe": "Ja",
       "relevant für Luftfahrtteile": "Ja",
       "Benennung": "Lösungsmittelentfetter",
@@ -230746,11 +230787,13 @@
       "Produktzulassungs-spezifikation": "CSS255, Type A, OMAT 1/257Z",
       "Eingang": "2025-09-11 00:00:00+00:00",
       "Abschluss": "2025-11-07 00:00:00+00:00",
+      "Abschluss": "2025-11-07 00:00:00+00:00",
       "Abteilung": "A&T-ME",
       "Einsatzort": "DW",
       "Antragsteller": "Halavin, W.",
       "Antrag": {
         "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\145-2025_01044383_Freigabe.pdf",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\145-2025_01044383_Freigabe.pdf",
         "original_url": null,
         "tooltip": ""
@@ -230784,10 +230827,14 @@
       "Schriftverkehr": {
         "display_text": "msg",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\145-2025_01044383_WG%20SAP%20ANPASSUNG%20-%20WG%20PN%2001044383.msg",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\145-2025_01044383_WG%20SAP%20ANPASSUNG%20-%20WG%20PN%2001044383.msg",
         "original_url": null,
         "tooltip": ""
       },
       "Änd. Historie": null,
+      "Datum": null,
+      "Bearbeiter": null,
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Ähnlich zugelassene Stoffe: 027/2024, TKZ01044116 und 137/2023, TKZ01044083\nMLC132 ergab keine Treffer\n01.10.2025: Freigabe zur Erstbestellung\n05.11.2025: Laborfreigabe zur Verwendung samt Zertifikate erhalten. 06.11.2025: Anfrage an H&B Stoffe zwecks SAP Anpassung vom Einkaufsbestelltext. Am 07.11. erledigt (siehe Schriftverkehr)",
       "Datum": null,
       "Bearbeiter": null,
       "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Ähnlich zugelassene Stoffe: 027/2024, TKZ01044116 und 137/2023, TKZ01044083\nMLC132 ergab keine Treffer\n01.10.2025: Freigabe zur Erstbestellung\n05.11.2025: Laborfreigabe zur Verwendung samt Zertifikate erhalten. 06.11.2025: Anfrage an H&B Stoffe zwecks SAP Anpassung vom Einkaufsbestelltext. Am 07.11. erledigt (siehe Schriftverkehr)",
@@ -231580,6 +231627,18 @@
         "original_url": null,
         "tooltip": ""
       },
+      "Gefährdungsprüfung": {
+        "display_text": "Komp A",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\159-2025_10002007_M-Bond%20200%20Adhesive_ChemScan.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Sonstiges": {
+        "display_text": "Komp B",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\159-2025_10002007_M-Bond%20200%20Catalyst%20C_ChemScan.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Schriftverkehr": {
         "display_text": "msg",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\159-2025_10002007_RE%20QN211494205%20(PNR%2010002007;%20VC%20206430)%20Containment%20%20Problem%20Resolution%20required%20ACTION.msg",
@@ -231592,6 +231651,8 @@
         "original_url": null,
         "tooltip": ""
       },
+      "Datum": "2025-11-10 00:00:00+00:00",
+      "Bearbeiter": "Umweltschutz (K. Bartz)",
       "Datum": "2025-11-10 00:00:00+00:00",
       "Bearbeiter": "Umweltschutz (K. Bartz)",
       "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Zur Info: GBU vom Antragsteller erhalten, allerdings scheint diese GBU sich lediglich auf das 'Adhesive' ohne Berücksichtigung vom Catalyst' zu beziehen.\nTDS von der internetseite des Herstellers heruntergeladen\n03.11.2025: Anfrage an H&B Stoffe zur Klärung einiger Fragen zum Antrag, Am selben Tag an Antragsteller weitergeleitet, Stellungnahme vom Antragsteller und aktuelles SDB zum 'Adhesive' noch am selben Tag erhalten ; siehe Schriftverkehr. Info zu Feld 12 (Teamleiter) -> Laut Antragsteller: \"Stoff wird in mehreren Bereichen Instr. Lab. und MTOC verwendet daher ist es schwierig nen Teamleiter zu benennen\" ; im Hinblick auf den Antragsteller wird vorerst Sören Kopsch (Instrumentierung) und für MTOC Jan Keller eingetragen.\n04.11.2025: Anfrage von Marcel Mundhas bezüglich \"wie dokumentiert jeder Bereichsleiter, dass er das Material für den Einsatz in seinen Bereich kontrolliert hat\". Antwort vom Antragsteller am selben Tag, samt Info zum Bereichsleiter für das Instrumentierungs Labor, siehe Spalte Y.  ",

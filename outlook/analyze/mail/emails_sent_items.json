@@ -1,12 +1,9 @@
 {
-  "timestamp": "2025-11-05 14:45:41",
+  "timestamp": "2025-11-11 15:37:41",
   "folder_name": "Sent Items",
-  "actual_folder_name": "Sent Items",
-  "folder_path": "\\\\IRM-Standardisation-Office\\Sent Items",
+  "folder_path": "/Sent Items",
   "total_items": 0,
-  "emails": [
-
-  ],
+  "emails": [],
   "extracted_count": 0
 }
 
