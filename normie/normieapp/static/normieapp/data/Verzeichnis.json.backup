@@ -59,12 +59,12 @@
     "extraction_method": "optimized_hybrid_v2",
     "color_extraction_method": "win32_com_single_session",
     "performance": {
-      "total_time": 37.4900541305542,
-      "load_time": 11.176694393157959,
-      "data_read_time": 0.12707877159118652,
-      "color_extraction_time": 26.00276827812195,
-      "hyperlink_extraction_time": 0.0480046272277832,
-      "data_processing_time": 0.11558794975280762,
+      "total_time": 32.51979184150696,
+      "load_time": 11.352262258529663,
+      "data_read_time": 0.11365962028503418,
+      "color_extraction_time": 20.90179705619812,
+      "hyperlink_extraction_time": 0.043906450271606445,
+      "data_processing_time": 0.09220671653747559,
       "library_used": "openpyxl",
       "excel_app_needed": false
     },

@@ -2,8 +2,8 @@ import os
 import json
 import extract_msg
 
-ROOT_FOLDER = r"V:\normie stuff\mail\data"
-OUTPUT_JSON = "parsed_messages.json"
+ROOT_FOLDER = r"D:\mail\data"
+OUTPUT_JSON = "parsed_messages2.json"
 
 results = []
 

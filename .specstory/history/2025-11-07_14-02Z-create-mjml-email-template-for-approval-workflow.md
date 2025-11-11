@@ -2501,7 +2501,11 @@ python send_email.py --file environment.html
 # Send to Safety Department
 python send_email.py --file safety.html
 
-# Send to Laboratory
+# Send to Laboratory Department
+python send_email.py --file labs.html
+```
+
+Each template maintains the professional Rolls-Royce Cobalt design while being customized for the specific department's requirements and workflow needs!
 
 ---
 
