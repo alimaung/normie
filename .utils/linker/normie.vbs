@@ -1,0 +1,1 @@
+CreateObject("WScript.Shell").Run "cmd /c start http://10.158.112.164:8001", 0, False

@@ -794,3 +794,906 @@
 2025-11-11 15:37:41 - Created empty JSON file: emails_outbox.json
 2025-11-11 15:37:41 - Completed processing folder: Outbox
 2025-11-11 15:37:41 - === IRM Email Download Completed ===
+2025-11-12 17:32:30 - === Starting IRM Email Download ===
+2025-11-12 17:32:30 - Target account: IRM-Standardisation-Office
+2025-11-12 17:32:30 - Output folder: C:\Users\u8064927\Desktop\normie\outlook\analyze\mail\
+2025-11-12 17:32:30 - Attachments folder: C:\Users\u8064927\Desktop\normie\outlook\analyze\mail\data\
+2025-11-12 17:32:30 - Searching for IRM account: IRM-Standardisation-Office
+2025-11-12 17:32:30 - Found IRM store: IRM-Standardisation-Office
+2025-11-12 17:32:31 - Added folder to processing list: Inbox (Items: 224)
+2025-11-12 17:32:31 - Added folder to processing list: Sent Items (Items: 0)
+2025-11-12 17:32:37 - Added folder to processing list: Deleted Items (Items: 1)
+2025-11-12 17:32:42 - Added folder to processing list: Drafts (Items: 0)
+2025-11-12 17:32:42 - Added folder to processing list: Outbox (Items: 0)
+2025-11-12 17:32:47 - Total IRM folders found: 5
+2025-11-12 17:32:47 - Found 5 IRM folders to process
+2025-11-12 17:32:47 - Processing folder: Inbox (Path: \\IRM-Standardisation-Office\Inbox, Items: 224)
+2025-11-12 17:32:47 - Processing up to 100 emails from Inbox
+2025-11-12 17:32:47 - Loading existing email JSON for comparison...
+2025-11-12 17:32:58 -   Loaded existing email: : 
+2025-11-12 17:32:58 -   Loaded existing email: : 
+2025-11-12 17:32:58 -   Loaded existing email: : 
+2025-11-12 17:32:58 -   Loaded existing email: : 
+2025-11-12 17:32:58 -   Loaded existing email: : 
+2025-11-12 17:32:58 -   Loaded existing email: : 
+2025-11-12 17:32:58 -   Loaded existing email: : 
+2025-11-12 17:32:58 -   Loaded existing email: : 
+2025-11-12 17:32:58 -   Loaded existing email: : 
+2025-11-12 17:32:58 -   Loaded existing email: : 
+2025-11-12 17:32:58 -   Loaded existing email: : 
+2025-11-12 17:32:58 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 -   Loaded existing email: : 
+2025-11-12 17:32:59 - Loaded 1 existing emails from JSON
+2025-11-12 17:32:59 -     Generating hash for email: RE: Reminder PBR4121 zum Ballo
+2025-11-12 17:32:59 -     Using EntryID as identifier: 4780957856482046 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:32:59 -   PROCESS: New email - RE: Reminder PBR4121 zum Ballot... (Hash: 4780957856482046)
+2025-11-12 17:32:59 -     Creating folder and saving .msg file...
+2025-11-12 17:32:59 -     Saved .msg file: 4780957856482046.msg
+2025-11-12 17:32:59 -     Generating hash for email: RE: P/N 01044096 vendor 206430
+2025-11-12 17:32:59 -     Using EntryID as identifier: 4780717756467405 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:32:59 -   PROCESS: New email - RE: P/N 01044096 vendor 206430 insplot 4018314026... (Hash: 4780717756467405)
+2025-11-12 17:32:59 -     Creating folder and saving .msg file...
+2025-11-12 17:32:59 -     Saved .msg file: 4780717756467405.msg
+2025-11-12 17:32:59 -     Downloading attachment: 01044096.pdf
+2025-11-12 17:33:00 -     Downloaded successfully: 01044096.pdf
+2025-11-12 17:33:00 -     Downloading attachment: 041-2025_01044096.pdf
+2025-11-12 17:33:00 -     Downloaded successfully: 041-2025_01044096.pdf
+2025-11-12 17:33:00 -     Generating hash for email: RE: ATS 168-2025 TKZ 01044409 
+2025-11-12 17:33:00 -     Using EntryID as identifier: 4780477656452764 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:00 -   PROCESS: New email - RE: ATS 168-2025 TKZ 01044409 Tischauflage (aus SU... (Hash: 4780477656452764)
+2025-11-12 17:33:00 -     Creating folder and saving .msg file...
+2025-11-12 17:33:00 -     Saved .msg file: 4780477656452764.msg
+2025-11-12 17:33:00 -     Downloading attachment: 168-2025_01044409.pdf
+2025-11-12 17:33:00 -     Downloaded successfully: 168-2025_01044409.pdf
+2025-11-12 17:33:00 -     Generating hash for email: RE: ATS 158-2025 TKZ 01044396 
+2025-11-12 17:33:00 -     Using EntryID as identifier: 4780237556438123 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:00 -   PROCESS: New email - RE: ATS 158-2025 TKZ 01044396 Huby Swab - Cotton S... (Hash: 4780237556438123)
+2025-11-12 17:33:00 -     Creating folder and saving .msg file...
+2025-11-12 17:33:00 -     Saved .msg file: 4780237556438123.msg
+2025-11-12 17:33:00 -     Downloading attachment: 158-2025_01044396.pdf
+2025-11-12 17:33:00 -     Downloaded successfully: 158-2025_01044396.pdf
+2025-11-12 17:33:00 -     Generating hash for email: ATS 170-2025 TKZ 01044411 Fume
+2025-11-12 17:33:00 -     Using EntryID as identifier: 4779997456423482 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:00 -   PROCESS: New email - ATS 170-2025 TKZ 01044411 Fumed Silica Suspension ... (Hash: 4779997456423482)
+2025-11-12 17:33:00 -     Creating folder and saving .msg file...
+2025-11-12 17:33:00 -     Saved .msg file: 4779997456423482.msg
+2025-11-12 17:33:00 -     Downloading attachment: 170-2025_01044411_SDB.pdf
+2025-11-12 17:33:00 -     Downloaded successfully: 170-2025_01044411_SDB.pdf
+2025-11-12 17:33:00 -     Downloading attachment: 170-2025_01044411.pdf
+2025-11-12 17:33:00 -     Downloaded successfully: 170-2025_01044411.pdf
+2025-11-12 17:33:00 -     Generating hash for email: ATS 168-2025 TKZ 01044409 Tisc
+2025-11-12 17:33:00 -     Using EntryID as identifier: 4779757356408841 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:00 -   PROCESS: New email - ATS 168-2025 TKZ 01044409 Tischauflage (aus SUSTAR... (Hash: 4779757356408841)
+2025-11-12 17:33:00 -     Creating folder and saving .msg file...
+2025-11-12 17:33:00 -     Saved .msg file: 4779757356408841.msg
+2025-11-12 17:33:00 -     Downloading attachment: 168-2025_01044409_TDB.pdf
+2025-11-12 17:33:00 -     Downloaded successfully: 168-2025_01044409_TDB.pdf
+2025-11-12 17:33:00 -     Downloading attachment: 168-2025_01044409.pdf
+2025-11-12 17:33:00 -     Downloaded successfully: 168-2025_01044409.pdf
+2025-11-12 17:33:00 -     Generating hash for email: ATS 167-2025 TKZ 01044408 Nano
+2025-11-12 17:33:00 -     Using EntryID as identifier: 4777836556291713 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:00 -   PROCESS: New email - ATS 167-2025 TKZ 01044408 Nanocolor Eisen 3... (Hash: 4777836556291713)
+2025-11-12 17:33:00 -     Creating folder and saving .msg file...
+2025-11-12 17:33:00 -     Saved .msg file: 4777836556291713.msg
+2025-11-12 17:33:00 -     Downloading attachment: 167-2025_01044408_SDB.pdf
+2025-11-12 17:33:00 -     Downloaded successfully: 167-2025_01044408_SDB.pdf
+2025-11-12 17:33:00 -     Downloading attachment: 167-2025_01044408.pdf
+2025-11-12 17:33:00 -     Downloaded successfully: 167-2025_01044408.pdf
+2025-11-12 17:33:00 -     Generating hash for email: ATS 166-2025 TKZ 01044407 Nano
+2025-11-12 17:33:00 -     Using EntryID as identifier: 4777596456277072 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:00 -   PROCESS: New email - ATS 166-2025 TKZ 01044407 Nanocolor Kupfer 7... (Hash: 4777596456277072)
+2025-11-12 17:33:00 -     Creating folder and saving .msg file...
+2025-11-12 17:33:00 -     Saved .msg file: 4777596456277072.msg
+2025-11-12 17:33:00 -     Downloading attachment: 166-2025_01044407.pdf
+2025-11-12 17:33:00 -     Downloaded successfully: 166-2025_01044407.pdf
+2025-11-12 17:33:00 -     Downloading attachment: 166-2025_01044407_SDB.pdf
+2025-11-12 17:33:00 -     Downloaded successfully: 166-2025_01044407_SDB.pdf
+2025-11-12 17:33:00 -     Generating hash for email: ATS 165-2025 TKZ 01044406 Nano
+2025-11-12 17:33:00 -     Using EntryID as identifier: 4777356356262431 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:00 -   PROCESS: New email - ATS 165-2025 TKZ 01044406 Nanocolor Chromat 5... (Hash: 4777356356262431)
+2025-11-12 17:33:00 -     Creating folder and saving .msg file...
+2025-11-12 17:33:00 -     Saved .msg file: 4777356356262431.msg
+2025-11-12 17:33:00 -     Downloading attachment: 165-2025_01044406_SDB.pdf
+2025-11-12 17:33:00 -     Downloaded successfully: 165-2025_01044406_SDB.pdf
+2025-11-12 17:33:00 -     Downloading attachment: 165-2025_01044406.pdf
+2025-11-12 17:33:00 -     Downloaded successfully: 165-2025_01044406.pdf
+2025-11-12 17:33:00 -     Generating hash for email: ATS 164-2025 TKZ 01044405 Nano
+2025-11-12 17:33:00 -     Using EntryID as identifier: 4777116256247790 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:00 -   PROCESS: New email - ATS 164-2025 TKZ 01044405 Nanocolor gesamt - Chrom... (Hash: 4777116256247790)
+2025-11-12 17:33:00 -     Creating folder and saving .msg file...
+2025-11-12 17:33:00 -     Saved .msg file: 4777116256247790.msg
+2025-11-12 17:33:00 -     Downloading attachment: 164-2025_01044405_SDB.pdf
+2025-11-12 17:33:00 -     Downloaded successfully: 164-2025_01044405_SDB.pdf
+2025-11-12 17:33:00 -     Downloading attachment: 164-2025_01044405.pdf
+2025-11-12 17:33:00 -     Downloaded successfully: 164-2025_01044405.pdf
+2025-11-12 17:33:00 -     Generating hash for email: ATS 163-2025 TKZ 01044404 Nano
+2025-11-12 17:33:01 -     Using EntryID as identifier: 4776876156233149 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:01 -   PROCESS: New email - ATS 163-2025 TKZ 01044404 Nanocolor Nickel 4... (Hash: 4776876156233149)
+2025-11-12 17:33:01 -     Creating folder and saving .msg file...
+2025-11-12 17:33:01 -     Saved .msg file: 4776876156233149.msg
+2025-11-12 17:33:01 -     Downloading attachment: 163-2025_01044404_SDB.pdf
+2025-11-12 17:33:01 -     Downloaded successfully: 163-2025_01044404_SDB.pdf
+2025-11-12 17:33:01 -     Downloading attachment: 163-2025_01044404.pdf
+2025-11-12 17:33:01 -     Downloaded successfully: 163-2025_01044404.pdf
+2025-11-12 17:33:01 -     Generating hash for email: ATS 161-2025 TKZ 01044402 Nano
+2025-11-12 17:33:01 -     Using EntryID as identifier: 4776636056218508 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:01 -   PROCESS: New email - ATS 161-2025 TKZ 01044402 Nanocolor Cadmium 2... (Hash: 4776636056218508)
+2025-11-12 17:33:01 -     Creating folder and saving .msg file...
+2025-11-12 17:33:01 -     Saved .msg file: 4776636056218508.msg
+2025-11-12 17:33:01 -     Downloading attachment: 161-2025_01044402_SDB.pdf
+2025-11-12 17:33:01 -     Downloaded successfully: 161-2025_01044402_SDB.pdf
+2025-11-12 17:33:01 -     Downloading attachment: 161-2025_01044402.pdf
+2025-11-12 17:33:01 -     Downloaded successfully: 161-2025_01044402.pdf
+2025-11-12 17:33:01 -     Generating hash for email: ATS 158-2025 TKZ 01044396 Huby
+2025-11-12 17:33:01 -     Using EntryID as identifier: 4776395956203867 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:01 -   PROCESS: New email - ATS 158-2025 TKZ 01044396 Huby Swab - Cotton Stem ... (Hash: 4776395956203867)
+2025-11-12 17:33:01 -     Creating folder and saving .msg file...
+2025-11-12 17:33:01 -     Saved .msg file: 4776395956203867.msg
+2025-11-12 17:33:01 -     Downloading attachment: 158-2025_01044396_SDB.PDF
+2025-11-12 17:33:01 -     Downloaded successfully: 158-2025_01044396_SDB.PDF
+2025-11-12 17:33:01 -     Downloading attachment: 158-2025_01044396_TDB.pdf
+2025-11-12 17:33:01 -     Downloaded successfully: 158-2025_01044396_TDB.pdf
+2025-11-12 17:33:01 -     Downloading attachment: 158-2025_01044396.pdf
+2025-11-12 17:33:01 -     Downloaded successfully: 158-2025_01044396.pdf
+2025-11-12 17:33:01 -     Generating hash for email: Antrag für Teile und Stoffe
+2025-11-12 17:33:01 -     Using EntryID as identifier: 4776155856189226 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:01 -   PROCESS: New email - Antrag für Teile und Stoffe... (Hash: 4776155856189226)
+2025-11-12 17:33:01 -     Creating folder and saving .msg file...
+2025-11-12 17:33:01 -     Saved .msg file: 4776155856189226.msg
+2025-11-12 17:33:01 -     Downloading attachment: T00221 Antrag Teile und Stoffe für Ring Protectoren.pdf
+2025-11-12 17:33:01 -     Downloaded successfully: T00221 Antrag Teile und Stoffe für Ring Protectoren.pdf
+2025-11-12 17:33:01 -     Downloading attachment: datasheet_1000,1001 ring cover.pdf
+2025-11-12 17:33:01 -     Downloaded successfully: datasheet_1000,1001 ring cover.pdf
+2025-11-12 17:33:01 -     Downloading attachment: QUOTE_QTE80060536_V2.pdf
+2025-11-12 17:33:01 -     Downloaded successfully: QUOTE_QTE80060536_V2.pdf
+2025-11-12 17:33:01 -     Generating hash for email: AfT&S 169/2025 (TKZ 01044410) 
+2025-11-12 17:33:01 -     Using EntryID as identifier: 4779277156320995 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:01 -   PROCESS: New email - AfT&S 169/2025 (TKZ 01044410) - MONTAGEMITTEL Ultr... (Hash: 4779277156320995)
+2025-11-12 17:33:01 -     Creating folder and saving .msg file...
+2025-11-12 17:33:01 -     Saved .msg file: 4779277156320995.msg
+2025-11-12 17:33:01 -     Downloading attachment: 169-2025_01044410.pdf
+2025-11-12 17:33:01 -     Downloaded successfully: 169-2025_01044410.pdf
+2025-11-12 17:33:01 -     Downloading attachment: 169-2025_01044410_AF1_SDS_GER(v1).pdf
+2025-11-12 17:33:01 -     Downloaded successfully: 169-2025_01044410_AF1_SDS_GER(v1).pdf
+2025-11-12 17:33:01 -     Generating hash for email: WG: Reminder PBR4121 zum Ballo
+2025-11-12 17:33:01 -     Using EntryID as identifier: 7679002209407040 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:01 -   PROCESS: New email - WG: Reminder PBR4121 zum Ballot... (Hash: 7679002209407040)
+2025-11-12 17:33:01 -     Creating folder and saving .msg file...
+2025-11-12 17:33:01 -     Saved .msg file: 7679002209407040.msg
+2025-11-12 17:33:01 -     Downloading attachment: 2025-011_PBR4121 (002).pdf
+2025-11-12 17:33:01 -     Downloaded successfully: 2025-011_PBR4121 (002).pdf
+2025-11-12 17:33:01 -     Downloading attachment: PBR4121_2025-06.pdf
+2025-11-12 17:33:01 -     Downloaded successfully: PBR4121_2025-06.pdf
+2025-11-12 17:33:01 -     Generating hash for email: TKZ-Antrag für Oxidpoliersuspe
+2025-11-12 17:33:01 -     Using EntryID as identifier: 4779037056306354 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:01 -   PROCESS: New email - TKZ-Antrag für Oxidpoliersuspension neuer Herstell... (Hash: 4779037056306354)
+2025-11-12 17:33:01 -     Creating folder and saving .msg file...
+2025-11-12 17:33:01 -     Saved .msg file: 4779037056306354.msg
+2025-11-12 17:33:01 -     Downloading attachment: TKZ-OPS.pdf
+2025-11-12 17:33:01 -     Downloaded successfully: TKZ-OPS.pdf
+2025-11-12 17:33:01 -     Downloading attachment: Fumed_Silica_Suspension_0_2_-m_Alkaline_DE (1).pdf
+2025-11-12 17:33:02 -     Downloaded successfully: Fumed_Silica_Suspension_0_2_-m_Alkaline_DE (1).pdf
+2025-11-12 17:33:02 -     Generating hash for email: RE: AfTuS Ultrachem #1 
+2025-11-12 17:33:02 -     Using EntryID as identifier: 4778556856277072 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:02 -   PROCESS: New email - RE: AfTuS Ultrachem #1 ... (Hash: 4778556856277072)
+2025-11-12 17:33:02 -     Creating folder and saving .msg file...
+2025-11-12 17:33:02 -     Saved .msg file: 4778556856277072.msg
+2025-11-12 17:33:02 -     Downloading attachment: AF1_SDS_GER(v1).pdf
+2025-11-12 17:33:02 -     Downloaded successfully: AF1_SDS_GER(v1).pdf
+2025-11-12 17:33:02 -     Generating hash for email: RE: AfTuS Ultrachem #1 
+2025-11-12 17:33:02 -     Using EntryID as identifier: 4778316756262431 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:02 -   PROCESS: New email - RE: AfTuS Ultrachem #1 ... (Hash: 4778316756262431)
+2025-11-12 17:33:02 -     Creating folder and saving .msg file...
+2025-11-12 17:33:02 -     Saved .msg file: 4778316756262431.msg
+2025-11-12 17:33:02 -     Downloading attachment: SDS_Ultrachem-Assembly-Fluid-1-4oz-Tube.pdf
+2025-11-12 17:33:02 -     Downloaded successfully: SDS_Ultrachem-Assembly-Fluid-1-4oz-Tube.pdf
+2025-11-12 17:33:02 -     Downloading attachment: TDS_Ultrachem-Assembly-Fluid-1-4oz-Tube-TDS.pdf
+2025-11-12 17:33:02 -     Downloaded successfully: TDS_Ultrachem-Assembly-Fluid-1-4oz-Tube-TDS.pdf
+2025-11-12 17:33:02 -     Generating hash for email: AW: AfTuS Ultrachem #1 
+2025-11-12 17:33:02 -     Using EntryID as identifier: 4774475156028175 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:02 -   PROCESS: New email - AW: AfTuS Ultrachem #1 ... (Hash: 4774475156028175)
+2025-11-12 17:33:02 -     Creating folder and saving .msg file...
+2025-11-12 17:33:02 -     Saved .msg file: 4774475156028175.msg
+2025-11-12 17:33:02 -     Downloading attachment: OMat_1069_AfTuS.pdf
+2025-11-12 17:33:02 -     Downloaded successfully: OMat_1069_AfTuS.pdf
+2025-11-12 17:33:02 -     Generating hash for email: AfTuS Ultrachem #1 
+2025-11-12 17:33:02 -     Using EntryID as identifier: 4774235056013534 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:02 -   PROCESS: New email - AfTuS Ultrachem #1 ... (Hash: 4774235056013534)
+2025-11-12 17:33:02 -     Creating folder and saving .msg file...
+2025-11-12 17:33:02 -     Saved .msg file: 4774235056013534.msg
+2025-11-12 17:33:02 -     Downloading attachment: OMat_1069_AfTuS.pdf
+2025-11-12 17:33:02 -     Downloaded successfully: OMat_1069_AfTuS.pdf
+2025-11-12 17:33:02 -     Generating hash for email: RE: Missing RQSC16Q-4004 in Gr
+2025-11-12 17:33:02 -     Using EntryID as identifier: 4773994955998893 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:02 -   PROCESS: New email - RE: Missing RQSC16Q-4004 in Granta... (Hash: 4773994955998893)
+2025-11-12 17:33:02 -     Creating folder and saving .msg file...
+2025-11-12 17:33:02 -     Saved .msg file: 4773994955998893.msg
+2025-11-12 17:33:02 -     Generating hash for email: Missing RQSC16Q-4004 in Granta
+2025-11-12 17:33:02 -     Using EntryID as identifier: 4777596456159944 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:02 -   PROCESS: New email - Missing RQSC16Q-4004 in Granta... (Hash: 4777596456159944)
+2025-11-12 17:33:02 -     Creating folder and saving .msg file...
+2025-11-12 17:33:02 -     Saved .msg file: 4777596456159944.msg
+2025-11-12 17:33:02 -     Generating hash for email: RE: AfT&S 160/2025 (TKZ 010444
+2025-11-12 17:33:02 -     Using EntryID as identifier: 4776876156116021 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:02 -   PROCESS: New email - RE: AfT&S 160/2025 (TKZ 01044401) - CHEMISCHE ANAL... (Hash: 4776876156116021)
+2025-11-12 17:33:02 -     Creating folder and saving .msg file...
+2025-11-12 17:33:02 -     Saved .msg file: 4776876156116021.msg
+2025-11-12 17:33:02 -     Generating hash for email: AfT&S 162/2025 (TKZ 01044403) 
+2025-11-12 17:33:02 -     Using EntryID as identifier: 4774475155969611 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:02 -   PROCESS: New email - AfT&S 162/2025 (TKZ 01044403) - CHEMISCHE ANALYTIK... (Hash: 4774475155969611)
+2025-11-12 17:33:02 -     Creating folder and saving .msg file...
+2025-11-12 17:33:02 -     Saved .msg file: 4774475155969611.msg
+2025-11-12 17:33:02 -     Downloading attachment: 162-2025_01044403_Umweltschutz.pdf
+2025-11-12 17:33:02 -     Downloaded successfully: 162-2025_01044403_Umweltschutz.pdf
+2025-11-12 17:33:02 -     Downloading attachment: 162-2025_01044403_Rundküvettentest NANOCOLOR Sulfat HR 1000.pdf
+2025-11-12 17:33:02 -     Downloaded successfully: 162-2025_01044403_Rundküvettentest NANOCOLOR Sulfat HR 1000.pdf
+2025-11-12 17:33:02 -     Downloading attachment: 162-2025_01044403_Sicherheitsdatenblatt NANOCOLOR Sulfat HR 1000.pdf
+2025-11-12 17:33:02 -     Downloaded successfully: 162-2025_01044403_Sicherheitsdatenblatt NANOCOLOR Sulfat HR 1000.pdf
+2025-11-12 17:33:02 -     Downloading attachment: 162-2025_01044403_NANOCOLOR Sulfat HR 1000_ChemScan.pdf
+2025-11-12 17:33:02 -     Downloaded successfully: 162-2025_01044403_NANOCOLOR Sulfat HR 1000_ChemScan.pdf
+2025-11-12 17:33:02 -     Generating hash for email: AfT&S 160/2025 (TKZ 01044401) 
+2025-11-12 17:33:02 -     Using EntryID as identifier: 4773034555881765 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:02 -   PROCESS: New email - AfT&S 160/2025 (TKZ 01044401) - CHEMISCHE ANALYTIK... (Hash: 4773034555881765)
+2025-11-12 17:33:02 -     Creating folder and saving .msg file...
+2025-11-12 17:33:03 -     Saved .msg file: 4773034555881765.msg
+2025-11-12 17:33:03 -     Downloading attachment: 160-2025_01044401_Umweltschutz.pdf
+2025-11-12 17:33:03 -     Downloaded successfully: 160-2025_01044401_Umweltschutz.pdf
+2025-11-12 17:33:03 -     Downloading attachment: 160-2025_01044401_Rundküvettentest NANOCOLOR Zink 6.pdf
+2025-11-12 17:33:03 -     Downloaded successfully: 160-2025_01044401_Rundküvettentest NANOCOLOR Zink 6.pdf
+2025-11-12 17:33:03 -     Downloading attachment: 160-2025_01044401_Sicherheitsdatenblatt Zink 6.pdf
+2025-11-12 17:33:03 -     Downloaded successfully: 160-2025_01044401_Sicherheitsdatenblatt Zink 6.pdf
+2025-11-12 17:33:03 -     Downloading attachment: 160-2025_01044401_Nanocolor Zink 6_ChemScan.pdf
+2025-11-12 17:33:03 -     Downloaded successfully: 160-2025_01044401_Nanocolor Zink 6_ChemScan.pdf
+2025-11-12 17:33:03 -     Generating hash for email: AfT&S 159/2025 (TKZ 10002007) 
+2025-11-12 17:33:03 -     Using EntryID as identifier: 9764428871389763 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:03 -   PROCESS: New email - AfT&S 159/2025 (TKZ 10002007) - KLEBER M-Bond 200 ... (Hash: 9764428871389763)
+2025-11-12 17:33:03 -     Creating folder and saving .msg file...
+2025-11-12 17:33:03 -     Saved .msg file: 9764428871389763.msg
+2025-11-12 17:33:03 -     Generating hash for email: AW: RQSC16Q-4004
+2025-11-12 17:33:03 -     Using EntryID as identifier: 7678281909363117 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:03 -   PROCESS: New email - AW: RQSC16Q-4004... (Hash: 7678281909363117)
+2025-11-12 17:33:03 -     Creating folder and saving .msg file...
+2025-11-12 17:33:03 -     Saved .msg file: 7678281909363117.msg
+2025-11-12 17:33:03 -     Generating hash for email: AW: RQSC16Q-4004
+2025-11-12 17:33:03 -     Using EntryID as identifier: 7678522009377758 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:03 -   PROCESS: New email - AW: RQSC16Q-4004... (Hash: 7678522009377758)
+2025-11-12 17:33:03 -     Creating folder and saving .msg file...
+2025-11-12 17:33:03 -     Saved .msg file: 7678522009377758.msg
+2025-11-12 17:33:03 -     Downloading attachment: 2022-061_RQSC16Q-4004.pdf
+2025-11-12 17:33:03 -     Downloaded successfully: 2022-061_RQSC16Q-4004.pdf
+2025-11-12 17:33:03 -     Generating hash for email: WG: New CAP Document
+2025-11-12 17:33:03 -     Using EntryID as identifier: 7678041809348476 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:03 -   PROCESS: New email - WG: New CAP Document... (Hash: 7678041809348476)
+2025-11-12 17:33:03 -     Creating folder and saving .msg file...
+2025-11-12 17:33:03 -     Saved .msg file: 7678041809348476.msg
+2025-11-12 17:33:03 -     Generating hash for email: AW: DIN EN ISO 14253
+2025-11-12 17:33:03 -     Using EntryID as identifier: 7677801709333835 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:03 -   PROCESS: New email - AW: DIN EN ISO 14253... (Hash: 7677801709333835)
+2025-11-12 17:33:03 -     Creating folder and saving .msg file...
+2025-11-12 17:33:03 -     Saved .msg file: 7677801709333835.msg
+2025-11-12 17:33:03 -     Generating hash for email: Datenkarten Nummernvergabe
+2025-11-12 17:33:03 -     Using EntryID as identifier: 7677561609319194 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:03 -   PROCESS: New email - Datenkarten Nummernvergabe... (Hash: 7677561609319194)
+2025-11-12 17:33:03 -     Creating folder and saving .msg file...
+2025-11-12 17:33:03 -     Saved .msg file: 7677561609319194.msg
+2025-11-12 17:33:03 -     Generating hash for email: WG: Change Request QCTP BRR009
+2025-11-12 17:33:03 -     Using EntryID as identifier: 7680923009465604 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:03 -   PROCESS: New email - WG: Change Request QCTP BRR0092... (Hash: 7680923009465604)
+2025-11-12 17:33:03 -     Creating folder and saving .msg file...
+2025-11-12 17:33:03 -     Saved .msg file: 7680923009465604.msg
+2025-11-12 17:33:03 -     Downloading attachment: 2024-051_QCTP BRR0092.docx
+2025-11-12 17:33:03 -     Downloaded successfully: 2024-051_QCTP BRR0092.docx
+2025-11-12 17:33:03 -     Downloading attachment: qctpbrr0092_9.doc
+2025-11-12 17:33:03 -     Downloaded successfully: qctpbrr0092_9.doc
+2025-11-12 17:33:03 -     Generating hash for email: Offene LA Überarbeitungen LA36
+2025-11-12 17:33:03 -     Using EntryID as identifier: 7680202709421681 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:03 -   PROCESS: New email - Offene LA Überarbeitungen LA361, LA102, LA362, LA0... (Hash: 7680202709421681)
+2025-11-12 17:33:03 -     Creating folder and saving .msg file...
+2025-11-12 17:33:03 -     Saved .msg file: 7680202709421681.msg
+2025-11-12 17:33:03 -     Downloading attachment: 2024-043_LA352.pdf
+2025-11-12 17:33:03 -     Downloaded successfully: 2024-043_LA352.pdf
+2025-11-12 17:33:03 -     Downloading attachment: 2024-038_LA361.pdf
+2025-11-12 17:33:03 -     Downloaded successfully: 2024-038_LA361.pdf
+2025-11-12 17:33:03 -     Downloading attachment: 2024-041_LA102.pdf
+2025-11-12 17:33:04 -     Downloaded successfully: 2024-041_LA102.pdf
+2025-11-12 17:33:04 -     Downloading attachment: 2024-069_LA364.pdf
+2025-11-12 17:33:04 -     Downloaded successfully: 2024-069_LA364.pdf
+2025-11-12 17:33:04 -     Downloading attachment: 2024-068_LA096.pdf
+2025-11-12 17:33:04 -     Downloaded successfully: 2024-068_LA096.pdf
+2025-11-12 17:33:04 -     Generating hash for email: AW: DIN EN ISO 14253
+2025-11-12 17:33:04 -     Using EntryID as identifier: 7679722509392399 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:04 -   PROCESS: New email - AW: DIN EN ISO 14253... (Hash: 7679722509392399)
+2025-11-12 17:33:04 -     Creating folder and saving .msg file...
+2025-11-12 17:33:04 -     Saved .msg file: 7679722509392399.msg
+2025-11-12 17:33:04 -     Downloading attachment: Search-04.11.2025_12.08.csv
+2025-11-12 17:33:04 -     Downloaded successfully: Search-04.11.2025_12.08.csv
+2025-11-12 17:33:04 -     Generating hash for email: 2te Erinnerung: Änderungsantra
+2025-11-12 17:33:04 -     Using EntryID as identifier: 7677801709275271 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:04 -   PROCESS: New email - 2te Erinnerung: Änderungsantrag LA354 & LA069... (Hash: 7677801709275271)
+2025-11-12 17:33:04 -     Creating folder and saving .msg file...
+2025-11-12 17:33:04 -     Saved .msg file: 7677801709275271.msg
+2025-11-12 17:33:04 -     Generating hash for email: Reminder: CR und Dokument 0289
+2025-11-12 17:33:04 -     Using EntryID as identifier: 7677561609260630 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:04 -   PROCESS: New email - Reminder: CR und Dokument 0289 3875... (Hash: 7677561609260630)
+2025-11-12 17:33:04 -     Creating folder and saving .msg file...
+2025-11-12 17:33:04 -     Saved .msg file: 7677561609260630.msg
+2025-11-12 17:33:04 -     Downloading attachment: 0289 3875_2024-12 IRM.docx
+2025-11-12 17:33:04 -     Downloaded successfully: 0289 3875_2024-12 IRM.docx
+2025-11-12 17:33:04 -     Downloading attachment: 2024-070_02893875.docx
+2025-11-12 17:33:04 -     Downloaded successfully: 2024-070_02893875.docx
+2025-11-12 17:33:04 -     Generating hash for email: AW: CR für LA396
+2025-11-12 17:33:04 -     Using EntryID as identifier: 7677321509245989 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:04 -   PROCESS: New email - AW: CR für LA396... (Hash: 7677321509245989)
+2025-11-12 17:33:04 -     Creating folder and saving .msg file...
+2025-11-12 17:33:04 -     Saved .msg file: 7677321509245989.msg
+2025-11-12 17:33:04 -     Downloading attachment: LA_396_2019-11.docx
+2025-11-12 17:33:04 -     Downloaded successfully: LA_396_2019-11.docx
+2025-11-12 17:33:04 -     Generating hash for email: AW: QN211494205 (PNR 10002007;
+2025-11-12 17:33:04 -     Using EntryID as identifier: 4781197956028175 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:04 -   PROCESS: New email - AW: QN211494205 (PNR 10002007; VC 206430): Contain... (Hash: 4781197956028175)
+2025-11-12 17:33:04 -     Creating folder and saving .msg file...
+2025-11-12 17:33:04 -     Saved .msg file: 4781197956028175.msg
+2025-11-12 17:33:04 -     Generating hash for email: Reminder: Genehmigungsumlauf P
+2025-11-12 17:33:04 -     Using EntryID as identifier: 7677081409231348 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:04 -   PROCESS: New email - Reminder: Genehmigungsumlauf PBR4126_2024-11... (Hash: 7677081409231348)
+2025-11-12 17:33:04 -     Creating folder and saving .msg file...
+2025-11-12 17:33:04 -     Saved .msg file: 7677081409231348.msg
+2025-11-12 17:33:04 -     Downloading attachment: 2024-059_PBR4126.pdf
+2025-11-12 17:33:04 -     Downloaded successfully: 2024-059_PBR4126.pdf
+2025-11-12 17:33:04 -     Downloading attachment: PBR4126_2024-11.pdf
+2025-11-12 17:33:04 -     Downloaded successfully: PBR4126_2024-11.pdf
+2025-11-12 17:33:04 -     Generating hash for email: Reminder: Änderung QCTP BRR 01
+2025-11-12 17:33:04 -     Using EntryID as identifier: 7676841309216707 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:04 -   PROCESS: New email - Reminder: Änderung QCTP BRR 0192... (Hash: 7676841309216707)
+2025-11-12 17:33:04 -     Creating folder and saving .msg file...
+2025-11-12 17:33:05 -     Saved .msg file: 7676841309216707.msg
+2025-11-12 17:33:05 -     Downloading attachment: qctpbrr0192_10.pdf
+2025-11-12 17:33:05 -     Downloaded successfully: qctpbrr0192_10.pdf
+2025-11-12 17:33:05 -     Downloading attachment: 2025-016_QCTP BRR0192.pdf
+2025-11-12 17:33:05 -     Downloaded successfully: 2025-016_QCTP BRR0192.pdf
+2025-11-12 17:33:05 -     Generating hash for email: AW: QN211494205 (PNR 10002007;
+2025-11-12 17:33:05 -     Using EntryID as identifier: 4767512254725126 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:05 -   PROCESS: New email - AW: QN211494205 (PNR 10002007; VC 206430): Contain... (Hash: 4767512254725126)
+2025-11-12 17:33:05 -     Creating folder and saving .msg file...
+2025-11-12 17:33:05 -     Saved .msg file: 4767512254725126.msg
+2025-11-12 17:33:05 -     Generating hash for email: WG: ChemScan: Stellungnahmen 1
+2025-11-12 17:33:05 -     Using EntryID as identifier: 7675880909158143 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:05 -   PROCESS: New email - WG: ChemScan: Stellungnahmen 157/2025... (Hash: 7675880909158143)
+2025-11-12 17:33:05 -     Creating folder and saving .msg file...
+2025-11-12 17:33:05 -     Saved .msg file: 7675880909158143.msg
+2025-11-12 17:33:05 -     Generating hash for email: WG: Antrag für Teile und Stoff
+2025-11-12 17:33:05 -     Using EntryID as identifier: 7678762109275271 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:05 -   PROCESS: New email - WG: Antrag für Teile und Stoffe - 155/2025_0104162... (Hash: 7678762109275271)
+2025-11-12 17:33:05 -     Creating folder and saving .msg file...
+2025-11-12 17:33:05 -     Saved .msg file: 7678762109275271.msg
+2025-11-12 17:33:05 -     Generating hash for email:  Reminder PBR4121 zum Ballot
+2025-11-12 17:33:05 -     Using EntryID as identifier: 7675880909099579 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:05 -   PROCESS: New email -  Reminder PBR4121 zum Ballot... (Hash: 7675880909099579)
+2025-11-12 17:33:05 -     Creating folder and saving .msg file...
+2025-11-12 17:33:05 -     Saved .msg file: 7675880909099579.msg
+2025-11-12 17:33:05 -     Downloading attachment: PBR4121_2025-06.pdf
+2025-11-12 17:33:05 -     Downloaded successfully: PBR4121_2025-06.pdf
+2025-11-12 17:33:05 -     Downloading attachment: 2025-011_PBR4121.pdf
+2025-11-12 17:33:05 -     Downloaded successfully: 2025-011_PBR4121.pdf
+2025-11-12 17:33:05 -     Generating hash for email: AW: P15 RTSS Casting (KH25932)
+2025-11-12 17:33:05 -     Using EntryID as identifier: 5589133903814970 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:05 -   PROCESS: New email - AW: P15 RTSS Casting (KH25932) RQSC Update - RQSC1... (Hash: 5589133903814970)
+2025-11-12 17:33:05 -     Creating folder and saving .msg file...
+2025-11-12 17:33:05 -     Saved .msg file: 5589133903814970.msg
+2025-11-12 17:33:05 -     Downloading attachment: RQSC Justification Report Signatory Sheet.pdf
+2025-11-12 17:33:05 -     Downloaded successfully: RQSC Justification Report Signatory Sheet.pdf
+2025-11-12 17:33:05 -     Downloading attachment: Justification Report RQSC10X-4031_04.docx
+2025-11-12 17:33:05 -     Downloaded successfully: Justification Report RQSC10X-4031_04.docx
+2025-11-12 17:33:05 -     Generating hash for email: AW: Quy Luus Elternzeit - Vert
+2025-11-12 17:33:05 -     Using EntryID as identifier: 5588893803800329 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:05 -   PROCESS: New email - AW: Quy Luus Elternzeit - Vertretung?... (Hash: 5588893803800329)
+2025-11-12 17:33:05 -     Creating folder and saving .msg file...
+2025-11-12 17:33:05 -     Saved .msg file: 5588893803800329.msg
+2025-11-12 17:33:05 -     Generating hash for email: Anlage von TKZ01043583 und TKZ
+2025-11-12 17:33:05 -     Using EntryID as identifier: 7674680409026374 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:05 -   PROCESS: New email - Anlage von TKZ01043583 und TKZ01041274 in der Chem... (Hash: 7674680409026374)
+2025-11-12 17:33:05 -     Creating folder and saving .msg file...
+2025-11-12 17:33:05 -     Saved .msg file: 7674680409026374.msg
+2025-11-12 17:33:05 -     Downloading attachment: 018-2020_01043583.pdf
+2025-11-12 17:33:05 -     Downloaded successfully: 018-2020_01043583.pdf
+2025-11-12 17:33:05 -     Downloading attachment: 018-2020_01043583_Zyglo ZL-56.pdf
+2025-11-12 17:33:05 -     Downloaded successfully: 018-2020_01043583_Zyglo ZL-56.pdf
+2025-11-12 17:33:05 -     Downloading attachment: 018-2020_01043583_DE-ZYGLOZL-56CLPSDSVER17-2-22-08-2018.pdf
+2025-11-12 17:33:05 -     Downloaded successfully: 018-2020_01043583_DE-ZYGLOZL-56CLPSDSVER17-2-22-08-2018.pdf
+2025-11-12 17:33:05 -     Downloading attachment: 030-2023_01041274_Freigabe.pdf
+2025-11-12 17:33:05 -     Downloaded successfully: 030-2023_01041274_Freigabe.pdf
+2025-11-12 17:33:06 -     Downloading attachment: 030-2023_01041274_ARDROX9D4A_30687748_SDB_DE_2-1_25.07.2022.PDF
+2025-11-12 17:33:06 -     Downloaded successfully: 030-2023_01041274_ARDROX9D4A_30687748_SDB_DE_2-1_25.07.2022.PDF
+2025-11-12 17:33:06 -     Generating hash for email: HOHE PRIORITÄT - Antrag Teile 
+2025-11-12 17:33:06 -     Using EntryID as identifier: 5579529902877946 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:06 -   PROCESS: New email - HOHE PRIORITÄT - Antrag Teile & Stoffe 151/2025 (T... (Hash: 5579529902877946)
+2025-11-12 17:33:06 -     Creating folder and saving .msg file...
+2025-11-12 17:33:06 -     Saved .msg file: 5579529902877946.msg
+2025-11-12 17:33:06 -     Downloading attachment: 151-2025_01044388_HSE.pdf
+2025-11-12 17:33:06 -     Downloaded successfully: 151-2025_01044388_HSE.pdf
+2025-11-12 17:33:06 -     Downloading attachment: 151-2025_01044388_BONDERITE-S-MA-527-HT-en_GL.pdf
+2025-11-12 17:33:06 -     Downloaded successfully: 151-2025_01044388_BONDERITE-S-MA-527-HT-en_GL.pdf
+2025-11-12 17:33:06 -     Downloading attachment: 151-2025_01044388_Produktzulassung.JPG
+2025-11-12 17:33:06 -     Downloaded successfully: 151-2025_01044388_Produktzulassung.JPG
+2025-11-12 17:33:06 -     Downloading attachment: 009-2025_01044238_Freigabe_Gebindekorrektur_TDB.pdf
+2025-11-12 17:33:06 -     Downloaded successfully: 009-2025_01044238_Freigabe_Gebindekorrektur_TDB.pdf
+2025-11-12 17:33:06 -     Generating hash for email: AW: QCTP BRR0187 Change Reques
+2025-11-12 17:33:06 -     Using EntryID as identifier: 7677561609143502 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:06 -   PROCESS: New email - AW: QCTP BRR0187 Change Request... (Hash: 7677561609143502)
+2025-11-12 17:33:06 -     Creating folder and saving .msg file...
+2025-11-12 17:33:06 -     Saved .msg file: 7677561609143502.msg
+2025-11-12 17:33:06 -     Downloading attachment: qctpbrr0187_5.docx
+2025-11-12 17:33:06 -     Downloaded successfully: qctpbrr0187_5.docx
+2025-11-12 17:33:06 -     Generating hash for email: AW: QCTP BRR0186 Change Reques
+2025-11-12 17:33:06 -     Using EntryID as identifier: 7673960108982451 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:06 -   PROCESS: New email - AW: QCTP BRR0186 Change Request... (Hash: 7673960108982451)
+2025-11-12 17:33:06 -     Creating folder and saving .msg file...
+2025-11-12 17:33:06 -     Saved .msg file: 7673960108982451.msg
+2025-11-12 17:33:06 -     Downloading attachment: qctpbrr0186_5.docx
+2025-11-12 17:33:06 -     Downloaded successfully: qctpbrr0186_5.docx
+2025-11-12 17:33:06 -     Generating hash for email: AW: Change Request PBR4124
+2025-11-12 17:33:06 -     Using EntryID as identifier: 7676601209084938 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:06 -   PROCESS: New email - AW: Change Request PBR4124... (Hash: 7676601209084938)
+2025-11-12 17:33:06 -     Creating folder and saving .msg file...
+2025-11-12 17:33:06 -     Saved .msg file: 7676601209084938.msg
+2025-11-12 17:33:06 -     Downloading attachment: 2023-089_PBR4124.docx
+2025-11-12 17:33:06 -     Downloaded successfully: 2023-089_PBR4124.docx
+2025-11-12 17:33:06 -     Generating hash for email: RQSC16Q-4007 Is.3 Pearl700 LP1
+2025-11-12 17:33:06 -     Using EntryID as identifier: 5595136403595355 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:06 -   PROCESS: New email - RQSC16Q-4007 Is.3 Pearl700 LP1 Blades... (Hash: 5595136403595355)
+2025-11-12 17:33:06 -     Creating folder and saving .msg file...
+2025-11-12 17:33:06 -     Saved .msg file: 5595136403595355.msg
+2025-11-12 17:33:06 -     Downloading attachment: RQSC-16Q-4007_Issue 3_Final.pdf
+2025-11-12 17:33:06 -     Downloaded successfully: RQSC-16Q-4007_Issue 3_Final.pdf
+2025-11-12 17:33:06 -     Downloading attachment: Referenzblatt - Granta MI.pdf
+2025-11-12 17:33:06 -     Downloaded successfully: Referenzblatt - Granta MI.pdf
+2025-11-12 17:33:06 -     Generating hash for email: AW: CR für LA396
+2025-11-12 17:33:06 -     Using EntryID as identifier: 5576888801955563 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:06 -   PROCESS: New email - AW: CR für LA396... (Hash: 5576888801955563)
+2025-11-12 17:33:06 -     Creating folder and saving .msg file...
+2025-11-12 17:33:06 -     Saved .msg file: 5576888801955563.msg
+2025-11-12 17:33:06 -     Generating hash for email: WG: Neue Spezifikation --> Neu
+2025-11-12 17:33:06 -     Using EntryID as identifier: 5572807101589538 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:06 -   PROCESS: New email - WG: Neue Spezifikation --> Neue Nummer... (Hash: 5572807101589538)
+2025-11-12 17:33:06 -     Creating folder and saving .msg file...
+2025-11-12 17:33:06 -     Saved .msg file: 5572807101589538.msg
+2025-11-12 17:33:06 -     Downloading attachment: 2025-032_QCTPBRR0272.docx
+2025-11-12 17:33:06 -     Downloaded successfully: 2025-032_QCTPBRR0272.docx
+2025-11-12 17:33:06 -     Generating hash for email: RE: AT&S 109/2024-01041807
+2025-11-12 17:33:06 -     Using EntryID as identifier: 5566324400959975 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:06 -   PROCESS: New email - RE: AT&S 109/2024-01041807... (Hash: 5566324400959975)
+2025-11-12 17:33:06 -     Creating folder and saving .msg file...
+2025-11-12 17:33:06 -     Saved .msg file: 5566324400959975.msg
+2025-11-12 17:33:06 -     Generating hash for email: RE: RQSC 1T-4012 stopping Pear
+2025-11-12 17:33:06 -     Using EntryID as identifier: 5564643700857488 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:06 -   PROCESS: New email - RE: RQSC 1T-4012 stopping Pearl 10X engine mount f... (Hash: 5564643700857488)
+2025-11-12 17:33:06 -     Creating folder and saving .msg file...
+2025-11-12 17:33:07 -     Saved .msg file: 5564643700857488.msg
+2025-11-12 17:33:07 -     Generating hash for email: AW: RQSC 1T-4012 stopping Pear
+2025-11-12 17:33:07 -     Using EntryID as identifier: 5568245201018539 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:07 -   PROCESS: New email - AW: RQSC 1T-4012 stopping Pearl 10X engine mount f... (Hash: 5568245201018539)
+2025-11-12 17:33:07 -     Creating folder and saving .msg file...
+2025-11-12 17:33:07 -     Saved .msg file: 5568245201018539.msg
+2025-11-12 17:33:07 -     Generating hash for email: AW: RQSC16Q-4007 Is.3 Pearl700
+2025-11-12 17:33:07 -     Using EntryID as identifier: 5562963000696437 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:07 -   PROCESS: New email - AW: RQSC16Q-4007 Is.3 Pearl700 LP1 Blades... (Hash: 5562963000696437)
+2025-11-12 17:33:07 -     Creating folder and saving .msg file...
+2025-11-12 17:33:07 -     Saved .msg file: 5562963000696437.msg
+2025-11-12 17:33:07 -     Generating hash for email: AW: RQSC16Q-4004
+2025-11-12 17:33:07 -     Using EntryID as identifier: 4956363746729336 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:07 -   PROCESS: New email - AW: RQSC16Q-4004... (Hash: 4956363746729336)
+2025-11-12 17:33:07 -     Creating folder and saving .msg file...
+2025-11-12 17:33:07 -     Saved .msg file: 4956363746729336.msg
+2025-11-12 17:33:07 -     Generating hash for email: RE: RQSC16Q-4007 Is.3 Pearl700
+2025-11-12 17:33:07 -     Using EntryID as identifier: 4955643446685413 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:07 -   PROCESS: New email - RE: RQSC16Q-4007 Is.3 Pearl700 LP1 Blades... (Hash: 4955643446685413)
+2025-11-12 17:33:07 -     Creating folder and saving .msg file...
+2025-11-12 17:33:07 -     Saved .msg file: 4955643446685413.msg
+2025-11-12 17:33:07 -     Generating hash for email: WG: GM956 / GM956-70 von ebalt
+2025-11-12 17:33:07 -     Using EntryID as identifier: 4957084046714695 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:07 -   PROCESS: New email - WG: GM956 / GM956-70 von ebalta / Bitte um Prüfung... (Hash: 4957084046714695)
+2025-11-12 17:33:07 -     Creating folder and saving .msg file...
+2025-11-12 17:33:07 -     Saved .msg file: 4957084046714695.msg
+2025-11-12 17:33:07 -     Generating hash for email: RQSC16Q-4004
+2025-11-12 17:33:07 -     Using EntryID as identifier: 4981814348456974 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:07 -   PROCESS: New email - RQSC16Q-4004... (Hash: 4981814348456974)
+2025-11-12 17:33:07 -     Creating folder and saving .msg file...
+2025-11-12 17:33:07 -     Saved .msg file: 4981814348456974.msg
+2025-11-12 17:33:07 -     Generating hash for email: WG: LA334 zum Ballot
+2025-11-12 17:33:07 -     Using EntryID as identifier: 4977972748222718 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:07 -   PROCESS: New email - WG: LA334 zum Ballot... (Hash: 4977972748222718)
+2025-11-12 17:33:07 -     Creating folder and saving .msg file...
+2025-11-12 17:33:07 -     Saved .msg file: 4977972748222718.msg
+2025-11-12 17:33:07 -     Downloading attachment: 2025-008_LA334.pdf
+2025-11-12 17:33:07 -     Downloaded successfully: 2025-008_LA334.pdf
+2025-11-12 17:33:07 -     Downloading attachment: LA_334_2025-10.pdf
+2025-11-12 17:33:07 -     Downloaded successfully: LA_334_2025-10.pdf
+2025-11-12 17:33:07 -     Generating hash for email: RQSC16Q-4007 Is.3 Pearl700 LP1
+2025-11-12 17:33:07 -     Using EntryID as identifier: 4976292048003103 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:07 -   PROCESS: New email - RQSC16Q-4007 Is.3 Pearl700 LP1 Blades... (Hash: 4976292048003103)
+2025-11-12 17:33:07 -     Creating folder and saving .msg file...
+2025-11-12 17:33:07 -     Saved .msg file: 4976292048003103.msg
+2025-11-12 17:33:07 -     Downloading attachment: RQSC16Q-4007 Iss3 Justification Report Signatory Sheet.pdf
+2025-11-12 17:33:07 -     Downloaded successfully: RQSC16Q-4007 Iss3 Justification Report Signatory Sheet.pdf
+2025-11-12 17:33:07 -     Downloading attachment: RQSC16Q-4007 Issue 3 Justification Report.pdf
+2025-11-12 17:33:07 -     Downloaded successfully: RQSC16Q-4007 Issue 3 Justification Report.pdf
+2025-11-12 17:33:07 -     Downloading attachment: RQSC-16Q-4007_Issue 3_Final.pdf
+2025-11-12 17:33:07 -     Downloaded successfully: RQSC-16Q-4007_Issue 3_Final.pdf
+2025-11-12 17:33:07 -     Downloading attachment: RQSC-16Q-4007_Issue 3_Final.docx
+2025-11-12 17:33:07 -     Downloaded successfully: RQSC-16Q-4007_Issue 3_Final.docx
+2025-11-12 17:33:07 -     Generating hash for email: AW: Change Request RQS C21T-40
+2025-11-12 17:33:07 -     Using EntryID as identifier: 4975091547812770 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:07 -   PROCESS: New email - AW: Change Request RQS C21T-4008... (Hash: 4975091547812770)
+2025-11-12 17:33:07 -     Creating folder and saving .msg file...
+2025-11-12 17:33:07 -     Saved .msg file: 4975091547812770.msg
+2025-11-12 17:33:07 -     Downloading attachment: RQSG000_22.pdf
+2025-11-12 17:33:08 -     Downloaded successfully: RQSG000_22.pdf
+2025-11-12 17:33:08 -     Generating hash for email: AW: PBR Nummer Antrag für Pear
+2025-11-12 17:33:08 -     Using EntryID as identifier: 7673960108923887 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:08 -   PROCESS: New email - AW: PBR Nummer Antrag für Pear10X... (Hash: 7673960108923887)
+2025-11-12 17:33:08 -     Creating folder and saving .msg file...
+2025-11-12 17:33:08 -     Saved .msg file: 7673960108923887.msg
+2025-11-12 17:33:08 -     Downloading attachment: 2025-039_PBR4130.docx
+2025-11-12 17:33:08 -     Downloaded successfully: 2025-039_PBR4130.docx
+2025-11-12 17:33:08 -     Downloading attachment: Tech_Specification-T00397.dotx
+2025-11-12 17:33:08 -     Downloaded successfully: Tech_Specification-T00397.dotx
+2025-11-12 17:33:08 -     Generating hash for email: WG: LA334 zum Ballot
+2025-11-12 17:33:08 -     Using EntryID as identifier: 7673479908894605 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:08 -   PROCESS: New email - WG: LA334 zum Ballot... (Hash: 7673479908894605)
+2025-11-12 17:33:08 -     Creating folder and saving .msg file...
+2025-11-12 17:33:08 -     Saved .msg file: 7673479908894605.msg
+2025-11-12 17:33:08 -     Downloading attachment: 2025-008_LA334.pdf
+2025-11-12 17:33:08 -     Downloaded successfully: 2025-008_LA334.pdf
+2025-11-12 17:33:08 -     Downloading attachment: LA_334_2025-10.pdf
+2025-11-12 17:33:08 -     Downloaded successfully: LA_334_2025-10.pdf
+2025-11-12 17:33:08 -     Generating hash for email: Justification Reports of RQSC1
+2025-11-12 17:33:08 -     Using EntryID as identifier: 7675400708953169 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:08 -   PROCESS: New email - Justification Reports of RQSC18Q-4036_04, RQSC18Q-... (Hash: 7675400708953169)
+2025-11-12 17:33:08 -     Creating folder and saving .msg file...
+2025-11-12 17:33:08 -     Saved .msg file: 7675400708953169.msg
+2025-11-12 17:33:08 -     Generating hash for email: AW: Teilenummern Datei umgezog
+2025-11-12 17:33:08 -     Using EntryID as identifier: 7672519508777477 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:08 -   PROCESS: New email - AW: Teilenummern Datei umgezogen? ... (Hash: 7672519508777477)
+2025-11-12 17:33:08 -     Creating folder and saving .msg file...
+2025-11-12 17:33:08 -     Saved .msg file: 7672519508777477.msg
+2025-11-12 17:33:08 -     Generating hash for email: WG: Aktuelles Sicherheitsdaten
+2025-11-12 17:33:08 -     Using EntryID as identifier: 7672039308748195 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:08 -   PROCESS: New email - WG: Aktuelles Sicherheitsdatenblatt für Gefahrstof... (Hash: 7672039308748195)
+2025-11-12 17:33:08 -     Creating folder and saving .msg file...
+2025-11-12 17:33:08 -     Saved .msg file: 7672039308748195.msg
+2025-11-12 17:33:08 -     Downloading attachment: 112-2015_01042726.pdf
+2025-11-12 17:33:08 -     Downloaded successfully: 112-2015_01042726.pdf
+2025-11-12 17:33:08 -     Downloading attachment: 111-2015_01042725.pdf
+2025-11-12 17:33:08 -     Downloaded successfully: 111-2015_01042725.pdf
+2025-11-12 17:33:08 -     Generating hash for email: RE: QCTP BRR0241
+2025-11-12 17:33:08 -     Using EntryID as identifier: 4876890633391385 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:08 -   PROCESS: New email - RE: QCTP BRR0241... (Hash: 4876890633391385)
+2025-11-12 17:33:08 -     Creating folder and saving .msg file...
+2025-11-12 17:33:08 -     Saved .msg file: 4876890633391385.msg
+2025-11-12 17:33:08 -     Generating hash for email: AW: Antrag 093/2025 _ TKZ 0104
+2025-11-12 17:33:08 -     Using EntryID as identifier: 7673960108806759 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:08 -   PROCESS: New email - AW: Antrag 093/2025 _ TKZ 01044322 _ KORROSIONSSCH... (Hash: 7673960108806759)
+2025-11-12 17:33:08 -     Creating folder and saving .msg file...
+2025-11-12 17:33:08 -     Saved .msg file: 7673960108806759.msg
+2025-11-12 17:33:08 -     Downloading attachment: 021-2009_01040495.PDF
+2025-11-12 17:33:08 -     Downloaded successfully: 021-2009_01040495.PDF
+2025-11-12 17:33:08 -     Downloading attachment: 051-2008_01040495.PDF
+2025-11-12 17:33:08 -     Downloaded successfully: 051-2008_01040495.PDF
+2025-11-12 17:33:08 -     Generating hash for email: RE: 01043585 FARBE Fluorescent
+2025-11-12 17:33:08 -     Using EntryID as identifier: 4877370833362103 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:08 -   PROCESS: New email - RE: 01043585 FARBE Fluorescent Paint (Red Orange) ... (Hash: 4877370833362103)
+2025-11-12 17:33:08 -     Creating folder and saving .msg file...
+2025-11-12 17:33:08 -     Saved .msg file: 4877370833362103.msg
+2025-11-12 17:33:08 -     Generating hash for email: Update PBR4125 und PBR4123
+2025-11-12 17:33:08 -     Using EntryID as identifier: 7660034307489069 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:08 -   PROCESS: New email - Update PBR4125 und PBR4123... (Hash: 7660034307489069)
+2025-11-12 17:33:08 -     Creating folder and saving .msg file...
+2025-11-12 17:33:09 -     Saved .msg file: 7660034307489069.msg
+2025-11-12 17:33:09 -     Downloading attachment: 2025-004_PBR4125.docx
+2025-11-12 17:33:09 -     Downloaded successfully: 2025-004_PBR4125.docx
+2025-11-12 17:33:09 -     Downloading attachment: 2025-036_PBR4123.docx
+2025-11-12 17:33:09 -     Downloaded successfully: 2025-036_PBR4123.docx
+2025-11-12 17:33:09 -     Downloading attachment: PBR4123_2024_12.docx
+2025-11-12 17:33:09 -     Downloaded successfully: PBR4123_2024_12.docx
+2025-11-12 17:33:09 -     Generating hash for email: Antrag Teile & Stoffe - FOD 
+2025-11-12 17:33:09 -     Using EntryID as identifier: 2653983964487846 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:09 -   PROCESS: New email - Antrag Teile & Stoffe - FOD ... (Hash: 2653983964487846)
+2025-11-12 17:33:09 -     Creating folder and saving .msg file...
+2025-11-12 17:33:09 -     Saved .msg file: 2653983964487846.msg
+2025-11-12 17:33:09 -     Downloading attachment: T00221.pdf
+2025-11-12 17:33:09 -     Downloaded successfully: T00221.pdf
+2025-11-12 17:33:09 -     Generating hash for email: AW: TKZ10003550 & TKZ01043091
+2025-11-12 17:33:09 -     Using EntryID as identifier: 2653743864473205 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:09 -   PROCESS: New email - AW: TKZ10003550 & TKZ01043091... (Hash: 2653743864473205)
+2025-11-12 17:33:09 -     Creating folder and saving .msg file...
+2025-11-12 17:33:09 -     Saved .msg file: 2653743864473205.msg
+2025-11-12 17:33:09 -     Generating hash for email: AW: TKZ10003550 & TKZ01043091
+2025-11-12 17:33:09 -     Using EntryID as identifier: 2653503764458564 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:09 -   PROCESS: New email - AW: TKZ10003550 & TKZ01043091... (Hash: 2653503764458564)
+2025-11-12 17:33:09 -     Creating folder and saving .msg file...
+2025-11-12 17:33:09 -     Saved .msg file: 2653503764458564.msg
+2025-11-12 17:33:09 -     Generating hash for email: WG: TKZ10003550 & TKZ01043091
+2025-11-12 17:33:09 -     Using EntryID as identifier: 2649902264238949 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:09 -   PROCESS: New email - WG: TKZ10003550 & TKZ01043091... (Hash: 2649902264238949)
+2025-11-12 17:33:09 -     Creating folder and saving .msg file...
+2025-11-12 17:33:09 -     Saved .msg file: 2649902264238949.msg
+2025-11-12 17:33:09 -     Downloading attachment: 060-2025_01043091_Freigabe.pdf
+2025-11-12 17:33:09 -     Downloaded successfully: 060-2025_01043091_Freigabe.pdf
+2025-11-12 17:33:09 -     Generating hash for email: AW: KLÄRUNG ZUR LIEFERZERTIFIK
+2025-11-12 17:33:09 -     Using EntryID as identifier: 2649662164224308 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:09 -   PROCESS: New email - AW: KLÄRUNG ZUR LIEFERZERTIFIKATE: FREIGABE ZUR VE... (Hash: 2649662164224308)
+2025-11-12 17:33:09 -     Creating folder and saving .msg file...
+2025-11-12 17:33:09 -     Saved .msg file: 2649662164224308.msg
+2025-11-12 17:33:09 -     Generating hash for email: AW: FREIGABE ZUR ERSTBESTELLUN
+2025-11-12 17:33:09 -     Using EntryID as identifier: 7656913007298736 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:09 -   PROCESS: New email - AW: FREIGABE ZUR ERSTBESTELLUNG - Antrag 141/2025 ... (Hash: 7656913007298736)
+2025-11-12 17:33:09 -     Creating folder and saving .msg file...
+2025-11-12 17:33:09 -     Saved .msg file: 7656913007298736.msg
+2025-11-12 17:33:09 -     Generating hash for email: WG: ATS 127/2025 TKZ 01044354 
+2025-11-12 17:33:09 -     Using EntryID as identifier: 7656432807269454 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:09 -   PROCESS: New email - WG: ATS 127/2025 TKZ 01044354 ANTIFOAM 46... (Hash: 7656432807269454)
+2025-11-12 17:33:09 -     Creating folder and saving .msg file...
+2025-11-12 17:33:10 -     Saved .msg file: 7656432807269454.msg
+2025-11-12 17:33:10 -     Downloading attachment: 127-2025_01044354_korrigiert-Umweltschutz_HSE.pdf
+2025-11-12 17:33:10 -     Downloaded successfully: 127-2025_01044354_korrigiert-Umweltschutz_HSE.pdf
+2025-11-12 17:33:10 -     Downloading attachment: 127-2025_01044354_ILP_2025_DE.pdf
+2025-11-12 17:33:10 -     Downloaded successfully: 127-2025_01044354_ILP_2025_DE.pdf
+2025-11-12 17:33:10 -     Downloading attachment: 127-2025_01044354_FUCHS-Lieferprogramm-Industrieschmierstoffe.pdf
+2025-11-12 17:33:10 -     Downloaded successfully: 127-2025_01044354_FUCHS-Lieferprogramm-Industrieschmierstoffe.pdf
+2025-11-12 17:33:10 -     Generating hash for email: AW: QCTPBRR0139
+2025-11-12 17:33:10 -     Using EntryID as identifier: 7658593707342659 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:10 -   PROCESS: New email - AW: QCTPBRR0139... (Hash: 7658593707342659)
+2025-11-12 17:33:10 -     Creating folder and saving .msg file...
+2025-11-12 17:33:10 -     Saved .msg file: 7658593707342659.msg
+2025-11-12 17:33:10 -     Downloading attachment: AW QCTP BRR 0139.msg
+2025-11-12 17:33:10 -     Downloaded successfully: AW QCTP BRR 0139.msg
+2025-11-12 17:33:10 -     Generating hash for email: AW: Gefahrstoffe die nicht meh
+2025-11-12 17:33:10 -     Using EntryID as identifier: 7654752107108403 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:10 -   PROCESS: New email - AW: Gefahrstoffe die nicht mehr verwendet werden b... (Hash: 7654752107108403)
+2025-11-12 17:33:10 -     Creating folder and saving .msg file...
+2025-11-12 17:33:10 -     Saved .msg file: 7654752107108403.msg
+2025-11-12 17:33:10 -     Generating hash for email: WG: Antrag Teile&Stoffe für 10
+2025-11-12 17:33:10 -     Using EntryID as identifier: 7657153107196249 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:10 -   PROCESS: New email - WG: Antrag Teile&Stoffe für 10002255... (Hash: 7657153107196249)
+2025-11-12 17:33:10 -     Creating folder and saving .msg file...
+2025-11-12 17:33:10 -     Saved .msg file: 7657153107196249.msg
+2025-11-12 17:33:10 -     Downloading attachment: 1997_10002255.PDF
+2025-11-12 17:33:10 -     Downloaded successfully: 1997_10002255.PDF
+2025-11-12 17:33:10 -     Downloading attachment: 061-2024_01042984_Freigabe.pdf
+2025-11-12 17:33:10 -     Downloaded successfully: 061-2024_01042984_Freigabe.pdf
+2025-11-12 17:33:10 -     Generating hash for email: AW: DIN1993-1-4 / DIN 12944
+2025-11-12 17:33:10 -     Using EntryID as identifier: 7654512006976634 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:10 -   PROCESS: New email - AW: DIN1993-1-4 / DIN 12944... (Hash: 7654512006976634)
+2025-11-12 17:33:10 -     Creating folder and saving .msg file...
+2025-11-12 17:33:10 -     Saved .msg file: 7654512006976634.msg
+2025-11-12 17:33:10 -     Generating hash for email: ITP AERO RQSC in GRANTA MI
+2025-11-12 17:33:10 -     Using EntryID as identifier: 7651630806800942 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:10 -   PROCESS: New email - ITP AERO RQSC in GRANTA MI... (Hash: 7651630806800942)
+2025-11-12 17:33:10 -     Creating folder and saving .msg file...
+2025-11-12 17:33:10 -     Saved .msg file: 7651630806800942.msg
+2025-11-12 17:33:10 -     Generating hash for email: WG: SP.431.RB3043 HPT Disk LCF
+2025-11-12 17:33:10 -     Using EntryID as identifier: 7651390706786301 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:10 -   PROCESS: New email - WG: SP.431.RB3043 HPT Disk LCF Test: Clarification... (Hash: 7651390706786301)
+2025-11-12 17:33:10 -     Creating folder and saving .msg file...
+2025-11-12 17:33:11 -     Saved .msg file: 7651390706786301.msg
+2025-11-12 17:33:11 -     Downloading attachment: RQSC02Q-4002_01.pdf
+2025-11-12 17:33:11 -     Downloaded successfully: RQSC02Q-4002_01.pdf
+2025-11-12 17:33:11 -     Generating hash for email: WG: RQSC18Q-4036 Issue 4 | Doc
+2025-11-12 17:33:11 -     Using EntryID as identifier: 7650910506757019 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:11 -   PROCESS: New email - WG: RQSC18Q-4036 Issue 4 | Documents for update pu... (Hash: 7650910506757019)
+2025-11-12 17:33:11 -     Creating folder and saving .msg file...
+2025-11-12 17:33:11 -     Saved .msg file: 7650910506757019.msg
+2025-11-12 17:33:11 -     Downloading attachment: RQSC18Q-4036_Issue 4.pdf
+2025-11-12 17:33:11 -     Downloaded successfully: RQSC18Q-4036_Issue 4.pdf
+2025-11-12 17:33:11 -     Downloading attachment: RQSC18Q-4036 Issue 4 Justification Report_EM.pdf
+2025-11-12 17:33:11 -     Downloaded successfully: RQSC18Q-4036 Issue 4 Justification Report_EM.pdf
+2025-11-12 17:33:11 -     Downloading attachment: CSH-00035664-Justification of changes introduced on RQSC18Q-4036 Iss4_ RQSC18Q-4037 Iss4 and RQSC18Q-4038 Iss4.pdf
+2025-11-12 17:33:11 -     Downloaded successfully: CSH-00035664-Justification of changes introduced on RQSC18Q-4036 Iss4_ RQSC18Q-4037 Iss4 and RQSC18Q-4038 Iss4.pdf
+2025-11-12 17:33:11 -     Downloading attachment: RQSC18Q-4036 Iss4 Justification Report Signatory Sheet.pdf
+2025-11-12 17:33:11 -     Downloaded successfully: RQSC18Q-4036 Iss4 Justification Report Signatory Sheet.pdf
+2025-11-12 17:33:11 -     Generating hash for email: RE: Update of QCTP BRR0244 and
+2025-11-12 17:33:11 -     Using EntryID as identifier: 7650670406742378 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:11 -   PROCESS: New email - RE: Update of QCTP BRR0244 and QCTP BRR0245... (Hash: 7650670406742378)
+2025-11-12 17:33:11 -     Creating folder and saving .msg file...
+2025-11-12 17:33:11 -     Saved .msg file: 7650670406742378.msg
+2025-11-12 17:33:11 -     Generating hash for email: AW: RQSC18Q-4036 Issue 4 | Doc
+2025-11-12 17:33:11 -     Using EntryID as identifier: 7653071406830224 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:11 -   PROCESS: New email - AW: RQSC18Q-4036 Issue 4 | Documents for update pu... (Hash: 7653071406830224)
+2025-11-12 17:33:11 -     Creating folder and saving .msg file...
+2025-11-12 17:33:11 -     Saved .msg file: 7653071406830224.msg
+2025-11-12 17:33:11 -     Generating hash for email: AW: Change Request RQSC19Q-402
+2025-11-12 17:33:11 -     Using EntryID as identifier: 7652831306815583 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:11 -   PROCESS: New email - AW: Change Request RQSC19Q-4025... (Hash: 7652831306815583)
+2025-11-12 17:33:11 -     Creating folder and saving .msg file...
+2025-11-12 17:33:11 -     Saved .msg file: 7652831306815583.msg
+2025-11-12 17:33:11 -     Downloading attachment: RQSG000_22.pdf
+2025-11-12 17:33:11 -     Downloaded successfully: RQSG000_22.pdf
+2025-11-12 17:33:11 -     Generating hash for email: AW: Antrag Teile Stoffe Never-
+2025-11-12 17:33:11 -     Using EntryID as identifier: 4520764028956372 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:11 -   PROCESS: New email - AW: Antrag Teile Stoffe Never-Seez Pure Nickel... (Hash: 4520764028956372)
+2025-11-12 17:33:11 -     Creating folder and saving .msg file...
+2025-11-12 17:33:11 -     Saved .msg file: 4520764028956372.msg
+2025-11-12 17:33:11 -     Generating hash for email: AW: Antrag Teile Stoffe Never-
+2025-11-12 17:33:11 -     Using EntryID as identifier: 4506838227580118 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:11 -   PROCESS: New email - AW: Antrag Teile Stoffe Never-Seez Pure Nickel... (Hash: 4506838227580118)
+2025-11-12 17:33:11 -     Creating folder and saving .msg file...
+2025-11-12 17:33:11 -     Saved .msg file: 4506838227580118.msg
+2025-11-12 17:33:11 -     Downloading attachment: RE Antrag Teile Stoffe Never-Seez Pure Nickel  Datenblatt.msg
+2025-11-12 17:33:11 -     Downloaded successfully: RE Antrag Teile Stoffe Never-Seez Pure Nickel  Datenblatt.msg
+2025-11-12 17:33:11 -     Downloading attachment: 10004395_Never-Seez-Pure-Nickel-de.pdf
+2025-11-12 17:33:11 -     Downloaded successfully: 10004395_Never-Seez-Pure-Nickel-de.pdf
+2025-11-12 17:33:11 -     Generating hash for email: RE: Antrag Teile Stoffe Never-
+2025-11-12 17:33:11 -     Using EntryID as identifier: 4505637727506913 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:11 -   PROCESS: New email - RE: Antrag Teile Stoffe Never-Seez Pure Nickel... (Hash: 4505637727506913)
+2025-11-12 17:33:11 -     Creating folder and saving .msg file...
+2025-11-12 17:33:11 -     Saved .msg file: 4505637727506913.msg
+2025-11-12 17:33:11 -     Downloading attachment: RE Antrag Teile Stoffe Never-Seez Pure Nickel  Datenblatt.msg
+2025-11-12 17:33:11 -     Downloaded successfully: RE Antrag Teile Stoffe Never-Seez Pure Nickel  Datenblatt.msg
+2025-11-12 17:33:11 -     Generating hash for email: RE: Suche nach VDA Band 05 Mes
+2025-11-12 17:33:11 -     Using EntryID as identifier: 4504917427462990 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:11 -   PROCESS: New email - RE: Suche nach VDA Band 05 Mess-u. Prüfprozesse_07... (Hash: 4504917427462990)
+2025-11-12 17:33:11 -     Creating folder and saving .msg file...
+2025-11-12 17:33:12 -     Saved .msg file: 4504917427462990.msg
+2025-11-12 17:33:12 -     Generating hash for email: WG: SDB zur Erstellung eines G
+2025-11-12 17:33:12 -     Using EntryID as identifier: 4513080827609400 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:12 -   PROCESS: New email - WG: SDB zur Erstellung eines Guardians Juli 25... (Hash: 4513080827609400)
+2025-11-12 17:33:12 -     Creating folder and saving .msg file...
+2025-11-12 17:33:12 -     Saved .msg file: 4513080827609400.msg
+2025-11-12 17:33:12 -     Downloading attachment: SDB Acticide MV.pdf
+2025-11-12 17:33:12 -     Downloaded successfully: SDB Acticide MV.pdf
+2025-11-12 17:33:12 -     Downloading attachment: SDB Fuchs Alkalisator G.pdf
+2025-11-12 17:33:12 -     Downloaded successfully: SDB Fuchs Alkalisator G.pdf
+2025-11-12 17:33:12 -     Downloading attachment: SDB Fuchs Antifoam 46.pdf
+2025-11-12 17:33:12 -     Downloaded successfully: SDB Fuchs Antifoam 46.pdf
+2025-11-12 17:33:12 -     Downloading attachment: Primer No 3.pdf
+2025-11-12 17:33:12 -     Downloaded successfully: Primer No 3.pdf
+2025-11-12 17:33:12 -     Downloading attachment: ECOCOOL GLOBAL 1000-2.2 (2).pdf
+2025-11-12 17:33:12 -     Downloaded successfully: ECOCOOL GLOBAL 1000-2.2 (2).pdf
+2025-11-12 17:33:12 -     Downloading attachment: Vasco 7000.pdf
+2025-11-12 17:33:12 -     Downloaded successfully: Vasco 7000.pdf
+2025-11-12 17:33:12 -     Downloading attachment: Dapco 2100.pdf
+2025-11-12 17:33:12 -     Downloaded successfully: Dapco 2100.pdf
+2025-11-12 17:33:12 -     Generating hash for email: AW: CR für QCTP BRR0271
+2025-11-12 17:33:12 -     Using EntryID as identifier: 4511160027375144 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:12 -   PROCESS: New email - AW: CR für QCTP BRR0271... (Hash: 4511160027375144)
+2025-11-12 17:33:12 -     Creating folder and saving .msg file...
+2025-11-12 17:33:12 -     Saved .msg file: 4511160027375144.msg
+2025-11-12 17:33:12 -     Downloading attachment: 2025-035_QCTP BRR0271.pdf
+2025-11-12 17:33:12 -     Downloaded successfully: 2025-035_QCTP BRR0271.pdf
+2025-11-12 17:33:12 -     Downloading attachment: qctpbrr0271_01.doc
+2025-11-12 17:33:12 -     Downloaded successfully: qctpbrr0271_01.doc
+2025-11-12 17:33:12 -     Generating hash for email: WG: CR für QCTP BRR0271
+2025-11-12 17:33:12 -     Using EntryID as identifier: 4496754025969608 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:12 -   PROCESS: New email - WG: CR für QCTP BRR0271... (Hash: 4496754025969608)
+2025-11-12 17:33:12 -     Creating folder and saving .msg file...
+2025-11-12 17:33:12 -     Saved .msg file: 4496754025969608.msg
+2025-11-12 17:33:12 -     Downloading attachment: 2025-035_QCTP BRR0271.pdf
+2025-11-12 17:33:12 -     Downloaded successfully: 2025-035_QCTP BRR0271.pdf
+2025-11-12 17:33:12 -     Generating hash for email: AW: Antrag Teile Stoffe Never-
+2025-11-12 17:33:12 -     Using EntryID as identifier: 4487150025091148 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:12 -   PROCESS: New email - AW: Antrag Teile Stoffe Never-Seez Pure Nickel... (Hash: 4487150025091148)
+2025-11-12 17:33:12 -     Creating folder and saving .msg file...
+2025-11-12 17:33:12 -     Saved .msg file: 4487150025091148.msg
+2025-11-12 17:33:12 -     Downloading attachment: RE Antrag Teile Stoffe Never-Seez Pure Nickel  Datenblatt.msg
+2025-11-12 17:33:12 -     Downloaded successfully: RE Antrag Teile Stoffe Never-Seez Pure Nickel  Datenblatt.msg
+2025-11-12 17:33:12 -     Downloading attachment: BNPNS1-BTC12.pdf
+2025-11-12 17:33:12 -     Downloaded successfully: BNPNS1-BTC12.pdf
+2025-11-12 17:33:12 - Writing JSON file to: C:\Users\u8064927\Desktop\normie\outlook\analyze\mail\emails_inbox.json
+2025-11-12 17:33:12 - Processing complete. Processed 100 emails total (from 100 checked)
+2025-11-12 17:33:12 - Completed processing folder: Inbox
+2025-11-12 17:33:12 - Processing folder: Sent Items (Path: \\IRM-Standardisation-Office\Sent Items, Items: 0)
+2025-11-12 17:33:12 -   Skipping empty folder: Sent Items
+2025-11-12 17:33:12 - Creating empty JSON file for: Sent Items
+2025-11-12 17:33:12 - Created empty JSON file: emails_sent_items.json
+2025-11-12 17:33:12 - Completed processing folder: Sent Items
+2025-11-12 17:33:12 - Processing folder: Deleted Items (Path: \\IRM-Standardisation-Office\Deleted Items, Items: 1)
+2025-11-12 17:33:12 - Processing up to 100 emails from Deleted Items
+2025-11-12 17:33:12 - Loading existing email JSON for comparison...
+2025-11-12 17:33:12 -   Loaded existing email: : 
+2025-11-12 17:33:12 - Loaded 1 existing emails from JSON
+2025-11-12 17:33:12 -     Generating hash for email: RE: ESID Nummern
+2025-11-12 17:33:12 -     Using EntryID as identifier: 6063363442870811 (from 0000000037131A407E618D4D853369...)
+2025-11-12 17:33:12 -   PROCESS: New email - RE: ESID Nummern... (Hash: 6063363442870811)
+2025-11-12 17:33:12 -     Creating folder and saving .msg file...
+2025-11-12 17:33:12 -     Saved .msg file: 6063363442870811.msg
+2025-11-12 17:33:12 - Writing JSON file to: C:\Users\u8064927\Desktop\normie\outlook\analyze\mail\emails_deleted_items.json
+2025-11-12 17:33:12 - Processing complete. Processed 1 emails total (from 1 checked)
+2025-11-12 17:33:12 - Completed processing folder: Deleted Items
+2025-11-12 17:33:12 - Processing folder: Drafts (Path: \\IRM-Standardisation-Office\Drafts, Items: 0)
+2025-11-12 17:33:12 -   Skipping empty folder: Drafts
+2025-11-12 17:33:12 - Creating empty JSON file for: Drafts
+2025-11-12 17:33:12 - Created empty JSON file: emails_drafts.json
+2025-11-12 17:33:12 - Completed processing folder: Drafts
+2025-11-12 17:33:12 - Processing folder: Outbox (Path: \\IRM-Standardisation-Office\Outbox, Items: 0)
+2025-11-12 17:33:12 -   Skipping empty folder: Outbox
+2025-11-12 17:33:12 - Creating empty JSON file for: Outbox
+2025-11-12 17:33:12 - Created empty JSON file: emails_outbox.json
+2025-11-12 17:33:12 - Completed processing folder: Outbox
+2025-11-12 17:33:12 - === IRM Email Download Completed ===

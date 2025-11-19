@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "total_rows": 4686,
+    "total_rows": 4689,
     "total_columns": 27,
     "columns": [
       "Antrag-nummer",
@@ -59,30 +59,21 @@
     "extraction_method": "optimized_hybrid_v2",
     "color_extraction_method": "win32_com_single_session",
     "performance": {
-      "total_time": 38.05685353279114,
-      "load_time": 11.802568674087524,
-      "data_read_time": 0.1280069351196289,
-      "color_extraction_time": 25.952134370803833,
-      "hyperlink_extraction_time": 0.05129432678222656,
-      "data_processing_time": 0.10774564743041992,
-      "total_time": 93.21775364875793,
-      "load_time": 26.53720450401306,
-      "data_read_time": 0.24863934516906738,
-      "color_extraction_time": 65.85032534599304,
-      "hyperlink_extraction_time": 0.34171557426452637,
-      "data_processing_time": 0.21010112762451172,
+      "total_time": 47.886168241500854,
+      "load_time": 18.053796529769897,
+      "data_read_time": 0.3818178176879883,
+      "color_extraction_time": 29.26555562019348,
+      "hyperlink_extraction_time": 0.05507922172546387,
+      "data_processing_time": 0.11492109298706055,
       "library_used": "openpyxl",
       "excel_app_needed": false
     },
     "url_cleanup": {
       "applied": true,
-      "total_changes": 17033,
-      "total_changes": 17033,
+      "total_changes": 17084,
       "statistics": {
-        "total_urls": 17296,
-        "fixed_urls": 17033,
-        "total_urls": 17296,
-        "fixed_urls": 17033,
+        "total_urls": 17347,
+        "fixed_urls": 17084,
         "ignored_urls": 262,
         "unchanged_urls": 1,
         "error_urls": 0
@@ -34812,7 +34803,7 @@
       "Antragsteller": "Binz",
       "Antrag": {
         "display_text": "pdf",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\\\Antrag\\2001\\289-2001_01008954.pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2001\\289-2001_01008954.pdf",
         "original_url": null,
         "tooltip": ""
       },
@@ -37523,8 +37514,8 @@
       "Einsatzort": "OU",
       "Antragsteller": "Geissler, A.",
       "Antrag": {
-        "display_text": "tif",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\10004097_087-2002.TIF",
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2002\\087-2002_10004097.pdf",
         "original_url": null,
         "tooltip": ""
       },
@@ -101448,7 +101439,6 @@
       "Abschluss": "2013-02-11 00:00:00+00:00",
       "Abteilung": "OU-51",
       "Einsatzort": "OU",
-      "Antragsteller": "Schrage, S.",
       "Antragsteller": "Schrage, S.",
       "Antrag": {
         "display_text": "pdf",
@@ -206201,9 +206191,7 @@
       "Datum": null,
       "Bearbeiter": null,
       "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "17.04.2023: Freigabe zur Erstbestellung\n24.05.2023: Lieferdokumente erhalten und ans Labor, samt Antrag 029/2023 zwecks Erteilung der Freigabe zur Verwendung weitergeleitet. Anfrage Labor an Quy Luu: 2.1 Zertifikat vom Hersteller soll vom Lieferanten noch nachgereicht werden (siehe Anhang zur Email zur Laborfreigabe unter Spalte 'R').\n31.05.2023: Freigabe zur Verwendung vom Labor, samt erhaltene benötigte Zertifikate, erhalten (siehe Spalte 'R').\n31.05.2023: Anfrage an H&B Stoffe RR DW zwecks Anpassung vom SAP Einkaufsbestelltext ; am selben Tag erledigt (siehe 'Historie').\n23.10.2025: Info vom Wareneingang, 2.1 Zertifikat fehlt bei Lieferung, QN wird erstellt. 24.10.2025: Lieferschein wurde nachgereicht (siehe Spalte Y). Zusatzinfo am selben Tag von Tim Helbing erhalten: \"QIR not in line with N0122 & WI.SP. 0301 has been superseeded\".\n27.10.2025: Anfrage an Tim Helbing, ob nach der Nachlieferung vom Lieferschein und QIR Korrektur, das Problem gelöst ist. Antwort am selben Tag erhalten. 03.11.2025: QIR durch Marcle Mundhas angepasst (siehe Spalte 'Z') ",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "17.04.2023: Freigabe zur Erstbestellung\n24.05.2023: Lieferdokumente erhalten und ans Labor, samt Antrag 029/2023 zwecks Erteilung der Freigabe zur Verwendung weitergeleitet. Anfrage Labor an Quy Luu: 2.1 Zertifikat vom Hersteller soll vom Lieferanten noch nachgereicht werden (siehe Anhang zur Email zur Laborfreigabe unter Spalte 'R').\n31.05.2023: Freigabe zur Verwendung vom Labor, samt erhaltene benötigte Zertifikate, erhalten (siehe Spalte 'R').\n31.05.2023: Anfrage an H&B Stoffe RR DW zwecks Anpassung vom SAP Einkaufsbestelltext ; am selben Tag erledigt (siehe 'Historie').\n23.10.2025: Info vom Wareneingang, 2.1 Zertifikat fehlt bei Lieferung, QN wird erstellt. 24.10.2025: Lieferschein wurde nachgereicht (siehe Spalte Y). Zusatzinfo am selben Tag von Tim Helbing erhalten: \"QIR not in line with N0122 & WI.SP. 0301 has been superseeded\".\n27.10.2025: Anfrage an Tim Helbing, ob nach der Nachlieferung vom Lieferschein und QIR Korrektur, das Problem gelöst ist. Antwort am selben Tag erhalten. 03.11.2025: QIR durch Marcle Mundhas angepasst (siehe Spalte 'Z') ",
       "GSK-Nr.": "msg",
-      "Lieferant": "msg",
       "Lieferant": "msg",
       "Hersteller": null
     },
@@ -216121,7 +216109,7 @@
       "Änd. Historie": null,
       "Datum": null,
       "Bearbeiter": null,
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "08.03.2024: Antrag von HS&E OU (H. Schill) erhalten. Anfrage an Antragsteller zwecks Präzisierung unter Feld 19 (Teamleitung). Antwort am 11.03. erhalten (siehe Schriftverkehr).\nSDB veraltet (Version 3, vom 01.12.2016) -> Version 13 (30.01.2023) aus dem Internet heruntergeladen.",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Keine Anlage in SAP\n08.03.2024: Antrag von HS&E OU (H. Schill) erhalten. Anfrage an Antragsteller zwecks Präzisierung unter Feld 19 (Teamleitung). Antwort am 11.03. erhalten (siehe Schriftverkehr).\nSDB veraltet (Version 3, vom 01.12.2016) -> Version 13 (30.01.2023) aus dem Internet heruntergeladen.",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
@@ -216172,7 +216160,7 @@
       "Änd. Historie": null,
       "Datum": null,
       "Bearbeiter": null,
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "08.03.2024: Antrag von HS&E OU (H. Schill) erhalten. Anfrage an Antragsteller zwecks Präzisierung unter Feld 19 (Teamleitung). Antwort am 11.03. erhalten (siehe Schriftverkehr).",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Keine Anlage in SAP\n08.03.2024: Antrag von HS&E OU (H. Schill) erhalten. Anfrage an Antragsteller zwecks Präzisierung unter Feld 19 (Teamleitung). Antwort am 11.03. erhalten (siehe Schriftverkehr).\nSDB veraltet (Version 3, vom 01.12.2016) -> Version 13 (30.01.2023) aus dem Internet heruntergeladen.08.03.2024: Antrag von HS&E OU (H. Schill) erhalten. Anfrage an Antragsteller zwecks Präzisierung unter Feld 19 (Teamleitung). Antwort am 11.03. erhalten (siehe Schriftverkehr).",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
@@ -216228,7 +216216,7 @@
       "Änd. Historie": null,
       "Datum": null,
       "Bearbeiter": null,
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "08.03.2024: Antrag von HS&E OU (H. Schill) erhalten. Anfrage an Antragsteller zwecks Präzisierung unter Feld 19 (Teamleitung). Antwort am 11.03. erhalten (siehe Schriftverkehr).\nSDB veraltet (Version 1.0, vom 05.02.2016) -> Version 2.6 (02.02.2024) von der Internetseite des Herstellers heruntergeladen.",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Keine Anlage in SAP\n08.03.2024: Antrag von HS&E OU (H. Schill) erhalten. Anfrage an Antragsteller zwecks Präzisierung unter Feld 19 (Teamleitung). Antwort am 11.03. erhalten (siehe Schriftverkehr).\nSDB veraltet (Version 3, vom 01.12.2016) -> Version 13 (30.01.2023) aus dem Internet heruntergeladen.08.03.2024: Antrag von HS&E OU (H. Schill) erhalten. Anfrage an Antragsteller zwecks Präzisierung unter Feld 19 (Teamleitung). Antwort am 11.03. erhalten (siehe Schriftverkehr).\nSDB veraltet (Version 1.0, vom 05.02.2016) -> Version 2.6 (02.02.2024) von der Internetseite des Herstellers heruntergeladen.",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
@@ -216284,7 +216272,7 @@
       "Änd. Historie": null,
       "Datum": null,
       "Bearbeiter": null,
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "08.03.2024: Antrag von HS&E OU (H. Schill) erhalten. Anfrage an Antragsteller zwecks Präzisierung unter Feld 19 (Teamleitung). Antwort am 11.03. erhalten (siehe Schriftverkehr).\nSDB veraltet (Version 1.2, vom 17.05.2017) -> Version 2.5 (16.08.2023) von der Internetseite des Herstellers heruntergeladen.\n16.05.2024: da im Gegensatz zu allen anderen Produkten die Bewertung noch aussteht, Anfrage zum Bearbeitungsstatus an HSE OU geschickt. Antwort & Freigabe am selben Tag erhalten.",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Keine Anlage in SAP\n08.03.2024: Antrag von HS&E OU (H. Schill) erhalten. Anfrage an Antragsteller zwecks Präzisierung unter Feld 19 (Teamleitung). Antwort am 11.03. erhalten (siehe Schriftverkehr).\nSDB veraltet (Version 3, vom 01.12.2016) -> Version 13 (30.01.2023) aus dem Internet heruntergeladen.08.03.2024: Antrag von HS&E OU (H. Schill) erhalten. Anfrage an Antragsteller zwecks Präzisierung unter Feld 19 (Teamleitung). Antwort am 11.03. erhalten (siehe Schriftverkehr).\nSDB veraltet (Version 1.2, vom 17.05.2017) -> Version 2.5 (16.08.2023) von der Internetseite des Herstellers heruntergeladen.\n16.05.2024: da im Gegensatz zu allen anderen Produkten die Bewertung noch aussteht, Anfrage zum Bearbeitungsstatus an HSE OU geschickt. Antwort & Freigabe am selben Tag erhalten.",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
@@ -216340,7 +216328,7 @@
       "Änd. Historie": null,
       "Datum": null,
       "Bearbeiter": null,
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "08.03.2024: Antrag von HS&E OU (H. Schill) erhalten. Anfrage an Antragsteller zwecks Präzisierung unter Feld 19 (Teamleitung). Antwort am 11.03. erhalten (siehe Schriftverkehr).\nSDB veraltet (Version 1.4, vom 17.05.2017) mit Produktnummer 116620E -> Version 3.1 (16.08.2023) mit geänderter Produktnummer 117770E von der Internetseite des Herstellers heruntergeladen.",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Keine Anlage in SAP\n08.03.2024: Antrag von HS&E OU (H. Schill) erhalten. Anfrage an Antragsteller zwecks Präzisierung unter Feld 19 (Teamleitung). Antwort am 11.03. erhalten (siehe Schriftverkehr).\nSDB veraltet (Version 3, vom 01.12.2016) -> Version 13 (30.01.2023) aus dem Internet heruntergeladen.08.03.2024: Antrag von HS&E OU (H. Schill) erhalten. Anfrage an Antragsteller zwecks Präzisierung unter Feld 19 (Teamleitung). Antwort am 11.03. erhalten (siehe Schriftverkehr).\nSDB veraltet (Version 1.4, vom 17.05.2017) mit Produktnummer 116620E -> Version 3.1 (16.08.2023) mit geänderter Produktnummer 117770E von der Internetseite des Herstellers heruntergeladen.",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
@@ -216396,7 +216384,7 @@
       "Änd. Historie": null,
       "Datum": null,
       "Bearbeiter": null,
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "08.03.2024: Antrag von HS&E OU (H. Schill) erhalten. Anfrage an Antragsteller zwecks Präzisierung unter Feld 19 (Teamleitung). Antwort am 11.03. erhalten (siehe Schriftverkehr).\nSDB veraltet (Version 1.1, vom 19.02.2016) -> Version 2.6 (28.02.2024) von der Internetseite des Herstellers heruntergeladen.\nTO DO: Freigabeemail verschicken",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Keine Anlage in SAP\n08.03.2024: Antrag von HS&E OU (H. Schill) erhalten. Anfrage an Antragsteller zwecks Präzisierung unter Feld 19 (Teamleitung). Antwort am 11.03. erhalten (siehe Schriftverkehr).\nSDB veraltet (Version 3, vom 01.12.2016) -> Version 13 (30.01.2023) aus dem Internet heruntergeladen.08.03.2024: Antrag von HS&E OU (H. Schill) erhalten. Anfrage an Antragsteller zwecks Präzisierung unter Feld 19 (Teamleitung). Antwort am 11.03. erhalten (siehe Schriftverkehr).\nSDB veraltet (Version 1.1, vom 19.02.2016) -> Version 2.6 (28.02.2024) von der Internetseite des Herstellers heruntergeladen.",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
@@ -219181,13 +219169,11 @@
       "Änd. Historie": {
         "display_text": "msg",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\091-2024_01044194_WG%20KLÄRUNG%20ZUR%20LIEFERZERTIFIKATE%20FREIGABE%20ZUR%20VERWENDUNG.msg",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\091-2024_01044194_WG%20KLÄRUNG%20ZUR%20LIEFERZERTIFIKATE%20FREIGABE%20ZUR%20VERWENDUNG.msg",
         "original_url": null,
         "tooltip": ""
       },
       "Datum": "2025-08-26 00:00:00+00:00",
       "Bearbeiter": "H&B Stoffe RR DW (KLAERUNG zu Bestelldaten & Lieferzertifikate)",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "16.08.2024: Freigabe zur Erstbestellung.\n08.10.2024: Laborfreigabe zur Verwendung samt Lieferzertifikate erhalten (siehe Schriftverkehr)\n08.10.2024: Anfrage an H&B Stoffe RR DW zwecks Anpassung vom Einkaufsbestelltext. Am 09.10.2024 erledigt (siehe 'Sonstiges')\n26.08.2025: Anfrage an H&B Stoffe RR DW zwecks Kontrolle der Bestelldaten -> geliefert wurde bisher nicht das freigegebene Produkt, sondern das Produkt was erst jetzt über den Antrag 117/2025 freigegeben wurde. Anfrage von H&B Stoffe am 27.08. an Dengler weitergeleitet. Antwort am selben Tag erhalten. 29.08.2025: Antwort von H&B Stoffe an den Lieferant -> neue Bestellung wird durch Quy Luu ausgelöst. (siehe 'Historie')",
       "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "16.08.2024: Freigabe zur Erstbestellung.\n08.10.2024: Laborfreigabe zur Verwendung samt Lieferzertifikate erhalten (siehe Schriftverkehr)\n08.10.2024: Anfrage an H&B Stoffe RR DW zwecks Anpassung vom Einkaufsbestelltext. Am 09.10.2024 erledigt (siehe 'Sonstiges')\n26.08.2025: Anfrage an H&B Stoffe RR DW zwecks Kontrolle der Bestelldaten -> geliefert wurde bisher nicht das freigegebene Produkt, sondern das Produkt was erst jetzt über den Antrag 117/2025 freigegeben wurde. Anfrage von H&B Stoffe am 27.08. an Dengler weitergeleitet. Antwort am selben Tag erhalten. 29.08.2025: Antwort von H&B Stoffe an den Lieferant -> neue Bestellung wird durch Quy Luu ausgelöst. (siehe 'Historie')",
       "GSK-Nr.": null,
       "Lieferant": null,
@@ -224405,23 +224391,23 @@
       "Hersteller": null
     },
     {
-      "color": "#CCFF99",
-      "status": "approved for first order",
+      "color": "#CCFFCC",
+      "status": "approved",
       "Antrag-nummer": "041/2025",
       "Teile-nummer": "01044096",
-      "Freigabe": "TBD",
+      "Freigabe": "Ja",
       "relevant für Luftfahrtteile": "Ja",
       "Benennung": "DICHTUNGSMASSE",
       "Produktname / Normkurzbezeichnung": "Fastblock 100  (Sealing Compound)",
       "Produktzulassungs-spezifikation": "OMat8/288;   AMS3374 Type 5",
       "Eingang": "2025-03-12 00:00:00+00:00",
-      "Abschluss": null,
+      "Abschluss": "2025-11-13 00:00:00+00:00",
       "Abteilung": "AT&C-ME",
       "Einsatzort": "DW",
       "Antragsteller": "Eichhorn, M.",
       "Antrag": {
         "display_text": "pdf",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\041-2025_01044096_Erstbestellung.pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\041-2025_01044096_Freigabe.pdf",
         "original_url": null,
         "tooltip": ""
       },
@@ -224473,10 +224459,10 @@
         "original_url": null,
         "tooltip": ""
       },
-      "Datum": "2025-03-18 00:00:00+00:00",
-      "Bearbeiter": "Freigabe zur Erstbestellung",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Hohe Priorität\nProdukt schon beantragt in DW über den Antrag 005/2024 (Kein Kontakt mit Luftfahrtteilen). Antrag konnte nicht weiterbearbeitet werden, da kein deutsches SDB lieferbar. Diesmal soll eine SAP Anlage statt finden. Das Gebinde ist gleich geblieben, daher wird die TKZ weiterverwendet.\nHintergründe zur Bearbeitung, siehe unter Schriftverkehr.\nDa das Produkt dringend benötigt wird um Produktionsstopp zu verhindern, wird von UUB ein englisches SDB überprüft, eine mini GBU erstmal erstellt und das Produkt in der ChemScan Datenbank angelegt, damit GBU und BA zeitnah erstellt und zur Verfügung stehen können.\nBitte beachten: das SDB von 2024 ist unter Spalte P verlinkt ; das SDB von 2023, samt Übersetzung als Word File unter Spalte Q und S verlinkt\n19.05.2025: nachträgliche SDB Lieferung in deutscher Ausgabe (siehe 'Historie')",
-      "GSK-Nr.": null,
+      "Datum": null,
+      "Bearbeiter": null,
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Hohe Priorität\nProdukt schon beantragt in DW über den Antrag 005/2024 (Kein Kontakt mit Luftfahrtteilen). Antrag konnte nicht weiterbearbeitet werden, da kein deutsches SDB lieferbar. Diesmal soll eine SAP Anlage statt finden. Das Gebinde ist gleich geblieben, daher wird die TKZ weiterverwendet.\nHintergründe zur Bearbeitung, siehe unter Schriftverkehr.\nDa das Produkt dringend benötigt wird um Produktionsstopp zu verhindern, wird von UUB ein englisches SDB überprüft, eine mini GBU erstmal erstellt und das Produkt in der ChemScan Datenbank angelegt, damit GBU und BA zeitnah erstellt und zur Verfügung stehen können.\nBitte beachten: das SDB von 2024 ist unter Spalte P verlinkt ; das SDB von 2023, samt Übersetzung als Word File unter Spalte Q und S verlinkt\n18.03.2025: Freigabe zur Erstbestellung\n19.05.2025: nachträgliche SDB Lieferung in deutscher Ausgabe (siehe 'Historie')\n12.11.2025: Laborfreigabe zur Verwendung samt Lieferzertifikate erhalten. 13.11.2025: Anfrage an H&B Stoffe RR DW zwecks SAP Anpassung vom EInkaufsbestelltext . Ams elben Tag erledigt (siehe Spalte 'Y')\n13.11.2025: Info vom Wareneingang (J. Schubert) \"Freigabe erfolgt, SDB aktualisiert, CoC´s archiviert.\".",
+      "GSK-Nr.": "msg",
       "Lieferant": null,
       "Hersteller": null
     },
@@ -228773,14 +228759,12 @@
       "Schriftverkehr": {
         "display_text": "msg",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\110-2025_xxxxxxxx_AW%20Antrag%20Teile%20Stoffe%20Never-Seez%20Pure%20Nickel.msg",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\110-2025_xxxxxxxx_AW%20Antrag%20Teile%20Stoffe%20Never-Seez%20Pure%20Nickel.msg",
         "original_url": null,
         "tooltip": ""
       },
       "Änd. Historie": null,
       "Datum": "2025-07-08 00:00:00+00:00",
       "Bearbeiter": "Antragstellerin",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Zweck des Antrags: Erweiterung des Anwendungsgebiets auf BR730C3\nTO DO: klären welche TKZ verwendet werden soll, da im letzten Antrag 156/2014 für OU wurde die neue TKZ 01042592 angelegt mit Hinweis auf Nummerkollision in SAP für die TKZ 10004395 für DW (Anträge 188/2013 & 032/2003). Die letzte TKZ scheint aber in SAP noch vorhanden zu sein!\n08.07.2025: Anfrage an Antragstellerin zwecks Lieferung eines aktuellen SDBs (siehe Schriftverkehr).",
       "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Zweck des Antrags: Erweiterung des Anwendungsgebiets auf BR730C3\nTO DO: klären welche TKZ verwendet werden soll, da im letzten Antrag 156/2014 für OU wurde die neue TKZ 01042592 angelegt mit Hinweis auf Nummerkollision in SAP für die TKZ 10004395 für DW (Anträge 188/2013 & 032/2003). Die letzte TKZ scheint aber in SAP noch vorhanden zu sein!\n08.07.2025: Anfrage an Antragstellerin zwecks Lieferung eines aktuellen SDBs (siehe Schriftverkehr).",
       "GSK-Nr.": null,
       "Lieferant": null,
@@ -229745,7 +229729,6 @@
       "Produktzulassungs-spezifikation": null,
       "Eingang": "2025-07-21 00:00:00+00:00",
       "Abschluss": "2025-09-10 00:00:00+00:00",
-      "Abschluss": "2025-09-10 00:00:00+00:00",
       "Abteilung": "AT&C-ME-MT",
       "Einsatzort": "DW",
       "Antragsteller": "Löbl, F.",
@@ -229782,15 +229765,6 @@
         "original_url": null,
         "tooltip": ""
       },
-      "Änd. Historie": {
-        "display_text": "msg",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\128-2025_01044355_RE%20AfTS%20-%20Fuchs%20Acticide%20MV_STORNIERUNG.msg",
-        "original_url": null,
-        "tooltip": ""
-      },
-      "Datum": null,
-      "Bearbeiter": null,
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Keine SAP-Anlage\nCheck MLC132: kein Treffer\n11.08.2025: Anfrage per Online Kontakt Formular beim Hersteller Fuchs für die Zusendung des Technische Datenblattes für die Labor Bewertung.\n12.08.2025: Produktdatenblatt von der Firma Fuchs per Mail erhalten (siehe Schriftverkehr Verlinkung). Antrag ans Labor weitergeleitet.\n10.09.2025: Antragsteller zieht Antrag zurück, da existierende Alternative gefunden wurde (siehe 'Historie')",
       "Änd. Historie": {
         "display_text": "msg",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\128-2025_01044355_RE%20AfTS%20-%20Fuchs%20Acticide%20MV_STORNIERUNG.msg",
@@ -230371,8 +230345,6 @@
     {
       "color": "#CCFF99",
       "status": "approved for first order",
-      "color": "#CCFF99",
-      "status": "approved for first order",
       "Antrag-nummer": "138/2025",
       "Teile-nummer": "01044369",
       "Freigabe": "TBD",
@@ -230387,7 +230359,6 @@
       "Antragsteller": "Sommer, J.",
       "Antrag": {
         "display_text": "pdf",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\138-2025_01044369_Erstbestellung.pdf",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\138-2025_01044369_Erstbestellung.pdf",
         "original_url": null,
         "tooltip": ""
@@ -230413,16 +230384,11 @@
       "Datum": "2025-11-07 00:00:00+00:00",
       "Bearbeiter": "Freigabe zur Erstbestellung",
       "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "kein TDB erhalten ; Declaration of Conformity ist aus dem Jahr 2018 (siehe Spalte O)\n26.08.2025: Antrag ans Labor weitergeleitet",
-      "Datum": "2025-11-07 00:00:00+00:00",
-      "Bearbeiter": "Freigabe zur Erstbestellung",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "kein TDB erhalten ; Declaration of Conformity ist aus dem Jahr 2018 (siehe Spalte O)\n26.08.2025: Antrag ans Labor weitergeleitet",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
     },
     {
-      "color": "#CCFF99",
-      "status": "approved for first order",
       "color": "#CCFF99",
       "status": "approved for first order",
       "Antrag-nummer": "139/2025",
@@ -230439,7 +230405,6 @@
       "Antragsteller": "Sommer, J.",
       "Antrag": {
         "display_text": "pdf",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\139-2025_01044370_Erstbestellung.pdf",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\139-2025_01044370_Erstbestellung.pdf",
         "original_url": null,
         "tooltip": ""
@@ -230462,9 +230427,6 @@
       "Sonstiges": null,
       "Schriftverkehr": null,
       "Änd. Historie": null,
-      "Datum": "2025-11-07 00:00:00+00:00",
-      "Bearbeiter": "Freigabe zur Erstbestellung",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "kein TDB erhalten ; Declaration of Conformity ist aus dem Jahr 2018 (siehe Spalte O)\n26.08.2025: Antrag ans Labor weitergeleitet",
       "Datum": "2025-11-07 00:00:00+00:00",
       "Bearbeiter": "Freigabe zur Erstbestellung",
       "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "kein TDB erhalten ; Declaration of Conformity ist aus dem Jahr 2018 (siehe Spalte O)\n26.08.2025: Antrag ans Labor weitergeleitet",
@@ -230775,11 +230737,8 @@
     {
       "color": "#CCFFCC",
       "status": "approved",
-      "color": "#CCFFCC",
-      "status": "approved",
       "Antrag-nummer": "145/2025",
       "Teile-nummer": "01044383",
-      "Freigabe": "Ja",
       "Freigabe": "Ja",
       "relevant für Luftfahrtteile": "Ja",
       "Benennung": "Lösungsmittelentfetter",
@@ -230787,13 +230746,11 @@
       "Produktzulassungs-spezifikation": "CSS255, Type A, OMAT 1/257Z",
       "Eingang": "2025-09-11 00:00:00+00:00",
       "Abschluss": "2025-11-07 00:00:00+00:00",
-      "Abschluss": "2025-11-07 00:00:00+00:00",
       "Abteilung": "A&T-ME",
       "Einsatzort": "DW",
       "Antragsteller": "Halavin, W.",
       "Antrag": {
         "display_text": "pdf",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\145-2025_01044383_Freigabe.pdf",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\145-2025_01044383_Freigabe.pdf",
         "original_url": null,
         "tooltip": ""
@@ -230827,14 +230784,10 @@
       "Schriftverkehr": {
         "display_text": "msg",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\145-2025_01044383_WG%20SAP%20ANPASSUNG%20-%20WG%20PN%2001044383.msg",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\145-2025_01044383_WG%20SAP%20ANPASSUNG%20-%20WG%20PN%2001044383.msg",
         "original_url": null,
         "tooltip": ""
       },
       "Änd. Historie": null,
-      "Datum": null,
-      "Bearbeiter": null,
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Ähnlich zugelassene Stoffe: 027/2024, TKZ01044116 und 137/2023, TKZ01044083\nMLC132 ergab keine Treffer\n01.10.2025: Freigabe zur Erstbestellung\n05.11.2025: Laborfreigabe zur Verwendung samt Zertifikate erhalten. 06.11.2025: Anfrage an H&B Stoffe zwecks SAP Anpassung vom Einkaufsbestelltext. Am 07.11. erledigt (siehe Schriftverkehr)",
       "Datum": null,
       "Bearbeiter": null,
       "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Ähnlich zugelassene Stoffe: 027/2024, TKZ01044116 und 137/2023, TKZ01044083\nMLC132 ergab keine Treffer\n01.10.2025: Freigabe zur Erstbestellung\n05.11.2025: Laborfreigabe zur Verwendung samt Zertifikate erhalten. 06.11.2025: Anfrage an H&B Stoffe zwecks SAP Anpassung vom Einkaufsbestelltext. Am 07.11. erledigt (siehe Schriftverkehr)",
@@ -231357,23 +231310,23 @@
       "Hersteller": null
     },
     {
-      "color": "#FFFFFF",
-      "status": "processing",
+      "color": "#CCFFCC",
+      "status": "approved",
       "Antrag-nummer": "155/2025",
       "Teile-nummer": "01041628",
-      "Freigabe": "TBD",
+      "Freigabe": "Ja",
       "relevant für Luftfahrtteile": "Ja",
       "Benennung": "PINSEL",
       "Produktname / Normkurzbezeichnung": "FISCHPINSEL (SCHRAUBENPINSEL) stumpf gearbeitet, kurzer Stiel, Bezeichnung 0410-02, (TYP 410, Größe 2)",
       "Produktzulassungs-spezifikation": null,
       "Eingang": "2025-10-10 00:00:00+00:00",
-      "Abschluss": null,
+      "Abschluss": "2025-11-18 00:00:00+00:00",
       "Abteilung": "A&T-ME",
       "Einsatzort": "DW",
       "Antragsteller": "Halavin, W.",
       "Antrag": {
         "display_text": "pdf",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\155-2025_01041628_Umweltschutz.pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\155-2025_01041628_Freigabe.pdf",
         "original_url": null,
         "tooltip": ""
       },
@@ -231406,14 +231359,14 @@
       },
       "Änd. Historie": {
         "display_text": "pdf",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2023\\155-2025_01041628_Historie.pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Historie\\155-2025_01041628_Historie.pdf",
         "original_url": null,
         "tooltip": ""
       },
-      "Datum": "2025-10-30 00:00:00+00:00",
-      "Bearbeiter": "HSE DW (per Email & Ordner)",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Update des bestehenden Antrags 041/2023 (Änderung auf kurzen Pinsel-Holzstiel). Produkt ist bereits zugelassen und in Oberursel im Einsatz (TKZ 01041628). \nProdukt schon in OU (Anträge 040/2012 & 041/2017) und in DW (Antrag 041/2023) zugelassen.\nInfo vom Antragsteller: \"Es gibt vom Hersteller keine chemische Analyse des Pinsels. Wurde bereits angefragt.\"\n13.10.2025: Anfrage an Antragsteller zwecks Lieferung vom Produktdatenblatt & Bild vom Produkt (ähnlich und alternativ zur \"falschen\" vorhandenen Dokumentation zum Vorgängerantrag 041/2023). Antwort und Dokumentation am 27.10.2025 erhalten (siehe Schriftverkehr).",
-      "GSK-Nr.": null,
+      "Datum": null,
+      "Bearbeiter": null,
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Update des bestehenden Antrags 041/2023 (Änderung auf kurzen Pinsel-Holzstiel). Produkt ist bereits zugelassen und in Oberursel im Einsatz (TKZ 01041628). \nProdukt schon in OU (Anträge 040/2012 & 041/2017) und in DW (Antrag 041/2023) zugelassen.\nInfo vom Antragsteller: \"Es gibt vom Hersteller keine chemische Analyse des Pinsels. Wurde bereits angefragt.\"\n13.10.2025: Anfrage an Antragsteller zwecks Lieferung vom Produktdatenblatt & Bild vom Produkt (ähnlich und alternativ zur \"falschen\" vorhandenen Dokumentation zum Vorgängerantrag 041/2023). Antwort und Dokumentation am 27.10.2025 erhalten (siehe Schriftverkehr).\n30.10.2025: Antrag an HDE DW weitergeleitet.\n13.11.2025: Laborfreigabe zur Erstbestellung erhalten. 14.11.2025: Anfrage ans Labor zwecks Klärung, da Unterschiede zu den Einträgen im Vorgängerantrag 041/2023 vorhanden sind und der jetzige Antrag lediglich zur Erstbestellung freigegeben wurde. Korrektur vom Labor am 14.11. erhalten. 17.11.2025: Anfrage an H&B Stoffe RR DW zwecks SAP Anpassung vom EInkaufsbestelltext. Am selben Tag erledigt (siehe Spalte 'Y').",
+      "GSK-Nr.": "msg",
       "Lieferant": null,
       "Hersteller": null
     },
@@ -231546,26 +231499,51 @@
       "Teile-nummer": "01044396",
       "Freigabe": "TBD",
       "relevant für Luftfahrtteile": "ja",
-      "Benennung": "WATTE",
+      "Benennung": "WATTESTÄBCHEN",
       "Produktname / Normkurzbezeichnung": "Huby Swab - Cotton Stem Paper Tip\nPart Number: BB002",
       "Produktzulassungs-spezifikation": null,
       "Eingang": null,
       "Abschluss": null,
       "Abteilung": "O-BM Gal.",
       "Einsatzort": "OU",
-      "Antragsteller": "Noll, Markus ",
-      "Antrag": null,
-      "Datenblatt": null,
-      "Produkt-zulassung": null,
-      "SDB MSDS": null,
+      "Antragsteller": "Noll, M.",
+      "Antrag": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\158-2025_01044396_Umweltschutz.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Datenblatt": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Datenblatt\\158-2025_01044396_TDB.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Produkt-zulassung": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Zulassung\\158-2025_01044396_COC.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "SDB MSDS": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Sicherheitsdatenblatt\\158-2025_01044396_SDB.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Gefährdungsprüfungeurteilung": null,
       "Gefährdungsprüfung": null,
-      "Sonstiges": null,
+      "Sonstiges": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Sonstiges\\158-2025_01044396_Test%20Report.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Schriftverkehr": null,
       "Änd. Historie": null,
-      "Datum": "2025-10-23 00:00:00+00:00",
-      "Bearbeiter": "Chemscan",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Keine SAP Anlage \n(kein Gefahrstoff?)\n\nSDB auf englisch geliefert - Antragsteller nachfragen",
+      "Datum": "2025-11-17 00:00:00+00:00",
+      "Bearbeiter": "Labor OU (per Email)",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Keine Anlage in SAP\nSDB auf english, aber kein Gefahrstoff, also keine ChemScan Bewertung erforderlich\nMLC132 Check ergab keinen Treffer\nBenennung gemäß TDS angepasst (alte Benennung im ursprünglichen Antrag, siehe unter Feld 19 vom Antrag ; Datenblätter sind alle von ALLKEY INTERNATIONAL INC. geliefert. Hersteller korrigiert von Hein Reinraum GmbH (Klaus Kroschke Gruppe), wahrscheinlich der angedachte Lieferant, auf Sanyo Co., Ltd. gemäß Info im Test Report, siehe 'Sonstiges'. Info über Inhaltsstoffe, siehe 'Zulassung': \"Certificate of Non-Use of Chlorine & Silicon\".",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
@@ -231587,7 +231565,7 @@
       "Antragsteller": "Ebert, C.",
       "Antrag": {
         "display_text": "pdf",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\159-2025_10002007.pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\159-2025_10002007_Umweltschutz.pdf",
         "original_url": null,
         "tooltip": ""
       },
@@ -231627,18 +231605,6 @@
         "original_url": null,
         "tooltip": ""
       },
-      "Gefährdungsprüfung": {
-        "display_text": "Komp A",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\159-2025_10002007_M-Bond%20200%20Adhesive_ChemScan.pdf",
-        "original_url": null,
-        "tooltip": ""
-      },
-      "Sonstiges": {
-        "display_text": "Komp B",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\159-2025_10002007_M-Bond%20200%20Catalyst%20C_ChemScan.pdf",
-        "original_url": null,
-        "tooltip": ""
-      },
       "Schriftverkehr": {
         "display_text": "msg",
         "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\159-2025_10002007_RE%20QN211494205%20(PNR%2010002007;%20VC%20206430)%20Containment%20%20Problem%20Resolution%20required%20ACTION.msg",
@@ -231651,33 +231617,31 @@
         "original_url": null,
         "tooltip": ""
       },
-      "Datum": "2025-11-10 00:00:00+00:00",
-      "Bearbeiter": "Umweltschutz (K. Bartz)",
-      "Datum": "2025-11-10 00:00:00+00:00",
-      "Bearbeiter": "Umweltschutz (K. Bartz)",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Zur Info: GBU vom Antragsteller erhalten, allerdings scheint diese GBU sich lediglich auf das 'Adhesive' ohne Berücksichtigung vom Catalyst' zu beziehen.\nTDS von der internetseite des Herstellers heruntergeladen\n03.11.2025: Anfrage an H&B Stoffe zur Klärung einiger Fragen zum Antrag, Am selben Tag an Antragsteller weitergeleitet, Stellungnahme vom Antragsteller und aktuelles SDB zum 'Adhesive' noch am selben Tag erhalten ; siehe Schriftverkehr. Info zu Feld 12 (Teamleiter) -> Laut Antragsteller: \"Stoff wird in mehreren Bereichen Instr. Lab. und MTOC verwendet daher ist es schwierig nen Teamleiter zu benennen\" ; im Hinblick auf den Antragsteller wird vorerst Sören Kopsch (Instrumentierung) und für MTOC Jan Keller eingetragen.\n04.11.2025: Anfrage von Marcel Mundhas bezüglich \"wie dokumentiert jeder Bereichsleiter, dass er das Material für den Einsatz in seinen Bereich kontrolliert hat\". Antwort vom Antragsteller am selben Tag, samt Info zum Bereichsleiter für das Instrumentierungs Labor, siehe Spalte Y.  ",
+      "Datum": "2025-11-18 00:00:00+00:00",
+      "Bearbeiter": "IRM",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Zur Info: GBU vom Antragsteller erhalten, allerdings scheint diese GBU sich lediglich auf das 'Adhesive' ohne Berücksichtigung vom Catalyst' zu beziehen.\nTDS von der internetseite des Herstellers heruntergeladen\n03.11.2025: Anfrage an H&B Stoffe zur Klärung einiger Fragen zum Antrag, Am selben Tag an Antragsteller weitergeleitet, Stellungnahme vom Antragsteller und aktuelles SDB zum 'Adhesive' noch am selben Tag erhalten ; siehe Schriftverkehr. Info zu Feld 12 (Teamleiter) -> Laut Antragsteller: \"Stoff wird in mehreren Bereichen Instr. Lab. und MTOC verwendet daher ist es schwierig einen Teamleiter zu benennen\" ; im Hinblick auf den Antragsteller wird vorerst Sören Kopsch (Instrumentierung) und für MTOC Jan Keller eingetragen.\n04.11.2025: Anfrage von Marcel Mundhas bezüglich \"wie dokumentiert jeder Bereichsleiter, dass er das Material für den Einsatz in seinen Bereich kontrolliert hat\". Antwort vom Antragsteller am selben Tag, samt Info zum Bereichsleiter für das Instrumentierungs Labor, siehe Spalte Y.  \nMLC132 Check ergab keinen Treffer\n18.11.2025: TO DO -> SAP Aktualisierung ; Freigabe email schicken",
       "GSK-Nr.": "msg",
       "Lieferant": null,
       "Hersteller": null
     },
     {
-      "color": "#FFFFFF",
-      "status": "processing",
+      "color": "#CCFFCC",
+      "status": "approved",
       "Antrag-nummer": "160/2025",
       "Teile-nummer": "01044401",
-      "Freigabe": "TBD",
+      "Freigabe": "Ja",
       "relevant für Luftfahrtteile": "nein",
       "Benennung": "CHEMISCHE ANALYTIK",
       "Produktname / Normkurzbezeichnung": "Nanocolor Zink 6 Test, Ref.: 985042",
       "Produktzulassungs-spezifikation": null,
       "Eingang": "2025-11-04 00:00:00+00:00",
-      "Abschluss": null,
+      "Abschluss": "2025-11-18 00:00:00+00:00",
       "Abteilung": "O-BM Gal.",
       "Einsatzort": "OU",
       "Antragsteller": "Noll, M.",
       "Antrag": {
         "display_text": "pdf",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\160-2025_01044401.pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\160-2025_01044401_Freigabe.pdf",
         "original_url": null,
         "tooltip": ""
       },
@@ -231695,13 +231659,18 @@
         "tooltip": ""
       },
       "Gefährdungsprüfungeurteilung": null,
-      "Gefährdungsprüfung": null,
+      "Gefährdungsprüfung": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\160-2025_01044401_Nanocolor%20Zink%206_ChemScan.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Sonstiges": null,
       "Schriftverkehr": null,
       "Änd. Historie": null,
-      "Datum": "2025-11-04 00:00:00+00:00",
-      "Bearbeiter": "ChemScan",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": null,
+      "Datum": null,
+      "Bearbeiter": null,
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "MLC132 Check ergab einen Treffer: CAS-Nr.: 10043-35-3 (Borsäure) -> siehe Umweltschutzbewertung.\n11.11.2025: Zusatzinfo von K. Bartz erhalten -> \"Ergänzender Kommentar: Einstufung als SVHC nach REACh und damit Treffer auf MLC132 sind bekannt. Stoff ist für die Analytik in der Abwasserbehandlung nicht ersetzbar aber hinsichtlich REACh für diese Anwendungen ausgenommen.\".",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
@@ -231720,41 +231689,61 @@
       "Abschluss": null,
       "Abteilung": "O-BM Gal.",
       "Einsatzort": "OU",
-      "Antragsteller": "Noll, Markus",
-      "Antrag": null,
-      "Datenblatt": null,
+      "Antragsteller": "Noll, M.",
+      "Antrag": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\161-2025_01044402.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Datenblatt": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Datenblatt\\161-2025_01044402_Rundküvettentest%20NANOCOLOR%20Cadmium%202.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Produkt-zulassung": null,
-      "SDB MSDS": null,
+      "SDB MSDS": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Sicherheitsdatenblatt\\161-2025_01044402_SDB.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Gefährdungsprüfungeurteilung": null,
-      "Gefährdungsprüfung": null,
+      "Gefährdungsprüfung": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\161-2025_01044402_Nanocolor%20Cadmium%202.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Sonstiges": null,
       "Schriftverkehr": null,
       "Änd. Historie": null,
-      "Datum": "2025-11-04 00:00:00+00:00",
-      "Bearbeiter": "Normstelle",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "In Bearbeitung",
+      "Datum": "2025-11-17 00:00:00+00:00",
+      "Bearbeiter": "Umweltschutz (K. Bartz)",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "MLC132 Check ergab einen Treffer: CAS-Nr.: 10043-35-3 (Borsäure)",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
     },
     {
-      "color": "#FFFFFF",
-      "status": "processing",
+      "color": "#CCFFCC",
+      "status": "approved",
       "Antrag-nummer": "162/2025",
       "Teile-nummer": "01044403",
-      "Freigabe": "TBD",
+      "Freigabe": "Ja",
       "relevant für Luftfahrtteile": "nein",
       "Benennung": "CHEMISCHE ANALYTIK",
       "Produktname / Normkurzbezeichnung": "Nanocolor Sulfat HR 1000 Test, Ref.: 985063",
       "Produktzulassungs-spezifikation": null,
       "Eingang": "2025-11-05 00:00:00+00:00",
-      "Abschluss": null,
+      "Abschluss": "2025-11-18 00:00:00+00:00",
       "Abteilung": "O-BM Gal.",
       "Einsatzort": "OU",
       "Antragsteller": "Noll, M.",
       "Antrag": {
         "display_text": "pdf",
-        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\162-2025_01044403.pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\162-2025_01044403_Freigabe.pdf",
         "original_url": null,
         "tooltip": ""
       },
@@ -231772,13 +231761,18 @@
         "tooltip": ""
       },
       "Gefährdungsprüfungeurteilung": null,
-      "Gefährdungsprüfung": null,
+      "Gefährdungsprüfung": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\162-2025_01044403_NANOCOLOR%20Sulfat%20HR%201000_ChemScan.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Sonstiges": null,
       "Schriftverkehr": null,
       "Änd. Historie": null,
-      "Datum": "2025-11-05 00:00:00+00:00",
-      "Bearbeiter": "ChemScan",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": null,
+      "Datum": null,
+      "Bearbeiter": null,
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "MLC132 Check ergab keinen Treffer",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
@@ -231797,19 +231791,39 @@
       "Abschluss": null,
       "Abteilung": "O-BM Gal.",
       "Einsatzort": "OU",
-      "Antragsteller": "Noll, Markus",
-      "Antrag": null,
-      "Datenblatt": null,
+      "Antragsteller": "Noll, M.",
+      "Antrag": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\163-2025_01044404.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Datenblatt": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Datenblatt\\163-2025_01044404_Rundküvettentest%20NANOCOLOR%20Nickel%204.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Produkt-zulassung": null,
-      "SDB MSDS": null,
+      "SDB MSDS": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Sicherheitsdatenblatt\\163-2025_01044404_SDB.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Gefährdungsprüfungeurteilung": null,
-      "Gefährdungsprüfung": null,
+      "Gefährdungsprüfung": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\163-2025_01044404_Nanocolor%20Nickel%204.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Sonstiges": null,
       "Schriftverkehr": null,
       "Änd. Historie": null,
-      "Datum": "05.11.2025",
-      "Bearbeiter": "Normstelle",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "In Bearbeitung",
+      "Datum": "2025-11-17 00:00:00+00:00",
+      "Bearbeiter": "Umweltschutz (K. Bartz)",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "MLC132 Check ergab keinen Treffer",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
@@ -231828,19 +231842,39 @@
       "Abschluss": null,
       "Abteilung": "O-BM Gal.",
       "Einsatzort": "OU",
-      "Antragsteller": "Noll, Markus",
-      "Antrag": null,
-      "Datenblatt": null,
+      "Antragsteller": "Noll, M.",
+      "Antrag": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\164-2025_01044405.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Datenblatt": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Datenblatt\\164-2025_01044405_Rundküvettentest%20NANOCOLOR%20gesamt-Chrom%202.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Produkt-zulassung": null,
-      "SDB MSDS": null,
+      "SDB MSDS": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Sicherheitsdatenblatt\\164-2025_01044405_SDB.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Gefährdungsprüfungeurteilung": null,
-      "Gefährdungsprüfung": null,
+      "Gefährdungsprüfung": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\163-2025_01044404_Nanocolor%20Nickel%204.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Sonstiges": null,
       "Schriftverkehr": null,
       "Änd. Historie": null,
-      "Datum": "05.11.2025",
-      "Bearbeiter": "Normstelle",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "In Bearbeitung",
+      "Datum": "2025-11-17 00:00:00+00:00",
+      "Bearbeiter": "Umweltschutz (K. Bartz)",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "MLC132 Check ergab keinen Treffer",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
@@ -231859,19 +231893,39 @@
       "Abschluss": null,
       "Abteilung": "O-BM Gal.",
       "Einsatzort": "OU",
-      "Antragsteller": "Noll, Markus",
-      "Antrag": null,
-      "Datenblatt": null,
+      "Antragsteller": "Noll, M.",
+      "Antrag": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\165-2025_01044406.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Datenblatt": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Datenblatt\\165-2025_01044406_Rundküvettentest%20NANOCOLOR%20Chromat%205.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Produkt-zulassung": null,
-      "SDB MSDS": null,
+      "SDB MSDS": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Sicherheitsdatenblatt\\165-2025_01044406_SDB.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Gefährdungsprüfungeurteilung": null,
-      "Gefährdungsprüfung": null,
+      "Gefährdungsprüfung": {
+        "display_text": "PDF",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\165-2025_01044406_Nanocolor%20Chromat%205.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Sonstiges": null,
       "Schriftverkehr": null,
       "Änd. Historie": null,
-      "Datum": "05.11.2025",
-      "Bearbeiter": "Normstelle",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "In Bearbeitung",
+      "Datum": "2025-11-17 00:00:00+00:00",
+      "Bearbeiter": "Umweltschutz (K. Bartz)",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "MLC132 Check ergab keinen Treffer",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
@@ -231890,19 +231944,39 @@
       "Abschluss": null,
       "Abteilung": "O-BM Gal.",
       "Einsatzort": "OU",
-      "Antragsteller": "Noll, Markus",
-      "Antrag": null,
-      "Datenblatt": null,
+      "Antragsteller": "Noll, M.",
+      "Antrag": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\166-2025_01044407.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Datenblatt": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Datenblatt\\166-2025_01044407_Rundküvettentest%20NANOCOLOR%20Kupfer%207.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Produkt-zulassung": null,
-      "SDB MSDS": null,
+      "SDB MSDS": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Sicherheitsdatenblatt\\166-2025_01044407_SDB.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Gefährdungsprüfungeurteilung": null,
-      "Gefährdungsprüfung": null,
+      "Gefährdungsprüfung": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\166-2025_01044407_Nanocolor%20Kupfer%207.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Sonstiges": null,
       "Schriftverkehr": null,
       "Änd. Historie": null,
-      "Datum": "05.11.2025",
-      "Bearbeiter": "Normstelle",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "In Bearbeitung",
+      "Datum": "2025-11-17 00:00:00+00:00",
+      "Bearbeiter": "Umweltschutz (K. Bartz)",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "MLC132 Check ergab keinen Treffer",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
@@ -231921,19 +231995,39 @@
       "Abschluss": null,
       "Abteilung": "O-BM Gal.",
       "Einsatzort": "OU",
-      "Antragsteller": "Noll, Markus",
-      "Antrag": null,
-      "Datenblatt": null,
+      "Antragsteller": "Noll, M.",
+      "Antrag": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\167-2025_01044408.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Datenblatt": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Datenblatt\\167-2025_01044408_Rundküvettentest%20NANOCOLOR%20Eisen%203.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Produkt-zulassung": null,
-      "SDB MSDS": null,
+      "SDB MSDS": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Sicherheitsdatenblatt\\167-2025_01044408_SDB.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Gefährdungsprüfungeurteilung": null,
-      "Gefährdungsprüfung": null,
+      "Gefährdungsprüfung": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\167-2025_01044408_Nanocolor%20Eisen%203.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Sonstiges": null,
       "Schriftverkehr": null,
       "Änd. Historie": null,
-      "Datum": "05.11.2025",
-      "Bearbeiter": "Normstelle",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "In Bearbeitung",
+      "Datum": "2025-11-17 00:00:00+00:00",
+      "Bearbeiter": "Umweltschutz (K. Bartz)",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "MLC132 Check ergab keinen Treffer",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
@@ -231946,25 +232040,218 @@
       "Freigabe": "TBD",
       "relevant für Luftfahrtteile": "Ja",
       "Benennung": "AUFLAGEMATERIAL",
-      "Produktname / Normkurzbezeichnung": "Tischauflage für Vorbereitungstische und Aufbautische",
+      "Produktname / Normkurzbezeichnung": "Tischauflage (aus SUSTARIN C natur)",
       "Produktzulassungs-spezifikation": null,
       "Eingang": "05.11.2025",
       "Abschluss": null,
       "Abteilung": "O-BN-EBW",
       "Einsatzort": "OU",
-      "Antragsteller": "Andreas Knaub",
-      "Antrag": null,
-      "Datenblatt": null,
-      "Produkt-zulassung": null,
-      "SDB MSDS": null,
+      "Antragsteller": "Knaub, A.",
+      "Antrag": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\168-2025_01044409_Umweltschutz.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Datenblatt": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Datenblatt\\168-2025_01044409_TDB.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Produkt-zulassung": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Zulassung\\168-2025_01044409_INFO_SILIKON.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "SDB MSDS": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Zulassung\\168-2025_01044409_INFO_SPH.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Gefährdungsprüfungeurteilung": null,
       "Gefährdungsprüfung": null,
+      "Sonstiges": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Sonstiges\\168-2025_01044409_Info_Angebot.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Schriftverkehr": null,
+      "Änd. Historie": null,
+      "Datum": "2025-11-12 00:00:00+00:00",
+      "Bearbeiter": "HS&E OU (per Email)",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Keine SAP Anlage\nProduktbenennung angepasst (war \"Tischauflage für Vorbereitungstische und Aufbautische\" im ursprünglichen Antrag).\nInfo zur Zulassung und Inhaltsstoffe: Silikon, siehe Spalte O, Schwefel, Phosphor und Halogene, siehe Spalte 'P'. ",
+      "GSK-Nr.": null,
+      "Lieferant": null,
+      "Hersteller": null
+    },
+    {
+      "color": "#FFFFFF",
+      "status": "processing",
+      "Antrag-nummer": "169/2025",
+      "Teile-nummer": "01044410",
+      "Freigabe": "TBD",
+      "relevant für Luftfahrtteile": "Ja",
+      "Benennung": "MONTAGEMITTEL",
+      "Produktname / Normkurzbezeichnung": "Ultrachem - Assembly Fluid #1",
+      "Produktzulassungs-spezifikation": "MSRR9295, OMAT 1069",
+      "Eingang": "2025-11-12 00:00:00+00:00",
+      "Abschluss": null,
+      "Abteilung": "AT&C-ME",
+      "Einsatzort": "DW",
+      "Antragsteller": "Hartmann, J.",
+      "Antrag": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\169-2025_01044410.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Datenblatt": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Datenblatt\\169-2025_01044410_TDS_Ultrachem-Assembly-Fluid-1-4oz-Tube-TDS.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Produkt-zulassung": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Zulassung\\169-2025_01044410_MSRR9295_OMat1069.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "SDB MSDS": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Sicherheitsdatenblatt\\169-2025_01044410_AF1_SDS_GER(v1).pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Gefährdungsprüfungeurteilung": null,
+      "Gefährdungsprüfung": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\169-2025_01044410_Ultrachem%20-%20Assembly%20Fluid%20",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Sonstiges": null,
+      "Schriftverkehr": {
+        "display_text": "msg",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\169-2025_01044410_WG%20AfTuS%20Ultrachem.msg",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Änd. Historie": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2001\\289-2001_01008954.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Datum": "2025-11-18 00:00:00+00:00",
+      "Bearbeiter": "Umweltschutz (K. Bartz)",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Produkt schon über Antrag 289/2001 (TKZ 01008954) für OU freigegeben. Produktbenennung im Antrag \"OMat 1069 - Ultrachem #1\" gemäß Datenblätter angepasst. Wegen Änderung des Herstellers, wird eine neue TKZ vergeben. Außerdem gibt es im SAP Datensatz zur TKZ 01008954 kein Reiter Qualitätsmanagement, dot steht \"(f. Tornado G 119) S/P\n12 Tuben zu 4 Unzen netto (ca. 113 g.)\", ohne Erwähnung des damaligen Herstellers (Chem. Fabrik Freising GmbH laut Antrag 289/2001).\n11.11.2025: Anfrage an Antragsteller zwecks Lieferung von TDB und SDB. Antwort am 12.11. erhalten (siehe Schriftverkehr). TDS nur in englischer Sprache. Deutsches SDB von Harriet Frier geliefert.\nMLC132 Check ergab keinen Treffer",
+      "GSK-Nr.": null,
+      "Lieferant": null,
+      "Hersteller": null
+    },
+    {
+      "color": "#FFFFFF",
+      "status": "processing",
+      "Antrag-nummer": "170/2025",
+      "Teile-nummer": "01044411",
+      "Freigabe": "TBD",
+      "relevant für Luftfahrtteile": "Nein",
+      "Benennung": "Materialographische Probenvorbereitung",
+      "Produktname / Normkurzbezeichnung": "Fumed Silica Suspension 0,2 µm Alkaline",
+      "Produktzulassungs-spezifikation": null,
+      "Eingang": "12.11.2025",
+      "Abschluss": null,
+      "Abteilung": "ETS-CP-MEM11",
+      "Einsatzort": "DW",
+      "Antragsteller": "Sefrin, D.",
+      "Antrag": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\170-2025_01044411.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Datenblatt": null,
+      "Produkt-zulassung": null,
+      "SDB MSDS": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Sicherheitsdatenblatt\\170-2025_01044411_SDB.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Gefährdungsprüfungeurteilung": null,
+      "Gefährdungsprüfung": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Gefährdungsbeurteilung\\170-2025_01044411_Fumed%20Silica%20Suspension%200,2%20µm%20Alkaline.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
       "Sonstiges": null,
       "Schriftverkehr": null,
       "Änd. Historie": null,
-      "Datum": "05.11.2025",
-      "Bearbeiter": "Normstelle",
-      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Keine SAP Anlage",
+      "Datum": "2025-11-18 00:00:00+00:00",
+      "Bearbeiter": "Umweltschutz (K. Bartz)",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Produktbebennung gemäß SDB aktualisiert. Alte Bezeichnung im ursprünglichen Antrag \"Cloeren OPS, Collodial Silica Suspension 0,2µm alkalisch\", siehe Feld 19 vom Antrag. Im selben Feld wurde auch die UFI Nummer hinzugefügt.\nMLC132 Check ergab keinen Treffer",
+      "GSK-Nr.": null,
+      "Lieferant": null,
+      "Hersteller": null
+    },
+    {
+      "color": "#FFFFFF",
+      "status": "processing",
+      "Antrag-nummer": "171/2025",
+      "Teile-nummer": "01044412",
+      "Freigabe": "TBD",
+      "relevant für Luftfahrtteile": "Ja",
+      "Benennung": "RINGSCHUTZ",
+      "Produktname / Normkurzbezeichnung": "IMPACTO Ring Protector",
+      "Produktzulassungs-spezifikation": null,
+      "Eingang": "12.11.2025",
+      "Abschluss": null,
+      "Abteilung": "OQ OU",
+      "Einsatzort": "OU",
+      "Antragsteller": "Schüler, G.",
+      "Antrag": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Antrag\\2025\\171-2025_01044412.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Datenblatt": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Datenblatt\\171-2025_01044412_PDB.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Produkt-zulassung": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Sonstiges\\171-2025_01044412_User%20Information.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "SDB MSDS": null,
+      "Gefährdungsprüfungeurteilung": null,
+      "Gefährdungsprüfung": null,
+      "Sonstiges": {
+        "display_text": "pdf",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Sonstiges\\171-2025_01044412_INFO_Bestellung.pdf",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Schriftverkehr": {
+        "display_text": "msg",
+        "url": "file:///\\\\deberdna-c010a\\GlobalDE\\DocumentManagement\\NormstelleShare\\TeileundStoffe\\Schriftverkehr\\171-2025_01044412_AW%20Antrag%20für%20Teile%20und%20Stoffe.msg",
+        "original_url": null,
+        "tooltip": ""
+      },
+      "Änd. Historie": null,
+      "Datum": "12.11.2025\n\n\n14.11.2025",
+      "Bearbeiter": "\n\nUmweltschutz (K. Bartz)\n\nAntragsteller (Klärung Produkt)",
+      "=CONCATENATE(\"Bemerkung \n(\",COUNTIF(C:C,\"TBD\"),\" offene Anträge)\")": "Antrag in alter Vorlage erhalten.\nUser Information, siehe Spalte O.\nBitte beachten: der Antrag ist in der veralteten Vorlage weitergeleitet worden!\n14.11.2025: Anfrage an Antragsteller zur Klärung, ob 2 Produktvarianten  (#1000, #1001) bestellbar sein müssten (siehe Schriftverkehr). Wenn ja müssten für die SAP Bestellung 2 TKZ vergeben und 2 unterschiedliche Anträge freigegeben werden.",
       "GSK-Nr.": null,
       "Lieferant": null,
       "Hersteller": null
